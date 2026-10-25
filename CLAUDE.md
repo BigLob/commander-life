@@ -34,7 +34,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.14)
+### `index.html`: Commander Life (current v3.15)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -74,6 +74,11 @@ After a deploy, ask the user to check the version in the menu footer.
   - the table had 2 to 4 players,
   - exactly one player was still alive,
   - and its clock ran at least 15 minutes.
+
+  v3.15 adds an invisible turn timer (synced as `clock/<n>`: `at`, `count`, and per player `t/<i>`
+  ms and `c/<i>` turns, all increments). Each turn-tracker change counts a turn and gives the time
+  since the last one to whoever had it. New game clears it. The log saves `turns` (total) and per
+  seat `turns` and `turnSecs`, and Results shows "N turns" and each player's turn minutes.
 
   The log saves the date, how long the game took, the winner, and each player's name, color pair,
   pattern and final life. The Results list is hidden: tapping the version line at the foot of the

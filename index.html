@@ -436,7 +436,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.14';
+  const VERSION = '3.15';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -468,6 +468,7 @@ details.field .patterns { margin-top: 6px; }
   // A white flag traced in black, like the dagger.
   const ICON_FLAG = '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="#000" stroke-width="4.5"><path d="M5 21V3.5M5 4h13l-3 4.5 3 4.5H5"/></g><path d="M5 4h13l-3 4.5 3 4.5H5z" fill="currentColor"/><path d="M5 21V3.5" stroke="currentColor" stroke-width="2"/></svg>';
 
+  const blankClock = n => ({ at: null, count: 0, t: Array(n).fill(0), c: Array(n).fill(0) });
   const blankGame = (n, start) =>
     Array.from({ length: n }, () => ({ life: start, cmd: [0, 0, 0], conceded: false }));
 
@@ -500,6 +501,13 @@ details.field .patterns { margin-top: 6px; }
   // Per table size, the player whose turn it is (null before anyone's started).
   if (!state.turns || typeof state.turns !== 'object') state.turns = {};
   TURN_MODES.forEach(n => { if (!Number.isInteger(state.turns[n])) state.turns[n] = null; });
+  // Per table size, the invisible turn timer: when the current turn began, how many turns have been
+  // taken, and per player their turns (c) and total turn time in ms (t). Null counts as 0.
+  if (!state.clock || typeof state.clock !== 'object') state.clock = {};
+  TURN_MODES.forEach(n => {
+    const c = state.clock[n];
+    if (!c || typeof c !== 'object' || !c.t || !c.c) state.clock[n] = blankClock(n);
+  });
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
@@ -751,11 +759,24 @@ details.field .patterns { margin-top: 6px; }
     setTurn(next);
     buzz();
   }
+  // Each new turn is counted, and the time since the last one began goes to whoever had it.
+  // Increments, so two phones passing turns at once both count.
   function setTurn(i) {
     touch();
-    state.turns[state.mode] = i;
-    send({ ['turns/' + state.mode]: i });
-    save(); paintTurn();
+    const n = state.mode, c = state.clock[n], prev = state.turns[n], now = Date.now();
+    const patch = { ['turns/' + n]: i, [`clock/${n}/at`]: now };
+    if (prev != null && prev < n && c.at) {
+      const d = Math.max(0, now - c.at);
+      c.t[prev] = (c.t[prev] || 0) + d;
+      patch[`clock/${n}/t/${prev}`] = inc(d);
+    }
+    c.c[i] = (c.c[i] || 0) + 1;
+    c.count = (c.count || 0) + 1;
+    c.at = now;
+    patch[`clock/${n}/c/${i}`] = inc(1);
+    patch[`clock/${n}/count`] = inc(1);
+    state.turns[n] = i;
+    send(patch); save(); paintTurn();
   }
   function paintTurn() {
     const t = state.turns[state.mode];
@@ -925,8 +946,8 @@ details.field .patterns { margin-top: 6px; }
     if (untouched(game()) || newGameBtn.classList.contains('armed')) {
       record();
       state.games[state.mode] = blankGame(state.mode, state.start);
-      if (state.mode > 1) state.turns[state.mode] = null;
-      send({ ['games/' + state.mode]: state.games[state.mode], ['turns/' + state.mode]: null });
+      if (state.mode > 1) { state.turns[state.mode] = null; state.clock[state.mode] = blankClock(state.mode); }
+      send({ ['games/' + state.mode]: state.games[state.mode], ['turns/' + state.mode]: null, ['clock/' + state.mode]: null });
       marking = []; save(); build(); closeMenu();
       return;
     }
@@ -970,13 +991,17 @@ details.field .patterns { margin-top: 6px; }
     const end = m.end || Date.now();
     const minutes = Math.round((end - m.at) / 60000);
     if (alive.length !== 1 || minutes < MIN_GAME_MINUTES) return;
+    // The turn in progress when the game ended runs to the end.
+    const c = state.clock[n], cur = state.turns[n];
+    const turnMs = i => (c.t[i] || 0) + (i === cur && c.at ? Math.max(0, end - c.at) : 0);
     const result = {
-      at: end, minutes, players: n, start: state.start,
+      at: end, minutes, players: n, start: state.start, turns: c.count || 0,
       seats: g.map((p, i) => {
         const e = edgeOf(i);
         return {
           name: state.names[e].trim() || DEFAULT_NAMES[e], colors: colorOf(e).slice(2), pattern: patternOf(e),
           life: p.life, out: outReason(p) || null, won: i === alive[0],
+          turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
         };
       }),
     };
@@ -1010,9 +1035,9 @@ details.field .patterns { margin-top: 6px; }
       const r = all[id], win = r.seats.find(x => x.won) || {};
       const day = new Date(r.at).toLocaleDateString([], { month: 'short', day: 'numeric' });
       return `<div class="res-row">
-        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(SCHEMES[win.colors] || '')} &middot; ${day} &middot; ${+r.minutes || 0} min${r.pending ? ' &middot; this phone only' : ''}</span>
+        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(SCHEMES[win.colors] || '')} &middot; ${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
           <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
-        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(SCHEMES[x.colors] || '')}"><i class="sw"></i>${esc(x.name)}</span>`).join('')}</div>
+        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(SCHEMES[x.colors] || '')}"><i class="sw"></i>${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
       </div>`;
     }).join('') : '<p class="res-note">No finished games logged yet.</p>');
   }
@@ -1094,13 +1119,15 @@ details.field .patterns { margin-top: 6px; }
     'colors/0', 'colors/1', 'colors/2', 'colors/3', 'patterns/0', 'patterns/1', 'patterns/2', 'patterns/3']
     .concat(...MODES.map(n => [].concat(...Array.from({ length: n }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${n}/${i}/${f}`)))),
-      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`, `meta/${n}/end`]), TURN_MODES.map(n => 'turns/' + n));
+      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`, `meta/${n}/end`]), TURN_MODES.map(n => 'turns/' + n),
+      ...TURN_MODES.map(n => [`clock/${n}/at`, `clock/${n}/count`].concat(
+        ...Array.from({ length: n }, (_, i) => [`clock/${n}/t/${i}`, `clock/${n}/c/${i}`]))));
   const getAt = (root, path) => path.split('/').reduce((o, k) => o == null ? undefined : o[k], root);
   function setAt(path, v) {
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games, meta: state.meta, turns: state.turns });
+  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -1122,6 +1149,7 @@ details.field .patterns { margin-top: 6px; }
     if (p.startsWith('colors/')) return Object.prototype.hasOwnProperty.call(SCHEMES, v);
     if (p.startsWith('patterns/')) return Object.prototype.hasOwnProperty.call(PATTERNS, v);
     if (p.endsWith('/conceded')) return typeof v === 'boolean';
+    if (p.startsWith('clock/')) return v === null || (typeof v === 'number' && isFinite(v) && v >= 0);
     if (p.startsWith('turns/')) return v === null || (Number.isInteger(v) && v >= 0 && v < +p.slice(6));
     if (p.startsWith('meta/')) return v === null || (p.endsWith('/id') ? typeof v === 'string' && v.length <= 24 : typeof v === 'number' && isFinite(v));
     return typeof v === 'number' && isFinite(v) && Math.abs(v) < 1e6;
@@ -1145,13 +1173,13 @@ details.field .patterns { margin-top: 6px; }
       const was = getAt(state, p);
       // A seat reset by a phone from before v3.0 carries no concession: it's back in.
       if (v === undefined && p.endsWith('/conceded') && getAt(mirror, p.slice(0, -'/conceded'.length))) v = false;
-      // A table that holds no meta or turn (cleared, or set up by an older phone) has none.
-      if (v === undefined && (p.startsWith('meta/') || p.startsWith('turns/')) && mirror && typeof mirror === 'object') v = null;
+      // A table that holds no meta, turn or turn timer (cleared, or set up by an older phone) has none.
+      if (v === undefined && /^(meta|turns|clock)\//.test(p) && mirror && typeof mirror === 'object') v = null;
       if (v !== undefined && v !== was && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
     if (!changed.length) return;
     save();
-    if (changed.some(x => !/^(games|meta|turns)\//.test(x.p))) {
+    if (changed.some(x => !/^(games|meta|turns|clock)\//.test(x.p))) {
       if (changed.some(x => x.p === 'mode')) marking = [];
       build();
       if (!menu.hidden) syncMenu();
