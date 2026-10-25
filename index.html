@@ -136,14 +136,16 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 .name {
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; text-align: center;
-  font-size: clamp(12px, calc(8 * var(--cqh, 1vh)), 18px); font-weight: 600;
+  font-size: clamp(15px, calc(11 * var(--cqh, 1vh)), 26px); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2);
   /* Same black outline as the life total, thicker for the small type. */
   -webkit-text-stroke: .14em #000; paint-order: stroke fill;
 }
-.name .why { color: var(--ink); }
+.name .why { display: block; margin-top: .2em; font-size: .7em; color: var(--ink); }
 /* Corner names keep clear of the menu button in the middle of the table. */
 .table .name { left: calc(6 * var(--cqw, 1vw)); right: auto; text-align: left; }
+/* Bigger names still have to fit a narrow seat. */
+.name { max-width: calc(88 * var(--cqw, 1vw)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .n3 .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
 .life {
   position: relative;
@@ -169,7 +171,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 
 .tray {
-  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%); z-index: 2;
+  /* Commander damage sits in the seat's bottom-right corner, as its player sees it. */
+  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); right: calc(5 * var(--cqw, 1vw)); z-index: 2;
   display: flex; align-items: center; gap: .35em; white-space: nowrap;
   font-size: clamp(12px, min(calc(8.5 * var(--cqh, 1vh)), calc(4.3 * var(--cqw, 1vw))), 19px);
 }
@@ -233,7 +236,7 @@ details.field .patterns { margin-top: 6px; }
 .cmd-btn.hot { color: var(--hot); }
 .cmd-btn.hot b { background: var(--hot); }
 .pop {
-  position: absolute; bottom: calc(100% + .5em); left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: calc(100% + .5em); right: 0;
   display: none; gap: .35em; width: max-content; padding: .35em;
   border-radius: 999px; background: var(--table); box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
 }
@@ -241,7 +244,7 @@ details.field .patterns { margin-top: 6px; }
 /* Upright side seats are too narrow for a row of attackers, so they stack. */
 .upright .s1 .pop, .upright .s3 .pop { flex-direction: column; border-radius: 18px; }
 .seat.marking .cmd-btn, .seat.marking .pop .chip:not(.on) { display: none; }
-.seat.marking .pop { display: flex; position: static; transform: none; padding: 0; background: none; }
+.seat.marking .pop { display: flex; position: static; padding: 0; background: none; }
 
 .menu-btn {
   position: absolute; z-index: 10; width: 54px; height: 54px; border-radius: 50%;
@@ -371,7 +374,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.2';
+  const VERSION = '3.3';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -569,7 +572,7 @@ details.field .patterns { margin-top: 6px; }
     const why = outReason(p);
     seat.classList.toggle('out', !!why);
     const label = state.mode === 1 ? 'Life' : nameOf(edgeOf(i));
-    seat.querySelector('.name').innerHTML = why ? `${label} &middot; <span class="why">out, ${why}</span>` : label;
+    seat.querySelector('.name').innerHTML = why ? `${label}<span class="why">out, ${why}</span>` : label;
 
     seat.classList.toggle('marking', marking[i] != null);
     seat.querySelectorAll('.chip').forEach(c => {
