@@ -137,7 +137,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .name {
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; text-align: center;
   font-size: clamp(15px, calc(11 * var(--cqh, 1vh)), 26px); font-weight: 600;
-  letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2);
+  letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
   /* Same black outline as the life total, thicker for the small type. */
   -webkit-text-stroke: .14em #000; paint-order: stroke fill;
 }
@@ -362,7 +362,7 @@ details.field .patterns { margin-top: 6px; }
     <button type="button" class="action primary" id="newGame">New game</button>
     <button type="button" class="action" id="pickFirst">Pick who goes first</button>
     <button type="button" class="action mini" id="concede">Concede</button>
-    <details class="field" id="resultsField">
+    <details class="field" id="resultsField" hidden>
       <summary>Results</summary>
       <div class="results" id="results"></div>
     </details>
@@ -374,7 +374,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.3';
+  const VERSION = '3.4';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -723,7 +723,7 @@ details.field .patterns { margin-top: 6px; }
     concedeBtn.textContent = game()[mySeat()].conceded ? 'Rejoin' : 'Concede';
   }
   function openMenu() { syncMenu(); menu.hidden = false; }
-  function closeMenu() { menu.hidden = true; disarm(); }
+  function closeMenu() { menu.hidden = true; document.getElementById('resultsField').hidden = true; disarm(); }
 
   menu.addEventListener('click', e => { if (e.target === menu) closeMenu(); });
   document.getElementById('closeMenu').addEventListener('click', closeMenu);
@@ -850,6 +850,13 @@ details.field .patterns { margin-top: 6px; }
       .catch(() => showResults(shown, "Couldn't reach the shared log. Showing this phone's games."));
   }
   document.getElementById('resultsField').addEventListener('toggle', e => { if (e.target.open) loadResults(); });
+  // The log stays out of sight: tapping the version line at the foot of the menu shows or hides it.
+  const resultsField = document.getElementById('resultsField');
+  document.getElementById('ver').addEventListener('click', () => {
+    resultsField.hidden = !resultsField.hidden;
+    resultsField.open = !resultsField.hidden;
+    if (!resultsField.hidden) resultsField.scrollIntoView({ block: 'nearest' });
+  });
   resultsEl.addEventListener('click', e => {
     const b = e.target.closest('.res-del');
     if (!b) return;
