@@ -190,11 +190,6 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   content: ""; position: absolute; inset: 0; background: var(--accent);
   -webkit-mask: var(--pattern) 0 0 / 100% 100% no-repeat; mask: var(--pattern) 0 0 / 100% 100% no-repeat;
 }
-/* Each pattern carries its number from the proof sheet. */
-.patterns button::after {
-  content: attr(data-n); position: absolute; left: 4px; bottom: 1px;
-  font: 600 11px var(--f-ui); color: var(--ink); text-shadow: 0 0 2px #000, 0 0 2px #000;
-}
 details.field > summary {
   display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none;
   font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
@@ -272,7 +267,7 @@ details.field .patterns { margin-top: 6px; }
 }
 .action.primary { background: var(--ink); color: var(--table); }
 .action.armed { background: var(--hot); color: var(--table); }
-.ghost { border: 0; background: transparent; padding: 8px; font-size: 17px; color: var(--ink-2); }
+.ghost { border: 1px solid var(--line); border-radius: 12px; background: transparent; padding: 12px; font-size: 17px; color: var(--ink); }
 .names { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .seg button { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .names label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); letter-spacing: .06em; }
@@ -283,7 +278,6 @@ details.field .patterns { margin-top: 6px; }
 }
 .names input:focus-visible { outline: 3px solid var(--hot); outline-offset: 0; }
 .ver { margin: -12px 0 0; text-align: center; font-size: 12px; letter-spacing: .14em; color: var(--ink-2); opacity: .7; }
-.hint { margin: -8px 0 0; font-size: 14px; color: var(--ink-2); line-height: 1.35; }
 
 @media (prefers-reduced-motion: reduce) {
   .seat, .zone, .delta { transition: none; }
@@ -305,24 +299,24 @@ details.field .patterns { margin-top: 6px; }
         <button type="button" id="mode4" data-v="4">4</button>
       </div>
     </div>
-    <div class="field" id="meField">
-      <span>This phone is</span>
+    <details class="field" id="meField">
+      <summary id="meLabel">This phone is</summary>
       <div class="seg" id="segMe"></div>
-    </div>
+    </details>
     <details class="field" id="colorField">
       <summary id="colorLabel">Your colors</summary>
       <div class="colors" id="colors"></div>
       <div class="patterns" id="patterns"></div>
     </details>
-    <div class="field" id="namesField">
-      <span>Seats, by phone edge</span>
+    <details class="field" id="namesField">
+      <summary>Seats, by phone edge</summary>
       <div class="names">
         <label for="name2" id="edge2"><span class="pos">Top</span><input id="name2" maxlength="12" autocomplete="off"></label>
         <label for="name1" id="edge1"><span class="pos">Left</span><input id="name1" maxlength="12" autocomplete="off"></label>
         <label for="name3" id="edge3"><span class="pos">Right</span><input id="name3" maxlength="12" autocomplete="off"></label>
         <label for="name0" id="edge0"><span class="pos">Bottom</span><input id="name0" maxlength="12" autocomplete="off"></label>
       </div>
-    </div>
+    </details>
     <div class="field">
       <span>Starting life</span>
       <div class="seg" id="segStart">
@@ -333,7 +327,6 @@ details.field .patterns { margin-top: 6px; }
     </div>
     <button type="button" class="action primary" id="newGame">New game</button>
     <button type="button" class="action" id="pickFirst">Pick who goes first</button>
-    <p class="hint">Tap a side for &minus;1 or +1. Hold for &plusmn;10. For commander damage, tap the dagger at the bottom of your seat, pick the attacker, mark the damage, then tap their name to finish.</p>
     <button type="button" class="ghost" id="closeMenu">Back to game</button>
     <p class="ver" id="ver"></p>
   </div>
@@ -342,7 +335,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '2.5';
+  const VERSION = '2.6';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -616,6 +609,8 @@ details.field .patterns { margin-top: 6px; }
     document.getElementById('namesField').hidden = state.mode === 1;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = EDGES[state.mode];
+    const me = edges.includes(state.me) ? state.me : 0;
+    document.getElementById('meLabel').textContent = 'This phone is ' + (state.names[me].trim() || DEFAULT_NAMES[me]);
     document.getElementById('segMe').innerHTML = edges.map(e =>
       `<button type="button" data-v="${e}"${e === (edges.includes(state.me) ? state.me : 0) ? ' class="on"' : ''}>${nameOf(e)}</button>`).join('');
     [0, 1, 2, 3].forEach(e => {
