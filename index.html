@@ -436,7 +436,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.13';
+  const VERSION = '3.14';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -486,7 +486,7 @@ details.field .patterns { margin-top: 6px; }
   }
   if (!Array.isArray(state.colors) || state.colors.length !== 4) state.colors = DEFAULT_COLORS.slice();
   if (!Array.isArray(state.patterns) || state.patterns.length !== 4) state.patterns = ['marble', 'marble', 'marble', 'marble'];
-  // Per table size, the game in progress: its id and when its first change was made.
+  // Per table size, the game in progress: its id, when its clock started, and when it ended (null while on).
   if (!state.meta || typeof state.meta !== 'object') state.meta = {};
   MODES.forEach(n => { if (!state.meta[n] || typeof state.meta[n] !== 'object') state.meta[n] = { id: null, at: null }; });
   delete state.clock; // left over from v1.2's sync
@@ -702,15 +702,30 @@ details.field .patterns { margin-top: 6px; }
 
   // ---- changes ----
   // While an attacker is toggled on, life lost is also tallied as their commander damage.
-  // A game's clock starts with its first change; a logged result is timed from it.
+  // The game's invisible clock starts with its first change or its first turn, whichever comes
+  // first, and stops the moment one player is left (see settle()). A logged result is timed by it.
   function touch() {
-    if (!untouched(game())) return;
-    const m = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), at: Date.now() };
-    state.meta[state.mode] = m;
-    send({ [`meta/${state.mode}/id`]: m.id, [`meta/${state.mode}/at`]: m.at });
+    const n = state.mode;
+    if (!untouched(game()) || (state.turns[n] != null && state.meta[n].id)) return;
+    const m = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), at: Date.now(), end: null };
+    state.meta[n] = m;
+    send({ [`meta/${n}/id`]: m.id, [`meta/${n}/at`]: m.at, [`meta/${n}/end`]: null });
+  }
+  const finished = () => state.mode > 1 && game().filter(p => !outReason(p)).length === 1;
+  // The game ends the moment one player is left, and the phone that made that change logs it right
+  // then. A change that brings someone back (a mistap) takes the entry out again until the real finish.
+  // The end time is shared, so a later New game on any phone logs the same time.
+  function settle(was) {
+    const n = state.mode, m = state.meta[n], now = finished();
+    if (was === now || !m.id) return;
+    m.end = now ? Date.now() : null;
+    send({ [`meta/${n}/end`]: m.end });
+    save();
+    if (now) record(); else unlog(m.id);
   }
   function changeLife(i, d) {
     touch();
+    const was = finished();
     const p = game()[i], slot = marking[i];
     const at = `games/${state.mode}/${i}/`, bump = { [at + 'life']: inc(d) };
     p.life += d;
@@ -721,6 +736,7 @@ details.field .patterns { margin-top: 6px; }
     }
     send(bump);
     showDelta(i, d); update(i); save(); buzz();
+    settle(was);
   }
   // ---- turns ----
   // Tapping the button of the player whose turn it is passes it on, clockwise (the order of the
@@ -736,6 +752,7 @@ details.field .patterns { margin-top: 6px; }
     buzz();
   }
   function setTurn(i) {
+    touch();
     state.turns[state.mode] = i;
     send({ ['turns/' + state.mode]: i });
     save(); paintTurn();
@@ -752,11 +769,12 @@ details.field .patterns { margin-top: 6px; }
 
   function toggleConcede(i) {
     touch();
-    const p = game()[i];
+    const was = finished(), p = game()[i];
     p.conceded = !p.conceded;
     send({ [`games/${state.mode}/${i}/conceded`]: p.conceded });
     marking[i] = null;
     update(i); save(); buzz();
+    settle(was);
   }
   // Side by side, both players share this phone, so each concedes (or rejoins) from their own half.
   // Like the menu's Concede, it takes a second tap within 3 seconds.
@@ -936,10 +954,11 @@ details.field .patterns { margin-top: 6px; }
   });
 
   // ---- results ----
-  // Starting a new game quietly logs the one before it, but only a real finish: a table of two or
-  // more, exactly one player left standing, and at least MIN_GAME_MINUTES since its first change.
-  // Only the phone that starts the new game logs it, under the game's id, so a double tap can't
-  // log it twice. A result Firebase won't take waits on this phone and goes up next time.
+  // A game is logged when it finishes (see settle()), and again, harmlessly, when New game is tapped,
+  // in case it finished on a phone that couldn't log it. Only a real finish counts: a table of two or
+  // more, exactly one player left standing, and at least MIN_GAME_MINUTES on its clock. Results are
+  // stored under the game's id, so logging it twice just writes the same entry. A result Firebase
+  // won't take waits on this phone and goes up next time.
   const loadMine = () => { try { return JSON.parse(localStorage.getItem(RESULTS_KEY)) || {}; } catch (e) { return {}; } };
   const saveMine = all => { try { localStorage.setItem(RESULTS_KEY, JSON.stringify(all)); } catch (e) {} };
   const resultUrl = id => RESULTS_URL + (id ? '/' + id : '') + '.json';
@@ -948,10 +967,11 @@ details.field .patterns { margin-top: 6px; }
     const n = state.mode, g = game(), m = state.meta[n];
     if (n === 1 || !m.id || !m.at) return;
     const alive = g.map((p, i) => i).filter(i => !outReason(g[i]));
-    const minutes = Math.round((Date.now() - m.at) / 60000);
+    const end = m.end || Date.now();
+    const minutes = Math.round((end - m.at) / 60000);
     if (alive.length !== 1 || minutes < MIN_GAME_MINUTES) return;
     const result = {
-      at: Date.now(), minutes, players: n, start: state.start,
+      at: end, minutes, players: n, start: state.start,
       seats: g.map((p, i) => {
         const e = edgeOf(i);
         return {
@@ -964,6 +984,11 @@ details.field .patterns { margin-top: 6px; }
     mine[m.id] = Object.assign({ pending: true }, result);
     saveMine(mine);
     upload(m.id, result);
+  }
+  function unlog(id) {
+    const mine = loadMine();
+    if (mine[id]) { delete mine[id]; saveMine(mine); }
+    if (DB) fetch(resultUrl(id), { method: 'DELETE' }).catch(() => {});
   }
   function upload(id, result) {
     if (!DB) return Promise.resolve(false);
@@ -1024,10 +1049,8 @@ details.field .patterns { margin-top: 6px; }
       b.classList.add('armed'); b.textContent = 'Tap again';
       return;
     }
-    const id = b.dataset.id, mine = loadMine();
-    delete mine[id]; saveMine(mine);
-    delete shown[id]; showResults(shown);
-    if (DB) fetch(resultUrl(id), { method: 'DELETE' }).catch(() => {});
+    unlog(b.dataset.id);
+    delete shown[b.dataset.id]; showResults(shown);
   });
 
   // Random first player: the highlight runs around the table clockwise and slows to a stop.
@@ -1071,7 +1094,7 @@ details.field .patterns { margin-top: 6px; }
     'colors/0', 'colors/1', 'colors/2', 'colors/3', 'patterns/0', 'patterns/1', 'patterns/2', 'patterns/3']
     .concat(...MODES.map(n => [].concat(...Array.from({ length: n }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${n}/${i}/${f}`)))),
-      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`]), TURN_MODES.map(n => 'turns/' + n));
+      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`, `meta/${n}/end`]), TURN_MODES.map(n => 'turns/' + n));
   const getAt = (root, path) => path.split('/').reduce((o, k) => o == null ? undefined : o[k], root);
   function setAt(path, v) {
     const keys = path.split('/'), last = keys.pop();

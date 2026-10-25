@@ -34,7 +34,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.13)
+### `index.html`: Commander Life (current v3.14)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -66,10 +66,14 @@ After a deploy, ask the user to check the version in the menu footer.
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
 - **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
   It becomes Rejoin. A new game clears all concessions.
-- **Game log** (v3.2): tapping New game quietly logs the game before it, but only if:
+- **Game log** (v3.2; automatic since v3.14): an invisible clock starts at a game's first life change
+  or first turn-tracker tap and stops the moment one player is left. The phone that made that change
+  logs the game right then. If a later change brings someone back (a mistap), the entry is deleted
+  until the real finish. The end time is synced (`meta/<n>/end`), so New game, which still logs
+  too, writes the same entry and time. A game is logged only if:
   - the table had 2 to 4 players,
   - exactly one player was still alive,
-  - and at least 15 minutes passed since its first change.
+  - and its clock ran at least 15 minutes.
 
   The log saves the date, how long the game took, the winner, and each player's name, color pair,
   pattern and final life. The Results list is hidden: tapping the version line at the foot of the
