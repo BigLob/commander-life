@@ -110,6 +110,13 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .table .s1 .face { --rot: 90deg; }
 .table .s2 .face { --rot: 180deg; }
 .table .s3 .face { --rot: -90deg; }
+/* On a player's own phone every seat faces them: no turning, side seats stay tall. */
+.table.upright .face { --rot: 0deg; }
+.table.upright .s1 .face, .table.upright .s3 .face { width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh)); }
+/* At four, the side seats are tall and meet at the menu button: + takes their top half, - the bottom. */
+.n4.upright .s1 .zone, .n4.upright .s3 .zone { left: 0; right: 0; width: auto; height: 50%; padding: 0; justify-content: center; }
+.n4.upright .s1 .zone.plus, .n4.upright .s3 .zone.plus { top: 0; bottom: auto; align-items: flex-start; padding-top: calc(14 * var(--cqh, 1vh)); }
+.n4.upright .s1 .zone.minus, .n4.upright .s3 .zone.minus { top: auto; bottom: 0; align-items: flex-end; padding-bottom: calc(16 * var(--cqh, 1vh)); }
 
 .zone {
   position: absolute; top: 0; bottom: 0; width: 50%;
@@ -131,6 +138,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; text-align: center;
   font-size: clamp(12px, calc(8 * var(--cqh, 1vh)), 18px); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2);
+  /* Same black outline as the life total, thicker for the small type. */
+  -webkit-text-stroke: .14em #000; paint-order: stroke fill;
 }
 .name .why { color: var(--ink); }
 /* Corner names keep clear of the menu button in the middle of the table. */
@@ -204,11 +213,16 @@ details.field .patterns { margin-top: 6px; }
 .cmd-btn {
   position: relative; display: grid; place-items: center;
   width: 2.4em; height: 2.4em; padding: 0; border-radius: 50%;
-  background: transparent; border: 1px solid var(--line);
+  background: transparent; border: 0;
   touch-action: manipulation;
 }
+/* The mask cuts the dagger out of its ::before; the shadows on the wrapper trace it in black. */
 .cmd-btn .blade {
-  width: 2em; height: 2em; background: currentColor;
+  width: 2em; height: 2em;
+  filter: drop-shadow(1.5px 0 0 #000) drop-shadow(-1.5px 0 0 #000) drop-shadow(0 1.5px 0 #000) drop-shadow(0 -1.5px 0 #000);
+}
+.cmd-btn .blade::before {
+  content: ""; display: block; width: 100%; height: 100%; background: currentColor;
   -webkit-mask: var(--blade) center / contain no-repeat; mask: var(--blade) center / contain no-repeat;
 }
 .cmd-btn b {
@@ -216,15 +230,16 @@ details.field .patterns { margin-top: 6px; }
   border-radius: 999px; background: var(--ink); color: var(--table);
   font-family: var(--f-num); font-size: .8em; font-weight: 800; font-variant-numeric: tabular-nums;
 }
-.cmd-btn.hot { border-color: var(--hot); color: var(--hot); }
+.cmd-btn.hot { color: var(--hot); }
 .cmd-btn.hot b { background: var(--hot); }
-.seat.open .cmd-btn { border: 2px solid var(--ink); }
 .pop {
   position: absolute; bottom: calc(100% + .5em); left: 50%; transform: translateX(-50%);
   display: none; gap: .35em; width: max-content; padding: .35em;
   border-radius: 999px; background: var(--table); box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
 }
 .seat.open .pop { display: flex; }
+/* Upright side seats are too narrow for a row of attackers, so they stack. */
+.upright .s1 .pop, .upright .s3 .pop { flex-direction: column; border-radius: 18px; }
 .seat.marking .cmd-btn, .seat.marking .pop .chip:not(.on) { display: none; }
 .seat.marking .pop { display: flex; position: static; transform: none; padding: 0; background: none; }
 
@@ -267,10 +282,12 @@ details.field .patterns { margin-top: 6px; }
 }
 .action.primary { background: var(--ink); color: var(--table); }
 .action.armed { background: var(--hot); color: var(--table); }
+.action.mini { align-self: center; padding: 6px 18px; border-radius: 999px; font-size: 15px; }
 .ghost { border: 1px solid var(--line); border-radius: 12px; background: transparent; padding: 12px; font-size: 17px; color: var(--ink); }
 /* Players: the ring picks whose phone this is, the field renames them. */
 .who { display: grid; gap: 8px; }
 .who-row { display: flex; align-items: center; gap: 10px; }
+.who-row > span { font-size: 17px; font-weight: 600; }
 .pick {
   flex: none; width: 40px; height: 40px; padding: 0; border-radius: 50%;
   border: 2px solid var(--line); background: transparent;
@@ -283,6 +300,17 @@ details.field .patterns { margin-top: 6px; }
   font: 600 17px var(--f-ui); -webkit-user-select: text; user-select: text;
 }
 .who input:focus-visible { outline: 3px solid var(--hot); outline-offset: 0; }
+.results { display: flex; flex-direction: column; gap: 8px; }
+.res-row { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .06); }
+.res-head { display: flex; align-items: baseline; gap: 8px; font-size: 16px; }
+.res-head b { font-weight: 600; }
+.res-head span { flex: 1; min-width: 0; color: var(--ink-2); font-size: 14px; }
+.res-players { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 14px; color: var(--ink-2); }
+.res-players span { display: flex; align-items: center; gap: .35em; }
+.res-players .won { color: var(--ink); font-weight: 600; }
+.res-del { flex: none; border: 1px solid var(--line); border-radius: 999px; background: transparent; padding: 3px 12px; font-size: 14px; color: var(--ink-2); }
+.res-del.armed { background: var(--hot); border-color: var(--hot); color: var(--table); }
+.res-note { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.35; }
 .ver { margin: -12px 0 0; text-align: center; font-size: 12px; letter-spacing: .14em; color: var(--ink-2); opacity: .7; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -312,6 +340,7 @@ details.field .patterns { margin-top: 6px; }
         <div class="who-row" id="edge1"><button type="button" class="pick" data-v="1"></button><input id="name1" maxlength="12" autocomplete="off" aria-label="Player name"></div>
         <div class="who-row" id="edge2"><button type="button" class="pick" data-v="2"></button><input id="name2" maxlength="12" autocomplete="off" aria-label="Player name"></div>
         <div class="who-row" id="edge3"><button type="button" class="pick" data-v="3"></button><input id="name3" maxlength="12" autocomplete="off" aria-label="Player name"></div>
+        <div class="who-row"><button type="button" class="pick" data-v="4" aria-label="This phone is in the center of the table"></button><span>Center</span></div>
       </div>
     </details>
     <details class="field" id="colorField">
@@ -329,6 +358,11 @@ details.field .patterns { margin-top: 6px; }
     </div>
     <button type="button" class="action primary" id="newGame">New game</button>
     <button type="button" class="action" id="pickFirst">Pick who goes first</button>
+    <button type="button" class="action mini" id="concede">Concede</button>
+    <details class="field" id="resultsField">
+      <summary>Results</summary>
+      <div class="results" id="results"></div>
+    </details>
     <button type="button" class="ghost" id="closeMenu">Back to game</button>
     <p class="ver" id="ver"></p>
   </div>
@@ -337,7 +371,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '2.7';
+  const VERSION = '3.2';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -351,6 +385,10 @@ details.field .patterns { margin-top: 6px; }
   const patternUrl = k => `url(patterns/${k}.png)`;
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
+  const CENTER = 4;
+  // A finished game is logged only if it ran at least this long.
+  const MIN_GAME_MINUTES = 15;
+  const RESULTS_KEY = 'mtg-commander-results-v1';
   const MODES = [1, 2, 3, 4];
   // The phone edges each table size seats players at, in clockwise order from the bottom.
   const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3] };
@@ -360,7 +398,7 @@ details.field .patterns { margin-top: 6px; }
   const ICON_CMD = '<i class="blade" aria-hidden="true"></i>';
 
   const blankGame = (n, start) =>
-    Array.from({ length: n }, () => ({ life: start, cmd: [0, 0, 0] }));
+    Array.from({ length: n }, () => ({ life: start, cmd: [0, 0, 0], conceded: false }));
 
   const valid = s => s && MODES.includes(s.mode) && [20, 30, 40].includes(s.start) &&
     s.games && typeof s.games === 'object';
@@ -377,9 +415,14 @@ details.field .patterns { margin-top: 6px; }
   }
   if (!Array.isArray(state.colors) || state.colors.length !== 4) state.colors = DEFAULT_COLORS.slice();
   if (!Array.isArray(state.patterns) || state.patterns.length !== 4) state.patterns = ['marble', 'marble', 'marble', 'marble'];
+  // Per table size, the game in progress: its id and when its first change was made.
+  if (!state.meta || typeof state.meta !== 'object') state.meta = {};
+  MODES.forEach(n => { if (!state.meta[n] || typeof state.meta[n] !== 'object') state.meta[n] = { id: null, at: null }; });
   delete state.clock; // left over from v1.2's sync
-  // Whose phone this is (by their default edge); their seat sits at its bottom. Kept on this phone only.
-  if (![0, 1, 2, 3].includes(state.me)) state.me = 0;
+  // Whose phone this is (by their default edge); their seat sits at its bottom and every seat faces
+  // them. CENTER is a phone lying in the middle of the table, each seat facing its own edge.
+  // Kept on this phone only.
+  if (![0, 1, 2, 3, CENTER].includes(state.me)) state.me = 0;
   delete state.flip; // left over from v1.9
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -399,7 +442,7 @@ details.field .patterns { margin-top: 6px; }
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
   const game = () => state.games[state.mode];
-  const untouched = g => g.every(p => p.life === state.start && p.cmd.every(c => c === 0));
+  const untouched = g => g.every(p => p.life === state.start && p.cmd.every(c => c === 0) && !p.conceded);
 
   const app = document.getElementById('app');
   let seats = [];
@@ -446,7 +489,7 @@ details.field .patterns { margin-top: 6px; }
     const n = state.mode;
     app.innerHTML = '';
     const board = document.createElement('div');
-    board.className = 'board n' + n + (n > 1 ? ' table' : '');
+    board.className = 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '');
     seats = [];
     for (let i = 0; i < n; i++) {
       const seat = document.createElement('section');
@@ -511,6 +554,7 @@ details.field .patterns { margin-top: 6px; }
   else addEventListener('resize', () => setTimeout(measure, 50));
 
   function outReason(p) {
+    if (p.conceded) return 'conceded';
     if (p.cmd.some(c => c >= CMD_LETHAL)) return CMD_LETHAL + ' commander';
     if (p.life <= 0) return 'no life';
     return '';
@@ -555,7 +599,15 @@ details.field .patterns { margin-top: 6px; }
 
   // ---- changes ----
   // While an attacker is toggled on, life lost is also tallied as their commander damage.
+  // A game's clock starts with its first change; a logged result is timed from it.
+  function touch() {
+    if (!untouched(game())) return;
+    const m = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), at: Date.now() };
+    state.meta[state.mode] = m;
+    send({ [`meta/${state.mode}/id`]: m.id, [`meta/${state.mode}/at`]: m.at });
+  }
   function changeLife(i, d) {
+    touch();
     const p = game()[i], slot = marking[i];
     const at = `games/${state.mode}/${i}/`, bump = { [at + 'life']: inc(d) };
     p.life += d;
@@ -602,22 +654,29 @@ details.field .patterns { margin-top: 6px; }
   // ---- menu ----
   const menu = document.getElementById('menu');
   const newGameBtn = document.getElementById('newGame');
+  const concedeBtn = document.getElementById('concede');
   let armTimer = null;
 
   function syncMenu() {
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.getElementById('pickFirst').hidden = state.mode === 1;
+    const center = state.mode !== 1 && state.me === CENTER;
+    // A phone in the center has no seat of its own to concede or color.
+    document.getElementById('concede').hidden = state.mode === 1 || center;
+    document.getElementById('colorField').hidden = center;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = EDGES[state.mode];
-    const me = edges.includes(state.me) ? state.me : 0;
-    document.getElementById('meLabel').textContent = 'This phone is ' + (state.names[me].trim() || DEFAULT_NAMES[me]);
+    const me = center ? CENTER : edges.includes(state.me) ? state.me : 0;
+    document.getElementById('meLabel').textContent = center ? 'This phone is in the center' : 'This phone is ' + (state.names[me].trim() || DEFAULT_NAMES[me]);
     [0, 1, 2, 3].forEach(e => {
-      const row = document.getElementById('edge' + e), pick = row.querySelector('.pick');
+      const row = document.getElementById('edge' + e);
       row.hidden = !edges.includes(e);
-      pick.classList.toggle('on', e === me);
-      pick.setAttribute('aria-pressed', e === me);
-      pick.setAttribute('aria-label', 'This phone is ' + (state.names[e].trim() || DEFAULT_NAMES[e]));
+      row.querySelector('.pick').setAttribute('aria-label', 'This phone is ' + (state.names[e].trim() || DEFAULT_NAMES[e]));
+    });
+    document.querySelectorAll('#who .pick').forEach(pick => {
+      pick.classList.toggle('on', +pick.dataset.v === me);
+      pick.setAttribute('aria-pressed', +pick.dataset.v === me);
     });
     // This phone's player picks their colors and pattern (in "Just me", the one seat's).
     const mine = state.mode === 1 ? 0 : edges.includes(state.me) ? state.me : 0;
@@ -657,6 +716,8 @@ details.field .patterns { margin-top: 6px; }
     clearTimeout(armTimer);
     newGameBtn.classList.remove('armed');
     newGameBtn.textContent = 'New game at ' + state.start;
+    concedeBtn.classList.remove('armed');
+    concedeBtn.textContent = game()[mySeat()].conceded ? 'Rejoin' : 'Concede';
   }
   function openMenu() { syncMenu(); menu.hidden = false; }
   function closeMenu() { menu.hidden = true; disarm(); }
@@ -678,6 +739,7 @@ details.field .patterns { margin-top: 6px; }
   }));
   newGameBtn.addEventListener('click', () => {
     if (untouched(game()) || newGameBtn.classList.contains('armed')) {
+      record();
       state.games[state.mode] = blankGame(state.mode, state.start);
       send({ ['games/' + state.mode]: state.games[state.mode] });
       marking = []; save(); build(); closeMenu();
@@ -691,6 +753,113 @@ details.field .patterns { margin-top: 6px; }
     state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
   }));
   document.getElementById('pickFirst').addEventListener('click', () => { closeMenu(); pickFirst(); });
+
+  // Conceding (or taking it back) only touches this phone's seat, and takes a second tap.
+  const mySeat = () => Math.max(0, EDGES[state.mode].indexOf(state.me));
+  concedeBtn.addEventListener('click', () => {
+    if (!concedeBtn.classList.contains('armed')) {
+      const conceded = game()[mySeat()].conceded;
+      disarm();
+      concedeBtn.classList.add('armed');
+      concedeBtn.textContent = conceded ? 'Tap again to rejoin' : 'Tap again to concede';
+      armTimer = setTimeout(disarm, 3000);
+      return;
+    }
+    touch();
+    const i = mySeat(), p = game()[i];
+    p.conceded = !p.conceded;
+    send({ [`games/${state.mode}/${i}/conceded`]: p.conceded });
+    marking[i] = null;
+    update(i); save(); buzz(); closeMenu();
+  });
+
+  // ---- results ----
+  // Starting a new game quietly logs the one before it, but only a real finish: a table of two or
+  // more, exactly one player left standing, and at least MIN_GAME_MINUTES since its first change.
+  // Only the phone that starts the new game logs it, under the game's id, so a double tap can't
+  // log it twice. A result Firebase won't take waits on this phone and goes up next time.
+  const loadMine = () => { try { return JSON.parse(localStorage.getItem(RESULTS_KEY)) || {}; } catch (e) { return {}; } };
+  const saveMine = all => { try { localStorage.setItem(RESULTS_KEY, JSON.stringify(all)); } catch (e) {} };
+  const resultUrl = id => RESULTS_URL + (id ? '/' + id : '') + '.json';
+
+  function record() {
+    const n = state.mode, g = game(), m = state.meta[n];
+    if (n === 1 || !m.id || !m.at) return;
+    const alive = g.map((p, i) => i).filter(i => !outReason(g[i]));
+    const minutes = Math.round((Date.now() - m.at) / 60000);
+    if (alive.length !== 1 || minutes < MIN_GAME_MINUTES) return;
+    const result = {
+      at: Date.now(), minutes, players: n, start: state.start,
+      seats: g.map((p, i) => {
+        const e = edgeOf(i);
+        return {
+          name: state.names[e].trim() || DEFAULT_NAMES[e], colors: colorOf(e).slice(2), pattern: patternOf(e),
+          life: p.life, out: outReason(p) || null, won: i === alive[0],
+        };
+      }),
+    };
+    const mine = loadMine();
+    mine[m.id] = Object.assign({ pending: true }, result);
+    saveMine(mine);
+    upload(m.id, result);
+  }
+  function upload(id, result) {
+    if (!DB) return Promise.resolve(false);
+    return fetch(resultUrl(id), { method: 'PUT', body: JSON.stringify(result) })
+      .then(res => {
+        if (!res.ok) return false;
+        const mine = loadMine();
+        if (mine[id]) { delete mine[id].pending; saveMine(mine); }
+        return true;
+      })
+      .catch(() => false);
+  }
+
+  const resultsEl = document.getElementById('results');
+  const okResult = r => r && typeof r.at === 'number' && Array.isArray(r.seats);
+  function showResults(all, note) {
+    const list = Object.keys(all).filter(id => okResult(all[id])).sort((a, b) => all[b].at - all[a].at);
+    resultsEl.innerHTML = (note ? `<p class="res-note">${esc(note)}</p>` : '') + (list.length ? list.map(id => {
+      const r = all[id], win = r.seats.find(x => x.won) || {};
+      const day = new Date(r.at).toLocaleDateString([], { month: 'short', day: 'numeric' });
+      return `<div class="res-row">
+        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(SCHEMES[win.colors] || '')} &middot; ${day} &middot; ${+r.minutes || 0} min${r.pending ? ' &middot; this phone only' : ''}</span>
+          <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
+        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(SCHEMES[x.colors] || '')}"><i class="sw"></i>${esc(x.name)}</span>`).join('')}</div>
+      </div>`;
+    }).join('') : '<p class="res-note">No finished games logged yet.</p>');
+  }
+  // The shared log, plus anything this phone logged that hasn't reached it yet (sent up now).
+  let shown = {};
+  function loadResults() {
+    const mine = loadMine(), pending = {};
+    Object.keys(mine).forEach(id => { if (mine[id].pending) pending[id] = mine[id]; });
+    shown = Object.assign({}, mine);
+    showResults(shown, 'Loading the shared log…');
+    if (!DB) return showResults(shown, "Showing this phone's games.");
+    fetch(resultUrl())
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(remote => {
+        shown = Object.assign({}, remote && typeof remote === 'object' ? remote : {}, pending);
+        showResults(shown);
+        Object.keys(pending).forEach(id => upload(id, Object.assign({}, pending[id], { pending: undefined })));
+      })
+      .catch(() => showResults(shown, "Couldn't reach the shared log. Showing this phone's games."));
+  }
+  document.getElementById('resultsField').addEventListener('toggle', e => { if (e.target.open) loadResults(); });
+  resultsEl.addEventListener('click', e => {
+    const b = e.target.closest('.res-del');
+    if (!b) return;
+    if (!b.classList.contains('armed')) {
+      resultsEl.querySelectorAll('.res-del.armed').forEach(x => { x.classList.remove('armed'); x.textContent = 'Delete'; });
+      b.classList.add('armed'); b.textContent = 'Tap again';
+      return;
+    }
+    const id = b.dataset.id, mine = loadMine();
+    delete mine[id]; saveMine(mine);
+    delete shown[id]; showResults(shown);
+    if (DB) fetch(resultUrl(id), { method: 'DELETE' }).catch(() => {});
+  });
 
   // Random first player: the highlight runs around the table clockwise and slows to a stop.
   function pickFirst() {
@@ -723,18 +892,21 @@ details.field .patterns { margin-top: 6px; }
   // page keeps working on its own.
   const DB = 'https://commander-life-39708-default-rtdb.firebaseio.com';
   const TABLE_URL = DB + '/tables/t7q2xm4k.json';
+  // Logged games sit beside the table, not in it, so nothing that resets the table touches them.
+  const RESULTS_URL = DB + '/results/t7q2xm4k';
 
   const inc = d => ({ '.sv': { increment: d } });
   const allPaths = () => ['mode', 'start', 'names/0', 'names/1', 'names/2', 'names/3',
     'colors/0', 'colors/1', 'colors/2', 'colors/3', 'patterns/0', 'patterns/1', 'patterns/2', 'patterns/3']
     .concat(...MODES.map(n => [].concat(...Array.from({ length: n }, (_, i) =>
-      ['life', 'cmd/0', 'cmd/1', 'cmd/2'].map(f => `games/${n}/${i}/${f}`)))));
+      ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${n}/${i}/${f}`)))),
+      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`]));
   const getAt = (root, path) => path.split('/').reduce((o, k) => o == null ? undefined : o[k], root);
   function setAt(path, v) {
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games });
+  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games, meta: state.meta });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -755,6 +927,8 @@ details.field .patterns { margin-top: 6px; }
     if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12;
     if (p.startsWith('colors/')) return Object.prototype.hasOwnProperty.call(SCHEMES, v);
     if (p.startsWith('patterns/')) return Object.prototype.hasOwnProperty.call(PATTERNS, v);
+    if (p.endsWith('/conceded')) return typeof v === 'boolean';
+    if (p.startsWith('meta/')) return v === null || (p.endsWith('/id') ? typeof v === 'string' && v.length <= 24 : typeof v === 'number' && isFinite(v));
     return typeof v === 'number' && isFinite(v) && Math.abs(v) < 1e6;
   }
   // Write `data` into the local copy of the table at `path`; null removes it.
@@ -772,19 +946,24 @@ details.field .patterns { margin-top: 6px; }
   function adopt() {
     const changed = [];
     allPaths().forEach(p => {
-      const v = getAt(mirror, p), was = getAt(state, p);
+      let v = getAt(mirror, p);
+      const was = getAt(state, p);
+      // A seat reset by a phone from before v3.0 carries no concession: it's back in.
+      if (v === undefined && p.endsWith('/conceded') && getAt(mirror, p.slice(0, -'/conceded'.length))) v = false;
+      if (v === undefined && p.startsWith('meta/') && mirror && typeof mirror === 'object') v = null;
       if (v !== undefined && v !== was && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
     if (!changed.length) return;
     save();
-    if (changed.some(x => !x.p.startsWith('games/'))) {
+    if (changed.some(x => !x.p.startsWith('games/') && !x.p.startsWith('meta/'))) {
       if (changed.some(x => x.p === 'mode')) marking = [];
       build();
       if (!menu.hidden) syncMenu();
       return;
     }
     changed.forEach(({ p, was }) => {
-      const [, n, i, f] = p.split('/');
+      const [kind, n, i, f] = p.split('/');
+      if (kind !== 'games') return;
       if (+n !== state.mode || !seats[+i]) return;
       if (f === 'life') showDelta(+i, getAt(state, p) - was);
       update(+i);
