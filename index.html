@@ -234,6 +234,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .action.armed { background: var(--hot); color: var(--table); }
 .ghost { border: 0; background: transparent; padding: 8px; font-size: 17px; color: var(--ink-2); }
 .names { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg button { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .names label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); letter-spacing: .06em; }
 .names input {
   width: 100%; min-width: 0; padding: 10px 12px; border-radius: 10px;
@@ -264,13 +265,17 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
         <button type="button" id="mode4" data-v="4">4</button>
       </div>
     </div>
+    <div class="field" id="meField">
+      <span>At the bottom of this phone</span>
+      <div class="seg" id="segMe"></div>
+    </div>
     <div class="field" id="namesField">
       <span>Seats, by phone edge</span>
       <div class="names">
-        <label for="name2" id="edge2">Top<input id="name2" maxlength="12" autocomplete="off"></label>
-        <label for="name1" id="edge1">Left<input id="name1" maxlength="12" autocomplete="off"></label>
-        <label for="name3" id="edge3">Right<input id="name3" maxlength="12" autocomplete="off"></label>
-        <label for="name0" id="edge0">Bottom<input id="name0" maxlength="12" autocomplete="off"></label>
+        <label for="name2" id="edge2"><span class="pos">Top</span><input id="name2" maxlength="12" autocomplete="off"></label>
+        <label for="name1" id="edge1"><span class="pos">Left</span><input id="name1" maxlength="12" autocomplete="off"></label>
+        <label for="name3" id="edge3"><span class="pos">Right</span><input id="name3" maxlength="12" autocomplete="off"></label>
+        <label for="name0" id="edge0"><span class="pos">Bottom</span><input id="name0" maxlength="12" autocomplete="off"></label>
       </div>
     </div>
     <div class="field">
@@ -283,7 +288,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     </div>
     <button type="button" class="action primary" id="newGame">New game</button>
     <button type="button" class="action" id="pickFirst">Pick who goes first</button>
-    <p class="hint">Tap a side for &minus;1 or +1. Hold for &plusmn;10. For commander damage, tap the shield at the bottom of your seat, pick the attacker, mark the damage, then tap their name to finish.</p>
+    <p class="hint">Tap a side for &minus;1 or +1. Hold for &plusmn;10. For commander damage, tap the dagger at the bottom of your seat, pick the attacker, mark the damage, then tap their name to finish.</p>
     <button type="button" class="ghost" id="closeMenu">Back to game</button>
     <p class="ver" id="ver"></p>
   </div>
@@ -292,7 +297,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.7';
+  const VERSION = '1.8';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -323,10 +328,19 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     state.names = DEFAULT_NAMES.slice();
   }
   delete state.clock; // left over from v1.2's sync
+  // Whose seat sits at this phone's bottom edge (by their default edge); kept on this phone only.
+  if (![0, 1, 2, 3].includes(state.me)) state.me = 0;
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
   const edgeOf = i => EDGES[state.mode][i];
+  // Where player i sits on this phone: the table turns so this phone's player is at the bottom,
+  // everyone else keeping their order around it.
+  function posOf(i) {
+    const edges = EDGES[state.mode], n = edges.length;
+    const k = Math.max(0, edges.indexOf(state.me));
+    return edges[(i - k + n) % n];
+  }
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
   const game = () => state.games[state.mode];
@@ -382,7 +396,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     for (let i = 0; i < n; i++) {
       const seat = document.createElement('section');
       const e = edgeOf(i);
-      seat.className = `seat s${e} c${e}`;
+      seat.className = `seat s${posOf(i)} c${e}`;
       const opps = oppsOf(i);
       seat.innerHTML = `
         <div class="face">
@@ -539,13 +553,31 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.getElementById('pickFirst').hidden = state.mode === 1;
     document.getElementById('namesField').hidden = state.mode === 1;
-    [0, 1, 2, 3].forEach(e => { document.getElementById('edge' + e).hidden = !EDGES[state.mode].includes(e); });
+    document.getElementById('meField').hidden = state.mode === 1;
+    const edges = EDGES[state.mode];
+    document.getElementById('segMe').innerHTML = edges.map(e =>
+      `<button type="button" data-v="${e}"${e === (edges.includes(state.me) ? state.me : 0) ? ' class="on"' : ''}>${nameOf(e)}</button>`).join('');
+    [0, 1, 2, 3].forEach(e => {
+      const label = document.getElementById('edge' + e), i = edges.indexOf(e);
+      label.hidden = i < 0;
+      if (i < 0) return;
+      // Name each seat by where it sits on this phone, listed top, left, right, bottom.
+      const pos = posOf(i);
+      label.querySelector('.pos').textContent = POS_NAMES[pos];
+      label.style.order = [3, 1, 0, 2][pos];
+    });
     state.names.forEach((n, i) => {
       const input = document.getElementById('name' + i);
       if (input !== document.activeElement) input.value = n;
     });
     disarm();
   }
+  const POS_NAMES = ['Bottom', 'Left', 'Top', 'Right'];
+  document.getElementById('segMe').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.me = +b.dataset.v; save(); build(); syncMenu();
+  });
   function disarm() {
     clearTimeout(armTimer);
     newGameBtn.classList.remove('armed');
