@@ -152,10 +152,12 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   font-family: var(--f-num); font-weight: 800;
   font-size: min(calc(56 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); line-height: .82;
   font-variant-numeric: tabular-nums; letter-spacing: -.01em;
-  /* A tight dark edge keeps the cream digits readable where they cross a light vein. */
-  text-shadow: 0 0 2px rgba(0, 0, 0, .75), 0 0 10px rgba(0, 0, 0, .5), 0 2px 24px rgba(0, 0, 0, .5);
+  /* A black outline, drawn behind the fill, keeps the digits readable on any pattern. */
+  -webkit-text-stroke: .06em #000; paint-order: stroke fill;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
 .delta {
+  -webkit-text-stroke-width: .08em;
   position: absolute; left: 100%; top: .06em; margin-left: .1em;
   font-size: .3em; font-weight: 700; letter-spacing: 0;
   opacity: 0; transition: opacity .25s;
@@ -336,7 +338,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '2.3';
+  const VERSION = '2.4';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
