@@ -264,7 +264,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.2';
+  const VERSION = '1.3';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -292,8 +292,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   if (!Array.isArray(state.names) || state.names.length !== 4 || state.names.join() === OLD_DEFAULT_NAMES.join()) {
     state.names = DEFAULT_NAMES.slice();
   }
-  // When each shared value last changed and on which device; see live sync below.
-  if (!state.clock || typeof state.clock !== 'object') state.clock = {};
+  delete state.clock; // left over from v1.2's sync
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
@@ -438,10 +437,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   // While an attacker is toggled on, life lost is also tallied as their commander damage.
   function changeLife(i, d) {
     const p = game()[i], slot = marking[i];
+    const at = `games/${state.mode}/${i}/`, bump = { [at + 'life']: inc(d) };
     p.life += d;
-    if (slot != null) p.cmd[slot] = Math.max(0, p.cmd[slot] - d);
-    const at = `games/${state.mode}/${i}/`;
-    share(slot != null ? [at + 'life', at + 'cmd/' + slot] : [at + 'life']);
+    if (slot != null) {
+      const was = p.cmd[slot];
+      p.cmd[slot] = Math.max(0, was - d);
+      bump[at + 'cmd/' + slot] = inc(p.cmd[slot] - was);
+    }
+    send(bump);
     showDelta(i, d); update(i); save(); buzz();
   }
   function toggleMarking(i, slot) {
@@ -504,20 +507,22 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   menu.addEventListener('click', e => { if (e.target === menu) closeMenu(); });
   document.getElementById('closeMenu').addEventListener('click', closeMenu);
   document.querySelectorAll('#segMode button').forEach(b => b.addEventListener('click', () => {
-    state.mode = +b.dataset.v; marking = []; share(['mode']); save(); build(); syncMenu();
+    state.mode = +b.dataset.v; marking = []; send({ mode: state.mode }); save(); build(); syncMenu();
   }));
   document.querySelectorAll('#segStart button').forEach(b => b.addEventListener('click', () => {
     const fresh = MODES.filter(n => untouched(state.games[n]));
     state.start = +b.dataset.v;
     // Games nobody has touched yet pick up the new starting life right away.
     fresh.forEach(n => { state.games[n] = blankGame(n, state.start); });
-    share(['start'].concat(...fresh.map(gamePaths)));
+    const reset = { start: state.start };
+    fresh.forEach(n => { reset['games/' + n] = state.games[n]; });
+    send(reset);
     save(); build(); syncMenu();
   }));
   newGameBtn.addEventListener('click', () => {
     if (untouched(game()) || newGameBtn.classList.contains('armed')) {
       state.games[state.mode] = blankGame(state.mode, state.start);
-      share(gamePaths(state.mode));
+      send({ ['games/' + state.mode]: state.games[state.mode] });
       marking = []; save(); build(); closeMenu();
       return;
     }
@@ -526,7 +531,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     armTimer = setTimeout(disarm, 3000);
   });
   [0, 1, 2, 3].forEach(i => document.getElementById('name' + i).addEventListener('input', e => {
-    state.names[i] = e.target.value; share(['names/' + i]); save(); build();
+    state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build();
   }));
   document.getElementById('pickFirst').addEventListener('click', () => { closeMenu(); pickFirst(); });
 
@@ -555,115 +560,111 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   }
 
   // ---- live sync ----
-  // Every phone on the link shares one table through a public MQTT broker. Each value (a life total,
-  // a commander tally, a name, a setting) is its own retained topic stamped with when it changed and
-  // on which device, so the newest change to each value wins and a phone joining late gets the whole
-  // table at once. Without the broker the page keeps working on its own.
-  const SYNC_URL = 'wss://broker.hivemq.com:8884/mqtt';
-  const TABLE = 'commander-life/t7q2xm4k';
-  const SHARED = /^(mode|start|names\/[0-3]|games\/[1-4]\/[0-3]\/(life|cmd\/[0-2]))$/;
-  const device = Math.random().toString(36).slice(2, 8);
-  let link = null, live = false, heard = {}, pending = {}, flushTimer = null;
+  // Every device on the link shares one table in a Firebase Realtime Database, reached through its
+  // REST API: a server-sent event stream delivers the table and every change to it, and taps go up
+  // as server-side increments so taps on two phones at once both count. Without the database the
+  // page keeps working on its own.
+  const DB = 'https://commander-life-39708-default-rtdb.firebaseio.com';
+  const TABLE_URL = DB + '/tables/t7q2xm4k.json';
 
-  const gamePaths = n => [].concat(...Array.from({ length: n }, (_, i) =>
-    ['life', 'cmd/0', 'cmd/1', 'cmd/2'].map(f => `games/${n}/${i}/${f}`)));
-  const getAt = path => path.split('/').reduce((o, k) => o == null ? undefined : o[k], state);
+  const inc = d => ({ '.sv': { increment: d } });
+  const allPaths = () => ['mode', 'start', 'names/0', 'names/1', 'names/2', 'names/3']
+    .concat(...MODES.map(n => [].concat(...Array.from({ length: n }, (_, i) =>
+      ['life', 'cmd/0', 'cmd/1', 'cmd/2'].map(f => `games/${n}/${i}/${f}`)))));
+  const getAt = (root, path) => path.split('/').reduce((o, k) => o == null ? undefined : o[k], root);
   function setAt(path, v) {
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const newer = (a, b) => !b || a.t > b.t || (a.t === b.t && a.c > b.c);
+  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, games: state.games });
 
-  function share(paths) {
-    paths.forEach(p => {
-      const prev = state.clock[p];
-      state.clock[p] = { t: Math.max(Date.now(), prev ? prev.t + 1 : 0), c: device };
-      pending[p] = true;
-    });
-    clearTimeout(flushTimer);
-    flushTimer = setTimeout(flush, 150);
-  }
-  function flush() {
-    if (!link || !live) return; // what's left goes out from repair() on reconnect
-    Object.keys(pending).forEach(p => {
-      const { t, c } = state.clock[p];
-      link.publish(TABLE + '/' + p, JSON.stringify({ v: getAt(p), t, c }), { retain: true, qos: 0 });
-    });
-    pending = {};
-  }
-  // After the broker replays what it holds, send anything this phone has that is newer or missing there.
-  function repair() {
-    Object.keys(state.clock).forEach(p => { if (newer(state.clock[p], heard[p])) pending[p] = true; });
-    flush();
+  // Increments fall back to plain values if the database refuses them.
+  function send(patch) {
+    if (!DB) return;
+    const body = JSON.stringify(patch);
+    const plain = {};
+    Object.keys(patch).forEach(k => { plain[k] = patch[k] && patch[k]['.sv'] ? getAt(state, k) : patch[k]; });
+    fetch(TABLE_URL, { method: 'PATCH', body })
+      .then(res => {
+        if (!res.ok && body !== JSON.stringify(plain)) return fetch(TABLE_URL, { method: 'PATCH', body: JSON.stringify(plain) });
+      })
+      .catch(() => {});
   }
 
-  function acceptable(p, m) {
-    if (!SHARED.test(p) || getAt(p) === undefined) return false;
-    if (!m || typeof m !== 'object' || typeof m.t !== 'number' || typeof m.c !== 'string') return false;
-    const v = m.v;
+  function validValue(p, v) {
     if (p === 'mode') return MODES.includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
     if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12;
     return typeof v === 'number' && isFinite(v) && Math.abs(v) < 1e6;
   }
-
-  let changed = [], redrawQueued = false;
-  function receive(topic, payload) {
-    const p = topic.slice(TABLE.length + 1);
-    let m;
-    try { m = JSON.parse(payload.toString()); } catch (e) { return; }
-    if (!acceptable(p, m)) return;
-    const stamp = { t: m.t, c: m.c };
-    if (newer(stamp, heard[p])) heard[p] = stamp;
-    if (!newer(stamp, state.clock[p])) return;
-    changed.push({ p, was: getAt(p) });
-    setAt(p, m.v);
-    state.clock[p] = stamp;
-    if (!redrawQueued) { redrawQueued = true; requestAnimationFrame(redraw); }
+  // Write `data` into the local copy of the table at `path`; null removes it.
+  let mirror = null;
+  function putIn(path, data) {
+    const keys = path.split('/').filter(Boolean);
+    if (!keys.length) { mirror = data; return; }
+    if (!mirror || typeof mirror !== 'object') mirror = {};
+    const last = keys.pop();
+    const parent = keys.reduce((o, k) => (o[k] = o[k] && typeof o[k] === 'object' ? o[k] : {}), mirror);
+    if (data === null) delete parent[last]; else parent[last] = data;
   }
-  function redraw() {
-    const batch = changed;
-    changed = []; redrawQueued = false;
+
+  // Take every value the table holds over this phone's own.
+  function adopt() {
+    const changed = [];
+    allPaths().forEach(p => {
+      const v = getAt(mirror, p), was = getAt(state, p);
+      if (v !== undefined && v !== was && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
+    });
+    if (!changed.length) return;
     save();
-    if (batch.some(x => !x.p.startsWith('games/'))) {
-      if (batch.some(x => x.p === 'mode')) marking = [];
+    if (changed.some(x => !x.p.startsWith('games/'))) {
+      if (changed.some(x => x.p === 'mode')) marking = [];
       build();
       if (!menu.hidden) syncMenu();
       return;
     }
-    batch.forEach(({ p, was }) => {
+    changed.forEach(({ p, was }) => {
       const [, n, i, f] = p.split('/');
       if (+n !== state.mode || !seats[+i]) return;
-      if (f === 'life') showDelta(+i, getAt(p) - was);
+      if (f === 'life') showDelta(+i, getAt(state, p) - was);
       update(+i);
     });
   }
 
   function setLive(on) {
-    live = on;
     document.getElementById('ver').textContent =
       'v' + VERSION + ' · ' + (on ? 'Sharing live with this table' : 'Offline, this phone only');
   }
+  let stream = null;
   function connect() {
-    if (!window.mqtt) return;
-    link = window.mqtt.connect(SYNC_URL, { reconnectPeriod: 3000, connectTimeout: 10000 });
-    link.on('connect', () => {
-      setLive(true);
-      heard = {};
-      link.subscribe(TABLE + '/#', err => { if (!err) setTimeout(repair, 2000); });
+    if (stream) stream.close();
+    stream = new EventSource(TABLE_URL);
+    stream.onopen = () => setLive(true);
+    stream.onerror = () => setLive(stream.readyState === EventSource.OPEN); // it reconnects by itself
+    stream.addEventListener('put', e => {
+      const { path, data } = JSON.parse(e.data);
+      // The first device here starts the table from its own game.
+      if (path === '/' && data === null) {
+        fetch(TABLE_URL, { method: 'PUT', body: JSON.stringify(shared()) }).catch(() => {});
+        return;
+      }
+      putIn(path, data);
+      adopt();
     });
-    link.on('close', () => setLive(false));
-    link.on('message', receive);
+    stream.addEventListener('patch', e => {
+      const { path, data } = JSON.parse(e.data);
+      Object.keys(data).forEach(k => putIn(path + '/' + k, data[k]));
+      adopt();
+    });
+    // The database ended the stream (its rules changed): carry on alone.
+    stream.addEventListener('cancel', () => { stream.close(); setLive(false); });
   }
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && link && !link.connected) link.reconnect();
-  });
   setLive(false);
-  // The MQTT client ships beside the page; where it is missing the page just stays on this phone.
-  const lib = document.createElement('script');
-  lib.src = 'mqtt.min.js';
-  lib.onload = connect;
-  document.head.appendChild(lib);
+  if (DB && 'EventSource' in window) {
+    connect();
+    // A phone that slept may hold a dead stream; a fresh one brings the whole table back.
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') connect(); });
+  }
 
   build();
 })();
