@@ -268,15 +268,21 @@ details.field .patterns { margin-top: 6px; }
 .action.primary { background: var(--ink); color: var(--table); }
 .action.armed { background: var(--hot); color: var(--table); }
 .ghost { border: 1px solid var(--line); border-radius: 12px; background: transparent; padding: 12px; font-size: 17px; color: var(--ink); }
-.names { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+/* Players: the ring picks whose phone this is, the field renames them. */
+.who { display: grid; gap: 8px; }
+.who-row { display: flex; align-items: center; gap: 10px; }
+.pick {
+  flex: none; width: 40px; height: 40px; padding: 0; border-radius: 50%;
+  border: 2px solid var(--line); background: transparent;
+}
+.pick.on { border-color: var(--ink); background: radial-gradient(circle, var(--ink) 0 34%, transparent 37%); }
 .seg button { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.names label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); letter-spacing: .06em; }
-.names input {
+.who input {
   width: 100%; min-width: 0; padding: 10px 12px; border-radius: 10px;
   border: 1px solid var(--line); background: rgba(255, 255, 255, .06); color: var(--ink);
   font: 600 17px var(--f-ui); -webkit-user-select: text; user-select: text;
 }
-.names input:focus-visible { outline: 3px solid var(--hot); outline-offset: 0; }
+.who input:focus-visible { outline: 3px solid var(--hot); outline-offset: 0; }
 .ver { margin: -12px 0 0; text-align: center; font-size: 12px; letter-spacing: .14em; color: var(--ink-2); opacity: .7; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -299,23 +305,19 @@ details.field .patterns { margin-top: 6px; }
         <button type="button" id="mode4" data-v="4">4</button>
       </div>
     </div>
-    <details class="field" id="meField">
+    <details class="field" id="meField" open>
       <summary id="meLabel">This phone is</summary>
-      <div class="seg" id="segMe"></div>
+      <div class="who" id="who">
+        <div class="who-row" id="edge0"><button type="button" class="pick" data-v="0"></button><input id="name0" maxlength="12" autocomplete="off" aria-label="Player name"></div>
+        <div class="who-row" id="edge1"><button type="button" class="pick" data-v="1"></button><input id="name1" maxlength="12" autocomplete="off" aria-label="Player name"></div>
+        <div class="who-row" id="edge2"><button type="button" class="pick" data-v="2"></button><input id="name2" maxlength="12" autocomplete="off" aria-label="Player name"></div>
+        <div class="who-row" id="edge3"><button type="button" class="pick" data-v="3"></button><input id="name3" maxlength="12" autocomplete="off" aria-label="Player name"></div>
+      </div>
     </details>
     <details class="field" id="colorField">
       <summary id="colorLabel">Your colors</summary>
       <div class="colors" id="colors"></div>
       <div class="patterns" id="patterns"></div>
-    </details>
-    <details class="field" id="namesField">
-      <summary>Seats, by phone edge</summary>
-      <div class="names">
-        <label for="name2" id="edge2"><span class="pos">Top</span><input id="name2" maxlength="12" autocomplete="off"></label>
-        <label for="name1" id="edge1"><span class="pos">Left</span><input id="name1" maxlength="12" autocomplete="off"></label>
-        <label for="name3" id="edge3"><span class="pos">Right</span><input id="name3" maxlength="12" autocomplete="off"></label>
-        <label for="name0" id="edge0"><span class="pos">Bottom</span><input id="name0" maxlength="12" autocomplete="off"></label>
-      </div>
     </details>
     <div class="field">
       <span>Starting life</span>
@@ -335,7 +337,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '2.6';
+  const VERSION = '2.7';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -606,21 +608,16 @@ details.field .patterns { margin-top: 6px; }
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.getElementById('pickFirst').hidden = state.mode === 1;
-    document.getElementById('namesField').hidden = state.mode === 1;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = EDGES[state.mode];
     const me = edges.includes(state.me) ? state.me : 0;
     document.getElementById('meLabel').textContent = 'This phone is ' + (state.names[me].trim() || DEFAULT_NAMES[me]);
-    document.getElementById('segMe').innerHTML = edges.map(e =>
-      `<button type="button" data-v="${e}"${e === (edges.includes(state.me) ? state.me : 0) ? ' class="on"' : ''}>${nameOf(e)}</button>`).join('');
     [0, 1, 2, 3].forEach(e => {
-      const label = document.getElementById('edge' + e), i = edges.indexOf(e);
-      label.hidden = i < 0;
-      if (i < 0) return;
-      // Name each seat by where it sits on this phone, listed top, left, right, bottom.
-      const pos = posOf(i);
-      label.querySelector('.pos').textContent = POS_NAMES[pos];
-      label.style.order = [3, 1, 0, 2][pos];
+      const row = document.getElementById('edge' + e), pick = row.querySelector('.pick');
+      row.hidden = !edges.includes(e);
+      pick.classList.toggle('on', e === me);
+      pick.setAttribute('aria-pressed', e === me);
+      pick.setAttribute('aria-label', 'This phone is ' + (state.names[e].trim() || DEFAULT_NAMES[e]));
     });
     // This phone's player picks their colors and pattern (in "Just me", the one seat's).
     const mine = state.mode === 1 ? 0 : edges.includes(state.me) ? state.me : 0;
@@ -635,9 +632,8 @@ details.field .patterns { margin-top: 6px; }
     });
     disarm();
   }
-  const POS_NAMES = ['Bottom', 'Left', 'Top', 'Right'];
-  document.getElementById('segMe').addEventListener('click', e => {
-    const b = e.target.closest('button');
+  document.getElementById('who').addEventListener('click', e => {
+    const b = e.target.closest('.pick');
     if (!b) return;
     state.me = +b.dataset.v; save(); build(); syncMenu();
   });
@@ -692,7 +688,7 @@ details.field .patterns { margin-top: 6px; }
     armTimer = setTimeout(disarm, 3000);
   });
   [0, 1, 2, 3].forEach(i => document.getElementById('name' + i).addEventListener('input', e => {
-    state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build();
+    state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
   }));
   document.getElementById('pickFirst').addEventListener('click', () => { closeMenu(); pickFirst(); });
 
