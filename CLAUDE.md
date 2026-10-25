@@ -32,7 +32,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.7)
+### `index.html`: Commander Life (current v3.8)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -49,6 +49,11 @@ After a deploy, ask the user to check the version in the menu footer.
   - v3.7: − and + split each box left and right, with the signs at the bottom.
   - v3.7: each player's own box has a white flag in its bottom-left corner to concede or rejoin
     (two taps), since both players share the phone. The menu's Concede still works too.
+- **Turn tracker** (v3.8): a pink button at the bottom center of every seat (not in "Just me").
+  Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
+  Trent → Lenn), skipping anyone out. Tapping anyone else's makes it their turn. The current
+  player's seat gets a pink ring. Pick who goes first sets the turn, and New game clears it.
+  Synced as `turns/<n>` (2 to 4) in the live table; older phones ignore it.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
 - Each player picks a two-color pair and one of 50 pattern masks (`patterns/*.png`) for their seat.

@@ -20,6 +20,7 @@
   --line: rgba(244, 239, 228, .16);
   --panel: #171a1f;
   --hot: #ffb347;
+  --turn: #ff4fa3;
   --f-num: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
   --blade: url("data:image/png;base64,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");
   --f-ui: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
@@ -170,6 +171,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   -webkit-text-stroke: .06em #000; paint-order: stroke fill;
   text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
+/* Table seats lift the total a little so it clears the turn button below it. */
+.table .readout { padding-bottom: calc(14 * var(--cqh, 1vh)); }
+.table .life { font-size: min(calc(48 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); }
 .duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(50 * var(--cqw, 1vw))); }
 .delta {
   -webkit-text-stroke-width: .08em;
@@ -273,6 +277,21 @@ details.field .patterns { margin-top: 6px; }
 .flag span:empty { display: none; }
 .flag.armed { background: var(--hot); color: var(--table); }
 .flag.armed span { -webkit-text-stroke: 0; }
+/* Turn tracker: a pink button at the bottom center of every seat; whoever's turn it is gets a pink ring. */
+.turn-btn {
+  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%); z-index: 2;
+  width: 2.4em; height: 2.4em; padding: 0; border-radius: 50%;
+  font-size: clamp(16px, min(calc(8.5 * var(--cqh, 1vh)), calc(6 * var(--cqw, 1vw))), 20px);
+  background: var(--turn); border: 2px solid #000;
+  touch-action: manipulation;
+}
+.seat.turn .turn-btn { box-shadow: 0 0 0 3px var(--ink), 0 0 18px 4px var(--turn); }
+.turn-ring {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; display: none;
+  border: 5px solid var(--turn); border-radius: inherit;
+  box-shadow: inset 0 0 32px rgba(255, 79, 163, .5);
+}
+.seat.turn .turn-ring { display: block; }
 /* The tiles are narrow, so their dagger and flag are sized by width to stay tappable. */
 .duel .tray, .duel .flag { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
 .seat.marking .pop { display: flex; position: static; padding: 0; background: none; }
@@ -412,7 +431,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.7';
+  const VERSION = '3.8';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -435,6 +454,8 @@ details.field .patterns { margin-top: 6px; }
   const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3] };
   // Picking a table size starts it at its usual life: 20 head to head, 30 for three, 40 for four.
   const DEFAULT_START = { 2: 20, 3: 30, 4: 40 };
+  // Table sizes with a turn tracker ("Just me" has no turns to pass).
+  const TURN_MODES = [2, 3, 4];
 
   const ICON_MENU = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5z"/><path d="M12 2.5v6.5m8.5-1.75L12 9 3.5 7.25M12 9l-5 8.5h10z"/></svg>';
 
@@ -471,6 +492,9 @@ details.field .patterns { margin-top: 6px; }
   delete state.flip; // left over from v1.9
   // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
   if (!['split', 'classic'].includes(state.layout2)) state.layout2 = 'split';
+  // Per table size, the player whose turn it is (null before anyone's started).
+  if (!state.turns || typeof state.turns !== 'object') state.turns = {};
+  TURN_MODES.forEach(n => { if (!Number.isInteger(state.turns[n])) state.turns[n] = null; });
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
@@ -560,6 +584,7 @@ details.field .patterns { margin-top: 6px; }
     mb.addEventListener('click', openMenu);
     app.appendChild(mb);
     seats.forEach((_, i) => update(i));
+    paintTurn();
     measure();
   }
 
@@ -584,8 +609,10 @@ details.field .patterns { margin-top: 6px; }
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
         </div>
+        ${state.mode > 1 ? `<button type="button" class="turn-btn" aria-label="${nameOf(e)}'s turn"></button>` : ''}
         ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
-      </div>`;
+      </div>
+      <i class="turn-ring" aria-hidden="true"></i>`;
     bindZone(seat.querySelector('.minus'), i, -1);
     bindZone(seat.querySelector('.plus'), i, 1);
     seat.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
@@ -598,6 +625,7 @@ details.field .patterns { margin-top: 6px; }
       buzz();
     });
     if (flag) bindFlag(seat.querySelector('.flag'), i);
+    if (state.mode > 1) seat.querySelector('.turn-btn').addEventListener('click', () => tapTurn(i));
     return seat;
   }
 
@@ -689,6 +717,33 @@ details.field .patterns { margin-top: 6px; }
     send(bump);
     showDelta(i, d); update(i); save(); buzz();
   }
+  // ---- turns ----
+  // Tapping the button of the player whose turn it is passes it on, clockwise (the order of the
+  // edges, starting at the bottom), past anyone who is out. Tapping anyone else's makes it theirs,
+  // which starts the tracker or corrects it.
+  function tapTurn(i) {
+    const n = state.mode, g = game();
+    let next = i;
+    if (state.turns[n] === i) {
+      for (let k = 1; k < n; k++) if (!outReason(g[(i + k) % n])) { next = (i + k) % n; break; }
+    }
+    setTurn(next);
+    buzz();
+  }
+  function setTurn(i) {
+    state.turns[state.mode] = i;
+    send({ ['turns/' + state.mode]: i });
+    save(); paintTurn();
+  }
+  function paintTurn() {
+    const t = state.turns[state.mode];
+    seats.forEach((list, i) => list.forEach(s => {
+      s.classList.toggle('turn', i === t);
+      const b = s.querySelector('.turn-btn');
+      if (b) b.setAttribute('aria-pressed', i === t);
+    }));
+  }
+
   function toggleConcede(i) {
     touch();
     const p = game()[i];
@@ -846,7 +901,8 @@ details.field .patterns { margin-top: 6px; }
     if (untouched(game()) || newGameBtn.classList.contains('armed')) {
       record();
       state.games[state.mode] = blankGame(state.mode, state.start);
-      send({ ['games/' + state.mode]: state.games[state.mode] });
+      if (state.mode > 1) state.turns[state.mode] = null;
+      send({ ['games/' + state.mode]: state.games[state.mode], ['turns/' + state.mode]: null });
       marking = []; save(); build(); closeMenu();
       return;
     }
@@ -984,6 +1040,7 @@ details.field .patterns { margin-top: 6px; }
         const badges = seats[idx].map(s => s.querySelector('.badge'));
         badges.forEach(b => { b.hidden = false; });
         setTimeout(() => { badges.forEach(b => { b.hidden = true; }); seats[idx].forEach(s => s.classList.remove('pick')); }, 3000);
+        setTurn(idx);
         return;
       }
       k++;
@@ -1008,13 +1065,13 @@ details.field .patterns { margin-top: 6px; }
     'colors/0', 'colors/1', 'colors/2', 'colors/3', 'patterns/0', 'patterns/1', 'patterns/2', 'patterns/3']
     .concat(...MODES.map(n => [].concat(...Array.from({ length: n }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${n}/${i}/${f}`)))),
-      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`]));
+      ...MODES.map(n => [`meta/${n}/id`, `meta/${n}/at`]), TURN_MODES.map(n => 'turns/' + n));
   const getAt = (root, path) => path.split('/').reduce((o, k) => o == null ? undefined : o[k], root);
   function setAt(path, v) {
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games, meta: state.meta });
+  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games, meta: state.meta, turns: state.turns });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -1036,6 +1093,7 @@ details.field .patterns { margin-top: 6px; }
     if (p.startsWith('colors/')) return Object.prototype.hasOwnProperty.call(SCHEMES, v);
     if (p.startsWith('patterns/')) return Object.prototype.hasOwnProperty.call(PATTERNS, v);
     if (p.endsWith('/conceded')) return typeof v === 'boolean';
+    if (p.startsWith('turns/')) return v === null || (Number.isInteger(v) && v >= 0 && v < +p.slice(6));
     if (p.startsWith('meta/')) return v === null || (p.endsWith('/id') ? typeof v === 'string' && v.length <= 24 : typeof v === 'number' && isFinite(v));
     return typeof v === 'number' && isFinite(v) && Math.abs(v) < 1e6;
   }
@@ -1058,17 +1116,19 @@ details.field .patterns { margin-top: 6px; }
       const was = getAt(state, p);
       // A seat reset by a phone from before v3.0 carries no concession: it's back in.
       if (v === undefined && p.endsWith('/conceded') && getAt(mirror, p.slice(0, -'/conceded'.length))) v = false;
-      if (v === undefined && p.startsWith('meta/') && mirror && typeof mirror === 'object') v = null;
+      // A table that holds no meta or turn (cleared, or set up by an older phone) has none.
+      if (v === undefined && (p.startsWith('meta/') || p.startsWith('turns/')) && mirror && typeof mirror === 'object') v = null;
       if (v !== undefined && v !== was && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
     if (!changed.length) return;
     save();
-    if (changed.some(x => !x.p.startsWith('games/') && !x.p.startsWith('meta/'))) {
+    if (changed.some(x => !/^(games|meta|turns)\//.test(x.p))) {
       if (changed.some(x => x.p === 'mode')) marking = [];
       build();
       if (!menu.hidden) syncMenu();
       return;
     }
+    if (changed.some(x => x.p.startsWith('turns/'))) paintTurn();
     changed.forEach(({ p, was }) => {
       const [kind, n, i, f] = p.split('/');
       if (kind !== 'games') return;
