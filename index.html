@@ -173,8 +173,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
 /* Table seats lift the total a little so it clears the turn button below it. */
-.table .readout { padding-bottom: calc(14 * var(--cqh, 1vh)); }
-.table .life { font-size: min(calc(48 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); }
+.table .readout { padding-bottom: calc(18 * var(--cqh, 1vh)); }
+.table .life { font-size: min(calc(44 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); }
 .duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(50 * var(--cqw, 1vw))); }
 .delta {
   -webkit-text-stroke-width: .08em;
@@ -282,7 +282,7 @@ details.field .patterns { margin-top: 6px; }
    else's button goes dark. */
 .turn-btn {
   position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%); z-index: 2;
-  width: 2.4em; height: 2.4em; padding: 0; border-radius: 50%;
+  width: 3.2em; height: 3.2em; padding: 0; border-radius: 50%;
   font-size: clamp(16px, min(calc(8.5 * var(--cqh, 1vh)), calc(6 * var(--cqw, 1vw))), 20px);
   background: var(--turn); border: 2px solid #000;
   touch-action: manipulation;
@@ -436,7 +436,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.9';
+  const VERSION = '3.10';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];

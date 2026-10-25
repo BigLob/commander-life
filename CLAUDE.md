@@ -32,7 +32,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.9)
+### `index.html`: Commander Life (current v3.10)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -49,7 +49,7 @@ After a deploy, ask the user to check the version in the menu footer.
   - v3.7: − and + split each box left and right, with the signs at the bottom.
   - v3.7: each player's own box has a white flag in its bottom-left corner to concede or rejoin
     (two taps), since both players share the phone. The menu's Concede still works too.
-- **Turn tracker** (v3.8): a pink button at the bottom center of every seat (not in "Just me").
+- **Turn tracker** (v3.8; 33% bigger in v3.10): a pink button at the bottom center of every seat (not in "Just me").
   Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
   Trent → Lenn), skipping anyone out. Tapping anyone else's makes it their turn. Once someone has
   the turn, everyone else's button goes dark (v3.9; no ring on the seat). In side-by-side 1v1, a pink
