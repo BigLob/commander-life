@@ -374,7 +374,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.4';
+  const VERSION = '3.5';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -903,7 +903,8 @@ details.field .patterns { margin-top: 6px; }
   const DB = 'https://commander-life-39708-default-rtdb.firebaseio.com';
   const TABLE_URL = DB + '/tables/t7q2xm4k.json';
   // Logged games sit beside the table, not in it, so nothing that resets the table touches them.
-  const RESULTS_URL = DB + '/results/t7q2xm4k';
+  // They stay under tables/, the only part of the database its rules open to the page.
+  const RESULTS_URL = DB + '/tables/t7q2xm4k-results';
 
   const inc = d => ({ '.sv': { increment: d } });
   const allPaths = () => ['mode', 'start', 'names/0', 'names/1', 'names/2', 'names/3',

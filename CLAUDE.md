@@ -32,7 +32,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.4)
+### `index.html`: Commander Life (current v3.5)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -75,13 +75,13 @@ After a deploy, ask the user to check the version in the menu footer.
 | --- | --- |
 | `tables/t7q2xm4k` | Commander Life live table |
 | `tables/t7q2xm4k-ae` | Archenemy live table |
-| `results/t7q2xm4k/<gameId>` | Commander Life game log |
+| `tables/t7q2xm4k-results/<gameId>` | Commander Life game log |
 
 The REST API is used directly: an EventSource stream comes in, and PATCH writes go out with
 server-side increments so taps on two phones both count.
 
-**Unverified:** whether the database rules allow writes to `results/`. If the Results list says
-"this phone only", the rules need to allow `results` the same way as `tables`.
+The database rules only open `tables/` to the pages. v3.2 to v3.4 kept the log under `results/`, and
+the log failed with "Couldn't reach the shared log", so keep every new node under `tables/`.
 
 ## Code conventions (both pages)
 - Single file, inline CSS and JS, and comments that explain why.
@@ -100,7 +100,7 @@ server-side increments so taps on two phones both count.
 - `claude/mtg-commander-health-counter-m75zne`, `ccr-31ae3957-dadntz`, `ccr-b66a7c9b-cywcix`:
   early versions (`ccr-b66a7c9b-cywcix` is an abandoned side branch).
 - `ccr-67e82241-afli68`: v1.0 to v2.7.
-- `ccr-d009fee8-fnaynu`: Commander Life v2.8 to v3.4 and Archenemy v1.1 to v1.2, the latest source for both.
+- `ccr-d009fee8-fnaynu`: Commander Life v2.8 to v3.5 and Archenemy v1.1 to v1.2, the latest source for both.
 - `ccr-b9949e35-ihpa80`: `archenemy.html` v1.0 (branched from v2.8).
 
 `BigLob/Mtg` has no `main`, so a new chat may start on an old branch. Start from the newest branch
