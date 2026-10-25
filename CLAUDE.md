@@ -28,11 +28,13 @@ The site only changes when files land on `main` of `BigLob/commander-life`:
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
 Playwright with the network mocked (route `firebaseio` requests, replace `EventSource`).
+Google Fonts is reachable: launch Chromium with `proxy: { server: process.env.HTTPS_PROXY }` and
+`ignoreHTTPSErrors: true` so text is measured in the real fonts (the fallbacks are much wider).
 After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.12)
+### `index.html`: Commander Life (current v3.13)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -60,7 +62,7 @@ After a deploy, ask the user to check the version in the menu footer.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
 - Each player picks a two-color pair and one of 50 pattern masks (`patterns/*.png`) for their seat.
-- Life totals and names are white with a black outline; names are large, and long ones end in an ellipsis.
+- Life totals and names are white with a black outline; names are large (v3.13: up to 34px, 13% of the seat's height), and long ones end in an ellipsis.
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
 - **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
   It becomes Rejoin. A new game clears all concessions.

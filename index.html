@@ -149,7 +149,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 .name {
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; text-align: center;
-  font-size: clamp(15px, calc(11 * var(--cqh, 1vh)), 26px); font-weight: 600;
+  font-size: clamp(15px, calc(13 * var(--cqh, 1vh)), 34px); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
   /* Same black outline as the life total, thicker for the small type. */
   -webkit-text-stroke: .14em #000; paint-order: stroke fill;
@@ -436,7 +436,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.12';
+  const VERSION = '3.13';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
