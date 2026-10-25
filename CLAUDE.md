@@ -34,7 +34,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.15)
+### `index.html`: Commander Life (current v3.16)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -59,6 +59,17 @@ After a deploy, ask the user to check the version in the menu footer.
   bar runs along the current player's two tiles where they meet the middle of the phone.
   Pick who goes first sets the turn, and New game clears it.
   Synced as `turns/<n>` (2 to 4) in the live table; older phones ignore it.
+- **1v1 ×2** (v3.16, the fifth Players option): all four play two 1v1s at once, starting at 20.
+  "Rand plays" in the menu sets the pairs (default Rand v Trent, Andrew v Lenn); once either 1v1
+  has started, changing it takes two taps and starts both over. Each 1v1 is its own game, synced as
+  `games/a` (Rand and his opponent) and `games/b` (the other two), with its own `meta`, `turns` and
+  `clock` under the same keys, so each is timed and logged on its own as a 2-player result.
+  - A player's phone shows only their own 1v1, in the 1v1 layout (side by side or classic).
+  - A Center phone shows all four seats at their edges, each with only its opponent's chip;
+    Pick who goes first picks for both 1v1s.
+  - New game restarts only the 1v1s this phone shows, so the other pair plays on.
+  - Code: `players` (built by `viewPlayers()`) maps each seat on screen to `{ k: game key, j: seat
+    in that game, e: edge }`; `SIZE` lists every game key and its player count.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
 - Each player picks a two-color pair and one of 50 pattern masks (`patterns/*.png`) for their seat.
