@@ -32,7 +32,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.5)
+### `index.html`: Commander Life (current v3.6)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -40,6 +40,12 @@ After a deploy, ask the user to check the version in the menu footer.
     At 4 players the tall side seats use top half = +, bottom half = −.
   - **Center**: the phone lies in the middle of the table and each seat faces its own edge.
     Center has no seat of its own, so its colors and Concede are hidden.
+- Picking a player count sets starting life to its default (v3.6): 2 players 20, 3 players 30,
+  4 players 40. Starting life can still be changed by hand afterwards.
+- **1v1 layout** (v3.6, menu, 2 players only, kept on that phone): **Side by side** (default) or **Classic**.
+  Side by side is a 2×2 grid. The bottom half faces this phone's player, the top half is turned to the
+  opponent, and each half shows both totals with its viewer's own on the left, so each player's
+  colors run down one side of the phone. Each player then has two seat elements (`seats[i]` is a list).
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
 - Each player picks a two-color pair and one of 50 pattern masks (`patterns/*.png`) for their seat.

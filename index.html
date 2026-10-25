@@ -72,6 +72,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   grid-template-rows: 1fr 2fr 1fr; grid-template-columns: 1fr 1fr;
 }
 .board.n1 { grid-template: 1fr / 1fr; }
+/* Head to head, side by side: each half of the phone faces one player and shows both totals, theirs
+   on the left, so each player's colors run down one side. The top half is turned to the far player. */
+.board.duel { grid-template: "tl tr" 1fr "bl br" 1fr / 1fr 1fr; }
+.d-tl { grid-area: tl; }
+.d-tr { grid-area: tr; }
+.d-bl { grid-area: bl; }
+.d-br { grid-area: br; }
+.d-tl .face, .d-tr .face { --rot: 180deg; }
 
 .seat {
   position: relative; overflow: hidden; border-radius: 18px;
@@ -117,6 +125,10 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .n4.upright .s1 .zone, .n4.upright .s3 .zone { left: 0; right: 0; width: auto; height: 50%; padding: 0; justify-content: center; }
 .n4.upright .s1 .zone.plus, .n4.upright .s3 .zone.plus { top: 0; bottom: auto; align-items: flex-start; padding-top: calc(14 * var(--cqh, 1vh)); }
 .n4.upright .s1 .zone.minus, .n4.upright .s3 .zone.minus { top: auto; bottom: 0; align-items: flex-end; padding-bottom: calc(16 * var(--cqh, 1vh)); }
+/* Side-by-side tiles are tall too, so they split the same way. */
+.duel .zone { left: 0; right: 0; width: auto; height: 50%; padding: 0; justify-content: center; }
+.duel .zone.plus { top: 0; bottom: auto; align-items: flex-start; padding-top: calc(14 * var(--cqh, 1vh)); }
+.duel .zone.minus { top: auto; bottom: 0; align-items: flex-end; padding-bottom: calc(16 * var(--cqh, 1vh)); }
 
 .zone {
   position: absolute; top: 0; bottom: 0; width: 50%;
@@ -147,6 +159,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* Bigger names still have to fit a narrow seat. */
 .name { max-width: calc(88 * var(--cqw, 1vw)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .n3 .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
+/* Narrow tiles: the name stays centered and clear of the menu button where the four tiles meet. */
+.duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
 .life {
   position: relative;
   font-family: var(--f-num); font-weight: 800;
@@ -156,6 +170,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   -webkit-text-stroke: .06em #000; paint-order: stroke fill;
   text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
+.duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(58 * var(--cqw, 1vw))); }
 .delta {
   -webkit-text-stroke-width: .08em;
   position: absolute; left: 100%; top: .06em; margin-left: .1em;
@@ -252,7 +267,7 @@ details.field .patterns { margin-top: 6px; }
   background: var(--table); border: 2px solid var(--line);
 }
 .menu-btn svg { width: 26px; height: 26px; }
-.table + .menu-btn { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.table + .menu-btn, .duel + .menu-btn { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 .n1 + .menu-btn { top: 16px; right: max(16px, calc(env(safe-area-inset-right, 0px) + 10px)); width: 46px; height: 46px; background: rgba(0, 0, 0, .3); }
 
 /* Menu */
@@ -336,6 +351,13 @@ details.field .patterns { margin-top: 6px; }
         <button type="button" id="mode4" data-v="4">4</button>
       </div>
     </div>
+    <div class="field" id="layoutField">
+      <span>1v1 layout</span>
+      <div class="seg" id="segLayout">
+        <button type="button" data-v="split">Side by side</button>
+        <button type="button" data-v="classic">Classic</button>
+      </div>
+    </div>
     <details class="field" id="meField" open>
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
@@ -374,7 +396,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.5';
+  const VERSION = '3.6';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -395,6 +417,8 @@ details.field .patterns { margin-top: 6px; }
   const MODES = [1, 2, 3, 4];
   // The phone edges each table size seats players at, in clockwise order from the bottom.
   const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3] };
+  // Picking a table size starts it at its usual life: 20 head to head, 30 for three, 40 for four.
+  const DEFAULT_START = { 2: 20, 3: 30, 4: 40 };
 
   const ICON_MENU = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5z"/><path d="M12 2.5v6.5m8.5-1.75L12 9 3.5 7.25M12 9l-5 8.5h10z"/></svg>';
 
@@ -427,6 +451,8 @@ details.field .patterns { margin-top: 6px; }
   // Kept on this phone only.
   if (![0, 1, 2, 3, CENTER].includes(state.me)) state.me = 0;
   delete state.flip; // left over from v1.9
+  // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
+  if (!['split', 'classic'].includes(state.layout2)) state.layout2 = 'split';
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
@@ -448,6 +474,7 @@ details.field .patterns { margin-top: 6px; }
   const untouched = g => g.every(p => p.life === state.start && p.cmd.every(c => c === 0) && !p.conceded);
 
   const app = document.getElementById('app');
+  // Per player, their seat elements: one, or two in the side-by-side layout (one in each half).
   let seats = [];
   const deltas = [];
   // Per seat, the opponent slot whose commander damage is being marked (null when off).
@@ -488,47 +515,21 @@ details.field .patterns { margin-top: 6px; }
     return EDGES[state.mode].filter((e, k) => k !== i).map(e => ({ label: nameOf(e), color: e }));
   }
 
+  // Side by side, this phone's player takes the left column and the opponent the right: in the top
+  // half, turned to face the opponent, that puts the opponent on their own left too.
+  const duelSpots = i => i === mySeat() ? ['d-bl', 'd-tl'] : ['d-tr', 'd-br'];
+
   function build() {
     const n = state.mode;
+    const duel = n === 2 && state.layout2 === 'split';
     app.innerHTML = '';
     const board = document.createElement('div');
-    board.className = 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '');
+    board.className = duel ? 'board duel'
+      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '');
     seats = [];
     for (let i = 0; i < n; i++) {
-      const seat = document.createElement('section');
-      const e = edgeOf(i);
-      seat.className = `seat s${posOf(i)} ${colorOf(e)}`;
-      seat.style.setProperty('--pattern', patternUrl(patternOf(e)));
-      const opps = oppsOf(i);
-      seat.innerHTML = `
-        <div class="face">
-          <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life">&minus;</button>
-          <button type="button" class="zone plus" aria-label="${nameOf(e)} gain 1 life">+</button>
-          <div class="readout">
-            <div class="name"></div>
-            <div class="life"><span class="num"></span><span class="delta"></span></div>
-          </div>
-          <div class="badge" hidden>Goes first</div>
-          <div class="tray">
-            <div class="pop">
-              ${opps.map((o, s) => `<button type="button" class="chip ${colorOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}"><i class="sw"></i><span class="ct">${o.label}</span><b>0</b></button>`).join('')}
-            </div>
-            <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
-          </div>
-        </div>`;
-      board.appendChild(seat);
-      bindZone(seat.querySelector('.minus'), i, -1);
-      bindZone(seat.querySelector('.plus'), i, 1);
-      seat.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
-        seat.classList.remove('open');
-        toggleMarking(i, +c.dataset.slot);
-      }));
-      const cmdBtn = seat.querySelector('.cmd-btn');
-      cmdBtn.addEventListener('click', () => {
-        cmdBtn.setAttribute('aria-expanded', seat.classList.toggle('open'));
-        buzz();
-      });
-      seats.push(seat);
+      seats[i] = (duel ? duelSpots(i) : ['s' + posOf(i)]).map(spot => makeSeat(i, spot));
+      seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
     app.appendChild(board);
@@ -543,9 +544,45 @@ details.field .patterns { margin-top: 6px; }
     measure();
   }
 
+  function makeSeat(i, spot) {
+    const seat = document.createElement('section');
+    const e = edgeOf(i);
+    seat.className = `seat ${spot} ${colorOf(e)}`;
+    seat.style.setProperty('--pattern', patternUrl(patternOf(e)));
+    const opps = oppsOf(i);
+    seat.innerHTML = `
+      <div class="face">
+        <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life">&minus;</button>
+        <button type="button" class="zone plus" aria-label="${nameOf(e)} gain 1 life">+</button>
+        <div class="readout">
+          <div class="name"></div>
+          <div class="life"><span class="num"></span><span class="delta"></span></div>
+        </div>
+        <div class="badge" hidden>Goes first</div>
+        <div class="tray">
+          <div class="pop">
+            ${opps.map((o, s) => `<button type="button" class="chip ${colorOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}"><i class="sw"></i><span class="ct">${o.label}</span><b>0</b></button>`).join('')}
+          </div>
+          <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
+        </div>
+      </div>`;
+    bindZone(seat.querySelector('.minus'), i, -1);
+    bindZone(seat.querySelector('.plus'), i, 1);
+    seat.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+      seat.classList.remove('open');
+      toggleMarking(i, +c.dataset.slot);
+    }));
+    const cmdBtn = seat.querySelector('.cmd-btn');
+    cmdBtn.addEventListener('click', () => {
+      cmdBtn.setAttribute('aria-expanded', seat.classList.toggle('open'));
+      buzz();
+    });
+    return seat;
+  }
+
   // Size each seat and its face from the actual layout (see .face in the styles).
   function measure() {
-    seats.forEach(seat => {
+    seats.flat().forEach(seat => {
       seat.style.setProperty('--sw', seat.clientWidth / 100 + 'px');
       seat.style.setProperty('--sh', seat.clientHeight / 100 + 'px');
       const face = seat.querySelector('.face');
@@ -566,38 +603,42 @@ details.field .patterns { margin-top: 6px; }
   const slotsOf = seat => Array.from(seat.querySelectorAll('.chip'), c => +c.dataset.slot);
 
   function update(i) {
-    const p = game()[i], seat = seats[i];
-    if (!seat) return;
-    seat.querySelector('.num').textContent = p.life;
+    const p = game()[i];
+    if (!seats[i]) return;
     const why = outReason(p);
-    seat.classList.toggle('out', !!why);
     const label = state.mode === 1 ? 'Life' : nameOf(edgeOf(i));
-    seat.querySelector('.name').innerHTML = why ? `${label}<span class="why">out, ${why}</span>` : label;
+    seats[i].forEach(seat => {
+      seat.querySelector('.num').textContent = p.life;
+      seat.classList.toggle('out', !!why);
+      seat.querySelector('.name').innerHTML = why ? `${label}<span class="why">out, ${why}</span>` : label;
 
-    seat.classList.toggle('marking', marking[i] != null);
-    seat.querySelectorAll('.chip').forEach(c => {
-      const slot = +c.dataset.slot, v = p.cmd[slot], on = marking[i] === slot;
-      c.querySelector('b').textContent = v;
-      c.classList.toggle('on', on);
-      c.classList.toggle('hot', !on && v >= CMD_LETHAL - 6);
-      c.setAttribute('aria-pressed', on);
+      seat.classList.toggle('marking', marking[i] != null);
+      seat.querySelectorAll('.chip').forEach(c => {
+        const slot = +c.dataset.slot, v = p.cmd[slot], on = marking[i] === slot;
+        c.querySelector('b').textContent = v;
+        c.classList.toggle('on', on);
+        c.classList.toggle('hot', !on && v >= CMD_LETHAL - 6);
+        c.setAttribute('aria-pressed', on);
+      });
+      // The shield carries the most commander damage taken from any one attacker.
+      const most = Math.max(0, ...slotsOf(seat).map(slot => p.cmd[slot]));
+      const cmdBtn = seat.querySelector('.cmd-btn'), badge = cmdBtn.querySelector('b');
+      badge.hidden = !most;
+      badge.textContent = most;
+      cmdBtn.classList.toggle('hot', most >= CMD_LETHAL - 6);
+      cmdBtn.setAttribute('aria-expanded', seat.classList.contains('open'));
     });
-    // The shield carries the most commander damage taken from any one attacker.
-    const most = Math.max(0, ...slotsOf(seat).map(slot => p.cmd[slot]));
-    const cmdBtn = seat.querySelector('.cmd-btn'), badge = cmdBtn.querySelector('b');
-    badge.hidden = !most;
-    badge.textContent = most;
-    cmdBtn.classList.toggle('hot', most >= CMD_LETHAL - 6);
-    cmdBtn.setAttribute('aria-expanded', seat.classList.contains('open'));
   }
 
   function showDelta(i, d) {
-    const st = deltas[i], el = seats[i].querySelector('.delta');
+    const st = deltas[i], els = seats[i].map(s => s.querySelector('.delta'));
     st.sum += d;
     clearTimeout(st.t);
-    el.textContent = st.sum > 0 ? '+' + st.sum : st.sum < 0 ? '−' + -st.sum : '±0';
-    el.classList.add('show');
-    st.t = setTimeout(() => { el.classList.remove('show'); st.sum = 0; }, 1600);
+    els.forEach(el => {
+      el.textContent = st.sum > 0 ? '+' + st.sum : st.sum < 0 ? '−' + -st.sum : '±0';
+      el.classList.add('show');
+    });
+    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); st.sum = 0; }, 1600);
   }
 
   // ---- changes ----
@@ -663,6 +704,8 @@ details.field .patterns { margin-top: 6px; }
   function syncMenu() {
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
+    document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
+    document.getElementById('layoutField').hidden = state.mode !== 2;
     document.getElementById('pickFirst').hidden = state.mode === 1;
     const center = state.mode !== 1 && state.me === CENTER;
     // A phone in the center has no seat of its own to concede or color.
@@ -727,18 +770,26 @@ details.field .patterns { margin-top: 6px; }
 
   menu.addEventListener('click', e => { if (e.target === menu) closeMenu(); });
   document.getElementById('closeMenu').addEventListener('click', closeMenu);
-  document.querySelectorAll('#segMode button').forEach(b => b.addEventListener('click', () => {
-    state.mode = +b.dataset.v; marking = []; send({ mode: state.mode }); save(); build(); syncMenu();
-  }));
-  document.querySelectorAll('#segStart button').forEach(b => b.addEventListener('click', () => {
+  // Games nobody has touched yet pick up a new starting life right away. Returns the patch to send.
+  function setStart(v) {
     const fresh = MODES.filter(n => untouched(state.games[n]));
-    state.start = +b.dataset.v;
-    // Games nobody has touched yet pick up the new starting life right away.
+    state.start = v;
     fresh.forEach(n => { state.games[n] = blankGame(n, state.start); });
     const reset = { start: state.start };
     fresh.forEach(n => { reset['games/' + n] = state.games[n]; });
-    send(reset);
+    return reset;
+  }
+  document.querySelectorAll('#segMode button').forEach(b => b.addEventListener('click', () => {
+    state.mode = +b.dataset.v; marking = [];
+    const patch = Object.assign(DEFAULT_START[state.mode] ? setStart(DEFAULT_START[state.mode]) : {}, { mode: state.mode });
+    send(patch); save(); build(); syncMenu();
+  }));
+  document.querySelectorAll('#segStart button').forEach(b => b.addEventListener('click', () => {
+    send(setStart(+b.dataset.v));
     save(); build(); syncMenu();
+  }));
+  document.querySelectorAll('#segLayout button').forEach(b => b.addEventListener('click', () => {
+    state.layout2 = b.dataset.v; save(); build(); syncMenu();
   }));
   newGameBtn.addEventListener('click', () => {
     if (untouched(game()) || newGameBtn.classList.contains('armed')) {
@@ -876,17 +927,17 @@ details.field .patterns { margin-top: 6px; }
     const n = seats.length;
     const winner = Math.floor(Math.random() * n);
     const steps = 3 * n + winner + n * Math.floor(Math.random() * 2);
-    seats.forEach(s => { s.classList.remove('pick'); s.querySelector('.badge').hidden = true; });
+    seats.flat().forEach(s => { s.classList.remove('pick'); s.querySelector('.badge').hidden = true; });
     let k = 0;
     const tick = () => {
-      seats.forEach(s => s.classList.remove('pick'));
+      seats.flat().forEach(s => s.classList.remove('pick'));
       const idx = k % n;
-      seats[idx].classList.add('pick');
+      seats[idx].forEach(s => s.classList.add('pick'));
       buzz();
       if (k >= steps) {
-        const badge = seats[idx].querySelector('.badge');
-        badge.hidden = false;
-        setTimeout(() => { badge.hidden = true; seats[idx].classList.remove('pick'); }, 3000);
+        const badges = seats[idx].map(s => s.querySelector('.badge'));
+        badges.forEach(b => { b.hidden = false; });
+        setTimeout(() => { badges.forEach(b => { b.hidden = true; }); seats[idx].forEach(s => s.classList.remove('pick')); }, 3000);
         return;
       }
       k++;
