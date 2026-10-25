@@ -96,17 +96,6 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   background: var(--accent);
   -webkit-mask: var(--pattern) 0 0 / 100% 100% no-repeat; mask: var(--pattern) 0 0 / 100% 100% no-repeat;
 }
-/* Pattern masks: white is where the second color shows. */
-.p-split { --pattern: url(patterns/split.png); }
-.p-pinstripes { --pattern: url(patterns/pinstripes.png); }
-.p-dots { --pattern: url(patterns/dots.png); }
-.p-marble { --pattern: url(patterns/marble.png); }
-.p-ripples { --pattern: url(patterns/ripples.png); }
-.p-bands { --pattern: url(patterns/bands.png); }
-.p-splatter { --pattern: url(patterns/splatter.png); }
-.p-scales { --pattern: url(patterns/scales.png); }
-.p-veins { --pattern: url(patterns/veins.png); }
-.p-shards { --pattern: url(patterns/shards.png); }
 .face {
   position: absolute; top: 50%; left: 50%;
   width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh));
@@ -201,6 +190,21 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   content: ""; position: absolute; inset: 0; background: var(--accent);
   -webkit-mask: var(--pattern) 0 0 / 100% 100% no-repeat; mask: var(--pattern) 0 0 / 100% 100% no-repeat;
 }
+/* Each pattern carries its number from the proof sheet. */
+.patterns button::after {
+  content: attr(data-n); position: absolute; left: 4px; bottom: 1px;
+  font: 600 11px var(--f-ui); color: var(--ink); text-shadow: 0 0 2px #000, 0 0 2px #000;
+}
+details.field > summary {
+  display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none;
+  font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
+}
+details.field > summary::-webkit-details-marker { display: none; }
+details.field > summary::after { content: "+"; font-size: 20px; letter-spacing: 0; }
+details.field[open] > summary::after { content: "\2212"; }
+/* Spaced by margins: Safari lays out <details> as a block whatever its display says. */
+details.field[open] > summary { margin-bottom: 10px; }
+details.field .patterns { margin-top: 6px; }
 /* Commander damage: the shield opens the attackers above it; while one is marked, only their chip shows. */
 .cmd-btn {
   position: relative; display: grid; place-items: center;
@@ -305,11 +309,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
       <span>This phone is</span>
       <div class="seg" id="segMe"></div>
     </div>
-    <div class="field" id="colorField">
-      <span id="colorLabel">Your colors</span>
+    <details class="field" id="colorField">
+      <summary id="colorLabel">Your colors</summary>
       <div class="colors" id="colors"></div>
       <div class="patterns" id="patterns"></div>
-    </div>
+    </details>
     <div class="field" id="namesField">
       <span>Seats, by phone edge</span>
       <div class="names">
@@ -338,16 +342,18 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '2.4';
+  const VERSION = '2.5';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
   // Color pairs, by the class that paints them; everyone starts on a different one.
   const SCHEMES = { gr: 'Green and red', uw: 'Blue and white', rb: 'Red and black', bu: 'Black and blue', gw: 'Green and white' };
   const DEFAULT_COLORS = ['uw', 'rb', 'gr', 'bu'];
-  // How the second color lies over the first, each covering 30% of the seat.
-  const PATTERNS = { split: 'Split', pinstripes: 'Pinstripes', dots: 'Big dots', marble: 'Marble', ripples: 'Ripples',
-    bands: 'Edge bands', splatter: 'Splatter', scales: 'Scales', veins: 'Lightning veins', shards: 'Shards' };
+  // How the second color lies over the first, each covering 30% of the seat: [mask file, name, proof sheet number].
+  const PATTERN_LIST = [['diagonal-split', 'Diagonal split', 2], ['diagonal-blend', 'Diagonal blend', 4], ['horizontal-split', 'Horizontal split', 6], ['split', 'Vertical split', 8], ['corner-sweep', 'Corner sweep', 10], ['edge-vignette', 'Edge vignette', 12], ['center-glow', 'Center glow', 14], ['diagonal-stripes', 'Diagonal stripes', 16], ['pinstripes', 'Pinstripes', 18], ['wide-bands', 'Wide bands', 20], ['vertical-stripes', 'Vertical stripes', 22], ['chevrons', 'Chevrons', 24], ['polka-dots', 'Polka dots', 26], ['dots', 'Big dots', 28], ['grid-lines', 'Grid lines', 30], ['crosshatch', 'Crosshatch', 32], ['wave-split', 'Wave split', 34], ['wavy-stripes', 'Wavy stripes', 36], ['marble', 'Marble', 38], ['marble-soft', 'Marble, soft', 40], ['clouds', 'Clouds', 42], ['camouflage', 'Camouflage', 44], ['wood-grain', 'Wood grain', 46], ['ripples', 'Ripples', 48], ['sunburst', 'Sunburst', 50], ['pie-wedge', 'Pie wedge', 52], ['zigzag-split', 'Zigzag split', 54], ['frame', 'Frame', 56], ['bands', 'Edge bands', 58], ['vertical-fade', 'Vertical fade', 60], ['mesh-gradient', 'Mesh gradient', 62], ['aurora', 'Aurora', 64], ['brushstrokes', 'Brushstrokes', 66], ['splatter', 'Splatter', 68], ['low-poly-facets', 'Low-poly facets', 70], ['cracked-earth', 'Cracked earth', 72], ['hexagons', 'Hexagons', 74], ['argyle', 'Argyle', 76], ['scales', 'Scales', 78], ['herringbone', 'Herringbone', 80], ['plaid', 'Plaid', 82], ['grain-dither', 'Grain dither', 84], ['halftone', 'Halftone', 86], ['veins', 'Lightning veins', 88], ['liquid-swirl', 'Liquid swirl', 90], ['contour-lines', 'Contour lines', 92], ['opposite-corners', 'Opposite corners', 94], ['arch', 'Arch', 96], ['shards', 'Shards', 98], ['diagonal-tri-band', 'Diagonal tri-band', 100]];
+  const PATTERNS = {};
+  PATTERN_LIST.forEach(([k, name]) => { PATTERNS[k] = name; });
+  const patternUrl = k => `url(patterns/${k}.png)`;
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
   const MODES = [1, 2, 3, 4];
@@ -385,7 +391,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
   const edgeOf = i => EDGES[state.mode][i];
   const colorOf = e => 'k-' + (SCHEMES[state.colors[e]] ? state.colors[e] : DEFAULT_COLORS[e]);
-  const patternOf = e => 'p-' + (PATTERNS[state.patterns[e]] ? state.patterns[e] : 'marble');
+  const patternOf = e => PATTERNS[state.patterns[e]] ? state.patterns[e] : 'marble';
   // Where player i sits on this phone: the table turns so this phone's player is at the bottom.
   // Rand's layout is the reference; on everyone else's phone the left and right seats swap, which
   // matches how the group actually sits.
@@ -450,7 +456,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     for (let i = 0; i < n; i++) {
       const seat = document.createElement('section');
       const e = edgeOf(i);
-      seat.className = `seat s${posOf(i)} ${colorOf(e)} ${patternOf(e)}`;
+      seat.className = `seat s${posOf(i)} ${colorOf(e)}`;
+      seat.style.setProperty('--pattern', patternUrl(patternOf(e)));
       const opps = oppsOf(i);
       seat.innerHTML = `
         <div class="face">
@@ -625,8 +632,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     document.getElementById('colorLabel').textContent = state.mode === 1 ? 'Colors' : (state.names[mine].trim() || DEFAULT_NAMES[mine]) + "'s colors";
     document.getElementById('colors').innerHTML = Object.keys(SCHEMES).map(k =>
       `<button type="button" class="k-${k}${colorOf(mine) === 'k-' + k ? ' on' : ''}" data-v="${k}" data-e="${mine}" aria-label="${SCHEMES[k]}" title="${SCHEMES[k]}"></button>`).join('');
-    document.getElementById('patterns').innerHTML = Object.keys(PATTERNS).map(k =>
-      `<button type="button" class="${colorOf(mine)} p-${k}${patternOf(mine) === 'p-' + k ? ' on' : ''}" data-v="${k}" data-e="${mine}" aria-label="${PATTERNS[k]}" title="${PATTERNS[k]}"></button>`).join('');
+    document.getElementById('patterns').innerHTML = PATTERN_LIST.map(([k, name, n]) =>
+      `<button type="button" class="${colorOf(mine)}${patternOf(mine) === k ? ' on' : ''}" style="--pattern: ${patternUrl(k)}" data-v="${k}" data-e="${mine}" data-n="${n}" aria-label="${name}" title="${n}. ${name}"></button>`).join('');
     state.names.forEach((n, i) => {
       const input = document.getElementById('name' + i);
       if (input !== document.activeElement) input.value = n;
