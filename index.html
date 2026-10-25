@@ -266,9 +266,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
       </div>
     </div>
     <div class="field" id="meField">
-      <span>At the bottom of this phone</span>
+      <span>This phone is</span>
       <div class="seg" id="segMe"></div>
-      <div class="seg" id="segFlip"></div>
     </div>
     <div class="field" id="namesField">
       <span>Seats, by phone edge</span>
@@ -298,7 +297,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.9';
+  const VERSION = '2.0';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -329,20 +328,21 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     state.names = DEFAULT_NAMES.slice();
   }
   delete state.clock; // left over from v1.2's sync
-  // Whose seat sits at this phone's bottom edge (by their default edge); kept on this phone only.
+  // Whose phone this is (by their default edge); their seat sits at its bottom. Kept on this phone only.
   if (![0, 1, 2, 3].includes(state.me)) state.me = 0;
-  state.flip = state.flip === true;
+  delete state.flip; // left over from v1.9
 
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
   const edgeOf = i => EDGES[state.mode][i];
-  // Where player i sits on this phone: the table turns so this phone's player is at the bottom,
-  // everyone else keeping their order around it, and `flip` swaps the left and right seats.
-  function posOf(i, flip = state.flip) {
+  // Where player i sits on this phone: the table turns so this phone's player is at the bottom.
+  // Rand's layout is the reference; on everyone else's phone the left and right seats swap, which
+  // matches how the group actually sits.
+  function posOf(i) {
     const edges = EDGES[state.mode], n = edges.length;
     const k = Math.max(0, edges.indexOf(state.me));
     const pos = edges[(i - k + n) % n];
-    return flip && pos % 2 ? 4 - pos : pos;
+    return k && pos % 2 ? 4 - pos : pos;
   }
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
@@ -560,13 +560,6 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     const edges = EDGES[state.mode];
     document.getElementById('segMe').innerHTML = edges.map(e =>
       `<button type="button" data-v="${e}"${e === (edges.includes(state.me) ? state.me : 0) ? ' class="on"' : ''}>${nameOf(e)}</button>`).join('');
-    // Each choice names who would then sit on the left of this phone.
-    const segFlip = document.getElementById('segFlip');
-    segFlip.hidden = state.mode < 3;
-    segFlip.innerHTML = [false, true].map(f => {
-      const i = edges.findIndex((e, j) => posOf(j, f) === 1);
-      return `<button type="button" data-v="${f}"${f === state.flip ? ' class="on"' : ''}>${nameOf(edges[i])} on the left</button>`;
-    }).join('');
     [0, 1, 2, 3].forEach(e => {
       const label = document.getElementById('edge' + e), i = edges.indexOf(e);
       label.hidden = i < 0;
@@ -588,11 +581,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     if (!b) return;
     state.me = +b.dataset.v; save(); build(); syncMenu();
   });
-  document.getElementById('segFlip').addEventListener('click', e => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    state.flip = b.dataset.v === 'true'; save(); build(); syncMenu();
-  });
+
   function disarm() {
     clearTimeout(armTimer);
     newGameBtn.classList.remove('armed');
