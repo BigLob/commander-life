@@ -127,10 +127,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .n4.upright .s1 .zone, .n4.upright .s3 .zone { left: 0; right: 0; width: auto; height: 50%; padding: 0; justify-content: center; }
 .n4.upright .s1 .zone.plus, .n4.upright .s3 .zone.plus { top: 0; bottom: auto; align-items: flex-start; padding-top: calc(14 * var(--cqh, 1vh)); }
 .n4.upright .s1 .zone.minus, .n4.upright .s3 .zone.minus { top: auto; bottom: 0; align-items: flex-end; padding-bottom: calc(16 * var(--cqh, 1vh)); }
-/* Side by side: - and + split the tile left and right, their signs halfway up. The tiles are too
-   narrow for the total to sit between them, so it moves up, between the name and the signs. */
-.duel .zone { align-items: center; }
-.duel .readout { padding-bottom: calc(30 * var(--cqh, 1vh)); }
+/* Side by side: - and + split the tile left and right. The tiles are too narrow for the signs to sit
+   beside the centered total, so they sit just below it. */
+.duel .zone { align-items: flex-end; padding-bottom: calc(24 * var(--cqh, 1vh)); }
 
 .zone {
   position: absolute; top: 0; bottom: 0; width: 50%;
@@ -437,7 +436,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.11';
+  const VERSION = '3.12';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
