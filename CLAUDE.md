@@ -56,14 +56,17 @@ After a deploy, ask the user to check the version in the menu footer.
   pattern and final life. Results are listed in the menu with a two-tap Delete.
 - Version shows in the menu footer with the sync status. Bump `VERSION` on every release.
 
-### `archenemy.html`: Archenemy (v1.0)
+### `archenemy.html`: Archenemy (v1.1)
 - Separate page, because its interface differs a lot from Commander Life.
 - Rules:
   - One archenemy at 40 life against three heroes at 20 each, with no shared total.
   - The archenemy goes first.
   - Heroes take commander damage only from the archenemy; the archenemy takes it from each hero.
 - Scheme deck: 102 schemes with full card text, Set in Motion, ongoing schemes, Abandon, and Undo.
-- Built in the "Archenemy page development" chat, branch `ccr-b9949e35-ihpa80` of `BigLob/Mtg`.
+- Same seat styling as Commander Life: large outlined names, and the dagger in each seat's
+  bottom-right corner (v1.1).
+- Built in the "Archenemy page development" chat, branch `ccr-b9949e35-ihpa80` of `BigLob/Mtg`
+  (v1.0). From v1.1 on it lives with Commander Life on `ccr-d009fee8-fnaynu`.
 
 ## Firebase layout
 
@@ -96,7 +99,7 @@ server-side increments so taps on two phones both count.
 - `claude/mtg-commander-health-counter-m75zne`, `ccr-31ae3957-dadntz`, `ccr-b66a7c9b-cywcix`:
   early versions (`ccr-b66a7c9b-cywcix` is an abandoned side branch).
 - `ccr-67e82241-afli68`: v1.0 to v2.7.
-- `ccr-d009fee8-fnaynu`: v2.8 to v3.2, the latest Commander Life source.
+- `ccr-d009fee8-fnaynu`: Commander Life v2.8 to v3.3 and Archenemy v1.1, the latest source for both.
 - `ccr-b9949e35-ihpa80`: `archenemy.html` v1.0 (branched from v2.8).
 
 `BigLob/Mtg` has no `main`, so a new chat may start on an old branch. Start from the newest branch

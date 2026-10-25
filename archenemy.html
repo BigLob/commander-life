@@ -99,14 +99,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 .name {
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; padding-inline: 8px; text-align: center;
-  font-size: clamp(12px, calc(8 * var(--cqh, 1vh)), 18px); font-weight: 600;
+  font-size: clamp(15px, calc(11 * var(--cqh, 1vh)), 26px); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   /* Same black outline as the life total, thicker for the small type. */
   -webkit-text-stroke: .14em #000; paint-order: stroke fill;
 }
-.hero .name { letter-spacing: .1em; font-size: clamp(12px, calc(7 * var(--cqh, 1vh)), 16px); }
-.name .why { color: var(--ink); }
+.hero .name { letter-spacing: .1em; font-size: clamp(14px, calc(10 * var(--cqh, 1vh)), 21px); }
+.name .why { display: block; margin-top: .2em; font-size: .7em; color: var(--ink); }
 .ae .name { left: calc(5 * var(--cqw, 1vw)); right: 64px; text-align: left; color: var(--gold); padding: 0; }
 .crown { width: 1.3em; height: 1.3em; margin-right: .3em; vertical-align: -.25em; fill: var(--gold); stroke: #000; stroke-width: 2; stroke-linejoin: round; }
 .life {
@@ -128,7 +128,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .delta.show { opacity: .9; transition: none; }
 
 .tray {
-  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%); z-index: 2;
+  /* Commander damage sits in the seat's bottom-right corner. */
+  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); right: calc(5 * var(--cqw, 1vw)); z-index: 2;
   display: flex; align-items: center; gap: .35em; white-space: nowrap;
   font-size: clamp(12px, min(calc(8.5 * var(--cqh, 1vh)), calc(4.3 * var(--cqw, 1vw))), 19px);
 }
@@ -170,13 +171,13 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .cmd-btn.hot { color: var(--hot); }
 .cmd-btn.hot b { background: var(--hot); }
 .pop {
-  position: absolute; bottom: calc(100% + .5em); left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: calc(100% + .5em); right: 0;
   display: none; gap: .35em; width: max-content; padding: .35em;
   border-radius: 999px; background: var(--table); box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
 }
 .seat.open .pop { display: flex; }
 .seat.marking .cmd-btn, .seat.marking .pop .chip:not(.on) { display: none; }
-.seat.marking .pop { display: flex; position: static; transform: none; padding: 0; background: none; box-shadow: none; }
+.seat.marking .pop { display: flex; position: static; padding: 0; background: none; box-shadow: none; }
 
 .menu-btn {
   position: absolute; z-index: 10; top: calc(5 * var(--cqh, 1vh)); right: calc(4 * var(--cqw, 1vw));
@@ -390,7 +391,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu.
-  const VERSION = '1.0';
+  const VERSION = '1.1';
   const KEY = 'mtg-archenemy-v1';
   // The same four people as Commander Life; one of them is the archenemy, the other three the heroes.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -700,7 +701,7 @@ details.field .patterns { margin-top: 6px; }
     const why = outReason(p);
     seat.classList.toggle('out', !!why);
     const label = (p === state.ae ? ICON_CROWN : '') + nameOf(p);
-    seat.querySelector('.name').innerHTML = why ? `${label} &middot; <span class="why">out</span>` : label;
+    seat.querySelector('.name').innerHTML = why ? `${label}<span class="why">out</span>` : label;
     seat.classList.toggle('marking', marking[p] != null);
     seat.querySelectorAll('.chip').forEach(c => {
       const a = +c.dataset.from, v = state.cmd[p][a], on = marking[p] === a;
