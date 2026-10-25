@@ -27,11 +27,14 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-/* Seat colors, loosely after the mana colors */
-.c0 { --seat: #1b4a84; --seat-hi: #2c69b3; }
-.c1 { --seat: #8e2a1f; --seat-hi: #c0442f; }
-.c2 { --seat: #2a6238; --seat-hi: #3f8a50; }
-.c3 { --seat: #42305a; --seat-hi: #654a86; }
+/* Color pairs players pick from: the seat in the first color, the second sweeping in from the
+   top-right corner of the seat as its player sees it. White only ever comes second, so the
+   cream numbers always sit on a dark color. */
+.k-gr { --seat: #2a6238; --seat-hi: #3f8a50; --accent: #c0442f; }
+.k-uw { --seat: #1b4a84; --seat-hi: #2c69b3; --accent: #e9dfc2; }
+.k-rb { --seat: #8e2a1f; --seat-hi: #c0442f; --accent: #121014; }
+.k-bu { --seat: #17161b; --seat-hi: #34303d; --accent: #2c69b3; }
+.k-gw { --seat: #2a6238; --seat-hi: #3f8a50; --accent: #e9dfc2; }
 
 [hidden] { display: none !important; }
 html { box-sizing: border-box; height: 100%; background: var(--table); }
@@ -89,6 +92,10 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* The face is the seat as its player sees it. Side seats are rotated toward their table edge.
    Script measures each seat and face into --sw/--sh and --cqw/--cqh (1% of width/height), standing
    in for container query units so older iPads (Safari 14/15) lay out the same. */
+.face::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(215deg, var(--accent) 0%, var(--accent) 9%, transparent 36%);
+}
 .face {
   position: absolute; top: 50%; left: 50%;
   width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh));
@@ -164,7 +171,13 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .chip b { font-family: var(--f-num); font-weight: 800; font-variant-numeric: tabular-nums; }
 .chip.hot { border-color: var(--hot); color: var(--hot); }
 .chip.on { background: var(--seat-hi); border-color: var(--ink); color: var(--ink); }
-.sw { width: .7em; height: .7em; border-radius: 50%; background: var(--seat-hi); flex: none; }
+.sw { width: .7em; height: .7em; border-radius: 50%; background: linear-gradient(135deg, var(--seat-hi) 50%, var(--accent) 50%); flex: none; }
+.colors { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.colors button {
+  height: 44px; border-radius: 12px; border: 2px solid transparent; padding: 0;
+  background: linear-gradient(135deg, var(--seat-hi) 50%, var(--accent) 50%);
+}
+.colors button.on { border-color: var(--ink); box-shadow: 0 0 0 2px var(--table) inset; }
 /* Commander damage: the shield opens the attackers above it; while one is marked, only their chip shows. */
 .cmd-btn {
   position: relative; display: grid; place-items: center;
@@ -269,6 +282,10 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
       <span>This phone is</span>
       <div class="seg" id="segMe"></div>
     </div>
+    <div class="field" id="colorField">
+      <span id="colorLabel">Your colors</span>
+      <div class="colors" id="colors"></div>
+    </div>
     <div class="field" id="namesField">
       <span>Seats, by phone edge</span>
       <div class="names">
@@ -297,10 +314,13 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '2.0';
+  const VERSION = '2.1';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
+  // Color pairs, by the class that paints them; everyone starts on a different one.
+  const SCHEMES = { gr: 'Green and red', uw: 'Blue and white', rb: 'Red and black', bu: 'Black and blue', gw: 'Green and white' };
+  const DEFAULT_COLORS = ['uw', 'rb', 'gr', 'bu'];
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
   const MODES = [1, 2, 3, 4];
@@ -327,6 +347,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   if (!Array.isArray(state.names) || state.names.length !== 4 || state.names.join() === OLD_DEFAULT_NAMES.join()) {
     state.names = DEFAULT_NAMES.slice();
   }
+  if (!Array.isArray(state.colors) || state.colors.length !== 4) state.colors = DEFAULT_COLORS.slice();
   delete state.clock; // left over from v1.2's sync
   // Whose phone this is (by their default edge); their seat sits at its bottom. Kept on this phone only.
   if (![0, 1, 2, 3].includes(state.me)) state.me = 0;
@@ -335,6 +356,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
   const edgeOf = i => EDGES[state.mode][i];
+  const colorOf = e => 'k-' + (SCHEMES[state.colors[e]] ? state.colors[e] : DEFAULT_COLORS[e]);
   // Where player i sits on this phone: the table turns so this phone's player is at the bottom.
   // Rand's layout is the reference; on everyone else's phone the left and right seats swap, which
   // matches how the group actually sits.
@@ -399,7 +421,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     for (let i = 0; i < n; i++) {
       const seat = document.createElement('section');
       const e = edgeOf(i);
-      seat.className = `seat s${posOf(i)} c${e}`;
+      seat.className = `seat s${posOf(i)} ${colorOf(e)}`;
       const opps = oppsOf(i);
       seat.innerHTML = `
         <div class="face">
@@ -412,7 +434,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
           <div class="badge" hidden>Goes first</div>
           <div class="tray">
             <div class="pop">
-              ${opps.map((o, s) => `<button type="button" class="chip c${o.color}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}"><i class="sw"></i><span class="ct">${o.label}</span><b>0</b></button>`).join('')}
+              ${opps.map((o, s) => `<button type="button" class="chip ${colorOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}"><i class="sw"></i><span class="ct">${o.label}</span><b>0</b></button>`).join('')}
             </div>
             <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
           </div>
@@ -569,6 +591,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
       label.querySelector('.pos').textContent = POS_NAMES[pos];
       label.style.order = [3, 1, 0, 2][pos];
     });
+    // This phone's player picks their colors (in "Just me", the one seat's).
+    const mine = state.mode === 1 ? 0 : edges.includes(state.me) ? state.me : 0;
+    document.getElementById('colorLabel').textContent = state.mode === 1 ? 'Colors' : (state.names[mine].trim() || DEFAULT_NAMES[mine]) + "'s colors";
+    document.getElementById('colors').innerHTML = Object.keys(SCHEMES).map(k =>
+      `<button type="button" class="k-${k}${colorOf(mine) === 'k-' + k ? ' on' : ''}" data-v="${k}" data-e="${mine}" aria-label="${SCHEMES[k]}" title="${SCHEMES[k]}"></button>`).join('');
     state.names.forEach((n, i) => {
       const input = document.getElementById('name' + i);
       if (input !== document.activeElement) input.value = n;
@@ -580,6 +607,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     const b = e.target.closest('button');
     if (!b) return;
     state.me = +b.dataset.v; save(); build(); syncMenu();
+  });
+
+  document.getElementById('colors').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.colors[+b.dataset.e] = b.dataset.v;
+    send({ ['colors/' + b.dataset.e]: b.dataset.v });
+    save(); build(); syncMenu();
   });
 
   function disarm() {
@@ -654,7 +689,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   const TABLE_URL = DB + '/tables/t7q2xm4k.json';
 
   const inc = d => ({ '.sv': { increment: d } });
-  const allPaths = () => ['mode', 'start', 'names/0', 'names/1', 'names/2', 'names/3']
+  const allPaths = () => ['mode', 'start', 'names/0', 'names/1', 'names/2', 'names/3',
+    'colors/0', 'colors/1', 'colors/2', 'colors/3']
     .concat(...MODES.map(n => [].concat(...Array.from({ length: n }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2'].map(f => `games/${n}/${i}/${f}`)))));
   const getAt = (root, path) => path.split('/').reduce((o, k) => o == null ? undefined : o[k], root);
@@ -662,7 +698,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, games: state.games });
+  const shared = () => ({ mode: state.mode, start: state.start, names: state.names, colors: state.colors, games: state.games });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -681,6 +717,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
     if (p === 'mode') return MODES.includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
     if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12;
+    if (p.startsWith('colors/')) return Object.prototype.hasOwnProperty.call(SCHEMES, v);
     return typeof v === 'number' && isFinite(v) && Math.abs(v) < 1e6;
   }
   // Write `data` into the local copy of the table at `path`; null removes it.
