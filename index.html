@@ -331,9 +331,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   font-size: clamp(16px, min(calc(8.5 * var(--cqh, 1vh)), calc(6 * var(--cqw, 1vw))), 20px);
   touch-action: manipulation;
 }
-/* The symbol is drawn at 80% of the button (v3.29); the button itself stays the full tap target. */
+/* The symbol is drawn at 54% of the button (v3.30: 80%, v3.32: a third smaller again); the button
+   itself stays the full 3.2em tap target. */
 .turn-btn svg {
-  display: block; width: 80%; height: 80%; margin: 10%; fill: currentColor;
+  display: block; width: 54%; height: 54%; margin: 23%; fill: currentColor;
   filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000);
 }
 .seat.turn .turn-btn { color: var(--turn); }

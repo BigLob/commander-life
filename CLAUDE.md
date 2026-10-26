@@ -87,7 +87,8 @@ them and `.gitignore` now ignores PNGs at the root).
   Since v3.27 it's Magic's tap symbol (`ICON_TAP`, from the Mana font's SVGs, github.com/andrewgioia/mana)
   instead of the pink circle the user hated: cream before anyone has the turn, then gold and glowing
   on the current player and dim on everyone else. The side-by-side turn bar is gold too. v3.30 draws
-  the symbol at 80% of the button; the 3.2em tap target is unchanged.
+  the symbol at 80% of the button and v3.32 at 54% (a third smaller again); the 3.2em tap target is
+  unchanged.
   Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
   Trent → Lenn), skipping anyone out. Tapping anyone else's makes it their turn. Once someone has
   the turn, everyone else's button goes dark (v3.9; no ring on the seat). In side-by-side 1v1, a
