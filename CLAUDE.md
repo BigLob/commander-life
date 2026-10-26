@@ -42,17 +42,20 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.25)
+### `index.html`: Commander Life (current v3.26)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
   writes the fix back to the table when it sees one.
 - 4-player totals are bigger (v3.23), and the top and bottom rows got more height (rows 1.2fr 1.6fr
-  1.2fr). v3.24 trimmed them a little: up to 52% of the seat's height or 56% of its width, shrunk
-  for 3 or 4 digits.
-- − and + always sit left and right of the total, level with it (v3.24), in every layout. This
-  replaces the 4-player side seats' top/bottom halves and side-by-side 1v1's signs below the total.
-  The tap zones are still the left and right halves of the seat.
+  1.2fr). v3.24 trimmed them a little: up to 52% of the seat's height or 56% of its width.
+- **One size for every total** (v3.26, `fitLife()`): each seat's own largest size comes from the
+  styles, and all totals on the board take the smallest of them (`.board.fitted`, `--life`), so the
+  iPad's side seats no longer dwarf the top and bottom ones. 3 or 4 digits shrink (`--ls`). Side
+  seats place theirs differently: upright ones lower (clear of the name), turned ones (Center) off
+  the menu button.
+- **No − or + on the seats** (v3.26; the user asked to drop them). The tap zones are unchanged: the
+  left half of a seat, as its player sees it, loses life and the right half gains it.
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names and colors are stored by it).
@@ -60,7 +63,6 @@ After a deploy, ask the user to check the version in the menu footer.
     Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 2 players use bottom and top, 3 players bottom, left, right.
 - **This phone is**: each phone picks its owner (kept on that phone only).
   - A named player: their seat goes at the bottom and every seat faces them, upright.
-    At 4 players the tall side seats use top half = +, bottom half = −.
   - **Center**: the phone lies in the middle of the table and each seat faces its own edge.
     Center has no seat of its own, so its colors and Concede are hidden.
 - Picking a player count sets starting life to its default (v3.6): 2 players 20, 3 players 30,
@@ -69,8 +71,7 @@ After a deploy, ask the user to check the version in the menu footer.
   Side by side is a 2×2 grid. The bottom half faces this phone's player, the top half is turned to the
   opponent, and each half shows both totals with its viewer's own on the left, so each player's
   colors run down one side of the phone. Each player then has two seat elements (`seats[i]` is a list).
-  - v3.7: − and + split each box left and right. v3.12: the total stays centered and the signs sit
-    just below it (the box is too narrow for them beside it; moving the total up was rejected).
+  - v3.7: − and + split each box left and right (the signs themselves were dropped in v3.26).
   - v3.7: each player's own box has a white flag in its bottom-left corner to concede or rejoin
     (two taps), since both players share the phone. The menu's Concede still works too.
 - **Turn tracker** (v3.8; 33% bigger in v3.10): a pink button at the bottom center of every seat (not in "Just me").

@@ -136,23 +136,15 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* On a player's own phone every seat faces them: no turning, side seats stay tall. */
 .table.upright .face { --rot: 0deg; }
 .table.upright .s1 .face, .table.upright .s3 .face { width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh)); }
-/* At four, the side seats are tall and meet at the menu button: + takes their top half, - the bottom. */
-/* - and + always sit left and right of the total, level with it (v3.24): each zone is lifted by the
-   same padding as the readout, so their centers line up. */
-.table .zone { padding-bottom: calc(18 * var(--cqh, 1vh)); }
-.n4 .zone { padding-bottom: calc(32 * var(--cqh, 1vh)); }
-
+/* Tap zones: the left half of a seat (as its player sees it) loses life, the right half gains it.
+   They show no - or + (v3.26). */
 .zone {
   position: absolute; top: 0; bottom: 0; width: 50%;
-  border: 0; background: transparent; padding: 0;
-  color: var(--ink-2); touch-action: none;
-  /* Sized by width too, so narrow seats keep room for the total between the signs. */
-  font-family: var(--f-num); font-weight: 700; font-size: clamp(24px, min(calc(22 * var(--cqh, 1vh)), calc(15 * var(--cqw, 1vw))), 64px);
-  display: flex; align-items: center;
+  border: 0; background: transparent; padding: 0; touch-action: none;
   transition: background .12s;
 }
-.zone.minus { left: 0; justify-content: flex-start; padding-left: calc(6 * var(--cqw, 1vw)); }
-.zone.plus { right: 0; justify-content: flex-end; padding-right: calc(6 * var(--cqw, 1vw)); }
+.zone.minus { left: 0; }
+.zone.plus { right: 0; }
 .zone.press { background: rgba(255, 255, 255, .1); transition: none; }
 
 .readout {
@@ -190,9 +182,18 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .table .readout { padding-bottom: calc(18 * var(--cqh, 1vh)); }
 .table .life { font-size: min(calc(44 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); }
 .duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(50 * var(--cqw, 1vw))); }
-/* Four players: the totals as big as each seat allows, scaled down for three digits (--ls). */
+/* Four players: the totals as big as each seat allows, between the name and the turn button. The
+   short top and bottom seats lift theirs well clear of the button; the tall upright side seats sit
+   theirs lower, clear of the name; turned side seats (Center) keep theirs off the menu button. */
 .n4 .readout { padding-bottom: calc(32 * var(--cqh, 1vh)); }
-.n4 .life { font-size: calc(min(calc(var(--lh, 52) * var(--cqh, 1vh)), calc(var(--lw, 56) * var(--cqw, 1vw))) * var(--ls, 1)); }
+.n4 .life { font-size: min(calc(52 * var(--cqh, 1vh)), calc(56 * var(--cqw, 1vw))); }
+.n4.upright .s1 .readout, .n4.upright .s3 .readout { padding-bottom: calc(4 * var(--cqh, 1vh)); }
+.n4:not(.upright) .s1 .readout, .n4:not(.upright) .s3 .readout { padding-bottom: calc(20 * var(--cqh, 1vh)); }
+.n4:not(.upright) .s1 .life, .n4:not(.upright) .s3 .life { font-size: min(calc(40 * var(--cqh, 1vh)), calc(56 * var(--cqw, 1vw))); }
+/* Then every total on the board is drawn at one size, the smallest of those (fitLife()), so no seat's
+   number dwarfs another's; three or four digits shrink to fit (--ls). Specific enough to beat the
+   per-seat sizes above. */
+.board.fitted .seat .face .life { font-size: calc(var(--life) * var(--ls, 1)); }
 .life[data-len="3"] { --ls: .75; }
 .life[data-len="4"] { --ls: .58; }
 .delta {
@@ -478,7 +479,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.25';
+  const VERSION = '3.26';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -698,8 +699,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     const opps = oppsOf(i);
     seat.innerHTML = `
       <div class="face">
-        <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life">&minus;</button>
-        <button type="button" class="zone plus" aria-label="${nameOf(e)} gain 1 life">+</button>
+        <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life"></button>
+        <button type="button" class="zone plus" aria-label="${nameOf(e)} gain 1 life"></button>
         <div class="readout">
           <div class="name"></div>
           <div class="life"><span class="num"></span><span class="delta"></span></div>
@@ -740,7 +741,20 @@ details.field[open] > summary { margin-bottom: 10px; }
       face.style.setProperty('--cqw', face.offsetWidth / 100 + 'px');
       face.style.setProperty('--cqh', face.offsetHeight / 100 + 'px');
     });
+    fitLife();
     fitNames();
+  }
+  // One size for every total: each seat's own largest size (from the styles) is read, and all of
+  // them take the smallest.
+  function fitLife() {
+    const board = app.querySelector('.board');
+    if (!board) return;
+    board.classList.remove('fitted');
+    const lives = Array.from(board.querySelectorAll('.life'));
+    if (!lives.length) return;
+    const px = Math.min(...lives.map(l => parseFloat(getComputedStyle(l).fontSize)));
+    board.style.setProperty('--life', px + 'px');
+    board.classList.add('fitted');
   }
   // Every name on the board is drawn at one size: the largest at which each name still fits its
   // seat, so the side seats' names match the top and bottom ones. An "out" line too wide for its
