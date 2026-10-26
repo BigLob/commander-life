@@ -387,6 +387,29 @@ details.field[open] > summary { margin-bottom: 10px; }
 .seat-mana.by-flag { bottom: calc(6 * var(--cqh, 1vh) + 2.2em); }
 .seat.marking .pop { display: flex; position: static; padding: 0; background: none; }
 
+/* In the two 1v1s a player's phone shows its own 1v1 and, in a strip on top, the other game's totals.
+   Tapping the strip lets this player pick who they play. */
+#app.has-mini { padding-top: 46px; }
+.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left, 0px)); right: max(6px, env(safe-area-inset-right, 0px)); z-index: 11; }
+.mini-bar {
+  width: 100%; height: 34px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 0 12px; border-radius: 12px; background: var(--table); border: 2px solid var(--line);
+  font-family: var(--f-name); font-size: 15px; color: #fff;
+}
+.mini-p { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.mini-p .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mini-p b { font-family: var(--f-num); font-size: 20px; line-height: 1; }
+.mini-p.out { opacity: .45; }
+.mini-p i { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex: none; }
+.mini-vs { opacity: .6; font-size: 12px; }
+.mini-pick { display: none; margin-top: 6px; padding: 10px; border-radius: 12px; background: var(--table); border: 2px solid var(--line); }
+.mini.open .mini-pick { display: block; }
+.mini-pick p { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); }
+.mini-pick div { display: flex; gap: 8px; }
+.mini-pick button { flex: 1; padding: 10px 4px; border-radius: 10px; border: 2px solid var(--line); background: transparent; font-family: var(--f-name); font-size: 15px; color: #fff; }
+.mini-pick button.on { background: #fff; color: #000; }
+.mini-pick button.armed { border-color: var(--hot); }
+.has-mini .menu-btn { margin-top: 20px; }
 .menu-btn {
   position: absolute; z-index: 10; width: 54px; height: 54px; border-radius: 50%;
   display: grid; place-items: center; padding: 0;
@@ -555,7 +578,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.41';
+  const VERSION = '1.0';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -767,6 +790,13 @@ details.field[open] > summary { margin-bottom: 10px; }
     const n = players.length;
     const duel = n === 2 && state.layout2 === 'split';
     app.innerHTML = '';
+    app.classList.toggle('has-mini', state.mode === SPLIT && state.me !== CENTER);
+    if (app.classList.contains('has-mini')) {
+      const mini = document.createElement('div');
+      mini.className = 'mini';
+      mini.addEventListener('click', onMini);
+      app.appendChild(mini);
+    }
     const board = document.createElement('div');
     const lay = layoutOf(n);
     board.className = duel ? 'board duel'
@@ -790,6 +820,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     mb.addEventListener('click', openMenu);
     app.appendChild(mb);
     seats.forEach((_, i) => update(i));
+    paintMini();
     paintTurn();
     measure();
   }
@@ -1181,20 +1212,28 @@ details.field[open] > summary { margin-bottom: 10px; }
     state.me = +b.dataset.v; marking = []; save(); build(); syncMenu();
   });
   // New pairs start both 1v1s over, so once either has begun it takes a second tap.
-  document.getElementById('segPairs').addEventListener('click', e => {
-    const b = e.target.closest('button');
-    if (!b || +b.dataset.v === state.pairs) return;
-    if (!DUELS.every(k => untouched(state.games[k])) && !b.classList.contains('armed')) {
+  // v is Rand's opponent; a second tap on the same choice confirms once a game has begun.
+  function applyPairs(v) {
+    if (v === state.pairs) return;
+    if (!DUELS.every(k => untouched(state.games[k])) && pairArm !== v) {
       disarm();
-      b.classList.add('armed');
-      b.textContent = 'Tap again';
+      pairArm = v;
+      const mb = document.querySelector(`#segPairs [data-v="${v}"]`);
+      mb.classList.add('armed');
+      mb.textContent = 'Tap again';
+      paintMini();
       armTimer = setTimeout(disarm, 3000);
       return;
     }
     // Logged under the old pairs, then started over under the new ones.
+    pairArm = null;
     const patch = Object.assign({}, ...DUELS.map(resetGame));
-    state.pairs = patch.pairs = +b.dataset.v;
+    state.pairs = patch.pairs = v;
     marking = []; send(patch); save(); build(); syncMenu();
+  }
+  document.getElementById('segPairs').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (b) applyPairs(+b.dataset.v);
   });
 
   // The decks: tapping one opens it to show its commander card and list, so anyone can look at any
@@ -1248,6 +1287,33 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (openDeck) document.querySelector(`#colors [data-open="${openDeck}"]`).scrollIntoView({ block: 'start', behavior: 'smooth' });
   });
 
+  // The other 1v1's totals, and who this player can pick to play (SPLIT on a player's own phone).
+  let pairArm = null;
+  // Whoever is left over plays each other, so Rand's opponent is all the table needs to remember.
+  const pairsFor = (me, opp) => me === 0 ? opp : opp === 0 ? me : [1, 2, 3].find(x => x !== me && x !== opp);
+  function paintMini() {
+    const mini = app.querySelector('.mini');
+    if (!mini) return;
+    const me = state.me, other = DUELS.find(k => k !== duelOf(me));
+    const side = (e, j) => {
+      const p = state.games[other][j];
+      return `<span class="mini-p${outReason(p) ? ' out' : ''}"><i class="${colorOf(e)}"></i><span class="nm">${nameOf(e)}</span><b>${p.life}</b></span>`;
+    };
+    const es = edgesOf(other);
+    const opts = [0, 1, 2, 3].filter(e => e !== me).map(e =>
+      `<button type="button" data-e="${e}" class="${duelOf(e) === duelOf(me) ? 'on' : ''}${pairArm === pairsFor(me, e) ? ' armed' : ''}">${pairArm === pairsFor(me, e) ? 'Tap again' : nameOf(e)}</button>`).join('');
+    mini.innerHTML = `<button type="button" class="mini-bar" aria-label="Other game, tap to choose who you play">${side(es[0], 0)}<span class="mini-vs">v</span>${side(es[1], 1)}</button>` +
+      `<div class="mini-pick"><p>${nameOf(me)} plays</p><div>${opts}</div></div>`;
+  }
+  function onMini(e) {
+    const mini = e.currentTarget;
+    if (e.target.closest('.mini-bar')) { mini.classList.toggle('open'); return; }
+    const b = e.target.closest('.mini-pick button');
+    if (!b) return;
+    const opp = +b.dataset.e, me = state.me;
+    applyPairs(pairsFor(me, opp));
+  }
+
   function paintPairs() {
     const name = e => state.names[e].trim() || DEFAULT_NAMES[e];
     document.querySelectorAll('#segPairs button').forEach(b => {
@@ -1260,7 +1326,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   function disarm() {
     clearTimeout(armTimer);
+    pairArm = null;
     paintPairs();
+    paintMini();
     newGameBtn.classList.remove('armed');
     newGameBtn.textContent = 'New game at ' + state.start;
     concedeBtn.classList.remove('armed');
@@ -1579,6 +1647,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       if (f === 'life') showDelta(i, getAt(state, p) - was);
       update(i);
     });
+    paintMini();
   }
 
   function setLive(on) {
