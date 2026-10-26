@@ -49,7 +49,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.40)
+### `index.html`: Commander Life (current v3.41)
+- v3.41: the menu button did nothing in 1v1 ×2 (v3.35's `syncMenu()` read `center` before declaring it, so opening the menu threw). Declared first.
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone

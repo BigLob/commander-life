@@ -555,7 +555,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.40';
+  const VERSION = '3.41';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1137,9 +1137,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
+    const center = state.mode !== 1 && state.me === CENTER;
     const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : state.mode);
     document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === inUse));
-    const center = state.mode !== 1 && state.me === CENTER;
     document.getElementById('layoutField').hidden = !(state.mode === 2 || (state.mode === SPLIT && !center));
     // Three or four seats on the board: 3 or 4 players, or a Center phone in the two 1v1s.
     document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || (state.mode === SPLIT && center));
