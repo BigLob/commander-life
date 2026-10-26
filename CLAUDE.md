@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.34)
+### `index.html`: Commander Life (current v3.35)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -80,8 +80,17 @@ them and `.gitignore` now ignores PNGs at the root).
     Center has no seat of its own, so its colors and Concede are hidden.
 - Picking a player count sets starting life to its default (v3.6): 2 players 20, 3 players 30,
   4 players 40. Starting life can still be changed by hand afterwards.
-- **4-player layout** (v3.34, menu, kept on that phone as `layout4`): **Table** (default, seats on
-  the phone's edges) or **Quadrants** (`.board.n4.quad`, a quarter each). Quadrants reuses the edge
+- **Layout** (menu, 3 and 4 players, kept on that phone as `layout4`): **Spotlight** (v3.35, the
+  default), **Table** (seats on the phone's edges) or **Quadrants** (v3.34, 4 players only).
+  `layoutOf()` picks the one actually used: Quadrants at 3 players falls back to Spotlight, and a
+  Center phone or 1v1 ×2 can't use Spotlight, so they get Table.
+  - Spotlight (`.board.spot`, seats `sp-main`, `sp-1`..`sp-3`): whoever has the turn takes the top
+    half, the others share the bottom in turn order after them, all upright. Before anyone has the
+    turn, this phone's player is in it (`spotPlayer()`). When the turn moves, `paintTurn()` rebuilds
+    the board. `fitLife()` and `fitNames()` size the big seat apart from the rest (`groupBy()`), and
+    the bottom row's names leave room for the spotlight player's name, so they keep one size as
+    turns pass.
+  - Quadrants (`.board.n4.quad`, a quarter each). Quadrants reuses the edge
   classes in a 2×2 grid (`"left top" "bottom right"`), so the seating order holds, going clockwise
   from this phone's player at bottom left, and each quadrant faces its owner: all upright on a
   player's phone, each turned to its owner's side on a Center phone. Shown for 4 players, and for a

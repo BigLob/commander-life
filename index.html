@@ -91,6 +91,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    from this phone's player at bottom left. The seats keep their edge classes, so a Center phone
    still turns each one to face its owner's side and an upright phone faces them all to its owner. */
 .board.n4.quad { grid-template-areas: "left top" "bottom right"; grid-template-rows: 1fr 1fr; }
+/* Spotlight (v3.35, the default at 3 and 4 players): whoever has the turn takes the top half, the
+   others share the bottom in turn order after them. Everyone faces this phone's player. */
+.board.spot { grid-template-areas: "main main main" "a b c"; grid-template-rows: 1fr 1fr; grid-template-columns: repeat(3, 1fr); }
+.board.spot.n3 { grid-template-areas: "main main" "a b"; grid-template-columns: 1fr 1fr; }
+.sp-main { grid-area: main; }
+.sp-1 { grid-area: a; }
+.sp-2 { grid-area: b; }
+.sp-3 { grid-area: c; }
 .board.n1 { grid-template: 1fr / 1fr; }
 /* Head to head, side by side: each half of the phone faces one player and shows both totals, theirs
    on the left, so each player's colors run down one side. The top half is turned to the far player. */
@@ -465,8 +473,9 @@ details.field[open] > summary { margin-bottom: 10px; }
       </div>
     </div>
     <div class="field" id="layout4Field">
-      <span>4-player layout</span>
+      <span>Layout</span>
       <div class="seg" id="segLayout4">
+        <button type="button" data-v="spot">Spotlight</button>
         <button type="button" data-v="table">Table</button>
         <button type="button" data-v="quad">Quadrants</button>
       </div>
@@ -515,7 +524,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.34';
+  const VERSION = '3.35';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -612,9 +621,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   delete state.flip; // left over from v1.9
   // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
   if (!['split', 'classic'].includes(state.layout2)) state.layout2 = 'split';
-  // How a four-seat board is laid out on this phone: 'table' (around the edges) or 'quad' (a quarter
-  // each). Kept on this phone only.
-  if (!['table', 'quad'].includes(state.layout4)) state.layout4 = 'table';
+  // How a three- or four-seat board is laid out on this phone: 'spot' (the turn's player big, the
+  // default), 'table' (around the edges) or 'quad' (a quarter each, four seats only). Kept on this
+  // phone only. See layoutOf() for where each one can't be used.
+  if (!['spot', 'table', 'quad'].includes(state.layout4)) state.layout4 = 'spot';
   // Per table size, the player whose turn it is (null before anyone's started).
   if (!state.turns || typeof state.turns !== 'object') state.turns = {};
   TURN_KEYS.forEach(k => { if (!Number.isInteger(state.turns[k])) state.turns[k] = null; });
@@ -706,18 +716,37 @@ details.field[open] > summary { margin-bottom: 10px; }
   // half, turned to face the opponent, that puts the opponent on their own left too.
   const duelSpots = i => i === mySeat() ? ['d-bl', 'd-tl'] : ['d-tr', 'd-br'];
 
+  // The layout a three- or four-seat board uses here. Quadrants needs four seats; the spotlight needs
+  // one turn order and a player to face, so a Center phone and the two 1v1s use the table instead.
+  function layoutOf(n) {
+    if (n < 3) return null;
+    let lay = state.layout4;
+    if (lay === 'quad' && n !== 4) lay = 'spot';
+    if (lay === 'spot' && (state.me === CENTER || state.mode === SPLIT)) lay = 'table';
+    return lay;
+  }
+  // Who the spotlight is on: whoever has the turn, or before anyone does, this phone's player.
+  let builtSpot = null;
+  function spotPlayer() {
+    const t = state.turns[state.mode];
+    return Number.isInteger(t) && t < players.length ? t : mySeat();
+  }
   function build() {
     players = viewPlayers();
     const n = players.length;
     const duel = n === 2 && state.layout2 === 'split';
     app.innerHTML = '';
     const board = document.createElement('div');
+    const lay = layoutOf(n);
     board.className = duel ? 'board duel'
-      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (n === 4 && state.layout4 === 'quad' ? ' quad' : '');
+      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'spot' ? ' spot' : '');
+    // In the spotlight, the turn's player and then everyone after them in turn order.
+    builtSpot = lay === 'spot' ? spotPlayer() : null;
+    const place = i => lay !== 'spot' ? 's' + posOf(i) : (i - builtSpot + n) % n ? 'sp-' + (i - builtSpot + n) % n : 'sp-main';
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
-      seats[i] = (duel ? duelSpots(i) : ['s' + posOf(i)]).map((spot, k) => makeSeat(i, spot, duel && !k));
+      seats[i] = (duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, duel && !k));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
@@ -812,17 +841,24 @@ details.field[open] > summary { margin-bottom: 10px; }
     const board = app.querySelector('.board');
     if (!board) return;
     board.classList.remove('fitted');
-    const lives = Array.from(board.querySelectorAll('.life'));
-    if (!lives.length) return;
-    // 10% over the smallest seat's size (v3.33); the seats' own sizes leave that much room.
-    const px = 1.1 * Math.min(...lives.map(l => parseFloat(getComputedStyle(l).fontSize)));
-    board.style.setProperty('--life', px + 'px');
+    // 10% over the smallest seat's size (v3.33); the seats' own sizes leave that much room. The
+    // spotlight's seat is sized on its own, the rest together (sizeGroup).
+    groupBy(Array.from(board.querySelectorAll('.seat'))).forEach(group => {
+      const px = 1.1 * Math.min(...group.map(seat => parseFloat(getComputedStyle(seat.querySelector('.life')).fontSize)));
+      group.forEach(seat => seat.style.setProperty('--life', px + 'px'));
+    });
     board.classList.add('fitted');
   }
   // Every name on the board is drawn at one size: the largest at which each name still fits its
   // seat, so the side seats' names match the top and bottom ones. An "out" line too wide for its
   // seat shrinks on its own (--wfit). Layout widths, so a turned seat measures the same as an
   // upright one.
+  // Seats sized together: all of them, except that the spotlight's big seat is a group of its own.
+  function groupBy(seatEls) {
+    const groups = {};
+    seatEls.forEach(seat => { const g = seat.classList.contains('sp-main') ? 'main' : 'rest'; (groups[g] = groups[g] || []).push(seat); });
+    return Object.values(groups);
+  }
   function fitNames() {
     // Only names already filled in: during build() the later seats have none yet.
     const names = Array.from(app.querySelectorAll('.name')).filter(el => el.querySelector('.nm'));
@@ -833,8 +869,16 @@ details.field[open] > summary { margin-bottom: 10px; }
       const base = parseFloat(getComputedStyle(el).fontSize);
       return { el, base, px: base * Math.min(1, room(el) / el.querySelector('.nm').offsetWidth * .98) };
     });
-    const px = Math.min(...sizes.map(x => x.px));
-    sizes.forEach(({ el, base }) => el.style.setProperty('--fit', (px / base).toFixed(3)));
+    // The spotlight's player moves into the bottom row when the turn passes, so the row's names also
+    // leave room for theirs (its width scales with its size), and keep one size turn after turn.
+    const main = sizes.find(x => x.el.closest('.sp-main'));
+    groupBy(Array.from(new Set(names.map(el => el.closest('.seat'))))).forEach(group => {
+      const mine = sizes.filter(x => group.includes(x.el.closest('.seat')));
+      const extra = main && !mine.includes(main)
+        ? [room(mine[0].el) * main.base / main.el.querySelector('.nm').offsetWidth * .98] : [];
+      const px = Math.min(...mine.map(x => x.px), ...extra);
+      mine.forEach(({ el, base }) => el.style.setProperty('--fit', (px / base).toFixed(3)));
+    });
     names.forEach(el => {
       const why = el.querySelector('.why .nm');
       if (why && why.offsetWidth > room(el)) el.style.setProperty('--wfit', (room(el) / why.offsetWidth * .98).toFixed(3));
@@ -976,6 +1020,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   // A seat waits (its button goes dark) while someone else in its own game has the turn.
   function paintTurn() {
+    // The spotlight follows the turn: a new player in it means the board is laid out again.
+    if (builtSpot != null && spotPlayer() !== builtSpot) { build(); return; }
     seats.forEach((list, i) => {
       const { k, j } = players[i], t = state.turns[k], on = t === j;
       const wait = !on && Number.isInteger(t) && t < SIZE[k];
@@ -1057,11 +1103,15 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
-    document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout4));
+    // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
+    const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : state.mode);
+    document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === inUse));
     const center = state.mode !== 1 && state.me === CENTER;
     document.getElementById('layoutField').hidden = !(state.mode === 2 || (state.mode === SPLIT && !center));
-    // Four seats on the board: 4 players, or a Center phone in the two 1v1s.
-    document.getElementById('layout4Field').hidden = !(state.mode === 4 || (state.mode === SPLIT && center));
+    // Three or four seats on the board: 3 or 4 players, or a Center phone in the two 1v1s.
+    document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || (state.mode === SPLIT && center));
+    document.querySelector('#segLayout4 [data-v="spot"]').hidden = center || state.mode === SPLIT;
+    document.querySelector('#segLayout4 [data-v="quad"]').hidden = state.mode === 3;
     document.getElementById('pickFirst').hidden = state.mode === 1;
     // Who plays whom in the two 1v1s: Rand's pick sets both pairs.
     document.getElementById('pairsField').hidden = state.mode !== SPLIT;
