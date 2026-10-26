@@ -578,7 +578,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.0';
+  const VERSION = '1.1';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -698,10 +698,13 @@ details.field[open] > summary { margin-bottom: 10px; }
   // The players this phone shows, as { k: their game, j: their seat in it, e: their edge }. In the
   // two 1v1s a player's phone shows just their own 1v1; a Center phone shows all four.
   let players = [];
+  // Side by side in the two 1v1s (v1.1): a player's phone shows all four. Their own 1v1 takes the
+  // bottom half, upright, and the other 1v1 the top half, turned to face the far side.
+  const sideBySide4 = () => state.mode === SPLIT && state.me !== CENTER && state.layout2 === 'split';
   function viewPlayers() {
     if (state.mode !== SPLIT) return PEOPLE[state.mode].map((e, j) => ({ k: state.mode, j, e }));
     const all = [0, 1, 2, 3].map(e => ({ k: duelOf(e), j: edgesOf(duelOf(e)).indexOf(e), e }));
-    return state.me === CENTER ? all : all.filter(p => p.k === duelOf(state.me));
+    return state.me === CENTER || sideBySide4() ? all : all.filter(p => p.k === duelOf(state.me));
   }
   const viewKeys = () => [...new Set(players.map(p => p.k))];
   const playerOf = i => state.games[players[i].k][players[i].j];
@@ -769,6 +772,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   // Side by side, this phone's player takes the left column and the opponent the right: in the top
   // half, turned to face the opponent, that puts the opponent on their own left too.
   const duelSpots = i => i === mySeat() ? ['d-bl', 'd-tl'] : ['d-tr', 'd-br'];
+  const quadSpot = i => {
+    const p = players[i];
+    return p.k === duelOf(state.me) ? (p.e === state.me ? 'd-bl' : 'd-br') : (p.j ? 'd-tl' : 'd-tr');
+  };
 
   // The layout a three- or four-seat board uses here. Quadrants needs four seats; the spotlight needs
   // one turn order and a player to face, so a Center phone and the two 1v1s use the table instead.
@@ -789,8 +796,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     players = viewPlayers();
     const n = players.length;
     const duel = n === 2 && state.layout2 === 'split';
+    const duel4 = sideBySide4();
     app.innerHTML = '';
-    app.classList.toggle('has-mini', state.mode === SPLIT && state.me !== CENTER);
+    app.classList.toggle('has-mini', state.mode === SPLIT && state.me !== CENTER && !duel4);
     if (app.classList.contains('has-mini')) {
       const mini = document.createElement('div');
       mini.className = 'mini';
@@ -799,7 +807,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     }
     const board = document.createElement('div');
     const lay = layoutOf(n);
-    board.className = duel ? 'board duel'
+    board.className = duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'spot' ? ' spot' : '');
     // In the spotlight, the turn's player and then everyone after them in turn order (see tapTurn).
     builtSpot = lay === 'spot' ? spotPlayer() : null;
@@ -807,7 +815,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
-      seats[i] = (duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, duel && !k));
+      seats[i] = (duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, duel4 ? i === mySeat() : duel && !k));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
@@ -1179,7 +1187,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.getElementById('pickFirst').hidden = state.mode === 1;
     // Who plays whom in the two 1v1s: Rand's pick sets both pairs.
     document.getElementById('pairsField').hidden = state.mode !== SPLIT;
-    document.getElementById('pairsLabel').textContent = (state.names[0].trim() || DEFAULT_NAMES[0]) + ' plays';
+    document.getElementById('pairsLabel').textContent = (state.names[pairMe()].trim() || DEFAULT_NAMES[pairMe()]) + ' plays';
     // A phone in the center has no seat of its own to concede or color.
     document.getElementById('concede').hidden = state.mode === 1 || center;
     document.getElementById('colorField').hidden = center;
@@ -1218,7 +1226,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (!DUELS.every(k => untouched(state.games[k])) && pairArm !== v) {
       disarm();
       pairArm = v;
-      const mb = document.querySelector(`#segPairs [data-v="${v}"]`);
+      const mb = document.querySelector(`#segPairs [data-pv="${v}"]`);
       mb.classList.add('armed');
       mb.textContent = 'Tap again';
       paintMini();
@@ -1233,7 +1241,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   document.getElementById('segPairs').addEventListener('click', e => {
     const b = e.target.closest('button');
-    if (b) applyPairs(+b.dataset.v);
+    if (b) applyPairs(+b.dataset.pv);
   });
 
   // The decks: tapping one opens it to show its commander card and list, so anyone can look at any
@@ -1289,6 +1297,8 @@ details.field[open] > summary { margin-bottom: 10px; }
 
   // The other 1v1's totals, and who this player can pick to play (SPLIT on a player's own phone).
   let pairArm = null;
+  // Whose opponent the menu picks: this phone's player, or Rand's on a Center phone.
+  const pairMe = () => state.me === CENTER ? 0 : state.me;
   // Whoever is left over plays each other, so Rand's opponent is all the table needs to remember.
   const pairsFor = (me, opp) => me === 0 ? opp : opp === 0 ? me : [1, 2, 3].find(x => x !== me && x !== opp);
   function paintMini() {
@@ -1316,12 +1326,14 @@ details.field[open] > summary { margin-bottom: 10px; }
 
   function paintPairs() {
     const name = e => state.names[e].trim() || DEFAULT_NAMES[e];
-    document.querySelectorAll('#segPairs button').forEach(b => {
-      const e = +b.dataset.v;
-      b.classList.toggle('on', e === state.pairs);
+    const me = pairMe(), others = [0, 1, 2, 3].filter(x => x !== me);
+    document.querySelectorAll('#segPairs button').forEach((b, k) => {
+      const e = others[k], pv = pairsFor(me, e);
+      b.dataset.pv = pv;
+      b.classList.toggle('on', pv === state.pairs);
       b.classList.remove('armed');
       b.textContent = name(e);
-      b.setAttribute('aria-label', `${name(0)} plays ${name(e)}, ${[1, 2, 3].filter(x => x !== e).map(name).join(' plays ')}`);
+      b.setAttribute('aria-label', `${name(me)} plays ${name(e)}`);
     });
   }
   function disarm() {
