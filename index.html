@@ -29,8 +29,9 @@
   --line: rgba(244, 239, 228, .16);
   --panel: #171a1f;
   --hot: #ffb347;
-  --turn: #ff4fa3;
-  --turn-dim: #5a1d3b;
+  /* The turn tracker: gold on the current player, dim on everyone waiting. */
+  --turn: #ffb347;
+  --turn-dim: rgba(244, 239, 228, .42);
   /* Totals and other numbers in Big Shoulders (Matrix's old-style digits read poorly at size);
      names and the menu title in Matrix. */
   --f-num: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
@@ -303,21 +304,28 @@ details.field[open] > summary { margin-bottom: 10px; }
 .flag span:empty { display: none; }
 .flag.armed { background: var(--hot); color: var(--table); }
 .flag.armed span { -webkit-text-stroke: 0; }
-/* Turn tracker: a pink button at the bottom center of every seat. Once someone has the turn, everyone
-   else's button goes dark. */
+/* Turn tracker (v3.27): Magic's tap symbol at the bottom center of every seat, traced in black like
+   the dagger. Cream until someone has the turn; then gold and glowing on the current player and dim
+   on everyone else. The whole 3.2em square stays the tap target. */
 .turn-btn {
   position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%); z-index: 2;
-  width: 3.2em; height: 3.2em; padding: 0; border-radius: 50%;
+  width: 3.2em; height: 3.2em; padding: 0; border: 0; background: none; color: var(--ink);
   font-size: clamp(16px, min(calc(8.5 * var(--cqh, 1vh)), calc(6 * var(--cqw, 1vw))), 20px);
-  background: var(--turn); border: 2px solid #000;
   touch-action: manipulation;
 }
-.seat.turn .turn-btn { box-shadow: 0 0 0 3px var(--ink), 0 0 18px 4px var(--turn); }
-.seat.wait .turn-btn { background: var(--turn-dim); }
-/* Side by side, a pink bar marks the turn along the player's two tiles where they meet the middle. */
+.turn-btn svg {
+  display: block; width: 100%; height: 100%; fill: currentColor;
+  filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000);
+}
+.seat.turn .turn-btn { color: var(--turn); }
+.seat.turn .turn-btn svg {
+  filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000) drop-shadow(0 0 10px rgba(255, 179, 71, .9));
+}
+.seat.wait .turn-btn { color: var(--turn-dim); }
+/* Side by side, a gold bar marks the turn along the player's two tiles where they meet the middle. */
 .turn-bar {
   position: absolute; left: 0; right: 0; height: 7px; z-index: 3; pointer-events: none; display: none;
-  background: var(--turn); box-shadow: 0 0 14px 2px rgba(255, 79, 163, .6);
+  background: var(--turn); box-shadow: 0 0 14px 2px rgba(255, 179, 71, .6);
 }
 .d-bl .turn-bar, .d-br .turn-bar { top: 0; }
 .d-tl .turn-bar, .d-tr .turn-bar { bottom: 0; }
@@ -479,7 +487,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.26';
+  const VERSION = '3.27';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -532,6 +540,8 @@ details.field[open] > summary { margin-bottom: 10px; }
 
   const ICON_CMD = '<i class="blade" aria-hidden="true"></i>';
   // A white flag traced in black, like the dagger.
+  // Magic's tap symbol, from the Mana font's SVGs (github.com/andrewgioia/mana; symbol (c) Wizards).
+  const ICON_TAP = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27.263 16.227h-12.874l4.714-3.355c-1.751-1.39-3.778-2.084-6.073-2.084-1.148 0-1.936 0.219-2.356 0.656-0.423 0.439-0.635 1.232-0.635 2.379 0 3.173 1.632 6.558 4.895 10.153l-3.715 3.762c-4.323-5.258-6.482-9.956-6.482-14.097 0-2.477 0.746-4.451 2.242-5.916 1.495-1.465 3.485-2.198 5.96-2.198 3.022 0 6.316 1.15 9.883 3.445l2.763-4.713 1.678 11.967z"/></svg>';
   const ICON_FLAG = '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="#000" stroke-width="4.5"><path d="M5 21V3.5M5 4h13l-3 4.5 3 4.5H5"/></g><path d="M5 4h13l-3 4.5 3 4.5H5z" fill="currentColor"/><path d="M5 21V3.5" stroke="currentColor" stroke-width="2"/></svg>';
 
   const blankClock = n => ({ at: null, count: 0, t: Array(n).fill(0), c: Array(n).fill(0) });
@@ -712,7 +722,7 @@ details.field[open] > summary { margin-bottom: 10px; }
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
         </div>
-        ${state.mode > 1 ? `<button type="button" class="turn-btn" aria-label="${nameOf(e)}'s turn"></button>` : ''}
+        ${state.mode > 1 ? `<button type="button" class="turn-btn" aria-label="${nameOf(e)}'s turn">${ICON_TAP}</button>` : ''}
         ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
       </div>
       <i class="turn-bar" aria-hidden="true"></i>`;

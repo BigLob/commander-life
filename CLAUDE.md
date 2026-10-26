@@ -42,7 +42,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.26)
+### `index.html`: Commander Life (current v3.27)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -74,10 +74,13 @@ After a deploy, ask the user to check the version in the menu footer.
   - v3.7: − and + split each box left and right (the signs themselves were dropped in v3.26).
   - v3.7: each player's own box has a white flag in its bottom-left corner to concede or rejoin
     (two taps), since both players share the phone. The menu's Concede still works too.
-- **Turn tracker** (v3.8; 33% bigger in v3.10): a pink button at the bottom center of every seat (not in "Just me").
+- **Turn tracker** (v3.8; 33% bigger in v3.10): a button at the bottom center of every seat (not in "Just me").
+  Since v3.27 it's Magic's tap symbol (`ICON_TAP`, from the Mana font's SVGs, github.com/andrewgioia/mana)
+  instead of the pink circle the user hated: cream before anyone has the turn, then gold and glowing
+  on the current player and dim on everyone else. The side-by-side turn bar is gold too.
   Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
   Trent → Lenn), skipping anyone out. Tapping anyone else's makes it their turn. Once someone has
-  the turn, everyone else's button goes dark (v3.9; no ring on the seat). In side-by-side 1v1, a pink
+  the turn, everyone else's button goes dark (v3.9; no ring on the seat). In side-by-side 1v1, a
   bar runs along the current player's two tiles where they meet the middle of the phone.
   Pick who goes first sets the turn, and New game clears it.
   Synced as `turns/<n>` (2 to 4) in the live table; older phones ignore it.
