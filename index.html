@@ -179,14 +179,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   -webkit-text-stroke: .06em #000; paint-order: stroke fill;
   text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
-/* Table seats lift the total a little so it clears the turn button below it. */
-.table .readout { padding-bottom: calc(18 * var(--cqh, 1vh)); }
+/* Table seats center the total, lifted just a little (v3.29) so it clears the turn button below it. */
+.table .readout { padding-bottom: calc(8 * var(--cqh, 1vh)); }
 .table .life { font-size: min(calc(44 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); }
 .duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(50 * var(--cqw, 1vw))); }
 /* Four players: the totals as big as each seat allows, between the name and the turn button. The
-   short top and bottom seats lift theirs well clear of the button; the tall upright side seats sit
-   theirs lower, clear of the name; turned side seats (Center) keep theirs off the menu button. */
-.n4 .readout { padding-bottom: calc(32 * var(--cqh, 1vh)); }
+   totals sit near the middle of the seat (v3.29), a touch high to clear the button; turned side seats
+   (Center) keep theirs off the menu button. */
+.n4 .readout { padding-bottom: calc(18 * var(--cqh, 1vh)); }
 .n4 .life { font-size: min(calc(52 * var(--cqh, 1vh)), calc(56 * var(--cqw, 1vw))); }
 .n4.upright .s1 .readout, .n4.upright .s3 .readout { padding-bottom: calc(4 * var(--cqh, 1vh)); }
 .n4:not(.upright) .s1 .readout, .n4:not(.upright) .s3 .readout { padding-bottom: calc(20 * var(--cqh, 1vh)); }
@@ -330,8 +330,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   font-size: clamp(16px, min(calc(8.5 * var(--cqh, 1vh)), calc(6 * var(--cqw, 1vw))), 20px);
   touch-action: manipulation;
 }
+/* The symbol is drawn at 80% of the button (v3.29); the button itself stays the full tap target. */
 .turn-btn svg {
-  display: block; width: 100%; height: 100%; fill: currentColor;
+  display: block; width: 80%; height: 80%; margin: 10%; fill: currentColor;
   filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000);
 }
 .seat.turn .turn-btn { color: var(--turn); }
@@ -500,7 +501,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.29';
+  const VERSION = '3.30';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];

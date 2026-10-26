@@ -39,16 +39,21 @@ checkout. Its numbers and `archenemy.html` use Google Fonts, which is reachable:
 `proxy: { server: process.env.HTTPS_PROXY }` and `ignoreHTTPSErrors: true` so text is measured in the
 real fonts (the fallbacks are much wider).
 After a deploy, ask the user to check the version in the menu footer.
+Run test scripts from the scratchpad, not the repo: screenshots saved with a relative path land in
+the repo and `git add -A` picks them up (v3.17 to v3.29 shipped 21 test PNGs this way; v3.30 removed
+them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.29)
+### `index.html`: Commander Life (current v3.30)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
   writes the fix back to the table when it sees one.
 - 4-player totals are bigger (v3.23), and the top and bottom rows got more height (rows 1.2fr 1.6fr
-  1.2fr). v3.24 trimmed them a little: up to 52% of the seat's height or 56% of its width.
+  1.2fr). v3.24 trimmed them a little: up to 52% of the seat's height or 56% of its width. v3.30
+  moved totals nearer the middle of each seat (readout lift 18% at four players, 8% at two or three;
+  it was 32% and 18%), still clear of the turn button.
 - **One size for every total** (v3.26, `fitLife()`): each seat's own largest size comes from the
   styles, and all totals on the board take the smallest of them (`.board.fitted`, `--life`), so the
   iPad's side seats no longer dwarf the top and bottom ones. 3 or 4 digits shrink (`--ls`). Side
@@ -77,7 +82,8 @@ After a deploy, ask the user to check the version in the menu footer.
 - **Turn tracker** (v3.8; 33% bigger in v3.10): a button at the bottom center of every seat (not in "Just me").
   Since v3.27 it's Magic's tap symbol (`ICON_TAP`, from the Mana font's SVGs, github.com/andrewgioia/mana)
   instead of the pink circle the user hated: cream before anyone has the turn, then gold and glowing
-  on the current player and dim on everyone else. The side-by-side turn bar is gold too.
+  on the current player and dim on everyone else. The side-by-side turn bar is gold too. v3.30 draws
+  the symbol at 80% of the button; the 3.2em tap target is unchanged.
   Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
   Trent → Lenn), skipping anyone out. Tapping anyone else's makes it their turn. Once someone has
   the turn, everyone else's button goes dark (v3.9; no ring on the seat). In side-by-side 1v1, a
