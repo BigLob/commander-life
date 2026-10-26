@@ -45,15 +45,19 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.32)
+### `index.html`: Commander Life (current v3.33)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
   writes the fix back to the table when it sees one.
 - 4-player totals are bigger (v3.23), and the top and bottom rows got more height (rows 1.2fr 1.6fr
   1.2fr). v3.24 trimmed them a little: up to 52% of the seat's height or 56% of its width. v3.30
-  moved totals nearer the middle of each seat (readout lift 18% at four players, 8% at two or three;
-  it was 32% and 18%), still clear of the turn button.
+  moved totals nearer the middle of each seat. v3.33 makes them 10% bigger (`fitLife()` takes 1.1×
+  the smallest seat's size) and centers each one by measurement (`centerLife()`): the readout gets
+  padding so its middle is halfway between the bottom of the seat's name and the top of its turn
+  symbol, in the face's unturned layout (padding, not top/bottom, because the name sits inside the
+  readout). `.life { top: .09em }` corrects for Beleren's digits riding high in their line box. The
+  CSS readout lifts are only the starting point now.
 - **One size for every total** (v3.26, `fitLife()`): each seat's own largest size comes from the
   styles, and all totals on the board take the smallest of them (`.board.fitted`, `--life`), so the
   iPad's side seats no longer dwarf the top and bottom ones. 3 or 4 digits shrink (`--ls`). Side

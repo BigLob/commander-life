@@ -172,7 +172,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
 .duel .name .why { font-size: calc(.6em * var(--wfit, 1)); letter-spacing: .06em; }
 .life {
-  position: relative;
+  /* Beleren's digits ride high in their line box; this drops the ink onto the readout's center. */
+  position: relative; top: .09em;
   font-family: var(--f-num); font-weight: 800;
   font-size: min(calc(56 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); line-height: .82;
   font-variant-numeric: tabular-nums; letter-spacing: -.01em;
@@ -503,7 +504,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.32';
+  const VERSION = '3.33';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -771,6 +772,25 @@ details.field[open] > summary { margin-bottom: 10px; }
     });
     fitLife();
     fitNames();
+    centerLife();
+  }
+  // Each total sits centered in the open space between its seat's name and its turn symbol (v3.33),
+  // measured in the face's own unturned layout, so a turned seat centers the same way. This replaces
+  // the readout's lift from the styles. "Just me" has no turn symbol, so its space ends as far from
+  // the bottom as the name starts from the top.
+  function centerLife() {
+    seats.flat().forEach(seat => {
+      const face = seat.querySelector('.face'), readout = seat.querySelector('.readout');
+      const name = seat.querySelector('.name'), nm = name.querySelector('.nm');
+      const top = name.offsetTop + (nm ? nm.offsetTop + nm.offsetHeight : name.offsetHeight);
+      const btn = seat.querySelector('.turn-btn');
+      // The symbol is drawn 23% in from the button's edge (see .turn-btn svg).
+      const bottom = btn ? btn.offsetTop + btn.offsetHeight * .23 : face.offsetHeight - name.offsetTop;
+      // Padding, not top and bottom: the name is positioned inside the readout, and padding leaves
+      // it where it is.
+      readout.style.paddingTop = top + 'px';
+      readout.style.paddingBottom = Math.max(0, face.offsetHeight - bottom) + 'px';
+    });
   }
   // One size for every total: each seat's own largest size (from the styles) is read, and all of
   // them take the smallest.
@@ -780,7 +800,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     board.classList.remove('fitted');
     const lives = Array.from(board.querySelectorAll('.life'));
     if (!lives.length) return;
-    const px = Math.min(...lives.map(l => parseFloat(getComputedStyle(l).fontSize)));
+    // 10% over the smallest seat's size (v3.33); the seats' own sizes leave that much room.
+    const px = 1.1 * Math.min(...lives.map(l => parseFloat(getComputedStyle(l).fontSize)));
     board.style.setProperty('--life', px + 'px');
     board.classList.add('fitted');
   }
@@ -806,7 +827,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     });
   }
   // The card fonts arrive after the first layout; names are fitted again in them.
-  if (document.fonts) document.fonts.ready.then(fitNames);
+  if (document.fonts) document.fonts.ready.then(() => { fitNames(); centerLife(); });
   if ('ResizeObserver' in window) new ResizeObserver(measure).observe(app);
   else addEventListener('resize', () => setTimeout(measure, 50));
 
@@ -854,7 +875,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         flag.setAttribute('aria-label', p.conceded ? 'Rejoin' : 'Concede');
       }
     });
-    if (refit) fitNames();
+    if (refit) { fitNames(); centerLife(); }
   }
 
   function showDelta(i, d) {
