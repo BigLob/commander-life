@@ -42,7 +42,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.24)
+### `index.html`: Commander Life (current v3.25)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -93,7 +93,9 @@ After a deploy, ask the user to check the version in the menu footer.
     in that game, e: edge }`; `SIZE` lists every game key and its player count.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
-- Each player picks a deck and one of 50 pattern masks (`patterns/*.png`) for their seat.
+- Each player picks a deck, and their seat always shows that deck's commander art (v3.25: the only
+  background; the 50 pattern masks and the deck-card picker were removed from Commander Life.
+  `patterns/` stays for `archenemy.html`). Seat colors still paint the seat while the art loads.
 - **Decks** (v3.21): the group plays the five Starter Commander Decks (2022, set code SCD), and each is
   exactly one of the seat color pairs, so picking a deck ("Rand's deck" in the menu) sets the seat's
   colors: First Flight `uw` (Isperia, Supreme Judge), Grave Danger `bu` (Gisa and Geralf), Chaos
@@ -104,15 +106,10 @@ After a deploy, ask the user to check the version in the menu footer.
   the commander card and the full list. Since v3.22 the images are saved in `art/` (`<pair>.jpg` is
   Scryfall's art_crop, `<pair>-card.jpg` the normal card image), fetched once from
   `api.scryfall.com/cards/scd/<n>?format=image&version=art_crop|normal`.
-  - **Commander art wallpaper** (v3.22): the first button in the pattern grid. The seat's face shows
-    its deck's commander art (`.arty`), turned with the face and dimmed slightly; synced as pattern
-    `art`, which older phones reject and ignore.
-  - **Deck card wallpaper** (v3.23): tap any of the 100 cards in the decklist (or Random card, which
-    skips basic lands) and the seat shows the top half of that card, scaled so the half covers the
-    face (`.carded`). Synced as pattern `card` plus `cards/<edge>` (the card's name). `CARD_IMG` maps
-    every card name in the five decks to its Scryfall image id; phones load
-    `cards.scryfall.io/normal/front/...` directly. A picked card that isn't in the player's current
-    deck falls back to their commander. The second tile in the pattern grid switches back to it. The log saves each seat's `deck`, and Results
+  - Commander art background (v3.22 as an option, v3.25 the only one): `.face::before` shows
+    `art/<pair>.jpg`, turned with the face and dimmed slightly. v3.23's deck-card wallpaper (any card's
+    top half, from `cards.scryfall.io`) was removed in v3.25; `patterns/<n>` and `cards/<n>` are no
+    longer synced. The log saves each seat's `deck`, and Results
   shows deck names (older results map their colors to the deck).
 - **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold (`--f-name`)
   for names and the menu title; MPlantin for everything else. Since v3.24 life totals and other
