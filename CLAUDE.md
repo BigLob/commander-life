@@ -36,7 +36,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.19)
+### `index.html`: Commander Life (current v3.20)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names, colors and patterns are stored by it).
@@ -65,7 +65,7 @@ After a deploy, ask the user to check the version in the menu footer.
   Pick who goes first sets the turn, and New game clears it.
   Synced as `turns/<n>` (2 to 4) in the live table; older phones ignore it.
 - **1v1 ×2** (v3.16, the fifth Players option): all four play two 1v1s at once, starting at 20.
-  "Rand plays" in the menu sets the pairs (default Rand v Trent, Andrew v Lenn); once either 1v1
+  "Rand plays" in the menu sets the pairs (default Rand v Lenn, Andrew v Trent since v3.20); once either 1v1
   has started, changing it takes two taps and starts both over. Each 1v1 is its own game, synced as
   `games/a` (Rand and his opponent) and `games/b` (the other two), with its own `meta`, `turns` and
   `clock` under the same keys, so each is timed and logged on its own as a 2-player result.
@@ -105,6 +105,8 @@ After a deploy, ask the user to check the version in the menu footer.
   The log saves the date, how long the game took, the winner, and each player's name, color pair,
   pattern and final life. The Results list is hidden: tapping the version line at the foot of the
   menu shows it (tap again to hide). Each result has a two-tap Delete.
+- The menu button in the middle of the table shows the Planeswalker flame (v3.20), an inline PNG
+  in `ICON_MENU`.
 - Version shows in the menu footer with the sync status. Bump `VERSION` on every release.
 
 ### `archenemy.html`: Archenemy (v1.2)
