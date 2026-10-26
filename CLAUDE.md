@@ -36,7 +36,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.20)
+### `index.html`: Commander Life (current v3.21)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names, colors and patterns are stored by it).
@@ -77,7 +77,18 @@ After a deploy, ask the user to check the version in the menu footer.
     in that game, e: edge }`; `SIZE` lists every game key and its player count.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
-- Each player picks a two-color pair and one of 50 pattern masks (`patterns/*.png`) for their seat.
+- Each player picks a deck and one of 50 pattern masks (`patterns/*.png`) for their seat.
+- **Decks** (v3.21): the group plays the five Starter Commander Decks (2022, set code SCD), and each is
+  exactly one of the seat color pairs, so picking a deck ("Rand's deck" in the menu) sets the seat's
+  colors: First Flight `uw` (Isperia, Supreme Judge), Grave Danger `bu` (Gisa and Geralf), Chaos
+  Incarnate `rb` (Kardur, Doomscourge), Draconic Destruction `gr` (Atarka, World Render), Token
+  Triumph `gw` (Emmara, Soul of the Accord). `DECKS` holds each deck's name, commander, the
+  commander's collector number in SCD, and its 99 other cards (from Forge's
+  `forge-gui/res/quest/commanderprecons/*.dck` on GitHub). Under the deck buttons, a decklist shows
+  the commander card and the full list. Art loads from Scryfall on the phone
+  (`api.scryfall.com/cards/scd/<n>?format=image&version=art_crop|normal`), which the sandbox can't
+  reach; if it fails the color pair shows instead. The log saves each seat's `deck`, and Results
+  shows deck names (older results map their colors to the deck).
 - **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold for names, life
   totals and the menu title; MPlantin for everything else. Both are limited by `unicode-range` to
   plain ASCII (plus Matrix's minus), because their other symbols are blank or wrongly mapped
@@ -146,7 +157,8 @@ the log failed with "Couldn't reach the shared log", so keep every new node unde
 ## Decisions so far
 - Poison was dropped on purpose.
 - 3v1 does not belong in Commander Life. It lives in `archenemy.html` (v2.9's 3v1 mode was reverted).
-- Seat colors are what the game log records as each player's "color combo".
+- Seat colors are what the game log records as each player's "color combo", and since v3.21 each
+  color pair is a deck.
 
 ## Branches in `BigLob/Mtg` (history, oldest to newest)
 - `claude/mtg-commander-health-counter-m75zne`, `ccr-31ae3957-dadntz`, `ccr-b66a7c9b-cywcix`:

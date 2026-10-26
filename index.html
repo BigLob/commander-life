@@ -215,12 +215,27 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .chip.hot { border-color: var(--hot); color: var(--hot); }
 .chip.on { background: var(--seat-hi); border-color: var(--ink); color: var(--ink); }
 .sw { width: .7em; height: .7em; border-radius: 50%; background: linear-gradient(135deg, var(--seat-hi) 50%, var(--accent) 50%); flex: none; }
-.colors { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-.colors button {
-  height: 44px; border-radius: 12px; border: 2px solid transparent; padding: 0;
+/* Decks: each Starter Commander deck is one color pair, so picking a deck picks the seat's colors.
+   The commander's art comes from Scryfall; until it loads (or if it can't) the colors show instead. */
+.decks { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.deck {
+  display: flex; align-items: center; gap: 10px; padding: 4px 10px 4px 4px; text-align: left;
+  border-radius: 12px; border: 2px solid transparent; background: rgba(255, 255, 255, .06);
+}
+.deck .art {
+  flex: none; width: 64px; height: 46px; border-radius: 9px; overflow: hidden;
   background: linear-gradient(135deg, var(--seat-hi) 50%, var(--accent) 50%);
 }
-.colors button.on, .patterns button.on { border-color: var(--ink); box-shadow: 0 0 0 2px var(--table) inset; }
+.deck .art img, .decklist img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.deck span { display: flex; flex-direction: column; min-width: 0; }
+.deck b { font-size: 17px; font-weight: 600; }
+.deck small { font-size: 13px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.decklist .card { width: min(100%, 230px); aspect-ratio: 488 / 680; margin: 0 auto 10px; border-radius: 11px; overflow: hidden; background: rgba(255, 255, 255, .06); }
+.decklist ul { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 12px; font-size: 14px; line-height: 1.35; color: var(--ink-2); }
+.decklist li { break-inside: avoid; padding-left: .8em; text-indent: -.8em; margin-bottom: .15em; }
+.decklist .cmdr { margin: 0 0 8px; font-size: 15px; text-align: center; }
+.decklist .src { margin: 8px 0 0; font-size: 12px; color: var(--ink-2); opacity: .7; }
+.deck.on, .patterns button.on { border-color: var(--ink); box-shadow: 0 0 0 2px var(--table) inset; }
 .patterns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .patterns button {
   position: relative; overflow: hidden; height: 40px; border-radius: 10px; border: 2px solid transparent; padding: 0;
@@ -430,8 +445,12 @@ details.field .patterns { margin-top: 6px; }
       </div>
     </details>
     <details class="field" id="colorField">
-      <summary id="colorLabel">Your colors</summary>
-      <div class="colors" id="colors"></div>
+      <summary id="colorLabel">Your deck</summary>
+      <div class="decks" id="colors"></div>
+      <details class="field" id="listField">
+        <summary id="listLabel">Decklist</summary>
+        <div class="decklist" id="decklist"></div>
+      </details>
       <div class="patterns" id="patterns"></div>
     </details>
     <div class="field">
@@ -457,13 +476,29 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.20';
+  const VERSION = '3.21';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
   // Color pairs, by the class that paints them; everyone starts on a different one.
   const SCHEMES = { gr: 'Green and red', uw: 'Blue and white', rb: 'Red and black', bu: 'Black and blue', gw: 'Green and white' };
   const DEFAULT_COLORS = ['uw', 'rb', 'gr', 'bu'];
+  // The Starter Commander Decks (2022) the group plays, by the color pair each one is. Decklists
+  // from Forge's copy of the official lists; "no" is the commander's number in the set (SCD).
+  const DECKS = {
+    uw: { name: 'First Flight', colors: 'White-Blue', commander: 'Isperia, Supreme Judge', no: 4,
+      cards: 'Absorb|Aetherize|Angler Turtle|Arcane Signet|Archon of Redemption|Aven Gagglemaster|Azorius Signet|Banishing Light|Bident of Thassa|Cartographer\'s Hawk|Cleansing Nova|Cloudblazer|Coastal Tower|Command Tower|Commander\'s Sphere|Condemn|Counterspell|Crush Contraband|Diluvian Primordial|Disenchant|Emeria Angel|Empyrean Eagle|Ever-Watching Threshold|Faerie Formation|Favorable Winds|Generous Gift|Gideon Jura|Gravitational Shift|Hanged Executioner|Hedron Archive|Inspired Sphinx|15 Island|Jubilant Skybonder|Kangee\'s Lieutenant|Kangee, Sky Warden|Meandering River|Migratory Route|Moorland Haunt|Negate|Pilgrim\'s Eye|15 Plains|Port Town|Prairie Stream|Rally of Wings|Remorseful Cleric|Sejiri Refuge|Sephara, Sky\'s Blade|Sharding Sphinx|Sky Diamond|Skycat Sovereign|Skyscanner|Sol Ring|Soul Snare|Sphinx of Enlightenment|Sphinx\'s Revelation|Staggering Insight|Steel-Plume Marshal|Storm Herd|Swords to Plowshares|Talisman of Progress|Temple of Enlightenment|Thought Vessel|Thunderclap Wyvern|Tide Skimmer|Time Wipe|Tranquil Cove|True Conviction|Vow of Duty|Warden of Evos Isle|Windreader Sphinx|Winged Words' },
+    bu: { name: 'Grave Danger', colors: 'Blue-Black', commander: 'Gisa and Geralf', no: 3,
+      cards: 'Arcane Signet|Army of the Damned|Cemetery Reaper|Champion of the Perished|Choked Estuary|Command Tower|Commander\'s Sphere|Crippling Fear|Cruel Revival|Curse of Disturbance|Deep Analysis|Dimir Signet|Diregraf Captain|Dismal Backwater|Distant Melody|Enter the God-Eternals|Eternal Skylord|Feed the Swarm|Fleshbag Marauder|Geralf\'s Mindcrusher|Gleaming Overseer|Gravespawn Sovereign|Gray Merchant of Asphodel|Grimoire of the Dead|Havengul Lich|Heraldic Banner|13 Island|Josu Vess, Lich Knight|Jwar Isle Refuge|Laboratory Drudge|Lazotep Plating|Lazotep Reaver|Liliana\'s Devotee|Liliana\'s Mastery|Liliana\'s Standard Bearer|Liliana, Untouched by Death|Lord of the Accursed|Lotleth Giant|Loyal Subordinate|Midnight Reaper|Mire Triton|Murder|Necromantic Selection|Necrotic Hex|Open the Graves|Overseer of the Damned|Pilfered Plans|Salt Marsh|Scourge of Nel Toth|Sinister Sabotage|Sol Ring|Spark Reaper|Submerged Boneyard|Sunken Hollow|18 Swamp|Syphon Flesh|Talisman of Dominance|Temple of Deceit|Unbreathing Horde|Undead Augur|Undermine|Unstable Obelisk|Vampiric Rites|Vela the Night-Clad|Vengeful Dead|Victimize|Vizier of the Scorpion|Wayfarer\'s Bauble|Withered Wretch|Zombie Apocalypse' },
+    rb: { name: 'Chaos Incarnate', colors: 'Black-Red', commander: 'Kardur, Doomscourge', no: 5,
+      cards: 'Abrade|Akoum Refuge|Ambition\'s Cost|Arcane Signet|Archfiend of Depravity|Blasphemous Act|Bloodfell Caves|Bloodgift Demon|Brash Taunter|Breath of Malfegor|Burnished Hart|Chaos Warp|Cinder Barrens|Combustible Gearhulk|Command Tower|Commander\'s Sphere|Coveted Jewel|Deadly Tempest|Dictate of the Twin Gods|Dredge the Mire|Explosion of Riches|Feed the Swarm|Fiery Confluence|Foreboding Ruins|Geode Rager|Guttersnipe|Hate Mirage|Indulgent Tormentor|Kaervek the Merciless|Kazuul, Tyrant of the Cliffs|Lightning Greaves|Magmatic Force|Mana Geyser|Molten Slagheap|14 Mountain|Myriad Landscape|Nihil Spellbomb|Ob Nixilis Reignited|Profane Command|Rakdos Charm|Rakdos Signet|Rakshasa Debaser|Read the Bones|Reign of the Pit|Sangromancer|Scythe Specter|Sepulchral Primordial|Sign in Blood|Smoldering Marsh|Sol Ring|Solemn Simulacrum|Soul Shatter|Spiteful Visions|Stensia Bloodhall|Stormfist Crusader|Sunbird\'s Invocation|15 Swamp|Syphon Mind|Talisman of Indulgence|Tectonic Giant|Temple of Malice|Terminate|Theater of Horrors|Thermo-Alchemist|Titan Hunter|Unlicensed Disintegration|Urborg Volcano|Vampire Nighthawk|Wayfarer\'s Bauble|Wild Ricochet|Wildfire Devils|Worn Powerstone' },
+    gr: { name: 'Draconic Destruction', colors: 'Red-Green', commander: 'Atarka, World Render', no: 1,
+      cards: 'Akoum Hellkite|Arcane Signet|Atarka Monument|Beast Within|Blossoming Defense|Chain Reaction|Cinder Glade|Clan Defiance|Command Tower|Commander\'s Sphere|Crucible of Fire|Cultivate|Demanding Dragon|Draconic Disciple|Dragon Mage|Dragon Tempest|Dragon\'s Hoard|Dragonkin Berserker|Dragonlord\'s Servant|Dragonmaster Outcast|Dragonspeaker Shaman|Drakuseth, Maw of Flames|Dream Pillager|Drumhunter|Elemental Bond|Fires of Yavimaya|Flameblast Dragon|Foe-Razer Regent|12 Forest|Frontier Siege|Furnace Whelp|Game Trail|Garruk\'s Uprising|Harbinger of the Hunt|Harmonize|Haven of the Spirit Dragon|Hoard-Smelter Dragon|Hunter\'s Insight|Hunter\'s Prowess|Kazandu Refuge|Loaming Shaman|Magmaquake|Mordant Dragon|18 Mountain|Path of Ancestry|Primal Might|Provoke the Trolls|Rapacious Dragon|Return to Nature|Rugged Highlands|Runehorn Hellkite|Sakura-Tribe Elder|Sarkhan, the Dragonspeaker|Savage Ventmaw|Scourge of Valkas|Shamanic Revelation|Shivan Oasis|Sol Ring|Spit Flame|Steel Hellkite|Sweltering Suns|Swiftfoot Boots|Talisman of Impulse|Temple of Abandon|Thunderbreak Regent|Thundermaw Hellkite|Timber Gorge|Tyrant\'s Familiar|Unleash Fury|Vandalblast|Verix Bladewing' },
+    gw: { name: 'Token Triumph', colors: 'Green-White', commander: 'Emmara, Soul of the Accord', no: 2,
+      cards: 'Ajani, Caller of the Pride|Arcane Signet|Aura Mutation|Avacyn\'s Pilgrim|Blossoming Sands|Camaraderie|Canopy Vista|Champion of Lambholt|Citanul Hierophants|Citywide Bust|Collective Blessing|Collective Unconscious|Command Tower|Commander\'s Insignia|Commander\'s Sphere|Conclave Tribunal|Curse of Bounty|Dauntless Escort|Dawn of Hope|Devouring Light|Dictate of Heliod|Elfhame Palace|Eternal Witness|Farhaven Elf|Felidar Retreat|15 Forest|Fortified Village|Graypelt Refuge|Great Oak Guardian|Harmonize|Harvest Season|Holdout Settlement|Hornet Nest|Hornet Queen|Hour of Reckoning|Idol of Oblivion|Jade Mage|Jaspera Sentinel|Karametra\'s Favor|Leafkin Druid|Loyal Guardian|Maja, Bretagard Protector|March of the Multitudes|Mentor of the Meek|Nissa\'s Expedition|Nullmage Shepherd|Overrun|Overwhelming Instinct|Path to Exile|14 Plains|Presence of Gond|Reclamation Sage|Rishkar, Peema Renegade|Rootborn Defenses|Scatter the Seeds|Scavenging Ooze|Selesnya Evangel|Selesnya Guildmage|Slate of Ancestry|Sol Ring|Sporemound|Sylvan Reclamation|Talisman of Unity|Temple of Plenty|Thunderfoot Baloth|Tranquil Expanse|Trostani Discordant|Valor in Akros|Verdant Force|Vitu-Ghazi, the City-Tree|Voice of Many|White Sun\'s Zenith' },
+  };
+  // Scryfall answers these with the card's image (art_crop: just the art; normal: the whole card).
+  const artUrl = (k, version) => `https://api.scryfall.com/cards/scd/${DECKS[k].no}?format=image&version=${version}`;
   // How the second color lies over the first, each covering 30% of the seat: [mask file, name, proof sheet number].
   const PATTERN_LIST = [['diagonal-split', 'Diagonal split', 2], ['diagonal-blend', 'Diagonal blend', 4], ['horizontal-split', 'Horizontal split', 6], ['split', 'Vertical split', 8], ['corner-sweep', 'Corner sweep', 10], ['edge-vignette', 'Edge vignette', 12], ['center-glow', 'Center glow', 14], ['diagonal-stripes', 'Diagonal stripes', 16], ['pinstripes', 'Pinstripes', 18], ['wide-bands', 'Wide bands', 20], ['vertical-stripes', 'Vertical stripes', 22], ['chevrons', 'Chevrons', 24], ['polka-dots', 'Polka dots', 26], ['dots', 'Big dots', 28], ['grid-lines', 'Grid lines', 30], ['crosshatch', 'Crosshatch', 32], ['wave-split', 'Wave split', 34], ['wavy-stripes', 'Wavy stripes', 36], ['marble', 'Marble', 38], ['marble-soft', 'Marble, soft', 40], ['clouds', 'Clouds', 42], ['camouflage', 'Camouflage', 44], ['wood-grain', 'Wood grain', 46], ['ripples', 'Ripples', 48], ['sunburst', 'Sunburst', 50], ['pie-wedge', 'Pie wedge', 52], ['zigzag-split', 'Zigzag split', 54], ['frame', 'Frame', 56], ['bands', 'Edge bands', 58], ['vertical-fade', 'Vertical fade', 60], ['mesh-gradient', 'Mesh gradient', 62], ['aurora', 'Aurora', 64], ['brushstrokes', 'Brushstrokes', 66], ['splatter', 'Splatter', 68], ['low-poly-facets', 'Low-poly facets', 70], ['cracked-earth', 'Cracked earth', 72], ['hexagons', 'Hexagons', 74], ['argyle', 'Argyle', 76], ['scales', 'Scales', 78], ['herringbone', 'Herringbone', 80], ['plaid', 'Plaid', 82], ['grain-dither', 'Grain dither', 84], ['halftone', 'Halftone', 86], ['veins', 'Lightning veins', 88], ['liquid-swirl', 'Liquid swirl', 90], ['contour-lines', 'Contour lines', 92], ['opposite-corners', 'Opposite corners', 94], ['arch', 'Arch', 96], ['shards', 'Shards', 98], ['diagonal-tri-band', 'Diagonal tri-band', 100]];
   const PATTERNS = {};
@@ -953,9 +988,20 @@ details.field .patterns { margin-top: 6px; }
     });
     // This phone's player picks their colors and pattern (in "Just me", the one seat's).
     const mine = state.mode === 1 ? 0 : edges.includes(state.me) ? state.me : 0;
-    document.getElementById('colorLabel').textContent = state.mode === 1 ? 'Colors' : (state.names[mine].trim() || DEFAULT_NAMES[mine]) + "'s colors";
-    document.getElementById('colors').innerHTML = Object.keys(SCHEMES).map(k =>
-      `<button type="button" class="k-${k}${colorOf(mine) === 'k-' + k ? ' on' : ''}" data-v="${k}" data-e="${mine}" aria-label="${SCHEMES[k]}" title="${SCHEMES[k]}"></button>`).join('');
+    document.getElementById('colorLabel').textContent = state.mode === 1 ? 'Deck' : (state.names[mine].trim() || DEFAULT_NAMES[mine]) + "'s deck";
+    document.getElementById('colors').innerHTML = Object.keys(DECKS).map(k => {
+      const d = DECKS[k];
+      return `<button type="button" class="deck k-${k}${colorOf(mine) === 'k-' + k ? ' on' : ''}" data-v="${k}" data-e="${mine}" aria-label="${d.name}, ${d.commander}, ${d.colors}">
+        <i class="art"><img src="${artUrl(k, 'art_crop')}" alt="" loading="lazy" onerror="this.remove()"></i>
+        <span><b>${d.name}</b><small>${esc(d.commander)}</small></span></button>`;
+    }).join('');
+    const deck = DECKS[colorOf(mine).slice(2)];
+    document.getElementById('listLabel').textContent = deck.name + ' decklist';
+    document.getElementById('decklist').innerHTML = `
+      <div class="card"><img src="${artUrl(colorOf(mine).slice(2), 'normal')}" alt="${esc(deck.commander)}" loading="lazy" onerror="this.remove()"></div>
+      <p class="cmdr">Commander: <b>${esc(deck.commander)}</b></p>
+      <ul>${deck.cards.split('|').map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+      <p class="src">100 cards. Card images from Scryfall.</p>`;
     document.getElementById('patterns').innerHTML = PATTERN_LIST.map(([k, name, n]) =>
       `<button type="button" class="${colorOf(mine)}${patternOf(mine) === k ? ' on' : ''}" style="--pattern: ${patternUrl(k)}" data-v="${k}" data-e="${mine}" data-n="${n}" aria-label="${name}" title="${n}. ${name}"></button>`).join('');
     state.names.forEach((n, i) => {
@@ -1109,6 +1155,7 @@ details.field .patterns { margin-top: 6px; }
         const e = edgesOf(k)[i];
         return {
           name: state.names[e].trim() || DEFAULT_NAMES[e], colors: colorOf(e).slice(2), pattern: patternOf(e),
+          deck: DECKS[colorOf(e).slice(2)].name,
           life: p.life, out: outReason(p) || null, won: i === alive[0],
           turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
         };
@@ -1138,15 +1185,17 @@ details.field .patterns { margin-top: 6px; }
 
   const resultsEl = document.getElementById('results');
   const okResult = r => r && typeof r.at === 'number' && Array.isArray(r.seats);
+  // Results from before v3.21 have only colors, and each color pair is one deck.
+  const deckOf = x => typeof x.deck === 'string' ? x.deck : DECKS[x.colors] ? DECKS[x.colors].name : '';
   function showResults(all, note) {
     const list = Object.keys(all).filter(id => okResult(all[id])).sort((a, b) => all[b].at - all[a].at);
     resultsEl.innerHTML = (note ? `<p class="res-note">${esc(note)}</p>` : '') + (list.length ? list.map(id => {
       const r = all[id], win = r.seats.find(x => x.won) || {};
       const day = new Date(r.at).toLocaleDateString([], { month: 'short', day: 'numeric' });
       return `<div class="res-row">
-        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(SCHEMES[win.colors] || '')} &middot; ${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
+        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(deckOf(win))} &middot; ${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
           <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
-        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(SCHEMES[x.colors] || '')}"><i class="sw"></i>${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
+        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}"><i class="sw"></i>${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
       </div>`;
     }).join('') : '<p class="res-note">No finished games logged yet.</p>');
   }
