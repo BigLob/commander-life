@@ -155,16 +155,18 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 .name {
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; text-align: center;
-  font-family: var(--f-num); font-size: clamp(15px, calc(13 * var(--cqh, 1vh)), 34px); font-weight: 600;
+  /* --fit shrinks a name that would overflow its seat, so every name shows in full on one line. */
+  font-family: var(--f-num); font-size: calc(clamp(15px, calc(13 * var(--cqh, 1vh)), 34px) * var(--fit, 1)); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
   /* Same black outline as the life total, thicker for the small type. */
   -webkit-text-stroke: .14em #000; paint-order: stroke fill;
 }
+.name .nm { display: inline-block; }
 .name .why { display: block; margin-top: .2em; font-size: .7em; color: var(--ink); }
 /* Corner names keep clear of the menu button in the middle of the table. */
 .table .name { left: calc(6 * var(--cqw, 1vw)); right: auto; text-align: left; }
-/* Bigger names still have to fit a narrow seat. */
-.name { max-width: calc(88 * var(--cqw, 1vw)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Bigger names still have to fit a narrow seat (see fitNames()). */
+.name { max-width: calc(88 * var(--cqw, 1vw)); white-space: nowrap; overflow: hidden; }
 .n3 .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
 /* Narrow tiles: the name stays centered and clear of the menu button where the four tiles meet. */
 .duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
@@ -454,7 +456,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.17';
+  const VERSION = '3.18';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -477,6 +479,9 @@ details.field .patterns { margin-top: 6px; }
   const MODES = [1, 2, 3, 4, SPLIT];
   // The phone edges each table size seats players at, in clockwise order from the bottom.
   const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3], [SPLIT]: [0, 1, 2, 3] };
+  // Who plays at each table size, by their default edge. Three players is always Rand, Andrew and
+  // Trent (seated at the edges above), so the same people play every time.
+  const PEOPLE = Object.assign({}, EDGES, { 3: [0, 1, 2] });
   // Picking a table size starts it at its usual life: 20 head to head, 30 for three, 40 for four.
   const DEFAULT_START = { 2: 20, 3: 30, 4: 40, [SPLIT]: 20 };
   // Every game the table keeps, by key, and how many play it. One per table size, plus the two 1v1s
@@ -539,13 +544,13 @@ details.field .patterns { margin-top: 6px; }
   const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const nameOf = e => esc(state.names[e].trim() || DEFAULT_NAMES[e]);
   // The edges playing game k, in seat order.
-  const edgesOf = k => k === 'a' ? [0, state.pairs] : k === 'b' ? [1, 2, 3].filter(e => e !== state.pairs) : EDGES[k];
+  const edgesOf = k => k === 'a' ? [0, state.pairs] : k === 'b' ? [1, 2, 3].filter(e => e !== state.pairs) : PEOPLE[k];
   const duelOf = e => e === 0 || e === state.pairs ? 'a' : 'b';
   // The players this phone shows, as { k: their game, j: their seat in it, e: their edge }. In the
   // two 1v1s a player's phone shows just their own 1v1; a Center phone shows all four.
   let players = [];
   function viewPlayers() {
-    if (state.mode !== SPLIT) return EDGES[state.mode].map((e, j) => ({ k: state.mode, j, e }));
+    if (state.mode !== SPLIT) return PEOPLE[state.mode].map((e, j) => ({ k: state.mode, j, e }));
     const all = [0, 1, 2, 3].map(e => ({ k: duelOf(e), j: edgesOf(duelOf(e)).indexOf(e), e }));
     return state.me === CENTER ? all : all.filter(p => p.k === duelOf(state.me));
   }
@@ -561,7 +566,7 @@ details.field .patterns { margin-top: 6px; }
     // A player's own 1v1 sits like a two-player table: them at the bottom, their opponent across.
     if (state.mode === SPLIT) return state.me === CENTER ? edgeOf(i) : edgeOf(i) === state.me ? 0 : 2;
     const edges = EDGES[state.mode], n = edges.length;
-    const k = Math.max(0, edges.indexOf(state.me));
+    const k = Math.max(0, PEOPLE[state.mode].indexOf(state.me));
     const pos = edges[(i - k + n) % n];
     return k && pos % 2 ? 4 - pos : pos;
   }
@@ -694,7 +699,20 @@ details.field .patterns { margin-top: 6px; }
       face.style.setProperty('--cqw', face.offsetWidth / 100 + 'px');
       face.style.setProperty('--cqh', face.offsetHeight / 100 + 'px');
     });
+    fitNames();
   }
+  // Shrink each name (and its "out" line) that's wider than its seat allows until it fits. Layout widths, so a turned
+  // seat measures the same as an upright one.
+  function fitNames() {
+    const names = Array.from(app.querySelectorAll('.name'));
+    names.forEach(el => el.style.setProperty('--fit', 1));
+    names.forEach(el => {
+      const w = Math.max(...Array.from(el.querySelectorAll('.nm'), x => x.offsetWidth)), room = parseFloat(getComputedStyle(el).maxWidth);
+      if (w > room) el.style.setProperty('--fit', (room / w * .98).toFixed(3));
+    });
+  }
+  // The card fonts arrive after the first layout; names are fitted again in them.
+  if (document.fonts) document.fonts.ready.then(fitNames);
   if ('ResizeObserver' in window) new ResizeObserver(measure).observe(app);
   else addEventListener('resize', () => setTimeout(measure, 50));
 
@@ -712,10 +730,13 @@ details.field .patterns { margin-top: 6px; }
     const p = playerOf(i);
     const why = outReason(p);
     const label = state.mode === 1 ? 'Life' : nameOf(edgeOf(i));
+    let refit = false;
     seats[i].forEach(seat => {
       seat.querySelector('.num').textContent = p.life;
       seat.classList.toggle('out', !!why);
-      seat.querySelector('.name').innerHTML = why ? `${label}<span class="why">out, ${why}</span>` : label;
+      const name = seat.querySelector('.name');
+      const html = `<span class="nm">${label}</span>` + (why ? `<span class="why"><span class="nm">out, ${why}</span></span>` : '');
+      if (name.innerHTML !== html) { name.innerHTML = html; refit = true; }
 
       seat.classList.toggle('marking', marking[i] != null);
       seat.querySelectorAll('.chip').forEach(c => {
@@ -738,6 +759,7 @@ details.field .patterns { margin-top: 6px; }
         flag.setAttribute('aria-label', p.conceded ? 'Rejoin' : 'Concede');
       }
     });
+    if (refit) fitNames();
   }
 
   function showDelta(i, d) {
@@ -915,7 +937,7 @@ details.field .patterns { margin-top: 6px; }
     document.getElementById('concede').hidden = state.mode === 1 || center;
     document.getElementById('colorField').hidden = center;
     document.getElementById('meField').hidden = state.mode === 1;
-    const edges = EDGES[state.mode];
+    const edges = PEOPLE[state.mode];
     const me = center ? CENTER : edges.includes(state.me) ? state.me : 0;
     document.getElementById('meLabel').textContent = center ? 'This phone is in the center' : 'This phone is ' + (state.names[me].trim() || DEFAULT_NAMES[me]);
     [0, 1, 2, 3].forEach(e => {

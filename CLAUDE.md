@@ -36,9 +36,12 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.17)
+### `index.html`: Commander Life (current v3.18)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
-  2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
+  2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
+  edge (names, colors and patterns are stored by it).
+  - Who plays (`PEOPLE`): 2 players Rand and Trent; 3 players Rand, Andrew and Trent (v3.18; it was
+    Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 3 players use bottom, left, right.
 - **This phone is**: each phone picks its owner (kept on that phone only).
   - A named player: their seat goes at the bottom and every seat faces them, upright.
     At 4 players the tall side seats use top half = +, bottom half = −.
@@ -80,7 +83,8 @@ After a deploy, ask the user to check the version in the menu footer.
   plain ASCII (plus Matrix's minus), because their other symbols are blank or wrongly mapped
   (×, ·, … fall back to Georgia). `Matrix-Bold.woff` has patched line metrics: the original's
   positive descent made the line box half height and clipped the names.
-- Life totals and names are white with a black outline; names are large (v3.13: up to 34px, 13% of the seat's height), and long ones end in an ellipsis.
+- Life totals and names are white with a black outline; names are large (v3.13: up to 34px, 13% of the seat's height). Since v3.18 a name that's too wide for
+  its seat shrinks to fit (`fitNames()`, via `--fit`), so every name shows in full on one line.
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
 - **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
   It becomes Rejoin. A new game clears all concessions.
