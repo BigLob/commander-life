@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.31)
+### `index.html`: Commander Life (current v3.32)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -66,6 +66,10 @@ them and `.gitignore` now ignores PNGs at the root).
   edge (names and colors are stored by it).
   - Who plays (`PEOPLE`): 2 players Rand and Lenn (v3.19; it was Trent before); 3 players Rand, Andrew and Trent (v3.18; it was
     Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 2 players use bottom and top, 3 players bottom, left, right.
+- **Seating** (v3.32): around the real table, Lenn is on Rand's left, Trent across and Andrew on his
+  right. `posOf()` turns the table so this phone's player is at the bottom and swaps left and right
+  (`flipSide()`) on every phone. Before v3.32 Rand's phone and Center skipped the swap, so they
+  showed Andrew and Lenn the other way round from everyone else's phone.
 - **This phone is**: each phone picks its owner (kept on that phone only).
   - A named player: their seat goes at the bottom and every seat faces them, upright.
   - **Center**: the phone lies in the middle of the table and each seat faces its own edge.

@@ -502,7 +502,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.31';
+  const VERSION = '3.32';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -627,16 +627,17 @@ details.field[open] > summary { margin-bottom: 10px; }
   const playerOf = i => state.games[players[i].k][players[i].j];
   const edgeOf = i => players[i].e;
   const colorOf = e => 'k-' + (SCHEMES[state.colors[e]] ? state.colors[e] : DEFAULT_COLORS[e]);
-  // Where player i sits on this phone: the table turns so this phone's player is at the bottom.
-  // Rand's layout is the reference; on everyone else's phone the left and right seats swap, which
-  // matches how the group actually sits.
+  // Where player i sits on this phone: the table turns so this phone's player is at the bottom, and
+  // the left and right seats swap, which matches how the group actually sits: Lenn on Rand's left,
+  // Andrew on his right (v3.32; before, Rand's phone and Center had those two the other way round,
+  // so they disagreed with everyone else's phone).
+  const flipSide = pos => pos % 2 ? 4 - pos : pos;
   function posOf(i) {
     // A player's own 1v1 sits like a two-player table: them at the bottom, their opponent across.
-    if (state.mode === SPLIT) return state.me === CENTER ? edgeOf(i) : edgeOf(i) === state.me ? 0 : 2;
+    if (state.mode === SPLIT) return state.me === CENTER ? flipSide(edgeOf(i)) : edgeOf(i) === state.me ? 0 : 2;
     const edges = EDGES[state.mode], n = edges.length;
     const k = Math.max(0, PEOPLE[state.mode].indexOf(state.me));
-    const pos = edges[(i - k + n) % n];
-    return k && pos % 2 ? 4 - pos : pos;
+    return flipSide(edges[(i - k + n) % n]);
   }
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
