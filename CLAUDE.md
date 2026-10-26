@@ -109,8 +109,9 @@ After a deploy, ask the user to check the version in the menu footer.
   `forge-gui/res/quest/commanderprecons/*.dck` on GitHub). Since v3.28 tapping a deck only opens it
   (`openDeck`, one at a time): its commander card, a **Play <deck>** button, and its decklist folded
   under "Decklist · 100 cards". Only Play changes this player's deck, so anyone can look at every
-  commander without switching. The current deck is tagged "Playing" on its art, and each row ends
-  with the deck's two Magic colors as a yin-yang without the dots (`yinYang()`, colors in `MANA`). Since v3.22 the images are saved in `art/` (`<pair>.jpg` is
+  commander without switching. The current deck has the white border (no "Playing" label), and each
+  row ends with one mana symbol per color, like a card's mana cost (`manaOf()`, symbols in `MANA`
+  from the Mana font's SVGs on its cost-circle colors). The yin-yang tried before was dropped. Since v3.22 the images are saved in `art/` (`<pair>.jpg` is
   Scryfall's art_crop, `<pair>-card.jpg` the normal card image), fetched once from
   `api.scryfall.com/cards/scd/<n>?format=image&version=art_crop|normal`.
   - Commander art background (v3.22 as an option, v3.25 the only one): `.face::before` shows
