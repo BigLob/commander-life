@@ -34,8 +34,8 @@ The site only changes when files land on `main` of `BigLob/commander-life`:
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
 Playwright with the network mocked (route `firebaseio` requests, replace `EventSource`).
-`index.html` loads Matrix and MPlantin from `fonts/`, so route the page's own files to the local
-checkout. Its numbers and `archenemy.html` use Google Fonts, which is reachable: launch Chromium with
+`index.html` loads all its fonts from `fonts/` (since v3.31), so route the page's own files to the
+local checkout. `archenemy.html` uses Google Fonts, which is reachable: launch Chromium with
 `proxy: { server: process.env.HTTPS_PROXY }` and `ignoreHTTPSErrors: true` so text is measured in the
 real fonts (the fallbacks are much wider).
 After a deploy, ask the user to check the version in the menu footer.
@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.30)
+### `index.html`: Commander Life (current v3.31)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -128,9 +128,12 @@ them and `.gitignore` now ignores PNGs at the root).
     longer synced. The log saves each seat's `deck`, and Results
   shows deck names (older results map their colors to the deck).
 - **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold (`--f-name`)
-  for names and the menu title; MPlantin for everything else. Since v3.24 life totals and other
-  numbers (`--f-num`) are back in Big Shoulders Display from Google Fonts; the user didn't like
-  Matrix's old-style digits. Both are limited by `unicode-range` to
+  for names and the menu title; MPlantin for everything else. Life totals and other numbers
+  (`--f-num`): Matrix (v3.17, old-style digits the user disliked), Big Shoulders Display from Google
+  Fonts (v3.24 to v3.30), then **Beleren Bold** (v3.31, the card-name font; the user owns the cards
+  and asked for it). `fonts/Beleren-Bold-digits.woff` is Beleren2016 Bold from Card Conjurer's repo
+  (github.com/Investigamer/cardconjurer, `fonts/beleren-b.ttf`), subset to space, digits, + and −
+  only (4 KB), so the page doesn't carry the whole Wizards font. Both are limited by `unicode-range` to
   plain ASCII (plus Matrix's minus), because their other symbols are blank or wrongly mapped
   (×, ·, … fall back to Georgia). `Matrix-Bold.woff` has patched line metrics: the original's
   positive descent made the line box half height and clipped the names.
