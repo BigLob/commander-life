@@ -42,7 +42,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.27)
+### `index.html`: Commander Life (current v3.28)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -106,8 +106,10 @@ After a deploy, ask the user to check the version in the menu footer.
   Incarnate `rb` (Kardur, Doomscourge), Draconic Destruction `gr` (Atarka, World Render), Token
   Triumph `gw` (Emmara, Soul of the Accord). `DECKS` holds each deck's name, commander, the
   commander's collector number in SCD, and its 99 other cards (from Forge's
-  `forge-gui/res/quest/commanderprecons/*.dck` on GitHub). Under the deck buttons, a decklist shows
-  the commander card and the full list. Since v3.22 the images are saved in `art/` (`<pair>.jpg` is
+  `forge-gui/res/quest/commanderprecons/*.dck` on GitHub). Since v3.28 tapping a deck only opens it
+  (`openDeck`, one at a time): its commander card, a **Play <deck>** button, and its decklist folded
+  under "Decklist · 100 cards". Only Play changes this player's deck, so anyone can look at every
+  commander without switching. The current deck is tagged "Playing". Since v3.22 the images are saved in `art/` (`<pair>.jpg` is
   Scryfall's art_crop, `<pair>-card.jpg` the normal card image), fetched once from
   `api.scryfall.com/cards/scd/<n>?format=image&version=art_crop|normal`.
   - Commander art background (v3.22 as an option, v3.25 the only one): `.face::before` shows
