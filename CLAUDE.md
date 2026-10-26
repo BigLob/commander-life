@@ -5,9 +5,9 @@ sync live. Plain HTML pages, no build step, no framework.
 
 ## Replies
 
-End every reply about anything in this repo with links to both live pages, as icon links on one line:
+End every reply about anything in this repo with icon-only links to both live pages, on one line:
 
-[🃏 Commander Life](https://biglob.github.io/commander-life/) · [😈 Archenemy](https://biglob.github.io/commander-life/archenemy.html)
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html)
 
 ## Where things live
 
