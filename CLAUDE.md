@@ -36,12 +36,12 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.18)
+### `index.html`: Commander Life (current v3.19)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names, colors and patterns are stored by it).
-  - Who plays (`PEOPLE`): 2 players Rand and Trent; 3 players Rand, Andrew and Trent (v3.18; it was
-    Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 3 players use bottom, left, right.
+  - Who plays (`PEOPLE`): 2 players Rand and Lenn (v3.19; it was Trent before); 3 players Rand, Andrew and Trent (v3.18; it was
+    Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 2 players use bottom and top, 3 players bottom, left, right.
 - **This phone is**: each phone picks its owner (kept on that phone only).
   - A named player: their seat goes at the bottom and every seat faces them, upright.
     At 4 players the tall side seats use top half = +, bottom half = −.

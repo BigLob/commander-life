@@ -456,7 +456,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.18';
+  const VERSION = '3.19';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -479,9 +479,9 @@ details.field .patterns { margin-top: 6px; }
   const MODES = [1, 2, 3, 4, SPLIT];
   // The phone edges each table size seats players at, in clockwise order from the bottom.
   const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3], [SPLIT]: [0, 1, 2, 3] };
-  // Who plays at each table size, by their default edge. Three players is always Rand, Andrew and
-  // Trent (seated at the edges above), so the same people play every time.
-  const PEOPLE = Object.assign({}, EDGES, { 3: [0, 1, 2] });
+  // Who plays at each table size, by their default edge: Rand and Lenn head to head, and Rand,
+  // Andrew and Trent at three (seated at the edges above), so the same people play every time.
+  const PEOPLE = Object.assign({}, EDGES, { 2: [0, 3], 3: [0, 1, 2] });
   // Picking a table size starts it at its usual life: 20 head to head, 30 for three, 40 for four.
   const DEFAULT_START = { 2: 20, 3: 30, 4: 40, [SPLIT]: 20 };
   // Every game the table keeps, by key, and how many play it. One per table size, plus the two 1v1s
