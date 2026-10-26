@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.38)
+### `index.html`: Commander Life (current v3.39)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -189,7 +189,8 @@ them and `.gitignore` now ignores PNGs at the root).
   The log saves the date, how long the game took, the winner, and each player's name, color pair,
   deck and final life. The Results list is hidden: tapping the version line at the foot of the
   menu shows it (tap again to hide). Each result has a two-tap Delete.
-- Back to game is white like New game (v3.22).
+- Back to game is white like New game (v3.22). Since v3.39 the menu also has a small untap-symbol
+  button beside its title (`#closeMenuTop`) that goes back to the game, so nobody has to scroll down.
 - The menu button in the middle of the table shows the Planeswalker flame (v3.20), an inline PNG
   in `ICON_MENU`.
 - Version shows in the menu footer with the sync status. Bump `VERSION` on every release.

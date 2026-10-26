@@ -413,6 +413,12 @@ details.field[open] > summary { margin-bottom: 10px; }
   margin: 0; font-family: var(--f-name); font-weight: 800; font-size: 30px;
   letter-spacing: .04em; text-transform: uppercase; text-wrap: balance;
 }
+.menu-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.back-icon {
+  flex: none; width: 44px; height: 44px; margin: -6px -8px -6px 0; padding: 8px;
+  border: 0; background: transparent; color: var(--ink);
+}
+.back-icon svg { display: block; width: 100%; height: 100%; fill: currentColor; }
 .field { display: flex; flex-direction: column; gap: 8px; }
 .field > span { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
 .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(255, 255, 255, .06); }
@@ -473,7 +479,12 @@ details.field[open] > summary { margin-bottom: 10px; }
 
 <div class="menu" id="menu" hidden>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
-    <h2 id="menuTitle">Commander</h2>
+    <div class="menu-head">
+      <h2 id="menuTitle">Commander</h2>
+      <!-- A second way back, at the top, so nobody has to scroll to the foot of the menu.
+           Magic's untap symbol, from the Mana font's SVGs (github.com/andrewgioia/mana; symbol (c) Wizards). -->
+      <button type="button" class="back-icon" id="closeMenuTop" aria-label="Back to game"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15.773 4.737v12.874l3.355-4.714c1.39 1.751 2.084 3.778 2.084 6.073 0 1.148-0.219 1.936-0.657 2.356-0.439 0.423-1.232 0.635-2.379 0.635-3.173 0-6.558-1.632-10.153-4.895l-3.762 3.715c5.258 4.323 9.956 6.482 14.097 6.482 2.477 0 4.451-0.746 5.916-2.242 1.465-1.495 2.198-3.485 2.198-5.96 0-3.022-1.15-6.316-3.445-9.883l4.713-2.763-11.967-1.678z"/></svg></button>
+    </div>
     <div class="field">
       <span>Players</span>
       <div class="seg" id="segMode">
@@ -544,7 +555,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.38';
+  const VERSION = '3.39';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1259,6 +1270,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 
   menu.addEventListener('click', e => { if (e.target === menu) closeMenu(); });
   document.getElementById('closeMenu').addEventListener('click', closeMenu);
+  document.getElementById('closeMenuTop').addEventListener('click', closeMenu);
   // Games nobody has touched yet pick up a new starting life right away. Returns the patch to send.
   function setStart(v) {
     const fresh = KEYS.filter(k => untouched(state.games[k]));
