@@ -91,10 +91,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    from this phone's player at bottom left. The seats keep their edge classes, so a Center phone
    still turns each one to face its owner's side and an upright phone faces them all to its owner. */
 .board.n4.quad { grid-template-areas: "left top" "bottom right"; grid-template-rows: 1fr 1fr; }
-/* Spotlight (v3.35, the default at 3 and 4 players): whoever has the turn takes the top half, the
-   others share the bottom in turn order after them. Everyone faces this phone's player. */
-.board.spot { grid-template-areas: "main main main" "a b c"; grid-template-rows: 1fr 1fr; grid-template-columns: repeat(3, 1fr); }
-.board.spot.n3 { grid-template-areas: "main main" "a b"; grid-template-columns: 1fr 1fr; }
+/* Spotlight (v3.35, the default at 3 and 4 players): whoever has the turn takes the bottom half
+   (v3.36; it was the top), the others share the top in turn order after them. Everyone faces this
+   phone's player. */
+.board.spot { grid-template-areas: "a b c" "main main main"; grid-template-rows: 1fr 1fr; grid-template-columns: repeat(3, 1fr); }
+.board.spot.n3 { grid-template-areas: "a b" "main main"; grid-template-columns: 1fr 1fr; }
 .sp-main { grid-area: main; }
 .sp-1 { grid-area: a; }
 .sp-2 { grid-area: b; }
@@ -524,7 +525,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.35';
+  const VERSION = '3.36';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
