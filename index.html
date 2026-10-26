@@ -223,11 +223,18 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   padding: .3em .7em; font-size: 1em; font-weight: 600; letter-spacing: .04em;
   touch-action: manipulation;
 }
+.chip { padding-left: .35em; }
 .chip .ct { max-width: 5.5em; overflow: hidden; text-overflow: ellipsis; }
 .chip b { font-family: var(--f-num); font-weight: 800; font-variant-numeric: tabular-nums; }
 .chip.hot { border-color: var(--hot); color: var(--hot); }
 .chip.on { background: var(--seat-hi); border-color: var(--ink); color: var(--ink); }
-.sw { width: .7em; height: .7em; border-radius: 50%; background: linear-gradient(135deg, var(--seat-hi) 50%, var(--accent) 50%); flex: none; }
+/* A player's mark (attacker chips, Results): a round crop of their commander's art (v3.29), on their
+   seat colors until it loads. */
+.sw {
+  width: 1.5em; height: 1.5em; border-radius: 50%; flex: none;
+  background: linear-gradient(135deg, var(--seat-hi) 50%, var(--accent) 50%) center / cover;
+  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, .7);
+}
 /* Decks: each Starter Commander deck is one color pair, so picking a deck picks the seat's colors.
    The commander's art comes from Scryfall; until it loads (or if it can't) the colors show instead. */
 .decks { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
@@ -493,7 +500,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.28';
+  const VERSION = '3.29';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -517,6 +524,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   // Scryfall answers these with the card's image (art_crop: just the art; normal: the whole card).
   // The commanders' art (art/<pair>.jpg) and cards (art/<pair>-card.jpg), saved from Scryfall's
   // art_crop and normal images so seats don't ask Scryfall every time they're drawn.
+  const swatch = k => `<i class="sw" style="background-image: url(${artUrl(k, 'art_crop')})"></i>`;
   const artUrl = (k, version) => `art/${k}${version === 'normal' ? '-card' : ''}.jpg`;
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
@@ -724,7 +732,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         <div class="badge" hidden>Goes first</div>
         <div class="tray">
           <div class="pop">
-            ${opps.map((o, s) => `<button type="button" class="chip ${colorOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}"><i class="sw"></i><span class="ct">${o.label}</span><b>0</b></button>`).join('')}
+            ${opps.map((o, s) => `<button type="button" class="chip ${colorOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}">${swatch(colorOf(o.color).slice(2))}<span class="ct">${o.label}</span><b>0</b></button>`).join('')}
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
         </div>
@@ -1272,7 +1280,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       return `<div class="res-row">
         <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(deckOf(win))} &middot; ${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
           <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
-        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}"><i class="sw"></i>${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
+        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}">${SCHEMES[x.colors] ? swatch(x.colors) : '<i class="sw"></i>'}${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
       </div>`;
     }).join('') : '<p class="res-note">No finished games logged yet.</p>');
   }

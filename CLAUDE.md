@@ -42,7 +42,7 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.28)
+### `index.html`: Commander Life (current v3.29)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -97,6 +97,8 @@ After a deploy, ask the user to check the version in the menu footer.
     in that game, e: edge }`; `SIZE` lists every game key and its player count.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
+  Since v3.29 each attacker chip (and each player in Results) is marked with a round crop of their
+  commander's art (`swatch()`) instead of the old two-color dot.
 - Each player picks a deck, and their seat always shows that deck's commander art (v3.25: the only
   background; the 50 pattern masks and the deck-card picker were removed from Commander Life.
   `patterns/` stays for `archenemy.html`). Seat colors still paint the seat while the art loads.
