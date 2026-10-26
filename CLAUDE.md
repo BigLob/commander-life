@@ -55,7 +55,7 @@ After a deploy, ask the user to check the version in the menu footer.
   The tap zones are still the left and right halves of the seat.
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
-  edge (names, colors and patterns are stored by it).
+  edge (names and colors are stored by it).
   - Who plays (`PEOPLE`): 2 players Rand and Lenn (v3.19; it was Trent before); 3 players Rand, Andrew and Trent (v3.18; it was
     Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 2 players use bottom and top, 3 players bottom, left, right.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -140,7 +140,7 @@ After a deploy, ask the user to check the version in the menu footer.
   seat `turns` and `turnSecs`, and Results shows "N turns" and each player's turn minutes.
 
   The log saves the date, how long the game took, the winner, and each player's name, color pair,
-  pattern and final life. The Results list is hidden: tapping the version line at the foot of the
+  deck and final life. The Results list is hidden: tapping the version line at the foot of the
   menu shows it (tap again to hide). Each result has a two-tap Delete.
 - Back to game is white like New game (v3.22).
 - The menu button in the middle of the table shows the Planeswalker flame (v3.20), an inline PNG
