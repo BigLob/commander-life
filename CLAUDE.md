@@ -42,7 +42,11 @@ After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.22)
+### `index.html`: Commander Life (current v3.23)
+- Names (v3.23): a blank name box goes back to that player's default name when you leave it, a
+  blank saved name is restored on load, and blank names from other phones are ignored.
+- 4-player totals are much bigger (v3.23: up to 64% of the seat's height or 84% of its width,
+  shrunk for 3 or 4 digits), and the top and bottom rows got more height (rows 1.2fr 1.6fr 1.2fr).
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names, colors and patterns are stored by it).
@@ -96,7 +100,13 @@ After a deploy, ask the user to check the version in the menu footer.
   `api.scryfall.com/cards/scd/<n>?format=image&version=art_crop|normal`.
   - **Commander art wallpaper** (v3.22): the first button in the pattern grid. The seat's face shows
     its deck's commander art (`.arty`), turned with the face and dimmed slightly; synced as pattern
-    `art`, which older phones reject and ignore. The log saves each seat's `deck`, and Results
+    `art`, which older phones reject and ignore.
+  - **Deck card wallpaper** (v3.23): tap any of the 100 cards in the decklist (or Random card, which
+    skips basic lands) and the seat shows the top half of that card, scaled so the half covers the
+    face (`.carded`). Synced as pattern `card` plus `cards/<edge>` (the card's name). `CARD_IMG` maps
+    every card name in the five decks to its Scryfall image id; phones load
+    `cards.scryfall.io/normal/front/...` directly. A picked card that isn't in the player's current
+    deck falls back to their commander. The second tile in the pattern grid switches back to it. The log saves each seat's `deck`, and Results
   shows deck names (older results map their colors to the deck).
 - **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold for names, life
   totals and the menu title; MPlantin for everything else. Both are limited by `unicode-range` to

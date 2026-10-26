@@ -77,7 +77,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 .board.n4 {
   grid-template-areas: "top top" "left right" "bottom bottom";
-  grid-template-rows: 1fr 2fr 1fr; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.2fr 1.6fr 1.2fr; grid-template-columns: 1fr 1fr;
 }
 .board.n1 { grid-template: 1fr / 1fr; }
 /* Head to head, side by side: each half of the phone faces one player and shows both totals, theirs
@@ -114,6 +114,14 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 /* The "Commander art" wallpaper: the seat's deck's commander art fills the face, turned with it so
    it's upright for its player, dimmed a little so the white totals stay readable. */
+/* "Deck card": the top half of the picked card (name and art), scaled so that half covers the face. */
+.face.carded::before {
+  background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)), var(--card);
+  background-size: 100% 100%, max(100%, calc(143.5 * var(--cqh, 1vh))) auto;
+  background-position: 0 0, center top; background-repeat: no-repeat;
+  -webkit-mask: none; mask: none;
+}
+.patterns button.carded::before { background: var(--card) center top / 100% auto no-repeat; -webkit-mask: none; mask: none; }
 .face.arty::before, .patterns button.arty::before {
   background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)), var(--art) center / cover no-repeat;
   -webkit-mask: none; mask: none;
@@ -190,6 +198,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .table .readout { padding-bottom: calc(18 * var(--cqh, 1vh)); }
 .table .life { font-size: min(calc(44 * var(--cqh, 1vh)), calc(44 * var(--cqw, 1vw))); }
 .duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(50 * var(--cqw, 1vw))); }
+/* Four players: the totals as big as each seat allows, scaled down for three digits (--ls). */
+.n4 .readout { padding-bottom: calc(32 * var(--cqh, 1vh)); }
+.n4 .life { font-size: calc(min(calc(64 * var(--cqh, 1vh)), calc(84 * var(--cqw, 1vw))) * var(--ls, 1)); }
+.life[data-len="3"] { --ls: .75; }
+.life[data-len="4"] { --ls: .58; }
 .delta {
   -webkit-text-stroke-width: .08em;
   position: absolute; left: 100%; top: .06em; margin-left: .1em;
@@ -240,6 +253,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .decklist ul { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 12px; font-size: 14px; line-height: 1.35; color: var(--ink-2); }
 .decklist li { break-inside: avoid; padding-left: .8em; text-indent: -.8em; margin-bottom: .15em; }
 .decklist .cmdr { margin: 0 0 8px; font-size: 15px; text-align: center; }
+/* Any card in the list can be tapped to become the seat's wallpaper. */
+.decklist [data-card] { border: 0; padding: 0; background: none; color: inherit; font: inherit; text-align: inherit; text-indent: inherit; touch-action: manipulation; }
+.decklist [data-card].on { color: var(--hot); }
+.decklist .hint { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); text-align: center; }
+.decklist .action.mini { display: block; margin: 0 auto 10px; }
 .decklist .src { margin: 8px 0 0; font-size: 12px; color: var(--ink-2); opacity: .7; }
 .deck.on, .patterns button.on { border-color: var(--ink); box-shadow: 0 0 0 2px var(--table) inset; }
 .patterns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
@@ -445,10 +463,10 @@ details.field .patterns { margin-top: 6px; }
     <details class="field" id="meField" open>
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
-        <div class="who-row" id="edge0"><button type="button" class="pick" data-v="0"></button><input id="name0" maxlength="12" autocomplete="off" aria-label="Player name"></div>
-        <div class="who-row" id="edge1"><button type="button" class="pick" data-v="1"></button><input id="name1" maxlength="12" autocomplete="off" aria-label="Player name"></div>
-        <div class="who-row" id="edge2"><button type="button" class="pick" data-v="2"></button><input id="name2" maxlength="12" autocomplete="off" aria-label="Player name"></div>
-        <div class="who-row" id="edge3"><button type="button" class="pick" data-v="3"></button><input id="name3" maxlength="12" autocomplete="off" aria-label="Player name"></div>
+        <div class="who-row" id="edge0"><button type="button" class="pick" data-v="0"></button><input id="name0" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Rand"></div>
+        <div class="who-row" id="edge1"><button type="button" class="pick" data-v="1"></button><input id="name1" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Andrew"></div>
+        <div class="who-row" id="edge2"><button type="button" class="pick" data-v="2"></button><input id="name2" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Trent"></div>
+        <div class="who-row" id="edge3"><button type="button" class="pick" data-v="3"></button><input id="name3" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Lenn"></div>
         <div class="who-row"><button type="button" class="pick" data-v="4" aria-label="This phone is in the center of the table"></button><span>Center</span></div>
       </div>
     </details>
@@ -484,7 +502,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.22';
+  const VERSION = '3.23';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -516,6 +534,20 @@ details.field .patterns { margin-top: 6px; }
   // Not a mask: the seat shows its deck's commander art instead (see .arty).
   const ART = 'art';
   PATTERNS[ART] = 'Commander art';
+  // Also not a mask: the top half of a card the player picked from their deck (see .carded).
+  const CARD = 'card';
+  PATTERNS[CARD] = 'Deck card';
+  // Scryfall's image id for every card in the five decks (the SCD printing), without its dashes.
+  const CARD_IMG = {"Abrade":"778fad3628d5488bbc7ae60c8646bdc2","Absorb":"3364dd1bdf2148a99059f26b992ce7af","Aetherize":"ead56c6e889c48d987bb9f80e5bac9b3","Ajani, Caller of the Pride":"6121cf5893d04430a4a291778ba65249","Akoum Hellkite":"cc2bff9ab8a449a082089c6ebc56df14","Akoum Refuge":"fd9b707077024e10ad66b2782590810e","Ambition's Cost":"c56c3800b6d544e887972d80070fd4d0","Angler Turtle":"01c029b2dbe8477e9b616df666978444","Arcane Signet":"02cb9420fbfb4123a830a992ff470db6","Archfiend of Depravity":"06bd7be320cb498294d41f879f91654c","Archon of Redemption":"2243270a2e7c4239af2e9b6b47124237","Army of the Damned":"cd59d5ffbba346faa963f3dff49a2714","Atarka Monument":"5e9fc80b96024250a282e44aab6f8feb","Atarka, World Render":"719f172bf9ad4960af66757eb54147f6","Aura Mutation":"31bddc53fa0c4aa5a92afa247e5330db","Avacyn's Pilgrim":"418bf817433a4d9abea7827014184269","Aven Gagglemaster":"a07568b25a1f4aafbd7157b41bae925d","Azorius Signet":"7a9492ab04a34251a47eb51eaba0b909","Banishing Light":"078a222f2efb44ed95d86435bd026611","Beast Within":"fb961f73e3524373b2ae1730b654640c","Bident of Thassa":"0a0241043d51438e9e72a2e727450b7d","Blasphemous Act":"70d1135eac1e40f0b47dabc5b427ce55","Bloodfell Caves":"c640715dd8ab458eb0d88948ce85655e","Bloodgift Demon":"76f21afcbd354b9f8a3115ef0fe3f0a7","Blossoming Defense":"bf65fcd05f4e4e65ac862f14d5c7d527","Blossoming Sands":"8957976ed8f5428aa775a73acb898401","Brash Taunter":"86766f3156f3446e950c5238861e1b66","Breath of Malfegor":"0e855b4e71c349b8acd5e509b1f6da5c","Burnished Hart":"ae40a6cf9dd949c4847cde90c20d13ad","Camaraderie":"3842aa5c304d482794e6e597bb49af97","Canopy Vista":"4098ed6fa0aa41c397d522013ffee175","Cartographer's Hawk":"c72102e83bcf4164a41a43e3cf1b4b72","Cemetery Reaper":"82daa7af26214b5b8828cab382a9f27c","Chain Reaction":"0609ddd21e984fe3855ec0ba1c365369","Champion of Lambholt":"812c252d99474bd48097670be91c338e","Champion of the Perished":"7bd5974757f74ed1bacac36cb924d303","Chaos Warp":"07d3dbceef284c039b7b92f1caaf1f01","Choked Estuary":"821e7025e7bf49ebb35f8bfee5663535","Cinder Barrens":"27fd519441314a47a29ad36b36525808","Cinder Glade":"6db7c44f7c1548e9817043b00c7c11c1","Citanul Hierophants":"79c3190aa18b41b696265fd12edb4e36","Citywide Bust":"c249e9db41a74da899b3d7854c538713","Clan Defiance":"aebd371a8564468798747986fc64ecfe","Cleansing Nova":"3161974118994503bc1c176a3248df86","Cloudblazer":"a5164d217c2a4a6fa22f114e3dd29579","Coastal Tower":"11721250c377475c86b778be44153114","Collective Blessing":"9d04689ed67340fd93f0d228d3bb338f","Collective Unconscious":"1219978fc2694b599ec10e7bc83059fe","Combustible Gearhulk":"8a0d3d7a6f6f472ebd4e12d9c36b3b16","Command Tower":"cae0c9e03be941519d59658a032c30e9","Commander's Insignia":"12b2b04b27d14b5d9bd69678f203cf20","Commander's Sphere":"686b4c7f5b4246258ff9782795eec264","Conclave Tribunal":"1dc26b581b1041a38155bbc8f189de15","Condemn":"8554c243b30047c28dbbf6a054b894f9","Counterspell":"5204240412db4914bfa08249a5942088","Coveted Jewel":"c4c39e75bd8844df885a44bce54d7dd2","Crippling Fear":"d74c3f9b5df94d748c27a2a9966bfe8c","Crucible of Fire":"a4cfcb176401459582e6ac1ab2a9e43b","Cruel Revival":"1c710e194cfb43a1bd01fc0007c7426e","Crush Contraband":"0bdf1bc0116e4fd0bbc81e284b92d7c0","Cultivate":"ea325c2c36cb46c5b410a3ee0b15e638","Curse of Bounty":"37d5b1a201c6475f86ccc911802e6033","Curse of Disturbance":"f8ca82ce64f84e52b8d9aec6acb562f9","Dauntless Escort":"9884a2a98ee44d27b410a4568f45f6f4","Dawn of Hope":"a02540fc42ee4f6199c8efdd1a70373c","Deadly Tempest":"dcf4fb19db454dd694796fa065e86cb7","Deep Analysis":"274ceb5307a44defbbbdac48ff4c7eec","Demanding Dragon":"f97d0541f04f44a6a20f4d909ccc90ca","Devouring Light":"a22f129b18a64328aa831079be811dcf","Dictate of Heliod":"fe2f3830d8224cb5a88adf5c5b9020a4","Dictate of the Twin Gods":"61d6f304680c43ad968661d8b0a0ad14","Diluvian Primordial":"5a12f12c90d04abeafaa44f9cdda5648","Dimir Signet":"47c621c766734a868f09339d45fd5958","Diregraf Captain":"1e2071f5c4d1433b96880227e8a289e9","Disenchant":"d32a8448de764d1ea3dd8fffeab71216","Dismal Backwater":"db659c778452436491957701cefe5415","Distant Melody":"22f719335c7b4e7cb508942f04657799","Draconic Disciple":"8cc56c65b1994203b6f3d890ab613800","Dragon Mage":"2847214cf43542db80dbf3ca8bfb8567","Dragon Tempest":"13ad7bb2e58b4cd19b3238c7f8589214","Dragon's Hoard":"398748c40ca44a7ea7c7995d5c3fa646","Dragonkin Berserker":"dcfd4840c524464a95193fb78e6ee8c5","Dragonlord's Servant":"d746adc25844424eaf19c7e80498f106","Dragonmaster Outcast":"e7198cf2795d4921be2886f208dfe1f3","Dragonspeaker Shaman":"938de39697014737b913c3c010f1b142","Drakuseth, Maw of Flames":"c8b43b68ee3547049a0f1df4a42d3791","Dream Pillager":"5284c6db82f44285ade39b136abcedd2","Dredge the Mire":"4194675b0807431c9d477e51e5a1dac0","Drumhunter":"658c63382bd4450aa2f39c57aaaa7739","Elemental Bond":"b2c1a36ea17b416890484cc02dd464c5","Elfhame Palace":"d44947993bd647d4bf9ee24c8e537ab2","Emeria Angel":"a30852be473c40f398bf2d48fcde0239","Emmara, Soul of the Accord":"e8510a1e62ca462cb036d1312729f27d","Empyrean Eagle":"3eb10702c72b4c318db2f8e17d9708e0","Enter the God-Eternals":"d1da08b808c244e8874beb93b535e90b","Eternal Skylord":"fbef216dda794565a6a3adf0de8ee5eb","Eternal Witness":"8f4555812c2240faa9d58df1b873f465","Ever-Watching Threshold":"1fb0d8fa48d04143b8c4d3b01a0bd7cc","Explosion of Riches":"e28ed670eae04a39bf3d73b687327f0f","Faerie Formation":"854c4251c07b4886ae122b3b61ca2807","Farhaven Elf":"8e4622e07723415f9afefc34619d49cc","Favorable Winds":"cc11f0f5ecdc42a79f6aecdd44dbc0a2","Feed the Swarm":"57a77cbccbe944b496516967a02c7e75","Felidar Retreat":"73febb87d56b4214b429a606f671e992","Fiery Confluence":"f6ff58e0c938458badea9aa0b566a19b","Fires of Yavimaya":"f8003d099c1a4bd38672f4d7960c972e","Flameblast Dragon":"90390efcbeca440eabee65c1a29223cb","Fleshbag Marauder":"84c7bed85f794f59b7dcf17167c140de","Foe-Razer Regent":"fde4a5a2adcc4011b8663bb2161ce966","Foreboding Ruins":"dc9055a5c9fe477ba43068b53fcea0c2","Forest":"2950dacea65347e4a80aa3de5db8d491","Fortified Village":"45dd62f8b478431faffcdd1a20bf9f76","Frontier Siege":"25b37249bf5c48ada5eac7538cc46929","Furnace Whelp":"396db1ade46349b7a4da24302f771441","Game Trail":"2e53f29560f64c6ba0a4304556b4eea0","Garruk's Uprising":"2b4746f0233a4e6f90547a269e36a206","Generous Gift":"cd0f77d1dd2841c2a5084a8c9e3262ef","Geode Rager":"f6ba7b2502bd4e019920ec84e89250b3","Geralf's Mindcrusher":"53dcdb6228d8498187041de4309f76bb","Gideon Jura":"df0d12174d83429280e2f2d86e82aae4","Gisa and Geralf":"4d8fd87ccaf7402eb543e35ba3007bcb","Gleaming Overseer":"fcfcc1b5e59e4741a5731e05fb40dfe1","Gravespawn Sovereign":"e1241a23f2da49209383b5994d7160af","Gravitational Shift":"8646383881d0464d84ba37fa1c76bbea","Gray Merchant of Asphodel":"013ff2e607a648eca0f4e933f748ad72","Graypelt Refuge":"445ffa4dd5ca4ba6b58940d8490a4032","Great Oak Guardian":"025d451d2fe046afb28f44f5d297f56a","Grimoire of the Dead":"b1faa0cd3556466490d376ae5c736f5b","Guttersnipe":"1e8f9ef5762f438fb06b9c30c4e364f0","Hanged Executioner":"eb405cb13643417cb27f4b6c3dca3a96","Harbinger of the Hunt":"52b7ea31e8534e8f82f8440388a5b110","Harmonize":"ada28221e5be4d879dc7649e01ca1e24","Harvest Season":"8d4329d0f4ae41c89b210957ba9f53fc","Hate Mirage":"ea074c367116451380642a12a2257db6","Haven of the Spirit Dragon":"f4454c38a4904ea78525c695e37b9fc9","Havengul Lich":"511f6b2fb5a045e8ae55b869ca65dfd5","Hedron Archive":"7e93db5925544477a18a7c2ae4f8d30f","Heraldic Banner":"2199a8ad095545df8d7477be2c40385b","Hoard-Smelter Dragon":"b4487bbe2bc448d98a6f9b0c7555fb47","Holdout Settlement":"abaf9baaf9f6429fadadaf57d010a80a","Hornet Nest":"579b6909a2e145d1aa029318c468f9b0","Hornet Queen":"8018058f4bec45b19a0771ea1eb84e7f","Hour of Reckoning":"91961188da2e4ba5b938154719ea0659","Hunter's Insight":"b2fb825e0c9345559f6e9b9d21566c2a","Hunter's Prowess":"40220c41f70e49e888853525d01e0ff1","Idol of Oblivion":"659d8632332640b2bb070677b0aad2b8","Indulgent Tormentor":"ff621292fd89401b830602cd22b3bb60","Inspired Sphinx":"21522dff8a6548168b6eb71270fda3cd","Island":"e3de0391c6584dabbef12aaf4eae7720","Isperia, Supreme Judge":"de3278dea0454290b05f3b19e7055091","Jade Mage":"cbfba01e2836479bafce21e1e6e99c08","Jaspera Sentinel":"35ce58076ac640589eef4cec5e3fd3a6","Josu Vess, Lich Knight":"4b7f57cc3ce348fe85aa22df749f57e7","Jubilant Skybonder":"d8a649ec4f644b50a96cac967502b3a2","Jwar Isle Refuge":"58da70cf4e85425c9439a15e6719718c","Kaervek the Merciless":"df1119288f05460c989b6cfc5cf5cd0f","Kangee's Lieutenant":"d0caf32bab0e42079aaa75c19f88cdd9","Kangee, Sky Warden":"2f146425749c47f1ae791c6cb113f425","Karametra's Favor":"98a5336d7bd7453eabb0c37e55e375bd","Kardur, Doomscourge":"19e4d494e8b34ae293e370c65ab90f15","Kazandu Refuge":"304b4d3753e144a3a892627439edaf6f","Kazuul, Tyrant of the Cliffs":"b986e9e172334817855c68b7249d00f7","Laboratory Drudge":"2a1a8e0cb3ca4da38a0825e3048ca1a2","Lazotep Plating":"2751f41322bb4aedb196225a6ba7c794","Lazotep Reaver":"8eebe9a9b25e4cf6a438cbf794d9c791","Leafkin Druid":"ad86f40b0d8d41869a43b0f0f2542280","Lightning Greaves":"f4b6e6fbf6b5436d95eb47331e60cb52","Liliana's Devotee":"e5be825b16ea49eb8ffa79af40ce4f98","Liliana's Mastery":"99833a13cc774fa3ae3edef47a30e944","Liliana's Standard Bearer":"74a77fff909a4c6a88b9a403f5625135","Liliana, Untouched by Death":"462f89517305460792af92f2b866558d","Loaming Shaman":"595ed9e965b34dc1be6b6bcd4f7ab8a0","Lord of the Accursed":"bb4e5e8ace5d48a899c8e459c92552cb","Lotleth Giant":"c3a73aaf36134ffbad043e22abe11937","Loyal Guardian":"1ba0c356ed474fd1a054444bef004508","Loyal Subordinate":"5103b06edf314f0291f1849c63ed210e","Magmaquake":"dd99b25438304543a8c742899dc6fc65","Magmatic Force":"146e7071d4b74280842f16af580b5b3d","Maja, Bretagard Protector":"b1cb8ba0484e433b8d1a2b0966f92a0e","Mana Geyser":"c9b8b1cf4dbf4ddbab4131e482cc573b","March of the Multitudes":"8ccfeffcdc19404a81ef1cd13a1ad50d","Meandering River":"01c4f4c94f3d4b4a86e31d4c49da2de8","Mentor of the Meek":"ef899443579e48dfb933e0058173f8f6","Midnight Reaper":"0dc376ef6c794ff189ed61001a6267cc","Migratory Route":"4356ddc732d34b4688b05a4fe7fd2c46","Mire Triton":"56d7e5fa65214a00afa5de8867a1192e","Molten Slagheap":"881f92f8ba2749a3a753b082612f9acf","Moorland Haunt":"df8bbd04981e45eca8357237350630cf","Mordant Dragon":"a83a2fe736df4a388dd3605eeb5f58f1","Mountain":"77c65a79b8ae4743b124c34140a06731","Murder":"f7139613488b496ba21da577b1426e6f","Myriad Landscape":"4cc7751734554394862e43606abb7469","Necromantic Selection":"0710c5603a404f4b8dd1e97a15e95dd5","Necrotic Hex":"a447bd2a110c46fa97db8b92aade1d1f","Negate":"cfc1c914fa5244928dee0c35bebc3766","Nihil Spellbomb":"b1705dced6554934847fedb2ffeeca00","Nissa's Expedition":"b0c175f47a4e4530b12962d4b5899695","Nullmage Shepherd":"ceef46254002485089e3bc9fd162e4e6","Ob Nixilis Reignited":"71c285f61e6b43b19af2edb68e9cc30e","Open the Graves":"11fedd76ee354a178cdb684414783df9","Overrun":"8ba32dbb6ce24104b902ddb1b28966df","Overseer of the Damned":"967f3962482b4080bc653add0e34426b","Overwhelming Instinct":"92f168781e464a00a9cccedd316d04b3","Path of Ancestry":"dbab5b0ac80f4604bec804da67ae1691","Path to Exile":"95761a9ffea74f8fb3c40b4c596c9f04","Pilfered Plans":"2483404317394cb19ad564b560471a86","Pilgrim's Eye":"3f1f7a0397a642389add4947e784fd08","Plains":"b41e08816ecb4b1b816bd80a74a414ac","Port Town":"2d26f87860a5428eba2718321f22811d","Prairie Stream":"88b20980f67241f697abf8353d2bbbae","Presence of Gond":"cd68e154d0924004bc585554d807e26a","Primal Might":"2c9ed4cd260e4109a96244c58ab1b76d","Profane Command":"d2ab6949a0fc4fe5ae6453b53914f34c","Provoke the Trolls":"964ae34164eb4ac19fb07243d5fe744d","Rakdos Charm":"e6d8932ce88f4adcb1e62ed687ab7aaf","Rakdos Signet":"b75d14648c8b4a1a90c53ff21e8d1a5b","Rakshasa Debaser":"11e16fad925a4b598612362f650e09e1","Rally of Wings":"6209f8ce651a450da7fb37d09144e70a","Rapacious Dragon":"af7d2077c1084cb6af563815991439b7","Read the Bones":"b64629499a134f7d9656658e7f7f1116","Reclamation Sage":"950f6323e9b94170a57c7741960a86ae","Reign of the Pit":"098c7cd15f20437d9b81f480f3f02833","Remorseful Cleric":"9058aa4296bb4a8ea2b9a1a0905de99e","Return to Nature":"6f68ce77b581465c953269df6de7827b","Rishkar, Peema Renegade":"cc7a4cb5501048db95647ca41d58b864","Rootborn Defenses":"644c57086e1e4b59a78e1d91c181d19f","Rugged Highlands":"a0300df754a9471981bb08e4d7762eac","Runehorn Hellkite":"932504ec274e49e6ac51a8ec362e83d5","Sakura-Tribe Elder":"7611e8e395294d0bbc2388ba907c4939","Salt Marsh":"a25b7167468e45158dbf52a9a4d11287","Sangromancer":"6c503202b7e44c988276729ace2af390","Sarkhan, the Dragonspeaker":"e653b95e43c84cd6a094b2cd22d0eda2","Savage Ventmaw":"4e3bd25609d84d1390fbdff4aed3f328","Scatter the Seeds":"39f59d3481664ac9868433efa315e4db","Scavenging Ooze":"c63cf56311c540688df37bfdaac08144","Scourge of Nel Toth":"acd8312a1dd642eb890851b85ceab6e2","Scourge of Valkas":"02ba0244b7fa4090a1ac1ba762dd8cc3","Scythe Specter":"232afb5387994d45a3b5f29ff5afc0c3","Sejiri Refuge":"fa5affdea4ce4adb97aa8f0b14087523","Selesnya Evangel":"8f5d1f97ebb943209d5f408cf9de826d","Selesnya Guildmage":"91d023e6b50f4bfa8b05aa349552d29a","Sephara, Sky's Blade":"33777ebfbc274e87bdd669dfc979b91f","Sepulchral Primordial":"5e4064a498e641e0b099ef97c5dd86f6","Shamanic Revelation":"c2e1151b92034415802d1f3c8e4b9d03","Sharding Sphinx":"2861e7a80cf54b65adf95e7863032c9c","Shivan Oasis":"815fd52c852a4eac8f7c879f3af5548e","Sign in Blood":"96f4824c61d44ffa904ec8ae97350704","Sinister Sabotage":"cd8bfe3c2c474a42bee8e34619cdbd41","Sky Diamond":"1ee51c340e2e4c918de87d5f4633b567","Skycat Sovereign":"8276bec21a3c425c928f866b8ef05e97","Skyscanner":"c8ab2d4a955946e8b393ad5a4189f74e","Slate of Ancestry":"68a65a3f01a44c3bbbd362cc23a8f646","Smoldering Marsh":"734dc7f3b37048cab6f72d4423797bbf","Sol Ring":"1b0235754cb5434f92efd3b81aaa3c3e","Solemn Simulacrum":"51f0884de452402c9cb3804b5bb9e055","Soul Shatter":"25bc79364c8547d58ac4094403bd5edb","Soul Snare":"05cde3d4de114f25ac06c6ffebc4615d","Spark Reaper":"53e1cff4efc84479bfe7a0e4f1614d44","Sphinx of Enlightenment":"0c681f35e58445a0aa4dbc8955ab1a8a","Sphinx's Revelation":"ebdf5426a8c7462e924afd8f4cca4559","Spit Flame":"49fed95403414a06ae3471e7d8c779ab","Spiteful Visions":"0d0c6527a82e4435b3fd6f605985c952","Sporemound":"8faa01c6f6c64348a6f339793b5ef6d0","Staggering Insight":"fe50be3b7d2249c1a2f1b2c5786090be","Steel Hellkite":"ef97714bb0e043b4b2f0414cc7997ff3","Steel-Plume Marshal":"d35353c165a94ddcb7c7f15b93a7f21c","Stensia Bloodhall":"4c936ea788024ae79d854b873cbd56ce","Storm Herd":"cd96606bb6f54caf81c41676a1090ae4","Stormfist Crusader":"4b91f3e288444a0cbbcfa156bff29bde","Submerged Boneyard":"a13b5d2aa75e431e94aa896d4ba63890","Sunbird's Invocation":"80ca8daf08984740977b6a145721f667","Sunken Hollow":"5e70853071084e47844c896389be6162","Swamp":"feb9faf58f7b4d0da3ca963832e7f711","Sweltering Suns":"7414b8daabbe4fbaafaf2c9ff650a429","Swiftfoot Boots":"adc02df9fbe84ef99beda48ea43a9242","Swords to Plowshares":"57c2632e518143e48744baafb8f7d213","Sylvan Reclamation":"3d1ac0d111ce4abda5da6cba5de714d8","Syphon Flesh":"5ecbb2b52a9d417ea73d9ab21c5308ea","Syphon Mind":"5987343fce724a258667571fc0dbb809","Talisman of Dominance":"0a0044322d0d47dfb321ce38d9aa1709","Talisman of Impulse":"b08ce0bfee14451c8a77b0ffffbb3e0d","Talisman of Indulgence":"09d2ef8606e548579a2e570871573298","Talisman of Progress":"61e49bfee1af49198134b87995ca9073","Talisman of Unity":"a69543710733444aaf1e38199ca45e42","Tectonic Giant":"449c7351ff3945979f81b8665f76bce7","Temple of Abandon":"49dceacca71a4115b0a97c7bd3c9f451","Temple of Deceit":"5f94415c369f4ebd8e6af027ede114e8","Temple of Enlightenment":"cd3b17ec662e4c84bd35dfa00944ff32","Temple of Malice":"dc85a92c4c2c4e0daf2dde84b3ab1b79","Temple of Plenty":"94acfe8952214cd4a308edee986de1dc","Terminate":"20c521dcf537470781aadefa20df57df","Theater of Horrors":"9ca8e39d832a47469bfcc6ff9b2508ae","Thermo-Alchemist":"98c79cd4c0844c01beeb70fb12dd6e69","Thought Vessel":"b54a2a3983ec4dd885996ce7ca338bb3","Thunderbreak Regent":"a985687c7a3a4de29af3450cb665d523","Thunderclap Wyvern":"b162acd73a194a7aa9bcd65c92062ab8","Thunderfoot Baloth":"743b53fb8e9d498491c1508eb99938ea","Thundermaw Hellkite":"7a517c33b5164ad98cd8d2ca27310252","Tide Skimmer":"c5708b3b103a40f3a4bb73a499277611","Timber Gorge":"dd47ccf1500c45539f25d8a192a65c4e","Time Wipe":"f7663ff4dd254259bf828bbb5c384051","Titan Hunter":"7b7655b23367478e81b7d8fca8911c9b","Tranquil Cove":"00c7fcad7f53479bbbce9d56e2507d91","Tranquil Expanse":"7fcf94e9d370458f8bc466609f8b6b91","Trostani Discordant":"d1706e611804410bb82f8e862555fe1a","True Conviction":"e3afc89358bb462094e9ed544e93d830","Tyrant's Familiar":"4f0c7f3b337e4b618ab95e67a0979a9a","Unbreathing Horde":"9d656bd082e34261b1bb929beb87d172","Undead Augur":"ee44589e2c1043d6815184b34986e35b","Undermine":"5957446fff3a4bbba498c95bc52eda84","Unleash Fury":"04b1739cbc65482c81fdfa08d6f29fcd","Unlicensed Disintegration":"dd56ade437aa444fad5415cf0468824e","Unstable Obelisk":"9a9df1f738e24802b379d1e6d0ad4ec4","Urborg Volcano":"1a933ff7163f429c872eeba90e9e96a5","Valor in Akros":"3877146cda554edd8335be038f4bf620","Vampire Nighthawk":"51901ebb27ba4dc392242bd31024c2b7","Vampiric Rites":"da2e2548a6ab49688fb3c9b212443a81","Vandalblast":"71eb87ef7e794370a367f8960cfe188e","Vela the Night-Clad":"e84372fe90a84910a768c13c7069c978","Vengeful Dead":"eb020ae54e514348a013f723996b8ad4","Verdant Force":"c9c5e3b2fbb645af8977833922302eb3","Verix Bladewing":"359be9e6077043e3853c95e5317e9d30","Victimize":"6f5e8449f64341b4977f45a6f62546d4","Vitu-Ghazi, the City-Tree":"4c593a74cf3643a1be4e63ab2fbd180e","Vizier of the Scorpion":"db9beaff825349d9b57f20b8cf14c802","Voice of Many":"d8fc52bad7fc426a8c157237bdb498c3","Vow of Duty":"2348be2b2d3342148f80cf17c9619eb5","Warden of Evos Isle":"2efe4dc9915b47158fff1862682a7305","Wayfarer's Bauble":"ef1f727a79d342a6aa20fa55499a4979","White Sun's Zenith":"b46f1b5ada714723afc64ab2a569311b","Wild Ricochet":"ecbe871707a141459cd4b98b145c2d4c","Wildfire Devils":"3c8763603608422ab70984b32be8daa0","Windreader Sphinx":"2a36def660a549c7bb4f4f0960ab8f3b","Winged Words":"75fc5499ed624de4a9bc72b47f72bd2e","Withered Wretch":"f5ec82d7b29f4e38833df9943ecfaec1","Worn Powerstone":"98f3692ab59943d896ec4b78e06e8d7d","Zombie Apocalypse":"31928e6047584d84ad0a2a1634cabf39"};
+  const cardUrl = name => {
+    const id = CARD_IMG[name].replace(/^(.{8})(.{4})(.{4})(.{4})/, '$1-$2-$3-$4-');
+    return `https://cards.scryfall.io/normal/front/${id[0]}/${id[1]}/${id}.jpg`;
+  };
+  // A deck's 100 cards by name: the commander first, then the rest (a count like "15 Island" dropped).
+  const deckCards = k => [DECKS[k].commander].concat(DECKS[k].cards.split('|').map(c => c.replace(/^\d+ /, '')));
+  const BASICS = ['Plains', 'Island', 'Swamp', 'Mountain', 'Forest'];
+  // Random skips the basic lands; their art isn't much of a wallpaper.
+  const randomCard = k => { const pool = deckCards(k).filter(c => !BASICS.includes(c)); return pool[Math.floor(Math.random() * pool.length)]; };
   const patternUrl = k => `url(patterns/${k}.png)`;
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
@@ -564,8 +596,12 @@ details.field .patterns { margin-top: 6px; }
   if (!Array.isArray(state.names) || state.names.length !== 4 || state.names.join() === OLD_DEFAULT_NAMES.join()) {
     state.names = DEFAULT_NAMES.slice();
   }
+  // A blank name (a box left empty) is back to that player's default, so nobody goes missing.
+  state.names = state.names.map((n, i) => typeof n === 'string' && n.trim() ? n : DEFAULT_NAMES[i]);
   if (!Array.isArray(state.colors) || state.colors.length !== 4) state.colors = DEFAULT_COLORS.slice();
   if (!Array.isArray(state.patterns) || state.patterns.length !== 4) state.patterns = ['marble', 'marble', 'marble', 'marble'];
+  // Per player, the card from their deck shown when their wallpaper is "Deck card" (null: none yet).
+  if (!Array.isArray(state.cards) || state.cards.length !== 4) state.cards = [null, null, null, null];
   // Per table size, the game in progress: its id, when its clock started, and when it ended (null while on).
   if (!state.meta || typeof state.meta !== 'object') state.meta = {};
   KEYS.forEach(k => { if (!state.meta[k] || typeof state.meta[k] !== 'object') state.meta[k] = { id: null, at: null }; });
@@ -609,6 +645,8 @@ details.field .patterns { margin-top: 6px; }
   const edgeOf = i => players[i].e;
   const colorOf = e => 'k-' + (SCHEMES[state.colors[e]] ? state.colors[e] : DEFAULT_COLORS[e]);
   const patternOf = e => PATTERNS[state.patterns[e]] ? state.patterns[e] : 'marble';
+  // The player's picked card if it's in the deck they're playing now, else their commander.
+  const cardOf = e => { const k = colorOf(e).slice(2); return deckCards(k).includes(state.cards[e]) ? state.cards[e] : DECKS[k].commander; };
   // Where player i sits on this phone: the table turns so this phone's player is at the bottom.
   // Rand's layout is the reference; on everyone else's phone the left and right seats swap, which
   // matches how the group actually sits.
@@ -705,9 +743,10 @@ details.field .patterns { margin-top: 6px; }
     seat.className = `seat ${spot} ${colorOf(e)}`;
     seat.style.setProperty('--pattern', patternUrl(patternOf(e)));
     seat.style.setProperty('--art', `url(${artUrl(colorOf(e).slice(2), 'art_crop')})`);
+    if (patternOf(e) === CARD) seat.style.setProperty('--card', `url(${cardUrl(cardOf(e))})`);
     const opps = oppsOf(i);
     seat.innerHTML = `
-      <div class="face${patternOf(e) === ART ? ' arty' : ''}">
+      <div class="face${patternOf(e) === ART ? ' arty' : patternOf(e) === CARD ? ' carded' : ''}">
         <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life">&minus;</button>
         <button type="button" class="zone plus" aria-label="${nameOf(e)} gain 1 life">+</button>
         <div class="readout">
@@ -784,6 +823,7 @@ details.field .patterns { margin-top: 6px; }
     let refit = false;
     seats[i].forEach(seat => {
       seat.querySelector('.num').textContent = p.life;
+      seat.querySelector('.life').dataset.len = String(p.life).length;
       seat.classList.toggle('out', !!why);
       const name = seat.querySelector('.name');
       const html = `<span class="nm">${label}</span>` + (why ? `<span class="why"><span class="nm">out, ${why}</span></span>` : '');
@@ -1010,14 +1050,18 @@ details.field .patterns { margin-top: 6px; }
         <span><b>${d.name}</b><small>${esc(d.commander)}</small></span></button>`;
     }).join('');
     const deck = DECKS[colorOf(mine).slice(2)];
+    const on = c => patternOf(mine) === CARD && cardOf(mine) === c ? ' class="on"' : '';
     document.getElementById('listLabel').textContent = deck.name + ' decklist';
     document.getElementById('decklist').innerHTML = `
-      <div class="card"><img src="${artUrl(colorOf(mine).slice(2), 'normal')}" alt="${esc(deck.commander)}" loading="lazy" onerror="this.remove()"></div>
-      <p class="cmdr">Commander: <b>${esc(deck.commander)}</b></p>
-      <ul>${deck.cards.split('|').map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+      <div class="card"><img src="${patternOf(mine) === CARD ? cardUrl(cardOf(mine)) : artUrl(colorOf(mine).slice(2), 'normal')}" alt="${esc(patternOf(mine) === CARD ? cardOf(mine) : deck.commander)}" loading="lazy" onerror="this.remove()"></div>
+      <p class="hint">Tap a card to make its top half your wallpaper.</p>
+      <button type="button" class="action mini" data-random="${mine}">Random card</button>
+      <p class="cmdr">Commander: <button type="button" data-card="${esc(deck.commander)}" data-e="${mine}"${on(deck.commander)}><b>${esc(deck.commander)}</b></button></p>
+      <ul>${deck.cards.split('|').map(c => `<li><button type="button" data-card="${esc(c.replace(/^\d+ /, ''))}" data-e="${mine}"${on(c.replace(/^\d+ /, ''))}>${esc(c)}</button></li>`).join('')}</ul>
       <p class="src">100 cards. Card images from Scryfall.</p>`;
     document.getElementById('patterns').innerHTML =
       `<button type="button" class="arty${patternOf(mine) === ART ? ' on' : ''}" style="--art: url(${artUrl(colorOf(mine).slice(2), 'art_crop')})" data-v="${ART}" data-e="${mine}" aria-label="Commander art" title="Commander art"></button>` +
+      `<button type="button" class="carded${patternOf(mine) === CARD ? ' on' : ''}" style="--card: url(${cardUrl(cardOf(mine))})" data-v="${CARD}" data-e="${mine}" aria-label="Deck card: ${esc(cardOf(mine))}" title="Deck card: ${esc(cardOf(mine))}"></button>` +
       PATTERN_LIST.map(([k, name, n]) =>
       `<button type="button" class="${colorOf(mine)}${patternOf(mine) === k ? ' on' : ''}" style="--pattern: ${patternUrl(k)}" data-v="${k}" data-e="${mine}" data-n="${n}" aria-label="${name}" title="${n}. ${name}"></button>`).join('');
     state.names.forEach((n, i) => {
@@ -1061,6 +1105,18 @@ details.field .patterns { margin-top: 6px; }
     state.patterns[+b.dataset.e] = b.dataset.v;
     send({ ['patterns/' + b.dataset.e]: b.dataset.v });
     save(); build(); syncMenu();
+  });
+  // Picking a card (or a random one) from the decklist makes it the wallpaper.
+  function useCard(e, name) {
+    state.cards[e] = name; state.patterns[e] = CARD;
+    send({ ['cards/' + e]: name, ['patterns/' + e]: CARD });
+    save(); build(); syncMenu(); buzz();
+  }
+  document.getElementById('decklist').addEventListener('click', e => {
+    const b = e.target.closest('[data-card], [data-random]');
+    if (!b) return;
+    if (b.dataset.random != null) useCard(+b.dataset.random, randomCard(colorOf(+b.dataset.random).slice(2)));
+    else useCard(+b.dataset.e, b.dataset.card);
   });
 
   function paintPairs() {
@@ -1126,9 +1182,18 @@ details.field .patterns { margin-top: 6px; }
     newGameBtn.textContent = 'Tap again to reset everyone';
     armTimer = setTimeout(disarm, 3000);
   });
-  [0, 1, 2, 3].forEach(i => document.getElementById('name' + i).addEventListener('input', e => {
-    state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
-  }));
+  [0, 1, 2, 3].forEach(i => {
+    const input = document.getElementById('name' + i);
+    input.addEventListener('input', e => {
+      state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
+    });
+    // Leaving the box empty puts the default name back rather than leaving it blank.
+    input.addEventListener('change', () => {
+      if (input.value.trim()) return;
+      state.names[i] = input.value = DEFAULT_NAMES[i];
+      send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
+    });
+  });
   document.getElementById('pickFirst').addEventListener('click', () => { closeMenu(); pickFirst(); });
 
   // Conceding (or taking it back) only touches this phone's seat, and takes a second tap.
@@ -1171,7 +1236,7 @@ details.field .patterns { margin-top: 6px; }
         const e = edgesOf(k)[i];
         return {
           name: state.names[e].trim() || DEFAULT_NAMES[e], colors: colorOf(e).slice(2), pattern: patternOf(e),
-          deck: DECKS[colorOf(e).slice(2)].name,
+          deck: DECKS[colorOf(e).slice(2)].name, card: patternOf(e) === CARD ? cardOf(e) : null,
           life: p.life, out: outReason(p) || null, won: i === alive[0],
           turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
         };
@@ -1294,7 +1359,8 @@ details.field .patterns { margin-top: 6px; }
 
   const inc = d => ({ '.sv': { increment: d } });
   const allPaths = () => ['mode', 'start', 'pairs', 'names/0', 'names/1', 'names/2', 'names/3',
-    'colors/0', 'colors/1', 'colors/2', 'colors/3', 'patterns/0', 'patterns/1', 'patterns/2', 'patterns/3']
+    'colors/0', 'colors/1', 'colors/2', 'colors/3', 'patterns/0', 'patterns/1', 'patterns/2', 'patterns/3',
+    'cards/0', 'cards/1', 'cards/2', 'cards/3']
     .concat(...KEYS.map(k => [].concat(...Array.from({ length: SIZE[k] }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${k}/${i}/${f}`)))),
       ...KEYS.map(k => [`meta/${k}/id`, `meta/${k}/at`, `meta/${k}/end`]), TURN_KEYS.map(k => 'turns/' + k),
@@ -1305,7 +1371,7 @@ details.field .patterns { margin-top: 6px; }
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, names: state.names, colors: state.colors, patterns: state.patterns, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
+  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, names: state.names, colors: state.colors, patterns: state.patterns, cards: state.cards, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -1324,9 +1390,11 @@ details.field .patterns { margin-top: 6px; }
     if (p === 'mode') return MODES.includes(v);
     if (p === 'pairs') return [1, 2, 3].includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
-    if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12;
+    // A blank name from another phone (someone mid-edit) is ignored; this phone keeps the last real one.
+    if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12 && !!v.trim();
     if (p.startsWith('colors/')) return Object.prototype.hasOwnProperty.call(SCHEMES, v);
     if (p.startsWith('patterns/')) return Object.prototype.hasOwnProperty.call(PATTERNS, v);
+    if (p.startsWith('cards/')) return v === null || Object.prototype.hasOwnProperty.call(CARD_IMG, v);
     if (p.endsWith('/conceded')) return typeof v === 'boolean';
     if (p.startsWith('clock/')) return v === null || (typeof v === 'number' && isFinite(v) && v >= 0);
     if (p.startsWith('turns/')) return v === null || (Number.isInteger(v) && v >= 0 && v < SIZE[p.slice(6)]);
