@@ -23,18 +23,20 @@ Never send the group an artifact link to play on.
 The site only changes when files land on `main` of `BigLob/commander-life`:
 
 1. Make and test the change (in `BigLob/Mtg` or directly here).
-2. Copy `index.html`, `archenemy.html` and `patterns/` into this repo, commit, push to `main`.
+2. Copy `index.html`, `archenemy.html`, `patterns/` and `fonts/` into this repo, commit, push to `main`.
 3. GitHub Pages republishes in a minute or two. Phones may need a reload.
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
 Playwright with the network mocked (route `firebaseio` requests, replace `EventSource`).
-Google Fonts is reachable: launch Chromium with `proxy: { server: process.env.HTTPS_PROXY }` and
-`ignoreHTTPSErrors: true` so text is measured in the real fonts (the fallbacks are much wider).
+`index.html` loads its fonts from `fonts/`, so route the page's own files to the local checkout.
+`archenemy.html` still uses Google Fonts, which is reachable: launch Chromium with
+`proxy: { server: process.env.HTTPS_PROXY }` and `ignoreHTTPSErrors: true` so text is measured in the
+real fonts (the fallbacks are much wider).
 After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.16)
+### `index.html`: Commander Life (current v3.17)
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn.
 - **This phone is**: each phone picks its owner (kept on that phone only).
@@ -73,6 +75,11 @@ After a deploy, ask the user to check the version in the menu footer.
 - Tap a side for ±1, hold for ±10. Commander damage: the dagger button opens the attacker chips;
   while one is marked, life lost also counts as their commander damage. 21 from one commander is lethal.
 - Each player picks a two-color pair and one of 50 pattern masks (`patterns/*.png`) for their seat.
+- **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold for names, life
+  totals and the menu title; MPlantin for everything else. Both are limited by `unicode-range` to
+  plain ASCII (plus Matrix's minus), because their other symbols are blank or wrongly mapped
+  (×, ·, … fall back to Georgia). `Matrix-Bold.woff` has patched line metrics: the original's
+  positive descent made the line box half height and clipped the names.
 - Life totals and names are white with a black outline; names are large (v3.13: up to 34px, 13% of the seat's height), and long ones end in an ellipsis.
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
 - **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
