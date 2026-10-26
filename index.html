@@ -373,6 +373,18 @@ details.field[open] > summary { margin-bottom: 10px; }
 .duel .seat.turn .turn-bar { display: block; }
 /* The tiles are narrow, so their dagger and flag are sized by width to stay tappable. */
 .duel .tray, .duel .flag { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
+/* The deck's mana symbols in the seat's bottom-left corner, as its player sees it (v3.38), level
+   with the dagger opposite. Taps go through them to the life zone. Side by side, the player's own
+   tile has the concede flag there, so the symbols sit just above it. */
+.seat-mana {
+  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: calc(5 * var(--cqw, 1vw)); z-index: 2;
+  height: 2.4em; display: flex; align-items: center; pointer-events: none;
+  font-size: clamp(12px, min(calc(8.5 * var(--cqh, 1vh)), calc(4.3 * var(--cqw, 1vw))), 19px);
+}
+.seat-mana .mana { display: flex; gap: .15em; }
+.seat-mana svg { display: block; width: 1.25em; height: 1.25em; filter: drop-shadow(0 0 0 #000) drop-shadow(0 1px 1.5px rgba(0, 0, 0, .8)); }
+.duel .seat-mana { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
+.seat-mana.by-flag { bottom: calc(6 * var(--cqh, 1vh) + 2.2em); }
 .seat.marking .pop { display: flex; position: static; padding: 0; background: none; }
 
 .menu-btn {
@@ -532,7 +544,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.37';
+  const VERSION = '3.38';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -794,6 +806,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         </div>
         ${state.mode > 1 ? `<button type="button" class="turn-btn" aria-label="${nameOf(e)}'s turn">${ICON_TAP}</button>` : ''}
         ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
+        ${state.mode > 1 ? `<div class="seat-mana${flag ? ' by-flag' : ''}" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
       </div>
       <i class="turn-bar" aria-hidden="true"></i>`;
     bindZone(seat.querySelector('.minus'), i, -1);

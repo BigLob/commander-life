@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.37)
+### `index.html`: Commander Life (current v3.38)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -168,6 +168,8 @@ them and `.gitignore` now ignores PNGs at the root).
   v3.24 every name on the board is drawn at one shared size, the largest at which all of them fit;
   an "out" line too wide for its seat shrinks on its own (`--wfit`).
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
+  Since v3.38 the deck's mana symbols sit in the bottom-left corner (`.seat-mana`, from `manaOf()`;
+  not in "Just me"); taps pass through them, and side by side they sit above the concede flag.
 - **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
   It becomes Rejoin. A new game clears all concessions.
 - **Game log** (v3.2; automatic since v3.14): an invisible clock starts at a game's first life change
