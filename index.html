@@ -555,7 +555,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.39';
+  const VERSION = '3.40';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -771,9 +771,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     const lay = layoutOf(n);
     board.className = duel ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'spot' ? ' spot' : '');
-    // In the spotlight, the turn's player and then everyone after them in turn order.
+    // In the spotlight, the turn's player and then everyone after them in turn order (see tapTurn).
     builtSpot = lay === 'spot' ? spotPlayer() : null;
-    const place = i => lay !== 'spot' ? 's' + posOf(i) : (i - builtSpot + n) % n ? 'sp-' + (i - builtSpot + n) % n : 'sp-main';
+    const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
@@ -1019,14 +1019,15 @@ details.field[open] > summary { margin-bottom: 10px; }
     settle(k, was);
   }
   // ---- turns ----
-  // Tapping the button of the player whose turn it is passes it on, clockwise (the order of the
-  // edges, starting at the bottom), past anyone who is out. Tapping anyone else's makes it theirs,
+  // Tapping the button of the player whose turn it is passes it to their left, clockwise around
+  // the real table (v3.40: Rand → Lenn → Trent → Andrew; before, it went the other way, to the
+  // right), past anyone who is out. Tapping anyone else's makes it theirs,
   // which starts the tracker or corrects it.
   function tapTurn(i) {
     const { k, j } = players[i], n = SIZE[k], g = state.games[k];
     let next = j;
     if (state.turns[k] === j) {
-      for (let s = 1; s < n; s++) if (!outReason(g[(j + s) % n])) { next = (j + s) % n; break; }
+      for (let s = 1; s < n; s++) if (!outReason(g[(j - s + n) % n])) { next = (j - s + n) % n; break; }
     }
     setTurn(k, next);
     buzz();
@@ -1461,7 +1462,8 @@ details.field[open] > summary { margin-bottom: 10px; }
       let k = 0;
       const tick = () => {
         own.flat().forEach(s => s.classList.remove('pick'));
-        const idx = k % n;
+        // Backwards through the seats, which is clockwise, the way turns pass.
+        const idx = (n - k % n) % n;
         own[idx].forEach(s => s.classList.add('pick'));
         buzz();
         if (k >= steps) {

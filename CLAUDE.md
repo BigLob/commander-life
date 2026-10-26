@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.39)
+### `index.html`: Commander Life (current v3.40)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -110,8 +110,10 @@ them and `.gitignore` now ignores PNGs at the root).
   the turn bar stretched over the art as a border; every layout but side by side). v3.30 draws
   the symbol at 80% of the button and v3.32 at 54% (a third smaller again); the 3.2em tap target is
   unchanged.
-  Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
-  Trent → Lenn), skipping anyone out. Tapping anyone else's makes it their turn. Once someone has
+  Tapping the current player's button passes the turn to their left, clockwise around the real
+  table (v3.40: Rand → Lenn → Trent → Andrew, backwards through the edge order; before v3.40 it went
+  Rand → Andrew, the wrong way), skipping anyone out. The spotlight's top row and Pick who goes
+  first's highlight follow the same order. Tapping anyone else's makes it their turn. Once someone has
   the turn, everyone else's button goes dark (v3.9; no ring on the seat). In side-by-side 1v1, a
   bar runs along the current player's two tiles where they meet the middle of the phone.
   Pick who goes first sets the turn, and New game clears it.
