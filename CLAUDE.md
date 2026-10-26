@@ -19,6 +19,10 @@ End every reply about anything in this repo with icon-only links to both live pa
 | Source and history | repo `BigLob/Mtg` (see Branches below) |
 | Live sync | Firebase Realtime Database `https://commander-life-39708-default-rtdb.firebaseio.com` |
 
+**Buying cards:** `buying-guide.md` holds the group's price reference (booster packs, precons, the
+Foundations beginner decks, precon win rates). When the user asks whether a price is good, check it
+there, and update it when newer prices turn up.
+
 **claude.ai artifact links can't sync.** Artifact pages block connections to Firebase, so they always
 show "Offline, this phone only". The Commander Life artifact (claude.ai/artifact/LzFGUh29B93Zb2sjM7uEGU)
 and the old Archenemy Table artifact (claude.ai/artifact/RuiCBfVWbVowusRFS4D5zc) are previews only.
