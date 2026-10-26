@@ -3,6 +3,12 @@
 Life counters for a Magic: The Gathering Commander group, played on everyone's phones and kept in
 sync live. Plain HTML pages, no build step, no framework.
 
+## Replies
+
+End every reply about anything in this repo with links to both live pages, as icon links on one line:
+
+[🃏 Commander Life](https://biglob.github.io/commander-life/) · [😈 Archenemy](https://biglob.github.io/commander-life/archenemy.html)
+
 ## Where things live
 
 | What | Where |
