@@ -356,6 +356,13 @@ details.field[open] > summary { margin-bottom: 10px; }
   filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000) drop-shadow(0 0 10px rgba(255, 179, 71, .9));
 }
 .seat.wait .turn-btn { color: var(--turn-dim); }
+/* The current player's whole seat gets a gold border (v3.37), easier to spot across the table than
+   the symbol alone. Side by side has its turn bar instead. */
+/* Drawn by the seat's turn bar, laid over the art as a frame (an outline would sit under the art). */
+.table .seat.turn .turn-bar {
+  display: block; top: 0; bottom: 0; height: auto; border-radius: inherit;
+  background: none; border: 3px solid var(--turn); box-shadow: inset 0 0 16px rgba(255, 179, 71, .55);
+}
 /* Side by side, a gold bar marks the turn along the player's two tiles where they meet the middle. */
 .turn-bar {
   position: absolute; left: 0; right: 0; height: 7px; z-index: 3; pointer-events: none; display: none;
@@ -525,7 +532,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.36';
+  const VERSION = '3.37';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];

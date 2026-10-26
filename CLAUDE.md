@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.36)
+### `index.html`: Commander Life (current v3.37)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -105,7 +105,9 @@ them and `.gitignore` now ignores PNGs at the root).
 - **Turn tracker** (v3.8; 33% bigger in v3.10): a button at the bottom center of every seat (not in "Just me").
   Since v3.27 it's Magic's tap symbol (`ICON_TAP`, from the Mana font's SVGs, github.com/andrewgioia/mana)
   instead of the pink circle the user hated: cream before anyone has the turn, then gold and glowing
-  on the current player and dim on everyone else. The side-by-side turn bar is gold too. v3.30 draws
+  on the current player and dim on everyone else. The side-by-side turn bar is gold too.
+  Since v3.37 the current player's seat also gets a gold frame and glow (`.table .seat.turn .turn-bar`,
+  the turn bar stretched over the art as a border; every layout but side by side). v3.30 draws
   the symbol at 80% of the button and v3.32 at 54% (a third smaller again); the 3.2em tap target is
   unchanged.
   Tapping the current player's button passes the turn clockwise in edge order (Rand → Andrew →
