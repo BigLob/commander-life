@@ -112,6 +112,12 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   background: var(--accent);
   -webkit-mask: var(--pattern) 0 0 / 100% 100% no-repeat; mask: var(--pattern) 0 0 / 100% 100% no-repeat;
 }
+/* The "Commander art" wallpaper: the seat's deck's commander art fills the face, turned with it so
+   it's upright for its player, dimmed a little so the white totals stay readable. */
+.face.arty::before, .patterns button.arty::before {
+  background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)), var(--art) center / cover no-repeat;
+  -webkit-mask: none; mask: none;
+}
 .face {
   position: absolute; top: 50%; left: 50%;
   width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh));
@@ -369,6 +375,8 @@ details.field .patterns { margin-top: 6px; }
 .action.armed, .seg button.armed { background: var(--hot); color: var(--table); }
 .action.mini { align-self: center; padding: 6px 18px; border-radius: 999px; font-size: 15px; }
 .ghost { border: 1px solid var(--line); border-radius: 12px; background: transparent; padding: 12px; font-size: 17px; color: var(--ink); }
+/* Back to game is as white as New game, so the way out is easy to find. */
+#closeMenu { background: var(--ink); border-color: var(--ink); color: var(--table); }
 /* Players: the ring picks whose phone this is, the field renames them. */
 .who { display: grid; gap: 8px; }
 .who-row { display: flex; align-items: center; gap: 10px; }
@@ -476,7 +484,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.21';
+  const VERSION = '3.22';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -498,11 +506,16 @@ details.field .patterns { margin-top: 6px; }
       cards: 'Ajani, Caller of the Pride|Arcane Signet|Aura Mutation|Avacyn\'s Pilgrim|Blossoming Sands|Camaraderie|Canopy Vista|Champion of Lambholt|Citanul Hierophants|Citywide Bust|Collective Blessing|Collective Unconscious|Command Tower|Commander\'s Insignia|Commander\'s Sphere|Conclave Tribunal|Curse of Bounty|Dauntless Escort|Dawn of Hope|Devouring Light|Dictate of Heliod|Elfhame Palace|Eternal Witness|Farhaven Elf|Felidar Retreat|15 Forest|Fortified Village|Graypelt Refuge|Great Oak Guardian|Harmonize|Harvest Season|Holdout Settlement|Hornet Nest|Hornet Queen|Hour of Reckoning|Idol of Oblivion|Jade Mage|Jaspera Sentinel|Karametra\'s Favor|Leafkin Druid|Loyal Guardian|Maja, Bretagard Protector|March of the Multitudes|Mentor of the Meek|Nissa\'s Expedition|Nullmage Shepherd|Overrun|Overwhelming Instinct|Path to Exile|14 Plains|Presence of Gond|Reclamation Sage|Rishkar, Peema Renegade|Rootborn Defenses|Scatter the Seeds|Scavenging Ooze|Selesnya Evangel|Selesnya Guildmage|Slate of Ancestry|Sol Ring|Sporemound|Sylvan Reclamation|Talisman of Unity|Temple of Plenty|Thunderfoot Baloth|Tranquil Expanse|Trostani Discordant|Valor in Akros|Verdant Force|Vitu-Ghazi, the City-Tree|Voice of Many|White Sun\'s Zenith' },
   };
   // Scryfall answers these with the card's image (art_crop: just the art; normal: the whole card).
-  const artUrl = (k, version) => `https://api.scryfall.com/cards/scd/${DECKS[k].no}?format=image&version=${version}`;
+  // The commanders' art (art/<pair>.jpg) and cards (art/<pair>-card.jpg), saved from Scryfall's
+  // art_crop and normal images so seats don't ask Scryfall every time they're drawn.
+  const artUrl = (k, version) => `art/${k}${version === 'normal' ? '-card' : ''}.jpg`;
   // How the second color lies over the first, each covering 30% of the seat: [mask file, name, proof sheet number].
   const PATTERN_LIST = [['diagonal-split', 'Diagonal split', 2], ['diagonal-blend', 'Diagonal blend', 4], ['horizontal-split', 'Horizontal split', 6], ['split', 'Vertical split', 8], ['corner-sweep', 'Corner sweep', 10], ['edge-vignette', 'Edge vignette', 12], ['center-glow', 'Center glow', 14], ['diagonal-stripes', 'Diagonal stripes', 16], ['pinstripes', 'Pinstripes', 18], ['wide-bands', 'Wide bands', 20], ['vertical-stripes', 'Vertical stripes', 22], ['chevrons', 'Chevrons', 24], ['polka-dots', 'Polka dots', 26], ['dots', 'Big dots', 28], ['grid-lines', 'Grid lines', 30], ['crosshatch', 'Crosshatch', 32], ['wave-split', 'Wave split', 34], ['wavy-stripes', 'Wavy stripes', 36], ['marble', 'Marble', 38], ['marble-soft', 'Marble, soft', 40], ['clouds', 'Clouds', 42], ['camouflage', 'Camouflage', 44], ['wood-grain', 'Wood grain', 46], ['ripples', 'Ripples', 48], ['sunburst', 'Sunburst', 50], ['pie-wedge', 'Pie wedge', 52], ['zigzag-split', 'Zigzag split', 54], ['frame', 'Frame', 56], ['bands', 'Edge bands', 58], ['vertical-fade', 'Vertical fade', 60], ['mesh-gradient', 'Mesh gradient', 62], ['aurora', 'Aurora', 64], ['brushstrokes', 'Brushstrokes', 66], ['splatter', 'Splatter', 68], ['low-poly-facets', 'Low-poly facets', 70], ['cracked-earth', 'Cracked earth', 72], ['hexagons', 'Hexagons', 74], ['argyle', 'Argyle', 76], ['scales', 'Scales', 78], ['herringbone', 'Herringbone', 80], ['plaid', 'Plaid', 82], ['grain-dither', 'Grain dither', 84], ['halftone', 'Halftone', 86], ['veins', 'Lightning veins', 88], ['liquid-swirl', 'Liquid swirl', 90], ['contour-lines', 'Contour lines', 92], ['opposite-corners', 'Opposite corners', 94], ['arch', 'Arch', 96], ['shards', 'Shards', 98], ['diagonal-tri-band', 'Diagonal tri-band', 100]];
   const PATTERNS = {};
   PATTERN_LIST.forEach(([k, name]) => { PATTERNS[k] = name; });
+  // Not a mask: the seat shows its deck's commander art instead (see .arty).
+  const ART = 'art';
+  PATTERNS[ART] = 'Commander art';
   const patternUrl = k => `url(patterns/${k}.png)`;
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
@@ -691,9 +704,10 @@ details.field .patterns { margin-top: 6px; }
     const e = edgeOf(i);
     seat.className = `seat ${spot} ${colorOf(e)}`;
     seat.style.setProperty('--pattern', patternUrl(patternOf(e)));
+    seat.style.setProperty('--art', `url(${artUrl(colorOf(e).slice(2), 'art_crop')})`);
     const opps = oppsOf(i);
     seat.innerHTML = `
-      <div class="face">
+      <div class="face${patternOf(e) === ART ? ' arty' : ''}">
         <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life">&minus;</button>
         <button type="button" class="zone plus" aria-label="${nameOf(e)} gain 1 life">+</button>
         <div class="readout">
@@ -1002,7 +1016,9 @@ details.field .patterns { margin-top: 6px; }
       <p class="cmdr">Commander: <b>${esc(deck.commander)}</b></p>
       <ul>${deck.cards.split('|').map(c => `<li>${esc(c)}</li>`).join('')}</ul>
       <p class="src">100 cards. Card images from Scryfall.</p>`;
-    document.getElementById('patterns').innerHTML = PATTERN_LIST.map(([k, name, n]) =>
+    document.getElementById('patterns').innerHTML =
+      `<button type="button" class="arty${patternOf(mine) === ART ? ' on' : ''}" style="--art: url(${artUrl(colorOf(mine).slice(2), 'art_crop')})" data-v="${ART}" data-e="${mine}" aria-label="Commander art" title="Commander art"></button>` +
+      PATTERN_LIST.map(([k, name, n]) =>
       `<button type="button" class="${colorOf(mine)}${patternOf(mine) === k ? ' on' : ''}" style="--pattern: ${patternUrl(k)}" data-v="${k}" data-e="${mine}" data-n="${n}" aria-label="${name}" title="${n}. ${name}"></button>`).join('');
     state.names.forEach((n, i) => {
       const input = document.getElementById('name' + i);
