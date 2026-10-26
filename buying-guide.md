@@ -34,7 +34,8 @@ against TCGplayer before buying.
 ### Foundations Commander Decks (Oct 2, 2026): the closest match to our Starter decks
 
 Built for beginners. Scrollvault's 1–10 power tool rates them 3.9–4.5 (average 4.3), the same as our
-2022 Starter Commander Decks (4.2–4.4); regular precons average 4.7. No win-rate data yet.
+2022 Starter Commander Decks (4.2–4.4); regular precons average 4.7. Only Calling All Angels has a
+win rate so far (22.0%, playgroup.gg, Oct 2026), right among our Starter decks.
 
 | Deck | Color | Commander | Theme |
 | --- | --- | --- | --- |
@@ -73,6 +74,7 @@ wins 25%. Only the rows found through search are here.
 | Temur Roar | Tarkir: Dragonstorm (2025) | G U R | 28.7% | 109 |
 | Token Triumph (ours) | Starter deck (2022) | G W | 27.8% | 180 |
 | Prismari Artistry | Secrets of Strixhaven (2026) | U R | 25.3% | 338 |
+| Calling All Angels | Foundations Commander (2026) | W | 22.0% | 495 |
 | Draconic Destruction (ours) | Starter deck (2022) | R G | 21.5% | 229 |
 | Chaos Incarnate (ours) | Starter deck (2022) | B R | 21.2% | 141 |
 | Grave Danger (ours) | Starter deck (2022) | U B | 20.8% | 200 |
