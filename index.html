@@ -242,8 +242,17 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .deck .art img, .decklist img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .deck span { flex: 1; display: flex; flex-direction: column; min-width: 0; }
 /* Tapping a deck opens it (its commander card, a Play button, its list); only Play changes decks. */
-.deck { width: 100%; }
-.deck .tag { flex: none; font-style: normal; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--hot); }
+.deck { width: 100%; box-sizing: border-box; }
+/* Each deck's two Magic colors as a yin-yang, without the dots. */
+.deck .yy { flex: none; width: 40px; height: 40px; }
+.decks > div { min-width: 0; }
+/* The deck being played is tagged on its art. */
+.deck .art { position: relative; }
+.deck .tag {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 1px 0; text-align: center;
+  background: rgba(0, 0, 0, .72); color: var(--hot);
+  font-style: normal; font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+}
 .deck.open { border-color: var(--line); }
 .deck-more { display: grid; gap: 10px; padding: 10px 4px 8px; }
 .deck-more .card { width: min(100%, 230px); aspect-ratio: 488 / 680; margin: 0 auto; border-radius: 11px; overflow: hidden; background: rgba(255, 255, 255, .06); }
@@ -1064,14 +1073,24 @@ details.field[open] > summary { margin-bottom: 10px; }
   // The decks: tapping one opens it to show its commander card and list, so anyone can look at any
   // deck; only its Play button switches this player to it. One deck is open at a time.
   let openDeck = null;
+  // Magic's five colors, and each deck's pair in card order (the deck's colors string).
+  const MANA = { White: '#f3ecd0', Blue: '#1f6fbd', Black: '#1a1418', Red: '#d3352a', Green: '#1f8a4c' };
+  // A yin-yang without its dots: the first color's half curls into the second's. Ringed in cream
+  // so the black half still shows on the dark menu.
+  const yinYang = k => {
+    const [a, b] = DECKS[k].colors.split('-').map(c => MANA[c]);
+    return `<svg class="yy" viewBox="-50 -50 100 100" aria-hidden="true"><circle r="47" fill="${b}"/>` +
+      `<path d="M0-47A47 47 0 0 0 0 47A23.5 23.5 0 0 0 0 0A23.5 23.5 0 0 1 0-47Z" fill="${a}"/>` +
+      `<circle r="47" fill="none" stroke="rgba(244,239,228,.55)" stroke-width="3"/></svg>`;
+  };
   function renderDecks(mine) {
     const playing = colorOf(mine).slice(2);
     document.getElementById('colors').innerHTML = Object.keys(DECKS).map(k => {
       const d = DECKS[k], open = openDeck === k;
       return `<div>
         <button type="button" class="deck k-${k}${k === playing ? ' on' : ''}${open ? ' open' : ''}" data-open="${k}" aria-expanded="${open}" aria-label="${d.name}, ${d.commander}, ${d.colors}${k === playing ? ', playing' : ''}">
-          <i class="art"><img src="${artUrl(k, 'art_crop')}" alt="" loading="lazy" onerror="this.remove()"></i>
-          <span><b>${d.name}</b><small>${esc(d.commander)}</small></span>${k === playing ? '<i class="tag">Playing</i>' : ''}</button>
+          <i class="art"><img src="${artUrl(k, 'art_crop')}" alt="" loading="lazy" onerror="this.remove()">${k === playing ? '<i class="tag">Playing</i>' : ''}</i>
+          <span><b>${d.name}</b><small>${esc(d.commander)}</small></span>${yinYang(k)}</button>
         ${open ? `<div class="deck-more">
           <div class="card"><img src="${artUrl(k, 'normal')}" alt="${esc(d.commander)}" loading="lazy" onerror="this.remove()"></div>
           ${k === playing ? `<p class="playing">${esc(state.names[mine].trim() || DEFAULT_NAMES[mine])} is playing this deck</p>`
