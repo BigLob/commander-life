@@ -45,7 +45,7 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.33)
+### `index.html`: Commander Life (current v3.34)
 - Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
   the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
   default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
@@ -80,6 +80,12 @@ them and `.gitignore` now ignores PNGs at the root).
     Center has no seat of its own, so its colors and Concede are hidden.
 - Picking a player count sets starting life to its default (v3.6): 2 players 20, 3 players 30,
   4 players 40. Starting life can still be changed by hand afterwards.
+- **4-player layout** (v3.34, menu, kept on that phone as `layout4`): **Table** (default, seats on
+  the phone's edges) or **Quadrants** (`.board.n4.quad`, a quarter each). Quadrants reuses the edge
+  classes in a 2×2 grid (`"left top" "bottom right"`), so the seating order holds, going clockwise
+  from this phone's player at bottom left, and each quadrant faces its owner: all upright on a
+  player's phone, each turned to its owner's side on a Center phone. Shown for 4 players, and for a
+  Center phone in 1v1 ×2.
 - **1v1 layout** (v3.6, menu, 2 players only, kept on that phone): **Side by side** (default) or **Classic**.
   Side by side is a 2×2 grid. The bottom half faces this phone's player, the top half is turned to the
   opponent, and each half shows both totals with its viewer's own on the left, so each player's

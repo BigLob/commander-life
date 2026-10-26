@@ -87,6 +87,10 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   grid-template-areas: "top top" "left right" "bottom bottom";
   grid-template-rows: 1.2fr 1.6fr 1.2fr; grid-template-columns: 1fr 1fr;
 }
+/* Quadrants (v3.34, a 4-player layout option): a quarter each, in seating order going clockwise
+   from this phone's player at bottom left. The seats keep their edge classes, so a Center phone
+   still turns each one to face its owner's side and an upright phone faces them all to its owner. */
+.board.n4.quad { grid-template-areas: "left top" "bottom right"; grid-template-rows: 1fr 1fr; }
 .board.n1 { grid-template: 1fr / 1fr; }
 /* Head to head, side by side: each half of the phone faces one player and shows both totals, theirs
    on the left, so each player's colors run down one side. The top half is turned to the far player. */
@@ -460,6 +464,13 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="3"></button>
       </div>
     </div>
+    <div class="field" id="layout4Field">
+      <span>4-player layout</span>
+      <div class="seg" id="segLayout4">
+        <button type="button" data-v="table">Table</button>
+        <button type="button" data-v="quad">Quadrants</button>
+      </div>
+    </div>
     <div class="field" id="layoutField">
       <span>1v1 layout</span>
       <div class="seg" id="segLayout">
@@ -504,7 +515,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.33';
+  const VERSION = '3.34';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -601,6 +612,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   delete state.flip; // left over from v1.9
   // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
   if (!['split', 'classic'].includes(state.layout2)) state.layout2 = 'split';
+  // How a four-seat board is laid out on this phone: 'table' (around the edges) or 'quad' (a quarter
+  // each). Kept on this phone only.
+  if (!['table', 'quad'].includes(state.layout4)) state.layout4 = 'table';
   // Per table size, the player whose turn it is (null before anyone's started).
   if (!state.turns || typeof state.turns !== 'object') state.turns = {};
   TURN_KEYS.forEach(k => { if (!Number.isInteger(state.turns[k])) state.turns[k] = null; });
@@ -699,7 +713,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     app.innerHTML = '';
     const board = document.createElement('div');
     board.className = duel ? 'board duel'
-      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '');
+      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (n === 4 && state.layout4 === 'quad' ? ' quad' : '');
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
@@ -1043,8 +1057,11 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
+    document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout4));
     const center = state.mode !== 1 && state.me === CENTER;
     document.getElementById('layoutField').hidden = !(state.mode === 2 || (state.mode === SPLIT && !center));
+    // Four seats on the board: 4 players, or a Center phone in the two 1v1s.
+    document.getElementById('layout4Field').hidden = !(state.mode === 4 || (state.mode === SPLIT && center));
     document.getElementById('pickFirst').hidden = state.mode === 1;
     // Who plays whom in the two 1v1s: Rand's pick sets both pairs.
     document.getElementById('pairsField').hidden = state.mode !== SPLIT;
@@ -1188,6 +1205,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   document.querySelectorAll('#segStart button').forEach(b => b.addEventListener('click', () => {
     send(setStart(+b.dataset.v));
     save(); build(); syncMenu();
+  }));
+  document.querySelectorAll('#segLayout4 button').forEach(b => b.addEventListener('click', () => {
+    state.layout4 = b.dataset.v; save(); build(); syncMenu();
   }));
   document.querySelectorAll('#segLayout button').forEach(b => b.addEventListener('click', () => {
     state.layout2 = b.dataset.v; save(); build(); syncMenu();
