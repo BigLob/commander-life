@@ -34,19 +34,25 @@ The site only changes when files land on `main` of `BigLob/commander-life`:
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
 Playwright with the network mocked (route `firebaseio` requests, replace `EventSource`).
-`index.html` loads its fonts from `fonts/`, so route the page's own files to the local checkout.
-`archenemy.html` still uses Google Fonts, which is reachable: launch Chromium with
+`index.html` loads Matrix and MPlantin from `fonts/`, so route the page's own files to the local
+checkout. Its numbers and `archenemy.html` use Google Fonts, which is reachable: launch Chromium with
 `proxy: { server: process.env.HTTPS_PROXY }` and `ignoreHTTPSErrors: true` so text is measured in the
 real fonts (the fallbacks are much wider).
 After a deploy, ask the user to check the version in the menu footer.
 
 ## Pages
 
-### `index.html`: Commander Life (current v3.23)
-- Names (v3.23): a blank name box goes back to that player's default name when you leave it, a
-  blank saved name is restored on load, and blank names from other phones are ignored.
-- 4-player totals are much bigger (v3.23: up to 64% of the seat's height or 84% of its width,
-  shrunk for 3 or 4 digits), and the top and bottom rows got more height (rows 1.2fr 1.6fr 1.2fr).
+### `index.html`: Commander Life (current v3.24)
+- Names (v3.23, v3.24): a name box left blank, or holding another player's default name (v3.24:
+  the shared table once had "Lenn" in Trent's box and a blank in Lenn's), goes back to that player's
+  default (`badName()`). Such names are fixed on load, rejected from other phones, and each phone
+  writes the fix back to the table when it sees one.
+- 4-player totals are bigger (v3.23), and the top and bottom rows got more height (rows 1.2fr 1.6fr
+  1.2fr). v3.24 trimmed them a little: up to 52% of the seat's height or 56% of its width, shrunk
+  for 3 or 4 digits.
+- − and + always sit left and right of the total, level with it (v3.24), in every layout. This
+  replaces the 4-player side seats' top/bottom halves and side-by-side 1v1's signs below the total.
+  The tap zones are still the left and right halves of the seat.
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names, colors and patterns are stored by it).
@@ -108,13 +114,17 @@ After a deploy, ask the user to check the version in the menu footer.
     `cards.scryfall.io/normal/front/...` directly. A picked card that isn't in the player's current
     deck falls back to their commander. The second tile in the pattern grid switches back to it. The log saves each seat's `deck`, and Results
   shows deck names (older results map their colors to the deck).
-- **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold for names, life
-  totals and the menu title; MPlantin for everything else. Both are limited by `unicode-range` to
+- **Fonts** (v3.17, from AlexandreArpin/mtg-font, served from `fonts/`): Matrix Bold (`--f-name`)
+  for names and the menu title; MPlantin for everything else. Since v3.24 life totals and other
+  numbers (`--f-num`) are back in Big Shoulders Display from Google Fonts; the user didn't like
+  Matrix's old-style digits. Both are limited by `unicode-range` to
   plain ASCII (plus Matrix's minus), because their other symbols are blank or wrongly mapped
   (×, ·, … fall back to Georgia). `Matrix-Bold.woff` has patched line metrics: the original's
   positive descent made the line box half height and clipped the names.
 - Life totals and names are white with a black outline; names are large (v3.13: up to 34px, 13% of the seat's height). Since v3.18 a name that's too wide for
-  its seat shrinks to fit (`fitNames()`, via `--fit`), so every name shows in full on one line.
+  its seat shrinks to fit (`fitNames()`, via `--fit`), so every name shows in full on one line. Since
+  v3.24 every name on the board is drawn at one shared size, the largest at which all of them fit;
+  an "out" line too wide for its seat shrinks on its own (`--wfit`).
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
 - **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
   It becomes Rejoin. A new game clears all concessions.

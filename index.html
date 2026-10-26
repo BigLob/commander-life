@@ -10,6 +10,9 @@
 <title>Commander Life</title>
 <link rel="preload" href="fonts/Matrix-Bold.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="fonts/Mplantin.woff" as="font" type="font/woff" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&display=swap">
 <style>
 /* The card fonts, served from fonts/: Matrix Bold (old card names) for names and totals, MPlantin
    (rules text) for everything else. Each has one weight, declared across the range so the browser
@@ -28,7 +31,10 @@
   --hot: #ffb347;
   --turn: #ff4fa3;
   --turn-dim: #5a1d3b;
-  --f-num: "Matrix", Georgia, serif;
+  /* Totals and other numbers in Big Shoulders (Matrix's old-style digits read poorly at size);
+     names and the menu title in Matrix. */
+  --f-num: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
+  --f-name: "Matrix", Georgia, serif;
   --blade: url("data:image/png;base64,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");
   --f-ui: "MPlantin", Georgia, serif;
   color-scheme: dark;
@@ -144,23 +150,22 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .table.upright .face { --rot: 0deg; }
 .table.upright .s1 .face, .table.upright .s3 .face { width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh)); }
 /* At four, the side seats are tall and meet at the menu button: + takes their top half, - the bottom. */
-.n4.upright .s1 .zone, .n4.upright .s3 .zone { left: 0; right: 0; width: auto; height: 50%; padding: 0; justify-content: center; }
-.n4.upright .s1 .zone.plus, .n4.upright .s3 .zone.plus { top: 0; bottom: auto; align-items: flex-start; padding-top: calc(14 * var(--cqh, 1vh)); }
-.n4.upright .s1 .zone.minus, .n4.upright .s3 .zone.minus { top: auto; bottom: 0; align-items: flex-end; padding-bottom: calc(16 * var(--cqh, 1vh)); }
-/* Side by side: - and + split the tile left and right. The tiles are too narrow for the signs to sit
-   beside the centered total, so they sit just below it. */
-.duel .zone { align-items: flex-end; padding-bottom: calc(24 * var(--cqh, 1vh)); }
+/* - and + always sit left and right of the total, level with it (v3.24): each zone is lifted by the
+   same padding as the readout, so their centers line up. */
+.table .zone { padding-bottom: calc(18 * var(--cqh, 1vh)); }
+.n4 .zone { padding-bottom: calc(32 * var(--cqh, 1vh)); }
 
 .zone {
   position: absolute; top: 0; bottom: 0; width: 50%;
   border: 0; background: transparent; padding: 0;
   color: var(--ink-2); touch-action: none;
-  font-family: var(--f-num); font-weight: 700; font-size: clamp(28px, calc(22 * var(--cqh, 1vh)), 64px);
+  /* Sized by width too, so narrow seats keep room for the total between the signs. */
+  font-family: var(--f-num); font-weight: 700; font-size: clamp(24px, min(calc(22 * var(--cqh, 1vh)), calc(15 * var(--cqw, 1vw))), 64px);
   display: flex; align-items: center;
   transition: background .12s;
 }
-.zone.minus { left: 0; justify-content: flex-start; padding-left: calc(7 * var(--cqw, 1vw)); }
-.zone.plus { right: 0; justify-content: flex-end; padding-right: calc(7 * var(--cqw, 1vw)); }
+.zone.minus { left: 0; justify-content: flex-start; padding-left: calc(6 * var(--cqw, 1vw)); }
+.zone.plus { right: 0; justify-content: flex-end; padding-right: calc(6 * var(--cqw, 1vw)); }
 .zone.press { background: rgba(255, 255, 255, .1); transition: none; }
 
 .readout {
@@ -170,13 +175,13 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .name {
   position: absolute; top: calc(7 * var(--cqh, 1vh)); left: 0; right: 0; text-align: center;
   /* --fit shrinks a name that would overflow its seat, so every name shows in full on one line. */
-  font-family: var(--f-num); font-size: calc(clamp(15px, calc(13 * var(--cqh, 1vh)), 34px) * var(--fit, 1)); font-weight: 600;
+  font-family: var(--f-name); font-size: calc(clamp(15px, calc(13 * var(--cqh, 1vh)), 34px) * var(--fit, 1)); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
   /* Same black outline as the life total, thicker for the small type. */
   -webkit-text-stroke: .14em #000; paint-order: stroke fill;
 }
 .name .nm { display: inline-block; }
-.name .why { display: block; margin-top: .2em; font-size: .7em; color: var(--ink); }
+.name .why { display: block; margin-top: .2em; font-size: calc(.7em * var(--wfit, 1)); color: var(--ink); }
 /* Corner names keep clear of the menu button in the middle of the table. */
 .table .name { left: calc(6 * var(--cqw, 1vw)); right: auto; text-align: left; }
 /* Bigger names still have to fit a narrow seat (see fitNames()). */
@@ -184,7 +189,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .n3 .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
 /* Narrow tiles: the name stays centered and clear of the menu button where the four tiles meet. */
 .duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
-.duel .name .why { font-size: .6em; letter-spacing: .06em; }
+.duel .name .why { font-size: calc(.6em * var(--wfit, 1)); letter-spacing: .06em; }
 .life {
   position: relative;
   font-family: var(--f-num); font-weight: 800;
@@ -200,7 +205,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .duel .life { font-size: min(calc(36 * var(--cqh, 1vh)), calc(50 * var(--cqw, 1vw))); }
 /* Four players: the totals as big as each seat allows, scaled down for three digits (--ls). */
 .n4 .readout { padding-bottom: calc(32 * var(--cqh, 1vh)); }
-.n4 .life { font-size: calc(min(calc(64 * var(--cqh, 1vh)), calc(84 * var(--cqw, 1vw))) * var(--ls, 1)); }
+.n4 .life { font-size: calc(min(calc(var(--lh, 52) * var(--cqh, 1vh)), calc(var(--lw, 56) * var(--cqw, 1vw))) * var(--ls, 1)); }
 .life[data-len="3"] { --ls: .75; }
 .life[data-len="4"] { --ls: .58; }
 .delta {
@@ -371,7 +376,7 @@ details.field .patterns { margin-top: 6px; }
   background: var(--panel); border: 1px solid var(--line);
 }
 .panel h2 {
-  margin: 0; font-family: var(--f-num); font-weight: 800; font-size: 30px;
+  margin: 0; font-family: var(--f-name); font-weight: 800; font-size: 30px;
   letter-spacing: .04em; text-transform: uppercase; text-wrap: balance;
 }
 .field { display: flex; flex-direction: column; gap: 8px; }
@@ -502,7 +507,7 @@ details.field .patterns { margin-top: 6px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '3.23';
+  const VERSION = '3.24';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -596,8 +601,11 @@ details.field .patterns { margin-top: 6px; }
   if (!Array.isArray(state.names) || state.names.length !== 4 || state.names.join() === OLD_DEFAULT_NAMES.join()) {
     state.names = DEFAULT_NAMES.slice();
   }
-  // A blank name (a box left empty) is back to that player's default, so nobody goes missing.
-  state.names = state.names.map((n, i) => typeof n === 'string' && n.trim() ? n : DEFAULT_NAMES[i]);
+  // A blank name, or one that's another player's default name (typed into the wrong box), is back
+  // to that player's default, so nobody goes missing or shows up twice.
+  const badName = (i, n) => typeof n !== 'string' || !n.trim() ||
+    DEFAULT_NAMES.some((d, j) => j !== i && d.toLowerCase() === n.trim().toLowerCase());
+  state.names = state.names.map((n, i) => badName(i, n) ? DEFAULT_NAMES[i] : n);
   if (!Array.isArray(state.colors) || state.colors.length !== 4) state.colors = DEFAULT_COLORS.slice();
   if (!Array.isArray(state.patterns) || state.patterns.length !== 4) state.patterns = ['marble', 'marble', 'marble', 'marble'];
   // Per player, the card from their deck shown when their wallpaper is "Deck card" (null: none yet).
@@ -791,14 +799,25 @@ details.field .patterns { margin-top: 6px; }
     });
     fitNames();
   }
-  // Shrink each name (and its "out" line) that's wider than its seat allows until it fits. Layout widths, so a turned
-  // seat measures the same as an upright one.
+  // Every name on the board is drawn at one size: the largest at which each name still fits its
+  // seat, so the side seats' names match the top and bottom ones. An "out" line too wide for its
+  // seat shrinks on its own (--wfit). Layout widths, so a turned seat measures the same as an
+  // upright one.
   function fitNames() {
-    const names = Array.from(app.querySelectorAll('.name'));
-    names.forEach(el => el.style.setProperty('--fit', 1));
+    // Only names already filled in: during build() the later seats have none yet.
+    const names = Array.from(app.querySelectorAll('.name')).filter(el => el.querySelector('.nm'));
+    if (!names.length) return;
+    names.forEach(el => { el.style.setProperty('--fit', 1); el.style.setProperty('--wfit', 1); });
+    const room = el => parseFloat(getComputedStyle(el).maxWidth);
+    const sizes = names.map(el => {
+      const base = parseFloat(getComputedStyle(el).fontSize);
+      return { el, base, px: base * Math.min(1, room(el) / el.querySelector('.nm').offsetWidth * .98) };
+    });
+    const px = Math.min(...sizes.map(x => x.px));
+    sizes.forEach(({ el, base }) => el.style.setProperty('--fit', (px / base).toFixed(3)));
     names.forEach(el => {
-      const w = Math.max(...Array.from(el.querySelectorAll('.nm'), x => x.offsetWidth)), room = parseFloat(getComputedStyle(el).maxWidth);
-      if (w > room) el.style.setProperty('--fit', (room / w * .98).toFixed(3));
+      const why = el.querySelector('.why .nm');
+      if (why && why.offsetWidth > room(el)) el.style.setProperty('--wfit', (room(el) / why.offsetWidth * .98).toFixed(3));
     });
   }
   // The card fonts arrive after the first layout; names are fitted again in them.
@@ -1187,9 +1206,9 @@ details.field .patterns { margin-top: 6px; }
     input.addEventListener('input', e => {
       state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
     });
-    // Leaving the box empty puts the default name back rather than leaving it blank.
+    // Leaving the box empty (or holding someone else's name) puts the default name back.
     input.addEventListener('change', () => {
-      if (input.value.trim()) return;
+      if (!badName(i, input.value)) return;
       state.names[i] = input.value = DEFAULT_NAMES[i];
       send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
     });
@@ -1390,8 +1409,8 @@ details.field .patterns { margin-top: 6px; }
     if (p === 'mode') return MODES.includes(v);
     if (p === 'pairs') return [1, 2, 3].includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
-    // A blank name from another phone (someone mid-edit) is ignored; this phone keeps the last real one.
-    if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12 && !!v.trim();
+    // A blank or wrong-box name from another phone (or someone mid-edit) is ignored; see badName.
+    if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12 && !badName(+p.slice(6), v);
     if (p.startsWith('colors/')) return Object.prototype.hasOwnProperty.call(SCHEMES, v);
     if (p.startsWith('patterns/')) return Object.prototype.hasOwnProperty.call(PATTERNS, v);
     if (p.startsWith('cards/')) return v === null || Object.prototype.hasOwnProperty.call(CARD_IMG, v);
@@ -1415,6 +1434,13 @@ details.field .patterns { margin-top: 6px; }
   // Take every value the table holds over this phone's own.
   function adopt() {
     const changed = [];
+    // Put back any blank or wrong-box name the table holds, unless someone here is typing it.
+    const fix = {};
+    [0, 1, 2, 3].forEach(i => {
+      const v = getAt(mirror, 'names/' + i);
+      if (typeof v === 'string' && badName(i, v) && document.activeElement !== document.getElementById('name' + i)) fix['names/' + i] = state.names[i];
+    });
+    if (Object.keys(fix).length) send(fix);
     allPaths().forEach(p => {
       let v = getAt(mirror, p);
       const was = getAt(state, p);
