@@ -6,13 +6,14 @@ sync live. Plain HTML pages, no build step, no framework.
 ## Replies
 
 End every reply about anything in this repo with icon-only links to both live pages, on one line,
-followed by one icon for each artifact we've built together (private pages for the user only, not for
-the group to play on):
+followed by the bare URL of each artifact we've built together (private pages for the user only, not
+for the group to play on). The app turns a bare artifact URL into its own icon chip, so don't add an
+emoji for it:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2)
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2
 
-🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Bench and Trash tabs).
-When we build a new artifact, pick it a new icon and add it to this line.
+The artifact is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Bench and
+Trash tabs). When we build a new artifact, add its URL to this line.
 
 ## Where things live
 
