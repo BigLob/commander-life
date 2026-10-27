@@ -210,6 +210,11 @@ them and `.gitignore` now ignores PNGs at the root).
   in `ICON_MENU`.
 - Version shows in the menu footer with the sync status. Bump `VERSION` on every release.
 
+### `xenagos.html`: Xenagos, the Party Hugger card carousel
+- A standalone copy of the claude.ai artifact (same URL as in Replies), for opening outside Claude. Not part of the live game pages; nothing here syncs.
+- Card images are embedded as WebP data URIs (about 11 MB), so the page works offline. Bench, Trash and Fav marks are kept in that browser's localStorage only.
+- Tabs: Deck, Suggested, Fav, Bench, Trash. Sort & filter covers type, color, cost, keyword and Fav only.
+
 ### `archenemy.html`: Archenemy (v1.2)
 - Separate page, because its interface differs a lot from Commander Life.
 - Rules:
