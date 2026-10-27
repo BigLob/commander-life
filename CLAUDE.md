@@ -49,7 +49,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.2; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.3; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.3: **End game** sits beside Concede in the menu (`#endGame`, two taps; hidden in "Just me"). It logs the games this phone shows as they stand, with each player's life and the time so far, even with several players left or under 15 minutes (`record(k, ending)`), then starts them over. With more than one player left nobody won: the result has `ended: true` and Results shows "Ended early". Results now show each player's final life. Also fixes Concede being pinned to the top of the menu since v1.0: the 1v1 ×2 strip's `.mini` class matched it, so the small menu buttons are `.action.small` now.
 - v1.2: in the Table layout (and Classic 1v1), everyone waiting on the turn has their art dimmed (`--shade` .66 instead of .22 on `.seat.wait`). A turn running 5 minutes or more (`SLOW_TURN_MS`, timed from the synced `clock/<k>/at`, checked every 5 s by `paintSlow()`) turns the gold halo, or the side-by-side turn bar, red and blinking (`.seat.slow`; steady red with reduced motion). Stops when the game is over.
 - v1.1: side-by-side 1v1 ×2 on a player's own phone shows all four seats (`sideBySide4()`): their 1v1 in the bottom half upright, the other 1v1 grouped in the top half turned 180°. The top strip is now Classic only. The menu's "<name> plays" picks this phone's opponent (`pairsFor()`).
 - v1.0: 1v1 ×2 on a player's own phone shows a strip on top with the other game's two totals (`paintMini()`). Tapping it opens "<name> plays": pick your opponent and the other two pair up (`pairsFor()`, `applyPairs()`; same two-tap confirm as the menu once a game has begun).

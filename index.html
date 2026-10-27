@@ -474,7 +474,10 @@ details.field[open] > summary { margin-bottom: 10px; }
 }
 .action.primary { background: var(--ink); color: var(--table); }
 .action.armed, .seg button.armed { background: var(--hot); color: var(--table); }
-.action.mini { align-self: center; padding: 6px 18px; border-radius: 999px; font-size: 15px; }
+.action.small { align-self: center; padding: 6px 18px; border-radius: 999px; font-size: 15px; }
+/* Concede and End game share one row of small buttons (v1.3). */
+.mini-row { display: flex; justify-content: center; gap: 10px; }
+.mini-row[hidden] { display: none; }
 .ghost { border: 1px solid var(--line); border-radius: 12px; background: transparent; padding: 12px; font-size: 17px; color: var(--ink); }
 /* Back to game is as white as New game, so the way out is easy to find. */
 #closeMenu { background: var(--ink); border-color: var(--ink); color: var(--table); }
@@ -581,7 +584,10 @@ details.field[open] > summary { margin-bottom: 10px; }
     </div>
     <button type="button" class="action primary" id="newGame">New game</button>
     <button type="button" class="action" id="pickFirst">Pick who goes first</button>
-    <button type="button" class="action mini" id="concede">Concede</button>
+    <div class="mini-row" id="miniRow">
+      <button type="button" class="action small" id="concede">Concede</button>
+      <button type="button" class="action small" id="endGame">End game</button>
+    </div>
     <details class="field" id="resultsField" hidden>
       <summary>Results</summary>
       <div class="results" id="results"></div>
@@ -594,7 +600,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.2';
+  const VERSION = '1.3';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1199,6 +1205,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   const menu = document.getElementById('menu');
   const newGameBtn = document.getElementById('newGame');
   const concedeBtn = document.getElementById('concede');
+  const endGameBtn = document.getElementById('endGame');
   let armTimer = null;
 
   function syncMenu() {
@@ -1220,6 +1227,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.getElementById('pairsLabel').textContent = (state.names[pairMe()].trim() || DEFAULT_NAMES[pairMe()]) + ' plays';
     // A phone in the center has no seat of its own to concede or color.
     document.getElementById('concede').hidden = state.mode === 1 || center;
+    // "Just me" has no game to end.
+    endGameBtn.hidden = state.mode === 1;
+    document.getElementById('miniRow').hidden = state.mode === 1;
     document.getElementById('colorField').hidden = center;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = PEOPLE[state.mode];
@@ -1375,6 +1385,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     newGameBtn.textContent = 'New game at ' + state.start;
     concedeBtn.classList.remove('armed');
     concedeBtn.textContent = playerOf(mySeat()).conceded ? 'Rejoin' : 'Concede';
+    endGameBtn.classList.remove('armed');
+    endGameBtn.textContent = 'End game';
   }
   function openMenu() { syncMenu(); menu.hidden = false; }
   function closeMenu() { menu.hidden = true; openDeck = null; document.getElementById('resultsField').hidden = true; disarm(); }
@@ -1406,9 +1418,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   document.querySelectorAll('#segLayout button').forEach(b => b.addEventListener('click', () => {
     state.layout2 = b.dataset.v; save(); build(); syncMenu();
   }));
-  // Logs game k if it finished, starts it over, and returns the patch to send.
-  function resetGame(k) {
-    record(k);
+  // Logs game k if it finished (or, ending it, however it stands), starts it over, and returns the
+  // patch to send.
+  function resetGame(k, ending) {
+    record(k, ending);
     state.games[k] = blankGame(SIZE[k], state.start);
     if (SIZE[k] > 1) { state.turns[k] = null; state.clock[k] = blankClock(SIZE[k]); }
     return { ['games/' + k]: state.games[k], ['turns/' + k]: null, ['clock/' + k]: null };
@@ -1437,6 +1450,20 @@ details.field[open] > summary { margin-bottom: 10px; }
       send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
     });
   });
+  // End game (v1.3) logs the games this phone shows as they stand, life totals and time so far,
+  // even with more than one player left or under MIN_GAME_MINUTES, then starts them over.
+  // Second tap within 3 seconds, like New game.
+  endGameBtn.addEventListener('click', () => {
+    if (!endGameBtn.classList.contains('armed')) {
+      disarm();
+      endGameBtn.classList.add('armed');
+      endGameBtn.textContent = 'Tap again to end';
+      armTimer = setTimeout(disarm, 3000);
+      return;
+    }
+    send(Object.assign({}, ...viewKeys().map(k => resetGame(k, true))));
+    marking = []; save(); build(); closeMenu();
+  });
   document.getElementById('pickFirst').addEventListener('click', () => { closeMenu(); pickFirst(); });
 
   // Conceding (or taking it back) only touches this phone's seat, and takes a second tap.
@@ -1458,29 +1485,31 @@ details.field[open] > summary { margin-bottom: 10px; }
   // in case it finished on a phone that couldn't log it. Only a real finish counts: a table of two or
   // more, exactly one player left standing, and at least MIN_GAME_MINUTES on its clock. Results are
   // stored under the game's id, so logging it twice just writes the same entry. A result Firebase
-  // won't take waits on this phone and goes up next time.
+  // won't take waits on this phone and goes up next time. End game (ending) logs any game that has
+  // started, as it stands: if more than one player is left nobody won, and the result says ended.
   const loadMine = () => { try { return JSON.parse(localStorage.getItem(RESULTS_KEY)) || {}; } catch (e) { return {}; } };
   const saveMine = all => { try { localStorage.setItem(RESULTS_KEY, JSON.stringify(all)); } catch (e) {} };
   const resultUrl = id => RESULTS_URL + (id ? '/' + id : '') + '.json';
 
-  function record(k) {
+  function record(k, ending) {
     const n = SIZE[k], g = state.games[k], m = state.meta[k];
-    if (n === 1 || !m.id || !m.at) return;
+    if (n === 1 || !m.id || !m.at || untouched(g) && state.turns[k] == null) return;
     const alive = g.map((p, i) => i).filter(i => !outReason(g[i]));
     const end = m.end || Date.now();
     const minutes = Math.round((end - m.at) / 60000);
-    if (alive.length !== 1 || minutes < MIN_GAME_MINUTES) return;
+    if (!ending && (alive.length !== 1 || minutes < MIN_GAME_MINUTES)) return;
+    const winner = alive.length === 1 ? alive[0] : -1;
     // The turn in progress when the game ended runs to the end.
     const c = state.clock[k], cur = state.turns[k];
     const turnMs = i => (c.t[i] || 0) + (i === cur && c.at ? Math.max(0, end - c.at) : 0);
     const result = {
-      at: end, minutes, players: n, start: state.start, turns: c.count || 0,
+      at: end, minutes, players: n, start: state.start, turns: c.count || 0, ended: winner < 0 || undefined,
       seats: g.map((p, i) => {
         const e = edgesOf(k)[i];
         return {
           name: state.names[e].trim() || DEFAULT_NAMES[e], colors: colorOf(e).slice(2),
           deck: DECKS[colorOf(e).slice(2)].name,
-          life: p.life, out: outReason(p) || null, won: i === alive[0],
+          life: p.life, out: outReason(p) || null, won: i === winner,
           turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
         };
       }),
@@ -1517,9 +1546,9 @@ details.field[open] > summary { margin-bottom: 10px; }
       const r = all[id], win = r.seats.find(x => x.won) || {};
       const day = new Date(r.at).toLocaleDateString([], { month: 'short', day: 'numeric' });
       return `<div class="res-row">
-        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(deckOf(win))} &middot; ${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
+        <div class="res-head"><b>${win.name ? esc(win.name) + ' won' : 'Ended early'}</b><span>${win.name ? esc(deckOf(win)) + ' &middot; ' : ''}${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
           <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
-        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}">${SCHEMES[x.colors] ? swatch(x.colors) : '<i class="sw"></i>'}${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
+        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}">${SCHEMES[x.colors] ? swatch(x.colors) : '<i class="sw"></i>'}${esc(x.name)}${typeof x.life === 'number' ? ' ' + (x.life < 0 ? '−' + -x.life : x.life) : ''}${x.turns ? ` &middot; ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
       </div>`;
     }).join('') : '<p class="res-note">No finished games logged yet.</p>');
   }
