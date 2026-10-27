@@ -5,15 +5,13 @@ sync live. Plain HTML pages, no build step, no framework.
 
 ## Replies
 
-End every reply about anything in this repo with icon-only links to both live pages, on one line,
-followed by the bare URL of each artifact we've built together (private pages for the user only, not
-for the group to play on). The app turns a bare artifact URL into its own icon chip, so don't add an
-emoji for it:
+End every reply about anything in this repo with icon-only links to the live pages, on one line:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html)
 
-The artifact is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Bench and
-Trash tabs). When we build a new artifact, add its URL to this line.
+🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Fav, Bench and Trash
+tabs). When we build a new page, add its icon link to this line. Its editable claude.ai artifact is
+https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; don't put it in the footer).
 
 ## Where things live
 
@@ -211,7 +209,7 @@ them and `.gitignore` now ignores PNGs at the root).
 - Version shows in the menu footer with the sync status. Bump `VERSION` on every release.
 
 ### `xenagos.html`: Xenagos, the Party Hugger card carousel
-- A standalone copy of the claude.ai artifact (same URL as in Replies), for opening outside Claude. Not part of the live game pages; nothing here syncs.
+- Live at https://biglob.github.io/commander-life/xenagos.html (since it landed on `main`). A standalone copy of the claude.ai artifact; republish both when it changes. Not a game page; nothing here syncs.
 - Card images are embedded as WebP data URIs (about 11 MB), so the page works offline. Bench, Trash and Fav marks are kept in that browser's localStorage only.
 - Tabs: Deck, Suggested, Fav, Bench, Trash. Sort & filter covers type, color, cost, keyword and Fav only.
 
