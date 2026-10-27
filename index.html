@@ -33,6 +33,8 @@
   /* The turn tracker: gold on the current player, dim on everyone waiting. */
   --turn: #ffb347;
   --turn-dim: rgba(244, 239, 228, .42);
+  /* The halo turns this red once a turn has run 5 minutes (v1.2). */
+  --slow: #ff3b30;
   /* Totals and other numbers in Beleren (Matrix's old-style digits read poorly at size; Big Shoulders
      was used in v3.24 to v3.30); names and the menu title in Matrix. */
   --f-num: "Beleren", Georgia, serif;
@@ -132,8 +134,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    turned with it so it's upright for its player, dimmed a little so the white totals stay readable. */
 .face::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)), var(--art) center / cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, var(--shade, .22)), rgba(0, 0, 0, var(--shade, .22))), var(--art) center / cover no-repeat;
 }
+/* In the Table layout, everyone waiting on the turn has their art dimmed further (v1.2), so the
+   current player's seat stands out across the table. */
+.board.table:not(.quad):not(.spot) .seat.wait .face::before { --shade: .66; }
 .face {
   position: absolute; top: 50%; left: 50%;
   width: calc(100 * var(--sw, 1vw)); height: calc(100 * var(--sh, 1vh));
@@ -371,6 +376,16 @@ details.field[open] > summary { margin-bottom: 10px; }
 .d-bl .turn-bar, .d-br .turn-bar { top: 0; }
 .d-tl .turn-bar, .d-tr .turn-bar { bottom: 0; }
 .duel .seat.turn .turn-bar { display: block; }
+/* A turn that has run 5 minutes or more (v1.2): the halo, or side by side the bar, goes red and blinks. */
+@keyframes slow-blink { 50% { opacity: .2; } }
+.table .seat.turn.slow .turn-bar {
+  border-color: var(--slow); box-shadow: inset 0 0 16px rgba(255, 59, 48, .6);
+  animation: slow-blink 1s ease-in-out infinite;
+}
+.duel .seat.turn.slow .turn-bar {
+  background: var(--slow); box-shadow: 0 0 14px 2px rgba(255, 59, 48, .6);
+  animation: slow-blink 1s ease-in-out infinite;
+}
 /* The tiles are narrow, so their dagger and flag are sized by width to stay tappable. */
 .duel .tray, .duel .flag { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
 /* The deck's mana symbols in the seat's bottom-left corner, as its player sees it (v3.38), level
@@ -494,6 +509,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 
 @media (prefers-reduced-motion: reduce) {
   .seat, .zone, .delta { transition: none; }
+  .seat.slow .turn-bar { animation: none; }
 }
 </style>
 </head>
@@ -578,7 +594,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.1';
+  const VERSION = '1.2';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1104,7 +1120,21 @@ details.field[open] > summary { margin-bottom: 10px; }
         if (b) b.setAttribute('aria-pressed', on);
       });
     });
+    paintSlow();
   }
+  // A turn of SLOW_TURN_MS or more marks its seat slow (red, blinking halo). Timed from the synced
+  // turn start (clock/<k>/at), so every phone agrees; checked every few seconds since nothing else
+  // happens when a turn drags on. Stops once the game is over.
+  const SLOW_TURN_MS = 5 * 60000;
+  function paintSlow() {
+    const now = Date.now();
+    seats.forEach((list, i) => {
+      const { k, j } = players[i], c = state.clock[k];
+      const slow = state.turns[k] === j && !finished(k) && !!c && !!c.at && now - c.at >= SLOW_TURN_MS;
+      list.forEach(s => s.classList.toggle('slow', slow));
+    });
+  }
+  setInterval(paintSlow, 5000);
 
   function toggleConcede(i) {
     const { k, j } = players[i];

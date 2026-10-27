@@ -49,7 +49,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.1; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.2; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.2: in the Table layout (and Classic 1v1), everyone waiting on the turn has their art dimmed (`--shade` .66 instead of .22 on `.seat.wait`). A turn running 5 minutes or more (`SLOW_TURN_MS`, timed from the synced `clock/<k>/at`, checked every 5 s by `paintSlow()`) turns the gold halo, or the side-by-side turn bar, red and blinking (`.seat.slow`; steady red with reduced motion). Stops when the game is over.
 - v1.1: side-by-side 1v1 ×2 on a player's own phone shows all four seats (`sideBySide4()`): their 1v1 in the bottom half upright, the other 1v1 grouped in the top half turned 180°. The top strip is now Classic only. The menu's "<name> plays" picks this phone's opponent (`pairsFor()`).
 - v1.0: 1v1 ×2 on a player's own phone shows a strip on top with the other game's two totals (`paintMini()`). Tapping it opens "<name> plays": pick your opponent and the other two pair up (`pairsFor()`, `applyPairs()`; same two-tap confirm as the menu once a game has begun).
 - v3.41: the menu button did nothing in 1v1 ×2 (v3.35's `syncMenu()` read `center` before declaring it, so opening the menu threw). Declared first.
