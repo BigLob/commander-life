@@ -82,6 +82,36 @@ wins 25%. Only the rows found through search are here.
 
 All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrade it first.
 
+## Draft box notes (Oct 27, 2026; lists, not tables, so they read on a phone)
+
+Play Booster boxes, 30 packs: two full drafts for 4 players (12 packs each) with 6 left over. Prices
+are rough US averages from undated retailer pages. Stomping Grounds was usually cheapest.
+
+- **Lorwyn Eclipsed (Jan 2026), about $117 ($110-125).** Cheapest box. Five tribal archetypes:
+  Rakdos goblins, Golgari elves, Selesnya kithkin, Azorius merfolk, Izzet elementals. New: blight
+  (-1/-1 counters on your own creature, mostly black and red) and vivid (counts colors among your
+  permanents). Returning: behold (champion-like), changelings, persist, convoke, evoke. No 17Lands
+  data found, so draft quality unconfirmed. Asked to look at later.
+- **Bloomburrow (Aug 2024), about $206 ($143-270).** Priciest box; widely loved as one of the best
+  recent drafts, ten two-color animal-tribe archetypes (from memory, not searched). New: offspring,
+  forage, gift, valiant, expend. Walmart showed $142.99 once, so shop around. Asked to look at later.
+
+## Themed decks (Primal Genesis, Anthologies)
+
+- **Primal Genesis (Commander 2019, red-green-white).** Ghired, Conclave Exile makes a 4/4 token
+  whenever he attacks, then populates (copies a token), so red copy effects and big tokens matter.
+  Weaknesses: Ghired is at risk when attacking, little single-target removal, clunky lands. Upgrade
+  ideas: Swords to Plowshares, Anointed Procession, Parallel Lives, Wingmate Roc, Trostani, Sol Ring
+  and signets. Sealed about $56-60 (Card Kingdom $59.99).
+- **Anthologies (1998), two 60-card decks, sealed $170-340.** Cards from Alpha to Urza's Saga.
+  - Dark Alliance (black-red goblin aggro): Goblin King, Goblin Matron, Goblin Warrens, Mogg
+    Fanatic, Volcanic Dragon, Hypnotic Specter, Lightning Bolt, Fireball, Pyrokinesis, Terror, Hymn
+    to Tourach, Nevinyrral's Disk, Strip Mine. Wins the damage race. 5 Goblin tokens.
+  - Defenders of the Cause (green-white control): Serra Angel, Armageddon, Overrun, Swords to
+    Plowshares, Mirri, Erhnam Djinn, Sacred Mesa, Pacifism, Llanowar Elves, Brushland. Stall the
+    ground, win in the air, Overrun breaks the stall. Reviewers found it unfocused. Some cards
+    printed with wrong costs. 5 tokens.
+
 ## Sources
 
 - Reality Fracture prices: Wizards' Reality Fracture buyer's guide, tabletopmeta.com, tcgsealedalerts.com
