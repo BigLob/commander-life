@@ -112,6 +112,41 @@ are rough US averages from undated retailer pages. Stomping Grounds was usually 
     ground, win in the air, Overrun breaks the stall. Reviewers found it unfocused. Some cards
     printed with wrong costs. 5 tokens.
 
+## Branded (Universes Beyond) Commander precons, researched Oct 27, 2026
+
+Searched, not verified in person. Prices are undated retailer snapshots; sealed deck prices on old
+sets run far above MSRP. All 100 cards, 10 double-sided tokens, a deck box and a strategy insert.
+
+- **Star Trek (Nov 13, 2026; prerelease from Nov 6).** 4 decks, 33 new cards each. Case of 4 was
+  $245-300 pre-order (about $60-75 a deck). Decklist reveals Oct 26-29.
+  - Federation Fleet (Jeskai, Picard): Seek Out, card draw and spaceships.
+  - Landing Party (Bant, Spock): Strange New Worlds, landfall and exploration.
+  - Klingon Fury (Mardu, Worf): Battlefront, stronger the more opponents you attack.
+  - We Are the Borg (Esper, Borg Queen): Assimilate, takes control of creatures.
+- **Marvel Super Heroes (Jun 2026).** 4 decks, 30 new + 70 reprints, one foil borderless commander.
+  MSRP about $69.99 ($75 per Draftsim); Collector's $149.99. Set of 4 at Card Kingdom $309.99.
+  - Avengers Assemble (Jeskai): Hero typal, +1/+1 counters.
+  - The Fantastic Four (4 colors): noncreature spells, copying triggers.
+  - Wakanda Forever (Selesnya): artifacts, Vibranium tokens.
+  - Doom Prevails (Grixis): Villains, connive and life drain.
+- **Doctor Who (Oct 2023).** 4 decks, 50 new cards each. Launch $50-80 each. 2026 prices not found.
+  - Blast from the Past (Bant, first 8 Doctors), Timey-Wimey (Jeskai, 9th-11th), Paradox Power
+    (Temur, 12th-13th), Masters of Evil (Grixis, villains).
+- **Warhammer 40,000 (Oct 2022).** Called the best UB precon set by EDHREC. Necron Dynasties
+  (mono-black) is the strongest "by far"; swap the commander to Imotekh. Others: Tyranid Swarm,
+  Forces of the Imperium, Ruinous Powers. Sealed now: Tyranid $175-190, Necron $420 at Card Kingdom.
+- **Fallout (Mar 2024).** Science! (Jeskai) about $60, Hail Caesar (Mardu) $110, Scrappy Survivors
+  (Naya) $130, Mutant Menace (Sultai) $145-210. Set of 4 $185-420.
+- **Lord of the Rings (Jun 2023).** 20 new cards each, many out of stock. Riders of Rohan (Jeskai
+  Humans, Monarch), Food and Fellowship (Abzan, Frodo and Sam partners, Food), Elven Council
+  (Simic, voting), Hosts of Mordor (Grixis, reanimation, Sauron amasses Orcs).
+- **Final Fantasy (Jun 2025).** 4 decks (Revival Trance, Limit Break, Counter Blitz, Scions &
+  Spellcraft). Limit Break $130 (sold out), set of 4 $269.
+- **Turtle Power! (TMNT, Mar 2026).** One deck, synergy-focused, commander is all four turtles.
+  About $70. 5-color.
+- **Not found:** Assassin's Creed deck details (Ezio deck eBay asking $899), The Hobbit official
+  decks (Aug 2026), Avatar and Spider-Man have no regular precons (Avatar has a beginner box).
+
 ## Sources
 
 - Reality Fracture prices: Wizards' Reality Fracture buyer's guide, tabletopmeta.com, tcgsealedalerts.com
