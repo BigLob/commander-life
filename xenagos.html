@@ -97,6 +97,8 @@ const EVERY=ALL.concat(SUG);
 /* bench and trash marks, kept on this device only; a card carries at most one mark */
 let favs={};try{favs=JSON.parse(localStorage.getItem('xph-favs')||'{}')}catch(e){}
 const saveFavs=()=>{try{localStorage.setItem('xph-favs',JSON.stringify(favs))}catch(e){}};
+/* one-time seed: every deck card at $2 or less starts as a favorite (runs once per browser, so later unfavs stick) */
+try{if(!localStorage.getItem('xph-seed-cheap')){ALL.forEach(c=>{if(c.p<=2)favs[c.n]=1});saveFavs();localStorage.setItem('xph-seed-cheap','1')}}catch(e){}
 const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
 let mark={};try{mark=JSON.parse(localStorage.getItem('xph-marks')||'{}')}catch(e){}
 const saveMarks=()=>{try{localStorage.setItem('xph-marks',JSON.stringify(mark))}catch(e){}};
