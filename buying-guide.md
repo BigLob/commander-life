@@ -173,6 +173,20 @@ of the expensive ones.
 | Overabundance | $5.67 |
 | New Frontiers | $5.24 |
 
+## Printer for proxies
+
+Pick: **Brother MFC-J4335DW**, a color inkjet with refillable ink tanks. Draftsim's proxy-printer guide
+(2024) lists it as "Best Overall": 150-sheet tray, a bypass tray for thicker paper, automatic duplex.
+Seen at about $160 to $170 new (Walmart, Staples) and $144.99 refurbished, Oct 2026. Undated listings, so
+check the price before buying.
+
+- Cheaper: MFC-J1010DW, about $80 new, but it uses cartridges, so ink costs more per page. Fine for one deck.
+- Pricier: MFC-J5855DW, about $330. It mainly adds 11 x 17 paper, which proxies don't need.
+- Color laser: HL-L3280CDW is recommended for cardstock, but laser tends to look flatter on card art.
+- No Brother test of proxy print quality turned up; the sources are 2024 roundups, several of them affiliate sites.
+- Paper matters more than the printer: matte or glossy photo paper, or plain paper in a sleeve in front of a
+  real card. For one 16-card deck, a print shop or library may cost less than a printer.
+
 ## Sources
 
 - Reality Fracture prices: Wizards' Reality Fracture buyer's guide, tabletopmeta.com, tcgsealedalerts.com
@@ -180,3 +194,5 @@ of the expensive ones.
 - Foundations Commander: Wizards' decklist announcement, playgroup.gg, preconforge.com, scrollvault.net,
   everythingedinburgh.com; the $49.99 regular precon MSRP is from the same reporting
 - Win rates: playgroup.gg/commander/precons
+- Printers: draftsim.com/best-printer-for-mtg-proxies, rtings.com/printer/learn/research/printing-playing-card-proxies,
+  bestreviews.com cardstock printers, Staples and Quill listings
