@@ -7,7 +7,9 @@ sync live. Plain HTML pages, no build step, no framework.
 
 End every reply about anything in this repo with icon-only links to the live pages, on one line:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html)
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [🃏²](https://biglob.github.io/commander-life/game2.html)
+
+🃏² is `game2.html`, a second copy of Commander Life with its own table and history (`tables/t7q2xm4k-2`, `-2-results`) and its own localStorage keys, so it never mixes with the main game. Copy `index.html` over it with those four strings changed whenever index.html is released.
 
 🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Fav, Bench and Trash
 tabs). When we build a new page, add its icon link to this line. Its editable claude.ai artifact is
