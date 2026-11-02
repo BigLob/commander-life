@@ -175,17 +175,37 @@ of the expensive ones.
 
 ## Printer for proxies
 
-Pick: **Brother MFC-J4335DW**, a color inkjet with refillable ink tanks. Draftsim's proxy-printer guide
-(2024) lists it as "Best Overall": 150-sheet tray, a bypass tray for thicker paper, automatic duplex.
-Seen at about $160 to $170 new (Walmart, Staples) and $144.99 refurbished, Oct 2026. Undated listings, so
-check the price before buying.
+The old pick, Brother MFC-J4335DW, is discontinued (CDW: Feb 7, 2026). Its replacement is the MFC-J4355DW.
+Prices below are retailer snapshots from Nov 2, 2026, not confirmed current. Re-check before buying.
 
-- Cheaper: MFC-J1010DW, about $80 new, but it uses cartridges, so ink costs more per page. Fine for one deck.
-- Pricier: MFC-J5855DW, about $330. It mainly adds 11 x 17 paper, which proxies don't need.
-- Color laser: HL-L3280CDW is recommended for cardstock, but laser tends to look flatter on card art.
-- No Brother test of proxy print quality turned up; the sources are 2024 roundups, several of them affiliate sites.
-- Paper matters more than the printer: matte or glossy photo paper, or plain paper in a sleeve in front of a
-  real card. For one 16-card deck, a print shop or library may cost less than a printer.
+| Printer | Ink | Price seen | Notes |
+| --- | --- | --- | --- |
+| Brother MFC-J4555DW (one tier up) | LC506 / XL / XXL cartridges | not captured | 2 trays, 400 sheets, 2.7" touchscreen, auto duplex |
+| Brother MFC-J4355DW | Same LC506 family | $180 to $210 | 150-sheet tray, 1.8" screen, auto duplex, 20 ppm black / 19 color |
+| Epson EcoTank ET-2980 | 502 bottles (black 127 mL; cyan, magenta, yellow 70 mL) | $229.99 to $329.99 | Refillable tanks, 4 colors, auto duplex, 100-sheet tray, 15 ppm black / 8 color. Epson says up to 3 years of ink in the box. Avoid the ET-2980U, a subscription variant that looks the same in listings |
+| Canon PIXMA G620 | GI-23 bottles (6 dye inks: cyan, magenta, yellow, black, red, gray; 57 mL each) | $299.99 at launch, no current price found | Refillable tanks, photo-focused, no auto duplex, about 3,800 4x6 photos per bottle set. 100-sheet rear tray for plain paper |
+
+- The Brothers use cartridges, not ink tanks. LC406 (the old J4335DW ink) does not fit the J4355DW.
+- No ink price per page or yield figure was found for the Epson or Canon bottles.
+- No proxy-print test of the J4355DW turned up. Draftsim's 2024 "Best Overall" pick was the old J4335DW.
+- Not confirmed: whether the ET-2980's pigment black or the Brothers' inks work with dye-only glossy paper. Print a test sheet.
+- **Auto duplex** means the printer flips the sheet and prints both sides in one job. Without it you reload
+  the sheets by hand for the backs. It only matters for double-sided paper; if each proxy goes in a sleeve
+  in front of a real card, no backs are printed.
+- For one 16-card deck, a print shop or library may cost less than a printer.
+
+## Proxy supplies
+
+| Item | Notes | Price seen |
+| --- | --- | --- |
+| Fiskars 12" paper trimmer | No "precision" model found; the closest is the SureCut line (e.g. 177590-1001) | $27 to $46 |
+| Double-sided glossy photo paper | Uinkit 200-sheet 200 gsm (dye-ink inkjets), Koala 200-sheet 260 gsm (stiffer), PPD 50-sheet 140 gsm (thin), Goefun (dye only, poor on dark art). Draftsim's top pick is laser-only; skip it | varies |
+| Canon Pro Premium Matte PM-101, letter, 50 sheets | One-sided. Check the listing says PM-101; the cheaper MP-101 is a different paper | $20.99 to $43 |
+
+- Dye-only papers may not suit a pigment-ink printer, so test one sheet with a black-border card.
+- Match paper thickness to the sleeves: thick card won't fit a double-sleeved deck.
+- A straight trimmer cuts square corners. Rounded corners need a corner rounder (not listed) or sleeves.
+- Proxies are for casual play. Sanctioned tournaments don't accept them.
 
 ## Sources
 
@@ -195,4 +215,6 @@ check the price before buying.
   everythingedinburgh.com; the $49.99 regular precon MSRP is from the same reporting
 - Win rates: playgroup.gg/commander/precons
 - Printers: draftsim.com/best-printer-for-mtg-proxies, rtings.com/printer/learn/research/printing-playing-card-proxies,
-  bestreviews.com cardstock printers, Staples and Quill listings
+  cdw.com (J4335DW discontinued), castleink.com (J4355DW ink), usa.canon.com/shop/p/pixma-g620, epson.com/p/C11CL41202,
+  Staples, Quill and Best Buy listings
+- Proxy supplies: draftsim.com/best-paper-for-mtg-proxies, Glazer's and SHI (PM-101), Staples (Fiskars)
