@@ -32,6 +32,32 @@ second list of staples. Typo fixed: "Felwar" is **Fellwar Stone**, "Lanowar" is 
 
 Orzhov Signet was in the Reddit list but none of our decks is white-black, so skip it.
 
+### More from r/mtg (CardFetcher lists)
+
+Fit and notes still to fill in; vet each before buying.
+
+| Card | Status |
+| --- | --- |
+| Cloud, Ex-SOLDIER | Idea |
+| Sword of Hearth and Home | Idea |
+| Sword of Fire and Ice | Idea |
+| Sword of Forge and Frontier | Idea |
+| Prowler's Gloves | Idea |
+| Rogue Passage | Idea |
+| Genji Glove | Idea |
+| Cast Away Doubt | Idea |
+| Insatiable Avarice | Idea |
+| Kynaios and Tiro of Meletis | Idea |
+| Concordant Crossroads | Idea |
+| Howling Mine | Idea |
+| Mana Flare | Idea |
+| Collective Voyage | Idea |
+| Bilbo's Gambit | Idea |
+| Narset's Reversal | Idea |
+| Approach of the Second Sun | Idea |
+| Reprieve | Idea |
+| Ureni of the Unwritten | Idea |
+
 ## Per deck
 
 For each deck, note what to cut when a card goes in.
@@ -49,3 +75,4 @@ For each deck, note what to cut when a card goes in.
 | Date | Deck | Change | Cost | Notes |
 | --- | --- | --- | --- | --- |
 | 2026-11-03 | all | Log started with the Reddit ideas above | | Nothing decided yet |
+| 2026-11-03 | all | Added 19 cards from two r/mtg CardFetcher lists (blank entries skipped); no duplicates found | | |
