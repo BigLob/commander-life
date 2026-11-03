@@ -58,6 +58,29 @@ Fit and notes still to fill in; vet each before buying.
 | Reprieve | Idea |
 | Ureni of the Unwritten | Idea |
 
+### White (r/EDH thread; First Flight and Token Triumph)
+
+Swords to Plowshares and Path to Exile were in this list too, already above. Typos fixed: Teferi's Protection, Moonshaker Cavalry.
+
+| Card | Status |
+| --- | --- |
+| Farewell | Idea |
+| Land Tax | Idea |
+| Smothering Tithe | Idea |
+| Trouble in Pairs | Idea |
+| Esper Sentinel | Idea |
+| Teferi's Protection | Idea |
+| Clever Concealment | Idea |
+| Galadriel's Dismissal | Idea |
+| Moonshaker Cavalry | Idea |
+| Akroma's Will | Idea |
+| Unwanted Remake | Idea |
+| Serra's Sanctum | Idea |
+| Grand Abolisher | Idea |
+| Claim Jumper | Idea |
+| Silence | Idea |
+| Thraben Charm | Idea |
+
 ## Per deck
 
 For each deck, note what to cut when a card goes in.
@@ -76,3 +99,4 @@ For each deck, note what to cut when a card goes in.
 | --- | --- | --- | --- | --- |
 | 2026-11-03 | all | Log started with the Reddit ideas above | | Nothing decided yet |
 | 2026-11-03 | all | Added 19 cards from two r/mtg CardFetcher lists (blank entries skipped); no duplicates found | | |
+| 2026-11-03 | First Flight, Token Triumph | Added 16 white cards from r/EDH; Swords and Path skipped as dupes | | |
