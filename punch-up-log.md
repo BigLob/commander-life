@@ -100,3 +100,4 @@ For each deck, note what to cut when a card goes in.
 | 2026-11-03 | all | Log started with the Reddit ideas above | | Nothing decided yet |
 | 2026-11-03 | all | Added 19 cards from two r/mtg CardFetcher lists (blank entries skipped); no duplicates found | | |
 | 2026-11-03 | First Flight, Token Triumph | Added 16 white cards from r/EDH; Swords and Path skipped as dupes | | |
+| 2026-11-03 | all | Built the card browser artifact (49 cards, with images): https://claude.ai/artifact/SMVtW5E8HXpW3zHGBT1UCF | | Prowler's Gloves isn't on Scryfall; check the name |
