@@ -29,7 +29,11 @@ there, and update it when newer prices turn up.
 
 **Upgrading decks:** `upgrade-guide.md` (Nov 2026) has each Starter deck's mechanics with card counts, 30 upgrade
 suggestions per deck counted across 13 written guides and 1,617 Archidekt upgrade decklists ("x of y" lists), the
-most-cut precon cards, and 15-card swap sets for Bracket 2, Bracket 2 evened out, and Bracket 3.
+most-cut precon cards, and 15-card swap sets for Bracket 2, Bracket 2 evened out, and Bracket 3. The user's goal is
+Bracket 3 with all five decks level ("Bracket 3, all five decks level" section). Each deck has a private claude.ai preview
+page with card images of the 30 to bring in and 15 to take out (for the user only; not in the footer): First Flight
+claude.ai/artifact/Ld1BCD7myiqqs4xcwEHd1U, Grave Danger VDSDeiJGuUw48d9ukHPfa3, Chaos Incarnate 56xc2bNsdDa5e4YUu7XcLc,
+Draconic Destruction 2v8hi7tARaN4oBLS9d2KK6, Token Triumph 9mQApGexWmAc42GPrfGtr1 (same claude.ai/artifact/ prefix).
 
 **claude.ai artifact links can't sync.** Artifact pages block connections to Firebase, so they always
 show "Offline, this phone only". The Commander Life artifact (claude.ai/artifact/LzFGUh29B93Zb2sjM7uEGU)

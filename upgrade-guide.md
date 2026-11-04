@@ -1,6 +1,7 @@
 # Upgrade guide: the five Starter Commander Decks (2022)
 
 Plan: swap about 15 cards in each deck, picked from 30 suggestions per deck (lands included), at three power levels.
+The final goal is Bracket 3 with all five decks level: see "Bracket 3, all five decks level" below.
 Researched Nov 4, 2026.
 
 ## How this was counted
@@ -337,6 +338,59 @@ Game Changers (Bracket 3 only) the lists used: Seedborn Muse (45 of 347, $19.02)
 1. **Bracket 2, best for this deck:** Queen Allenal of Ruadach; King Darien XLVIII; Intangible Virtue; Swords to Plowshares; Welcoming Vampire; Springleaf Drum; Elspeth, Sun's Champion; Rumor Gatherer; Cadira, Caller of the Small; Halo Fountain; Skullclamp; Bess, Soul Nourisher; Sunpetal Grove; Sungrass Prairie; Survivors' Encampment.
 2. **Bracket 2, evened out:** Token Triumph is already the strongest deck (27.8% wins), so it takes only lands, draw, removal and protection, and none of the new payoffs: Swords to Plowshares; Welcoming Vampire; Rumor Gatherer; Tocasia's Welcome; Shamanic Revelation; Unbreakable Formation; Cultivate; Springleaf Drum; Sunpetal Grove; Sungrass Prairie; Survivors' Encampment; Selesnya Sanctuary; Brushland; Temple Garden; Overgrown Farmland.
 3. **Bracket 3:** up to three Game Changers (Seedborn Muse; Aura Shards; Teferi's Protection), then Queen Allenal of Ruadach; King Darien XLVIII; Intangible Virtue; Swords to Plowshares; Welcoming Vampire; Springleaf Drum; Elspeth, Sun's Champion; Rumor Gatherer; Cadira, Caller of the Small; Sunpetal Grove; Sungrass Prairie; Survivors' Encampment.
+
+## Bracket 3, all five decks level
+
+Goal: every deck at Bracket 3 and about as strong as the others. Researched Nov 4, 2026, from each commander's Bracket 3 decks:
+EDHREC's Bracket 3 pages (Isperia 100, Gisa and Geralf 647, Kardur 557, Atarka 398, Emmara 657 decks) and Archidekt decks
+their owners tagged Bracket 3 (33, 209, 195, 136 and 177, one per owner). Each card is ranked by its average share of the two.
+
+**How the decks are leveled.** Each deck gets the same package shape: its three most-played Game Changers, its six most-played
+other cards, then cards that fill whatever role falls short of the shared targets (12 ramp, 12 card draw, 10 removal, 3 board
+wipes, 2 protection). It takes out the 15 precon cards that Bracket 3 lists play least, never dropping a role below target, and
+cuts as many lands as it adds. Roles are counted from each card's rules text, so treat them as close, not exact.
+
+| Deck after swaps | Ramp | Draw | Removal | Wipes | Protection | Game Changers | Avg mana value | Core 15 cost |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| First Flight | 12 → 13 | 14 → 16 | 13 → 13 | 3 → 4 | 1 → 2 | 3 | 3.72 → 3.62 | $171 |
+| Grave Danger | 8 → 12 | 10 → 12 | 11 → 10 | 4 → 3 | 1 → 1 | 3 | 3.73 → 3.40 | $236 |
+| Chaos Incarnate | 12 → 13 | 15 → 14 | 13 → 14 | 3 → 3 | 0 → 2 | 3 | 4.00 → 3.64 | $214 |
+| Draconic Destruction | 16 → 16 | 10 → 12 | 17 → 12 | 5 → 4 | 1 → 2 | 3 | 3.76 → 3.63 | $159 |
+| Token Triumph | 13 → 14 | 11 → 12 | 8 → 10 | 2 → 3 | 2 → 3 | 3 | 3.58 → 3.42 | $204 |
+
+Grave Danger stays at 1 protection card because its open slots went to the ramp it lacked; Swiftfoot Boots is its next pick.
+Rooftop Storm + Gravecrawler + Ashnod's Altar in Grave Danger is an infinite loop. Bracket 3 allows late-game combos, but agree
+on it as a group.
+
+### First Flight (preview page: claude.ai/artifact/Ld1BCD7myiqqs4xcwEHd1U)
+
+- **In (Core 15):** Rhystic Study (GC) (29% EDHREC, 7/33 Archidekt); Consecrated Sphinx (GC) (22% EDHREC, 8/33 Archidekt); Grand Arbiter Augustin IV (GC) (21% EDHREC, 3/33 Archidekt); Glacial Fortress (55% EDHREC, 17/33 Archidekt); Reliquary Tower (53% EDHREC, 17/33 Archidekt); Hallowed Fountain (45% EDHREC, 14/33 Archidekt); Supreme Verdict (45% EDHREC, 12/33 Archidekt); Dovin's Veto (39% EDHREC, 12/33 Archidekt); Dream Trawler (30% EDHREC, 14/33 Archidekt); Swiftfoot Boots (22% EDHREC, 9/33 Archidekt); Azorius Chancery (35% EDHREC, 16/33 Archidekt); Path to Exile (37% EDHREC, 11/33 Archidekt); Medomai the Ageless (27% EDHREC, 12/33 Archidekt); Azor, the Lawbringer (24% EDHREC, 12/33 Archidekt); Watcher of the Spheres (25% EDHREC, 10/33 Archidekt).
+- **Out:** Meandering River (22% EDHREC, 7/33 Archidekt); Coastal Tower (23% EDHREC, 7/33 Archidekt); Moorland Haunt (29% EDHREC, 9/33 Archidekt); Sejiri Refuge (30% EDHREC, 13/33 Archidekt); Skyscanner (9% EDHREC, 6/33 Archidekt); Angler Turtle (14% EDHREC, 6/33 Archidekt); Vow of Duty (8% EDHREC, 8/33 Archidekt); Pilgrim's Eye (15% EDHREC, 7/33 Archidekt); Aven Gagglemaster (20% EDHREC, 6/33 Archidekt); Soul Snare (18% EDHREC, 7/33 Archidekt); Sharding Sphinx (19% EDHREC, 8/33 Archidekt); Faerie Formation (17% EDHREC, 9/33 Archidekt); Migratory Route (21% EDHREC, 8/33 Archidekt); Diluvian Primordial (21% EDHREC, 8/33 Archidekt); Banishing Light (22% EDHREC, 8/33 Archidekt).
+- **Next 15 to consider:** Skycloud Expanse; Deserted Beach; Adarkar Wastes; Ghostly Prison; Mind Stone; Wizard Class; An Offer You Can't Refuse; Arcane Denial; Irrigated Farmland; Lightning Greaves; Approach of the Second Sun; Defiler of Dreams; Aetherspouts; Fellwar Stone; Unesh, Criosphinx Sovereign.
+
+### Grave Danger (preview page: claude.ai/artifact/VDSDeiJGuUw48d9ukHPfa3)
+
+- **In (Core 15):** Field of the Dead (GC) (16% EDHREC, 40/209 Archidekt); Cyclonic Rift (GC) (14% EDHREC, 31/209 Archidekt); Demonic Tutor (GC) (15% EDHREC, 27/209 Archidekt); Rooftop Storm (84% EDHREC, 171/209 Archidekt); Gravecrawler (76% EDHREC, 158/209 Archidekt); Death Baron (66% EDHREC, 148/209 Archidekt); Diregraf Colossus (67% EDHREC, 141/209 Archidekt); Necroduality (56% EDHREC, 129/209 Archidekt); Wilhelt, the Rotcleaver (55% EDHREC, 123/209 Archidekt); Undead Warchief (50% EDHREC, 114/209 Archidekt); Dark Ritual (30% EDHREC, 62/209 Archidekt); Ashnod's Altar (26% EDHREC, 56/209 Archidekt); Warren Soultrader (26% EDHREC, 46/209 Archidekt); Cryptbreaker (49% EDHREC, 105/209 Archidekt); Hordewing Skaab (36% EDHREC, 84/209 Archidekt).
+- **Out:** Salt Marsh (17% EDHREC, 35/209 Archidekt); Spark Reaper (<5% EDHREC, 14/209 Archidekt); Withered Wretch (<5% EDHREC, 23/209 Archidekt); Vela the Night-Clad (<5% EDHREC, 26/209 Archidekt); Lazotep Reaver (<5% EDHREC, 29/209 Archidekt); Liliana's Devotee (<5% EDHREC, 30/209 Archidekt); Cruel Revival (11% EDHREC, 22/209 Archidekt); Lotleth Giant (12% EDHREC, 22/209 Archidekt); Curse of Disturbance (11% EDHREC, 25/209 Archidekt); Syphon Flesh (12% EDHREC, 32/209 Archidekt); Geralf's Mindcrusher (17% EDHREC, 38/209 Archidekt); Josu Vess, Lich Knight (17% EDHREC, 41/209 Archidekt); Gravespawn Sovereign (24% EDHREC, 43/209 Archidekt); Loyal Subordinate (24% EDHREC, 46/209 Archidekt); Necromantic Selection (23% EDHREC, 52/209 Archidekt).
+- **Next 15 to consider:** Headless Rider; Drowned Catacomb; Zul Ashur, Lich Lord; Carrion Feeder; Watery Grave; Stitcher's Supplier; Accursed Marauder; Endless Ranks of the Dead; Counterspell; Bojuka Bog; Tainted Isle; Buried Alive; Zombie Master; Dimir Aqueduct; Swiftfoot Boots.
+
+### Chaos Incarnate (preview page: claude.ai/artifact/56xc2bNsdDa5e4YUu7XcLc)
+
+- **In (Core 15):** Jeska's Will (GC) (24% EDHREC, 51/195 Archidekt); Demonic Tutor (GC) (22% EDHREC, 39/195 Archidekt); Vampiric Tutor (GC) (12% EDHREC, 18/195 Archidekt); Conjurer's Closet (69% EDHREC, 109/195 Archidekt); Dragonskull Summit (64% EDHREC, 119/195 Archidekt); Disrupt Decorum (57% EDHREC, 105/195 Archidekt); Morbid Opportunist (54% EDHREC, 91/195 Archidekt); Blood Crypt (52% EDHREC, 90/195 Archidekt); Karazikar, the Eye Tyrant (47% EDHREC, 83/195 Archidekt); Swiftfoot Boots (16% EDHREC, 33/195 Archidekt); Sword of Hearth and Home (17% EDHREC, 20/195 Archidekt); Sulfurous Springs (46% EDHREC, 84/195 Archidekt); Tainted Peak (46% EDHREC, 83/195 Archidekt); Blood Artist (42% EDHREC, 77/195 Archidekt); Vengeful Ancestor (42% EDHREC, 69/195 Archidekt).
+- **Out:** Stensia Bloodhall (11% EDHREC, 14/195 Archidekt); Cinder Barrens (12% EDHREC, 24/195 Archidekt); Urborg Volcano (12% EDHREC, 25/195 Archidekt); Molten Slagheap (18% EDHREC, 32/195 Archidekt); Scythe Specter (<5% EDHREC, 9/195 Archidekt); Thermo-Alchemist (<5% EDHREC, 9/195 Archidekt); Explosion of Riches (<5% EDHREC, 9/195 Archidekt); Titan Hunter (<5% EDHREC, 11/195 Archidekt); Magmatic Force (<5% EDHREC, 12/195 Archidekt); Wildfire Devils (<5% EDHREC, 13/195 Archidekt); Guttersnipe (<5% EDHREC, 17/195 Archidekt); Breath of Malfegor (6% EDHREC, 9/195 Archidekt); Reign of the Pit (6% EDHREC, 12/195 Archidekt); Coveted Jewel (8% EDHREC, 16/195 Archidekt); Ambition's Cost (8% EDHREC, 20/195 Archidekt).
+- **Next 15 to consider:** Luxury Suite; Bojuka Bog; Haunted Ridge; Shadowblood Ridge; Curse of Opulence; Shiny Impetus; Xantcha, Sleeper Agent; Fellwar Stone; Bedevil; Bloodthirsty Blade; Supernatural Stamina; Vandalblast; Alexios, Deimos of Kosmos; Agitator Ant; Bothersome Quasit.
+
+### Draconic Destruction (preview page: claude.ai/artifact/2v8hi7tARaN4oBLS9d2KK6)
+
+- **In (Core 15):** Worldly Tutor (GC) (20% EDHREC, 21/136 Archidekt); Jeska's Will (GC) (19% EDHREC, 23/136 Archidekt); Gamble (GC) (7% EDHREC, 7/136 Archidekt); Lathliss, Dragon Queen (69% EDHREC, 94/136 Archidekt); Rhythm of the Wild (61% EDHREC, 81/136 Archidekt); Thrakkus the Butcher (65% EDHREC, 76/136 Archidekt); Carnelian Orb of Dragonkind (54% EDHREC, 65/136 Archidekt); Terror of the Peaks (49% EDHREC, 68/136 Archidekt); Stomping Ground (46% EDHREC, 65/136 Archidekt); Return of the Wildspeaker (37% EDHREC, 50/136 Archidekt); Dragonborn Champion (35% EDHREC, 47/136 Archidekt); Rishkar's Expertise (27% EDHREC, 39/136 Archidekt); Heroic Intervention (37% EDHREC, 53/136 Archidekt); Up the Beanstalk (19% EDHREC, 33/136 Archidekt); Rootbound Crag (47% EDHREC, 62/136 Archidekt).
+- **Out:** Shivan Oasis (24% EDHREC, 34/136 Archidekt); Timber Gorge (25% EDHREC, 35/136 Archidekt); Loaming Shaman (<5% EDHREC, 9/136 Archidekt); Furnace Whelp (<5% EDHREC, 11/136 Archidekt); Provoke the Trolls (5% EDHREC, 11/136 Archidekt); Dream Pillager (13% EDHREC, 17/136 Archidekt); Sweltering Suns (13% EDHREC, 17/136 Archidekt); Runehorn Hellkite (15% EDHREC, 16/136 Archidekt); Sarkhan, the Dragonspeaker (15% EDHREC, 21/136 Archidekt); Dragonkin Berserker (16% EDHREC, 21/136 Archidekt); Primal Might (18% EDHREC, 22/136 Archidekt); Dragon Mage (19% EDHREC, 22/136 Archidekt); Clan Defiance (19% EDHREC, 24/136 Archidekt); Akoum Hellkite (22% EDHREC, 24/136 Archidekt); Drumhunter (21% EDHREC, 25/136 Archidekt).
+- **Next 15 to consider:** Goblin Anarchomancer; Utvara Hellkite; Kodama's Reach; Nature's Lore; Goldspan Dragon; Ganax, Astral Hunter; Scourge of the Throne; Twinflame Tyrant; Rockfall Vale; Maelstrom of the Spirit Dragon; Blasphemous Act; Farseek; Dracogenesis; Balefire Dragon; Wrathful Red Dragon.
+
+### Token Triumph (preview page: claude.ai/artifact/9mQApGexWmAc42GPrfGtr1)
+
+- **In (Core 15):** Seedborn Muse (GC) (51% EDHREC, 91/177 Archidekt); Aura Shards (GC) (35% EDHREC, 58/177 Archidekt); Teferi's Protection (GC) (22% EDHREC, 34/177 Archidekt); Queen Allenal of Ruadach (60% EDHREC, 101/177 Archidekt); Swords to Plowshares (61% EDHREC, 98/177 Archidekt); Cryptolith Rite (61% EDHREC, 99/177 Archidekt); Skullclamp (57% EDHREC, 94/177 Archidekt); Springleaf Drum (58% EDHREC, 90/177 Archidekt); Sunpetal Grove (55% EDHREC, 93/177 Archidekt); Halo Fountain (51% EDHREC, 94/177 Archidekt); Welcoming Vampire (49% EDHREC, 79/177 Archidekt); Elspeth, Storm Slayer (29% EDHREC, 52/177 Archidekt); Bennie Bracks, Zoologist (42% EDHREC, 68/177 Archidekt); Caretaker's Talent (32% EDHREC, 59/177 Archidekt); Elspeth, Sun's Champion (28% EDHREC, 45/177 Archidekt).
+- **Out:** Tranquil Expanse (18% EDHREC, 39/177 Archidekt); Selesnya Guildmage (<5% EDHREC, 12/177 Archidekt); Jade Mage (<5% EDHREC, 16/177 Archidekt); Voice of Many (<5% EDHREC, 19/177 Archidekt); Verdant Force (<5% EDHREC, 25/177 Archidekt); Scavenging Ooze (<5% EDHREC, 25/177 Archidekt); Sporemound (<5% EDHREC, 26/177 Archidekt); Great Oak Guardian (<5% EDHREC, 29/177 Archidekt); Valor in Akros (10% EDHREC, 21/177 Archidekt); Dawn of Hope (13% EDHREC, 26/177 Archidekt); Ajani, Caller of the Pride (12% EDHREC, 29/177 Archidekt); Scatter the Seeds (14% EDHREC, 27/177 Archidekt); Slate of Ancestry (15% EDHREC, 26/177 Archidekt); Overwhelming Instinct (12% EDHREC, 32/177 Archidekt); Farhaven Elf (13% EDHREC, 33/177 Archidekt).
+- **Next 15 to consider:** Temple Garden; Survivors' Encampment; Enduring Vitality; Craterhoof Behemoth; Drumbellower; Overgrown Farmland; Glare of Subdual; Divine Visitation; Heroic Intervention; King Darien XLVIII; Nature's Chosen; Brushland; Beastmaster Ascension; Relic of Legends; Bountiful Promenade.
 
 ## Good in more than one deck
 
