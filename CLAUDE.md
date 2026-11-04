@@ -27,6 +27,10 @@ https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; d
 Foundations beginner decks, precon win rates). When the user asks whether a price is good, check it
 there, and update it when newer prices turn up.
 
+**Upgrading decks:** `upgrade-guide.md` (Nov 2026) has each Starter deck's mechanics with card counts, 30 upgrade
+suggestions per deck counted across 13 written guides and 1,617 Archidekt upgrade decklists ("x of y" lists), the
+most-cut precon cards, and 15-card swap sets for Bracket 2, Bracket 2 evened out, and Bracket 3.
+
 **claude.ai artifact links can't sync.** Artifact pages block connections to Firebase, so they always
 show "Offline, this phone only". The Commander Life artifact (claude.ai/artifact/LzFGUh29B93Zb2sjM7uEGU)
 and the old Archenemy Table artifact (claude.ai/artifact/RuiCBfVWbVowusRFS4D5zc) are previews only.
