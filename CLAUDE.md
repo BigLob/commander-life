@@ -53,7 +53,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.4; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.5; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.5: **Sitting out** (menu, 3 players only): pick who sits out (`state.sitout`, synced as `sitout`, default Lenn as before); `PEOPLE[3]` is a getter that returns everyone else in edge order. Changing it starts the 3-player game over (logged first), two taps once it has begun, like the 1v1 ×2 pairs. Why: the user typed "Lenn" into Andrew's name box to play Lenn instead, and `badName()` silently reverted it. Now typing the sitting-out player's name into a box swaps them in (before the game has begun) or shows a note pointing to Sitting out (`#nameNote`); any other player's name still reverts, with a note. Older phones ignore `sitout` and keep showing Rand, Andrew, Trent.
 - v1.4: louder. Every sound (clips and synth) goes through `out`: a 4× gain (+12 dB), a limiter (DynamicsCompressor, threshold −6 dB, ratio 20) and a tanh soft clipper, so peaks stay at full scale. Measured 6 to 11 dB louder (RMS) on the clips. To change the loudness, change `out.gain.value`.
 - v1.3: **the turn tracker is gone** (the user asked for "just a turn button, not turn tracking"). One big gold button (`.turn-big`, the tap symbol) sits in the middle of the table, with the menu button beside it on the right; on a 4-player Table board both sit on the line above the bottom seat (`placeTurn()`), since the side seats' totals fill the middle, and in "Just me" it sits at the bottom. Tapping it plays a random goofy clip (`turnSound()`): 130 CC0 clips from OpenGameArt in `sounds/` (5 s max, mono MP3, 1.5 MB, credits in `sounds/CREDITS.md`), dealt from a shuffled bag so none repeats until all have played, the next 4 fetched ahead, a new tap cutting off the last. It plays on this phone only. Nothing sets `turns/` any more; the spotlight is always this phone's player, Pick who goes first only shows the "Goes first" badge, and the log's turn counts stay 0 (Results hides them). `turns/` and `clock/` stay in the synced paths for older phones, but nothing shows them. Menu → Sound is now All / Turn only / Off (`state.sound`; v1.2's true/false map to All/Off).
 - v1.2: sound (`play()`, `SOUNDS`), all synthesized with Web Audio, no files. A knock for life lost, a tick for life gained (fuller for a hold's ±10), a two-note chime when the turn moves (also when another phone passes the turn to this phone's player), a falling toll when a player goes out, a fanfare when one player is left. Menu → Sound On/Off, kept on this phone only (`state.sound`, not synced). The first touch unlocks audio; an iPhone's silent switch mutes it.
@@ -82,8 +83,8 @@ them and `.gitignore` now ignores PNGs at the root).
 - 1 to 4 players. Seats sit on the phone's edges, clockwise from the bottom: edge 0 bottom, 1 left,
   2 top, 3 right. Default names are Rand, Andrew, Trent, Lenn. Each person is known by their default
   edge (names and colors are stored by it).
-  - Who plays (`PEOPLE`): 2 players Rand and Lenn (v3.19; it was Trent before); 3 players Rand, Andrew and Trent (v3.18; it was
-    Lenn before); 4 everyone. Where they sit (`EDGES`) is separate: 2 players use bottom and top, 3 players bottom, left, right.
+  - Who plays (`PEOPLE`): 2 players Rand and Lenn (v3.19; it was Trent before); 3 players Rand, Andrew and Trent by default (v3.18; it was
+    Lenn before; since v1.5 picked in Sitting out); 4 everyone. Where they sit (`EDGES`) is separate: 2 players use bottom and top, 3 players bottom, left, right.
 - **Seating** (v3.32): around the real table, Lenn is on Rand's left, Trent across and Andrew on his
   right. `posOf()` turns the table so this phone's player is at the bottom and swaps left and right
   (`flipSide()`) on every phone. Before v3.32 Rand's phone and Center skipped the swap, so they

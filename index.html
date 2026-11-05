@@ -450,6 +450,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 .who { display: grid; gap: 8px; }
 .who-row { display: flex; align-items: center; gap: 10px; }
 .who-row > span { font-size: 17px; font-weight: 600; }
+.name-note { margin: 2px 0 0; font-size: 15px; color: var(--hot); }
 .pick {
   flex: none; width: 40px; height: 40px; padding: 0; border-radius: 50%;
   border: 2px solid var(--line); background: transparent;
@@ -509,6 +510,15 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="3"></button>
       </div>
     </div>
+    <div class="field" id="sitoutField">
+      <span>Sitting out</span>
+      <div class="seg" id="segSitout">
+        <button type="button" data-v="0"></button>
+        <button type="button" data-v="1"></button>
+        <button type="button" data-v="2"></button>
+        <button type="button" data-v="3"></button>
+      </div>
+    </div>
     <div class="field" id="layout4Field">
       <span>Layout</span>
       <div class="seg" id="segLayout4">
@@ -540,6 +550,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         <div class="who-row" id="edge2"><button type="button" class="pick" data-v="2"></button><input id="name2" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Trent"></div>
         <div class="who-row" id="edge3"><button type="button" class="pick" data-v="3"></button><input id="name3" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Lenn"></div>
         <div class="who-row"><button type="button" class="pick" data-v="4" aria-label="This phone is in the center of the table"></button><span>Center</span></div>
+        <p class="name-note" id="nameNote" role="status" hidden></p>
       </div>
     </details>
     <details class="field" id="colorField">
@@ -569,7 +580,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.4';
+  const VERSION = '1.5';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -608,7 +619,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3], [SPLIT]: [0, 1, 2, 3] };
   // Who plays at each table size, by their default edge: Rand and Lenn head to head, and Rand,
   // Andrew and Trent at three (seated at the edges above), so the same people play every time.
-  const PEOPLE = Object.assign({}, EDGES, { 2: [0, 3], 3: [0, 1, 2] });
+  const PEOPLE = Object.assign({}, EDGES, { 2: [0, 3] });
+  // Three players (v1.5): everyone but whoever sits out (state.sitout, Lenn by default, as before).
+  // Kept in edge order, which keeps them in their order around the real table.
+  Object.defineProperty(PEOPLE, 3, { enumerable: true, get: () => [0, 1, 2, 3].filter(e => e !== state.sitout) });
   // Picking a table size starts it at its usual life: 20 head to head, 30 for three, 40 for four.
   const DEFAULT_START = { 2: 20, 3: 30, 4: 40, [SPLIT]: 20 };
   // Every game the table keeps, by key, and how many play it. One per table size, plus the two 1v1s
@@ -658,6 +672,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   // In the two 1v1s, the edge Rand (edge 0) plays; the other two play each other.
   // v3.20 made Rand v Lenn the default; phones that saved v3.16's default (Trent) move over once.
   if (![1, 2, 3].includes(state.pairs) || !state.pairs320) { state.pairs = 3; state.pairs320 = true; }
+  // Who sits out a three-player game (v1.5; before, it was always Lenn). Synced.
+  if (![0, 1, 2, 3].includes(state.sitout)) state.sitout = 3;
   delete state.clock; // left over from v1.2's sync
   // Whose phone this is (by their default edge); their seat sits at its bottom and every seat faces
   // them. CENTER is a phone lying in the middle of the table, each seat facing its own edge.
@@ -1256,6 +1272,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.getElementById('pickFirst').hidden = state.mode === 1;
     // Who plays whom in the two 1v1s: Rand's pick sets both pairs.
     document.getElementById('pairsField').hidden = state.mode !== SPLIT;
+    document.getElementById('sitoutField').hidden = state.mode !== 3;
     document.getElementById('pairsLabel').textContent = (state.names[pairMe()].trim() || DEFAULT_NAMES[pairMe()]) + ' plays';
     // A phone in the center has no seat of its own to concede or color.
     document.getElementById('concede').hidden = state.mode === 1 || center;
@@ -1308,6 +1325,39 @@ details.field[open] > summary { margin-bottom: 10px; }
     state.pairs = patch.pairs = v;
     marking = []; send(patch); save(); build(); syncMenu();
   }
+  // Who sits out of three players. A different player changes who's in the game, so like new pairs
+  // it starts the game over, and once it has begun that takes a second tap.
+  let sitArm = null;
+  function applySitout(v) {
+    if (v === state.sitout) return;
+    if (!untouched(state.games[3]) && sitArm !== v) {
+      disarm();
+      sitArm = v;
+      const b = document.querySelector(`#segSitout [data-v="${v}"]`);
+      b.classList.add('armed');
+      b.textContent = 'Tap again';
+      armTimer = setTimeout(disarm, 3000);
+      return;
+    }
+    sitArm = null;
+    // Logged under the old players, then started over with the new ones.
+    const patch = resetGame(3);
+    state.sitout = patch.sitout = v;
+    marking = []; send(patch); save(); build(); syncMenu();
+  }
+  function paintSitout() {
+    document.querySelectorAll('#segSitout button').forEach(b => {
+      const e = +b.dataset.v, name = state.names[e].trim() || DEFAULT_NAMES[e];
+      b.classList.toggle('on', e === state.sitout);
+      b.classList.remove('armed');
+      b.textContent = name;
+      b.setAttribute('aria-label', name + ' sits out');
+    });
+  }
+  document.getElementById('segSitout').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (b) applySitout(+b.dataset.v);
+  });
   document.getElementById('segPairs').addEventListener('click', e => {
     const b = e.target.closest('button');
     if (b) applyPairs(+b.dataset.pv);
@@ -1408,7 +1458,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   function disarm() {
     clearTimeout(armTimer);
     pairArm = null;
+    sitArm = null;
     paintPairs();
+    paintSitout();
     paintMini();
     newGameBtn.classList.remove('armed');
     newGameBtn.textContent = 'New game at ' + state.start;
@@ -1473,11 +1525,23 @@ details.field[open] > summary { margin-bottom: 10px; }
     input.addEventListener('input', e => {
       state.names[i] = e.target.value; send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
     });
-    // Leaving the box empty (or holding someone else's name) puts the default name back.
+    // Leaving the box empty (or holding someone else's name) puts the default name back. Typing the
+    // name of whoever sits out of three players (v1.5) means they play instead: before the game
+    // has begun that's done right away, and after, the note points to Sitting out.
     input.addEventListener('change', () => {
       if (!badName(i, input.value)) return;
+      const typed = input.value.trim(), j = DEFAULT_NAMES.findIndex(d => d.toLowerCase() === typed.toLowerCase());
       state.names[i] = input.value = DEFAULT_NAMES[i];
       send({ ['names/' + i]: state.names[i] }); save(); build(); syncMenu();
+      if (j < 0) return;
+      let note = `${DEFAULT_NAMES[j]} has their own name box.`;
+      if (state.mode === 3 && j === state.sitout) {
+        if (untouched(state.games[3])) { applySitout(i); note = `${DEFAULT_NAMES[j]} plays and ${DEFAULT_NAMES[i]} sits out.`; }
+        else note = `To play ${DEFAULT_NAMES[j]} instead of ${DEFAULT_NAMES[i]}, tap ${DEFAULT_NAMES[i]} under Sitting out.`;
+      }
+      const el = document.getElementById('nameNote');
+      el.textContent = note; el.hidden = false;
+      clearTimeout(el.t); el.t = setTimeout(() => { el.hidden = true; }, 6000);
     });
   });
   document.getElementById('pickFirst').addEventListener('click', () => { closeMenu(); pickFirst(); });
@@ -1644,7 +1708,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   const RESULTS_URL = DB + '/tables/t7q2xm4k-results';
 
   const inc = d => ({ '.sv': { increment: d } });
-  const allPaths = () => ['mode', 'start', 'pairs', 'names/0', 'names/1', 'names/2', 'names/3',
+  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'names/0', 'names/1', 'names/2', 'names/3',
     'colors/0', 'colors/1', 'colors/2', 'colors/3']
     .concat(...KEYS.map(k => [].concat(...Array.from({ length: SIZE[k] }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${k}/${i}/${f}`)))),
@@ -1656,7 +1720,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
+  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -1674,6 +1738,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   function validValue(p, v) {
     if (p === 'mode') return MODES.includes(v);
     if (p === 'pairs') return [1, 2, 3].includes(v);
+    if (p === 'sitout') return [0, 1, 2, 3].includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
     // A blank or wrong-box name from another phone (or someone mid-edit) is ignored; see badName.
     if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12 && !badName(+p.slice(6), v);
@@ -1717,7 +1782,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (!changed.length) return;
     save();
     if (changed.some(x => !/^(games|meta|turns|clock)\//.test(x.p))) {
-      if (changed.some(x => x.p === 'mode' || x.p === 'pairs')) marking = [];
+      if (changed.some(x => ['mode', 'pairs', 'sitout'].includes(x.p))) marking = [];
       build();
       if (!menu.hidden) syncMenu();
       return;
