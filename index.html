@@ -582,7 +582,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.7';
+  const VERSION = '1.8';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -825,7 +825,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         out.connect(limit).connect(clip).connect(audio.destination);
       }
       if (audio.state === 'suspended') audio.resume();
-      if (!bag.length) prime();
+      if (!pools[0].bag.length) prime();
     } catch (e) { audio = null; }
   }
   document.addEventListener('pointerdown', unlock, true);
@@ -859,21 +859,27 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (!audio) return;
     try { SOUNDS[name](); } catch (e) {}
   }
-  // The turn button's sounds (v1.3; v1.7 added scary, gross and silly ones): CC0 clips from
-  // OpenGameArt, 5 seconds at most, in sounds/
-  // (sounds/CREDITS.md says where each came from). They're dealt from a shuffled bag, so none comes
-  // back until every one has played. The next few are fetched ahead so a tap plays at once; a new
-  // tap cuts off the one still playing.
-  const TURN_SOUNDS = 'aap accordion alarm-vocal arcade-atomize arcade-beach arcade-beam arcade-beam2 arcade-bloops arcade-boing arcade-martianray arcade-odd arcade-odd2 arcade-sfx1 arcade-thump arcade-trekscan arcade-whoosh arcade-whoosh2 au-yeah baby-sound-effect bell-1 bell-3 big-boing big-scary-troll-sounds bike-horn bing-1 bing-2 blah bloop blung booleh bung-1 cc0-deep-monster-roar ccut chant-16 chant-20 chant-22 chant-8 chant-ethereal chipper-chopper-upper cough critter-alien-02 critter-alien-04 critter-alien-05 critter-alien-06 critter-alien-12 critter-attack-02 critter-bug-10 critter-bug-12 critter-bug-13 critter-burble-01 critter-cute-02 critter-cute-05 critter-cute-07 critter-cute-09 critter-eat-01 critter-eat-03 critter-eat-04 critter-human-02 critter-misc-02 critter-misc-03 critter-misc-04 critter-misc-09 critter-misc-12 critter-monster-10 critter-monster-13 critter-slime-08 croak-1 croak-3 croak-4 demon-dies demon-feast-on-soul demon-feeble-humans demon-game-over demon-he-s-escaped demon-kill-him-slowly demon-kill-them-slowly demon-laughs demon-make-you-my-pet demon-moohaaa-laugh demon-not-welcome demon-nothing-to-fear demon-nowhere-to-run demon-search-all-dungens demon-search-the-grounds demon-she-s-escaped demon-silence demon-smell-flesh-boy demon-smell-flesh-girl demon-snigger-1 demon-stay-for-dinner demon-they-ve-escaped demon-visitor demon-voice-game-over demon-wait-she-s-mine demon-welcome-to-hell demon-you-fools-let-him-escape dishes-1 dog-2 dog-bark dog-bark-3 dog-sad-dog-1 doop door-spring-1 door-spring-2 door-spring-3 door-spring-4 door-spring-5 door-spring-6 dynamite evil-cackle-laugh-1 evil-cackle-laugh-2 evil-cyber-laugh evil-laugh evil-laugh2 evil-laughter evil-laughter-0 evil-screech-1 excited-horror-sound explosion fart-1 fart-2 fart-3 fart-4 female-high-pitched-scream-sfx female-scream-1 foghorn-kinda-gross frog-1 frog-2 genuine-sneeze-sound ghost ghost-breath ghost-moan-1 ghost-moan-2 ghost-moan-3 ghost-moan-4 ghost-moan-5 ghostly-cackle-laugh-1 girly-scream glass-4 glass-5 goblin-feast gong-1 gong-2 gross-crachat gross-cretin gross-diarea gross-monster-dialog gross-rire gross-rot gross-rot2 gross-vomi group-giggling growl-monster-1 growl-monster-10 growl-monster-11 growl-monster-15 growl-monster-2 growl-monster-4 growl-monster-6 growl-monster-9 grunt-1 grunt-2 grunt-3 grunt-4 he-will-decide-your-fate hihihihihihihihing horn-1 horn-2 horror-bassy-3 horror-bassy-6 horror-bassy-9 horror-high-5 horror-mid-10 horror-mid-16 horror-scream1 huh hungry-ghoul i-see-you-voice insect-or-alien-scream-short jumpscare-sound laugh-1 laugh-2 laugh-3 laugh-4 little-girl-saying-game-over maniacal-laughter-pack-1 monster-ripping-into-fish oh-you-scared-me other-1 other-2 other-3 other-4 other-5 other-6 other-7 peacock-scream plop-1 plop-2 plup pop pot-1 pot-2 rat retro-complex1 retro-complex2 retro-complex3 retro-complex4 retro-fall1 retro-fall2 retro-fall3 retro-monster-roar retro-rise1 retro-rise2 retro-rise3 retro-tremolo1 retro-tremolo2 retro-tremolo3 retro-tremolo4 retro-tremolo5 ripping-into-meat robot-bird scary-high-pitched-ghost scream-high scream-high-gverb silly-me sinister-laugh sinister-laugh-filtered slime-01 slime-02 slime-04 slime-06 slime-07 slime-09 slime-10 slime-14 so-thats-coming-along splash-1 splash-2 splat-1 splat-2 splat-3 splat-4 splat-5 splat-6 splat-7 splat-8 splatter spooky-badplant spooky-breath spooky-laugh spooky-monster spooky-near spooky-quake spooky-roar spooky-see spooky-trip spooky-yawn spring-1 spring-2 spring-3 spring-4 spring-5 spring-6 spring-7 spring-8 spring-9 squelch squish-1 squish-2 squish-3 squish-4 squish-5 squish-6 squishpop squishsplat-impact steam-whistle-1 steam-whistle-2 strange-girl-scream strange-tornado strange-warble swat-1 swat-2 swat-3 swat-4 the-messy-feast theremin-25 theremin-34 theremin-42 theremin-big-14 theremin-big-18 theremin-big-3 tiny-battlecry0 tiny-battlecry1 tiny-battlecry2 tiny-laugh toilet-1 toilet-2 tss uah undead-1 undead-2 undead-3 undead-4 vulture weird-1 weird-2 weird-3 weird-4 weird-5 weird-chanting-sound weird-helicopter-like-sound weird-rocket-launch-sound weirdo-1 weirdo-10 weirdo-11 weirdo-12 weirdo-13 weirdo-14 weirdo-15 weirdo-16 weirdo-17 weirdo-18 weirdo-19 weirdo-2 weirdo-20 weirdo-21 weirdo-22 weirdo-23 weirdo-24 weirdo-25 weirdo-26 weirdo-27 weirdo-28 weirdo-29 weirdo-3 weirdo-30 weirdo-4 weirdo-5 weirdo-6 weirdo-7 weirdo-8 weirdo-9 witch-cackle wobble-1 wobble-2 wolf-monster-sound zombie-moan-5 zombie-moan-6 zombie-moan-7 zombie-moans zombie-moans-preview zombie-pain zombie2-fastzombie1 zombie2-zombienoise1 zombie2-zombienoise2 zombie2-zombienoise3'.split(' ');
-  let bag = [], current = null;
+  // The turn button's sounds (v1.3; v1.7 added scary, gross and silly ones, v1.8 happy and sad):
+  // CC0 clips from OpenGameArt in sounds/ (sounds/CREDITS.md says where each came from). Two
+  // pools: short clips (5 s at most) and, in sounds/long/, longer ones (5 to 12 s: victory and
+  // game-over tunes, sad songs, a laughing fit, a fart symphony). After every 3 to 10 short clips
+  // (a new random count each time) the next tap plays a long one (v1.8). Each pool is dealt from
+  // its own shuffled bag, so no clip comes back until all of its pool has played. The next few
+  // are fetched ahead so a tap plays at once; a new tap cuts off the one still playing.
+  const TURN_SOUNDS = '16bit-success-sound 8bit-fanfare-jingle-the-lick a-surprising-twist-nes-sting aap accordion alarm-vocal and-the-winner-is arcade-atomize arcade-beach arcade-beam arcade-beam2 arcade-bloops arcade-boing arcade-martianray arcade-odd arcade-odd2 arcade-sfx1 arcade-thump arcade-trekscan arcade-whoosh arcade-whoosh2 au-yeah baby-sound-effect bell-1 bell-3 better-luck-next-time big-boing big-scary-troll-sounds bike-horn bing-1 bing-2 blah bloop blung booleh bung-1 castle-fanfare cc0-deep-monster-roar ccut chant-16 chant-20 chant-22 chant-8 chant-ethereal cheers-0 chipper-chopper-upper classic-fanfare-lick cough critter-alien-02 critter-alien-04 critter-alien-05 critter-alien-06 critter-alien-12 critter-attack-02 critter-bug-10 critter-bug-12 critter-bug-13 critter-burble-01 critter-cute-02 critter-cute-05 critter-cute-07 critter-cute-09 critter-eat-01 critter-eat-03 critter-eat-04 critter-human-02 critter-misc-02 critter-misc-03 critter-misc-04 critter-misc-09 critter-misc-12 critter-monster-10 critter-monster-13 critter-slime-08 croak-1 croak-3 croak-4 demon-dies demon-feast-on-soul demon-feeble-humans demon-game-over demon-he-s-escaped demon-kill-him-slowly demon-kill-them-slowly demon-laughs demon-make-you-my-pet demon-moohaaa-laugh demon-not-welcome demon-nothing-to-fear demon-nowhere-to-run demon-search-all-dungens demon-search-the-grounds demon-she-s-escaped demon-silence demon-smell-flesh-boy demon-smell-flesh-girl demon-snigger-1 demon-stay-for-dinner demon-they-ve-escaped demon-visitor demon-voice-game-over demon-wait-she-s-mine demon-welcome-to-hell demon-you-fools-let-him-escape dishes-1 dog-2 dog-bark dog-bark-3 dog-sad-dog-1 doop door-spring-1 door-spring-2 door-spring-3 door-spring-4 door-spring-5 door-spring-6 dynamite evil-cackle-laugh-1 evil-cackle-laugh-2 evil-cyber-laugh evil-laugh evil-laugh2 evil-laughter evil-laughter-0 evil-screech-1 excited-horror-sound explosion fart-1 fart-2 fart-3 fart-4 female-high-pitched-scream-sfx female-scream-1 final-lap foghorn-kinda-gross frog-1 frog-2 genuine-sneeze-sound ghost ghost-breath ghost-moan-1 ghost-moan-2 ghost-moan-3 ghost-moan-4 ghost-moan-5 ghostly-cackle-laugh-1 girly-scream glass-4 glass-5 goblin-feast gong-1 gong-2 gotcha gross-crachat gross-cretin gross-diarea gross-monster-dialog gross-rire gross-rot gross-rot2 gross-vomi group-giggling growl-monster-1 growl-monster-10 growl-monster-11 growl-monster-15 growl-monster-2 growl-monster-4 growl-monster-6 growl-monster-9 grunt-1 grunt-2 grunt-3 grunt-4 he-will-decide-your-fate hihihihihihihihing horn-1 horn-2 horror-bassy-3 horror-bassy-6 horror-bassy-9 horror-high-5 horror-mid-10 horror-mid-16 horror-scream1 huh hungry-ghoul i-see-you-voice insect-or-alien-scream-short jingle-14 jingle-hit11 jingle-hit12 jingle-nes01 jingle-nes06 jingle-nes07 jingle-pizza04 jingle-sax06 jingle-sax08 jingle-sax09 jingle-sax14 jingle-steel03 jingle-steel07 jingle-steel09 jingle-steel12 jingle-steel13 jingle-steel16 jumpscare-sound laugh-1 laugh-2 laugh-3 laugh-4 level-up-long level-up-mid level-up-short little-girl-saying-game-over maniacal-laughter-pack-1 monster-ripping-into-fish new-thing-get oh-you-scared-me oldschool-death oldschool-round-end other-1 other-2 other-3 other-4 other-5 other-6 other-7 peacock-scream plop-1 plop-2 plup point-bell pop positive-sound pot-1 pot-2 race-best race-good rat retro-complex1 retro-complex2 retro-complex3 retro-complex4 retro-fall1 retro-fall2 retro-fall3 retro-monster-roar retro-rise1 retro-rise2 retro-rise3 retro-tremolo1 retro-tremolo2 retro-tremolo3 retro-tremolo4 retro-tremolo5 ripping-into-meat robot-bird sad-trumpet scary-high-pitched-ghost scream-high scream-high-gverb short-jingle silly-me sinister-laugh sinister-laugh-filtered slime-01 slime-02 slime-04 slime-06 slime-07 slime-09 slime-10 slime-14 so-thats-coming-along splash-1 splash-2 splat-1 splat-2 splat-3 splat-4 splat-5 splat-6 splat-7 splat-8 splatter spooky-badplant spooky-breath spooky-laugh spooky-monster spooky-near spooky-quake spooky-roar spooky-see spooky-trip spooky-yawn spring-1 spring-2 spring-3 spring-4 spring-5 spring-6 spring-7 spring-8 spring-9 squelch squish-1 squish-2 squish-3 squish-4 squish-5 squish-6 squishpop squishsplat-impact stage-clear-1 stage-clear-2 stage-clear-3 stage-clear-4 steam-whistle-1 steam-whistle-2 strange-girl-scream strange-tornado strange-warble swat-1 swat-2 swat-3 swat-4 the-messy-feast theremin-25 theremin-34 theremin-42 theremin-big-14 theremin-big-18 theremin-big-3 tiny-battlecry0 tiny-battlecry1 tiny-battlecry2 tiny-laugh toilet-1 toilet-2 total-fail tss tuba-happy tuba-sad uah undead-1 undead-2 undead-3 undead-4 victory-6 video-game-cheerful-ending voice-lets-try-again voice-well-done vulture weird-1 weird-2 weird-3 weird-4 weird-5 weird-chanting-sound weird-helicopter-like-sound weird-rocket-launch-sound weirdo-1 weirdo-10 weirdo-11 weirdo-12 weirdo-13 weirdo-14 weirdo-15 weirdo-16 weirdo-17 weirdo-18 weirdo-19 weirdo-2 weirdo-20 weirdo-21 weirdo-22 weirdo-23 weirdo-24 weirdo-25 weirdo-26 weirdo-27 weirdo-28 weirdo-29 weirdo-3 weirdo-30 weirdo-4 weirdo-5 weirdo-6 weirdo-7 weirdo-8 weirdo-9 win-bandoneon win-banjo win-fretless win-harpsichord win-nylon win-saw win-sound-effect win-square win-steeldrums witch-cackle wobble-1 wobble-2 wolf-monster-sound zombie-moan-5 zombie-moan-6 zombie-moan-7 zombie-moans zombie-moans-preview zombie-pain zombie2-fastzombie1 zombie2-zombienoise1 zombie2-zombienoise2 zombie2-zombienoise3'.split(' ');
+  const LONG_SOUNDS = 'long/10-fanfares long/a-lonely-and-mournful-tune long/accordion-long long/applause-in-a-large-hall-or-church long/awkward-trumpet long/cozy-clear long/cozy-fail long/creepy-chant long/demon-no-going-back long/diarrhea long/dog-barking long/evil-cackle long/fart-symphony long/female-warrior-cheer long/fireworks-with-applause-happy-people long/fish-feast long/game-over-8 long/game-over-ii long/game-over-instrumental long/game-over-jingle long/game-over-yarakashi long/gameover-or-underwater long/glorious-victory-fanfare-nes long/goblin-feast long/grunts long/high-ghost long/horror-scream long/horror-sting long/hungry-ghoul long/hyoshi-area-clear long/hyper-ultra-fanfare long/icy-game-over long/icy-level-up long/jingle-05 long/jingle-08 long/jingle-11 long/jingle-17 long/jingle-18 long/just-a-random-fanfare long/laughing-fit long/level-complete long/maniacal-laughter long/medieval-defeat long/medieval-victory long/messy-feast long/race-finish long/race-intro long/ripping-meat long/sad-blues long/sad-ending-1 long/sad-ending-2 long/sad-ending-3 long/sad-game-over long/sad-walk-with-sad-melodica long/sadness long/sega-victory long/simple-battle-fanfare long/something-sad long/space-fanfare long/the-burger-pope-round-clear long/the-heros-passing long/tiny-sad-lonely-theme long/tragic-death long/troll long/trop-la-win long/victory-8-bit long/victory-fanfare long/victory-fanfare-short long/victory-sting long/vomit long/weird-sad-song long/win-fanfare long/zombie-horde'.split(' ');
+  const LONG_EVERY = [3, 10];
+  const pools = [{ list: TURN_SOUNDS, bag: [] }, { list: LONG_SOUNDS, bag: [] }];
+  const between = () => LONG_EVERY[0] + Math.floor(Math.random() * (LONG_EVERY[1] - LONG_EVERY[0] + 1));
+  let untilLong = between(), current = null;
   const loaded = {};
-  function nextUp(n) {
-    while (bag.length < n) {
-      const deck = TURN_SOUNDS.slice();
+  function nextUp(pool, n) {
+    while (pool.bag.length < n) {
+      const deck = pool.list.slice();
       for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
-      bag = bag.concat(deck);
+      pool.bag = pool.bag.concat(deck);
     }
-    return bag.slice(0, n);
+    return pool.bag.slice(0, n);
   }
   function load(name) {
     if (!loaded[name]) {
@@ -883,15 +889,19 @@ details.field[open] > summary { margin-bottom: 10px; }
     }
     return loaded[name];
   }
-  function prime() { if (audio) nextUp(4).forEach(load); }
+  // The next 4 short clips and the next long one stay loaded.
+  const ahead = () => nextUp(pools[0], 4).concat(nextUp(pools[1], 1));
+  function prime() { if (audio) ahead().forEach(load); }
   function turnSound() {
     if (state.sound === 'off') return;
     unlock();
     if (!audio) return;
-    const name = nextUp(1)[0];
-    bag.shift();
-    // Only the next few clips stay decoded.
-    Object.keys(loaded).forEach(k => { if (k !== name && !bag.slice(0, 4).includes(k)) delete loaded[k]; });
+    const isLong = untilLong <= 0, pool = pools[isLong ? 1 : 0];
+    untilLong = isLong ? between() : untilLong - 1;
+    const name = nextUp(pool, 1)[0];
+    pool.bag.shift();
+    const keep = ahead();
+    Object.keys(loaded).forEach(k => { if (k !== name && !keep.includes(k)) delete loaded[k]; });
     load(name).then(buf => {
       if (!buf) return;
       try { if (current) current.stop(); } catch (e) {}
