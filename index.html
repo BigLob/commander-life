@@ -50,6 +50,8 @@
 .k-rb { --seat: #8e2a1f; --seat-hi: #c0442f; --accent: #121014; }
 .k-bu { --seat: #17161b; --seat-hi: #34303d; --accent: #2c69b3; }
 .k-gw { --seat: #2a6238; --seat-hi: #3f8a50; --accent: #d9ccab; }
+/* Living Energy (Aetherdrift, Saheeli): only a background (v1.6), so only its seat colors. */
+.k-le { --seat: #4a2f6e; --seat-hi: #6b4a9a; --accent: #2f8a6a; }
 
 [hidden] { display: none !important; }
 html { box-sizing: border-box; height: 100%; background: var(--table); }
@@ -580,7 +582,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.5';
+  const VERSION = '1.6';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -606,6 +608,19 @@ details.field[open] > summary { margin-bottom: 10px; }
   // art_crop and normal images so seats don't ask Scryfall every time they're drawn.
   const swatch = k => `<i class="sw" style="background-image: url(${artUrl(k, 'art_crop')})"></i>`;
   const artUrl = (k, version) => `art/${k}${version === 'normal' ? '-card' : ''}.jpg`;
+  // Deck picking is off for now (v1.6; the user wants to keep it for later): the menu's deck list
+  // and the seats' mana symbols are hidden. Set this to true to bring them back.
+  const SHOW_DECKS = false;
+  // The backgrounds (v1.6): every commander art in art/, the five Starter decks by color pair plus
+  // Living Energy (Aetherdrift Commander, Saheeli, Radiant Creator; Scryfall drc/3). Each player
+  // gets a different one at random, and every new game deals them again. Synced as bgs/<edge>.
+  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le'];
+  // Random backgrounds for `edges`, none the same as each other or as those `keep` (other players').
+  function dealBgs(edges, keep) {
+    const pool = ARTS.filter(a => !keep.includes(a));
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    return edges.map((e, n) => pool[n % pool.length]);
+  }
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
   const CENTER = 4;
@@ -672,6 +687,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   // In the two 1v1s, the edge Rand (edge 0) plays; the other two play each other.
   // v3.20 made Rand v Lenn the default; phones that saved v3.16's default (Trent) move over once.
   if (![1, 2, 3].includes(state.pairs) || !state.pairs320) { state.pairs = 3; state.pairs320 = true; }
+  // Each player's background, by edge (v1.6). Dealt at random until the table says otherwise.
+  if (!Array.isArray(state.bgs) || state.bgs.length !== 4 || !state.bgs.every(b => ARTS.includes(b))) state.bgs = dealBgs([0, 1, 2, 3], []);
   // Who sits out a three-player game (v1.5; before, it was always Lenn). Synced.
   if (![0, 1, 2, 3].includes(state.sitout)) state.sitout = 3;
   delete state.clock; // left over from v1.2's sync
@@ -722,6 +739,15 @@ details.field[open] > summary { margin-bottom: 10px; }
   const playerOf = i => state.games[players[i].k][players[i].j];
   const edgeOf = i => players[i].e;
   const colorOf = e => 'k-' + (SCHEMES[state.colors[e]] ? state.colors[e] : DEFAULT_COLORS[e]);
+  // Player e's background art key: their dealt one, or their deck's while decks are picked.
+  const bgOf = e => SHOW_DECKS ? colorOf(e).slice(2) : state.bgs[e];
+  // Deals new backgrounds to the players on this board; returns the patch to send.
+  function reroll() {
+    const edges = players.map(p => p.e), keep = [0, 1, 2, 3].filter(e => !edges.includes(e)).map(e => state.bgs[e]);
+    const dealt = dealBgs(edges, keep), patch = {};
+    edges.forEach((e, n) => { state.bgs[e] = dealt[n]; patch['bgs/' + e] = dealt[n]; });
+    return patch;
+  }
   // Where player i sits on this phone: the table turns so this phone's player is at the bottom, and
   // the left and right seats swap, which matches how the group actually sits: Lenn on Rand's left,
   // Andrew on his right (v3.32; before, Rand's phone and Center had those two the other way round,
@@ -959,8 +985,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   function makeSeat(i, spot, flag) {
     const seat = document.createElement('section');
     const e = edgeOf(i);
-    seat.className = `seat ${spot} ${colorOf(e)}`;
-    seat.style.setProperty('--art', `url(${artUrl(colorOf(e).slice(2), 'art_crop')})`);
+    seat.className = `seat ${spot} k-${bgOf(e)}`;
+    seat.style.setProperty('--art', `url(${artUrl(bgOf(e), 'art_crop')})`);
     const opps = oppsOf(i);
     seat.innerHTML = `
       <div class="face">
@@ -973,12 +999,12 @@ details.field[open] > summary { margin-bottom: 10px; }
         <div class="badge" hidden>Goes first</div>
         <div class="tray">
           <div class="pop">
-            ${opps.map((o, s) => `<button type="button" class="chip ${colorOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}">${swatch(colorOf(o.color).slice(2))}<span class="ct">${o.label}</span><b>0</b></button>`).join('')}
+            ${opps.map((o, s) => `<button type="button" class="chip k-${bgOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}">${swatch(bgOf(o.color))}<span class="ct">${o.label}</span><b>0</b></button>`).join('')}
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
         </div>
         ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
-        ${state.mode > 1 ? `<div class="seat-mana${flag ? ' by-flag' : ''}" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
+        ${SHOW_DECKS && state.mode > 1 ? `<div class="seat-mana${flag ? ' by-flag' : ''}" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
       </div>`;
     bindZone(seat.querySelector('.minus'), i, -1);
     bindZone(seat.querySelector('.plus'), i, 1);
@@ -1276,7 +1302,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.getElementById('pairsLabel').textContent = (state.names[pairMe()].trim() || DEFAULT_NAMES[pairMe()]) + ' plays';
     // A phone in the center has no seat of its own to concede or color.
     document.getElementById('concede').hidden = state.mode === 1 || center;
-    document.getElementById('colorField').hidden = center;
+    document.getElementById('colorField').hidden = center || !SHOW_DECKS;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = PEOPLE[state.mode];
     const me = center ? CENTER : edges.includes(state.me) ? state.me : 0;
@@ -1323,7 +1349,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     pairArm = null;
     const patch = Object.assign({}, ...DUELS.map(resetGame));
     state.pairs = patch.pairs = v;
-    marking = []; send(patch); save(); build(); syncMenu();
+    marking = []; players = viewPlayers(); Object.assign(patch, reroll());
+    send(patch); save(); build(); syncMenu();
   }
   // Who sits out of three players. A different player changes who's in the game, so like new pairs
   // it starts the game over, and once it has begun that takes a second tap.
@@ -1343,7 +1370,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     // Logged under the old players, then started over with the new ones.
     const patch = resetGame(3);
     state.sitout = patch.sitout = v;
-    marking = []; send(patch); save(); build(); syncMenu();
+    marking = []; players = viewPlayers(); Object.assign(patch, reroll());
+    send(patch); save(); build(); syncMenu();
   }
   function paintSitout() {
     document.querySelectorAll('#segSitout button').forEach(b => {
@@ -1426,7 +1454,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const me = state.me, other = DUELS.find(k => k !== duelOf(me));
     const side = (e, j) => {
       const p = state.games[other][j];
-      return `<span class="mini-p${outReason(p) ? ' out' : ''}"><i class="${colorOf(e)}"></i><span class="nm">${nameOf(e)}</span><b>${p.life}</b></span>`;
+      return `<span class="mini-p${outReason(p) ? ' out' : ''}"><i class="k-${bgOf(e)}"></i><span class="nm">${nameOf(e)}</span><b>${p.life}</b></span>`;
     };
     const es = edgesOf(other);
     const opts = [0, 1, 2, 3].filter(e => e !== me).map(e =>
@@ -1512,7 +1540,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   // only their own 1v1, so the other pair plays on.
   newGameBtn.addEventListener('click', () => {
     if (viewKeys().every(k => untouched(state.games[k])) || newGameBtn.classList.contains('armed')) {
-      send(Object.assign({}, ...viewKeys().map(resetGame)));
+      send(Object.assign({}, ...viewKeys().map(resetGame), reroll()));
       marking = []; save(); build(); closeMenu();
       return;
     }
@@ -1585,8 +1613,9 @@ details.field[open] > summary { margin-bottom: 10px; }
       seats: g.map((p, i) => {
         const e = edgesOf(k)[i];
         return {
-          name: state.names[e].trim() || DEFAULT_NAMES[e], colors: colorOf(e).slice(2),
-          deck: DECKS[colorOf(e).slice(2)].name,
+          name: state.names[e].trim() || DEFAULT_NAMES[e], colors: bgOf(e),
+          // No deck while decks aren't picked; `colors` is then just the background.
+          deck: SHOW_DECKS ? DECKS[colorOf(e).slice(2)].name : '',
           life: p.life, out: outReason(p) || null, won: i === alive[0],
           turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
         };
@@ -1624,9 +1653,9 @@ details.field[open] > summary { margin-bottom: 10px; }
       const r = all[id], win = r.seats.find(x => x.won) || {};
       const day = new Date(r.at).toLocaleDateString([], { month: 'short', day: 'numeric' });
       return `<div class="res-row">
-        <div class="res-head"><b>${esc(win.name)} won</b><span>${esc(deckOf(win))} &middot; ${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
+        <div class="res-head"><b>${esc(win.name)} won</b><span>${deckOf(win) ? esc(deckOf(win)) + ' &middot; ' : ''}${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
           <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
-        <div class="res-players">${r.seats.map(x => `<span class="${SCHEMES[x.colors] ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}">${SCHEMES[x.colors] ? swatch(x.colors) : '<i class="sw"></i>'}${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
+        <div class="res-players">${r.seats.map(x => `<span class="${ARTS.includes(x.colors) ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}">${ARTS.includes(x.colors) ? swatch(x.colors) : '<i class="sw"></i>'}${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
       </div>`;
     }).join('') : '<p class="res-note">No finished games logged yet.</p>');
   }
@@ -1708,7 +1737,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   const RESULTS_URL = DB + '/tables/t7q2xm4k-results';
 
   const inc = d => ({ '.sv': { increment: d } });
-  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'names/0', 'names/1', 'names/2', 'names/3',
+  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'names/0', 'names/1', 'names/2', 'names/3',
     'colors/0', 'colors/1', 'colors/2', 'colors/3']
     .concat(...KEYS.map(k => [].concat(...Array.from({ length: SIZE[k] }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${k}/${i}/${f}`)))),
@@ -1720,7 +1749,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
+  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -1739,6 +1768,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (p === 'mode') return MODES.includes(v);
     if (p === 'pairs') return [1, 2, 3].includes(v);
     if (p === 'sitout') return [0, 1, 2, 3].includes(v);
+    if (p.startsWith('bgs/')) return ARTS.includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
     // A blank or wrong-box name from another phone (or someone mid-edit) is ignored; see badName.
     if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12 && !badName(+p.slice(6), v);
@@ -1769,6 +1799,8 @@ details.field[open] > summary { margin-bottom: 10px; }
       const v = getAt(mirror, 'names/' + i);
       if (typeof v === 'string' && badName(i, v) && document.activeElement !== document.getElementById('name' + i)) fix['names/' + i] = state.names[i];
     });
+    // A table from before v1.6 has no backgrounds: this phone's own go up, so every phone shows the same.
+    if (mirror && typeof mirror === 'object' && !mirror.bgs) state.bgs.forEach((b, e) => { fix['bgs/' + e] = b; });
     if (Object.keys(fix).length) send(fix);
     allPaths().forEach(p => {
       let v = getAt(mirror, p);
