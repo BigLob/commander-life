@@ -53,7 +53,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.1; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.2; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.2: sound (`play()`, `SOUNDS`), all synthesized with Web Audio, no files. A knock for life lost, a tick for life gained (fuller for a hold's ±10), a two-note chime when the turn moves (also when another phone passes the turn to this phone's player), a falling toll when a player goes out, a fanfare when one player is left. Menu → Sound On/Off, kept on this phone only (`state.sound`, not synced). The first touch unlocks audio; an iPhone's silent switch mutes it.
 - v1.1: side-by-side 1v1 ×2 on a player's own phone shows all four seats (`sideBySide4()`): their 1v1 in the bottom half upright, the other 1v1 grouped in the top half turned 180°. The top strip is now Classic only. The menu's "<name> plays" picks this phone's opponent (`pairsFor()`).
 - v1.0: 1v1 ×2 on a player's own phone shows a strip on top with the other game's two totals (`paintMini()`). Tapping it opens "<name> plays": pick your opponent and the other two pair up (`pairsFor()`, `applyPairs()`; same two-tap confirm as the menu once a game has begun).
 - v3.41: the menu button did nothing in 1v1 ×2 (v3.35's `syncMenu()` read `center` before declaring it, so opening the menu threw). Declared first.

@@ -541,6 +541,13 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="classic">Classic</button>
       </div>
     </div>
+    <div class="field">
+      <span>Sound</span>
+      <div class="seg" id="segSound">
+        <button type="button" data-v="on">On</button>
+        <button type="button" data-v="off">Off</button>
+      </div>
+    </div>
     <details class="field" id="meField" open>
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
@@ -578,7 +585,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.1';
+  const VERSION = '1.2';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -679,6 +686,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   // default), 'table' (around the edges) or 'quad' (a quarter each, four seats only). Kept on this
   // phone only. See layoutOf() for where each one can't be used.
   if (!['spot', 'table', 'quad'].includes(state.layout4)) state.layout4 = 'spot';
+  // Sound on this phone (v1.2), on unless turned off here. Kept on this phone only.
+  if (typeof state.sound !== 'boolean') state.sound = true;
   // Per table size, the player whose turn it is (null before anyone's started).
   if (!state.turns || typeof state.turns !== 'object') state.turns = {};
   TURN_KEYS.forEach(k => { if (!Number.isInteger(state.turns[k])) state.turns[k] = null; });
@@ -761,6 +770,52 @@ details.field[open] > summary { margin-bottom: 10px; }
   addEventListener('orientationchange', repin);
   pin();
   const buzz = () => { try { navigator.vibrate && navigator.vibrate(8); } catch (e) {} };
+
+  // ---- sound (v1.2) ----
+  // Every sound is made here with Web Audio, so the page carries no sound files. Phones only let a
+  // page make sound after a touch, so the first touch anywhere opens the audio. On an iPhone the
+  // ring/silent switch mutes it.
+  let audio = null;
+  function unlock() {
+    if (!state.sound) return;
+    try {
+      if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === 'suspended') audio.resume();
+    } catch (e) { audio = null; }
+  }
+  document.addEventListener('pointerdown', unlock, true);
+  // One note: a pitch (Hz, gliding to `to`), when (s from now), how long (s), how loud, and its wave.
+  function note(f, at, len, vol, wave = 'sine', to = f) {
+    const t = audio.currentTime + at, o = audio.createOscillator(), g = audio.createGain();
+    o.type = wave;
+    o.frequency.setValueAtTime(f, t);
+    if (to !== f) o.frequency.exponentialRampToValueAtTime(to, t + len);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+    o.connect(g).connect(audio.destination);
+    o.start(t); o.stop(t + len + 0.02);
+  }
+  const SOUNDS = {
+    // Losing life is a low knock, gaining it a bright tick; a hold's ±10 is fuller.
+    lose: () => note(190, 0, 0.09, 0.35, 'triangle', 120),
+    gain: () => note(700, 0, 0.07, 0.22, 'sine', 940),
+    lose10: () => { note(160, 0, 0.16, 0.45, 'triangle', 90); note(320, 0, 0.1, 0.12, 'square', 180); },
+    gain10: () => { note(660, 0, 0.12, 0.25, 'sine', 990); note(990, 0.05, 0.12, 0.18, 'sine', 1320); },
+    // The turn moving on: two rising bell notes.
+    turn: () => { note(587, 0, 0.35, 0.22); note(880, 0.09, 0.45, 0.2); note(1760, 0.09, 0.25, 0.04); },
+    // A player out: a falling toll.
+    out: () => { note(330, 0, 0.9, 0.3, 'triangle', 165); note(247, 0.12, 1.0, 0.18, 'sine', 123); },
+    // One player left: a short fanfare.
+    win: () => [523, 659, 784, 1047].forEach((f, n) =>
+      note(f, 0.5 + n * 0.12, n === 3 ? 0.8 : 0.22, 0.22, 'triangle')),
+  };
+  function play(name) {
+    if (!state.sound) return;
+    unlock();
+    if (!audio) return;
+    try { SOUNDS[name](); } catch (e) {}
+  }
 
   // ---- rendering ----
   function oppsOf(i) {
@@ -1039,13 +1094,13 @@ details.field[open] > summary { margin-bottom: 10px; }
     m.end = now ? Date.now() : null;
     send({ [`meta/${k}/end`]: m.end });
     save();
-    if (now) record(k); else unlog(m.id);
+    if (now) { record(k); play('win'); } else unlog(m.id);
   }
   function changeLife(i, d) {
     const { k, j } = players[i];
     touch(k);
     const was = finished(k);
-    const p = playerOf(i), slot = marking[i];
+    const p = playerOf(i), slot = marking[i], wasOut = !!outReason(p);
     const at = `games/${k}/${j}/`, bump = { [at + 'life']: inc(d) };
     p.life += d;
     if (slot != null) {
@@ -1055,6 +1110,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     }
     send(bump);
     showDelta(i, d); update(i); save(); buzz();
+    play(!wasOut && outReason(p) ? 'out' : (d < 0 ? 'lose' : 'gain') + (Math.abs(d) >= 10 ? '10' : ''));
     settle(k, was);
   }
   // ---- turns ----
@@ -1069,7 +1125,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       for (let s = 1; s < n; s++) if (!outReason(g[(j - s + n) % n])) { next = (j - s + n) % n; break; }
     }
     setTurn(k, next);
-    buzz();
+    buzz(); play('turn');
   }
   // Each new turn is counted, and the time since the last one began goes to whoever had it.
   // Increments, so two phones passing turns at once both count.
@@ -1111,6 +1167,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     touch(k);
     const was = finished(k), p = playerOf(i);
     p.conceded = !p.conceded;
+    if (p.conceded) play('out');
     send({ [`games/${k}/${j}/conceded`]: p.conceded });
     marking[i] = null;
     update(i); save(); buzz();
@@ -1175,6 +1232,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
+    document.querySelectorAll('#segSound button').forEach(b => b.classList.toggle('on', b.dataset.v === (state.sound ? 'on' : 'off')));
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
     const center = state.mode !== 1 && state.me === CENTER;
     const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : state.mode);
@@ -1375,6 +1433,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   }));
   document.querySelectorAll('#segLayout button').forEach(b => b.addEventListener('click', () => {
     state.layout2 = b.dataset.v; save(); build(); syncMenu();
+  }));
+  // Turning sound on plays the turn chime, so it's clear the phone isn't muted.
+  document.querySelectorAll('#segSound button').forEach(b => b.addEventListener('click', () => {
+    state.sound = b.dataset.v === 'on'; save(); syncMenu(); play('turn');
   }));
   // Logs game k if it finished, starts it over, and returns the patch to send.
   function resetGame(k) {
@@ -1650,7 +1712,11 @@ details.field[open] > summary { margin-bottom: 10px; }
       if (!menu.hidden) syncMenu();
       return;
     }
-    if (changed.some(x => x.p.startsWith('turns/'))) paintTurn();
+    if (changed.some(x => x.p.startsWith('turns/'))) {
+      paintTurn();
+      // Another phone passing the turn to this phone's player chimes here too.
+      if (changed.some(x => x.p.startsWith('turns/') && players.some(q => 'turns/' + q.k === x.p && q.e === state.me && state.turns[q.k] === q.j))) play('turn');
+    }
     changed.forEach(({ p, was }) => {
       const [kind, k, j, f] = p.split('/');
       if (kind !== 'games') return;
