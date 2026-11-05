@@ -37,7 +37,7 @@ Never send the group an artifact link to play on.
 The site only changes when files land on `main` of `BigLob/commander-life`:
 
 1. Make and test the change (in `BigLob/Mtg` or directly here).
-2. Copy `index.html`, `archenemy.html`, `patterns/`, `fonts/` and `art/` into this repo, commit, push to `main`.
+2. Copy `index.html`, `archenemy.html`, `patterns/`, `fonts/`, `art/` and `sounds/` into this repo, commit, push to `main`.
 3. GitHub Pages republishes in a minute or two. Phones may need a reload.
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
@@ -53,7 +53,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.2; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.3; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.3: **the turn tracker is gone** (the user asked for "just a turn button, not turn tracking"). One big gold button (`.turn-big`, the tap symbol) sits in the middle of the table, with the menu button beside it on the right; on a 4-player Table board both sit on the line above the bottom seat (`placeTurn()`), since the side seats' totals fill the middle, and in "Just me" it sits at the bottom. Tapping it plays a random goofy clip (`turnSound()`): 130 CC0 clips from OpenGameArt in `sounds/` (5 s max, mono MP3, 1.5 MB, credits in `sounds/CREDITS.md`), dealt from a shuffled bag so none repeats until all have played, the next 4 fetched ahead, a new tap cutting off the last. It plays on this phone only. Nothing sets `turns/` any more; the spotlight is always this phone's player, Pick who goes first only shows the "Goes first" badge, and the log's turn counts stay 0 (Results hides them). `turns/` and `clock/` stay in the synced paths for older phones, but nothing shows them. Menu → Sound is now All / Turn only / Off (`state.sound`; v1.2's true/false map to All/Off).
 - v1.2: sound (`play()`, `SOUNDS`), all synthesized with Web Audio, no files. A knock for life lost, a tick for life gained (fuller for a hold's ±10), a two-note chime when the turn moves (also when another phone passes the turn to this phone's player), a falling toll when a player goes out, a fanfare when one player is left. Menu → Sound On/Off, kept on this phone only (`state.sound`, not synced). The first touch unlocks audio; an iPhone's silent switch mutes it.
 - v1.1: side-by-side 1v1 ×2 on a player's own phone shows all four seats (`sideBySide4()`): their 1v1 in the bottom half upright, the other 1v1 grouped in the top half turned 180°. The top strip is now Classic only. The menu's "<name> plays" picks this phone's opponent (`pairsFor()`).
 - v1.0: 1v1 ×2 on a player's own phone shows a strip on top with the other game's two totals (`paintMini()`). Tapping it opens "<name> plays": pick your opponent and the other two pair up (`pairsFor()`, `applyPairs()`; same two-tap confirm as the menu once a game has begun).
@@ -114,7 +115,7 @@ them and `.gitignore` now ignores PNGs at the root).
   - v3.7: − and + split each box left and right (the signs themselves were dropped in v3.26).
   - v3.7: each player's own box has a white flag in its bottom-left corner to concede or rejoin
     (two taps), since both players share the phone. The menu's Concede still works too.
-- **Turn tracker** (v3.8; 33% bigger in v3.10): a button at the bottom center of every seat (not in "Just me").
+- **Turn tracker** (removed in v1.3, see above; kept here as history) (v3.8; 33% bigger in v3.10): a button at the bottom center of every seat (not in "Just me").
   Since v3.27 it's Magic's tap symbol (`ICON_TAP`, from the Mana font's SVGs, github.com/andrewgioia/mana)
   instead of the pink circle the user hated: cream before anyone has the turn, then gold and glowing
   on the current player and dim on everyone else. The side-by-side turn bar is gold too.

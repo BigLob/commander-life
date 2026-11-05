@@ -336,41 +336,22 @@ details.field[open] > summary { margin-bottom: 10px; }
 .flag span:empty { display: none; }
 .flag.armed { background: var(--hot); color: var(--table); }
 .flag.armed span { -webkit-text-stroke: 0; }
-/* Turn tracker (v3.27): Magic's tap symbol at the bottom center of every seat, traced in black like
-   the dagger. Cream until someone has the turn; then gold and glowing on the current player and dim
-   on everyone else. The whole 3.2em square stays the tap target. */
-.turn-btn {
-  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%); z-index: 2;
-  width: 3.2em; height: 3.2em; padding: 0; border: 0; background: none; color: var(--ink);
-  font-size: clamp(16px, min(calc(8.5 * var(--cqh, 1vh)), calc(6 * var(--cqw, 1vw))), 20px);
-  touch-action: manipulation;
+/* The turn button (v1.3) replaces the turn tracker: one big gold button in the middle of the
+   table. Tapping it plays a random goofy sound (see turnSound()); nothing is tracked. Magic's tap
+   symbol on it, from the Mana font's SVGs. */
+.turn-big {
+  position: absolute; z-index: 10; top: 50%; left: 50%; translate: -50% -50%;
+  width: 96px; height: 96px; padding: 0; border-radius: 50%; display: grid; place-items: center;
+  border: 3px solid #000; color: #1a1208; touch-action: manipulation;
+  background: radial-gradient(circle at 35% 30%, #ffe2a3, var(--turn) 58%, #b06a14);
+  box-shadow: 0 0 0 2px var(--line), 0 0 22px rgba(255, 179, 71, .55), 0 5px 12px rgba(0, 0, 0, .55);
 }
-/* The symbol is drawn at 54% of the button (v3.30: 80%, v3.32: a third smaller again); the button
-   itself stays the full 3.2em tap target. */
-.turn-btn svg {
-  display: block; width: 54%; height: 54%; margin: 23%; fill: currentColor;
-  filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000);
-}
-.seat.turn .turn-btn { color: var(--turn); }
-.seat.turn .turn-btn svg {
-  filter: drop-shadow(2px 0 0 #000) drop-shadow(-2px 0 0 #000) drop-shadow(0 2px 0 #000) drop-shadow(0 -2px 0 #000) drop-shadow(0 0 10px rgba(255, 179, 71, .9));
-}
-.seat.wait .turn-btn { color: var(--turn-dim); }
-/* The current player's whole seat gets a gold border (v3.37), easier to spot across the table than
-   the symbol alone. Side by side has its turn bar instead. */
-/* Drawn by the seat's turn bar, laid over the art as a frame (an outline would sit under the art). */
-.table .seat.turn .turn-bar {
-  display: block; top: 0; bottom: 0; height: auto; border-radius: inherit;
-  background: none; border: 3px solid var(--turn); box-shadow: inset 0 0 16px rgba(255, 179, 71, .55);
-}
-/* Side by side, a gold bar marks the turn along the player's two tiles where they meet the middle. */
-.turn-bar {
-  position: absolute; left: 0; right: 0; height: 7px; z-index: 3; pointer-events: none; display: none;
-  background: var(--turn); box-shadow: 0 0 14px 2px rgba(255, 179, 71, .6);
-}
-.d-bl .turn-bar, .d-br .turn-bar { top: 0; }
-.d-tl .turn-bar, .d-tr .turn-bar { bottom: 0; }
-.duel .seat.turn .turn-bar { display: block; }
+.turn-big svg { width: 58%; height: 58%; fill: currentColor; pointer-events: none; }
+.turn-big.boing { animation: boing .5s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes boing { 0% { scale: 1; } 25% { scale: .8 1.1; } 55% { scale: 1.15 .9; } 100% { scale: 1; } }
+.has-mini .turn-big { margin-top: 20px; }
+/* "Just me": the total fills the middle, so the button sits at the bottom. */
+.n1 ~ .turn-big { top: auto; bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 14px)); translate: -50% 0; width: 84px; height: 84px; }
 /* The tiles are narrow, so their dagger and flag are sized by width to stay tappable. */
 .duel .tray, .duel .flag { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
 /* The deck's mana symbols in the seat's bottom-left corner, as its player sees it (v3.38), level
@@ -417,7 +398,9 @@ details.field[open] > summary { margin-bottom: 10px; }
 }
 /* The Planeswalker flame, a PNG with its white background taken out. */
 .menu-btn img { width: auto; height: 32px; display: block; pointer-events: none; }
-.table + .menu-btn, .duel + .menu-btn { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+/* Beside the turn button (v1.3; before, the menu button had the middle to itself). */
+.table + .menu-btn, .duel + .menu-btn { top: 50%; left: calc(50% + 58px); transform: translateY(-50%); width: 46px; height: 46px; }
+.table + .menu-btn img, .duel + .menu-btn img { height: 27px; }
 .n1 + .menu-btn { top: 16px; right: max(16px, calc(env(safe-area-inset-right, 0px) + 10px)); width: 46px; height: 46px; background: rgba(0, 0, 0, .3); }
 
 /* Menu */
@@ -544,7 +527,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     <div class="field">
       <span>Sound</span>
       <div class="seg" id="segSound">
-        <button type="button" data-v="on">On</button>
+        <button type="button" data-v="all">All</button>
+        <button type="button" data-v="turn">Turn only</button>
         <button type="button" data-v="off">Off</button>
       </div>
     </div>
@@ -585,7 +569,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.2';
+  const VERSION = '1.3';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -686,8 +670,11 @@ details.field[open] > summary { margin-bottom: 10px; }
   // default), 'table' (around the edges) or 'quad' (a quarter each, four seats only). Kept on this
   // phone only. See layoutOf() for where each one can't be used.
   if (!['spot', 'table', 'quad'].includes(state.layout4)) state.layout4 = 'spot';
-  // Sound on this phone (v1.2), on unless turned off here. Kept on this phone only.
-  if (typeof state.sound !== 'boolean') state.sound = true;
+  // Sound on this phone: 'all', 'turn' (the turn button only) or 'off'. Kept on this phone only.
+  // v1.2 kept it as true or false.
+  if (state.sound === true) state.sound = 'all';
+  if (state.sound === false) state.sound = 'off';
+  if (!['all', 'turn', 'off'].includes(state.sound)) state.sound = 'all';
   // Per table size, the player whose turn it is (null before anyone's started).
   if (!state.turns || typeof state.turns !== 'object') state.turns = {};
   TURN_KEYS.forEach(k => { if (!Number.isInteger(state.turns[k])) state.turns[k] = null; });
@@ -777,10 +764,11 @@ details.field[open] > summary { margin-bottom: 10px; }
   // ring/silent switch mutes it.
   let audio = null;
   function unlock() {
-    if (!state.sound) return;
+    if (state.sound === 'off') return;
     try {
       if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
       if (audio.state === 'suspended') audio.resume();
+      if (!bag.length) prime();
     } catch (e) { audio = null; }
   }
   document.addEventListener('pointerdown', unlock, true);
@@ -802,8 +790,6 @@ details.field[open] > summary { margin-bottom: 10px; }
     gain: () => note(700, 0, 0.07, 0.22, 'sine', 940),
     lose10: () => { note(160, 0, 0.16, 0.45, 'triangle', 90); note(320, 0, 0.1, 0.12, 'square', 180); },
     gain10: () => { note(660, 0, 0.12, 0.25, 'sine', 990); note(990, 0.05, 0.12, 0.18, 'sine', 1320); },
-    // The turn moving on: two rising bell notes.
-    turn: () => { note(587, 0, 0.35, 0.22); note(880, 0.09, 0.45, 0.2); note(1760, 0.09, 0.25, 0.04); },
     // A player out: a falling toll.
     out: () => { note(330, 0, 0.9, 0.3, 'triangle', 165); note(247, 0.12, 1.0, 0.18, 'sine', 123); },
     // One player left: a short fanfare.
@@ -811,10 +797,54 @@ details.field[open] > summary { margin-bottom: 10px; }
       note(f, 0.5 + n * 0.12, n === 3 ? 0.8 : 0.22, 0.22, 'triangle')),
   };
   function play(name) {
-    if (!state.sound) return;
+    if (state.sound !== 'all') return;
     unlock();
     if (!audio) return;
     try { SOUNDS[name](); } catch (e) {}
+  }
+  // The turn button's sounds (v1.3): CC0 clips from OpenGameArt, 5 seconds at most, in sounds/
+  // (sounds/CREDITS.md says where each came from). They're dealt from a shuffled bag, so none comes
+  // back until every one has played. The next few are fetched ahead so a tap plays at once; a new
+  // tap cuts off the one still playing.
+  const TURN_SOUNDS = 'aap accordion arcade-atomize arcade-beach arcade-beam arcade-beam2 arcade-bloops arcade-boing arcade-martianray arcade-odd arcade-odd2 arcade-sfx1 arcade-thump arcade-trekscan arcade-whoosh arcade-whoosh2 au-yeah bell-1 bell-3 big-boing bike-horn bing-1 bing-2 blah bloop blung booleh bung-1 dishes-1 doop dynamite explosion fart-1 fart-2 fart-3 fart-4 frog-1 frog-2 glass-4 glass-5 gong-1 gong-2 grunt-1 grunt-2 grunt-3 grunt-4 laugh-1 laugh-2 laugh-3 laugh-4 other-1 other-2 other-3 other-4 other-5 other-6 other-7 plop-1 plop-2 plup pop pot-1 pot-2 retro-complex1 retro-complex2 retro-complex3 retro-complex4 retro-fall1 retro-fall2 retro-fall3 retro-rise1 retro-rise2 retro-rise3 retro-tremolo1 retro-tremolo2 retro-tremolo3 retro-tremolo4 retro-tremolo5 robot-bird silly-me splash-1 splash-2 spring-1 spring-2 spring-3 spring-4 spring-5 spring-6 spring-7 spring-8 spring-9 toilet-1 toilet-2 tss uah weird-1 weird-2 weird-3 weird-4 weird-5 weirdo-1 weirdo-10 weirdo-11 weirdo-12 weirdo-13 weirdo-14 weirdo-15 weirdo-16 weirdo-17 weirdo-18 weirdo-19 weirdo-2 weirdo-20 weirdo-21 weirdo-22 weirdo-23 weirdo-24 weirdo-25 weirdo-26 weirdo-27 weirdo-28 weirdo-29 weirdo-3 weirdo-30 weirdo-4 weirdo-5 weirdo-6 weirdo-7 weirdo-8 weirdo-9'.split(' ');
+  let bag = [], current = null;
+  const loaded = {};
+  function nextUp(n) {
+    while (bag.length < n) {
+      const deck = TURN_SOUNDS.slice();
+      for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
+      bag = bag.concat(deck);
+    }
+    return bag.slice(0, n);
+  }
+  function load(name) {
+    if (!loaded[name]) {
+      loaded[name] = fetch('sounds/' + name + '.mp3').then(r => r.arrayBuffer())
+        .then(buf => new Promise((ok, no) => audio.decodeAudioData(buf, ok, no)))
+        .catch(() => { delete loaded[name]; return null; });
+    }
+    return loaded[name];
+  }
+  function prime() { if (audio) nextUp(4).forEach(load); }
+  function turnSound() {
+    if (state.sound === 'off') return;
+    unlock();
+    if (!audio) return;
+    const name = nextUp(1)[0];
+    bag.shift();
+    // Only the next few clips stay decoded.
+    Object.keys(loaded).forEach(k => { if (k !== name && !bag.slice(0, 4).includes(k)) delete loaded[k]; });
+    load(name).then(buf => {
+      if (!buf) return;
+      try { if (current) current.stop(); } catch (e) {}
+      const src = audio.createBufferSource();
+      src.buffer = buf;
+      src.connect(audio.destination);
+      src.start();
+      current = src;
+      src.onended = () => { if (current === src) current = null; };
+    });
+    prime();
   }
 
   // ---- rendering ----
@@ -843,10 +873,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   // Who the spotlight is on: whoever has the turn, or before anyone does, this phone's player.
   let builtSpot = null;
-  function spotPlayer() {
-    const t = state.turns[state.mode];
-    return Number.isInteger(t) && t < players.length ? t : mySeat();
-  }
+  // Turns aren't tracked since v1.3, so the spotlight is this phone's player.
+  const spotPlayer = () => mySeat();
   function build() {
     players = viewPlayers();
     const n = players.length;
@@ -864,7 +892,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const lay = layoutOf(n);
     board.className = duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'spot' ? ' spot' : '');
-    // In the spotlight, the turn's player and then everyone after them in turn order (see tapTurn).
+    // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
     seats = [];
@@ -882,9 +910,18 @@ details.field[open] > summary { margin-bottom: 10px; }
     mb.innerHTML = ICON_MENU;
     mb.addEventListener('click', openMenu);
     app.appendChild(mb);
+    const tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'turn-big';
+    tb.setAttribute('aria-label', 'End turn');
+    tb.innerHTML = ICON_TAP;
+    tb.addEventListener('click', () => {
+      tb.classList.remove('boing'); void tb.offsetWidth; tb.classList.add('boing');
+      buzz(); turnSound();
+    });
+    app.appendChild(tb);
     seats.forEach((_, i) => update(i));
     paintMini();
-    paintTurn();
     measure();
   }
 
@@ -909,11 +946,9 @@ details.field[open] > summary { margin-bottom: 10px; }
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
         </div>
-        ${state.mode > 1 ? `<button type="button" class="turn-btn" aria-label="${nameOf(e)}'s turn">${ICON_TAP}</button>` : ''}
         ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
         ${state.mode > 1 ? `<div class="seat-mana${flag ? ' by-flag' : ''}" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
-      </div>
-      <i class="turn-bar" aria-hidden="true"></i>`;
+      </div>`;
     bindZone(seat.querySelector('.minus'), i, -1);
     bindZone(seat.querySelector('.plus'), i, 1);
     seat.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
@@ -926,7 +961,6 @@ details.field[open] > summary { margin-bottom: 10px; }
       buzz();
     });
     if (flag) bindFlag(seat.querySelector('.flag'), i);
-    if (state.mode > 1) seat.querySelector('.turn-btn').addEventListener('click', () => tapTurn(i));
     return seat;
   }
 
@@ -942,6 +976,15 @@ details.field[open] > summary { margin-bottom: 10px; }
     fitLife();
     fitNames();
     centerLife();
+    placeTurn();
+  }
+  // Four seats around the edges (Table) have the side seats' totals in the middle of the phone, so
+  // there the turn and menu buttons sit on the line above the bottom seat instead.
+  function placeTurn() {
+    const board = app.querySelector('.board'), btns = app.querySelectorAll('.turn-big, .menu-btn');
+    const s0 = board && board.matches('.n4.table:not(.quad):not(.spot)') && board.querySelector('.s0');
+    const y = s0 ? (s0.offsetParent === board ? board.offsetTop : 0) + s0.offsetTop - 3 : 0;
+    btns.forEach(b => { b.style.top = s0 ? y + 'px' : ''; });
   }
   // Each total sits centered in the open space between its seat's name and its turn symbol (v3.33),
   // measured in the face's own unturned layout, so a turned seat centers the same way. This replaces
@@ -952,9 +995,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       const face = seat.querySelector('.face'), readout = seat.querySelector('.readout');
       const name = seat.querySelector('.name'), nm = name.querySelector('.nm');
       const top = name.offsetTop + (nm ? nm.offsetTop + nm.offsetHeight : name.offsetHeight);
-      const btn = seat.querySelector('.turn-btn');
-      // The symbol is drawn 23% in from the button's edge (see .turn-btn svg).
-      const bottom = btn ? btn.offsetTop + btn.offsetHeight * .23 : face.offsetHeight - name.offsetTop;
+      const bottom = face.offsetHeight - name.offsetTop;
       // Padding, not top and bottom: the name is positioned inside the readout, and padding leaves
       // it where it is.
       readout.style.paddingTop = top + 'px';
@@ -1114,53 +1155,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     settle(k, was);
   }
   // ---- turns ----
-  // Tapping the button of the player whose turn it is passes it to their left, clockwise around
-  // the real table (v3.40: Rand → Lenn → Trent → Andrew; before, it went the other way, to the
-  // right), past anyone who is out. Tapping anyone else's makes it theirs,
-  // which starts the tracker or corrects it.
-  function tapTurn(i) {
-    const { k, j } = players[i], n = SIZE[k], g = state.games[k];
-    let next = j;
-    if (state.turns[k] === j) {
-      for (let s = 1; s < n; s++) if (!outReason(g[(j - s + n) % n])) { next = (j - s + n) % n; break; }
-    }
-    setTurn(k, next);
-    buzz(); play('turn');
-  }
-  // Each new turn is counted, and the time since the last one began goes to whoever had it.
-  // Increments, so two phones passing turns at once both count.
-  function setTurn(k, j) {
-    touch(k);
-    const c = state.clock[k], prev = state.turns[k], now = Date.now();
-    const patch = { ['turns/' + k]: j, [`clock/${k}/at`]: now };
-    if (prev != null && prev < SIZE[k] && c.at) {
-      const d = Math.max(0, now - c.at);
-      c.t[prev] = (c.t[prev] || 0) + d;
-      patch[`clock/${k}/t/${prev}`] = inc(d);
-    }
-    c.c[j] = (c.c[j] || 0) + 1;
-    c.count = (c.count || 0) + 1;
-    c.at = now;
-    patch[`clock/${k}/c/${j}`] = inc(1);
-    patch[`clock/${k}/count`] = inc(1);
-    state.turns[k] = j;
-    send(patch); save(); paintTurn();
-  }
-  // A seat waits (its button goes dark) while someone else in its own game has the turn.
-  function paintTurn() {
-    // The spotlight follows the turn: a new player in it means the board is laid out again.
-    if (builtSpot != null && spotPlayer() !== builtSpot) { build(); return; }
-    seats.forEach((list, i) => {
-      const { k, j } = players[i], t = state.turns[k], on = t === j;
-      const wait = !on && Number.isInteger(t) && t < SIZE[k];
-      list.forEach(s => {
-        s.classList.toggle('turn', on);
-        s.classList.toggle('wait', wait);
-        const b = s.querySelector('.turn-btn');
-        if (b) b.setAttribute('aria-pressed', on);
-      });
-    });
-  }
+  // v1.3 dropped the turn tracker for the turn button (see build()). Phones from before still sync
+  // turns/ and clock/, so those stay in the table, but nothing here shows them.
 
   function toggleConcede(i) {
     const { k, j } = players[i];
@@ -1232,7 +1228,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
-    document.querySelectorAll('#segSound button').forEach(b => b.classList.toggle('on', b.dataset.v === (state.sound ? 'on' : 'off')));
+    document.querySelectorAll('#segSound button').forEach(b => b.classList.toggle('on', b.dataset.v === state.sound));
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
     const center = state.mode !== 1 && state.me === CENTER;
     const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : state.mode);
@@ -1434,9 +1430,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   document.querySelectorAll('#segLayout button').forEach(b => b.addEventListener('click', () => {
     state.layout2 = b.dataset.v; save(); build(); syncMenu();
   }));
-  // Turning sound on plays the turn chime, so it's clear the phone isn't muted.
+  // Turning sound on plays a turn sound, so it's clear the phone isn't muted.
   document.querySelectorAll('#segSound button').forEach(b => b.addEventListener('click', () => {
-    state.sound = b.dataset.v === 'on'; save(); syncMenu(); play('turn');
+    state.sound = b.dataset.v; save(); syncMenu(); turnSound();
   }));
   // Logs game k if it finished, starts it over, and returns the patch to send.
   function resetGame(k) {
@@ -1612,7 +1608,6 @@ details.field[open] > summary { margin-bottom: 10px; }
           const badges = own[idx].map(s => s.querySelector('.badge'));
           badges.forEach(b => { b.hidden = false; });
           setTimeout(() => { badges.forEach(b => { b.hidden = true; }); own[idx].forEach(s => s.classList.remove('pick')); }, 3000);
-          setTurn(key, players[group[idx]].j);
           return;
         }
         k++;
@@ -1711,11 +1706,6 @@ details.field[open] > summary { margin-bottom: 10px; }
       build();
       if (!menu.hidden) syncMenu();
       return;
-    }
-    if (changed.some(x => x.p.startsWith('turns/'))) {
-      paintTurn();
-      // Another phone passing the turn to this phone's player chimes here too.
-      if (changed.some(x => x.p.startsWith('turns/') && players.some(q => 'turns/' + q.k === x.p && q.e === state.me && state.turns[q.k] === q.j))) play('turn');
     }
     changed.forEach(({ p, was }) => {
       const [kind, k, j, f] = p.split('/');
