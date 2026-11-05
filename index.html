@@ -569,7 +569,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.3';
+  const VERSION = '1.4';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -762,11 +762,26 @@ details.field[open] > summary { margin-bottom: 10px; }
   // Every sound is made here with Web Audio, so the page carries no sound files. Phones only let a
   // page make sound after a touch, so the first touch anywhere opens the audio. On an iPhone the
   // ring/silent switch mutes it.
-  let audio = null;
+  let audio = null, out = null;
   function unlock() {
     if (state.sound === 'off') return;
     try {
-      if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+      if (!audio) {
+        audio = new (window.AudioContext || window.webkitAudioContext)();
+        // Louder (v1.4): everything goes through a 4× boost (+12 dB) and then a limiter, which
+        // holds the peaks under full scale so the boost doesn't crackle.
+        const limit = audio.createDynamicsCompressor();
+        limit.threshold.value = -6; limit.knee.value = 0; limit.ratio.value = 20;
+        limit.attack.value = 0.002; limit.release.value = 0.12;
+        out = audio.createGain();
+        out.gain.value = 4;
+        // The limiter's own makeup gain can still push a peak past full scale, so a soft clipper
+        // (tanh) rounds off whatever gets through instead of letting the phone crackle.
+        const clip = audio.createWaveShaper(), curve = new Float32Array(1024);
+        for (let i = 0; i < 1024; i++) curve[i] = Math.tanh(1.2 * (i / 511.5 - 1)) / Math.tanh(1.2);
+        clip.curve = curve;
+        out.connect(limit).connect(clip).connect(audio.destination);
+      }
       if (audio.state === 'suspended') audio.resume();
       if (!bag.length) prime();
     } catch (e) { audio = null; }
@@ -781,7 +796,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     g.gain.setValueAtTime(0.0001, t);
     g.gain.exponentialRampToValueAtTime(vol, t + 0.008);
     g.gain.exponentialRampToValueAtTime(0.0001, t + len);
-    o.connect(g).connect(audio.destination);
+    o.connect(g).connect(out);
     o.start(t); o.stop(t + len + 0.02);
   }
   const SOUNDS = {
@@ -839,7 +854,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       try { if (current) current.stop(); } catch (e) {}
       const src = audio.createBufferSource();
       src.buffer = buf;
-      src.connect(audio.destination);
+      src.connect(out);
       src.start();
       current = src;
       src.onended = () => { if (current === src) current = null; };
