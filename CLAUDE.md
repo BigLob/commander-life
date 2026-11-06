@@ -25,7 +25,8 @@ https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; d
 
 **Buying cards:** `buying-guide.md` holds the group's price reference (booster packs, precons, the
 Foundations beginner decks, precon win rates). When the user asks whether a price is good, check it
-there, and update it when newer prices turn up.
+there, and update it when newer prices turn up. Its "Decks we own" table is the group's precon
+collection (owned and preordered). Keep it current when the user mentions buying a deck.
 
 **claude.ai artifact links can't sync.** Artifact pages block connections to Firebase, so they always
 show "Offline, this phone only". The Commander Life artifact (claude.ai/artifact/LzFGUh29B93Zb2sjM7uEGU)

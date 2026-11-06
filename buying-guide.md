@@ -6,6 +6,27 @@ here that is more than a few months old.
 
 How to judge a price: **Good** = buy it. **OK** = normal store price. **High** = buy elsewhere or wait.
 
+## Decks we own
+
+Check this list before buying a deck, so we don't buy a second copy.
+
+| Deck | Set | Colors | Commander | Status |
+| --- | --- | --- | --- | --- |
+| First Flight | Starter Commander Decks (2022) | W U | Isperia, Supreme Judge | Owned |
+| Grave Danger | Starter Commander Decks (2022) | U B | Gisa and Geralf | Owned |
+| Chaos Incarnate | Starter Commander Decks (2022) | B R | Kardur, Doomscourge | Owned |
+| Draconic Destruction | Starter Commander Decks (2022) | R G | Atarka, World Render | Owned |
+| Token Triumph | Starter Commander Decks (2022) | G W | Emmara, Soul of the Accord | Owned |
+| Living Energy | Aetherdrift Commander (2025) | G U R | Saheeli, Radiant Creator | Owned |
+| Eternal Might | Aetherdrift Commander (2025) | W U B | Temmet, Naktamun's Will | Owned |
+| Revival Trance | Final Fantasy Commander (2025) | R W B | Terra, Herald of Hope | Owned |
+| The Borg Queen deck | Star Trek Commander (2026) | n/a | The Borg Queen | Preordered, out Nov 13, 2026 |
+| Commander Spock deck | Star Trek Commander (2026) | n/a | Commander Spock | Preordered, out Nov 13, 2026 |
+| Jean-Luc Picard deck | Star Trek Commander (2026) | n/a | Jean-Luc Picard | Preordered, out Nov 13, 2026 |
+| Worf deck | Star Trek Commander (2026) | n/a | Worf | Preordered, out Nov 13, 2026 |
+
+When the Star Trek decks arrive, change their status to Owned and fill in their deck names and colors.
+
 ## Booster packs
 
 | Product | MSRP | Good | OK | High | Notes |
