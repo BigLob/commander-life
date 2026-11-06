@@ -194,3 +194,70 @@ credited above).
 
 To add a clip: drop a CC0 MP3 (5 s max) here, add its name to `TURN_SOUNDS` (or, for a 5 to 12 s clip in `long/`, `LONG_SOUNDS`) in `index.html`, and
 credit it above.
+
+## Added in v1.11 (presidents)
+
+Quotes from Presidents George W. Bush, Barack Obama and Donald Trump, downloaded by the user from the
+YouTube uploads below, cut to one quote each (10 s at most, pauses shortened in a few), loudness-matched
+(EBU R128, -16 LUFS) and converted to mono MP3. Up to 5 s they sit in `sounds/`, longer ones in
+`sounds/long/`. Unlike the clips above these are not CC0: the presidents' own official remarks are US
+government works, but most of the uploads are news or fan recordings, and a few lines come from other
+speakers (Hillary Clinton in `trump-wrong`, a reporter in `trump-concepts-of-a-plan`).
+
+| File | Length | Quote | From |
+| --- | --- | --- | --- |
+| `bush-bulgaria-achievements` | 5.0 s | People of Bulgaria ought to be proud of the achievements that they have achieved. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `long/bush-federal-program` | 6.5 s | They want the federal government controlling Social Security like it's some kind of federal program. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `bush-fish-coexist` | 4.8 s | I know the human being and fish can coexist peacefully. | [youtu.be/20Jcrk6jGfo](https://youtu.be/20Jcrk6jGfo) |
+| `bush-food-on-your-family` | 2.1 s | You're working hard to put food on your family. | [youtu.be/_v4tig8HnlU](https://youtu.be/_v4tig8HnlU) |
+| `long/bush-fool-me-once` | 9.9 s | Fool me once, shame on... shame on you. Fool me, we can't get fooled again. | [youtu.be/Hl7FKfl3O2Y](https://youtu.be/Hl7FKfl3O2Y) |
+| `long/bush-harm-our-country` | 9.2 s | Our enemies never stop thinking about new ways to harm our country and our people, and neither do we. | [youtu.be/U41dt5X9Fvs](https://youtu.be/U41dt5X9Fvs) |
+| `long/bush-i-believe-what-i-believe` | 7.5 s | I know what I believe... and I believe what I believe is right. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `bush-is-our-children-learning` | 4.0 s | Rarely is the question asked: is our children learning? | [youtu.be/GC-6Vc8YX9c](https://youtu.be/GC-6Vc8YX9c) |
+| `bush-let-me-let-me` | 3.2 s | Let me, let me, let me, let me. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `long/bush-literacy-test` | 5.1 s | You teach a child to read, and he or her will be able to pass a literacy test. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `bush-misunderestimated` | 1.1 s | They misunderestimated me. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `long/bush-now-watch-this-drive` | 10.1 s | I call upon all nations to stop these terrorist killers. Thank you. Now watch this drive. | [youtu.be/TCm9788Tb5g](https://youtu.be/TCm9788Tb5g) |
+| `bush-one-finger-salute` | 2.7 s | Just a one finger victory salute. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `bush-prime-minister-of-india` | 5.0 s | The new Prime Minister of India is, uh, uh, no. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `long/bush-the-decider` | 6.7 s | I hear the voices... but I'm the decider, and I decide what is best. | [youtu.be/E2Zv1T4Qdv4](https://youtu.be/E2Zv1T4Qdv4) |
+| `bush-the-google` | 3.7 s | One of the things I've used on the Google is to pull up map. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `bush-we-will-fail` | 5.0 s | Not one doubt in my mind that we will fail. | [youtu.be/HK_MzsVOQRQ](https://youtu.be/HK_MzsVOQRQ) |
+| `bush-where-wings-take-dream` | 4.1 s | Families is where our nation finds hope, where wings take dream. | [youtu.be/ijiqLeqYeoU](https://youtu.be/ijiqLeqYeoU) |
+| `long/obama-biggie-and-tupac` | 8.8 s | Did we fake the moon landing? What really happened in Roswell? And where are Biggie and Tupac? | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-bucket-list` | 9.8 s | Do you have a bucket list? I have something that rhymes with bucket list. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-dick-cheney` | 10.0 s | Dick Cheney thinks I'm the worst president of his lifetime. I think Dick Cheney is the worst president of my lifetime. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-go-down-as-a-president` | 7.3 s | Well, @realDonaldTrump, at least I will go down as a president. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-indiana-pizza` | 8.2 s | He is a great friend. We've gotten so close, some places in Indiana won't serve us pizza anymore. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-iphone` | 8.9 s | I have an iPhone, but it's like the phone you give your two-year-old. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `obama-let-me-be-clear` | 1.8 s | Let me be clear. | [youtu.be/HiOU1Wtt_Jc](https://youtu.be/HiOU1Wtt_Jc) |
+| `long/obama-matt-damon` | 9.6 s | Matt Damon said he was disappointed in my performance. Well, Matt, I just saw The Adjustment Bureau. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-out` | 6.8 s | And with that, I just have two more words to say: Obama out. | [youtu.be/6dEA7krBxys](https://youtu.be/6dEA7krBxys) |
+| `long/obama-some-people-are-so-dumb` | 9.5 s | Some people still say I'm arrogant and aloof, condescending. Some people are so dumb. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `obama-the-math-is-the-math` | 4.7 s | The math is the math. | [youtu.be/z-Myi0RJeUU](https://youtu.be/z-Myi0RJeUU) |
+| `long/obama-third-hangover` | 5.9 s | If I ran a third time, it would be like doing a third Hangover movie. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-third-term` | 7.9 s | Some folks really want to see a pot-smoking socialist in the White House. We could get a third Obama term after all. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/obama-won-both-of-them` | 5.3 s | I have no more campaigns to run... I know, because I won both of them. | [youtu.be/SktnQxmmUmA](https://youtu.be/SktnQxmmUmA) |
+| `long/obama-yes-we-crayon` | 5.3 s | Yes we crayon. That was good. | [youtu.be/NajhG8PpC2A](https://youtu.be/NajhG8PpC2A) |
+| `long/trump-abdul` | 9.0 s | I told Abdul, don't do it anymore... You're gonna have to figure that out, Abdul. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-believe-me` | 9.5 s | Believe me, believe me, believe me... | [youtu.be/s2DIp8_r9uU](https://youtu.be/s2DIp8_r9uU) |
+| `trump-bigly` | 3.0 s | We're going to speed up the process bigly, because it's very inefficient. | [youtu.be/Wb8IP5tWcmM](https://youtu.be/Wb8IP5tWcmM) |
+| `trump-bing-bong` | 4.4 s | Total control. Bing bing, bong bong, bing bing bing. | [youtu.be/niSLZDVApdQ](https://youtu.be/niSLZDVApdQ) |
+| `long/trump-china` | 5.6 s | China. China. China. | [youtu.be/dYQYRDETHkM](https://youtu.be/dYQYRDETHkM) |
+| `trump-concepts-of-a-plan` | 4.0 s | You still do not have a plan? I have concepts of a plan. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `trump-granite` | 2.7 s | You know, granite is un-meltable by blowtorches. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-hannibal-lecter` | 10.0 s | Has anyone ever seen The Silence of the Lambs? The late, great Hannibal Lecter. He oftentimes would have a friend for dinner. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-i-am-the-chosen-one` | 5.6 s | Somebody had to do it. I am the chosen one. | [youtu.be/RSCIndGqYWY](https://youtu.be/RSCIndGqYWY) |
+| `long/trump-i-love-babies` | 9.4 s | I love babies. I hear that baby crying. Actually, I was only kidding. You can get the baby out of here. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-knock-knock` | 7.0 s | You think you go through the door. If you're a normal person, you say, knock knock, may I come in? | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-like-a-smart-person` | 8.4 s | Is Donald Trump an intellectual? Trust me, I'm like a smart person. | [youtu.be/QAjIdPUfJEQ](https://youtu.be/QAjIdPUfJEQ) |
+| `long/trump-magnets` | 5.6 s | All I know about magnets is this: give me a glass of water, drop it on the magnets, that's the end of the magnet. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `trump-positively-toward-negative` | 2.5 s | I tested positively toward negative, right? | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-small-hands` | 8.2 s | He referred to my hands, if they're small, something else must be small. I guarantee you there's no problem. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `trump-stable-genius` | 2.5 s | I'm an extremely stable genius. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-standpoint-of-water` | 7.0 s | Tough hurricane. One of the wettest we've ever seen, from the standpoint of water. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `trump-telephonically` | 2.8 s | Through phone, through telephone. Telephonically, as they say. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-turn-off-the-lights` | 9.8 s | Turn them off, they're too bright. Turn off the lights, turn off the lights. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-very-large-brain` | 8.5 s | China has total respect for Donald Trump's very, very large brain. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-word-salad` | 7.8 s | Tropical storm. Isaias. Isaiasis. Totality. Fresh vegetables. Fatalities. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-wrong` | 8.8 s | Wrong. (Interrupting Hillary Clinton at a 2016 debate.) | [youtu.be/b2Ec_oHjEFM](https://youtu.be/b2Ec_oHjEFM) |

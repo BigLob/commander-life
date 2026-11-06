@@ -7,12 +7,13 @@ sync live. Plain HTML pages, no build step, no framework.
 
 End every reply about anything in this repo with icon-only links to the live pages, on one line:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [📚](https://biglob.github.io/commander-life/decks/)
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [📚](https://biglob.github.io/commander-life/decks/) [🔊](https://biglob.github.io/commander-life/sounds/)
 
 🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Fav, Bench and Trash
 tabs). When we build a new page, add its icon link to this line. Its editable claude.ai artifact is
 https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; don't put it in the footer).
 📚 is the deck list, `decks/`: a card carousel for every precon the group owns (see below).
+🔊 is the clip list, `sounds/index.html`: every turn-button sound with its length, pool and source, each playable.
 
 ## Where things live
 
@@ -56,7 +57,9 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.10; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.11; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.11: **presidential quotes** on the turn button: 55 lines from George W. Bush, Obama and Trump (`bush-*`, `obama-*`, `trump-*`; 20 in the short pool, 35 in `sounds/long/`). The user downloaded 25 YouTube clips on their PC (the sandbox can't reach YouTube's downloads) and sent them as a zip; they were transcribed with faster-whisper (small.en) for word timings, cut to one quote each (10 s at most, a few with pauses shortened), loudness-matched to -16 LUFS and saved as mono 64 kbps MP3. Each quote, length and YouTube link is in `sounds/CREDITS.md`. Not CC0 like the rest. Left out on purpose: lines aimed at groups of people (race, immigrants). Trump's health-care clip failed to download, and two downloads were the wrong video, so `bush-misunderestimated` comes from the Bush compilation and Strategery (an SNL line) was dropped. The user dropped Blazing Saddles, Drag Race and Rocky Mountain Way.
+- **Clip list** (`sounds/index.html`, live at https://biglob.github.io/commander-life/sounds/): every clip with length, pool and source, filters, search and a play button. Built by `python3 tools/sounds/make_list.py` from `sounds/clips.json` (one entry per clip: file, pool, length, source and link, group, and the words for quotes). After adding clips, run it and fill in the new entries' sources in `clips.json`. Seven older clips (`castle-fanfare`, `squishpop`, `squishsplat-impact`, `stage-clear-1` to `-4`) have no recorded source page. Its claude.ai artifact copy (no playback there) is https://claude.ai/artifact/XKDkaimq128iz5n91fBda4.
 - v1.10: **13 more backgrounds**: the face commander and alternate commander (the box's second foil, and the second card on Wizards' decklists) of every other deck the group owns or preordered. Keys and Scryfall cards: `le2` Pia Nalaar (drc/2, Living Energy's alternate), `em` Temmet (drc/4) and `em2` Hashaton (drc/1) for Eternal Might, `rt` Terra (fic/4) and `rt2` Celes (fic/1) for Revival Trance, and the Star Trek decks: `bq` The Borg Queen (trc/1) and `lo` Locutus of Borg (trc/97), `pi` Jean-Luc Picard (trc/3) and `ja` Captain Janeway (trc/84), `sp` Commander Spock (trc/2) and `ki` Captain Kirk (trc/85), `wo` Worf (trc/4) and `ko` Kor (trc/96). Each has `art/<key>.jpg` (art_crop), `art/<key>-card.jpg` (normal) and `.k-<key>` seat colors. Phones older than v1.10 reject the new keys (`validValue()`), so until they reload they keep their old background for that seat.
 - v1.9: **Pick who goes first shows the winner** (the user: it "blanks out the winner"). The seat highlight used the class `pick`, which is also the menu's "This phone is" ring (a 40 px see-through circle), so the chosen seat vanished. Now the highlight runs round as `.lit` (gold frame), and the winner gets `.first` (thick pulsing gold frame, a big gold "Goes first" banner across the middle of the seat, a vibration) while everyone else is `.passed` (dimmed) for 8 s. Don't reuse menu class names on seats.
 - v1.8: happy and sad clips, and **long clips**. 59 more short ones (victory and level-up stings, win jingles, cheers, sad trumpets; 415 short in all) and a second pool, `LONG_SOUNDS` in `sounds/long/` (73 clips, 5 to 12 s: victory, level-clear and game-over tunes, sad songs, and full-length cuts of earlier long sources like `laughing-fit` and `fart-symphony`). After every 3 to 10 short clips (`LONG_EVERY`, a new random count each time, per phone) the next tap plays a long one. Each pool has its own shuffled bag (`pools`). `sounds/` is now 16 MB, but phones only fetch the next few clips.

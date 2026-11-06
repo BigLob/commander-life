@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Turn Button Sounds</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: summary line, filter bar, then one row per clip (play, name and quote, length, source). Same tokens as the deck pages. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--pres:#2c5c8a;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--pres:#7fb2e5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--pres:#7fb2e5;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-display);padding-block:14px 32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:1.4rem;margin:0 0 4px;text-wrap:balance}
+.sub{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);margin:0 0 14px;max-width:65ch;line-height:1.5}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:12px}
+.bar button{font:inherit;font-size:.78rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 10px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar button:focus-visible,#q:focus-visible,.play:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bar .ct{font-family:var(--f-mono);font-size:.7rem;opacity:.75;margin-left:3px}
+.sep{width:1px;height:20px;background:var(--line);margin:0 4px}
+#q{flex:1 1 180px;min-width:0;font:inherit;font-size:.85rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+#count{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin:0 0 6px}
+ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.play{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;font-size:.8rem;display:grid;place-items:center}
+.play.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.noplay .play{display:none}.noplay li{grid-template-columns:minmax(0,1fr) auto}
+.nm{font-weight:500;font-size:.92rem;overflow-wrap:anywhere}
+.nm .pool{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);font-weight:400;margin-left:6px}
+.q{display:block;font-size:.82rem;color:var(--pres);margin-top:2px;line-height:1.35}
+.src{display:block;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.src a{color:inherit}
+.len{font-family:var(--f-mono);font-size:.82rem;font-variant-numeric:tabular-nums;color:var(--accent);white-space:nowrap}
+</style></head><body>
+<h1>Turn button sounds</h1>
+<p class="sub" id="sum"></p>
+<div class="bar" id="grp"></div>
+<div class="bar"><span id="pool" style="display:contents"></span><span class="sep"></span><button id="sort" type="button">Sort: A to Z</button><input id="q" type="search" placeholder="Search names, quotes, sources" aria-label="Search clips" autocomplete="off"></div>
+<p id="count"></p>
+<ul id="list"></ul>
+<script>
+/* Every clip the turn button can play, built by tools/sounds/make_list.py from sounds/clips.json. */
+const CLIPS=/*CLIPS*/[];
+const $=id=>document.getElementById(id);
+/* Clips play from the files next to this page on the live site; a claude.ai artifact can't load them. */
+const canPlay=!location.hostname||/github\.io$|localhost|127\.0\.0\.1/.test(location.hostname);
+if(!canPlay)document.body.classList.add('noplay');
+const F={grp:'',pool:'',q:'',sort:'n'};
+const tot=CLIPS.reduce((a,c)=>a+c.d,0);
+$('sum').textContent=`${CLIPS.length} clips, ${Math.round(tot/60)} minutes in all. Short clips (5 s at most) play on most taps; after every 3 to 10 of them the next tap plays a long one (5 to 12 s).`+(canPlay?' Tap ▶ to hear one.':'');
+function chips(el,key,opts){el.innerHTML=opts.map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${F[key]===v}">${l}<span class="ct">${CLIPS.filter(c=>!v||c[key]===v).length}</span></button>`).join('');
+ el.onclick=e=>{const b=e.target.closest('button');if(!b)return;F[key]=b.dataset.v;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()}}
+chips($('grp'),'grp',[['','All'],['Presidents','Presidents'],['OpenGameArt','OpenGameArt']]);
+chips($('pool'),'pool',[['','Any length'],['short','Short'],['long','Long']]);
+$('sort').onclick=()=>{F.sort=F.sort==='n'?'d':F.sort==='d'?'s':'n';$('sort').textContent='Sort: '+{n:'A to Z',d:'longest first',s:'source'}[F.sort];draw()};
+$('q').oninput=e=>{F.q=e.target.value.toLowerCase();draw()};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function draw(){
+ let L=CLIPS.filter(c=>(!F.grp||c.grp===F.grp)&&(!F.pool||c.pool===F.pool)&&(!F.q||(c.f+' '+(c.quote||'')+' '+c.src).toLowerCase().includes(F.q)));
+ const nm=c=>c.f.replace(/^long\//,'');
+ L.sort(F.sort==='d'?(a,b)=>b.d-a.d:F.sort==='s'?(a,b)=>a.src.localeCompare(b.src)||nm(a).localeCompare(nm(b)):(a,b)=>nm(a).localeCompare(nm(b)));
+ $('count').textContent=L.length===CLIPS.length?'':`${L.length} shown`;
+ $('list').innerHTML=L.map(c=>`<li><button class="play" type="button" data-f="${esc(c.f)}" aria-label="Play ${esc(nm(c))}">▶</button><div><span class="nm">${esc(nm(c))}<span class="pool">${c.pool}</span></span>${c.quote?`<span class="q">“${esc(c.quote)}”</span>`:''}<span class="src">${c.url?`<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.src)}</a>`:esc(c.src)}${c.note?' · '+esc(c.note):''}${c.grp==='Presidents'?'':' · CC0'}</span></div><span class="len">${c.d.toFixed(1)} s</span></li>`).join('')||'<li><div class="src">No clips match.</div></li>'}
+let au=null,on=null;
+$('list').onclick=e=>{const b=e.target.closest('.play');if(!b)return;
+ if(on===b){au.pause();b.classList.remove('on');b.textContent='▶';on=null;return}
+ if(au){au.pause();if(on){on.classList.remove('on');on.textContent='▶'}}
+ au=new Audio(b.dataset.f+'.mp3');on=b;b.classList.add('on');b.textContent='■';
+ au.onended=au.onerror=()=>{b.classList.remove('on');b.textContent='▶';if(on===b)on=null};au.play().catch(()=>au.onerror())};
+draw();
+</script>
+</body></html>
