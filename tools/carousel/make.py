@@ -91,7 +91,12 @@ def record(qty, c):
     back = faces[1]['image_uris']['normal'] if len(faces) > 1 and faces[1].get('image_uris') and not c.get('image_uris') else None
     colors = c.get('colors', faces[0].get('colors', []) if faces else [])
     p = c.get('prices', {}).get('usd')
-    p = round(float(p), 2) if p else cheapest(c['name'])
+    p = round(float(p), 2) if p else None
+    # A set that isn't out yet only has preorder prices, set high by the few sellers listing it, so a
+    # reprint takes its cheapest printing instead (cards new to the set keep their preorder price).
+    if p is None or c.get('released_at', '') > time.strftime('%Y-%m-%d'):
+        q = cheapest(c['name'])
+        p = q if p is None or (q is not None and q < p) else p
     r = {'n': c['name'], 'p': p, 'q': qty, 's': c['set'].upper(), 't': c['type_line'], 'i': iu['normal'],
          'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': c.get('keywords', [])}
     if back: r['b'] = back
