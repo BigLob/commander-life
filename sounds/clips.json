@@ -6,7 +6,10 @@
 "src": "16Bit Success Sound",
 "url": "https://opengameart.org/content/16bit-success-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "8bit-fanfare-jingle-the-lick",
@@ -45,6 +48,16 @@
 "lic": "CC0"
 },
 {
+"f": "ace-attorney-objection",
+"pool": "short",
+"d": 1.5,
+"src": "Ace Attorney, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/phoenix-objection.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Objection!"
+},
+{
 "f": "alarm-vocal",
 "pool": "short",
 "d": 1.1,
@@ -54,13 +67,49 @@
 "lic": "CC0"
 },
 {
+"f": "among-us-body-reported",
+"pool": "short",
+"d": 3.0,
+"src": "Among Us, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/among-us-dead-body-reported-sound-effect_BsczDVE.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "among-us-emergency",
+"pool": "short",
+"d": 2.0,
+"src": "Among Us, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/emergency-meeting.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "among-us-kill",
+"pool": "short",
+"d": 0.7,
+"src": "Among Us, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/among-us-kill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "and-the-winner-is",
 "pool": "short",
 "d": 3.9,
 "src": "And The Winner Is",
 "url": "https://opengameart.org/content/and-the-winner-is",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "arcade-atomize",
@@ -231,7 +280,10 @@
 "src": "Better Luck Next Time",
 "url": "https://opengameart.org/content/better-luck-next-time",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "big-boing",
@@ -277,6 +329,16 @@
 "url": "https://opengameart.org/content/boings",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "bioshock-would-you-kindly",
+"pool": "short",
+"d": 1.9,
+"src": "BioShock, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/wouldyoukindly.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Would you kindly..."
 },
 {
 "f": "blah",
@@ -381,7 +443,10 @@
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "They misunderestimated me.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"ev": [
+"out"
+]
 },
 {
 "f": "bush-one-finger-salute",
@@ -441,6 +506,19 @@
 "url": "",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "castlevania-die-monster",
+"pool": "short",
+"d": 3.5,
+"src": "Castlevania: Symphony of the Night, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/diemonsteryoudontbelonginthisworld.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Die, monster! You don't belong in this world!",
+"ev": [
+"cmdout"
+]
 },
 {
 "f": "cc0-deep-monster-roar",
@@ -803,6 +881,15 @@
 "lic": "CC0"
 },
 {
+"f": "dark-souls-item",
+"pool": "short",
+"d": 1.5,
+"src": "Dark Souls, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/dark-souls-item-get.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
 "f": "demon-dies",
 "pool": "short",
 "d": 5.0,
@@ -836,7 +923,10 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "demon-he-s-escaped",
@@ -1046,6 +1136,16 @@
 "lic": "CC0"
 },
 {
+"f": "diablo-stay-awhile",
+"pool": "short",
+"d": 3.4,
+"src": "Diablo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/sub_welcome.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hello, my friend. Stay awhile and listen."
+},
+{
 "f": "dishes-1",
 "pool": "short",
 "d": 0.8,
@@ -1253,6 +1353,16 @@
 "lic": "CC0"
 },
 {
+"f": "fallout-war-never-changes",
+"pool": "short",
+"d": 3.0,
+"src": "Fallout, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/war_Q69zieh.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "War. War never changes."
+},
+{
 "f": "fart-1",
 "pool": "short",
 "d": 4.8,
@@ -1307,6 +1417,143 @@
 "lic": "CC0"
 },
 {
+"f": "ff-chocobo-wark",
+"pool": "short",
+"d": 0.7,
+"src": "Final Fantasy, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/chocobo_wark.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "ff14-chocobo-kweh",
+"pool": "short",
+"d": 1.0,
+"src": "Final Fantasy XIV, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ffxiv-chocobo-kweh.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "ff6-kefka-laugh",
+"pool": "short",
+"d": 2.1,
+"src": "Final Fantasy VI, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-6-kefkas-iconic-laugh.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "ff7-boss-death",
+"pool": "short",
+"d": 4.1,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-boss-death-sound-effect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "ff7-cure",
+"pool": "short",
+"d": 2.4,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-spell-cure-1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "ff7-life",
+"pool": "short",
+"d": 4.3,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-spell-life-2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "ff7-limit-break",
+"pool": "short",
+"d": 1.7,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-limit-break.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "ff7-save",
+"pool": "short",
+"d": 0.5,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-save-and-load.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "ff7-victory",
+"pool": "short",
+"d": 3.2,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-victory-fanfare-hq-sound.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "ff7r-this-is-bad",
+"pool": "short",
+"d": 1.3,
+"src": "Final Fantasy VII Remake, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/thisisbad.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "This is bad.",
+"ev": [
+"low"
+]
+},
+{
+"f": "ff9-victory",
+"pool": "short",
+"d": 4.6,
+"src": "Final Fantasy IX, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-ix-victory-fanfare-24139-mp3cut.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "ffx-laugh",
+"pool": "short",
+"d": 5.0,
+"src": "Final Fantasy X, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-x-laugh.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "ffx-who-does-he-think",
+"pool": "short",
+"d": 2.0,
+"src": "Final Fantasy X, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ffx-who-does-he-think-he-is.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Who does he think he is?"
+},
+{
 "f": "final-lap",
 "pool": "short",
 "d": 5.0,
@@ -1325,6 +1572,18 @@
 "lic": "CC0"
 },
 {
+"f": "fortnite-victory-royale",
+"pool": "short",
+"d": 4.5,
+"src": "Fortnite, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/victory-royale.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
 "f": "frog-1",
 "pool": "short",
 "d": 0.8,
@@ -1341,6 +1600,59 @@
 "url": "https://opengameart.org/content/mutant-frog",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "gears-active-reload",
+"pool": "short",
+"d": 0.9,
+"src": "Gears of War, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/y2mate_RzC2aMc.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "gears-boomer",
+"pool": "short",
+"d": 1.3,
+"src": "Gears of War, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/gears-of-war-boomer.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "gears-carmine-cheer",
+"pool": "short",
+"d": 1.4,
+"src": "Gears of War, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/gears-of-war-carmine-cheer.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Ha ha, wow!"
+},
+{
+"f": "gears-cog-tag",
+"pool": "short",
+"d": 3.3,
+"src": "Gears of War, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/gears-of-war-cog-tag.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "gears-leviathan",
+"pool": "short",
+"d": 3.4,
+"src": "Gears of War, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/goddamn-leviathan.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "It's a goddamn Leviathan!",
+"ev": [
+"low"
+]
 },
 {
 "f": "genuine-sneeze-sound",
@@ -1674,6 +1986,72 @@
 "url": "https://opengameart.org/content/little-grunts",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "halflife-rise-and-shine",
+"pool": "short",
+"d": 3.9,
+"src": "Half-Life 2, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/wake-rise-and-shine-mr-freeman.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Rise and shine, Mr. Freeman.",
+"ev": [
+"back"
+]
+},
+{
+"f": "halo-double-kill",
+"pool": "short",
+"d": 1.3,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-1-double-kill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Double kill.",
+"ev": [
+"out"
+]
+},
+{
+"f": "halo-game-over",
+"pool": "short",
+"d": 1.6,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/gameover_1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Game over.",
+"ev": [
+"out"
+]
+},
+{
+"f": "halo-killtacular",
+"pool": "short",
+"d": 1.3,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-killtacular.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Killtacular!",
+"ev": [
+"out",
+"cmdout"
+]
+},
+{
+"f": "halo-perfection",
+"pool": "short",
+"d": 1.1,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/perfection_joIshZa.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Perfection!",
+"ev": [
+"win"
+]
 },
 {
 "f": "he-will-decide-your-fate",
@@ -2082,7 +2460,46 @@
 "src": "Little Girl Saying Game Over",
 "url": "https://opengameart.org/content/little-girl-saying-game-over",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
+},
+{
+"f": "luigi-number-one",
+"pool": "short",
+"d": 2.6,
+"src": "Luigi (Mario series), via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/luigi-im-a-luigi-number-one.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "I'm-a Luigi, number one!",
+"ev": [
+"win"
+]
+},
+{
+"f": "luigi-oh-no",
+"pool": "short",
+"d": 1.0,
+"src": "Luigi (Mario series), via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/luigi-oh-no.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Oh no!",
+"ev": [
+"out"
+]
+},
+{
+"f": "luigi-oh-yeah",
+"pool": "short",
+"d": 0.5,
+"src": "Luigi (Mario series), via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/luigi-oh-yeah.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Oh yeah!"
 },
 {
 "f": "maniacal-laughter-pack-1",
@@ -2092,6 +2509,657 @@
 "url": "https://opengameart.org/content/maniacal-laughter-pack-1",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "mario-1up",
+"pool": "short",
+"d": 0.8,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "mario-bowser-falls",
+"pool": "short",
+"d": 1.0,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario-coin",
+"pool": "short",
+"d": 0.9,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario-congratulations",
+"pool": "short",
+"d": 1.8,
+"src": "Mario, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mario-congratulations.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Congratulations!",
+"ev": [
+"win"
+]
+},
+{
+"f": "mario-die",
+"pool": "short",
+"d": 2.6,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario-game-over",
+"pool": "short",
+"d": 3.7,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario-hurry-up",
+"pool": "short",
+"d": 2.8,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "mario-kart-start",
+"pool": "short",
+"d": 4.3,
+"src": "Mario Kart, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mariostart.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario-ohhh-nooo",
+"pool": "short",
+"d": 2.2,
+"src": "Mario, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mario-ohhh-nooo.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Oh no!",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario-pipe",
+"pool": "short",
+"d": 0.8,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario-powerup",
+"pool": "short",
+"d": 0.9,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "mario-too-bad",
+"pool": "short",
+"d": 3.2,
+"src": "Super Mario 3D World, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/super-mario-3d-world-too-bad.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario-very-good",
+"pool": "short",
+"d": 3.4,
+"src": "Mario, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mario-hey-you-very-good-see-you-next-time.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hey, you, very good! See you next time!",
+"ev": [
+"win"
+]
+},
+{
+"f": "mario3-fortress-clear",
+"pool": "short",
+"d": 4.0,
+"src": "Super Mario Bros. 3, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb3/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "mario3-hurry-up",
+"pool": "short",
+"d": 2.8,
+"src": "Super Mario Bros. 3, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb3/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "mario3-level-clear",
+"pool": "short",
+"d": 3.2,
+"src": "Super Mario Bros. 3, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb3/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "mario3-player-down",
+"pool": "short",
+"d": 3.2,
+"src": "Super Mario Bros. 3, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb3/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario3-whistle",
+"pool": "short",
+"d": 2.7,
+"src": "Super Mario Bros. 3, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb3/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-1up",
+"pool": "short",
+"d": 1.0,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "mario64-boo",
+"pool": "short",
+"d": 0.8,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-bowser-laugh",
+"pool": "short",
+"d": 2.5,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-burned",
+"pool": "short",
+"d": 2.0,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-doh",
+"pool": "short",
+"d": 0.6,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-game-over",
+"pool": "short",
+"d": 0.8,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario64-here-we-go",
+"pool": "short",
+"d": 1.5,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Here we go!",
+"ev": [
+"back"
+]
+},
+{
+"f": "mario64-its-me",
+"pool": "short",
+"d": 1.9,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"quote": "It's-a me, Mario!"
+},
+{
+"f": "mario64-key-get",
+"pool": "short",
+"d": 3.0,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-lost-a-life",
+"pool": "short",
+"d": 1.7,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario64-mamma-mia",
+"pool": "short",
+"d": 0.9,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Mamma mia!",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario64-okey-dokey",
+"pool": "short",
+"d": 0.9,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Okey-dokey!"
+},
+{
+"f": "mario64-power-meter",
+"pool": "short",
+"d": 0.7,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-so-long-bowser",
+"pool": "short",
+"d": 1.5,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"quote": "So long-a, Bowser!",
+"ev": [
+"out"
+]
+},
+{
+"f": "mario64-thank-you",
+"pool": "short",
+"d": 2.4,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Thank you!"
+},
+{
+"f": "mario64-waha",
+"pool": "short",
+"d": 1.1,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-yahoo",
+"pool": "short",
+"d": 1.0,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "mario64-yippee",
+"pool": "short",
+"d": 1.0,
+"src": "Super Mario 64, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/sm64/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "me-assuming-direct-control",
+"pool": "short",
+"d": 3.3,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/assuming-direct-control_1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "I am assuming direct control."
+},
+{
+"f": "me-biotic-warp",
+"pool": "short",
+"d": 3.0,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/biotic_explosion.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "me-double-pepperoni",
+"pool": "short",
+"d": 2.0,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mass-effect-double-pepperoni.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Double pepperoni."
+},
+{
+"f": "me-garrus-secret",
+"pool": "short",
+"d": 3.2,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/garrus-dirty-little-secret_G2fVEbz.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Garrus, am I your dirty little secret?"
+},
+{
+"f": "me-grunt-laugh",
+"pool": "short",
+"d": 3.0,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mass-effect-3-grunt-heh-heh-heh-laughmp3.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "me-i-should-go",
+"pool": "short",
+"d": 0.6,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mass-effect-i-should-go-mp3cut.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "I should go.",
+"ev": [
+"out"
+]
+},
+{
+"f": "me-joker-sons-of",
+"pool": "short",
+"d": 2.1,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/untitled_1005.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "How do you like that, you sons of bitches?",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "me-level-up",
+"pool": "short",
+"d": 3.3,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mass-effect-level-up.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "me-reaper-horn-1",
+"pool": "short",
+"d": 2.6,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/reaper-horn1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "me-reaper-horn-2",
+"pool": "short",
+"d": 3.5,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/reaper-horn2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "me-shepard-grunt-wrex",
+"pool": "short",
+"d": 4.9,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/shep.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Shepard! Grunt! Shepard! Wrex!"
+},
+{
+"f": "me-shepard-store",
+"pool": "short",
+"d": 3.8,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/shepard.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "I'm Commander Shepard, and this is my favorite store on the Citadel."
+},
+{
+"f": "me-start-hitting-something",
+"pool": "short",
+"d": 2.5,
+"src": "Mass Effect, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/i-think-all-you-comedians-could-start-hitting-something.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "You think all you comedians could start hitting something?"
+},
+{
+"f": "mgs-alert",
+"pool": "short",
+"d": 1.1,
+"src": "Metal Gear Solid, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/metal-gear-solid-alert-sound-effect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "mgs-kept-you-waiting",
+"pool": "short",
+"d": 1.4,
+"src": "Metal Gear Solid, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mgs2-snake-kept-you-waiting-huh.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Kept you waiting, huh?",
+"ev": [
+"back"
+]
+},
+{
+"f": "minecraft-hurt",
+"pool": "short",
+"d": 0.4,
+"src": "Minecraft, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/classic_hurt.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "mk-excellent",
+"pool": "short",
+"d": 1.2,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/excellent-mortal-combat.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Excellent.",
+"ev": [
+"win"
+]
+},
+{
+"f": "mk-fatality",
+"pool": "short",
+"d": 1.9,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/16_2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Fatality.",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "mk-finish-him",
+"pool": "short",
+"d": 1.3,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/finish-him.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Finish him!",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "mk-flawless-victory",
+"pool": "short",
+"d": 1.8,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mortal-kombat-2-flawless-victory.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Flawless victory.",
+"ev": [
+"win"
+]
+},
+{
+"f": "mk-get-over-here",
+"pool": "short",
+"d": 1.8,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/scorpion-get_over_here.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Get over here!",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "mk-toasty",
+"pool": "short",
+"d": 1.2,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mk-toasty.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Toasty!",
+"ev": [
+"cmdout"
+]
 },
 {
 "f": "monster-ripping-into-fish",
@@ -2127,7 +3195,10 @@
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "Houston, Tranquility Base here. The Eagle has landed."
+"quote": "Houston, Tranquility Base here. The Eagle has landed.",
+"ev": [
+"win"
+]
 },
 {
 "f": "nasa-fireflies",
@@ -2201,7 +3272,10 @@
 "src": "Oldschool Win And Die Jump And Run Sounds",
 "url": "https://opengameart.org/content/oldschool-win-and-die-jump-and-run-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "oldschool-round-end",
@@ -2276,6 +3350,18 @@
 "lic": "CC0"
 },
 {
+"f": "pacman-death",
+"pool": "short",
+"d": 1.6,
+"src": "Pac-Man, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/pac-man-death.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "peacock-scream",
 "pool": "short",
 "d": 1.0,
@@ -2319,6 +3405,61 @@
 "url": "https://opengameart.org/content/point-bell",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "pokemon-heal",
+"pool": "short",
+"d": 3.2,
+"src": "Pokémon, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "pokemon-item",
+"pool": "short",
+"d": 1.4,
+"src": "Pokémon, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/pokemon-red_blue_yellow-item-found-sound-effect.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "pokemon-level-up",
+"pool": "short",
+"d": 2.5,
+"src": "Pokémon, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/pokemon-red_blue_yellow-level-up-sound-effect.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "pokemon-low-health",
+"pool": "short",
+"d": 2.9,
+"src": "Pokémon, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/low-health-critical-health-pokemon.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "pokemon-super-effective",
+"pool": "short",
+"d": 1.4,
+"src": "Pokémon, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/its-super-effective.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "It's super effective!",
+"ev": [
+"cmdout"
+]
 },
 {
 "f": "pop",
@@ -2537,6 +3678,18 @@
 "lic": "CC0"
 },
 {
+"f": "roblox-oof",
+"pool": "short",
+"d": 0.3,
+"src": "Roblox, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "robot-bird",
 "pool": "short",
 "d": 3.5,
@@ -2552,7 +3705,10 @@
 "src": "Game Over Trumpet Sfx",
 "url": "https://opengameart.org/content/game-over-trumpet-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "scary-high-pitched-ghost",
@@ -2580,6 +3736,59 @@
 "url": "https://opengameart.org/content/high-pitch-scream-sounds2",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "sf-hadouken",
+"pool": "short",
+"d": 0.6,
+"src": "Street Fighter II, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ryu_hadouken.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hadouken!",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "sf-ko",
+"pool": "short",
+"d": 2.2,
+"src": "Street Fighter II, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mlg-resource-street-fighter-ko-greenscreen.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "K.O.",
+"ev": [
+"out",
+"cmdout"
+]
+},
+{
+"f": "sf-perfect",
+"pool": "short",
+"d": 0.4,
+"src": "Street Fighter II, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/perfect-street-fighter.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Perfect.",
+"ev": [
+"win"
+]
+},
+{
+"f": "sf-you-win",
+"pool": "short",
+"d": 1.7,
+"src": "Street Fighter II, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/street-fighter-ii-you-win-perfect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "You win. Perfect.",
+"ev": [
+"win"
+]
 },
 {
 "f": "sfx-goats",
@@ -2640,6 +3849,32 @@
 "url": "https://opengameart.org/content/sinister-laugh",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "skyrim-finally-awake",
+"pool": "short",
+"d": 3.4,
+"src": "Skyrim, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/youre-finally-awake.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hey, you. You're finally awake.",
+"ev": [
+"back"
+]
+},
+{
+"f": "skyrim-fus-ro-dah",
+"pool": "short",
+"d": 1.7,
+"src": "Skyrim, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/fus-ro-dah.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Fus ro dah!",
+"ev": [
+"cmdout"
+]
 },
 {
 "f": "slime-01",
@@ -2714,6 +3949,101 @@
 "lic": "CC0"
 },
 {
+"f": "smash-game",
+"pool": "short",
+"d": 1.0,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ssbannouncer-game.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Game!",
+"ev": [
+"win"
+]
+},
+{
+"f": "smash-ready-go",
+"pool": "short",
+"d": 4.0,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ready-go-super-smash-bros-melee.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Ready? Go!"
+},
+{
+"f": "smw-1up",
+"pool": "short",
+"d": 0.5,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "smw-bowser-returns",
+"pool": "short",
+"d": 2.2,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "smw-dragon-coin",
+"pool": "short",
+"d": 0.3,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "smw-lost-a-life",
+"pool": "short",
+"d": 3.3,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "smw-power-up",
+"pool": "short",
+"d": 0.8,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "smw-thunder",
+"pool": "short",
+"d": 2.2,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "smw-yoshi",
+"pool": "short",
+"d": 0.5,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note"
+},
+{
 "f": "so-thats-coming-along",
 "pool": "short",
 "d": 2.3,
@@ -2721,6 +4051,39 @@
 "url": "https://opengameart.org/content/so-thats-coming-along",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "sonic-death",
+"pool": "short",
+"d": 1.0,
+"src": "Sonic the Hedgehog, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/sonic-death-sound-effect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "sonic-ring",
+"pool": "short",
+"d": 0.8,
+"src": "Sonic the Hedgehog, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/26f8b9_sonic_ring_sound_effect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "sonic-rings-drop",
+"pool": "short",
+"d": 1.5,
+"src": "Sonic the Hedgehog, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/sonic-rings-drop.mp3",
+"grp": "Video games",
+"lic": "See note"
 },
 {
 "f": "splash-1",
@@ -3110,6 +4473,29 @@
 "lic": "CC0"
 },
 {
+"f": "starcraft-nuke",
+"pool": "short",
+"d": 2.3,
+"src": "StarCraft, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/tadupd04.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Nuclear launch detected.",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "starcraft-vespene",
+"pool": "short",
+"d": 2.6,
+"src": "StarCraft, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/vespene.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Insufficient vespene gas."
+},
+{
 "f": "steam-whistle-1",
 "pool": "short",
 "d": 2.4,
@@ -3189,6 +4575,28 @@
 "url": "https://opengameart.org/content/fly-swatter-squish-sound",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "tekken-you-win",
+"pool": "short",
+"d": 1.3,
+"src": "Tekken, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/you-win-tekken.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "You win!",
+"ev": [
+"win"
+]
+},
+{
+"f": "tetris-clear",
+"pool": "short",
+"d": 1.1,
+"src": "Tetris (NES), via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/nes-tetris-sound-effect-tetris-clear.mp3",
+"grp": "Video games",
+"lic": "See note"
 },
 {
 "f": "the-messy-feast",
@@ -3314,7 +4722,10 @@
 "src": "Total Fail",
 "url": "https://opengameart.org/content/total-fail",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "trump-bigly",
@@ -3483,7 +4894,10 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "That is lethal!"
+"quote": "That is lethal!",
+"ev": [
+"out"
+]
 },
 {
 "f": "tts-mana-flooded",
@@ -3564,7 +4978,10 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "I scoop."
+"quote": "I scoop.",
+"ev": [
+"out"
+]
 },
 {
 "f": "tts-shuffle-up",
@@ -3645,7 +5062,10 @@
 "src": "Happy And Sad Tuba Fanfare",
 "url": "https://opengameart.org/content/happy-and-sad-tuba-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "uah",
@@ -3693,13 +5113,43 @@
 "lic": "CC0"
 },
 {
+"f": "ut-godlike",
+"pool": "short",
+"d": 1.8,
+"src": "Unreal Tournament, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/godlike.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Godlike!",
+"ev": [
+"cmdout",
+"win"
+]
+},
+{
+"f": "ut-monster-kill",
+"pool": "short",
+"d": 4.5,
+"src": "Unreal Tournament, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/unreal-tournament-monster-kill-sound.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Monster kill!",
+"ev": [
+"out"
+]
+},
+{
 "f": "victory-6",
 "pool": "short",
 "d": 1.5,
 "src": "Victory 6",
 "url": "https://opengameart.org/content/victory-6",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "video-game-cheerful-ending",
@@ -3717,7 +5167,10 @@
 "src": "Win Lose Voice Speech",
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "voice-well-done",
@@ -3736,6 +5189,29 @@
 "url": "https://opengameart.org/content/vulture-imitation",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "warcraft-jobs-done",
+"pool": "short",
+"d": 0.7,
+"src": "Warcraft, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/jobs_done.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Job's done.",
+"ev": [
+"win"
+]
+},
+{
+"f": "warcraft-zug-zug",
+"pool": "short",
+"d": 0.7,
+"src": "Warcraft, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/oyessir1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Zug zug."
 },
 {
 "f": "weird-1",
@@ -4140,7 +5616,10 @@
 "src": "Win Sound Effect",
 "url": "https://opengameart.org/content/win-sound-effect",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "win-square",
@@ -4195,6 +5674,193 @@
 "url": "https://opengameart.org/content/wolf-monster-sound",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "wow-leeroy",
+"pool": "short",
+"d": 4.5,
+"src": "World of Warcraft, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/leroy.swf.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "xbox-achievement",
+"pool": "short",
+"d": 0.3,
+"src": "Xbox 360, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/achievement-mp3-sound.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-beedle-thanks",
+"pool": "short",
+"d": 1.4,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ww_beedle_thankyou.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Thank you!"
+},
+{
+"f": "zelda-botw-item",
+"pool": "short",
+"d": 1.8,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/zelda_-botw-item-get-sound-effect_360p-online-audio-converter.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-dawn-first-day",
+"pool": "short",
+"d": 3.3,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/dawn-of-the-first-day.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-heart-container",
+"pool": "short",
+"d": 3.3,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/zelda-heart-container.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"back"
+]
+},
+{
+"f": "zelda-item-get",
+"pool": "short",
+"d": 2.4,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/139-item-catch.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-korok-yahaha",
+"pool": "short",
+"d": 0.9,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/korok-yahaha.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Yahaha!"
+},
+{
+"f": "zelda-link-heyaaah",
+"pool": "short",
+"d": 0.8,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/zelda-oot-heyaaaah.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-low-health",
+"pool": "short",
+"d": 2.7,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/low-health.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"low"
+]
+},
+{
+"f": "zelda-navi-hello",
+"pool": "short",
+"d": 0.4,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/oot_navi_hello1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hello!"
+},
+{
+"f": "zelda-navi-hey",
+"pool": "short",
+"d": 0.4,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/oot_navi_hey1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hey!"
+},
+{
+"f": "zelda-navi-listen",
+"pool": "short",
+"d": 0.6,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/oot_navi_listen1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Listen!"
+},
+{
+"f": "zelda-navi-look",
+"pool": "short",
+"d": 0.5,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/oot_navi_look1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Look!"
+},
+{
+"f": "zelda-navi-watch-out",
+"pool": "short",
+"d": 0.6,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/oot_navi_watchout1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Watch out!",
+"ev": [
+"low"
+]
+},
+{
+"f": "zelda-nes-item",
+"pool": "short",
+"d": 1.5,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/get-item-the-legend-of-zelda-nes.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-oot-secret",
+"pool": "short",
+"d": 1.4,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ocarina-of-time-puzzle-solve-jingle-secret-sound.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-rupee",
+"pool": "short",
+"d": 1.7,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/rupee-collect.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "zelda-secret",
+"pool": "short",
+"d": 1.4,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ringtones-zelda-1.mp3",
+"grp": "Video games",
+"lic": "See note"
 },
 {
 "f": "zombie-moan-5",
@@ -4330,7 +5996,10 @@
 "src": "Happy Awkward Trumpet",
 "url": "https://opengameart.org/content/happy-awkward-trumpet",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/bush-federal-program",
@@ -4431,6 +6100,18 @@
 "note": "full-length cut"
 },
 {
+"f": "long/dark-souls-you-died",
+"pool": "long",
+"d": 7.0,
+"src": "Dark Souls, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/dark-souls-you-died-sound-effect_hm5sYFG.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "long/demon-no-going-back",
 "pool": "long",
 "d": 8.0,
@@ -4487,13 +6168,91 @@
 "lic": "CC0"
 },
 {
+"f": "long/ff1-victory",
+"pool": "long",
+"d": 10.9,
+"src": "Final Fantasy, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ff1_victory_fanfare_1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/ff14-duty-pop",
+"pool": "long",
+"d": 5.1,
+"src": "Final Fantasy XIV, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-xiv-duty-pop-finder-tick_MzQQxWW.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "long/ff7-battle-start",
+"pool": "long",
+"d": 8.2,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ff7-battle-start.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "long/ff7-crisis-core-victory",
+"pool": "long",
+"d": 11.5,
+"src": "Crisis Core: Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/crisis-core-final-fantasy-vii-music-victory-fanfare.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/ff7-game-over",
+"pool": "long",
+"d": 12.0,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-soundtrack-continue-game-over-theme-hq-0-16.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "long/ff7-one-winged-angel",
+"pool": "long",
+"d": 11.1,
+"src": "Final Fantasy VII, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-one-winged-angel.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "long/ff7r-barret-fanfare",
+"pool": "long",
+"d": 7.1,
+"src": "Final Fantasy VII Remake, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ff7r-barret-fanfare.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
 "f": "long/fireworks-with-applause-happy-people",
 "pool": "long",
 "d": 11.9,
 "src": "Fireworks With Applause Happy People",
 "url": "https://opengameart.org/content/fireworks-with-applause-happy-people",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/fish-feast",
@@ -4539,7 +6298,10 @@
 "src": "Game Over Short Jingle",
 "url": "https://opengameart.org/content/game-over-short-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/game-over-yarakashi",
@@ -4549,6 +6311,15 @@
 "url": "https://opengameart.org/content/yarakashitagameover-music",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "long/gamecube-startup",
+"pool": "long",
+"d": 5.1,
+"src": "GameCube, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/gamecube-startup.mp3",
+"grp": "Video games",
+"lic": "See note"
 },
 {
 "f": "long/gameover-or-underwater",
@@ -4566,7 +6337,10 @@
 "src": "Glorious Victory Fanfare Nes",
 "url": "https://opengameart.org/content/glorious-victory-fanfare-nes",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/goblin-feast",
@@ -4586,6 +6360,30 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "note": "full-length cut"
+},
+{
+"f": "long/gta-mission-passed",
+"pool": "long",
+"d": 6.6,
+"src": "Grand Theft Auto, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/gta-san-andreas-mission-passed.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/gta-wasted",
+"pool": "long",
+"d": 7.0,
+"src": "Grand Theft Auto, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/wasted-gta-5.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/high-ghost",
@@ -4640,7 +6438,10 @@
 "src": "Hyper Ultra Fanfare",
 "url": "https://opengameart.org/content/hyper-ultra-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/icy-game-over",
@@ -4762,7 +6563,10 @@
 "d": 8.0,
 "src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/laugh-okeh-2",
@@ -4881,13 +6685,40 @@
 "lic": "CC0"
 },
 {
+"f": "long/mario-stage-clear",
+"pool": "long",
+"d": 5.4,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/mario-world-clear",
+"pool": "long",
+"d": 6.1,
+"src": "Super Mario Bros., via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smb/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
 "f": "long/medieval-defeat",
 "pool": "long",
 "d": 12.0,
 "src": "Medieval Defeat Theme",
 "url": "https://opengameart.org/content/medieval-defeat-theme",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/medieval-victory",
@@ -4896,7 +6727,10 @@
 "src": "Medieval Victory Theme",
 "url": "https://opengameart.org/content/medieval-victory-theme",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/messy-feast",
@@ -4907,6 +6741,18 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "note": "full-length cut"
+},
+{
+"f": "long/metroid-item",
+"pool": "long",
+"d": 5.7,
+"src": "Super Metroid, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/super-metroid-music-item-acquisition-fanfare.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/nasa-cardiac-arrests",
@@ -4924,7 +6770,10 @@
 "src": "NASA: Apollo 13",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "Okay, Houston, we've had a problem here. Say again, please. Houston, we've had a problem."
+"quote": "Okay, Houston, we've had a problem here. Say again, please. Houston, we've had a problem.",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/nasa-liftoff",
@@ -4951,7 +6800,10 @@
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "That's one small step for man. One giant leap for mankind."
+"quote": "That's one small step for man. One giant leap for mankind.",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/nasa-turn-blue",
@@ -5040,7 +6892,10 @@
 "url": "https://youtu.be/6dEA7krBxys",
 "quote": "And with that, I just have two more words to say: Obama out.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/obama-some-people-are-so-dumb",
@@ -5093,6 +6948,15 @@
 "lic": "See note"
 },
 {
+"f": "long/ps1-startup",
+"pool": "long",
+"d": 12.0,
+"src": "PlayStation, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/psx.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
 "f": "long/race-finish",
 "pool": "long",
 "d": 12.0,
@@ -5136,7 +7000,10 @@
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/sad-ending-2",
@@ -5145,7 +7012,10 @@
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/sad-ending-3",
@@ -5154,7 +7024,10 @@
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/sad-game-over",
@@ -5163,7 +7036,10 @@
 "src": "Sad Game Over",
 "url": "https://opengameart.org/content/sad-game-over",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/sad-walk-with-sad-melodica",
@@ -5190,7 +7066,10 @@
 "src": "Sega Mega Drivegenesis Victory Jingle",
 "url": "https://opengameart.org/content/sega-mega-drivegenesis-victory-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/simple-battle-fanfare",
@@ -5202,6 +7081,100 @@
 "lic": "CC0"
 },
 {
+"f": "long/skyrim-arrow-knee",
+"pool": "long",
+"d": 5.5,
+"src": "Skyrim, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/botonskyrim_1.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "I used to be an adventurer like you, then I took an arrow in the knee."
+},
+{
+"f": "long/skyrim-level-up",
+"pool": "long",
+"d": 7.3,
+"src": "Skyrim, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/42dfb7_skyrim_level_up_sound_effect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/smash-link-wins",
+"pool": "long",
+"d": 6.6,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/super-smash-bros-link-victory.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/smash-mario-wins",
+"pool": "long",
+"d": 8.0,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/victory-mario-series-hq-super-smash-bros.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/smash-wombo-combo",
+"pool": "long",
+"d": 7.3,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/wombo-combo.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout"
+]
+},
+{
+"f": "long/smw-castle-clear",
+"pool": "long",
+"d": 8.1,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/smw-course-clear",
+"pool": "long",
+"d": 7.5,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/smw-game-over",
+"pool": "long",
+"d": 5.3,
+"src": "Super Mario World, via The Mushroom Kingdom",
+"url": "https://themushroomkingdom.net/media/smw/wav",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "long/something-sad",
 "pool": "long",
 "d": 12.0,
@@ -5209,6 +7182,18 @@
 "url": "https://opengameart.org/content/something-sad",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "long/sonic-game-over",
+"pool": "long",
+"d": 11.9,
+"src": "Sonic the Hedgehog, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/sonic-the-hedgehog-1-2-game-over.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/space-chorus",
@@ -5357,7 +7342,10 @@
 "src": "Tragic Death",
 "url": "https://opengameart.org/content/tragic-death",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"out"
+]
 },
 {
 "f": "long/troll",
@@ -5456,7 +7444,10 @@
 "url": "https://youtu.be/RSCIndGqYWY",
 "quote": "Somebody had to do it. I am the chosen one.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/trump-i-love-babies",
@@ -5603,7 +7594,10 @@
 "src": "Victory Fanfare",
 "url": "https://opengameart.org/content/victory-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
 },
 {
 "f": "long/victory-sting",
@@ -5640,7 +7634,81 @@
 "src": "Win Fanfare",
 "url": "https://opengameart.org/content/win-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/zelda-boss-clear",
+"pool": "long",
+"d": 10.8,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/boss-clear-the-legend-of-zelda-ocarina-of-time.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"win"
+]
+},
+{
+"f": "long/zelda-chest",
+"pool": "long",
+"d": 10.3,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/zelda-chest-opening-and-item-catch.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "long/zelda-game-over",
+"pool": "long",
+"d": 9.9,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/game-over-twilight-princess.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "long/zelda-guardian",
+"pool": "long",
+"d": 12.0,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/zelda-botw-guardian.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "long/zelda-hylia",
+"pool": "long",
+"d": 6.2,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/what-in-the-name-of-hylia.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "What in the name of Hylia?!"
+},
+{
+"f": "long/zelda-master-sword",
+"pool": "long",
+"d": 10.1,
+"src": "The Legend of Zelda, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/zelda-master-sword.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "long/zero-wing-all-your-base",
+"pool": "long",
+"d": 10.6,
+"src": "Zero Wing, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/allbase.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "How are you gentlemen!! All your base are belong to us. You are on the way to destruction."
 },
 {
 "f": "long/zombie-horde",

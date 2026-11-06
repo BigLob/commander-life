@@ -359,3 +359,193 @@ The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from cli
 | `tts-topdeck-mode` | 1.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-your-turn` | 2.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-you-have-been-assimilated` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+
+## Added in v1.14 (video games)
+
+Sound effects, jingles and voice lines from classic and modern video games (Mario, Zelda, Final Fantasy,
+Mass Effect, Gears of War, Mortal Kombat, Street Fighter, Halo, Sonic, Pokémon, Metal Gear and more), found on
+The Mushroom Kingdom (themushroomkingdom.net, game rips) and Myinstants (myinstants.com, user uploads). Each
+was trimmed of silence, cut to 12 s at most, loudness-matched (EBU R128, -16 LUFS) and converted to mono MP3.
+Up to 5 s they sit in `sounds/`, longer ones in `sounds/long/`. Unlike the CC0 clips these are not free to
+use: the sounds belong to the games' publishers (Nintendo, Square Enix, EA/BioWare, Microsoft, Warner Bros.
+and others). They're here for our own table only.
+
+| File | Length | Words | Source |
+| --- | --- | --- | --- |
+| `ace-attorney-objection` | 1.5 s | Objection! | [Ace Attorney, via Myinstants](https://www.myinstants.com/media/sounds/phoenix-objection.mp3) |
+| `among-us-body-reported` | 3.0 s |  | [Among Us, via Myinstants](https://www.myinstants.com/media/sounds/among-us-dead-body-reported-sound-effect_BsczDVE.mp3) |
+| `among-us-emergency` | 2.0 s |  | [Among Us, via Myinstants](https://www.myinstants.com/media/sounds/emergency-meeting.mp3) |
+| `among-us-kill` | 0.7 s |  | [Among Us, via Myinstants](https://www.myinstants.com/media/sounds/among-us-kill.mp3) |
+| `bioshock-would-you-kindly` | 1.9 s | Would you kindly... | [BioShock, via Myinstants](https://www.myinstants.com/media/sounds/wouldyoukindly.mp3) |
+| `castlevania-die-monster` | 3.5 s | Die, monster! You don't belong in this world! | [Castlevania: Symphony of the Night, via Myinstants](https://www.myinstants.com/media/sounds/diemonsteryoudontbelonginthisworld.mp3) |
+| `dark-souls-item` | 1.5 s |  | [Dark Souls, via Myinstants](https://www.myinstants.com/media/sounds/dark-souls-item-get.mp3) |
+| `diablo-stay-awhile` | 3.4 s | Hello, my friend. Stay awhile and listen. | [Diablo, via Myinstants](https://www.myinstants.com/media/sounds/sub_welcome.mp3) |
+| `fallout-war-never-changes` | 3.0 s | War. War never changes. | [Fallout, via Myinstants](https://www.myinstants.com/media/sounds/war_Q69zieh.mp3) |
+| `ff-chocobo-wark` | 0.7 s |  | [Final Fantasy, via Myinstants](https://www.myinstants.com/media/sounds/chocobo_wark.mp3) |
+| `ff14-chocobo-kweh` | 1.0 s |  | [Final Fantasy XIV, via Myinstants](https://www.myinstants.com/media/sounds/ffxiv-chocobo-kweh.mp3) |
+| `ff6-kefka-laugh` | 2.1 s |  | [Final Fantasy VI, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-6-kefkas-iconic-laugh.mp3) |
+| `ff7-boss-death` | 4.1 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-boss-death-sound-effect.mp3) |
+| `ff7-cure` | 2.4 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-spell-cure-1.mp3) |
+| `ff7-life` | 4.3 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-spell-life-2.mp3) |
+| `ff7-limit-break` | 1.7 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-limit-break.mp3) |
+| `ff7-save` | 0.5 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-save-and-load.mp3) |
+| `ff7-victory` | 3.2 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-victory-fanfare-hq-sound.mp3) |
+| `ff7r-this-is-bad` | 1.3 s | This is bad. | [Final Fantasy VII Remake, via Myinstants](https://www.myinstants.com/media/sounds/thisisbad.mp3) |
+| `ff9-victory` | 4.6 s |  | [Final Fantasy IX, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-ix-victory-fanfare-24139-mp3cut.mp3) |
+| `ffx-laugh` | 5.0 s |  | [Final Fantasy X, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-x-laugh.mp3) |
+| `ffx-who-does-he-think` | 2.0 s | Who does he think he is? | [Final Fantasy X, via Myinstants](https://www.myinstants.com/media/sounds/ffx-who-does-he-think-he-is.mp3) |
+| `fortnite-victory-royale` | 4.5 s |  | [Fortnite, via Myinstants](https://www.myinstants.com/media/sounds/victory-royale.mp3) |
+| `gears-active-reload` | 0.9 s |  | [Gears of War, via Myinstants](https://www.myinstants.com/media/sounds/y2mate_RzC2aMc.mp3) |
+| `gears-boomer` | 1.3 s |  | [Gears of War, via Myinstants](https://www.myinstants.com/media/sounds/gears-of-war-boomer.mp3) |
+| `gears-carmine-cheer` | 1.4 s | Ha ha, wow! | [Gears of War, via Myinstants](https://www.myinstants.com/media/sounds/gears-of-war-carmine-cheer.mp3) |
+| `gears-cog-tag` | 3.3 s |  | [Gears of War, via Myinstants](https://www.myinstants.com/media/sounds/gears-of-war-cog-tag.mp3) |
+| `gears-leviathan` | 3.4 s | It's a goddamn Leviathan! | [Gears of War, via Myinstants](https://www.myinstants.com/media/sounds/goddamn-leviathan.mp3) |
+| `halflife-rise-and-shine` | 3.9 s | Rise and shine, Mr. Freeman. | [Half-Life 2, via Myinstants](https://www.myinstants.com/media/sounds/wake-rise-and-shine-mr-freeman.mp3) |
+| `halo-double-kill` | 1.3 s | Double kill. | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-1-double-kill.mp3) |
+| `halo-game-over` | 1.6 s | Game over. | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/gameover_1.mp3) |
+| `halo-killtacular` | 1.3 s | Killtacular! | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-killtacular.mp3) |
+| `halo-perfection` | 1.1 s | Perfection! | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/perfection_joIshZa.mp3) |
+| `luigi-number-one` | 2.6 s | I'm-a Luigi, number one! | [Luigi (Mario series), via Myinstants](https://www.myinstants.com/media/sounds/luigi-im-a-luigi-number-one.mp3) |
+| `luigi-oh-no` | 1.0 s | Oh no! | [Luigi (Mario series), via Myinstants](https://www.myinstants.com/media/sounds/luigi-oh-no.mp3) |
+| `luigi-oh-yeah` | 0.5 s | Oh yeah! | [Luigi (Mario series), via Myinstants](https://www.myinstants.com/media/sounds/luigi-oh-yeah.mp3) |
+| `mario-1up` | 0.8 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-bowser-falls` | 1.0 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-coin` | 0.9 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-congratulations` | 1.8 s | Congratulations! | [Mario, via Myinstants](https://www.myinstants.com/media/sounds/mario-congratulations.mp3) |
+| `mario-die` | 2.6 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-game-over` | 3.7 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-hurry-up` | 2.8 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-kart-start` | 4.3 s |  | [Mario Kart, via Myinstants](https://www.myinstants.com/media/sounds/mariostart.mp3) |
+| `mario-ohhh-nooo` | 2.2 s | Oh no! | [Mario, via Myinstants](https://www.myinstants.com/media/sounds/mario-ohhh-nooo.mp3) |
+| `mario-pipe` | 0.8 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-powerup` | 0.9 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `mario-too-bad` | 3.2 s |  | [Super Mario 3D World, via Myinstants](https://www.myinstants.com/media/sounds/super-mario-3d-world-too-bad.mp3) |
+| `mario-very-good` | 3.4 s | Hey, you, very good! See you next time! | [Mario, via Myinstants](https://www.myinstants.com/media/sounds/mario-hey-you-very-good-see-you-next-time.mp3) |
+| `mario3-fortress-clear` | 4.0 s |  | [Super Mario Bros. 3, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb3/wav) |
+| `mario3-hurry-up` | 2.8 s |  | [Super Mario Bros. 3, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb3/wav) |
+| `mario3-level-clear` | 3.2 s |  | [Super Mario Bros. 3, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb3/wav) |
+| `mario3-player-down` | 3.2 s |  | [Super Mario Bros. 3, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb3/wav) |
+| `mario3-whistle` | 2.7 s |  | [Super Mario Bros. 3, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb3/wav) |
+| `mario64-1up` | 1.0 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-boo` | 0.8 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-bowser-laugh` | 2.5 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-burned` | 2.0 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-doh` | 0.6 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-game-over` | 0.8 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-here-we-go` | 1.5 s | Here we go! | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-its-me` | 1.9 s | It's-a me, Mario! | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-key-get` | 3.0 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-lost-a-life` | 1.7 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-mamma-mia` | 0.9 s | Mamma mia! | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-okey-dokey` | 0.9 s | Okey-dokey! | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-power-meter` | 0.7 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-so-long-bowser` | 1.5 s | So long-a, Bowser! | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-thank-you` | 2.4 s | Thank you! | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-waha` | 1.1 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-yahoo` | 1.0 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `mario64-yippee` | 1.0 s |  | [Super Mario 64, via The Mushroom Kingdom](https://themushroomkingdom.net/media/sm64/wav) |
+| `me-assuming-direct-control` | 3.3 s | I am assuming direct control. | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/assuming-direct-control_1.mp3) |
+| `me-biotic-warp` | 3.0 s |  | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/biotic_explosion.mp3) |
+| `me-double-pepperoni` | 2.0 s | Double pepperoni. | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/mass-effect-double-pepperoni.mp3) |
+| `me-garrus-secret` | 3.2 s | Garrus, am I your dirty little secret? | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/garrus-dirty-little-secret_G2fVEbz.mp3) |
+| `me-grunt-laugh` | 3.0 s |  | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/mass-effect-3-grunt-heh-heh-heh-laughmp3.mp3) |
+| `me-i-should-go` | 0.6 s | I should go. | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/mass-effect-i-should-go-mp3cut.mp3) |
+| `me-joker-sons-of` | 2.1 s | How do you like that, you sons of bitches? | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/untitled_1005.mp3) |
+| `me-level-up` | 3.3 s |  | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/mass-effect-level-up.mp3) |
+| `me-reaper-horn-1` | 2.6 s |  | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/reaper-horn1.mp3) |
+| `me-reaper-horn-2` | 3.5 s |  | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/reaper-horn2.mp3) |
+| `me-shepard-grunt-wrex` | 4.9 s | Shepard! Grunt! Shepard! Wrex! | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/shep.mp3) |
+| `me-shepard-store` | 3.8 s | I'm Commander Shepard, and this is my favorite store on the Citadel. | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/shepard.mp3) |
+| `me-start-hitting-something` | 2.5 s | You think all you comedians could start hitting something? | [Mass Effect, via Myinstants](https://www.myinstants.com/media/sounds/i-think-all-you-comedians-could-start-hitting-something.mp3) |
+| `mgs-alert` | 1.1 s |  | [Metal Gear Solid, via Myinstants](https://www.myinstants.com/media/sounds/metal-gear-solid-alert-sound-effect.mp3) |
+| `mgs-kept-you-waiting` | 1.4 s | Kept you waiting, huh? | [Metal Gear Solid, via Myinstants](https://www.myinstants.com/media/sounds/mgs2-snake-kept-you-waiting-huh.mp3) |
+| `minecraft-hurt` | 0.4 s |  | [Minecraft, via Myinstants](https://www.myinstants.com/media/sounds/classic_hurt.mp3) |
+| `mk-excellent` | 1.2 s | Excellent. | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/excellent-mortal-combat.mp3) |
+| `mk-fatality` | 1.9 s | Fatality. | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/16_2.mp3) |
+| `mk-finish-him` | 1.3 s | Finish him! | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/finish-him.mp3) |
+| `mk-flawless-victory` | 1.8 s | Flawless victory. | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/mortal-kombat-2-flawless-victory.mp3) |
+| `mk-get-over-here` | 1.8 s | Get over here! | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/scorpion-get_over_here.mp3) |
+| `mk-toasty` | 1.2 s | Toasty! | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/mk-toasty.mp3) |
+| `pacman-death` | 1.6 s |  | [Pac-Man, via Myinstants](https://www.myinstants.com/media/sounds/pac-man-death.mp3) |
+| `pokemon-heal` | 3.2 s |  | [Pokémon, via Myinstants](https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3) |
+| `pokemon-item` | 1.4 s |  | [Pokémon, via Myinstants](https://www.myinstants.com/media/sounds/pokemon-red_blue_yellow-item-found-sound-effect.mp3) |
+| `pokemon-level-up` | 2.5 s |  | [Pokémon, via Myinstants](https://www.myinstants.com/media/sounds/pokemon-red_blue_yellow-level-up-sound-effect.mp3) |
+| `pokemon-low-health` | 2.9 s |  | [Pokémon, via Myinstants](https://www.myinstants.com/media/sounds/low-health-critical-health-pokemon.mp3) |
+| `pokemon-super-effective` | 1.4 s | It's super effective! | [Pokémon, via Myinstants](https://www.myinstants.com/media/sounds/its-super-effective.mp3) |
+| `roblox-oof` | 0.3 s |  | [Roblox, via Myinstants](https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3) |
+| `sf-hadouken` | 0.6 s | Hadouken! | [Street Fighter II, via Myinstants](https://www.myinstants.com/media/sounds/ryu_hadouken.mp3) |
+| `sf-ko` | 2.2 s | K.O. | [Street Fighter II, via Myinstants](https://www.myinstants.com/media/sounds/mlg-resource-street-fighter-ko-greenscreen.mp3) |
+| `sf-perfect` | 0.4 s | Perfect. | [Street Fighter II, via Myinstants](https://www.myinstants.com/media/sounds/perfect-street-fighter.mp3) |
+| `sf-you-win` | 1.7 s | You win. Perfect. | [Street Fighter II, via Myinstants](https://www.myinstants.com/media/sounds/street-fighter-ii-you-win-perfect.mp3) |
+| `skyrim-finally-awake` | 3.4 s | Hey, you. You're finally awake. | [Skyrim, via Myinstants](https://www.myinstants.com/media/sounds/youre-finally-awake.mp3) |
+| `skyrim-fus-ro-dah` | 1.7 s | Fus ro dah! | [Skyrim, via Myinstants](https://www.myinstants.com/media/sounds/fus-ro-dah.mp3) |
+| `smash-game` | 1.0 s | Game! | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/ssbannouncer-game.mp3) |
+| `smash-ready-go` | 4.0 s | Ready? Go! | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/ready-go-super-smash-bros-melee.mp3) |
+| `smw-1up` | 0.5 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `smw-bowser-returns` | 2.2 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `smw-dragon-coin` | 0.3 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `smw-lost-a-life` | 3.3 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `smw-power-up` | 0.8 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `smw-thunder` | 2.2 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `smw-yoshi` | 0.5 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `sonic-death` | 1.0 s |  | [Sonic the Hedgehog, via Myinstants](https://www.myinstants.com/media/sounds/sonic-death-sound-effect.mp3) |
+| `sonic-ring` | 0.8 s |  | [Sonic the Hedgehog, via Myinstants](https://www.myinstants.com/media/sounds/26f8b9_sonic_ring_sound_effect.mp3) |
+| `sonic-rings-drop` | 1.5 s |  | [Sonic the Hedgehog, via Myinstants](https://www.myinstants.com/media/sounds/sonic-rings-drop.mp3) |
+| `starcraft-nuke` | 2.3 s | Nuclear launch detected. | [StarCraft, via Myinstants](https://www.myinstants.com/media/sounds/tadupd04.mp3) |
+| `starcraft-vespene` | 2.6 s | Insufficient vespene gas. | [StarCraft, via Myinstants](https://www.myinstants.com/media/sounds/vespene.mp3) |
+| `tekken-you-win` | 1.3 s | You win! | [Tekken, via Myinstants](https://www.myinstants.com/media/sounds/you-win-tekken.mp3) |
+| `tetris-clear` | 1.1 s |  | [Tetris (NES), via Myinstants](https://www.myinstants.com/media/sounds/nes-tetris-sound-effect-tetris-clear.mp3) |
+| `ut-godlike` | 1.8 s | Godlike! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/godlike.mp3) |
+| `ut-monster-kill` | 4.5 s | Monster kill! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/unreal-tournament-monster-kill-sound.mp3) |
+| `warcraft-jobs-done` | 0.7 s | Job's done. | [Warcraft, via Myinstants](https://www.myinstants.com/media/sounds/jobs_done.mp3) |
+| `warcraft-zug-zug` | 0.7 s | Zug zug. | [Warcraft, via Myinstants](https://www.myinstants.com/media/sounds/oyessir1.mp3) |
+| `wow-leeroy` | 4.5 s |  | [World of Warcraft, via Myinstants](https://www.myinstants.com/media/sounds/leroy.swf.mp3) |
+| `xbox-achievement` | 0.3 s |  | [Xbox 360, via Myinstants](https://www.myinstants.com/media/sounds/achievement-mp3-sound.mp3) |
+| `zelda-beedle-thanks` | 1.4 s | Thank you! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/ww_beedle_thankyou.mp3) |
+| `zelda-botw-item` | 1.8 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda_-botw-item-get-sound-effect_360p-online-audio-converter.mp3) |
+| `zelda-dawn-first-day` | 3.3 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/dawn-of-the-first-day.mp3) |
+| `zelda-heart-container` | 3.3 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda-heart-container.mp3) |
+| `zelda-item-get` | 2.4 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/139-item-catch.mp3) |
+| `zelda-korok-yahaha` | 0.9 s | Yahaha! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/korok-yahaha.mp3) |
+| `zelda-link-heyaaah` | 0.8 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda-oot-heyaaaah.mp3) |
+| `zelda-low-health` | 2.7 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/low-health.mp3) |
+| `zelda-navi-hello` | 0.4 s | Hello! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/oot_navi_hello1.mp3) |
+| `zelda-navi-hey` | 0.4 s | Hey! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/oot_navi_hey1.mp3) |
+| `zelda-navi-listen` | 0.6 s | Listen! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/oot_navi_listen1.mp3) |
+| `zelda-navi-look` | 0.5 s | Look! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/oot_navi_look1.mp3) |
+| `zelda-navi-watch-out` | 0.6 s | Watch out! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/oot_navi_watchout1.mp3) |
+| `zelda-nes-item` | 1.5 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/get-item-the-legend-of-zelda-nes.mp3) |
+| `zelda-oot-secret` | 1.4 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/ocarina-of-time-puzzle-solve-jingle-secret-sound.mp3) |
+| `zelda-rupee` | 1.7 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/rupee-collect.mp3) |
+| `zelda-secret` | 1.4 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/ringtones-zelda-1.mp3) |
+| `long/dark-souls-you-died` | 7.0 s |  | [Dark Souls, via Myinstants](https://www.myinstants.com/media/sounds/dark-souls-you-died-sound-effect_hm5sYFG.mp3) |
+| `long/ff1-victory` | 10.9 s |  | [Final Fantasy, via Myinstants](https://www.myinstants.com/media/sounds/ff1_victory_fanfare_1.mp3) |
+| `long/ff14-duty-pop` | 5.1 s |  | [Final Fantasy XIV, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-xiv-duty-pop-finder-tick_MzQQxWW.mp3) |
+| `long/ff7-battle-start` | 8.2 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/ff7-battle-start.mp3) |
+| `long/ff7-crisis-core-victory` | 11.5 s |  | [Crisis Core: Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/crisis-core-final-fantasy-vii-music-victory-fanfare.mp3) |
+| `long/ff7-game-over` | 12.0 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-soundtrack-continue-game-over-theme-hq-0-16.mp3) |
+| `long/ff7-one-winged-angel` | 11.1 s |  | [Final Fantasy VII, via Myinstants](https://www.myinstants.com/media/sounds/final-fantasy-vii-one-winged-angel.mp3) |
+| `long/ff7r-barret-fanfare` | 7.1 s |  | [Final Fantasy VII Remake, via Myinstants](https://www.myinstants.com/media/sounds/ff7r-barret-fanfare.mp3) |
+| `long/gamecube-startup` | 5.1 s |  | [GameCube, via Myinstants](https://www.myinstants.com/media/sounds/gamecube-startup.mp3) |
+| `long/gta-mission-passed` | 6.6 s |  | [Grand Theft Auto, via Myinstants](https://www.myinstants.com/media/sounds/gta-san-andreas-mission-passed.mp3) |
+| `long/gta-wasted` | 7.0 s |  | [Grand Theft Auto, via Myinstants](https://www.myinstants.com/media/sounds/wasted-gta-5.mp3) |
+| `long/mario-stage-clear` | 5.4 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `long/mario-world-clear` | 6.1 s |  | [Super Mario Bros., via The Mushroom Kingdom](https://themushroomkingdom.net/media/smb/wav) |
+| `long/metroid-item` | 5.7 s |  | [Super Metroid, via Myinstants](https://www.myinstants.com/media/sounds/super-metroid-music-item-acquisition-fanfare.mp3) |
+| `long/ps1-startup` | 12.0 s |  | [PlayStation, via Myinstants](https://www.myinstants.com/media/sounds/psx.mp3) |
+| `long/skyrim-arrow-knee` | 5.5 s | I used to be an adventurer like you, then I took an arrow in the knee. | [Skyrim, via Myinstants](https://www.myinstants.com/media/sounds/botonskyrim_1.mp3) |
+| `long/skyrim-level-up` | 7.3 s |  | [Skyrim, via Myinstants](https://www.myinstants.com/media/sounds/42dfb7_skyrim_level_up_sound_effect.mp3) |
+| `long/smash-link-wins` | 6.6 s |  | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/super-smash-bros-link-victory.mp3) |
+| `long/smash-mario-wins` | 8.0 s |  | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/victory-mario-series-hq-super-smash-bros.mp3) |
+| `long/smash-wombo-combo` | 7.3 s |  | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/wombo-combo.mp3) |
+| `long/smw-castle-clear` | 8.1 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `long/smw-course-clear` | 7.5 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `long/smw-game-over` | 5.3 s |  | [Super Mario World, via The Mushroom Kingdom](https://themushroomkingdom.net/media/smw/wav) |
+| `long/sonic-game-over` | 11.9 s |  | [Sonic the Hedgehog, via Myinstants](https://www.myinstants.com/media/sounds/sonic-the-hedgehog-1-2-game-over.mp3) |
+| `long/zelda-boss-clear` | 10.8 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/boss-clear-the-legend-of-zelda-ocarina-of-time.mp3) |
+| `long/zelda-chest` | 10.3 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda-chest-opening-and-item-catch.mp3) |
+| `long/zelda-game-over` | 9.9 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/game-over-twilight-princess.mp3) |
+| `long/zelda-guardian` | 12.0 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda-botw-guardian.mp3) |
+| `long/zelda-hylia` | 6.2 s | What in the name of Hylia?! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/what-in-the-name-of-hylia.mp3) |
+| `long/zelda-master-sword` | 10.1 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda-master-sword.mp3) |
+| `long/zero-wing-all-your-base` | 10.6 s | How are you gentlemen!! All your base are belong to us. You are on the way to destruction. | [Zero Wing, via Myinstants](https://www.myinstants.com/media/sounds/allbase.mp3) |
