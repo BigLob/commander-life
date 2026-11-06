@@ -266,3 +266,96 @@ speakers (Hillary Clinton in `trump-wrong`, a reporter in `trump-concepts-of-a-p
 | `long/trump-fat-pigs` | 9.9 s | You've called women you don't like fat pigs, dogs, slobs and disgusting animals. Only Rosie O'Donnell. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
 | `long/trump-turn-black` | 7.4 s | She was always of Indian heritage... I didn't know she was black until a number of years ago, when she happened to turn black. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
 | `long/trump-we-love-puerto-rico` | 8.8 s | We love Puerto Rico. Puerto Rico. Ah! Ah! | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+
+
+## Added in v1.13 (NASA, laughing records, sound effects, announcer)
+
+- `nasa-*`, `space-*`, `jfk-*`: NASA's public-domain audio from soundcloud.com/nasa (Apollo, Mercury, President
+  Kennedy and "Spooky Sounds from Across the Solar System" sets), cut to one line or the first 8 s.
+- `laugh-*`: 78 rpm laughing records from 1922 to 1925 on archive.org, public domain in the US (recordings made
+  before 1926 are public domain since 2026). Each cut is the loudest 8 s (or 4 s) of the record.
+- `sfx-*`: the goats are public domain (Wikimedia Commons); the slide whistle and record scratch are CC-BY 3.0
+  (credit below).
+- `tts-*`: announcer lines made for this app with Piper text-to-speech (voices en_US Ryan and en_GB Alan, pitched
+  down a little with a short echo).
+
+The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from clips already in these folders.
+
+| File | Length | Words | From |
+| --- | --- | --- | --- |
+| `long/jfk-return-him-safely` | 9.9 s | This nation should commit itself to landing a man on the Moon and returning him safely to the Earth. | [NASA: President Kennedy](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/jfk-we-choose-the-moon` | 8.0 s | We choose to go to the Moon in this decade... not because they are easy, but because they are hard. | [NASA: President Kennedy](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/laugh-edison-1` | 8.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
+| `long/laugh-edison-2` | 8.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
+| `long/laugh-edison-3` | 8.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
+| `laugh-edison-4` | 4.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
+| `long/laugh-okeh-1` | 8.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
+| `long/laugh-okeh-2` | 8.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
+| `long/laugh-okeh-3` | 8.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
+| `laugh-okeh-4` | 4.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
+| `long/laugh-parlophone-1` | 8.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
+| `long/laugh-parlophone-2` | 8.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
+| `long/laugh-parlophone-3` | 8.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
+| `laugh-parlophone-4` | 4.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
+| `long/laugh-regal-1` | 8.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
+| `long/laugh-regal-2` | 8.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
+| `long/laugh-regal-3` | 8.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
+| `laugh-regal-4` | 4.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
+| `long/laugh-singing-lesson-1` | 8.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
+| `long/laugh-singing-lesson-2` | 8.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
+| `long/laugh-singing-lesson-3` | 8.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
+| `laugh-singing-lesson-4` | 4.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
+| `nasa-all-weather-testing` | 4.4 s | I think we need to do a little more all-weather testing. | [NASA: Apollo 12](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/nasa-cardiac-arrests` | 5.6 s | That's one of the better sims, believe me. We've had a couple of cardiac arrests down here too. | [NASA: Apollo 12](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `nasa-clock-has-started` | 4.1 s | I feel the liftoff. The clock has started. | [NASA: Mercury 7](https://soundcloud.com/nasa/sets/mercury-sounds) |
+| `nasa-eagle-has-landed` | 4.5 s | Houston, Tranquility Base here. The Eagle has landed. | [NASA: Apollo 11](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `nasa-fireflies` | 2.5 s | I have the fireflies. | [NASA: Mercury 7](https://soundcloud.com/nasa/sets/mercury-sounds) |
+| `nasa-godspeed-john-glenn` | 2.0 s | Godspeed, John Glenn. | [NASA: Mercury 6](https://soundcloud.com/nasa/sets/mercury-sounds) |
+| `long/nasa-houston-problem` | 6.5 s | Okay, Houston, we've had a problem here. Say again, please. Houston, we've had a problem. | [NASA: Apollo 13](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/nasa-liftoff` | 9.4 s | Five, four, three, two, one, zero. All engines running. Liftoff. We have a liftoff. | [NASA: Apollo 11](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/nasa-merry-christmas` | 9.4 s | We close with good night, good luck, a merry Christmas, and God bless all of you on the good Earth. | [NASA: Apollo 8](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/nasa-one-small-step` | 6.0 s | That's one small step for man. One giant leap for mankind. | [NASA: Apollo 11](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `long/nasa-turn-blue` | 6.8 s | You got a bunch of guys about to turn blue. We're breathing again. Thanks a lot. | [NASA: Apollo 11](https://soundcloud.com/nasa/sets/apollo-sounds) |
+| `nasa-zero-g` | 4.4 s | Roger, zero G, and I feel fine. Capsule is turning around. | [NASA: Mercury 6](https://soundcloud.com/nasa/sets/mercury-sounds) |
+| `sfx-goats` | 4.5 s |  | [Herd of goats bleating, by stilgar (public domain), Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Herd_of_goats_bleating.ogg) |
+| `sfx-record-scratch` | 0.4 s |  | [Scratch Speed, by raccoonanimator (CC-BY 3.0), OpenGameArt](https://opengameart.org/content/scratch-speed) |
+| `sfx-slide-whistle` | 1.2 s |  | [Slide Whistle Down, by joedeshon (CC-BY 3.0), OpenGameArt](https://opengameart.org/content/slide-whistle-down) |
+| `long/space-chorus` | 8.0 s |  | [NASA: Plasmawaves - Chorus](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-comet-tempel` | 8.0 s |  | [NASA: Stardust: Passing Comet Tempel 1](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-earth-magnetic-drum` | 6.3 s |  | [NASA: Sounds of Earth's Magnetic Drum in Space](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-enceladus` | 8.0 s |  | [NASA: Cassini: Enceladus Sound](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-europa` | 8.0 s |  | [NASA: Audio from NASA’s Juno Mission: Europa Flyby](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-interstellar-plasma` | 8.0 s |  | [NASA: Voyager: Interstellar Plasma Sounds](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-jupiter-bow-shock` | 8.0 s |  | [NASA: Juno: Crossing Jupiter's Bow Shock](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-jupiter-lightning` | 7.6 s |  | [NASA: Voyager: Lightning on Jupiter](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-jupiter-magnetosphere` | 8.0 s |  | [NASA: Juno: Entering Jupiter's Magnetosphere](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-langmuir-waves` | 7.8 s |  | [NASA: Parker Solar Probe - Langmuir Waves](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-plasmaspheric-hiss` | 8.0 s |  | [NASA: Plasmaspheric Hiss](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-saturn-radio` | 8.0 s |  | [NASA: Cassini: Saturn Radio Emissions #2](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `long/space-star-kepler` | 6.7 s |  | [NASA: Kepler: Star KIC12268220C Light Curve Waves to Sound](https://soundcloud.com/nasa/sets/spookyspacesounds) |
+| `tts-andrew-your-turn` | 2.7 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-board-wipe-incoming` | 1.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-commander-damage` | 1.0 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-counterspell` | 0.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-i-have-a-response` | 2.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-in-response` | 1.1 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-is-that-a-combo` | 1.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-kingmaker` | 0.7 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-your-turn` | 2.0 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lethal` | 0.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-mana-flooded` | 1.0 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-mana-screwed` | 2.3 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-mulligan-to-five` | 1.1 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-not-the-threat` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-pass-the-turn` | 1.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-your-turn` | 2.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-read-the-card` | 1.1 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-resistance-is-futile` | 1.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-scoop` | 0.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-shuffle-up` | 1.4 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-sol-ring-turn-one` | 1.3 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-somebody-deal-with-that` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-target-him` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-topdeck-mode` | 1.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-your-turn` | 2.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-you-have-been-assimilated` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
