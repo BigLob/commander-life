@@ -366,6 +366,16 @@ details.field[open] > summary { margin-bottom: 10px; }
   box-shadow: 0 0 0 2px var(--line), 0 0 22px rgba(255, 179, 71, .55), 0 5px 12px rgba(0, 0, 0, .55);
 }
 .turn-big svg { width: 58%; height: 58%; fill: currentColor; pointer-events: none; }
+/* The turn number (v1.9), just the number, in a dark disc on the turn button's left that mirrors
+   the menu button on its right. It's part of the button, so it moves with it and taps on it count. */
+.turn-num {
+  position: absolute; top: 50%; right: calc(100% + 10px); translate: 0 -50%;
+  min-width: 46px; height: 46px; padding: 0 .3em; border-radius: 23px; display: grid; place-items: center;
+  background: var(--table); border: 2px solid var(--line); color: var(--ink);
+  font-family: var(--f-num); font-size: 26px; line-height: 1; pointer-events: none;
+}
+.turn-num:empty { display: none; }
+.n1 ~ .turn-big .turn-num { display: none; }
 .turn-big.boing { animation: boing .5s cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes boing { 0% { scale: 1; } 25% { scale: .8 1.1; } 55% { scale: 1.15 .9; } 100% { scale: 1; } }
 .has-mini .turn-big { margin-top: 20px; }
@@ -599,7 +609,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.9';
+  const VERSION = '2.0';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -628,6 +638,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   // Deck picking is off for now (v1.6; the user wants to keep it for later): the menu's deck list
   // and the seats' mana symbols are hidden. Set this to true to bring them back.
   const SHOW_DECKS = false;
+  // Concede (the menu button and side by side's white flags) is switched off in v1.9: nobody used
+  // it. Set to true to bring both back; the rest of it still works and still syncs.
+  const SHOW_CONCEDE = false;
   // The backgrounds (v1.6): every commander art in art/, the five Starter decks by color pair plus
   // Living Energy (Aetherdrift Commander, Saheeli, Radiant Creator; Scryfall drc/3). Each player
   // gets a different one at random, and every new game deals them again. Synced as bgs/<edge>.
@@ -983,7 +996,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
-      seats[i] = (duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, duel4 ? i === mySeat() : duel && !k));
+      seats[i] = (duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, SHOW_CONCEDE && (duel4 ? i === mySeat() : duel && !k)));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
@@ -999,14 +1012,25 @@ details.field[open] > summary { margin-bottom: 10px; }
     tb.type = 'button';
     tb.className = 'turn-big';
     tb.setAttribute('aria-label', 'End turn');
-    tb.innerHTML = ICON_TAP;
+    tb.innerHTML = ICON_TAP + '<span class="turn-num"></span>';
+    // A tap ends the turn: the number goes up on every phone, and a goofy sound plays here. Holding
+    // it takes a mistap back, silently.
+    let held = false, holdT = null;
+    tb.addEventListener('pointerdown', () => {
+      held = false; clearTimeout(holdT);
+      holdT = setTimeout(() => { held = true; bumpTurn(-1); }, 600);
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => tb.addEventListener(t, () => clearTimeout(holdT)));
+    tb.addEventListener('contextmenu', e => e.preventDefault());
     tb.addEventListener('click', () => {
+      if (held) { held = false; return; }
       tb.classList.remove('boing'); void tb.offsetWidth; tb.classList.add('boing');
-      buzz(); turnSound();
+      buzz(); turnSound(); bumpTurn(1);
     });
     app.appendChild(tb);
     seats.forEach((_, i) => update(i));
     paintMini();
+    paintTurnNum();
     measure();
   }
 
@@ -1241,7 +1265,33 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   // ---- turns ----
   // v1.3 dropped the turn tracker for the turn button (see build()). Phones from before still sync
-  // turns/ and clock/, so those stay in the table, but nothing here shows them.
+  // turns/ and clock/, so those stay in the table. Since v1.9 the turn button counts turns in
+  // clock/<k>/count (the old tracker's turn count, still cleared by New game): the number shown is
+  // the turn being played, so a fresh game shows 1.
+  // The game this phone counts: its player's own. "Just me" has no turns, and a Center phone in the
+  // two 1v1s would be counting two games at once, so neither shows a number.
+  function turnKey() {
+    if (state.mode === 1) return null;
+    const keys = viewKeys();
+    if (state.me === CENTER) return keys.length === 1 ? keys[0] : null;
+    return players[mySeat()].k;
+  }
+  function bumpTurn(d) {
+    const k = turnKey();
+    if (k == null) return;
+    const c = state.clock[k], n = c.count || 0;
+    if (n + d < 0) return;
+    c.count = n + d;
+    send({ [`clock/${k}/count`]: inc(d) });
+    save(); paintTurnNum();
+    if (d < 0) buzz();
+  }
+  function paintTurnNum() {
+    const el = app.querySelector('.turn-num'), k = turnKey();
+    if (!el) return;
+    el.textContent = k == null ? '' : String((state.clock[k].count || 0) + 1);
+    el.parentNode.setAttribute('aria-label', k == null ? 'End turn' : `End turn ${el.textContent}`);
+  }
 
   function toggleConcede(i) {
     const { k, j } = players[i];
@@ -1329,7 +1379,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.getElementById('sitoutField').hidden = state.mode !== 3;
     document.getElementById('pairsLabel').textContent = (state.names[pairMe()].trim() || DEFAULT_NAMES[pairMe()]) + ' plays';
     // A phone in the center has no seat of its own to concede or color.
-    document.getElementById('concede').hidden = state.mode === 1 || center;
+    document.getElementById('concede').hidden = !SHOW_CONCEDE || state.mode === 1 || center;
     document.getElementById('colorField').hidden = center || !SHOW_DECKS;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = PEOPLE[state.mode];
@@ -1863,6 +1913,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       update(i);
     });
     paintMini();
+    paintTurnNum();
   }
 
   function setLive(on) {

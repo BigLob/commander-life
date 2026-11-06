@@ -53,7 +53,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.9; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v2.0; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v2.0: **turn number; no Concede.** The turn button now counts turns: a dark disc on its left (`.turn-num`, mirroring the menu button on its right) shows just the number of the turn being played, 1 in a fresh game. Each tap adds one on every phone (`bumpTurn()`, synced as an increment to `clock/<k>/count`, the old tracker's count, which New game already clears); holding the button 0.6 s takes a mistap back. `turnKey()` picks the game counted: this phone's player's own; none in "Just me" or on a Center phone in 1v1 ×2. Concede is switched off, not deleted (`SHOW_CONCEDE = false` hides the menu's Concede and side by side's white flags); the user said nobody used it.
 - v1.9: **Pick who goes first shows the winner** (the user: it "blanks out the winner"). The seat highlight used the class `pick`, which is also the menu's "This phone is" ring (a 40 px see-through circle), so the chosen seat vanished. Now the highlight runs round as `.lit` (gold frame), and the winner gets `.first` (thick pulsing gold frame, a big gold "Goes first" banner across the middle of the seat, a vibration) while everyone else is `.passed` (dimmed) for 8 s. Don't reuse menu class names on seats.
 - v1.8: happy and sad clips, and **long clips**. 59 more short ones (victory and level-up stings, win jingles, cheers, sad trumpets; 415 short in all) and a second pool, `LONG_SOUNDS` in `sounds/long/` (73 clips, 5 to 12 s: victory, level-clear and game-over tunes, sad songs, and full-length cuts of earlier long sources like `laughing-fit` and `fart-symphony`). After every 3 to 10 short clips (`LONG_EVERY`, a new random count each time, per phone) the next tap plays a long one. Each pool has its own shuffled bag (`pools`). `sounds/` is now 16 MB, but phones only fetch the next few clips.
 - v1.7: 226 more turn-button clips (356 in all, 5.9 MB in `sounds/`), all CC0 from OpenGameArt, found with the user's keywords (funny, silly, dumb, scary, gross, sexy, mature, adult): monsters, demon voice lines ("Feeble humans"), evil laughs, screams, zombies, ghosts, burps, splats, slime, sneezes, chants. OpenGameArt had nothing CC0 for sexy/adult. Big packs were sampled (a few of each), long clips cut to their first 5 s. `TURN_SOUNDS` is every file in `sounds/`; regenerate it from the folder when clips change.
@@ -191,7 +192,7 @@ them and `.gitignore` now ignores PNGs at the root).
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
   Since v3.38 the deck's mana symbols sit in the bottom-left corner (`.seat-mana`, from `manaOf()`;
   not in "Just me"); taps pass through them, and side by side they sit above the concede flag.
-- **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
+- **Concede** (hidden since v2.0, see above) (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
   It becomes Rejoin. A new game clears all concessions.
 - **Game log** (v3.2; automatic since v3.14): an invisible clock starts at a game's first life change
   or first turn-tracker tap and stops the moment one player is left. The phone that made that change
