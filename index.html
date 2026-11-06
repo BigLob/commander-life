@@ -122,10 +122,21 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;
   border: 4px solid var(--ink); border-radius: inherit;
 }
-.seat.pick::after {
+/* Pick who goes first. Not `.pick`: that's the menu's "This phone is" ring, and it shrank the
+   highlighted seat to a 40px see-through circle, so the winner vanished (fixed in v1.9). The
+   highlight runs round in gold, then the winner keeps a thick pulsing gold frame and a big banner
+   while everyone else goes dark. */
+.seat.lit::after, .seat.first::after {
   content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none;
-  border: 4px solid var(--ink); border-radius: inherit;
+  border: 5px solid var(--turn); border-radius: inherit;
+  box-shadow: inset 0 0 24px rgba(255, 179, 71, .7);
 }
+.seat.first::after { border-width: 7px; animation: firstGlow .9s ease-in-out infinite alternate; }
+@keyframes firstGlow {
+  from { box-shadow: inset 0 0 18px rgba(255, 179, 71, .55); }
+  to { box-shadow: inset 0 0 60px rgba(255, 179, 71, .95); }
+}
+.seat.passed { filter: grayscale(.9) brightness(.35); }
 
 /* The face is the seat as its player sees it. Side seats are rotated toward their table edge.
    Script measures each seat and face into --sw/--sh and --cqw/--cqh (1% of width/height), standing
@@ -222,11 +233,17 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 }
 .delta.show { opacity: .9; transition: none; }
 .badge {
-  position: absolute; top: calc(18 * var(--cqh, 1vh)); left: 50%; transform: translateX(-50%);
-  background: var(--ink); color: var(--table);
-  font-size: clamp(12px, calc(8 * var(--cqh, 1vh)), 18px); font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-  padding: .2em .8em; border-radius: 999px; pointer-events: none;
+  /* Across the middle of the winner's seat, over their total, so nobody can miss it. */
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 6;
+  background: radial-gradient(circle at 35% 30%, #ffe2a3, var(--turn) 58%, #b06a14); color: #1a1208;
+  border: 3px solid #000; box-shadow: 0 0 28px rgba(255, 179, 71, .8), 0 5px 14px rgba(0, 0, 0, .6);
+  /* Wraps to two lines in a narrow seat rather than being cut off. */
+  font-size: clamp(14px, min(calc(11 * var(--cqh, 1vh)), calc(12 * var(--cqw, 1vw))), 40px);
+  font-weight: 700; letter-spacing: .1em; line-height: 1.1; text-transform: uppercase; text-align: center;
+  width: max-content; max-width: 90%; padding: .35em .8em; border-radius: .6em; pointer-events: none;
+  animation: badgePop .45s cubic-bezier(.3, 1.6, .5, 1);
 }
+@keyframes badgePop { from { transform: translate(-50%, -50%) scale(.3); } to { transform: translate(-50%, -50%) scale(1); } }
 
 .tray {
   /* Commander damage sits in the seat's bottom-right corner, as its player sees it. */
@@ -582,7 +599,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.8';
+  const VERSION = '1.9';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1709,28 +1726,35 @@ details.field[open] > summary { margin-bottom: 10px; }
 
   // Random first player: the highlight runs around the table clockwise and slows to a stop. A Center
   // phone in the two 1v1s picks for both at once.
+  // The winner then stays lit for 8 s with everyone else dimmed. A second pick cancels the first.
+  const pickTimers = {};
   function pickFirst() {
     viewKeys().forEach(key => {
       const group = players.map((p, i) => i).filter(i => players[i].k === key);
       const own = group.map(i => seats[i]), n = group.length;
       const winner = Math.floor(Math.random() * n);
       const steps = 3 * n + winner + n * Math.floor(Math.random() * 2);
-      own.flat().forEach(s => { s.classList.remove('pick'); s.querySelector('.badge').hidden = true; });
+      const clear = () => own.flat().forEach(s => {
+        s.classList.remove('lit', 'first', 'passed'); s.querySelector('.badge').hidden = true;
+      });
+      clearTimeout(pickTimers[key]);
+      clear();
       let k = 0;
       const tick = () => {
-        own.flat().forEach(s => s.classList.remove('pick'));
+        own.flat().forEach(s => s.classList.remove('lit'));
         // Backwards through the seats, which is clockwise, the way turns pass.
         const idx = (n - k % n) % n;
-        own[idx].forEach(s => s.classList.add('pick'));
-        buzz();
         if (k >= steps) {
-          const badges = own[idx].map(s => s.querySelector('.badge'));
-          badges.forEach(b => { b.hidden = false; });
-          setTimeout(() => { badges.forEach(b => { b.hidden = true; }); own[idx].forEach(s => s.classList.remove('pick')); }, 3000);
+          own.forEach((list, j) => list.forEach(s => s.classList.add(j === idx ? 'first' : 'passed')));
+          own[idx].forEach(s => { s.querySelector('.badge').hidden = false; });
+          try { navigator.vibrate && navigator.vibrate([80, 60, 80]); } catch (e) {}
+          pickTimers[key] = setTimeout(clear, 8000);
           return;
         }
+        own[idx].forEach(s => s.classList.add('lit'));
+        buzz();
         k++;
-        setTimeout(tick, 60 + k * k * 1.6);
+        pickTimers[key] = setTimeout(tick, 60 + k * k * 1.6);
       };
       tick();
     });
