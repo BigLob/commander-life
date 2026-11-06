@@ -1,7 +1,7 @@
 # Buying guide: what a fair price is
 
 Reference for shopping at the local game store. Prices are US dollars before tax, collected
-Oct 26, 2026. MSRP is Wizards' suggested retail price. Store prices drift, so re-check any number
+Oct 26, 2026 (booster boxes and deck boxes Nov 6, 2026). MSRP is Wizards' suggested retail price. Store prices drift, so re-check any number
 here that is more than a few months old.
 
 How to judge a price: **Good** = buy it. **OK** = normal store price. **High** = buy elsewhere or wait.
@@ -33,13 +33,68 @@ https://biglob.github.io/commander-life/decks/.
 | Product | MSRP | Good | OK | High | Notes |
 | --- | --- | --- | --- | --- | --- |
 | Reality Fracture Play Booster (14 cards) | $5.49 | ≤ $5.50 | ≤ $6 | ≥ $7 | Newest set (Oct 2, 2026). At least one rare and one foil per pack. |
-| Reality Fracture Play Booster box (30 packs) | $164.70 (30 × $5.49) | ≤ $165 | ≤ $180 | > $200 | Online was about $178 in late Sept 2026. Good for a group draft. |
+| Reality Fracture Play Booster box (30 packs) | $164.70 (30 × $5.49) | ≤ $120 | ≤ $135 | > $150 | Fell to about $128 average online by Nov 6, 2026 (see Booster boxes by set). Good for a group draft. |
 | Reality Fracture Collector Booster (15 cards) | $26.99 | ≤ $27 | ≤ $30 | > $30 | Skip: mostly foils and alternate art, not stronger cards. |
-| Reality Fracture Collector box (12 packs) | $323.88 (12 × $26.99) | n/a | n/a | n/a | Selling for $400–590 because of a serialized chase card. Skip. |
+| Reality Fracture Collector box (12 packs) | $323.88 (12 × $26.99) | ≤ $375 | ≤ $425 | > $450 | $365–575 on Nov 6, 2026 (average $422) because of a serialized chase card. |
 | Masters 25 pack (2018 reprint set, 15 cards) | none (old set) | ≤ $5 | n/a | ≥ $10 | Usually $10–15. Mostly draft commons, little for Commander. Sealed box (24) sold $210–290 on eBay in 2026. |
 | Mystery Booster Commander Edition | n/a | n/a | n/a | n/a | Released Oct 19, 2026, but not sold in regular stores. |
 
 For upgrading decks, buying single cards beats buying packs.
+
+## Booster boxes by set (Nov 6, 2026)
+
+Five prices per box, all checked Nov 6, 2026, averaged: TCGplayer market price (recent sales),
+Card Kingdom's own price, PriceCharting (mostly eBay sales), Mana Pool's cheapest listing, and the
+cheapest of the stores TCG Sealed Alerts tracks (100–230 US and Canadian stores for newer play boxes,
+often only 2–50 for collector boxes). Star Trek isn't out until Nov 13, so it has no eBay sales yet:
+its fifth price is MTGGoldfish, which shows TCGplayer's median listing. "Low" is the cheapest of the
+five; anything near it is a good price. Play boxes are 30 packs (36 for the 2024 sets and
+Foundations); collector boxes are 12 packs.
+
+| Set | Released | Play box avg | Play low–high | Collector box avg | Collector low–high |
+| --- | --- | --- | --- | --- | --- |
+| Star Trek | Nov 13, 2026 (preorder) | $121 | $100–145 | $465 | $395–520 |
+| Reality Fracture | Oct 2, 2026 | $128 | $105–155 | $422 | $365–575 |
+| The Hobbit | Aug 14, 2026 | $141 | $125–180 | $628 | $545–750 |
+| Marvel Super Heroes | Jun 26, 2026 | $113 | $95–150 | $462 | $440–500 |
+| Secrets of Strixhaven | Apr 24, 2026 | $150 | $125–200 | $517 | $490–600 |
+| Teenage Mutant Ninja Turtles | Mar 6, 2026 | $109 | $100–120 | $437 | $425–450 |
+| Lorwyn Eclipsed | Jan 23, 2026 | $110 | $95–140 | $422 | $395–480 |
+| Avatar: The Last Airbender | Nov 2025 | $128 | $115–145 | $488 | $465–550 |
+| Marvel's Spider-Man | Sep 2025 | $122 | $110–140 | $394 | $385–400 |
+| Edge of Eternities | Aug 2025 | $197 | $155–250 | $722 | $599–850 |
+| Final Fantasy | Jun 2025 | $261 | $240–300 | $1,719 | $1,595–2,100 |
+| Tarkir: Dragonstorm | Apr 2025 | $164 | $135–200 | $519 | $416–650 |
+| Aetherdrift | Feb 2025 | $106 | $95–115 | $317 | $305–350 |
+| Foundations (36 packs) | Nov 2024 | $169 | $145–190 | $961 | $800–1,100 |
+| Duskmourn (36 packs) | Sep 2024 | $197 | $166–230 | $770 | $635–900 |
+| Bloomburrow (36 packs) | Aug 2024 | $211 | $180–250 | $1,563 | $1,351–2,020 |
+| Modern Horizons 3 (36 packs) | Jun 2024 | $318 | $283–400 | $905 | $790–1,100 |
+
+Every 2025–2026 play box is selling well under its $164.70 MSRP, most for $105–130. Aetherdrift,
+TMNT, Lorwyn Eclipsed and Marvel Super Heroes are the cheapest (about $3.50 a pack). Final Fantasy,
+Bloomburrow and Modern Horizons 3 cost more because they're out of print and in demand. Card Kingdom
+is the high price in almost every row; TCGplayer and Mana Pool are usually within a few dollars of
+the low.
+
+## Deck boxes (Nov 2026)
+
+Mid to high tier boxes that hold a sleeved 100-card Commander deck. Prices are current US store
+prices (mostly Miniature Market, with Card Kingdom and Asmodee's store), November 2026.
+
+| Box | Holds | Price | Notes |
+| --- | --- | --- | --- |
+| Ultimate Guard Sidewinder 133+ XenoSkin | 1 deck (133 double-sleeved) | $27–35 | Side-loading, magnetic lid, soft leather-like skin. Star Trek editions out Nov 2026 ($27 preorder). |
+| Gamegenic Sidekick PRO 100+ XL | 1 deck | $32–43 | Window on the front shows your commander, plus a drawer for dice and tokens. Reality Fracture edition $43. |
+| Ultimate Guard Flip'n'Tray 133+ XenoSkin | 1 deck + dice | $34–40 | Lid flips open into a dice tray. |
+| Ultimate Guard Twin Flip'n'Tray 200+ XenoSkin | 2 decks + dice | $41–55 | Two decks side by side plus a tray. 12 colors at Card Kingdom ($46–55). |
+| Gamegenic Stronghold 200+ XL Convertible | 2 decks | $45–56 | Splits into two halves, with an accessory drawer. |
+| Ultimate Guard ArkHive 400+ XenoSkin | 4–5 decks | $37–47 | Holds 4–5 Boulder or Sidewinder boxes, or 430 loose double-sleeved cards. Star Trek edition out Nov 2026. |
+| Gamegenic Dungeon 1100+ Convertible | The whole group's decks | $52–75 | About 1,100 double-sleeved cards with dividers, two dice trays. |
+| Silverwood Deck Vault (hardwood) | 4 decks | $70 | Handmade wood box, choice of wood. |
+| Aaron Cain custom (hardwood) | 1 deck | $42–200+ | Fully custom, but takes 6–10 weeks, too late for Christmas unless it's an in-stock one. |
+
+Budget picks if these are too much: Ultimate Guard Boulder 100+ (~$17), Ultra Pro Satin Tower (~$15).
 
 ## Commander decks (precons)
 
@@ -111,3 +166,7 @@ All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrad
 - Foundations Commander: Wizards' decklist announcement, playgroup.gg, preconforge.com, scrollvault.net,
   everythingedinburgh.com; the $49.99 regular precon MSRP is from the same reporting
 - Win rates: playgroup.gg/commander/precons
+- Booster boxes by set (Nov 6, 2026): TCGplayer, cardkingdom.com, pricecharting.com, manapool.com,
+  tcgsealedalerts.com, mtggoldfish.com (Star Trek only)
+- Deck boxes: miniaturemarket.com, cardkingdom.com, store.asmodee.com, artifactarmory.com, draftsim.com,
+  silverwoodwooddesigns.com
