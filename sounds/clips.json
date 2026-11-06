@@ -4751,12 +4751,42 @@
 "lic": "See note"
 },
 {
+"f": "long/trump-black-community",
+"pool": "long",
+"d": 9.7,
+"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"url": "https://youtu.be/Hn9r6xNawoE",
+"quote": "Nobody has done more for the black community than Donald Trump. With the exception of Abraham Lincoln, possible exception.",
+"grp": "Presidents",
+"lic": "See note"
+},
+{
 "f": "long/trump-china",
 "pool": "long",
 "d": 5.6,
 "src": "YouTube: youtu.be/dYQYRDETHkM",
 "url": "https://youtu.be/dYQYRDETHkM",
 "quote": "China. China. China.",
+"grp": "Presidents",
+"lic": "See note"
+},
+{
+"f": "long/trump-eating-the-dogs",
+"pool": "long",
+"d": 9.0,
+"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"url": "https://youtu.be/Hn9r6xNawoE",
+"quote": "In Springfield, they're eating the dogs. They're eating the cats. They're eating the pets.",
+"grp": "Presidents",
+"lic": "See note"
+},
+{
+"f": "long/trump-fat-pigs",
+"pool": "long",
+"d": 9.9,
+"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"url": "https://youtu.be/Hn9r6xNawoE",
+"quote": "You've called women you don't like fat pigs, dogs, slobs and disgusting animals. Only Rosie O'Donnell.",
 "grp": "Presidents",
 "lic": "See note"
 },
@@ -4841,6 +4871,16 @@
 "lic": "See note"
 },
 {
+"f": "long/trump-turn-black",
+"pool": "long",
+"d": 7.4,
+"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"url": "https://youtu.be/Hn9r6xNawoE",
+"quote": "She was always of Indian heritage... I didn't know she was black until a number of years ago, when she happened to turn black.",
+"grp": "Presidents",
+"lic": "See note"
+},
+{
 "f": "long/trump-turn-off-the-lights",
 "pool": "long",
 "d": 9.8,
@@ -4857,6 +4897,16 @@
 "src": "YouTube: youtu.be/Hn9r6xNawoE",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "China has total respect for Donald Trump's very, very large brain.",
+"grp": "Presidents",
+"lic": "See note"
+},
+{
+"f": "long/trump-we-love-puerto-rico",
+"pool": "long",
+"d": 8.8,
+"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"url": "https://youtu.be/Hn9r6xNawoE",
+"quote": "We love Puerto Rico. Puerto Rico. Ah! Ah!",
 "grp": "Presidents",
 "lic": "See note"
 },

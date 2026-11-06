@@ -202,7 +202,7 @@ YouTube uploads below, cut to one quote each (10 s at most, pauses shortened in 
 (EBU R128, -16 LUFS) and converted to mono MP3. Up to 5 s they sit in `sounds/`, longer ones in
 `sounds/long/`. Unlike the clips above these are not CC0: the presidents' own official remarks are US
 government works, but most of the uploads are news or fan recordings, and a few lines come from other
-speakers (Hillary Clinton in `trump-wrong`, a reporter in `trump-concepts-of-a-plan`).
+speakers (Hillary Clinton in `trump-wrong`, a reporter in `trump-concepts-of-a-plan`, Megyn Kelly in `trump-fat-pigs`).
 
 | File | Length | Quote | From |
 | --- | --- | --- | --- |
@@ -261,3 +261,8 @@ speakers (Hillary Clinton in `trump-wrong`, a reporter in `trump-concepts-of-a-p
 | `long/trump-very-large-brain` | 8.5 s | China has total respect for Donald Trump's very, very large brain. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
 | `long/trump-word-salad` | 7.8 s | Tropical storm. Isaias. Isaiasis. Totality. Fresh vegetables. Fatalities. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
 | `long/trump-wrong` | 8.8 s | Wrong. (Interrupting Hillary Clinton at a 2016 debate.) | [youtu.be/b2Ec_oHjEFM](https://youtu.be/b2Ec_oHjEFM) |
+| `long/trump-black-community` | 9.7 s | Nobody has done more for the black community than Donald Trump. With the exception of Abraham Lincoln, possible exception. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-eating-the-dogs` | 9.0 s | In Springfield, they're eating the dogs. They're eating the cats. They're eating the pets. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-fat-pigs` | 9.9 s | You've called women you don't like fat pigs, dogs, slobs and disgusting animals. Only Rosie O'Donnell. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-turn-black` | 7.4 s | She was always of Indian heritage... I didn't know she was black until a number of years ago, when she happened to turn black. | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
+| `long/trump-we-love-puerto-rico` | 8.8 s | We love Puerto Rico. Puerto Rico. Ah! Ah! | [youtu.be/Hn9r6xNawoE](https://youtu.be/Hn9r6xNawoE) |
