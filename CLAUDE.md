@@ -7,11 +7,12 @@ sync live. Plain HTML pages, no build step, no framework.
 
 End every reply about anything in this repo with icon-only links to the live pages, on one line:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html)
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [📚](https://biglob.github.io/commander-life/decks/)
 
 🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Fav, Bench and Trash
 tabs). When we build a new page, add its icon link to this line. Its editable claude.ai artifact is
 https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; don't put it in the footer).
+📚 is the deck list, `decks/`: a card carousel for every precon the group owns (see below).
 
 ## Where things live
 
@@ -39,6 +40,7 @@ The site only changes when files land on `main` of `BigLob/commander-life`:
 
 1. Make and test the change (in `BigLob/Mtg` or directly here).
 2. Copy `index.html`, `archenemy.html`, `patterns/`, `fonts/`, `art/` and `sounds/` into this repo, commit, push to `main`.
+   `decks/` is built here by `tools/carousel/make.py` (no copy from `BigLob/Mtg`).
 3. GitHub Pages republishes in a minute or two. Phones may need a reload.
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
@@ -54,7 +56,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.9; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.10; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.10: **13 more backgrounds**: the face commander and alternate commander (the box's second foil, and the second card on Wizards' decklists) of every other deck the group owns or preordered. Keys and Scryfall cards: `le2` Pia Nalaar (drc/2, Living Energy's alternate), `em` Temmet (drc/4) and `em2` Hashaton (drc/1) for Eternal Might, `rt` Terra (fic/4) and `rt2` Celes (fic/1) for Revival Trance, and the Star Trek decks: `bq` The Borg Queen (trc/1) and `lo` Locutus of Borg (trc/97), `pi` Jean-Luc Picard (trc/3) and `ja` Captain Janeway (trc/84), `sp` Commander Spock (trc/2) and `ki` Captain Kirk (trc/85), `wo` Worf (trc/4) and `ko` Kor (trc/96). Each has `art/<key>.jpg` (art_crop), `art/<key>-card.jpg` (normal) and `.k-<key>` seat colors. Phones older than v1.10 reject the new keys (`validValue()`), so until they reload they keep their old background for that seat.
 - v1.9: **Pick who goes first shows the winner** (the user: it "blanks out the winner"). The seat highlight used the class `pick`, which is also the menu's "This phone is" ring (a 40 px see-through circle), so the chosen seat vanished. Now the highlight runs round as `.lit` (gold frame), and the winner gets `.first` (thick pulsing gold frame, a big gold "Goes first" banner across the middle of the seat, a vibration) while everyone else is `.passed` (dimmed) for 8 s. Don't reuse menu class names on seats.
 - v1.8: happy and sad clips, and **long clips**. 59 more short ones (victory and level-up stings, win jingles, cheers, sad trumpets; 415 short in all) and a second pool, `LONG_SOUNDS` in `sounds/long/` (73 clips, 5 to 12 s: victory, level-clear and game-over tunes, sad songs, and full-length cuts of earlier long sources like `laughing-fit` and `fart-symphony`). After every 3 to 10 short clips (`LONG_EVERY`, a new random count each time, per phone) the next tap plays a long one. Each pool has its own shuffled bag (`pools`). `sounds/` is now 16 MB, but phones only fetch the next few clips.
 - v1.7: 226 more turn-button clips (356 in all, 5.9 MB in `sounds/`), all CC0 from OpenGameArt, found with the user's keywords (funny, silly, dumb, scary, gross, sexy, mature, adult): monsters, demon voice lines ("Feeble humans"), evil laughs, screams, zombies, ghosts, burps, splats, slime, sneezes, chants. OpenGameArt had nothing CC0 for sexy/adult. Big packs were sampled (a few of each), long clips cut to their first 5 s. `TURN_SOUNDS` is every file in `sounds/`; regenerate it from the folder when clips change.
@@ -221,6 +224,13 @@ them and `.gitignore` now ignores PNGs at the root).
 - Live at https://biglob.github.io/commander-life/xenagos.html (since it landed on `main`). A standalone copy of the claude.ai artifact; republish both when it changes. Not a game page; nothing here syncs.
 - Card images are embedded as WebP data URIs (about 11 MB), so the page works offline. Bench, Trash and Fav marks are kept in that browser's localStorage only.
 - Tabs: Deck, Suggested, Fav, Bench, Trash. Sort & filter covers type, color, cost, keyword and Fav only.
+
+### `decks/`: precon card carousels
+- Live at https://biglob.github.io/commander-life/decks/ (`decks/index.html`), one page per deck (`decks/<slug>.html`): the 12 precons in the "Decks we own" table of `buying-guide.md`. Not a game page; nothing syncs.
+- Same carousel as Xenagos, minus Suggested (the user dropped it): Deck, Fav, Bench and Trash tabs, sort and filter, zoom, picks code. Marks are kept per deck in localStorage (`pc-<slug>-favs`, `pc-<slug>-marks`). The commander comes first, then the alternate commander (labelled), then spells by mana value, lands, basics.
+- Built by `python3 tools/carousel/make.py [slug ...]` from `tools/carousel/template.html` and `index-template.html`. Decklists come from MTGJSON's deck files (exact printings) or, for decks MTGJSON doesn't have yet (Star Trek), Wizards' decklist article. Card data, prices (the precon printing's, else the cheapest paper printing) and image links come from Scryfall; images load from Scryfall's CDN, so the pages are small but need a connection. Brand-new cards with no price yet show "no price". `decks/decks.json` holds each deck's summary for the index.
+- To add a deck, add a row to `DECKS` in `make.py` and run it for that slug.
+- The claude.ai artifact copy of the Borg page is https://claude.ai/artifact/2iDTXny6HTaVnm5k5pwcZH (private). Artifacts can't load outside images, so `tools/carousel/embed.py <page> <out>` inlines them as WebP (about 6 MB) before publishing.
 
 ### `archenemy.html`: Archenemy (v1.2)
 - Separate page, because its interface differs a lot from Commander Life.

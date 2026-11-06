@@ -20,12 +20,13 @@ Check this list before buying a deck, so we don't buy a second copy.
 | Living Energy | Aetherdrift Commander (2025) | G U R | Saheeli, Radiant Creator | Owned |
 | Eternal Might | Aetherdrift Commander (2025) | W U B | Temmet, Naktamun's Will | Owned |
 | Revival Trance | Final Fantasy Commander (2025) | R W B | Terra, Herald of Hope | Owned |
-| The Borg Queen deck | Star Trek Commander (2026) | n/a | The Borg Queen | Preordered, out Nov 13, 2026 |
-| Commander Spock deck | Star Trek Commander (2026) | n/a | Commander Spock | Preordered, out Nov 13, 2026 |
-| Jean-Luc Picard deck | Star Trek Commander (2026) | n/a | Jean-Luc Picard | Preordered, out Nov 13, 2026 |
-| Worf deck | Star Trek Commander (2026) | n/a | Worf | Preordered, out Nov 13, 2026 |
+| We Are the Borg | Star Trek Commander (2026) | W U B | The Borg Queen (alt: Locutus of Borg) | Preordered, out Nov 13, 2026 |
+| Landing Party | Star Trek Commander (2026) | G W U | Commander Spock (alt: Captain Kirk, Boldly Going) | Preordered, out Nov 13, 2026 |
+| Federation Fleet | Star Trek Commander (2026) | R W U | Jean-Luc Picard, Luminary (alt: Captain Janeway, Endgame) | Preordered, out Nov 13, 2026 |
+| Klingon Fury | Star Trek Commander (2026) | R W B | Worf, Defiant Commander (alt: Kor, Cause of Vengeance) | Preordered, out Nov 13, 2026 |
 
-When the Star Trek decks arrive, change their status to Owned and fill in their deck names and colors.
+When the Star Trek decks arrive, change their status to Owned. Every deck here has a card carousel at
+https://biglob.github.io/commander-life/decks/.
 
 ## Booster packs
 

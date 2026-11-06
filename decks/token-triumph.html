@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
+</head><body>
+<title>Token Triumph</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;overflow-x:hidden}
+header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
+.total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.back{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);text-decoration:none;order:-1;flex-basis:100%}
+.total b{color:var(--accent);font-weight:500}
+.seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
+.seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:6px}
+.bar #fbtn,#f-reset{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.bar #fbtn.on{border-color:var(--accent);color:var(--accent)}
+#fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:8px}
+#fpanel label{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono);min-width:0}
+#fpanel select{font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 4px;min-width:0;width:100%}
+.share{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono)}
+.share div{display:flex;gap:6px}
+.share input{flex:1;min-width:0;font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.share button{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+#f-reset{align-self:end}
+.seg .ct{color:var(--muted);margin-left:3px;font-size:.68rem;font-family:var(--f-mono)}
+.seg button[aria-pressed="true"] .ct{color:inherit;opacity:.8}
+.favtot{margin-left:auto;align-self:center;color:var(--accent);font-family:var(--f-mono);font-size:.85rem;font-weight:500;white-space:nowrap}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{flex:1;min-height:0;display:flex;align-items:center;position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;width:100%;height:100%;align-items:center;padding-inline:calc(50% - var(--w)/2);box-sizing:border-box;--w:200px}
+.track::-webkit-scrollbar{display:none}
+figure{margin:0;flex:0 0 var(--w);scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
+figure .zb{all:unset;cursor:zoom-in;display:block;border-radius:4.5%/3.2%;aspect-ratio:488/680;background:var(--surface)}
+figure .zb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+figure img{width:100%;height:100%;display:block;border-radius:4.5%/3.2%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* per-card actions */
+.acts{display:flex;gap:8px}
+.acts button{flex:1;font:inherit;font-size:.8rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 6px;cursor:pointer;touch-action:manipulation}
+.acts button:focus-visible{outline:2px solid var(--accent)}
+.acts button.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:500}
+figure.fav .zb img{box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.35)}
+.empty{margin:0 auto;max-width:260px;text-align:center;color:var(--muted);font-size:.9rem}
+figcaption{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;line-height:1.25}
+figcaption .nm{min-width:0;font-weight:500}
+figcaption .pr{font-family:var(--f-mono);color:var(--accent);white-space:nowrap}
+figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.7rem}
+.nav{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.2rem;cursor:pointer;z-index:2;opacity:.9}
+.nav.l{left:-6px}.nav.r{right:-6px}
+.nav:focus-visible{outline:2px solid var(--accent)}
+@media (max-width:600px){.nav{display:none}}
+footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+footer input{flex:1;accent-color:var(--accent);min-width:0}
+/* zoom viewer */
+#zoom{touch-action:none;overscroll-behavior:none;position:fixed;inset:0;background:var(--shade);z-index:20;display:none;flex-direction:column;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+#zoom.on{display:flex}
+#stage{flex:1;min-height:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:grab}
+#zimg{max-width:100%;max-height:100%;border-radius:4.5%/3.2%;transform-origin:center;will-change:transform;user-select:none;-webkit-user-drag:none;image-rendering:auto}
+.zbar #zt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;color:#ece8dd;font-size:.9rem}
+.zbar button{touch-action:manipulation;background:#2b3038;color:#ece8dd;border:1px solid #444b55;border-radius:8px;padding:8px 10px;font:inherit;cursor:pointer}
+.zbar button:focus-visible{outline:2px solid #e8b44a}
+.zbar .g{display:flex;gap:6px}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+</style>
+<header><h1 id="h1"></h1><a class="back" id="back" href="./">‹ All decks</a><span class="total" id="sub"></span></header>
+<div class="seg" id="seg"><button data-v="deck" aria-pressed="true">Deck</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
+<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count, their cost / whole deck cost"></span></div>
+<div id="fpanel" hidden>
+<label>Sort<select id="f-sort"><option value="">Default</option><option value="cl">Cost, low to high</option><option value="ch">Cost, high to low</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option><option value="t">Type</option><option value="c">Color</option></select></label>
+<label>Type<select id="f-type"><option value="">All</option></select></label>
+<label>Color<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless or land</option></select></label>
+<label>Cost<select id="f-cost"><option value="">Any</option><option value="0">0 to 1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6 or more</option></select></label>
+<label>Keyword<select id="f-kw"><option value="">All</option></select></label>
+<label>Show<select id="f-fav"><option value="">All cards</option><option value="1">Favorites only</option></select></label>
+<div class="share"><span>Move your picks to another page or phone</span><div><input id="f-code" placeholder="Picks code" aria-label="Picks code" autocomplete="off" spellcheck="false"><button id="f-copy">Copy picks</button><button id="f-load">Load</button></div><small id="f-msg" role="status"></small></div>
+</div>
+
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
+<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
+<script>
+/* One precon's cards, built by tools/carousel/make.py from the official decklist and Scryfall. Images load from Scryfall's CDN. */
+const CFG={"slug": "token-triumph", "deck": "Token Triumph", "set": "Starter Commander Decks (2022)", "cmd": "Emmara, Soul of the Accord", "alt": null};
+const ALL=[{"n":"Emmara, Soul of the Accord","p":0.29,"q":1,"s":"SCD","t":"Legendary Creature — Elf Cleric","i":"https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741","m":2,"c":"WG","k":[]},{"n":"Verdant Force","p":0.23,"q":1,"s":"SCD","t":"Creature — Elemental","i":"https://cards.scryfall.io/normal/front/c/9/c9c5e3b2-fbb6-45af-8977-833922302eb3.jpg?1783918644","m":8,"c":"G","k":[]},{"n":"Hornet Queen","p":0.27,"q":1,"s":"SCD","t":"Creature — Insect","i":"https://cards.scryfall.io/normal/front/8/0/8018058f-4bec-45b1-9a07-71ea1eb84e7f.jpg?1783918657","m":7,"c":"G","k":["Deathtouch","Flying"]},{"n":"Hour of Reckoning","p":0.19,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/9/1/91961188-da2e-4ba5-b938-154719ea0659.jpg?1783918732","m":7,"c":"W","k":["Convoke"]},{"n":"Collective Unconscious","p":0.81,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/1/2/1219978f-c269-4b59-9ec1-0e7bc83059fe.jpg?1783918663","m":6,"c":"G","k":[]},{"n":"Thunderfoot Baloth","p":0.42,"q":1,"s":"SCD","t":"Creature — Beast","i":"https://cards.scryfall.io/normal/front/7/4/743b53fb-8e9d-4984-91c1-508eb99938ea.jpg?1783918646","m":6,"c":"G","k":["Trample","Lieutenant"]},{"n":"Collective Blessing","p":0.33,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/9/d/9d04689e-d673-40fd-93f0-d228d3bb338f.jpg?1783918642","m":6,"c":"WG","k":[]},{"n":"Camaraderie","p":0.29,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/3/8/3842aa5c-304d-4827-94e6-e597bb49af97.jpg?1783918642","m":6,"c":"WG","k":[]},{"n":"Great Oak Guardian","p":0.17,"q":1,"s":"SCD","t":"Creature — Treefolk","i":"https://cards.scryfall.io/normal/front/0/2/025d451d-2fe0-46af-b28f-44f5d297f56a.jpg?1783918659","m":6,"c":"G","k":["Reach","Flash"]},{"n":"Trostani Discordant","p":0.33,"q":1,"s":"SCD","t":"Legendary Creature — Dryad","i":"https://cards.scryfall.io/normal/front/d/1/d1706e61-1804-410b-b82f-8e862555fe1a.jpg?1783918626","m":5,"c":"WG","k":[]},{"n":"Dictate of Heliod","p":0.29,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/f/e/fe2f3830-d822-4cb5-a88a-df5c5b9020a4.jpg?1783918735","m":5,"c":"W","k":["Flash"]},{"n":"Loyal Guardian","p":0.28,"q":1,"s":"SCD","t":"Creature — Rhino","i":"https://cards.scryfall.io/normal/front/1/b/1ba0c356-ed47-4fd1-a054-444bef004508.jpg?1783918652","m":5,"c":"G","k":["Trample","Lieutenant"]},{"n":"Sporemound","p":0.27,"q":1,"s":"SCD","t":"Creature — Fungus","i":"https://cards.scryfall.io/normal/front/8/f/8faa01c6-f6c6-4348-a6f3-39793b5ef6d0.jpg?1783918646","m":5,"c":"G","k":["Landfall"]},{"n":"Sylvan Reclamation","p":0.24,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/3/d/3d1ac0d1-11ce-4abd-a5da-6cba5de714d8.jpg?1783918629","m":5,"c":"WG","k":["Landcycling","Basic landcycling","Typecycling","Cycling"]},{"n":"Overrun","p":0.23,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/8/b/8ba32dbb-6ce2-4104-b902-ddb1b28966df.jpg?1783918651","m":5,"c":"G","k":[]},{"n":"Nissa's Expedition","p":0.2,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/b/0/b0c175f4-7a4e-4530-b129-62d4b5899695.jpg?1783918651","m":5,"c":"G","k":["Convoke"]},{"n":"Maja, Bretagard Protector","p":0.18,"q":1,"s":"SCD","t":"Legendary Creature — Human Warrior","i":"https://cards.scryfall.io/normal/front/b/1/b1cb8ba0-484e-433b-8d1a-2b0966f92a0e.jpg?1783918635","m":5,"c":"WG","k":["Landfall"]},{"n":"Scatter the Seeds","p":0.13,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/3/9/39f59d34-8166-4ac9-8684-33efa315e4db.jpg?1783918648","m":5,"c":"G","k":["Convoke"]},{"n":"Felidar Retreat","p":1.62,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/7/3/73febb87-d56b-4214-b429-a606f671e992.jpg?1783918733","m":4,"c":"W","k":["Landfall"]},{"n":"Slate of Ancestry","p":0.32,"q":1,"s":"SCD","t":"Artifact","i":"https://cards.scryfall.io/normal/front/6/8/68a65a3f-01a4-4c3b-bbd3-62cc23a8f646.jpg?1783918618","m":4,"c":"","k":[]},{"n":"Citanul Hierophants","p":0.23,"q":1,"s":"SCD","t":"Creature — Human Druid","i":"https://cards.scryfall.io/normal/front/7/9/79c3190a-a18b-41b6-9626-5fd12edb4e36.jpg?1783918662","m":4,"c":"G","k":[]},{"n":"Harmonize","p":0.23,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/a/d/ada28221-e5be-4d87-9dc7-649e01ca1e24.jpg?1783918658","m":4,"c":"G","k":[]},{"n":"Nullmage Shepherd","p":0.2,"q":1,"s":"SCD","t":"Creature — Elf Shaman","i":"https://cards.scryfall.io/normal/front/c/e/ceef4625-4002-4850-89e3-bc9fd162e4e6.jpg?1783918651","m":4,"c":"G","k":[]},{"n":"Valor in Akros","p":0.19,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/3/8/3877146c-da55-4edd-8335-be038f4bf620.jpg?1783918725","m":4,"c":"W","k":[]},{"n":"Voice of Many","p":0.18,"q":1,"s":"SCD","t":"Creature — Elf Druid","i":"https://cards.scryfall.io/normal/front/d/8/d8fc52ba-d7fc-426a-8c15-7237bdb498c3.jpg?1783918644","m":4,"c":"G","k":[]},{"n":"Commander's Insignia","p":0.16,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/1/2/12b2b04b-27d1-4b5d-9bd6-9678f203cf20.jpg?1783918739","m":4,"c":"W","k":[]},{"n":"Conclave Tribunal","p":0.11,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/1/d/1dc26b58-1b10-41a3-8155-bbc8f189de15.jpg?1783918739","m":4,"c":"W","k":["Convoke"]},{"n":"Champion of Lambholt","p":3.95,"q":1,"s":"SCD","t":"Creature — Human Warrior","i":"https://cards.scryfall.io/normal/front/8/1/812c252d-9947-4bd4-8097-670be91c338e.jpg?1783918664","m":3,"c":"G","k":[]},{"n":"Eternal Witness","p":1.73,"q":1,"s":"SCD","t":"Creature — Human Shaman","i":"https://cards.scryfall.io/normal/front/8/f/8f455581-2c22-40fa-a9d5-8df1b873f465.jpg?1783918661","m":3,"c":"G","k":[]},{"n":"Harvest Season","p":1.25,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/8/d/8d4329d0-f4ae-41c8-9b21-0957ba9f53fc.jpg?1783918657","m":3,"c":"G","k":[]},{"n":"Ajani, Caller of the Pride","p":0.69,"q":1,"s":"SCD","t":"Legendary Planeswalker — Ajani","i":"https://cards.scryfall.io/normal/front/6/1/6121cf58-93d0-4430-a4a2-91778ba65249.jpg?1783918741","m":3,"c":"W","k":[]},{"n":"March of the Multitudes","p":0.67,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/8/c/8ccfeffc-dc19-404a-81ef-1cd13a1ad50d.jpg?1783918634","m":3,"c":"WG","k":["Convoke"]},{"n":"Hornet Nest","p":0.37,"q":1,"s":"SCD","t":"Creature — Insect","i":"https://cards.scryfall.io/normal/front/5/7/579b6909-a2e1-45d1-aa02-9318c468f9b0.jpg?1783918657","m":3,"c":"G","k":["Defender"]},{"n":"Commander's Sphere","p":0.3,"q":1,"s":"SCD","t":"Artifact","i":"https://cards.scryfall.io/normal/front/6/8/686b4c7f-5b42-4625-8ff9-782795eec264.jpg?1783918623","m":3,"c":"","k":[]},{"n":"Rootborn Defenses","p":0.29,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/6/4/644c5708-6e1e-4b59-a78e-1d91c181d19f.jpg?1783918729","m":3,"c":"W","k":["Populate"]},{"n":"White Sun's Zenith","p":0.27,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/b/4/b46f1b5a-da71-4723-afc6-4ab2a569311b.jpg?1783918726","m":3,"c":"W","k":[]},{"n":"Rishkar, Peema Renegade","p":0.22,"q":1,"s":"SCD","t":"Legendary Creature — Elf Druid","i":"https://cards.scryfall.io/normal/front/c/c/cc7a4cb5-5010-48db-9564-7ca41d58b864.jpg?1783918649","m":3,"c":"G","k":[]},{"n":"Presence of Gond","p":0.21,"q":1,"s":"SCD","t":"Enchantment — Aura","i":"https://cards.scryfall.io/normal/front/c/d/cd68e154-d092-4004-bc58-5554d807e26a.jpg?1783918650","m":3,"c":"G","k":["Enchant"]},{"n":"Reclamation Sage","p":0.21,"q":1,"s":"SCD","t":"Creature — Elf Shaman","i":"https://cards.scryfall.io/normal/front/9/5/950f6323-e9b9-4170-a57c-7741960a86ae.jpg?1783918649","m":3,"c":"G","k":[]},{"n":"Dauntless Escort","p":0.18,"q":1,"s":"SCD","t":"Creature — Rhino Soldier","i":"https://cards.scryfall.io/normal/front/9/8/9884a2a9-8ee4-4d27-b410-a4568f45f6f4.jpg?1783918641","m":3,"c":"WG","k":[]},{"n":"Farhaven Elf","p":0.18,"q":1,"s":"SCD","t":"Creature — Elf Druid","i":"https://cards.scryfall.io/normal/front/8/e/8e4622e0-7723-415f-9afe-fc34619d49cc.jpg?1783918659","m":3,"c":"G","k":[]},{"n":"Overwhelming Instinct","p":0.17,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/9/2/92f16878-1e46-4a00-a9cc-cedd316d04b3.jpg?1783918649","m":3,"c":"G","k":[]},{"n":"Citywide Bust","p":0.16,"q":1,"s":"SCD","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/c/2/c249e9db-41a7-4da8-99b3-d7854c538713.jpg?1783918740","m":3,"c":"W","k":[]},{"n":"Mentor of the Meek","p":0.16,"q":1,"s":"SCD","t":"Creature — Human Soldier","i":"https://cards.scryfall.io/normal/front/e/f/ef899443-579e-48df-b933-e0058173f8f6.jpg?1783918732","m":3,"c":"W","k":[]},{"n":"Devouring Light","p":0.15,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/a/2/a22f129b-18a6-4328-aa83-1079be811dcf.jpg?1783918736","m":3,"c":"W","k":["Convoke"]},{"n":"Idol of Oblivion","p":2.76,"q":1,"s":"SCD","t":"Artifact","i":"https://cards.scryfall.io/normal/front/6/5/659d8632-3326-40b2-bb07-0677b0aad2b8.jpg?1783918622","m":2,"c":"","k":[]},{"n":"Talisman of Unity","p":1.16,"q":1,"s":"SCD","t":"Artifact","i":"https://cards.scryfall.io/normal/front/a/6/a6954371-0733-444a-af1e-38199ca45e42.jpg?1783918613","m":2,"c":"","k":[]},{"n":"Aura Mutation","p":0.81,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/3/1/31bddc53-fa0c-4aa5-a92a-fa247e5330db.jpg?1783918643","m":2,"c":"WG","k":[]},{"n":"Arcane Signet","p":0.52,"q":1,"s":"SCD","t":"Artifact","i":"https://cards.scryfall.io/normal/front/0/2/02cb9420-fbfb-4123-a830-a992ff470db6.jpg?1783918626","m":2,"c":"","k":[]},{"n":"Dawn of Hope","p":0.29,"q":1,"s":"SCD","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/a/0/a02540fc-42ee-4f61-99c8-efdd1a70373c.jpg?1783918736","m":2,"c":"W","k":[]},{"n":"Scavenging Ooze","p":0.28,"q":1,"s":"SCD","t":"Creature — Ooze","i":"https://cards.scryfall.io/normal/front/c/6/c63cf563-11c5-4068-8df3-7bfdaac08144.jpg?1783918648","m":2,"c":"G","k":[]},{"n":"Curse of Bounty","p":0.28,"q":1,"s":"SCD","t":"Enchantment — Aura Curse","i":"https://cards.scryfall.io/normal/front/3/7/37d5b1a2-01c6-475f-86cc-c911802e6033.jpg?1783918662","m":2,"c":"G","k":["Enchant"]},{"n":"Jade Mage","p":0.19,"q":1,"s":"SCD","t":"Creature — Human Shaman","i":"https://cards.scryfall.io/normal/front/c/b/cbfba01e-2836-479b-afce-21e1e6e99c08.jpg?1783918654","m":2,"c":"G","k":[]},{"n":"Leafkin Druid","p":0.18,"q":1,"s":"SCD","t":"Creature — Elemental Druid","i":"https://cards.scryfall.io/normal/front/a/d/ad86f40b-0d8d-4186-9a43-b0f0f2542280.jpg?1783918653","m":2,"c":"G","k":[]},{"n":"Karametra's Favor","p":0.15,"q":1,"s":"SCD","t":"Enchantment — Aura","i":"https://cards.scryfall.io/normal/front/9/8/98a5336d-7bd7-453e-abb0-c37e55e375bd.jpg?1783918655","m":2,"c":"G","k":["Enchant"]},{"n":"Selesnya Evangel","p":0.12,"q":1,"s":"SCD","t":"Creature — Elf Shaman","i":"https://cards.scryfall.io/normal/front/8/f/8f5d1f97-ebb9-4320-9d5f-408cf9de826d.jpg?1783918632","m":2,"c":"WG","k":[]},{"n":"Selesnya Guildmage","p":0.12,"q":1,"s":"SCD","t":"Creature — Elf Wizard","i":"https://cards.scryfall.io/normal/front/9/1/91d023e6-b50f-4bfa-8b05-aa349552d29a.jpg?1783918632","m":2,"c":"WG","k":[]},{"n":"Sol Ring","p":1.97,"q":1,"s":"SCD","t":"Artifact","i":"https://cards.scryfall.io/normal/front/1/b/1b023575-4cb5-434f-92ef-d3b81aaa3c3e.jpg?1783918617","m":1,"c":"","k":[]},{"n":"Path to Exile","p":1.37,"q":1,"s":"SCD","t":"Instant","i":"https://cards.scryfall.io/normal/front/9/5/95761a9f-fea7-4f8f-b3c4-0b4c596c9f04.jpg?1783918732","m":1,"c":"W","k":[]},{"n":"Avacyn's Pilgrim","p":0.41,"q":1,"s":"SCD","t":"Creature — Human Monk","i":"https://cards.scryfall.io/normal/front/4/1/418bf817-433a-4d9a-bea7-827014184269.jpg?1783918666","m":1,"c":"G","k":[]},{"n":"Jaspera Sentinel","p":0.31,"q":1,"s":"SCD","t":"Creature — Elf Rogue","i":"https://cards.scryfall.io/normal/front/3/5/35ce5807-6ac6-4058-9eef-4cec5e3fd3a6.jpg?1783918656","m":1,"c":"G","k":["Reach"]},{"n":"Command Tower","p":0.26,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/c/a/cae0c9e0-3be9-4151-9d59-658a032c30e9.jpg?1783918607","m":0,"c":"","k":[]},{"n":"Canopy Vista","p":0.25,"q":1,"s":"SCD","t":"Land — Forest Plains","i":"https://cards.scryfall.io/normal/front/4/0/4098ed6f-a0aa-41c3-97d5-22013ffee175.jpg?1783918608","m":0,"c":"","k":[]},{"n":"Holdout Settlement","p":0.24,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/a/b/abaf9baa-f9f6-429f-adad-af57d010a80a.jpg?1783918604","m":0,"c":"","k":[]},{"n":"Vitu-Ghazi, the City-Tree","p":0.24,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/4/c/4c593a74-cf36-43a1-be4e-63ab2fbd180e.jpg?1783918591","m":0,"c":"","k":[]},{"n":"Temple of Plenty","p":0.23,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/9/4/94acfe89-5221-4cd4-a308-edee986de1dc.jpg?1783918593","m":0,"c":"","k":["Scry"]},{"n":"Fortified Village","p":0.2,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/4/5/45dd62f8-b478-431f-affc-dd1a20bf9f76.jpg?1783918605","m":0,"c":"","k":[]},{"n":"Blossoming Sands","p":0.15,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/8/9/8957976e-d8f5-428a-a775-a73acb898401.jpg?1783918609","m":0,"c":"","k":[]},{"n":"Elfhame Palace","p":0.14,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/d/4/d4494799-3bd6-47d4-bf9e-e24c8e537ab2.jpg?1783918605","m":0,"c":"","k":[]},{"n":"Graypelt Refuge","p":0.12,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/4/4/445ffa4d-d5ca-4ba6-b589-40d8490a4032.jpg?1783918604","m":0,"c":"","k":[]},{"n":"Tranquil Expanse","p":0.12,"q":1,"s":"SCD","t":"Land","i":"https://cards.scryfall.io/normal/front/7/f/7fcf94e9-d370-458f-8bc4-66609f8b6b91.jpg?1783918592","m":0,"c":"","k":[]},{"n":"Plains","p":0.18,"q":14,"s":"SCD","t":"Basic Land — Plains","i":"https://cards.scryfall.io/normal/front/b/4/b41e0881-6ecb-4b1b-816b-d80a74a414ac.jpg?1783918590","m":0,"c":"","k":[]},{"n":"Forest","p":0.12,"q":15,"s":"SCD","t":"Basic Land — Forest","i":"https://cards.scryfall.io/normal/front/2/9/2950dace-a653-47e4-a80a-a3de5db8d491.jpg?1783918583","m":0,"c":"","k":[]}];
+/* price for sums and sorts; cards not sold yet have none */
+const pv=c=>c.p||0;
+const EVERY=ALL;
+/* fav, bench and trash marks, kept on this device only, one set per deck; a card carries at most one mark */
+const KEY='pc-'+CFG.slug+'-';
+let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
+const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
+let mark={};try{mark=JSON.parse(localStorage.getItem(KEY+'marks')||'{}')}catch(e){}
+const saveMarks=()=>{try{localStorage.setItem(KEY+'marks',JSON.stringify(mark))}catch(e){}};
+const DECK_TOTAL=ALL.reduce((a,c)=>a+pv(c)*c.q,0);
+let tab='deck',D=[];
+/* sort and filter, applied on top of whichever tab is open */
+const F={sort:'',type:'',col:'',cost:'',kw:'',fav:''};
+const TYPES=['Creature','Planeswalker','Artifact','Enchantment','Instant','Sorcery','Land'];
+const COLS='WUBRG';
+const typeOf=c=>{const i=TYPES.findIndex(t=>c.t.includes(t));return i<0?99:i};
+const colOf=c=>c.c.length==1?COLS.indexOf(c.c):c.c.length>1?5:6;
+function sortFilter(list){
+ let r=list.filter(c=>(!F.type||c.t.includes(F.type))&&(!F.col||(F.col=='M'?c.c.length>1:F.col=='C'?!c.c.length:c.c.includes(F.col)))&&(!F.kw||c.k.includes(F.kw))&&(!F.fav||favs[c.n])&&(!F.cost||(F.cost=='6'?c.m>=6:F.cost=='0'?c.m<=1:c.m==+F.cost)));
+ const S={cl:(a,b)=>a.m-b.m||pv(b)-pv(a),ch:(a,b)=>b.m-a.m||pv(b)-pv(a),ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>pv(a)-pv(b),n:(a,b)=>a.n.localeCompare(b.n),t:(a,b)=>typeOf(a)-typeOf(b)||b.m-a.m,c:(a,b)=>colOf(a)-colOf(b)||b.m-a.m}[F.sort];
+ return S?r.slice().sort(S):r}
+const TABS={deck:'Deck',fav:'Fav',bench:'Bench',trash:'Trash'};
+function view(k){if(k=='fav')return EVERY.filter(c=>favs[c.n]&&!mark[c.n]);if(k=='deck')return ALL.filter(c=>!mark[c.n]);
+ return EVERY.filter(c=>mark[c.n]==k).sort((a,b)=>b.m-a.m||pv(b)-pv(a))}
+const $=id=>document.getElementById(id), tr=$('track');
+$('h1').textContent=CFG.deck;
+/* the deck list lives beside the page on the live site; a claude.ai artifact has no neighbours */
+if(location.hostname&&!location.hostname.endsWith('github.io'))$('back').hidden=true;$('sub').innerHTML=CFG.set+' · <b>'+CFG.cmd+'</b>';
+const money=v=>v==null?'no price':'$'+v.toFixed(2);
+function fit(){const w=Math.max(120,Math.min(innerWidth*.78,(tr.clientHeight-100)*488/680,340));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+let figs=[];
+function btns(c){const home='Deck';
+ const fl=c.b?'<button data-a="flip">Flip</button>':'';
+ if(favs[c.n]&&!mark[c.n])return `<button class="on" data-a="unfav">★ Favorite · tap to undo</button>${fl}`;
+ return fl+btns2(c,home)}
+function btns2(c,home){
+ if(tab=='bench')return `<button data-a="">Back to ${home}</button><button data-a="trash">Trash</button>`;
+ if(tab=='trash')return `<button data-a="">Back to ${home}</button><button data-a="bench">Bench</button>`;
+ return `<button data-a="fav">Fav</button><button data-a="bench">Bench</button><button data-a="trash">Trash</button>`}
+function render(keep){D=sortFilter(view(tab));fit();
+ for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).reduce((a,c)=>a+c.q,0)+'</span>';b.setAttribute('aria-pressed',k==tab)}
+ const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.reduce((a,c)=>a+c.q,0)+' · '+money(fv.reduce((a,c)=>a+pv(c)*c.q,0))+' / '+money(DECK_TOTAL);
+  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption><div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const sc=$('scrub');
+function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
+function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
+function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
+tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+render();
+const fsel={sort:'f-sort',type:'f-type',col:'f-col',cost:'f-cost',kw:'f-kw',fav:'f-fav'};
+TYPES.forEach(t=>$('f-type').add(new Option(t,t)));
+[...new Set(EVERY.flatMap(c=>c.k))].sort().forEach(k=>$('f-kw').add(new Option(k,k)));
+function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
+for(const k in fsel)$(fsel[k]).onchange=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
+/* Browsers keep storage per site, so picks made on the artifact don't reach the github.io page. A code carries them across. */
+const msg=m=>{$('f-msg').textContent=m};
+$('f-copy').onclick=()=>{const code=btoa(JSON.stringify({f:Object.keys(favs),b:Object.keys(mark).filter(k=>mark[k]=='bench'),t:Object.keys(mark).filter(k=>mark[k]=='trash')}));
+ $('f-code').value=code;$('f-code').select();
+ (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>msg('Copied. Paste it into Load on the other page.'),()=>msg('Select the code above and copy it.'))};
+$('f-load').onclick=()=>{try{const o=JSON.parse(atob($('f-code').value.trim())),ok=new Set(EVERY.map(c=>c.n));
+ favs={};mark={};(o.f||[]).forEach(n=>{if(ok.has(n))favs[n]=1});(o.b||[]).forEach(n=>{if(ok.has(n))mark[n]='bench'});(o.t||[]).forEach(n=>{if(ok.has(n))mark[n]='trash'});
+ saveFavs();saveMarks();render();msg('Loaded '+Object.keys(favs).length+' favorites, '+Object.keys(mark).length+' benched or trashed.')}catch(e){msg('That code did not work. Copy it again.')}};
+$('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
+tr.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){const f=a.closest('figure'),i=+f.dataset.i,n=f.dataset.n;
+ if(a.dataset.a=='flip'){const c=D[i];flip[n]=!flip[n];f.querySelector('img').src=face(c);return}
+ if(a.dataset.a=='fav'||a.dataset.a=='unfav'){if(a.dataset.a=='fav')favs[n]=1;else delete favs[n];saveFavs();render(i);return}
+ if(a.dataset.a)mark[f.dataset.n]=a.dataset.a;else delete mark[f.dataset.n];saveMarks();render(i);return}
+ const z=e.target.closest('.zb');if(z)open(+z.closest('figure').dataset.i)});
+
+$('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
+sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
+tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key=='ArrowLeft'){go(cur()-1);e.preventDefault()}});
+document.addEventListener('gesturestart',e=>e.preventDefault());
+/* zoom viewer: scale + pan with pointer events (two pointers pinch) */
+const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new Map();let pd=0;
+function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function open(i){z.classList.add('on');show(i)}
+function close(){z.classList.remove('on');go(zc)}
+
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=face(c)};
+$('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
+st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
+let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
+const dist=()=>{const [a,b]=[...ptrs.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+st.addEventListener('pointerdown',e=>{st.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==1){tapOk=true;t0=Date.now();sx=e.clientX;sy=e.clientY}else{tapOk=false;pd=dist()}});
+st.addEventListener('pointermove',e=>{const o=ptrs.get(e.pointerId);if(!o)return;
+ if(tapOk&&Math.hypot(e.clientX-sx,e.clientY-sy)>8)tapOk=false;
+ ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==2){const d=dist(),[a,b]=[...ptrs.values()];if(pd)setS(s*Math.pow(d/pd,.8),(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}
+ else if(ptrs.size==1&&s>1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply()}});
+function up(e){const was=ptrs.size;ptrs.delete(e.pointerId);pd=0;
+ if(e.type=='pointerup'&&was==1&&tapOk&&Date.now()-t0<300){const n=Date.now();if(n-lastTap<350){lastTap=0;s>1?setS(1):setS(2,e.clientX,e.clientY)}else lastTap=n}
+ if(ptrs.size==1){const [k,v]=[...ptrs][0];ptrs.set(k,v)}}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+document.addEventListener('keydown',e=>{if(!z.classList.contains('on'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')show(zc+1);if(e.key=='ArrowLeft')show(zc-1);if(e.key=='+'||e.key=='=')setS(s*1.35);if(e.key=='-')setS(s/1.35)});
+</script>
+
+</body></html>

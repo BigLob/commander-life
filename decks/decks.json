@@ -1,0 +1,122 @@
+{
+ "borg": {
+  "slug": "borg",
+  "name": "We Are the Borg",
+  "product": "Star Trek Commander (2026)",
+  "cmd": "The Borg Queen",
+  "alt": "Locutus of Borg",
+  "total": 100,
+  "price": 197.44,
+  "img": "https://cards.scryfall.io/normal/front/8/e/8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab.jpg?1792507909"
+ },
+ "federation-fleet": {
+  "slug": "federation-fleet",
+  "name": "Federation Fleet",
+  "product": "Star Trek Commander (2026)",
+  "cmd": "Jean-Luc Picard, Luminary",
+  "alt": "Captain Janeway, Endgame",
+  "total": 100,
+  "price": 190.02,
+  "img": "https://cards.scryfall.io/normal/front/9/0/901eaed9-dbea-4a31-87b0-e17e9bcabfed.jpg?1792507924"
+ },
+ "landing-party": {
+  "slug": "landing-party",
+  "name": "Landing Party",
+  "product": "Star Trek Commander (2026)",
+  "cmd": "Commander Spock",
+  "alt": "Captain Kirk, Boldly Going",
+  "total": 100,
+  "price": 264.47,
+  "img": "https://cards.scryfall.io/normal/front/c/f/cf114392-a38d-4117-aa41-911d6dc1051b.jpg?1792551005"
+ },
+ "klingon-fury": {
+  "slug": "klingon-fury",
+  "name": "Klingon Fury",
+  "product": "Star Trek Commander (2026)",
+  "cmd": "Worf, Defiant Commander",
+  "alt": "Kor, Cause of Vengeance",
+  "total": 100,
+  "price": 175.46,
+  "img": "https://cards.scryfall.io/normal/front/d/a/da030114-a4ee-46d7-a6fd-6c0d8e779bcf.jpg?1792507927"
+ },
+ "living-energy": {
+  "slug": "living-energy",
+  "name": "Living Energy",
+  "product": "Aetherdrift Commander (2025)",
+  "cmd": "Saheeli, Radiant Creator",
+  "alt": "Pia Nalaar, Chief Mechanic",
+  "total": 100,
+  "price": 55.77,
+  "img": "https://cards.scryfall.io/normal/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.jpg?1783907753"
+ },
+ "eternal-might": {
+  "slug": "eternal-might",
+  "name": "Eternal Might",
+  "product": "Aetherdrift Commander (2025)",
+  "cmd": "Temmet, Naktamun's Will",
+  "alt": "Hashaton, Scarab's Fist",
+  "total": 100,
+  "price": 48.49,
+  "img": "https://cards.scryfall.io/normal/front/c/0/c0629894-0b72-4abe-9771-03becfdb241c.jpg?1783907753"
+ },
+ "revival-trance": {
+  "slug": "revival-trance",
+  "name": "Revival Trance",
+  "product": "Final Fantasy Commander (2025)",
+  "cmd": "Terra, Herald of Hope",
+  "alt": "Celes, Rune Knight",
+  "total": 100,
+  "price": 48.77,
+  "img": "https://cards.scryfall.io/normal/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373"
+ },
+ "first-flight": {
+  "slug": "first-flight",
+  "name": "First Flight",
+  "product": "Starter Commander Decks (2022)",
+  "cmd": "Isperia, Supreme Judge",
+  "alt": null,
+  "total": 100,
+  "price": 41.22,
+  "img": "https://cards.scryfall.io/normal/front/d/e/de3278de-a045-4290-b05f-3b19e7055091.jpg?1783918741"
+ },
+ "grave-danger": {
+  "slug": "grave-danger",
+  "name": "Grave Danger",
+  "product": "Starter Commander Decks (2022)",
+  "cmd": "Gisa and Geralf",
+  "alt": null,
+  "total": 100,
+  "price": 35.76,
+  "img": "https://cards.scryfall.io/normal/front/4/d/4d8fd87c-caf7-402e-b543-e35ba3007bcb.jpg?1783918740"
+ },
+ "chaos-incarnate": {
+  "slug": "chaos-incarnate",
+  "name": "Chaos Incarnate",
+  "product": "Starter Commander Decks (2022)",
+  "cmd": "Kardur, Doomscourge",
+  "alt": null,
+  "total": 100,
+  "price": 51.35,
+  "img": "https://cards.scryfall.io/normal/front/1/9/19e4d494-e8b3-4ae2-93e3-70c65ab90f15.jpg?1783918741"
+ },
+ "draconic-destruction": {
+  "slug": "draconic-destruction",
+  "name": "Draconic Destruction",
+  "product": "Starter Commander Decks (2022)",
+  "cmd": "Atarka, World Render",
+  "alt": null,
+  "total": 100,
+  "price": 45.76,
+  "img": "https://cards.scryfall.io/normal/front/7/1/719f172b-f9ad-4960-af66-757eb54147f6.jpg?1783918742"
+ },
+ "token-triumph": {
+  "slug": "token-triumph",
+  "name": "Token Triumph",
+  "product": "Starter Commander Decks (2022)",
+  "cmd": "Emmara, Soul of the Accord",
+  "alt": null,
+  "total": 100,
+  "price": 36.74,
+  "img": "https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741"
+ }
+}
