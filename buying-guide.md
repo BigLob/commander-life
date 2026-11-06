@@ -67,6 +67,30 @@ win rate so far (22.0%, playgroup.gg, Oct 2026), right among our Starter decks.
 | Reign of Dragons | Red | Lathliss, Dragon Queen | Dragons, Treasure |
 | Tramplesaurus Rex | Green | Ghalta, Primal Hunger | Big dinosaurs |
 
+### Secrets of Strixhaven Commander Decks (Apr 24, 2026)
+
+Five two-color decks, one per Strixhaven college. Each box has the face commander and a featured
+(alternate) commander as borderless foils, and 9 to 11 new cards. MSRP $49.99 each. Online prices
+(EchoMTG, Nov 6, 2026) are well under MSRP for most of them, so a store asking $50 is only OK.
+Singles value is the deck's cards at Scryfall's prices (Nov 6, 2026). Win rates are playgroup.gg's
+stock-deck numbers (Nov 6, 2026).
+
+| Deck | Colors | Face commander | Featured commander | Theme | Online | Singles | Win rate |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Lorehold Spirit | R W | Quintorius, History Chaser (planeswalker) | Excava, the Risen Past | Cards leaving the graveyard make 3/2 Spirits | $30.48 | $77 | 26.7% (516 games), best of the five |
+| Prismari Artistry | U R | Rootha, Mastering the Moment | Muddle, the Ever-Changing | Instants and sorceries make flying, hasty Elementals | $34.95 | $89 | 25.2% (363) |
+| Quandrix Unlimited | G U | Zimone, Infinite Analyst | Primo, the Unbounded | X spells and +1/+1 counters | $34.96 | $76 | 19.6% (571) |
+| Silverquill Influence | W B | Killian, Decisive Mentor | Scriv, the Obligator | Enchantments and Auras, goad | $56.76 | $95 | 18.8% (490) |
+| Witherbloom Pestilence | B G | Dina, Essence Brewer | Gorma, the Gullet | Sacrifice, Pests, life gain | $48.61 | $82 | 17.0% (609), weakest |
+
+Pricey cards in each: Silverquill has Land Tax ($17), Animate Dead and Ghostly Prison; Prismari has
+Faerie Mastermind and Goldspan Dragon ($12 each); Lorehold has Moonshaker Cavalry ($10) and Emeria, the
+Sky Ruin; Witherbloom has Ohran Frostfang and Toxic Deluge; Quandrix has Ozolith, the Shattered Spire
+and Three Visits. Every deck has one of the new Turbulent dual lands ($6 to $8).
+
+For our table: Lorehold and Prismari play at average strength and are the cheapest, so they're the
+best buys. Witherbloom and Silverquill cost the most and win the least.
+
 ### Regular precons still in stores (newest first)
 
 - Star Trek (Nov 13, 2026): four decks (The Borg Queen, Commander Spock, Jean-Luc Picard, Worf)
@@ -85,7 +109,8 @@ win rate so far (22.0%, playgroup.gg, Oct 2026), right among our Starter decks.
 ## How strong precons are (win rate, unmodified decks)
 
 From playgroup.gg's precon tier list (Oct 2026, 25,296 games). In a 4-player game an average deck
-wins 25%. Only the rows found through search are here.
+wins 25%. Only the rows found through search are here. The Secrets of Strixhaven rows were
+updated Nov 6, 2026 (28,047 games by then).
 
 | Deck | Set | Colors | Win rate | Games |
 | --- | --- | --- | --- | --- |
@@ -94,13 +119,17 @@ wins 25%. Only the rows found through search are here.
 | Blame Game | Karlov Manor (2024) | R W | 29.6% | 81 |
 | Tricky Terrain | Modern Horizons 3 (2024) | G U | 28.8% | 293 |
 | Temur Roar | Tarkir: Dragonstorm (2025) | G U R | 28.7% | 109 |
+| Lorehold Spirit | Secrets of Strixhaven (2026) | R W | 26.7% | 516 |
 | Token Triumph (ours) | Starter deck (2022) | G W | 27.8% | 180 |
-| Prismari Artistry | Secrets of Strixhaven (2026) | U R | 25.3% | 338 |
+| Prismari Artistry | Secrets of Strixhaven (2026) | U R | 25.2% | 363 |
 | Calling All Angels | Foundations Commander (2026) | W | 22.0% | 495 |
+| Quandrix Unlimited | Secrets of Strixhaven (2026) | G U | 19.6% | 571 |
+| Silverquill Influence | Secrets of Strixhaven (2026) | W B | 18.8% | 490 |
 | Draconic Destruction (ours) | Starter deck (2022) | R G | 21.5% | 229 |
 | Chaos Incarnate (ours) | Starter deck (2022) | B R | 21.2% | 141 |
 | Grave Danger (ours) | Starter deck (2022) | U B | 20.8% | 200 |
 | First Flight (ours) | Starter deck (2022) | W U | 18.4% | 164 |
+| Witherbloom Pestilence | Secrets of Strixhaven (2026) | B G | 17.0% | 609 |
 
 All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrade it first.
 
@@ -111,3 +140,5 @@ All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrad
 - Foundations Commander: Wizards' decklist announcement, playgroup.gg, preconforge.com, scrollvault.net,
   everythingedinburgh.com; the $49.99 regular precon MSRP is from the same reporting
 - Win rates: playgroup.gg/commander/precons
+- Secrets of Strixhaven: decklists from MTGJSON and Wizards' decklist article, singles from Scryfall,
+  sealed prices from echomtg.com
