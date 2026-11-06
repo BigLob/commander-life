@@ -52,6 +52,14 @@
 .k-gw { --seat: #2a6238; --seat-hi: #3f8a50; --accent: #d9ccab; }
 /* Living Energy (Aetherdrift, Saheeli): only a background (v1.6), so only its seat colors. */
 .k-le { --seat: #4a2f6e; --seat-hi: #6b4a9a; --accent: #2f8a6a; }
+/* v1.10 backgrounds: each new precon's commander and its alternate commander (both only backgrounds). */
+.k-le2 { --seat: #2a5a4e; --seat-hi: #3f8070; --accent: #c0442f; }  /* Pia Nalaar, Living Energy's alternate */
+.k-em, .k-em2 { --seat: #2a3a5e; --seat-hi: #3f5a8a; --accent: #c9a440; }  /* Eternal Might: Temmet, Hashaton */
+.k-rt, .k-rt2 { --seat: #5e2240; --seat-hi: #8a3460; --accent: #d9ccab; }  /* Revival Trance: Terra, Celes */
+.k-bq, .k-lo { --seat: #14261c; --seat-hi: #2a4a34; --accent: #4fd17a; }  /* We Are the Borg: Borg Queen, Locutus */
+.k-pi, .k-ja { --seat: #7a1c1c; --seat-hi: #a83232; --accent: #d9b24a; }  /* Federation Fleet: Picard, Janeway */
+.k-sp, .k-ki { --seat: #1d4f6e; --seat-hi: #2f7aa0; --accent: #3f8a50; }  /* Landing Party: Spock, Kirk */
+.k-wo, .k-ko { --seat: #5a1a14; --seat-hi: #8e2a1f; --accent: #c9a440; }  /* Klingon Fury: Worf, Kor */
 
 [hidden] { display: none !important; }
 html { box-sizing: border-box; height: 100%; background: var(--table); }
@@ -599,7 +607,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.9';
+  const VERSION = '1.10';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -631,7 +639,13 @@ details.field[open] > summary { margin-bottom: 10px; }
   // The backgrounds (v1.6): every commander art in art/, the five Starter decks by color pair plus
   // Living Energy (Aetherdrift Commander, Saheeli, Radiant Creator; Scryfall drc/3). Each player
   // gets a different one at random, and every new game deals them again. Synced as bgs/<edge>.
-  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le'];
+  // v1.10 adds every other precon the group owns or has preordered, each deck's face commander and
+  // its alternate commander (the second foil in the box): Living Energy's Pia Nalaar (drc/2),
+  // Eternal Might's Temmet (drc/4) and Hashaton (drc/1), Revival Trance's Terra (fic/4) and Celes
+  // (fic/1), and the Star Trek decks: The Borg Queen (trc/1) and Locutus of Borg (trc/97), Jean-Luc
+  // Picard (trc/3) and Captain Janeway (trc/84), Commander Spock (trc/2) and Captain Kirk (trc/85),
+  // Worf (trc/4) and Kor (trc/96). Phones older than v1.10 reject the new keys until reloaded.
+  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le', 'le2', 'em', 'em2', 'rt', 'rt2', 'bq', 'lo', 'pi', 'ja', 'sp', 'ki', 'wo', 'ko'];
   // Random backgrounds for `edges`, none the same as each other or as those `keep` (other players').
   function dealBgs(edges, keep) {
     const pool = ARTS.filter(a => !keep.includes(a));
