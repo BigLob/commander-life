@@ -234,6 +234,132 @@
 "lic": "CC0"
 },
 {
+"f": "biden-come-on-man",
+"src": "myinstants: snd_ Come On Maaaan! - Biden",
+"url": "https://www.myinstants.com/media/sounds/come-on-maaan.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.0,
+"quote": "Come on, man!"
+},
+{
+"f": "biden-gibberish",
+"src": "myinstants: Joe Biden Gibberish",
+"url": "https://www.myinstants.com/media/sounds/joe-biden-gibberish.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.3,
+"quote": "I was in the fudg... fudg... fudg..."
+},
+{
+"f": "biden-kids-better-than-people",
+"src": "myinstants: Kids Better Than People - Biden",
+"url": "https://www.myinstants.com/media/sounds/kids-better-than-people-biden.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.2,
+"quote": "Everybody knows I like kids better than people."
+},
+{
+"f": "biden-never-been-poor",
+"src": "myinstants: Biden is not Poor",
+"url": "https://www.myinstants.com/media/sounds/biden-is-not-poor.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.7,
+"quote": "I'm going to say something outrageous. I have never been particularly poor."
+},
+{
+"f": "biden-old-as-i-am",
+"src": "myinstants: Biden Fly",
+"url": "https://www.myinstants.com/media/sounds/biden-fly.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.4,
+"quote": "I no more think of myself as being as old as I am than fly."
+},
+{
+"f": "biden-single-word",
+"src": "myinstants: American Can Be Defined In a Single Word - Biden",
+"url": "https://www.myinstants.com/media/sounds/american-can-be-defined-in-a-single-word-biden.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.7,
+"quote": "America can be defined in a single word: I-was-in-the-foot-in-the-foot."
+},
+{
+"f": "biden-smart-guys",
+"src": "myinstants: Sick and Tired of Smart Guys Biden",
+"url": "https://www.myinstants.com/media/sounds/sick-and-tired-of-smart-guys-biden.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.9,
+"quote": "Well, I'm sick and tired of smart guys!"
+},
+{
+"f": "biden-stupid-son-of-a-bitch",
+"src": "myinstants: Stupid SOB Biden",
+"url": "https://www.myinstants.com/media/sounds/stupid-sob-biden.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.8,
+"quote": "What a stupid son of a bitch."
+},
+{
+"f": "biden-take-a-test",
+"src": "myinstants: Biden Take a test",
+"url": "https://www.myinstants.com/media/sounds/biden-take-a-test.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.4,
+"quote": "Why the hell would I take a test? Come on, man!"
+},
+{
+"f": "biden-what-am-i-doing-here",
+"src": "myinstants: Biden What am I doing here",
+"url": "https://www.myinstants.com/media/sounds/biden-what-am-i-doing-here.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.9,
+"quote": "And what am I doing here?"
+},
+{
+"f": "biden-what-in-the-heck",
+"src": "myinstants: What the heck - biden",
+"url": "https://www.myinstants.com/media/sounds/what-the-heck-biden.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.8,
+"quote": "What in the heck are we talking about here?"
+},
+{
+"f": "biden-who-does-he-think-he-is",
+"src": "myinstants: Biden: Who Does He Think He Is!?",
+"url": "https://www.myinstants.com/media/sounds/biden-who-does-he-think-he-is.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.9,
+"quote": "Who in the hell does he think he is? Who does he think he is?"
+},
+{
+"f": "biden-will-you-shut-up-man",
+"src": "myinstants: biden says will you shut up man",
+"url": "https://www.myinstants.com/media/sounds/will-you-shut-up-man-biden-blasts-trump-for-interrupting-nbc-news.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.7,
+"quote": "Would you shut up, man?"
+},
+{
+"f": "biden-you-know-the-thing",
+"src": "myinstants: Biden - You know the thing!",
+"url": "https://www.myinstants.com/media/sounds/biden-you-know-the-thing.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.9,
+"quote": "You know, the thing."
+},
+{
 "f": "big-boing",
 "pool": "short",
 "d": 3.7,
@@ -1811,6 +1937,15 @@
 "lic": "CC0"
 },
 {
+"f": "jfk-ich-bin-ein-berliner",
+"src": "myinstants: jfk donut",
+"url": "https://www.myinstants.com/media/sounds/jfk-donut.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.0,
+"quote": "Ich bin ein Berliner."
+},
+{
 "f": "jingle-14",
 "pool": "short",
 "d": 3.5,
@@ -2166,6 +2301,60 @@
 "lic": "CC0"
 },
 {
+"f": "nixon-not-a-crook",
+"src": "myinstants: NotaCrook",
+"url": "https://www.myinstants.com/media/sounds/notacrook.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.1,
+"quote": "Well, I'm not a crook."
+},
+{
+"f": "obama-clean-up-your-mess",
+"src": "myinstants: Clean ur mess Obama",
+"url": "https://www.myinstants.com/media/sounds/clean-ur-mess-obama.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.1,
+"quote": "Don't make someone else clean up your mess."
+},
+{
+"f": "obama-come-on-man",
+"src": "myinstants: Obama - Come on, man.",
+"url": "https://www.myinstants.com/media/sounds/obama_-_come_on_man.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.1,
+"quote": "Come on, man!"
+},
+{
+"f": "obama-come-on-people",
+"src": "myinstants: Obama - Come on, people.",
+"url": "https://www.myinstants.com/media/sounds/obama_-_come_on_people.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.3,
+"quote": "Come on, people!"
+},
+{
+"f": "obama-hello-everybody",
+"src": "myinstants: Obama Hello",
+"url": "https://www.myinstants.com/media/sounds/helloeverybodyobama.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "Hello, everybody."
+},
+{
+"f": "obama-i-love-you-back",
+"src": "myinstants: Obama - i love you back",
+"url": "https://www.myinstants.com/media/sounds/untitled_756.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.0,
+"quote": "I love you back!"
+},
+{
 "f": "obama-let-me-be-clear",
 "pool": "short",
 "d": 1.8,
@@ -2382,6 +2571,15 @@
 "url": "https://opengameart.org/content/squeaky-rat",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "reagan-oh-shut-up",
+"src": "myinstants: Reagan vs. Heckler",
+"url": "https://www.myinstants.com/media/sounds/reagan-heckler_new.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.5,
+"quote": "Oh, shut up."
 },
 {
 "f": "retro-complex1",
@@ -3317,6 +3515,24 @@
 "lic": "CC0"
 },
 {
+"f": "trump-a-talented-dog",
+"src": "myinstants: TRUMP - A BEAUTIFUL DOG",
+"url": "https://www.myinstants.com/media/sounds/sfx-trump-a-beautiful-dog-a-talented-dog.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.9,
+"quote": "A beautiful dog. A talented dog."
+},
+{
+"f": "trump-and-we-say-bye-bye",
+"src": "myinstants: Donald Trump bye bye",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-bye-bye.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.6,
+"quote": "And we say bye-bye!"
+},
+{
 "f": "trump-bigly",
 "pool": "short",
 "d": 3.0,
@@ -3325,6 +3541,33 @@
 "quote": "We're going to speed up the process bigly, because it's very inefficient.",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "trump-bing-bing-bang-bang-boom",
+"src": "myinstants: DonaldTrump! Bing Bing Bang Bang Boom",
+"url": "https://www.myinstants.com/media/sounds/donaldtrump-bing-bing-bang-bang-boom.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.6,
+"quote": "Bing bing bang bang boom."
+},
+{
+"f": "trump-bing-bing-bong-bong",
+"src": "myinstants: bingbingbongbongbingbingbing",
+"url": "https://www.myinstants.com/media/sounds/bingbingbongbongbingbingbing.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.2,
+"quote": "Bing bing bong bong bing bing bing."
+},
+{
+"f": "trump-bing-bong-short",
+"src": "myinstants: DonaldTrump! BING BONG!",
+"url": "https://www.myinstants.com/media/sounds/donaldtrump-bing-bong.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "Bing, bong."
 },
 {
 "f": "trump-bing-bong",
@@ -3337,6 +3580,24 @@
 "lic": "See note"
 },
 {
+"f": "trump-bing-boom-toilet",
+"src": "myinstants: DonaldTrump! Bing Boom - Right under the toilet",
+"url": "https://www.myinstants.com/media/sounds/donaldtrump-bing-boom-right-under-the-toilet.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.0,
+"quote": "Bing, boom, right under the toilet."
+},
+{
+"f": "trump-china-once",
+"src": "myinstants: China Trump",
+"url": "https://www.myinstants.com/media/sounds/china_5KzLlOK.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 0.8,
+"quote": "China."
+},
+{
 "f": "trump-concepts-of-a-plan",
 "pool": "short",
 "d": 4.0,
@@ -3345,6 +3606,51 @@
 "quote": "You still do not have a plan? I have concepts of a plan.",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "trump-died-like-a-dog",
+"src": "myinstants: donald trump - died like a dog",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-died-like-a-dog.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.4,
+"quote": "He died like a dog."
+},
+{
+"f": "trump-dont-be-rude",
+"src": "myinstants: Trump- Don't Be Rude",
+"url": "https://www.myinstants.com/media/sounds/trump-dont-be-rude.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.1,
+"quote": "Don't be rude."
+},
+{
+"f": "trump-dont-know-what-theyre-doing",
+"src": "myinstants: WTF they are doing Trump",
+"url": "https://www.myinstants.com/media/sounds/wtf-they-are-doing-trump.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.4,
+"quote": "They don't know what the fuck they're doing."
+},
+{
+"f": "trump-eh",
+"src": "myinstants: Trump Indescribable Sound",
+"url": "https://www.myinstants.com/media/sounds/trump-indescribable-sound.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 0.5,
+"quote": "Ehh!"
+},
+{
+"f": "trump-everythings-a-computer",
+"src": "myinstants: Trump computers",
+"url": "https://www.myinstants.com/media/sounds/trump-computers.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.4,
+"quote": "Everything's a computer!"
 },
 {
 "f": "trump-granite",
@@ -3357,6 +3663,159 @@
 "lic": "See note"
 },
 {
+"f": "trump-have-i-done-a-good-job",
+"src": "myinstants: trump good job dlive lemnon",
+"url": "https://www.myinstants.com/media/sounds/good-job_Bbr5WOK.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.0,
+"quote": "Have I done a good job? Have I done a good job?"
+},
+{
+"f": "trump-hot-dogs",
+"src": "myinstants: TRUMP HOT DOGS",
+"url": "https://www.myinstants.com/media/sounds/trump-hot-dogs.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.7,
+"quote": "Hot dogs! Let's talk about hot dogs. I just had one, actually."
+},
+{
+"f": "trump-i-approve-this-message",
+"src": "myinstants: donald trump approves this",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-approves-this.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.0,
+"quote": "I'm Donald Trump and I approve this message."
+},
+{
+"f": "trump-i-dont-think-so",
+"src": "myinstants: Trump - I Don't Think So!",
+"url": "https://www.myinstants.com/media/sounds/trump-i-dont-think-so.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "I don't think so."
+},
+{
+"f": "trump-i-love-cows",
+"src": "myinstants: Donald Trump - I Love Cows",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-i-love-cows.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.4,
+"quote": "I love cows."
+},
+{
+"f": "trump-i-love-miners",
+"src": "myinstants: Trump quote about minors",
+"url": "https://www.myinstants.com/media/sounds/trump-quote-about-minors.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.2,
+"quote": "For miners. Do we love miners? I love miners."
+},
+{
+"f": "trump-i-love-tesla",
+"src": "myinstants: Trump - I love tesler",
+"url": "https://www.myinstants.com/media/sounds/trump-i-love-tesler_5FwwWs1.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.4,
+"quote": "I love Tesla!"
+},
+{
+"f": "trump-it-comes-from-china",
+"src": "myinstants: Trump - It comes form China",
+"url": "https://www.myinstants.com/media/sounds/trump-it-comes-form-china.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.0,
+"quote": "It comes from China."
+},
+{
+"f": "trump-its-all-fake-news",
+"src": "myinstants: It's All Fake News",
+"url": "https://www.myinstants.com/media/sounds/fake-news-great.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.1,
+"quote": "It's all fake news. It's phony stuff. It didn't happen."
+},
+{
+"f": "trump-jobs-jobs-jobs",
+"src": "myinstants: Donald Trump - Jobs, Jobs, Jobs",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-jobs-jobs-jobs.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.1,
+"quote": "Jobs, jobs, jobs."
+},
+{
+"f": "trump-know-a-lot-about-trucks",
+"src": "myinstants: Bing Bong",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-talks-about-trucks-vine-1.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.1,
+"quote": "Hello, you people know a lot about trucks. Bing, bing, bong. Thank you very much."
+},
+{
+"f": "trump-little-rocket-man",
+"src": "myinstants: Little Rocket Man!",
+"url": "https://www.myinstants.com/media/sounds/little-rocket-man.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.6,
+"quote": "Little Rocket Man."
+},
+{
+"f": "trump-look-at-this-guy",
+"src": "myinstants: Trump - Look at this guy",
+"url": "https://www.myinstants.com/media/sounds/look-at-this-guy.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "Look at this guy!"
+},
+{
+"f": "trump-made-in-china",
+"src": "myinstants: Donald Trump - Made in China",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-made-in-china.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.5,
+"quote": "Made in China."
+},
+{
+"f": "trump-made-in-the-usa",
+"src": "myinstants: Donald Trump - Made in the USA",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-made-in-the-usa.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.6,
+"quote": "Made in the USA."
+},
+{
+"f": "trump-mr-tough-guy",
+"src": "myinstants: Trump - Mr. Toughguy",
+"url": "https://www.myinstants.com/media/sounds/trump-mr-toughguy.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "Mr. Tough Guy."
+},
+{
+"f": "trump-obamna",
+"src": "myinstants: Donald Trump: \"Obamna\"",
+"url": "https://www.myinstants.com/media/sounds/obamna.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.9,
+"quote": "Obamna."
+},
+{
 "f": "trump-positively-toward-negative",
 "pool": "short",
 "d": 2.5,
@@ -3365,6 +3824,42 @@
 "quote": "I tested positively toward negative, right?",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "trump-quiet-quiet",
+"src": "myinstants: Trump- Quiet, Quiet",
+"url": "https://www.myinstants.com/media/sounds/trump-quiet-quiet.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "Quiet, quiet."
+},
+{
+"f": "trump-sad",
+"src": "myinstants: Trump sad 2",
+"url": "https://www.myinstants.com/media/sounds/trump-sad-2.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 0.8,
+"quote": "Sad."
+},
+{
+"f": "trump-scarface",
+"src": "myinstants: Trump Scarface",
+"url": "https://www.myinstants.com/media/sounds/trump-scarface.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.2,
+"quote": "Al Capone, the greatest of them all. Gangster. Scarface."
+},
+{
+"f": "trump-soccer-field",
+"src": "myinstants: Trump - Soccer Field",
+"url": "https://www.myinstants.com/media/sounds/trump-soccer-field.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 3.2,
+"quote": "A million dollars, building a soccer field."
 },
 {
 "f": "trump-stable-genius",
@@ -3385,6 +3880,78 @@
 "quote": "Through phone, through telephone. Telephonically, as they say.",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "trump-thats-not-nice",
+"src": "myinstants: Trump -  That's Not Nice",
+"url": "https://www.myinstants.com/media/sounds/trump-thats-not-nice.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.2,
+"quote": "That's not nice."
+},
+{
+"f": "trump-the-best-words",
+"src": "myinstants: Trump's Best Words",
+"url": "https://www.myinstants.com/media/sounds/trumps-best-words.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.3,
+"quote": "I know words. I have the best words. But there's no better word than stupid."
+},
+{
+"f": "trump-what-did-i-do",
+"src": "myinstants: Trump What Did I Do?",
+"url": "https://www.myinstants.com/media/sounds/trump-what-did-i-do.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 4.0,
+"quote": "What happened? What did I do?"
+},
+{
+"f": "trump-win-washington-state",
+"src": "myinstants: Donald Trump - I Think We're gonna win Washingto",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-i-think-were-gonna-win-washington-state.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 2.5,
+"quote": "I think we're going to win Washington State."
+},
+{
+"f": "trump-wrong-short",
+"src": "myinstants: Donald Trump 'WRONG'",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-wrong.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 0.7,
+"quote": "Wrong!"
+},
+{
+"f": "trump-you-are-fake-news",
+"src": "myinstants: Donald Trump: Fake news",
+"url": "https://www.myinstants.com/media/sounds/donald-trump-fake-news-sound-effect.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.4,
+"quote": "You are fake news."
+},
+{
+"f": "trump-youd-be-in-jail",
+"src": "myinstants: Donald Trump: because you'd be",
+"url": "https://www.myinstants.com/media/sounds/because-youd-be-in-jail.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.4,
+"quote": "Because you'd be in jail."
+},
+{
+"f": "trump-youre-fired",
+"src": "myinstants: You're Fired (Trump)",
+"url": "https://www.myinstants.com/media/sounds/youre-fired-trump.mp3",
+"grp": "Presidents",
+"pool": "short",
+"d": 1.3,
+"quote": "You're fired."
 },
 {
 "f": "tss",
@@ -4333,6 +4900,42 @@
 "lic": "CC0"
 },
 {
+"f": "long/biden-300-million-billion",
+"src": "myinstants: biden numbers",
+"url": "https://www.myinstants.com/media/sounds/biden-numbers.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 6.3,
+"quote": "Somewhere between 700 billion and a trillion, 300 million billion dollars."
+},
+{
+"f": "long/biden-corn-pop",
+"src": "myinstants: Biden CornPop",
+"url": "https://www.myinstants.com/media/sounds/biden-cornpop.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 5.4,
+"quote": "And Corn Pop was a bad dude. And he ran a bunch of bad boys."
+},
+{
+"f": "long/biden-hairy-legs",
+"src": "myinstants: Joe Biden Hairy Legs",
+"url": "https://www.myinstants.com/media/sounds/joe-biden-hairy-legs.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 7.5,
+"quote": "I got hairy legs, hairy legs that turn blonde in the sun."
+},
+{
+"f": "long/biden-more-than-100-years",
+"src": "myinstants: Joe Biden 100 Year",
+"url": "https://www.myinstants.com/media/sounds/joe-biden-100-year.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 12.0,
+"quote": "COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it."
+},
+{
 "f": "long/bush-federal-program",
 "pool": "long",
 "d": 6.5,
@@ -4393,6 +4996,15 @@
 "lic": "See note"
 },
 {
+"f": "long/bush-shoe-dodge",
+"src": "myinstants: Georg bush shoe incident",
+"url": "https://www.myinstants.com/media/sounds/georg-bush-shoe-incident.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 10.1,
+"quote": "(The shoe throw in Baghdad, 2008: a reporter shouts, two shoes fly, Bush ducks.) Thank you very much."
+},
+{
 "f": "long/bush-the-decider",
 "pool": "long",
 "d": 6.7,
@@ -4401,6 +5013,15 @@
 "quote": "I hear the voices... but I'm the decider, and I decide what is best.",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "long/clinton-sexual-relations",
+"src": "myinstants: I did not have sexual relations with that woman",
+"url": "https://www.myinstants.com/media/sounds/i-did-not-have-sexual-relations-with-that-woman.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 9.6,
+"quote": "I want you to listen to me. I'm going to say this again. I did not have sexual relations with that woman. Miss Lewinsky."
 },
 {
 "f": "long/cozy-clear",
@@ -5409,6 +6030,15 @@
 "lic": "See note"
 },
 {
+"f": "long/trump-china-compilation",
+"src": "myinstants: Trump China Compliation",
+"url": "https://www.myinstants.com/media/sounds/china-trumpo-compilation.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 11.5,
+"quote": "China. China. China. China. China. China. China. China. China. China."
+},
+{
 "f": "long/trump-china",
 "pool": "long",
 "d": 5.6,
@@ -5439,6 +6069,15 @@
 "lic": "See note"
 },
 {
+"f": "long/trump-great-great-wall",
+"src": "myinstants: Trump Build a wall",
+"url": "https://www.myinstants.com/media/sounds/i-will-build-a-wall.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 10.0,
+"quote": "I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. Mark my words."
+},
+{
 "f": "long/trump-hannibal-lecter",
 "pool": "long",
 "d": 10.0,
@@ -5467,6 +6106,15 @@
 "quote": "I love babies. I hear that baby crying. Actually, I was only kidding. You can get the baby out of here.",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "long/trump-kiss-obamas-ass",
+"src": "myinstants: Trump Biden Kiss Ass",
+"url": "https://www.myinstants.com/media/sounds/trump-biden-kiss-ass.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 10.0,
+"quote": "He was only a good vice president because he understood how to kiss Barack Obama's ass."
 },
 {
 "f": "long/trump-knock-knock",
@@ -5519,6 +6167,33 @@
 "lic": "See note"
 },
 {
+"f": "long/trump-start-your-engines",
+"src": "myinstants: TRUMP START UR ENGINES",
+"url": "https://www.myinstants.com/media/sounds/trump-start-ur-engines_swMr2Y3.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 6.2,
+"quote": "Gentlemen, start your engines!"
+},
+{
+"f": "long/trump-three-vaccines",
+"src": "myinstants: Trump: 3 vax",
+"url": "https://www.myinstants.com/media/sounds/trump-3-vax.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 5.6,
+"quote": "I came up with three vaccines, all very, very good."
+},
+{
+"f": "long/trump-tired-of-winning",
+"src": "myinstants: Trump Win Too Much",
+"url": "https://www.myinstants.com/media/sounds/trump-win-too-much.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 10.5,
+"quote": "We're going to win so much, you may even get tired of winning. And you'll say, please, please, it's too much winning. We can't take it anymore."
+},
+{
 "f": "long/trump-turn-black",
 "pool": "long",
 "d": 7.4,
@@ -5557,6 +6232,15 @@
 "quote": "We love Puerto Rico. Puerto Rico. Ah! Ah!",
 "grp": "Presidents",
 "lic": "See note"
+},
+{
+"f": "long/trump-who-built-the-cages",
+"src": "myinstants: who built the cages- Donald Trump",
+"url": "https://www.myinstants.com/media/sounds/cages.mp3",
+"grp": "Presidents",
+"pool": "long",
+"d": 9.8,
+"quote": "Who built the cages? I'd love you to ask that. Who built the cages, Joe?"
 },
 {
 "f": "long/trump-word-salad",

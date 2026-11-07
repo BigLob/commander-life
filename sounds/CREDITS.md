@@ -359,3 +359,93 @@ The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from cli
 | `tts-topdeck-mode` | 1.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-your-turn` | 2.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-you-have-been-assimilated` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+
+## Added in v1.14 (more presidents)
+
+Presidential lines and noises (Trump's "bing bing bong" and "China", Biden's "come on, man" and
+"I-was-in-the-foot", Clinton, Nixon, Reagan, JFK) from meme uploads on myinstants.com, found by searching
+for each president and famous moment and checked by transcript (faster-whisper small.en). Remixes, songs,
+impressions, AI voices and clips with slurs were left out. Trimmed of silence (a few cut to one line),
+loudness-matched (EBU R128, -16 LUFS) and converted to mono 64 kbps MP3; up to 5 s in `sounds/`, longer in
+`sounds/long/`. Not CC0: the presidents' official remarks are US government works, but the uploads are
+anonymous meme cuts from news footage. A few overlap on purpose with the v1.11 lines (more bing bong, more China, more Wrong).
+`long/bush-shoe-dodge` is the 2008 Baghdad press conference where a reporter threw both shoes at Bush.
+
+| File | Length | Quote | From |
+| --- | --- | --- | --- |
+| `long/biden-300-million-billion` | 6.3 s | Somewhere between 700 billion and a trillion, 300 million billion dollars. | [myinstants: biden numbers](https://www.myinstants.com/media/sounds/biden-numbers.mp3) |
+| `biden-come-on-man` | 1.0 s | Come on, man! | [myinstants: snd_ Come On Maaaan! - Biden](https://www.myinstants.com/media/sounds/come-on-maaan.mp3) |
+| `long/biden-corn-pop` | 5.4 s | And Corn Pop was a bad dude. And he ran a bunch of bad boys. | [myinstants: Biden CornPop](https://www.myinstants.com/media/sounds/biden-cornpop.mp3) |
+| `biden-gibberish` | 3.3 s | I was in the fudg... fudg... fudg... | [myinstants: Joe Biden Gibberish](https://www.myinstants.com/media/sounds/joe-biden-gibberish.mp3) |
+| `long/biden-hairy-legs` | 7.5 s | I got hairy legs, hairy legs that turn blonde in the sun. | [myinstants: Joe Biden Hairy Legs](https://www.myinstants.com/media/sounds/joe-biden-hairy-legs.mp3) |
+| `biden-kids-better-than-people` | 2.2 s | Everybody knows I like kids better than people. | [myinstants: Kids Better Than People - Biden](https://www.myinstants.com/media/sounds/kids-better-than-people-biden.mp3) |
+| `long/biden-more-than-100-years` | 12.0 s | COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it. | [myinstants: Joe Biden 100 Year](https://www.myinstants.com/media/sounds/joe-biden-100-year.mp3) |
+| `biden-never-been-poor` | 4.7 s | I'm going to say something outrageous. I have never been particularly poor. | [myinstants: Biden is not Poor](https://www.myinstants.com/media/sounds/biden-is-not-poor.mp3) |
+| `biden-old-as-i-am` | 3.4 s | I no more think of myself as being as old as I am than fly. | [myinstants: Biden Fly](https://www.myinstants.com/media/sounds/biden-fly.mp3) |
+| `biden-single-word` | 2.7 s | America can be defined in a single word: I-was-in-the-foot-in-the-foot. | [myinstants: American Can Be Defined In a Single Word - Biden](https://www.myinstants.com/media/sounds/american-can-be-defined-in-a-single-word-biden.mp3) |
+| `biden-smart-guys` | 2.9 s | Well, I'm sick and tired of smart guys! | [myinstants: Sick and Tired of Smart Guys Biden](https://www.myinstants.com/media/sounds/sick-and-tired-of-smart-guys-biden.mp3) |
+| `biden-stupid-son-of-a-bitch` | 1.8 s | What a stupid son of a bitch. | [myinstants: Stupid SOB Biden](https://www.myinstants.com/media/sounds/stupid-sob-biden.mp3) |
+| `biden-take-a-test` | 4.4 s | Why the hell would I take a test? Come on, man! | [myinstants: Biden Take a test](https://www.myinstants.com/media/sounds/biden-take-a-test.mp3) |
+| `biden-what-am-i-doing-here` | 3.9 s | And what am I doing here? | [myinstants: Biden What am I doing here](https://www.myinstants.com/media/sounds/biden-what-am-i-doing-here.mp3) |
+| `biden-what-in-the-heck` | 2.8 s | What in the heck are we talking about here? | [myinstants: What the heck - biden](https://www.myinstants.com/media/sounds/what-the-heck-biden.mp3) |
+| `biden-who-does-he-think-he-is` | 4.9 s | Who in the hell does he think he is? Who does he think he is? | [myinstants: Biden: Who Does He Think He Is!?](https://www.myinstants.com/media/sounds/biden-who-does-he-think-he-is.mp3) |
+| `biden-will-you-shut-up-man` | 1.7 s | Would you shut up, man? | [myinstants: biden says will you shut up man](https://www.myinstants.com/media/sounds/will-you-shut-up-man-biden-blasts-trump-for-interrupting-nbc-news.mp3) |
+| `biden-you-know-the-thing` | 1.9 s | You know, the thing. | [myinstants: Biden - You know the thing!](https://www.myinstants.com/media/sounds/biden-you-know-the-thing.mp3) |
+| `long/bush-shoe-dodge` | 10.1 s | (The shoe throw in Baghdad, 2008: a reporter shouts, two shoes fly, Bush ducks.) Thank you very much. | [myinstants: Georg bush shoe incident](https://www.myinstants.com/media/sounds/georg-bush-shoe-incident.mp3) |
+| `long/clinton-sexual-relations` | 9.6 s | I want you to listen to me. I'm going to say this again. I did not have sexual relations with that woman. Miss Lewinsky. | [myinstants: I did not have sexual relations with that woman](https://www.myinstants.com/media/sounds/i-did-not-have-sexual-relations-with-that-woman.mp3) |
+| `jfk-ich-bin-ein-berliner` | 3.0 s | Ich bin ein Berliner. | [myinstants: jfk donut](https://www.myinstants.com/media/sounds/jfk-donut.mp3) |
+| `nixon-not-a-crook` | 1.1 s | Well, I'm not a crook. | [myinstants: NotaCrook](https://www.myinstants.com/media/sounds/notacrook.mp3) |
+| `obama-clean-up-your-mess` | 2.1 s | Don't make someone else clean up your mess. | [myinstants: Clean ur mess Obama](https://www.myinstants.com/media/sounds/clean-ur-mess-obama.mp3) |
+| `obama-come-on-man` | 1.1 s | Come on, man! | [myinstants: Obama - Come on, man.](https://www.myinstants.com/media/sounds/obama_-_come_on_man.mp3) |
+| `obama-come-on-people` | 1.3 s | Come on, people! | [myinstants: Obama - Come on, people.](https://www.myinstants.com/media/sounds/obama_-_come_on_people.mp3) |
+| `obama-hello-everybody` | 1.2 s | Hello, everybody. | [myinstants: Obama Hello](https://www.myinstants.com/media/sounds/helloeverybodyobama.mp3) |
+| `obama-i-love-you-back` | 1.0 s | I love you back! | [myinstants: Obama - i love you back](https://www.myinstants.com/media/sounds/untitled_756.mp3) |
+| `reagan-oh-shut-up` | 3.5 s | Oh, shut up. | [myinstants: Reagan vs. Heckler](https://www.myinstants.com/media/sounds/reagan-heckler_new.mp3) |
+| `trump-a-talented-dog` | 2.9 s | A beautiful dog. A talented dog. | [myinstants: TRUMP - A BEAUTIFUL DOG](https://www.myinstants.com/media/sounds/sfx-trump-a-beautiful-dog-a-talented-dog.mp3) |
+| `trump-and-we-say-bye-bye` | 1.6 s | And we say bye-bye! | [myinstants: Donald Trump bye bye](https://www.myinstants.com/media/sounds/donald-trump-bye-bye.mp3) |
+| `trump-bing-bing-bang-bang-boom` | 1.6 s | Bing bing bang bang boom. | [myinstants: DonaldTrump! Bing Bing Bang Bang Boom](https://www.myinstants.com/media/sounds/donaldtrump-bing-bing-bang-bang-boom.mp3) |
+| `trump-bing-bing-bong-bong` | 2.2 s | Bing bing bong bong bing bing bing. | [myinstants: bingbingbongbongbingbingbing](https://www.myinstants.com/media/sounds/bingbingbongbongbingbingbing.mp3) |
+| `trump-bing-bong-short` | 1.2 s | Bing, bong. | [myinstants: DonaldTrump! BING BONG!](https://www.myinstants.com/media/sounds/donaldtrump-bing-bong.mp3) |
+| `trump-bing-boom-toilet` | 2.0 s | Bing, boom, right under the toilet. | [myinstants: DonaldTrump! Bing Boom - Right under the toilet](https://www.myinstants.com/media/sounds/donaldtrump-bing-boom-right-under-the-toilet.mp3) |
+| `long/trump-china-compilation` | 11.5 s | China. China. China. China. China. China. China. China. China. China. | [myinstants: Trump China Compliation](https://www.myinstants.com/media/sounds/china-trumpo-compilation.mp3) |
+| `trump-china-once` | 0.8 s | China. | [myinstants: China Trump](https://www.myinstants.com/media/sounds/china_5KzLlOK.mp3) |
+| `trump-died-like-a-dog` | 1.4 s | He died like a dog. | [myinstants: donald trump - died like a dog](https://www.myinstants.com/media/sounds/donald-trump-died-like-a-dog.mp3) |
+| `trump-dont-be-rude` | 1.1 s | Don't be rude. | [myinstants: Trump- Don't Be Rude](https://www.myinstants.com/media/sounds/trump-dont-be-rude.mp3) |
+| `trump-dont-know-what-theyre-doing` | 2.4 s | They don't know what the fuck they're doing. | [myinstants: WTF they are doing Trump](https://www.myinstants.com/media/sounds/wtf-they-are-doing-trump.mp3) |
+| `trump-eh` | 0.5 s | Ehh! | [myinstants: Trump Indescribable Sound](https://www.myinstants.com/media/sounds/trump-indescribable-sound.mp3) |
+| `trump-everythings-a-computer` | 1.4 s | Everything's a computer! | [myinstants: Trump computers](https://www.myinstants.com/media/sounds/trump-computers.mp3) |
+| `long/trump-great-great-wall` | 10.0 s | I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. Mark my words. | [myinstants: Trump Build a wall](https://www.myinstants.com/media/sounds/i-will-build-a-wall.mp3) |
+| `trump-have-i-done-a-good-job` | 3.0 s | Have I done a good job? Have I done a good job? | [myinstants: trump good job dlive lemnon](https://www.myinstants.com/media/sounds/good-job_Bbr5WOK.mp3) |
+| `trump-hot-dogs` | 3.7 s | Hot dogs! Let's talk about hot dogs. I just had one, actually. | [myinstants: TRUMP HOT DOGS](https://www.myinstants.com/media/sounds/trump-hot-dogs.mp3) |
+| `trump-i-approve-this-message` | 4.0 s | I'm Donald Trump and I approve this message. | [myinstants: donald trump approves this](https://www.myinstants.com/media/sounds/donald-trump-approves-this.mp3) |
+| `trump-i-dont-think-so` | 1.2 s | I don't think so. | [myinstants: Trump - I Don't Think So!](https://www.myinstants.com/media/sounds/trump-i-dont-think-so.mp3) |
+| `trump-i-love-cows` | 1.4 s | I love cows. | [myinstants: Donald Trump - I Love Cows](https://www.myinstants.com/media/sounds/donald-trump-i-love-cows.mp3) |
+| `trump-i-love-miners` | 3.2 s | For miners. Do we love miners? I love miners. | [myinstants: Trump quote about minors](https://www.myinstants.com/media/sounds/trump-quote-about-minors.mp3) |
+| `trump-i-love-tesla` | 1.4 s | I love Tesla! | [myinstants: Trump - I love tesler](https://www.myinstants.com/media/sounds/trump-i-love-tesler_5FwwWs1.mp3) |
+| `trump-it-comes-from-china` | 2.0 s | It comes from China. | [myinstants: Trump - It comes form China](https://www.myinstants.com/media/sounds/trump-it-comes-form-china.mp3) |
+| `trump-its-all-fake-news` | 4.1 s | It's all fake news. It's phony stuff. It didn't happen. | [myinstants: It's All Fake News](https://www.myinstants.com/media/sounds/fake-news-great.mp3) |
+| `trump-jobs-jobs-jobs` | 4.1 s | Jobs, jobs, jobs. | [myinstants: Donald Trump - Jobs, Jobs, Jobs](https://www.myinstants.com/media/sounds/donald-trump-jobs-jobs-jobs.mp3) |
+| `long/trump-kiss-obamas-ass` | 10.0 s | He was only a good vice president because he understood how to kiss Barack Obama's ass. | [myinstants: Trump Biden Kiss Ass](https://www.myinstants.com/media/sounds/trump-biden-kiss-ass.mp3) |
+| `trump-know-a-lot-about-trucks` | 4.1 s | Hello, you people know a lot about trucks. Bing, bing, bong. Thank you very much. | [myinstants: Bing Bong](https://www.myinstants.com/media/sounds/donald-trump-talks-about-trucks-vine-1.mp3) |
+| `trump-little-rocket-man` | 1.6 s | Little Rocket Man. | [myinstants: Little Rocket Man!](https://www.myinstants.com/media/sounds/little-rocket-man.mp3) |
+| `trump-look-at-this-guy` | 1.2 s | Look at this guy! | [myinstants: Trump - Look at this guy](https://www.myinstants.com/media/sounds/look-at-this-guy.mp3) |
+| `trump-made-in-china` | 1.5 s | Made in China. | [myinstants: Donald Trump - Made in China](https://www.myinstants.com/media/sounds/donald-trump-made-in-china.mp3) |
+| `trump-made-in-the-usa` | 1.6 s | Made in the USA. | [myinstants: Donald Trump - Made in the USA](https://www.myinstants.com/media/sounds/donald-trump-made-in-the-usa.mp3) |
+| `trump-mr-tough-guy` | 1.2 s | Mr. Tough Guy. | [myinstants: Trump - Mr. Toughguy](https://www.myinstants.com/media/sounds/trump-mr-toughguy.mp3) |
+| `trump-obamna` | 1.9 s | Obamna. | [myinstants: Donald Trump: "Obamna"](https://www.myinstants.com/media/sounds/obamna.mp3) |
+| `trump-quiet-quiet` | 1.2 s | Quiet, quiet. | [myinstants: Trump- Quiet, Quiet](https://www.myinstants.com/media/sounds/trump-quiet-quiet.mp3) |
+| `trump-sad` | 0.8 s | Sad. | [myinstants: Trump sad 2](https://www.myinstants.com/media/sounds/trump-sad-2.mp3) |
+| `trump-scarface` | 4.2 s | Al Capone, the greatest of them all. Gangster. Scarface. | [myinstants: Trump Scarface](https://www.myinstants.com/media/sounds/trump-scarface.mp3) |
+| `trump-soccer-field` | 3.2 s | A million dollars, building a soccer field. | [myinstants: Trump - Soccer Field](https://www.myinstants.com/media/sounds/trump-soccer-field.mp3) |
+| `long/trump-start-your-engines` | 6.2 s | Gentlemen, start your engines! | [myinstants: TRUMP START UR ENGINES](https://www.myinstants.com/media/sounds/trump-start-ur-engines_swMr2Y3.mp3) |
+| `trump-thats-not-nice` | 1.2 s | That's not nice. | [myinstants: Trump -  That's Not Nice](https://www.myinstants.com/media/sounds/trump-thats-not-nice.mp3) |
+| `trump-the-best-words` | 4.3 s | I know words. I have the best words. But there's no better word than stupid. | [myinstants: Trump's Best Words](https://www.myinstants.com/media/sounds/trumps-best-words.mp3) |
+| `long/trump-three-vaccines` | 5.6 s | I came up with three vaccines, all very, very good. | [myinstants: Trump: 3 vax](https://www.myinstants.com/media/sounds/trump-3-vax.mp3) |
+| `long/trump-tired-of-winning` | 10.5 s | We're going to win so much, you may even get tired of winning. And you'll say, please, please, it's too much winning. We can't take it anymore. | [myinstants: Trump Win Too Much](https://www.myinstants.com/media/sounds/trump-win-too-much.mp3) |
+| `trump-what-did-i-do` | 4.0 s | What happened? What did I do? | [myinstants: Trump What Did I Do?](https://www.myinstants.com/media/sounds/trump-what-did-i-do.mp3) |
+| `long/trump-who-built-the-cages` | 9.8 s | Who built the cages? I'd love you to ask that. Who built the cages, Joe? | [myinstants: who built the cages- Donald Trump](https://www.myinstants.com/media/sounds/cages.mp3) |
+| `trump-win-washington-state` | 2.5 s | I think we're going to win Washington State. | [myinstants: Donald Trump - I Think We're gonna win Washingto](https://www.myinstants.com/media/sounds/donald-trump-i-think-were-gonna-win-washington-state.mp3) |
+| `trump-wrong-short` | 0.7 s | Wrong! | [myinstants: Donald Trump 'WRONG'](https://www.myinstants.com/media/sounds/donald-trump-wrong.mp3) |
+| `trump-you-are-fake-news` | 1.4 s | You are fake news. | [myinstants: Donald Trump: Fake news](https://www.myinstants.com/media/sounds/donald-trump-fake-news-sound-effect.mp3) |
+| `trump-youd-be-in-jail` | 1.4 s | Because you'd be in jail. | [myinstants: Donald Trump: because you'd be](https://www.myinstants.com/media/sounds/because-youd-be-in-jail.mp3) |
+| `trump-youre-fired` | 1.3 s | You're fired. | [myinstants: You're Fired (Trump)](https://www.myinstants.com/media/sounds/youre-fired-trump.mp3) |
