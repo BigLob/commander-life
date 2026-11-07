@@ -1260,7 +1260,10 @@
 "src": "Dynamite Sound Effect",
 "url": "https://opengameart.org/content/dynamite-sound-effect",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"big"
+]
 },
 {
 "f": "evil-cackle-laugh-1",
@@ -1350,7 +1353,10 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"ev": [
+"big"
+]
 },
 {
 "f": "fallout-war-never-changes",
@@ -1486,7 +1492,10 @@
 "src": "Final Fantasy VII, via Myinstants",
 "url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-limit-break.mp3",
 "grp": "Video games",
-"lic": "See note"
+"lic": "See note",
+"ev": [
+"big"
+]
 },
 {
 "f": "ff7-save",
@@ -1619,7 +1628,7 @@
 "grp": "Video games",
 "lic": "See note",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -2010,7 +2019,8 @@
 "lic": "See note",
 "quote": "Double kill.",
 "ev": [
-"out"
+"out",
+"big"
 ]
 },
 {
@@ -2027,6 +2037,19 @@
 ]
 },
 {
+"f": "halo-killing-spree",
+"pool": "short",
+"d": 1.1,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-killing-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Killing spree!",
+"ev": [
+"big"
+]
+},
+{
 "f": "halo-killtacular",
 "pool": "short",
 "d": 1.3,
@@ -2037,6 +2060,19 @@
 "quote": "Killtacular!",
 "ev": [
 "out",
+"cmdout"
+]
+},
+{
+"f": "halo-overkill",
+"pool": "short",
+"d": 1.1,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-overkill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Overkill!",
+"ev": [
 "cmdout"
 ]
 },
@@ -2349,6 +2385,32 @@
 "url": "https://opengameart.org/content/jumpscare-sound",
 "grp": "OpenGameArt",
 "lic": "CC0"
+},
+{
+"f": "ki-combo-breaker",
+"pool": "short",
+"d": 1.6,
+"src": "Killer Instinct, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/c-c-c-combo-breaker.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "C-c-c-combo breaker!",
+"ev": [
+"big"
+]
+},
+{
+"f": "ki-ultra-combo",
+"pool": "short",
+"d": 1.9,
+"src": "Killer Instinct, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ultra-combo-killer-instinct.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Ultra combo!",
+"ev": [
+"big"
+]
 },
 {
 "f": "laugh-1",
@@ -2922,7 +2984,7 @@
 "grp": "Video games",
 "lic": "See note",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -3084,6 +3146,19 @@
 ]
 },
 {
+"f": "mk-brutality",
+"pool": "short",
+"d": 1.4,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/18_2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Brutality!",
+"ev": [
+"cmdout"
+]
+},
+{
 "f": "mk-excellent",
 "pool": "short",
 "d": 1.2,
@@ -3149,6 +3224,19 @@
 ]
 },
 {
+"f": "mk-outstanding",
+"pool": "short",
+"d": 1.4,
+"src": "Mortal Kombat, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/mk-outstanding_xDln1jy.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Outstanding.",
+"ev": [
+"big"
+]
+},
+{
 "f": "mk-toasty",
 "pool": "short",
 "d": 1.2,
@@ -3158,7 +3246,7 @@
 "lic": "See note",
 "quote": "Toasty!",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -3458,7 +3546,7 @@
 "lic": "See note",
 "quote": "It's super effective!",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -3747,7 +3835,7 @@
 "lic": "See note",
 "quote": "Hadouken!",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -3775,6 +3863,32 @@
 "quote": "Perfect.",
 "ev": [
 "win"
+]
+},
+{
+"f": "sf-shoryuken",
+"pool": "short",
+"d": 1.5,
+"src": "Street Fighter II, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/sf-ryu-shoryuken.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Shoryuken!",
+"ev": [
+"big"
+]
+},
+{
+"f": "sf-sonic-boom",
+"pool": "short",
+"d": 1.1,
+"src": "Street Fighter II, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/sonicboom.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Sonic boom!",
+"ev": [
+"big"
 ]
 },
 {
@@ -3873,7 +3987,7 @@
 "lic": "See note",
 "quote": "Fus ro dah!",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -3949,6 +4063,19 @@
 "lic": "CC0"
 },
 {
+"f": "smash-falcon-punch",
+"pool": "short",
+"d": 2.5,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/falcon_punch_sound_effectwww.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Falcon... PUNCH!",
+"ev": [
+"big"
+]
+},
+{
 "f": "smash-game",
 "pool": "short",
 "d": 1.0,
@@ -3959,6 +4086,18 @@
 "quote": "Game!",
 "ev": [
 "win"
+]
+},
+{
+"f": "smash-home-run-bat",
+"pool": "short",
+"d": 2.6,
+"src": "Super Smash Bros., via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ssbu-home-run-bat.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout"
 ]
 },
 {
@@ -4482,7 +4621,7 @@
 "lic": "See note",
 "quote": "Nuclear launch detected.",
 "ev": [
-"cmdout"
+"big"
 ]
 },
 {
@@ -4597,6 +4736,18 @@
 "url": "https://www.myinstants.com/media/sounds/nes-tetris-sound-effect-tetris-clear.mp3",
 "grp": "Video games",
 "lic": "See note"
+},
+{
+"f": "tf2-critical-hit",
+"pool": "short",
+"d": 0.8,
+"src": "Team Fortress 2, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/critical-hit-sounds-effect.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
 },
 {
 "f": "the-messy-feast",
@@ -4867,7 +5018,10 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Wait, is that a combo?"
+"quote": "Wait, is that a combo?",
+"ev": [
+"big"
+]
 },
 {
 "f": "tts-kingmaker",
@@ -5008,7 +5162,10 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Somebody deal with that."
+"quote": "Somebody deal with that.",
+"ev": [
+"big"
+]
 },
 {
 "f": "tts-target-him",
@@ -5127,6 +5284,19 @@
 ]
 },
 {
+"f": "ut-killing-spree",
+"pool": "short",
+"d": 1.9,
+"src": "Unreal Tournament, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ut-killing-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Killing spree!",
+"ev": [
+"big"
+]
+},
+{
 "f": "ut-monster-kill",
 "pool": "short",
 "d": 4.5,
@@ -5136,7 +5306,34 @@
 "lic": "See note",
 "quote": "Monster kill!",
 "ev": [
-"out"
+"out",
+"big"
+]
+},
+{
+"f": "ut-multi-kill",
+"pool": "short",
+"d": 1.5,
+"src": "Unreal Tournament, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ut-multi-kill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Multi kill!",
+"ev": [
+"big"
+]
+},
+{
+"f": "ut-rampage",
+"pool": "short",
+"d": 1.7,
+"src": "Unreal Tournament, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/ut-rampage.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Rampage!",
+"ev": [
+"big"
 ]
 },
 {

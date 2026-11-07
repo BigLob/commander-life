@@ -50,9 +50,9 @@ const canPlay=!location.hostname||/github\.io$|localhost|127\.0\.0\.1/.test(loca
 if(!canPlay)document.body.classList.add('noplay');
 const F={grp:'',pool:'',ev:'',q:'',sort:'n'};
 const has=(c,k,v)=>k!=='ev'?c[k]===v:v==='turn'?!c.ev:(c.ev||[]).includes(v);
-const EV={out:'Knockout',cmdout:'Commander kill',win:'Win',low:'Low life',back:'Comes back'};
+const EV={out:'Knockout',cmdout:'Commander kill',big:'Big hit',win:'Win',low:'Low life',back:'Comes back'};
 const tot=CLIPS.reduce((a,c)=>a+c.d,0);
-$('sum').textContent=`${CLIPS.length} clips, ${Math.round(tot/60)} minutes in all. Short clips (5 s at most) play on most taps; after every 3 to 10 of them the next tap plays a long one (5 to 12 s). Every clip plays on the turn button; the event chips show which also play when a player is knocked out, killed by commander damage, wins, drops to low life or comes back.`+(canPlay?' Tap ▶ to hear one.':'');
+$('sum').textContent=`${CLIPS.length} clips, ${Math.round(tot/60)} minutes in all. Short clips (5 s at most) play on most taps; after every 3 to 10 of them the next tap plays a long one (5 to 12 s). Every clip plays on the turn button; the event chips show which also play when a player is knocked out, killed by commander damage, takes 10 or more in a turn, wins, drops to low life or comes back.`+(canPlay?' Tap ▶ to hear one.':'');
 function chips(el,key,opts){el.innerHTML=opts.map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${F[key]===v}">${l}<span class="ct">${CLIPS.filter(c=>!v||has(c,key,v)).length}</span></button>`).join('');
  el.onclick=e=>{const b=e.target.closest('button');if(!b)return;F[key]=b.dataset.v;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()}}
 chips($('grp'),'grp',[['','All']].concat([...new Set(CLIPS.map(c=>c.grp))].sort((a,b)=>CLIPS.filter(c=>c.grp===b).length-CLIPS.filter(c=>c.grp===a).length).map(g=>[g,g])));

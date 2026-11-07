@@ -549,3 +549,24 @@ and others). They're here for our own table only.
 | `long/zelda-hylia` | 6.2 s | What in the name of Hylia?! | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/what-in-the-name-of-hylia.mp3) |
 | `long/zelda-master-sword` | 10.1 s |  | [The Legend of Zelda, via Myinstants](https://www.myinstants.com/media/sounds/zelda-master-sword.mp3) |
 | `long/zero-wing-all-your-base` | 10.6 s | How are you gentlemen!! All your base are belong to us. You are on the way to destruction. | [Zero Wing, via Myinstants](https://www.myinstants.com/media/sounds/allbase.mp3) |
+
+### Added in v1.14 for big hits (10 or more in a turn)
+
+From Myinstants like the clips above; same processing and the same note on rights.
+
+| File | Length | Words | Source |
+| --- | --- | --- | --- |
+| `halo-killing-spree` | 1.1 s | Killing spree! | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-killing-spree.mp3) |
+| `halo-overkill` | 1.1 s | Overkill! | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-overkill.mp3) |
+| `ki-combo-breaker` | 1.6 s | C-c-c-combo breaker! | [Killer Instinct, via Myinstants](https://www.myinstants.com/media/sounds/c-c-c-combo-breaker.mp3) |
+| `ki-ultra-combo` | 1.9 s | Ultra combo! | [Killer Instinct, via Myinstants](https://www.myinstants.com/media/sounds/ultra-combo-killer-instinct.mp3) |
+| `mk-brutality` | 1.4 s | Brutality! | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/18_2.mp3) |
+| `mk-outstanding` | 1.4 s | Outstanding. | [Mortal Kombat, via Myinstants](https://www.myinstants.com/media/sounds/mk-outstanding_xDln1jy.mp3) |
+| `sf-shoryuken` | 1.5 s | Shoryuken! | [Street Fighter II, via Myinstants](https://www.myinstants.com/media/sounds/sf-ryu-shoryuken.mp3) |
+| `sf-sonic-boom` | 1.1 s | Sonic boom! | [Street Fighter II, via Myinstants](https://www.myinstants.com/media/sounds/sonicboom.mp3) |
+| `smash-falcon-punch` | 2.5 s | Falcon... PUNCH! | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/falcon_punch_sound_effectwww.mp3) |
+| `smash-home-run-bat` | 2.6 s |  | [Super Smash Bros., via Myinstants](https://www.myinstants.com/media/sounds/ssbu-home-run-bat.mp3) |
+| `tf2-critical-hit` | 0.8 s |  | [Team Fortress 2, via Myinstants](https://www.myinstants.com/media/sounds/critical-hit-sounds-effect.mp3) |
+| `ut-killing-spree` | 1.9 s | Killing spree! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/ut-killing-spree.mp3) |
+| `ut-multi-kill` | 1.5 s | Multi kill! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/ut-multi-kill.mp3) |
+| `ut-rampage` | 1.7 s | Rampage! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/ut-rampage.mp3) |
