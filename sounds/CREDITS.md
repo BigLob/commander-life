@@ -570,3 +570,109 @@ From Myinstants like the clips above; same processing and the same note on right
 | `ut-killing-spree` | 1.9 s | Killing spree! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/ut-killing-spree.mp3) |
 | `ut-multi-kill` | 1.5 s | Multi kill! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/ut-multi-kill.mp3) |
 | `ut-rampage` | 1.7 s | Rampage! | [Unreal Tournament, via Myinstants](https://www.myinstants.com/media/sounds/ut-rampage.mp3) |
+
+### Added in v1.14: Halo announcer lines
+
+Every multi-kill and spree line Halo's announcer (Jeff Steitzer) has, in up to three versions: Halo: Reach (Myinstants), a
+compilation on SoundCloud (probably Halo 3) cut into single lines, and loose uploads labelled only Halo (Myinstants), plus 41 unused
+Reach medal lines Bungie posted on Bungie.net (archived on archive.org) and a fan joke edit. Halo 2, 4, 5 and Infinite
+versions weren't on any site the sandbox can reach (YouTube asks the sandbox to sign in). Same processing and the same
+note on rights as above.
+
+| File | Length | Words | Source |
+| --- | --- | --- | --- |
+| `halo-betrayal` | 1.0 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/betrayal_EKW4y6T.mp3) |
+| `halo-extermination` | 2.0 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/extermination_pqUnqB8.mp3) |
+| `halo-headshot` | 1.8 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/headshot_6.mp3) |
+| `halo-invincible` | 1.4 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/invincible_Gud6aoH.mp3) |
+| `halo-juggernaut` | 1.0 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/juggernaut_q95474K.mp3) |
+| `halo-killionaire` | 1.1 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/killionaire.mp3) |
+| `halo-killjoy` | 1.2 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/killjoy.mp3) |
+| `halo-running-riot` | 1.3 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-running-riot.mp3) |
+| `halo-skill-issue` | 2.0 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/skill-issue-halo-announcer.mp3) |
+| `halo-triple-kill` | 1.3 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-triple-kill.mp3) |
+| `halo-unfrigginbelievable` | 2.3 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/halo-unfrigginbelievable.mp3) |
+| `halo-yoink` | 1.0 s |  | [Halo, via Myinstants](https://www.myinstants.com/media/sounds/yoink-halo.mp3) |
+| `halo3-double-kill` | 1.3 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-inconceivable` | 1.8 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-invincible` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killimanjaro` | 1.3 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killing-frenzy` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killing-spree` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killionaire` | 1.3 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killpocalypse` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killtacular` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killtastrophe` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-killtrocity` | 1.4 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-overkill` | 1.2 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-rampage` | 1.1 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-running-riot` | 1.5 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-triple-kill` | 1.2 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-unfrigginbelievable` | 3.2 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `halo3-untouchable` | 1.2 s |  | [Halo 3 (probably: the upload says only Halo), via SoundCloud](https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect) |
+| `haloreach-double-kill` | 1.0 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-double-kill.mp3) |
+| `haloreach-extermination` | 1.9 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-extermination-voice.mp3) |
+| `haloreach-inconceivable` | 1.5 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-inconceivable.mp3) |
+| `haloreach-invincible` | 1.3 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-invincible.mp3) |
+| `haloreach-killimanjaro` | 1.5 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-7-killamanjaro.mp3) |
+| `haloreach-killing-frenzy` | 1.1 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killing-frenzy.mp3) |
+| `haloreach-killing-spree` | 1.0 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killing-spree.mp3) |
+| `haloreach-killionaire` | 1.1 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killionaire-voice.mp3) |
+| `haloreach-killjoy` | 1.1 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killjoy-voice.mp3) |
+| `haloreach-killpocalypse` | 1.4 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killpocalypse-voice.mp3) |
+| `haloreach-killtacular` | 1.5 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killtacular.mp3) |
+| `haloreach-killtastrophe` | 1.7 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killtastrophe-voice.mp3) |
+| `haloreach-killtrocity` | 1.3 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-killtrocity.mp3) |
+| `haloreach-overkill` | 1.1 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-overkill.mp3) |
+| `haloreach-perfection` | 1.1 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-perfection-voice.mp3) |
+| `haloreach-rampage` | 1.3 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-rampage.mp3) |
+| `haloreach-running-riot` | 1.0 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-running-riot-voice.mp3) |
+| `haloreach-shotgun-spree` | 1.5 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-shotgun-spree.mp3) |
+| `haloreach-splatter-spree` | 1.5 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-splatter-spree.mp3) |
+| `haloreach-sword-spree` | 1.3 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-sword-spree.mp3) |
+| `haloreach-triple-kill` | 0.9 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-triple-kill.mp3) |
+| `haloreach-unfrigginbelievable` | 2.2 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-unfrigginbelievable-voice.mp3) |
+| `haloreach-untouchable` | 1.4 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-untouchable.mp3) |
+| `haloreach-unused-bank-shot` | 1.1 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/bank_shot.mp3) |
+| `haloreach-unused-berserker` | 1.9 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/berserker.mp3) |
+| `haloreach-unused-birdstrike` | 1.4 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/birdstrike.mp3) |
+| `haloreach-unused-blitzkrieg` | 1.5 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/blitzkrieg.mp3) |
+| `haloreach-unused-bloodlust` | 1.4 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/close_call_2.mp3) |
+| `haloreach-unused-clutch` | 1.0 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/clutch.mp3) |
+| `haloreach-unused-coming-thru` | 1.9 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/coming_thru.mp3) |
+| `haloreach-unused-cool-spawn-bro` | 2.3 s | Cool spawn, bro. | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/cool_spawn_bro.mp3) |
+| `haloreach-unused-decoy` | 1.3 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/decoy.mp3) |
+| `haloreach-unused-demolition-man` | 1.6 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/one_man_army_2.mp3) |
+| `haloreach-unused-dibs` | 1.0 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/yoink_2.mp3) |
+| `haloreach-unused-downtown` | 1.9 s | From way downtown! | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/downtown.mp3) |
+| `haloreach-unused-first-blood` | 1.7 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/first_strike_2.mp3) |
+| `haloreach-unused-grifball` | 1.0 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/grifball.mp3) |
+| `haloreach-unused-guardian` | 1.2 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/guardian.mp3) |
+| `haloreach-unused-headcase` | 1.3 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/headcase.mp3) |
+| `haloreach-unused-hells-jerome` | 2.5 s | Hell's Jerome! | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/hells_jerome.mp3) |
+| `haloreach-unused-katanarama` | 2.5 s | Katanarama! | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sword_15.mp3) |
+| `haloreach-unused-leveled-up` | 1.1 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/leveled_up.mp3) |
+| `haloreach-unused-mayhem` | 1.6 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/mayhem.mp3) |
+| `haloreach-unused-on-fire` | 1.6 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/heat.mp3) |
+| `haloreach-unused-onslaught` | 1.3 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/onslaught.mp3) |
+| `haloreach-unused-opportunist` | 1.6 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/opportunist.mp3) |
+| `haloreach-unused-overwatch` | 1.3 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/showstopper_2.mp3) |
+| `haloreach-unused-pandemonium` | 1.4 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/pandemonium.mp3) |
+| `haloreach-unused-promoted` | 0.9 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/promoted.mp3) |
+| `haloreach-unused-pull` | 0.8 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/pull.mp3) |
+| `haloreach-unused-rank-up` | 1.2 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/rank_up.mp3) |
+| `haloreach-unused-roadblock` | 1.4 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/roadblock.mp3) |
+| `haloreach-unused-rocket-man` | 1.5 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/rocket_man.mp3) |
+| `haloreach-unused-sec-gunman` | 2.0 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sec_gunman.mp3) |
+| `haloreach-unused-sidekick` | 1.3 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sidekick.mp3) |
+| `haloreach-unused-skullamanjaro` | 2.5 s | Skullamanjaro! | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/skullamanjaro.mp3) |
+| `haloreach-unused-stalker` | 1.3 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/stalker.mp3) |
+| `haloreach-unused-sunburst` | 2.0 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sunburst.mp3) |
+| `haloreach-unused-treated` | 1.1 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/treated.mp3) |
+| `haloreach-unused-unscathed` | 1.8 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/unscathed.mp3) |
+| `haloreach-unused-vendetta` | 1.7 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/vendetta.mp3) |
+| `haloreach-unused-vengeance` | 1.4 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/revenge_2.mp3) |
+| `haloreach-unused-wingman` | 1.4 s |  | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/spawn_10.mp3) |
+| `haloreach-unused-you-suck` | 3.3 s | You suck! | [Halo: Reach, unused announcer lines released by Bungie, via archive.org](https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/you_suck.mp3) |
+| `haloreach-zombie-killing-spree` | 2.1 s |  | [Halo: Reach, via Myinstants](https://www.myinstants.com/media/sounds/halo-reach-zombie-killing-spree.mp3) |
+| `long/halo-fake-medals` | 10.3 s | T-bag. Groin to the face. Ball in a cup. Scrotum serve. Holding the crouch button. | [Halo (fan joke edit), via SoundCloud](https://soundcloud.com/boomie0123/halo-medals) |

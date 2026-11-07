@@ -2010,6 +2010,18 @@
 ]
 },
 {
+"f": "halo-betrayal",
+"pool": "short",
+"d": 1.0,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/betrayal_EKW4y6T.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "halo-double-kill",
 "pool": "short",
 "d": 1.3,
@@ -2021,6 +2033,18 @@
 "ev": [
 "out",
 "big"
+]
+},
+{
+"f": "halo-extermination",
+"pool": "short",
+"d": 2.0,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/extermination_pqUnqB8.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
 ]
 },
 {
@@ -2037,6 +2061,39 @@
 ]
 },
 {
+"f": "halo-headshot",
+"pool": "short",
+"d": 1.8,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/headshot_6.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "halo-invincible",
+"pool": "short",
+"d": 1.4,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/invincible_Gud6aoH.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo-juggernaut",
+"pool": "short",
+"d": 1.0,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/juggernaut_q95474K.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
 "f": "halo-killing-spree",
 "pool": "short",
 "d": 1.1,
@@ -2050,6 +2107,30 @@
 ]
 },
 {
+"f": "halo-killionaire",
+"pool": "short",
+"d": 1.1,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/killionaire.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo-killjoy",
+"pool": "short",
+"d": 1.2,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/killjoy.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
 "f": "halo-killtacular",
 "pool": "short",
 "d": 1.3,
@@ -2060,7 +2141,8 @@
 "quote": "Killtacular!",
 "ev": [
 "out",
-"cmdout"
+"cmdout",
+"big"
 ]
 },
 {
@@ -2073,7 +2155,8 @@
 "lic": "See note",
 "quote": "Overkill!",
 "ev": [
-"cmdout"
+"cmdout",
+"big"
 ]
 },
 {
@@ -2087,6 +2170,988 @@
 "quote": "Perfection!",
 "ev": [
 "win"
+]
+},
+{
+"f": "halo-running-riot",
+"pool": "short",
+"d": 1.3,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-running-riot.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo-skill-issue",
+"pool": "short",
+"d": 2.0,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/skill-issue-halo-announcer.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "halo-triple-kill",
+"pool": "short",
+"d": 1.3,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-triple-kill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo-unfrigginbelievable",
+"pool": "short",
+"d": 2.3,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-unfrigginbelievable.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo-yoink",
+"pool": "short",
+"d": 1.0,
+"src": "Halo, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/yoink-halo.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "halo3-double-kill",
+"pool": "short",
+"d": 1.3,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-inconceivable",
+"pool": "short",
+"d": 1.8,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-invincible",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killimanjaro",
+"pool": "short",
+"d": 1.3,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killing-frenzy",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killing-spree",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killionaire",
+"pool": "short",
+"d": 1.3,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killpocalypse",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killtacular",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout",
+"big"
+]
+},
+{
+"f": "halo3-killtastrophe",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-killtrocity",
+"pool": "short",
+"d": 1.4,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-overkill",
+"pool": "short",
+"d": 1.2,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout",
+"big"
+]
+},
+{
+"f": "halo3-rampage",
+"pool": "short",
+"d": 1.1,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-running-riot",
+"pool": "short",
+"d": 1.5,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-triple-kill",
+"pool": "short",
+"d": 1.2,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-unfrigginbelievable",
+"pool": "short",
+"d": 3.2,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "halo3-untouchable",
+"pool": "short",
+"d": 1.2,
+"src": "Halo 3 (probably: the upload says only Halo), via SoundCloud",
+"url": "https://soundcloud.com/ub3rwarrior/halo-kill-sounds-medals-sprees-announcer-sound-effect",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-double-kill",
+"pool": "short",
+"d": 1.0,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-double-kill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-extermination",
+"pool": "short",
+"d": 1.9,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-extermination-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-inconceivable",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-inconceivable.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-invincible",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-invincible.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killimanjaro",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-7-killamanjaro.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killing-frenzy",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killing-frenzy.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killing-spree",
+"pool": "short",
+"d": 1.0,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killing-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killionaire",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killionaire-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killjoy",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killjoy-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-killpocalypse",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killpocalypse-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killtacular",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killtacular.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout",
+"big"
+]
+},
+{
+"f": "haloreach-killtastrophe",
+"pool": "short",
+"d": 1.7,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killtastrophe-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-killtrocity",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-killtrocity.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-overkill",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-overkill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"cmdout",
+"big"
+]
+},
+{
+"f": "haloreach-perfection",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-perfection-voice.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-rampage",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-rampage.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-running-riot",
+"pool": "short",
+"d": 1.0,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-running-riot-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-shotgun-spree",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-shotgun-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-splatter-spree",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-splatter-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-sword-spree",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-sword-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-triple-kill",
+"pool": "short",
+"d": 0.9,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-triple-kill.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unfrigginbelievable",
+"pool": "short",
+"d": 2.2,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-unfrigginbelievable-voice.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-untouchable",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-untouchable.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-bank-shot",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/bank_shot.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-berserker",
+"pool": "short",
+"d": 1.9,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/berserker.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-birdstrike",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/birdstrike.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-blitzkrieg",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/blitzkrieg.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-bloodlust",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/close_call_2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-clutch",
+"pool": "short",
+"d": 1.0,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/clutch.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-coming-thru",
+"pool": "short",
+"d": 1.9,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/coming_thru.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-cool-spawn-bro",
+"pool": "short",
+"d": 2.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/cool_spawn_bro.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Cool spawn, bro."
+},
+{
+"f": "haloreach-unused-decoy",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/decoy.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-demolition-man",
+"pool": "short",
+"d": 1.6,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/one_man_army_2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-dibs",
+"pool": "short",
+"d": 1.0,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/yoink_2.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-downtown",
+"pool": "short",
+"d": 1.9,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/downtown.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "From way downtown!",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-first-blood",
+"pool": "short",
+"d": 1.7,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/first_strike_2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-unused-grifball",
+"pool": "short",
+"d": 1.0,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/grifball.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-guardian",
+"pool": "short",
+"d": 1.2,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/guardian.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-headcase",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/headcase.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-hells-jerome",
+"pool": "short",
+"d": 2.5,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/hells_jerome.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Hell's Jerome!",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-katanarama",
+"pool": "short",
+"d": 2.5,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sword_15.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Katanarama!",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-leveled-up",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/leveled_up.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-mayhem",
+"pool": "short",
+"d": 1.6,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/mayhem.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-on-fire",
+"pool": "short",
+"d": 1.6,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/heat.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-onslaught",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/onslaught.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-opportunist",
+"pool": "short",
+"d": 1.6,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/opportunist.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-overwatch",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/showstopper_2.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-pandemonium",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/pandemonium.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-promoted",
+"pool": "short",
+"d": 0.9,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/promoted.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-pull",
+"pool": "short",
+"d": 0.8,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/pull.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-rank-up",
+"pool": "short",
+"d": 1.2,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/rank_up.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-roadblock",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/roadblock.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-rocket-man",
+"pool": "short",
+"d": 1.5,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/rocket_man.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
+]
+},
+{
+"f": "haloreach-unused-sec-gunman",
+"pool": "short",
+"d": 2.0,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sec_gunman.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-sidekick",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sidekick.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-skullamanjaro",
+"pool": "short",
+"d": 2.5,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/skullamanjaro.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "Skullamanjaro!"
+},
+{
+"f": "haloreach-unused-stalker",
+"pool": "short",
+"d": 1.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/stalker.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-sunburst",
+"pool": "short",
+"d": 2.0,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/sunburst.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-treated",
+"pool": "short",
+"d": 1.1,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/treated.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-unused-unscathed",
+"pool": "short",
+"d": 1.8,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/unscathed.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-vendetta",
+"pool": "short",
+"d": 1.7,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/vendetta.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-unused-vengeance",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/revenge_2.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-unused-wingman",
+"pool": "short",
+"d": 1.4,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/spawn_10.mp3",
+"grp": "Video games",
+"lic": "See note"
+},
+{
+"f": "haloreach-unused-you-suck",
+"pool": "short",
+"d": 3.3,
+"src": "Halo: Reach, unused announcer lines released by Bungie, via archive.org",
+"url": "https://archive.org/download/Halo_Reach_Unused_MP_Announcer_2010-11/you_suck.mp3",
+"grp": "Video games",
+"lic": "See note",
+"quote": "You suck!",
+"ev": [
+"out"
+]
+},
+{
+"f": "haloreach-zombie-killing-spree",
+"pool": "short",
+"d": 2.1,
+"src": "Halo: Reach, via Myinstants",
+"url": "https://www.myinstants.com/media/sounds/halo-reach-zombie-killing-spree.mp3",
+"grp": "Video games",
+"lic": "See note",
+"ev": [
+"big"
 ]
 },
 {
@@ -6578,6 +7643,19 @@
 "url": "https://www.myinstants.com/media/sounds/wasted-gta-5.mp3",
 "grp": "Video games",
 "lic": "See note",
+"ev": [
+"out"
+]
+},
+{
+"f": "long/halo-fake-medals",
+"pool": "long",
+"d": 10.3,
+"src": "Halo (fan joke edit), via SoundCloud",
+"url": "https://soundcloud.com/boomie0123/halo-medals",
+"grp": "Video games",
+"lic": "See note",
+"quote": "T-bag. Groin to the face. Ball in a cup. Scrotum serve. Holding the crouch button.",
 "ev": [
 "out"
 ]
