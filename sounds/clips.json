@@ -217,7 +217,7 @@
 "url": "https://opengameart.org/content/au-yeah",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "baby-sound-effect",
@@ -708,7 +708,7 @@
 "url": "https://opengameart.org/content/cheers-0",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "chipper-chopper-upper",
@@ -1048,7 +1048,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-feeble-humans",
@@ -1058,7 +1058,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-game-over",
@@ -1068,7 +1068,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-he-s-escaped",
@@ -1078,7 +1078,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-kill-him-slowly",
@@ -1088,7 +1088,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-kill-them-slowly",
@@ -1098,7 +1098,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-laughs",
@@ -1118,7 +1118,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-moohaaa-laugh",
@@ -1138,7 +1138,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-nothing-to-fear",
@@ -1148,7 +1148,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-nowhere-to-run",
@@ -1158,7 +1158,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-search-all-dungens",
@@ -1168,7 +1168,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-search-the-grounds",
@@ -1178,7 +1178,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-she-s-escaped",
@@ -1188,7 +1188,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-silence",
@@ -1198,7 +1198,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-smell-flesh-boy",
@@ -1208,7 +1208,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-smell-flesh-girl",
@@ -1218,7 +1218,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-snigger-1",
@@ -1238,7 +1238,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-they-ve-escaped",
@@ -1248,7 +1248,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-visitor",
@@ -1258,7 +1258,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-voice-game-over",
@@ -1268,7 +1268,7 @@
 "url": "https://opengameart.org/content/demon-voice-game-over",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-wait-she-s-mine",
@@ -1278,7 +1278,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-welcome-to-hell",
@@ -1288,7 +1288,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "demon-you-fools-let-him-escape",
@@ -1298,7 +1298,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "dishes-1",
@@ -1788,7 +1788,7 @@
 "url": "https://opengameart.org/content/gotcha",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "gross-crachat",
@@ -2008,7 +2008,7 @@
 "url": "https://opengameart.org/content/he-will-decide-your-fate",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "hihihihihihihihing",
@@ -2138,7 +2138,7 @@
 "url": "https://opengameart.org/content/i-see-you-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "insect-or-alien-scream-short",
@@ -2463,7 +2463,7 @@
 "url": "https://opengameart.org/content/little-girl-saying-game-over",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "maniacal-laughter-pack-1",
@@ -2645,7 +2645,7 @@
 "url": "https://opengameart.org/content/oh-you-scared-me",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "oldschool-death",
@@ -3132,7 +3132,7 @@
 "url": "https://opengameart.org/content/silly-me",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "sinister-laugh-filtered",
@@ -4759,7 +4759,7 @@
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "voice-well-done",
@@ -4769,7 +4769,7 @@
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "vulture",
@@ -5618,7 +5618,7 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "long/diarrhea",
@@ -5670,7 +5670,7 @@
 "url": "https://opengameart.org/content/female-warrior-cheer",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "sound"
+"kind": "talk"
 },
 {
 "f": "long/fireworks-with-applause-happy-people",
