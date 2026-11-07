@@ -102,15 +102,15 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    still turns each one to face its owner's side and an upright phone faces them all to its owner. */
 .board.n4.quad { grid-template-areas: "left top" "bottom right"; grid-template-rows: 1fr 1fr; }
 /* Big button (v1.22, a 4-player layout option, made for an iPad on the table): Table's seats on the
-   phone's edges with a cell of their own in the middle (.hub-spot), so the turn button can be huge
-   without covering the side seats' totals. placeTurn() sizes it to the cell. */
-.board.n4.hub {
-  grid-template-areas: "top top top" "left hub right" "bottom bottom bottom";
-  grid-template-rows: 1fr minmax(40vmin, 1.4fr) 1fr; grid-template-columns: 1fr 40vmin 1fr;
-}
-.hub-spot { grid-area: hub; }
+   phone's edges with a huge turn button where the side seats meet. v1.23: the side seats run right
+   up to the middle (v1.22 left an empty cell round the button), so all of it is tap area; their
+   totals are moved clear of the button (hubLife()). */
+.board.n4.hub { grid-template-rows: 1fr 1.4fr 1fr; }
+/* On a Center phone the side seats' tops face the middle, under the button, so their names go to
+   the bottom, by their player's own edge. */
+.hub:not(.upright) .s1 .name, .hub:not(.upright) .s3 .name { top: auto; bottom: calc(7 * var(--cqh, 1vh)); }
 .hub ~ .turn-big { border-width: 5px; box-shadow: 0 0 0 3px var(--line), 0 0 44px rgba(255, 179, 71, .6), 0 8px 20px rgba(0, 0, 0, .55); }
-.hub + .menu-btn { transform: none; }
+.hub + .menu-btn { transform: none; z-index: 11; }
 /* Spotlight (v3.35, the default at 3 and 4 players): whoever has the turn takes the bottom half
    (v3.36; it was the top), the others share the top in turn order after them. Everyone faces this
    phone's player. */
@@ -631,7 +631,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.22';
+  const VERSION = '1.23';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1095,11 +1095,6 @@ details.field[open] > summary { margin-bottom: 10px; }
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
-    if (lay === 'hub') {
-      const hub = document.createElement('div');
-      hub.className = 'hub-spot';
-      board.appendChild(hub);
-    }
     app.appendChild(board);
     const mb = document.createElement('button');
     mb.type = 'button';
@@ -1178,18 +1173,49 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   // Four seats around the edges (Table) have the side seats' totals in the middle of the phone, so
   // there the turn and menu buttons sit on the line above the bottom seat instead.
+  // Big button: the turn button's center and radius, from the left seat's place on the board. Layout
+  // offsets, not screen rects, so a pinned (turned) board measures the same.
+  function hubGeom() {
+    const board = app.querySelector('.board.hub'), s1 = board && board.querySelector('.s1');
+    if (!s1) return null;
+    const r = Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
+    return { x: board.offsetLeft + board.offsetWidth / 2, y: s1.offsetTop + s1.offsetHeight / 2, r };
+  }
+  // Big button: each side seat's total centers in the part of the seat the button leaves free. On a
+  // player's phone that's the outer side of the seat; on a Center phone the side seats' tops face
+  // the button, and their names sit at the bottom (see the styles).
+  function hubLife() {
+    seats.flat().forEach(seat => {
+      const free = hubFree(seat);
+      if (!free) return;
+      const readout = seat.querySelector('.readout');
+      readout.style.padding = '';
+      readout.style['padding' + free.side] = free.cut + 'px';
+      if (free.side === 'Top') readout.style.paddingBottom = free.name + 'px';
+    });
+  }
+  // The room a Big button side seat has for its total, in its face's own (unturned) layout: the
+  // button's reach is cut off the side toward the middle (its top, on a Center phone, where the
+  // name moves to the bottom). Null for any other seat.
+  function hubFree(seat) {
+    const hub = hubGeom();
+    const side = !hub ? null : seat.classList.contains('s1') ? 'Right' : seat.classList.contains('s3') ? 'Left' : null;
+    if (!side) return null;
+    const face = seat.querySelector('.face'), name = seat.querySelector('.name');
+    const cut = hub.r + 8 - 3; // half the 6px gap between the seats is free
+    const nm = .07 * face.offsetHeight + name.offsetHeight + 6;
+    if (app.querySelector('.board.upright')) return { side, cut, w: face.offsetWidth - cut - 12, h: face.offsetHeight - 2 * nm };
+    return { side: 'Top', cut, name: nm, w: .9 * face.offsetWidth, h: face.offsetHeight - cut - nm };
+  }
   function placeTurn() {
     const board = app.querySelector('.board'), btns = app.querySelectorAll('.turn-big, .menu-btn');
     btns.forEach(b => { b.style.top = b.style.left = b.style.width = b.style.height = ''; });
-    // Big button: the turn button fills the middle cell, the menu button sits in its corner. Layout
-    // offsets, not screen rects, so a pinned (turned) board measures the same.
-    const hub = board && board.querySelector('.hub-spot');
+    // Big button: the turn button sits where the side seats meet, the menu button on its rim.
+    const hub = hubGeom();
     if (hub) {
-      const x = hub.offsetLeft, y = hub.offsetTop, w = hub.offsetWidth, h = hub.offsetHeight;
-      const d = Math.round(.86 * Math.min(w, h));
-      const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn');
-      Object.assign(tb.style, { left: x + w / 2 + 'px', top: y + h / 2 + 'px', width: d + 'px', height: d + 'px' });
-      Object.assign(mb.style, { left: x + w - 46 + 'px', top: y + h - 46 + 'px' });
+      const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn'), off = .72 * hub.r;
+      Object.assign(tb.style, { left: hub.x + 'px', top: hub.y + 'px', width: 2 * hub.r + 'px', height: 2 * hub.r + 'px' });
+      Object.assign(mb.style, { left: hub.x + off - 23 + 'px', top: hub.y + off - 23 + 'px' });
       return;
     }
     const s0 = board && board.matches('.n4.table:not(.quad):not(.spot)') && board.querySelector('.s0');
@@ -1211,6 +1237,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       readout.style.paddingTop = top + 'px';
       readout.style.paddingBottom = Math.max(0, face.offsetHeight - bottom) + 'px';
     });
+    hubLife();
   }
   // One size for every total: each seat's own largest size (from the styles) is read, and all of
   // them take the smallest.
@@ -1221,7 +1248,10 @@ details.field[open] > summary { margin-bottom: 10px; }
     // 10% over the smallest seat's size (v3.33); the seats' own sizes leave that much room. The
     // spotlight's seat is sized on its own, the rest together (sizeGroup).
     groupBy(Array.from(board.querySelectorAll('.seat'))).forEach(group => {
-      const px = 1.1 * Math.min(...group.map(seat => parseFloat(getComputedStyle(seat.querySelector('.life')).fontSize)));
+      // Big button side seats also cap it to the room the button leaves them (three digits at
+      // 0.75 size are about 1.32em wide).
+      const caps = group.map(hubFree).filter(Boolean).map(f => Math.min(f.w / 1.32, f.h));
+      const px = Math.min(1.1 * Math.min(...group.map(seat => parseFloat(getComputedStyle(seat.querySelector('.life')).fontSize))), ...caps);
       group.forEach(seat => seat.style.setProperty('--life', px + 'px'));
     });
     board.classList.add('fitted');
