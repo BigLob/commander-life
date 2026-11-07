@@ -58,7 +58,7 @@ const canPlay=!location.hostname||/github\.io$|localhost|127\.0\.0\.1/.test(loca
 if(!canPlay)document.body.classList.add('noplay');
 const F={grp:'',pool:'',kind:'',q:'',sort:'n'};
 const tot=CLIPS.reduce((a,c)=>a+c.d,0);
-$('sum').textContent=`${CLIPS.length} clips, ${Math.round(tot/60)} minutes in all. Each tap is short (3 s at most) or long (over 3 s) in proportion to how many of each are still unplayed, so both run out about together. Each tap is a sound 70% of the time and dialogue 30%.`+(canPlay?' Tap ▶ to hear one.':'');
+$('sum').textContent=`${CLIPS.length} clips, ${Math.round(tot/60)} minutes in all. Clips are short (3 s at most) or long (over 3 s), and sounds or dialogue. Each tap picks short or long, sound or dialogue, in proportion to how many of each are still unplayed, so all of them run out about together.`+(canPlay?' Tap ▶ to hear one.':'');
 function chips(el,key,opts){el.innerHTML=opts.map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${F[key]===v}">${l}<span class="ct">${CLIPS.filter(c=>!v||c[key]===v).length}</span></button>`).join('');
  el.onclick=e=>{const b=e.target.closest('button');if(!b)return;F[key]=b.dataset.v;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()}}
 chips($('grp'),'grp',[['','All']].concat([...new Set(CLIPS.map(c=>c.grp))].sort((a,b)=>CLIPS.filter(c=>c.grp===b).length-CLIPS.filter(c=>c.grp===a).length).map(g=>[g,g])));
