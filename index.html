@@ -620,7 +620,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.20';
+  const VERSION = '1.21';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1884,17 +1884,33 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, speaker: state.speaker, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
+  // Own writes in flight (v1.21). The stream echoes each write back a round trip later, so during
+  // fast taps it brought back totals this phone had already moved past (tap 40 to 37, then the
+  // echo of the first tap showed 39 again): every phone's totals bounced, which read as heavy lag.
+  // Now a path this phone is still writing is left alone (`pending`, per path), and HOLD ms after
+  // its last write lands the table's value is taken, by then including every tap from every phone.
+  const HOLD = 700;
+  const pending = {}, landed = {}, trips = [];
+  const held = p => pending[p] > 0 || Date.now() - (landed[p] || 0) < HOLD;
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
     if (!DB) return;
-    const body = JSON.stringify(patch);
+    const body = JSON.stringify(patch), keys = Object.keys(patch), t0 = Date.now();
     const plain = {};
-    Object.keys(patch).forEach(k => { plain[k] = patch[k] && patch[k]['.sv'] ? getAt(state, k) : patch[k]; });
+    keys.forEach(k => { plain[k] = patch[k] && patch[k]['.sv'] ? getAt(state, k) : patch[k]; pending[k] = (pending[k] || 0) + 1; });
+    const done = () => {
+      const now = Date.now();
+      trips.push(now - t0); if (trips.length > 15) trips.shift();
+      keys.forEach(k => { pending[k] = Math.max(0, pending[k] - 1); if (!pending[k]) landed[k] = now; });
+      showVer();
+      setTimeout(() => { if (mirror) adopt(); }, HOLD + 50);
+    };
     fetch(TABLE_URL, { method: 'PATCH', body })
       .then(res => {
         if (!res.ok && body !== JSON.stringify(plain)) return fetch(TABLE_URL, { method: 'PATCH', body: JSON.stringify(plain) });
       })
-      .catch(() => {});
+      .catch(() => {})
+      .then(done);
   }
 
   function validValue(p, v) {
@@ -1945,7 +1961,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       if (v === undefined && p.endsWith('/conceded') && getAt(mirror, p.slice(0, -'/conceded'.length))) v = false;
       // A table that holds no meta, turn or turn timer (cleared, or set up by an older phone) has none.
       if (v === undefined && /^(meta|turns|clock|speaker)\//.test(p) && mirror && typeof mirror === 'object') v = null;
-      if (v !== undefined && v !== was && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
+      if (v !== undefined && v !== was && !held(p) && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
     hearPing();
     // The speaker setting changes only the menu and the wake-up note, never the board.
@@ -2030,11 +2046,14 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   document.addEventListener('pointerdown', () => setTimeout(speakerWake, 300), true);
 
-  function setLive(on) {
-    live = on;
-    document.getElementById('ver').textContent =
-      'v' + VERSION + ' · ' + (on ? 'Sharing live with this table' : 'Offline, this phone only');
+  // The footer shows the typical round trip of this phone's writes (v1.21), to see how fast each
+  // device really syncs.
+  function showVer() {
+    const t = trips.slice().sort((a, b) => a - b), ms = t.length ? t[t.length >> 1] : null;
+    document.getElementById('ver').textContent = 'v' + VERSION + ' · ' +
+      (live ? 'Sharing live with this table' + (ms != null ? ' · ' + ms + ' ms' : '') : 'Offline, this phone only');
   }
+  function setLive(on) { live = on; showVer(); }
   let stream = null;
   function connect() {
     if (stream) stream.close();
