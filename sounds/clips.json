@@ -6,25 +6,28 @@
 "src": "16Bit Success Sound",
 "url": "https://opengameart.org/content/16bit-success-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "8bit-fanfare-jingle-the-lick",
-"pool": "short",
+"pool": "long",
 "d": 3.1,
 "src": "8Bit Fanfare Jingle The Lick",
 "url": "https://opengameart.org/content/8bit-fanfare-jingle-the-lick",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "a-surprising-twist-nes-sting",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "A Surprising Twist Nes Sting",
 "url": "https://opengameart.org/content/a-surprising-twist-nes-sting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "aap",
@@ -33,16 +36,18 @@
 "src": "Random SFX",
 "url": "https://opengameart.org/content/random-sfx-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "accordion",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "Accordion Sound",
 "url": "https://opengameart.org/content/accordion-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "alarm-vocal",
@@ -51,34 +56,38 @@
 "src": "Alarm Vocal",
 "url": "https://opengameart.org/content/alarm-vocal",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "and-the-winner-is",
-"pool": "short",
+"pool": "long",
 "d": 3.9,
 "src": "And The Winner Is",
 "url": "https://opengameart.org/content/and-the-winner-is",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-atomize",
-"pool": "short",
+"pool": "long",
 "d": 3.1,
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-beach",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-beam",
@@ -87,7 +96,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-beam2",
@@ -96,7 +106,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-bloops",
@@ -105,7 +116,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-boing",
@@ -114,7 +126,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-martianray",
@@ -123,7 +136,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-odd",
@@ -132,7 +146,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-odd2",
@@ -141,7 +156,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-sfx1",
@@ -150,7 +166,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-thump",
@@ -159,7 +176,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-trekscan",
@@ -168,7 +186,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-whoosh",
@@ -177,7 +196,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "arcade-whoosh2",
@@ -186,7 +206,8 @@
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "au-yeah",
@@ -195,7 +216,8 @@
 "src": "Au Yeah",
 "url": "https://opengameart.org/content/au-yeah",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "baby-sound-effect",
@@ -204,7 +226,8 @@
 "src": "Baby Sound Effect",
 "url": "https://opengameart.org/content/baby-sound-effect",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bell-1",
@@ -213,7 +236,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bell-3",
@@ -222,7 +246,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "better-luck-next-time",
@@ -231,7 +256,8 @@
 "src": "Better Luck Next Time",
 "url": "https://opengameart.org/content/better-luck-next-time",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "biden-come-on-man",
@@ -240,16 +266,18 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.0,
-"quote": "Come on, man!"
+"quote": "Come on, man!",
+"kind": "talk"
 },
 {
 "f": "biden-gibberish",
 "src": "myinstants: Joe Biden Gibberish",
 "url": "https://www.myinstants.com/media/sounds/joe-biden-gibberish.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.3,
-"quote": "I was in the fudg... fudg... fudg..."
+"quote": "I was in the fudg... fudg... fudg...",
+"kind": "talk"
 },
 {
 "f": "biden-kids-better-than-people",
@@ -258,25 +286,28 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.2,
-"quote": "Everybody knows I like kids better than people."
+"quote": "Everybody knows I like kids better than people.",
+"kind": "talk"
 },
 {
 "f": "biden-never-been-poor",
 "src": "myinstants: Biden is not Poor",
 "url": "https://www.myinstants.com/media/sounds/biden-is-not-poor.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.7,
-"quote": "I'm going to say something outrageous. I have never been particularly poor."
+"quote": "I'm going to say something outrageous. I have never been particularly poor.",
+"kind": "talk"
 },
 {
 "f": "biden-old-as-i-am",
 "src": "myinstants: Biden Fly",
 "url": "https://www.myinstants.com/media/sounds/biden-fly.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.4,
-"quote": "I no more think of myself as being as old as I am than fly."
+"quote": "I no more think of myself as being as old as I am than fly.",
+"kind": "talk"
 },
 {
 "f": "biden-single-word",
@@ -285,7 +316,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.7,
-"quote": "America can be defined in a single word: I-was-in-the-foot-in-the-foot."
+"quote": "America can be defined in a single word: I-was-in-the-foot-in-the-foot.",
+"kind": "talk"
 },
 {
 "f": "biden-smart-guys",
@@ -294,7 +326,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.9,
-"quote": "Well, I'm sick and tired of smart guys!"
+"quote": "Well, I'm sick and tired of smart guys!",
+"kind": "talk"
 },
 {
 "f": "biden-stupid-son-of-a-bitch",
@@ -303,25 +336,28 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.8,
-"quote": "What a stupid son of a bitch."
+"quote": "What a stupid son of a bitch.",
+"kind": "talk"
 },
 {
 "f": "biden-take-a-test",
 "src": "myinstants: Biden Take a test",
 "url": "https://www.myinstants.com/media/sounds/biden-take-a-test.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.4,
-"quote": "Why the hell would I take a test? Come on, man!"
+"quote": "Why the hell would I take a test? Come on, man!",
+"kind": "talk"
 },
 {
 "f": "biden-what-am-i-doing-here",
 "src": "myinstants: Biden What am I doing here",
 "url": "https://www.myinstants.com/media/sounds/biden-what-am-i-doing-here.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.9,
-"quote": "And what am I doing here?"
+"quote": "And what am I doing here?",
+"kind": "talk"
 },
 {
 "f": "biden-what-in-the-heck",
@@ -330,16 +366,18 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.8,
-"quote": "What in the heck are we talking about here?"
+"quote": "What in the heck are we talking about here?",
+"kind": "talk"
 },
 {
 "f": "biden-who-does-he-think-he-is",
 "src": "myinstants: Biden: Who Does He Think He Is!?",
 "url": "https://www.myinstants.com/media/sounds/biden-who-does-he-think-he-is.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.9,
-"quote": "Who in the hell does he think he is? Who does he think he is?"
+"quote": "Who in the hell does he think he is? Who does he think he is?",
+"kind": "talk"
 },
 {
 "f": "biden-will-you-shut-up-man",
@@ -348,7 +386,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.7,
-"quote": "Would you shut up, man?"
+"quote": "Would you shut up, man?",
+"kind": "talk"
 },
 {
 "f": "biden-you-know-the-thing",
@@ -357,25 +396,28 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.9,
-"quote": "You know, the thing."
+"quote": "You know, the thing.",
+"kind": "talk"
 },
 {
 "f": "big-boing",
-"pool": "short",
+"pool": "long",
 "d": 3.7,
 "src": "Boing",
 "url": "https://opengameart.org/content/boing",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "big-scary-troll-sounds",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Big Scary Troll Sounds",
 "url": "https://opengameart.org/content/big-scary-troll-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bike-horn",
@@ -384,7 +426,8 @@
 "src": "Bicycle Horn",
 "url": "https://opengameart.org/content/bicycle-horn",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bing-1",
@@ -393,7 +436,8 @@
 "src": "Boings",
 "url": "https://opengameart.org/content/boings",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bing-2",
@@ -402,7 +446,8 @@
 "src": "Boings",
 "url": "https://opengameart.org/content/boings",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "blah",
@@ -411,7 +456,8 @@
 "src": "Silly Sound Effects",
 "url": "https://opengameart.org/content/silly-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bloop",
@@ -420,7 +466,8 @@
 "src": "Silly Sound Effects",
 "url": "https://opengameart.org/content/silly-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "blung",
@@ -429,7 +476,8 @@
 "src": "Silly Sound Effects",
 "url": "https://opengameart.org/content/silly-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "booleh",
@@ -438,7 +486,8 @@
 "src": "Silly Sound Effects",
 "url": "https://opengameart.org/content/silly-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bung-1",
@@ -447,27 +496,30 @@
 "src": "Boings",
 "url": "https://opengameart.org/content/boings",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "bush-bulgaria-achievements",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "YouTube: youtu.be/HK_MzsVOQRQ",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "People of Bulgaria ought to be proud of the achievements that they have achieved.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-fish-coexist",
-"pool": "short",
+"pool": "long",
 "d": 4.8,
 "src": "YouTube: youtu.be/20Jcrk6jGfo",
 "url": "https://youtu.be/20Jcrk6jGfo",
 "quote": "I know the human being and fish can coexist peacefully.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-food-on-your-family",
@@ -477,27 +529,30 @@
 "url": "https://youtu.be/_v4tig8HnlU",
 "quote": "You're working hard to put food on your family.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-is-our-children-learning",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "YouTube: youtu.be/GC-6Vc8YX9c",
 "url": "https://youtu.be/GC-6Vc8YX9c",
 "quote": "Rarely is the question asked: is our children learning?",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-let-me-let-me",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
 "src": "YouTube: youtu.be/HK_MzsVOQRQ",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "Let me, let me, let me, let me.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-misunderestimated",
@@ -507,7 +562,8 @@
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "They misunderestimated me.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-one-finger-salute",
@@ -517,47 +573,52 @@
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "Just a one finger victory salute.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-prime-minister-of-india",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "YouTube: youtu.be/HK_MzsVOQRQ",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "The new Prime Minister of India is, uh, uh, no.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-the-google",
-"pool": "short",
+"pool": "long",
 "d": 3.7,
 "src": "YouTube: youtu.be/HK_MzsVOQRQ",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "One of the things I've used on the Google is to pull up map.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-we-will-fail",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "YouTube: youtu.be/HK_MzsVOQRQ",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "Not one doubt in my mind that we will fail.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "bush-where-wings-take-dream",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
 "src": "YouTube: youtu.be/ijiqLeqYeoU",
 "url": "https://youtu.be/ijiqLeqYeoU",
 "quote": "Families is where our nation finds hope, where wings take dream.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "castle-fanfare",
@@ -566,16 +627,18 @@
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "cc0-deep-monster-roar",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Cc0 Deep Monster Roar",
 "url": "https://opengameart.org/content/cc0-deep-monster-roar",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ccut",
@@ -584,25 +647,28 @@
 "src": "Ccut",
 "url": "https://opengameart.org/content/ccut",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "chant-16",
-"pool": "short",
+"pool": "long",
 "d": 4.8,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "chant-20",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "chant-22",
@@ -611,25 +677,28 @@
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "chant-8",
-"pool": "short",
+"pool": "long",
 "d": 4.5,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "chant-ethereal",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "cheers-0",
@@ -638,16 +707,18 @@
 "src": "Cheers 0",
 "url": "https://opengameart.org/content/cheers-0",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "chipper-chopper-upper",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Chipper Chopper Upper",
 "url": "https://opengameart.org/content/chipper-chopper-upper",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "classic-fanfare-lick",
@@ -656,16 +727,18 @@
 "src": "Classic Fanfare Lick",
 "url": "https://opengameart.org/content/classic-fanfare-lick",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "cough",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Old Man Cough",
 "url": "https://opengameart.org/content/old-man-cough",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-alien-02",
@@ -674,7 +747,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-alien-04",
@@ -683,7 +757,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-alien-05",
@@ -692,7 +767,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-alien-06",
@@ -701,7 +777,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-alien-12",
@@ -710,7 +787,8 @@
 "src": "80 Cc0 Creture Sfx 2",
 "url": "https://opengameart.org/content/80-cc0-creture-sfx-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-attack-02",
@@ -719,7 +797,8 @@
 "src": "80 Cc0 Creture Sfx 2",
 "url": "https://opengameart.org/content/80-cc0-creture-sfx-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-bug-10",
@@ -728,7 +807,8 @@
 "src": "80 Cc0 Creture Sfx 2",
 "url": "https://opengameart.org/content/80-cc0-creture-sfx-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-bug-12",
@@ -737,7 +817,8 @@
 "src": "80 Cc0 Creture Sfx 2",
 "url": "https://opengameart.org/content/80-cc0-creture-sfx-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-bug-13",
@@ -746,7 +827,8 @@
 "src": "80 Cc0 Creture Sfx 2",
 "url": "https://opengameart.org/content/80-cc0-creture-sfx-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-burble-01",
@@ -755,7 +837,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-cute-02",
@@ -764,7 +847,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-cute-05",
@@ -773,7 +857,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-cute-07",
@@ -782,7 +867,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-cute-09",
@@ -791,7 +877,8 @@
 "src": "80 Cc0 Creature Sfx",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-eat-01",
@@ -800,7 +887,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-eat-03",
@@ -809,7 +897,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-eat-04",
@@ -818,7 +907,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-human-02",
@@ -827,7 +917,8 @@
 "src": "80 Cc0 Creture Sfx 2",
 "url": "https://opengameart.org/content/80-cc0-creture-sfx-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-misc-02",
@@ -836,7 +927,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-misc-03",
@@ -845,7 +937,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-misc-04",
@@ -854,7 +947,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-misc-09",
@@ -863,7 +957,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-misc-12",
@@ -872,7 +967,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-monster-10",
@@ -881,7 +977,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-monster-13",
@@ -890,7 +987,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "critter-slime-08",
@@ -899,7 +997,8 @@
 "src": "80 CC0 Creature SFX (pack 1 or 2)",
 "url": "https://opengameart.org/content/80-cc0-creature-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "croak-1",
@@ -908,7 +1007,8 @@
 "src": "Frog Croaks",
 "url": "https://opengameart.org/content/frog-croaks",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "croak-3",
@@ -917,7 +1017,8 @@
 "src": "Frog Croaks",
 "url": "https://opengameart.org/content/frog-croaks",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "croak-4",
@@ -926,34 +1027,38 @@
 "src": "Frog Croaks",
 "url": "https://opengameart.org/content/frog-croaks",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-dies",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-feast-on-soul",
-"pool": "short",
+"pool": "long",
 "d": 3.1,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-feeble-humans",
-"pool": "short",
+"pool": "long",
 "d": 4.3,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-game-over",
@@ -962,43 +1067,48 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-he-s-escaped",
-"pool": "short",
+"pool": "long",
 "d": 4.9,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-kill-him-slowly",
-"pool": "short",
+"pool": "long",
 "d": 3.9,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-kill-them-slowly",
-"pool": "short",
+"pool": "long",
 "d": 4.5,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-laughs",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-make-you-my-pet",
@@ -1007,16 +1117,18 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-moohaaa-laugh",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-not-welcome",
@@ -1025,7 +1137,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-nothing-to-fear",
@@ -1034,7 +1147,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-nowhere-to-run",
@@ -1043,7 +1157,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-search-all-dungens",
@@ -1052,7 +1167,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-search-the-grounds",
@@ -1061,16 +1177,18 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-she-s-escaped",
-"pool": "short",
+"pool": "long",
 "d": 4.7,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-silence",
@@ -1079,7 +1197,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-smell-flesh-boy",
@@ -1088,7 +1207,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-smell-flesh-girl",
@@ -1097,7 +1217,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-snigger-1",
@@ -1106,7 +1227,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-stay-for-dinner",
@@ -1115,16 +1237,18 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-they-ve-escaped",
-"pool": "short",
+"pool": "long",
 "d": 4.9,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-visitor",
@@ -1133,25 +1257,28 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-voice-game-over",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Demon Voice Game Over",
 "url": "https://opengameart.org/content/demon-voice-game-over",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-wait-she-s-mine",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-welcome-to-hell",
@@ -1160,7 +1287,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "demon-you-fools-let-him-escape",
@@ -1169,7 +1297,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "dishes-1",
@@ -1178,16 +1307,18 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "dog-2",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "dog-bark-3",
@@ -1196,7 +1327,8 @@
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "dog-bark",
@@ -1205,16 +1337,18 @@
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "dog-sad-dog-1",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "doop",
@@ -1223,7 +1357,8 @@
 "src": "Random SFX",
 "url": "https://opengameart.org/content/random-sfx-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "door-spring-1",
@@ -1232,7 +1367,8 @@
 "src": "Spring Sounds",
 "url": "https://opengameart.org/content/spring-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "door-spring-2",
@@ -1241,7 +1377,8 @@
 "src": "Spring Sounds",
 "url": "https://opengameart.org/content/spring-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "door-spring-3",
@@ -1250,7 +1387,8 @@
 "src": "Spring Sounds",
 "url": "https://opengameart.org/content/spring-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "door-spring-4",
@@ -1259,7 +1397,8 @@
 "src": "Spring Sounds",
 "url": "https://opengameart.org/content/spring-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "door-spring-5",
@@ -1268,7 +1407,8 @@
 "src": "Spring Sounds",
 "url": "https://opengameart.org/content/spring-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "door-spring-6",
@@ -1277,25 +1417,28 @@
 "src": "Spring Sounds",
 "url": "https://opengameart.org/content/spring-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "dynamite",
-"pool": "short",
+"pool": "long",
 "d": 3.6,
 "src": "Dynamite Sound Effect",
 "url": "https://opengameart.org/content/dynamite-sound-effect",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-cackle-laugh-1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Evil Cackle Laugh 1",
 "url": "https://opengameart.org/content/evil-cackle-laugh-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-cackle-laugh-2",
@@ -1304,7 +1447,8 @@
 "src": "Evil Cackle Laugh 2",
 "url": "https://opengameart.org/content/evil-cackle-laugh-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-cyber-laugh",
@@ -1313,7 +1457,8 @@
 "src": "Evil Cyber Laugh",
 "url": "https://opengameart.org/content/evil-cyber-laugh",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-laugh",
@@ -1322,7 +1467,8 @@
 "src": "Evil Laugh",
 "url": "https://opengameart.org/content/evil-laugh",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-laugh2",
@@ -1331,43 +1477,48 @@
 "src": "Evil Laugh 2",
 "url": "https://opengameart.org/content/evil-laugh-2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-laughter-0",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "Evil Laughter 0",
 "url": "https://opengameart.org/content/evil-laughter-0",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-laughter",
-"pool": "short",
+"pool": "long",
 "d": 4.4,
 "src": "Evil Laughter",
 "url": "https://opengameart.org/content/evil-laughter",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "evil-screech-1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Evil Screech 1",
 "url": "https://opengameart.org/content/evil-screech-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "excited-horror-sound",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Excited Horror Sound",
 "url": "https://opengameart.org/content/excited-horror-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "explosion",
@@ -1376,25 +1527,28 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "fart-1",
-"pool": "short",
+"pool": "long",
 "d": 4.8,
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "fart-2",
-"pool": "short",
+"pool": "long",
 "d": 4.9,
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "fart-3",
@@ -1403,7 +1557,8 @@
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "fart-4",
@@ -1412,16 +1567,18 @@
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "female-high-pitched-scream-sfx",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Female High Pitched Scream Sfx",
 "url": "https://opengameart.org/content/female-high-pitched-scream-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "female-scream-1",
@@ -1430,16 +1587,18 @@
 "src": "Female Scream 1",
 "url": "https://opengameart.org/content/female-scream-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "final-lap",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "foghorn-kinda-gross",
@@ -1448,7 +1607,8 @@
 "src": "Foghorn Kinda Gross",
 "url": "https://opengameart.org/content/foghorn-kinda-gross",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "frog-1",
@@ -1457,7 +1617,8 @@
 "src": "Mutant Frog",
 "url": "https://opengameart.org/content/mutant-frog",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "frog-2",
@@ -1466,7 +1627,8 @@
 "src": "Mutant Frog",
 "url": "https://opengameart.org/content/mutant-frog",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "genuine-sneeze-sound",
@@ -1475,16 +1637,18 @@
 "src": "Genuine Sneeze Sound",
 "url": "https://opengameart.org/content/genuine-sneeze-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost-breath",
-"pool": "short",
+"pool": "long",
 "d": 3.3,
 "src": "Ghost Breath",
 "url": "https://opengameart.org/content/ghost-breath",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost-moan-1",
@@ -1493,34 +1657,38 @@
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost-moan-2",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost-moan-3",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost-moan-4",
-"pool": "short",
+"pool": "long",
 "d": 4.9,
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost-moan-5",
@@ -1529,25 +1697,28 @@
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghost",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
 "src": "Ghost",
 "url": "https://opengameart.org/content/ghost",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ghostly-cackle-laugh-1",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Ghostly Cackle Laugh 1",
 "url": "https://opengameart.org/content/ghostly-cackle-laugh-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "girly-scream",
@@ -1556,7 +1727,8 @@
 "src": "Girly Scream",
 "url": "https://opengameart.org/content/girly-scream",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "glass-4",
@@ -1565,7 +1737,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "glass-5",
@@ -1574,16 +1747,18 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "goblin-feast",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Goblin Feast",
 "url": "https://opengameart.org/content/goblin-feast",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gong-1",
@@ -1592,7 +1767,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gong-2",
@@ -1601,7 +1777,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gotcha",
@@ -1610,7 +1787,8 @@
 "src": "Gotcha",
 "url": "https://opengameart.org/content/gotcha",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-crachat",
@@ -1619,7 +1797,8 @@
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-cretin",
@@ -1628,16 +1807,18 @@
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-diarea",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-monster-dialog",
@@ -1646,16 +1827,18 @@
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-rire",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-rot",
@@ -1664,7 +1847,8 @@
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-rot2",
@@ -1673,25 +1857,28 @@
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "gross-vomi",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "group-giggling",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Group Giggling",
 "url": "https://opengameart.org/content/group-giggling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-1",
@@ -1700,7 +1887,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-10",
@@ -1709,7 +1897,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-11",
@@ -1718,7 +1907,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-15",
@@ -1727,7 +1917,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-2",
@@ -1736,7 +1927,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-4",
@@ -1745,7 +1937,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-6",
@@ -1754,7 +1947,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "growl-monster-9",
@@ -1763,7 +1957,8 @@
 "src": "16 Monster Growls",
 "url": "https://opengameart.org/content/16-monster-growls",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "grunt-1",
@@ -1772,7 +1967,8 @@
 "src": "Little Grunts",
 "url": "https://opengameart.org/content/little-grunts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "grunt-2",
@@ -1781,7 +1977,8 @@
 "src": "Little Grunts",
 "url": "https://opengameart.org/content/little-grunts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "grunt-3",
@@ -1790,7 +1987,8 @@
 "src": "Little Grunts",
 "url": "https://opengameart.org/content/little-grunts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "grunt-4",
@@ -1799,7 +1997,8 @@
 "src": "Little Grunts",
 "url": "https://opengameart.org/content/little-grunts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "he-will-decide-your-fate",
@@ -1808,7 +2007,8 @@
 "src": "He Will Decide Your Fate",
 "url": "https://opengameart.org/content/he-will-decide-your-fate",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "hihihihihihihihing",
@@ -1817,88 +2017,98 @@
 "src": "Hihihihihihihihing",
 "url": "https://opengameart.org/content/hihihihihihihihing",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horn-1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Their Coming Generic Horn Sound",
 "url": "https://opengameart.org/content/their-coming-generic-horn-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horn-2",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Their Coming Generic Horn Sound",
 "url": "https://opengameart.org/content/their-coming-generic-horn-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-bassy-3",
-"pool": "short",
+"pool": "long",
 "d": 4.2,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-bassy-6",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-bassy-9",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-high-5",
-"pool": "short",
+"pool": "long",
 "d": 4.2,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-mid-10",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-mid-16",
-"pool": "short",
+"pool": "long",
 "d": 3.5,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "horror-scream1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Horror Scream1",
 "url": "https://opengameart.org/content/horror-scream1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "huh",
@@ -1907,25 +2117,28 @@
 "src": "Huh",
 "url": "https://opengameart.org/content/huh",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "hungry-ghoul",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Hungry Ghoul",
 "url": "https://opengameart.org/content/hungry-ghoul",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "i-see-you-voice",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "I See You Voice",
 "url": "https://opengameart.org/content/i-see-you-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "insect-or-alien-scream-short",
@@ -1934,7 +2147,8 @@
 "src": "Insect Or Alien Scream Short",
 "url": "https://opengameart.org/content/insect-or-alien-scream-short",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jfk-ich-bin-ein-berliner",
@@ -1943,16 +2157,18 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 3.0,
-"quote": "Ich bin ein Berliner."
+"quote": "Ich bin ein Berliner.",
+"kind": "talk"
 },
 {
 "f": "jingle-14",
-"pool": "short",
+"pool": "long",
 "d": 3.5,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-hit11",
@@ -1961,7 +2177,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-hit12",
@@ -1970,7 +2187,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-nes01",
@@ -1979,7 +2197,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-nes06",
@@ -1988,7 +2207,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-nes07",
@@ -1997,7 +2217,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-pizza04",
@@ -2006,7 +2227,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-sax06",
@@ -2015,7 +2237,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-sax08",
@@ -2024,7 +2247,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-sax09",
@@ -2033,7 +2257,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-sax14",
@@ -2042,7 +2267,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-steel03",
@@ -2051,7 +2277,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-steel07",
@@ -2060,7 +2287,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-steel09",
@@ -2069,7 +2297,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-steel12",
@@ -2078,7 +2307,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-steel13",
@@ -2087,7 +2317,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jingle-steel16",
@@ -2096,16 +2327,18 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "jumpscare-sound",
-"pool": "short",
+"pool": "long",
 "d": 3.5,
 "src": "Jumpscare Sound",
 "url": "https://opengameart.org/content/jumpscare-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "laugh-1",
@@ -2114,7 +2347,8 @@
 "src": "Do You Remember Laughter",
 "url": "https://opengameart.org/content/do-you-remember-laughter",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "laugh-2",
@@ -2123,7 +2357,8 @@
 "src": "Do You Remember Laughter",
 "url": "https://opengameart.org/content/do-you-remember-laughter",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "laugh-3",
@@ -2132,7 +2367,8 @@
 "src": "Do You Remember Laughter",
 "url": "https://opengameart.org/content/do-you-remember-laughter",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "laugh-4",
@@ -2141,47 +2377,53 @@
 "src": "Do You Remember Laughter",
 "url": "https://opengameart.org/content/do-you-remember-laughter",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "laugh-edison-4",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "Edison Laughing Record (1923), public domain 78 rpm record",
 "url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "laugh-okeh-4",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "laugh-parlophone-4",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "laugh-regal-4",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "laugh-singing-lesson-4",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "level-up-long",
@@ -2190,7 +2432,8 @@
 "src": "Up 3X",
 "url": "https://opengameart.org/content/up-3x",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "level-up-mid",
@@ -2199,7 +2442,8 @@
 "src": "Up 3X",
 "url": "https://opengameart.org/content/up-3x",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "level-up-short",
@@ -2208,7 +2452,8 @@
 "src": "Up 3X",
 "url": "https://opengameart.org/content/up-3x",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "little-girl-saying-game-over",
@@ -2217,52 +2462,58 @@
 "src": "Little Girl Saying Game Over",
 "url": "https://opengameart.org/content/little-girl-saying-game-over",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "maniacal-laughter-pack-1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Maniacal Laughter Pack 1",
 "url": "https://opengameart.org/content/maniacal-laughter-pack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "monster-ripping-into-fish",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Monster Ripping Into Fish",
 "url": "https://opengameart.org/content/monster-ripping-into-fish",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "nasa-all-weather-testing",
-"pool": "short",
+"pool": "long",
 "d": 4.4,
 "src": "NASA: Apollo 12",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "I think we need to do a little more all-weather testing."
+"quote": "I think we need to do a little more all-weather testing.",
+"kind": "talk"
 },
 {
 "f": "nasa-clock-has-started",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
 "src": "NASA: Mercury 7",
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
-"quote": "I feel the liftoff. The clock has started."
+"quote": "I feel the liftoff. The clock has started.",
+"kind": "talk"
 },
 {
 "f": "nasa-eagle-has-landed",
-"pool": "short",
+"pool": "long",
 "d": 4.5,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "Houston, Tranquility Base here. The Eagle has landed."
+"quote": "Houston, Tranquility Base here. The Eagle has landed.",
+"kind": "talk"
 },
 {
 "f": "nasa-fireflies",
@@ -2271,7 +2522,8 @@
 "src": "NASA: Mercury 7",
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
-"quote": "I have the fireflies."
+"quote": "I have the fireflies.",
+"kind": "talk"
 },
 {
 "f": "nasa-godspeed-john-glenn",
@@ -2280,25 +2532,28 @@
 "src": "NASA: Mercury 6",
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
-"quote": "Godspeed, John Glenn."
+"quote": "Godspeed, John Glenn.",
+"kind": "talk"
 },
 {
 "f": "nasa-zero-g",
-"pool": "short",
+"pool": "long",
 "d": 4.4,
 "src": "NASA: Mercury 6",
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
-"quote": "Roger, zero G, and I feel fine. Capsule is turning around."
+"quote": "Roger, zero G, and I feel fine. Capsule is turning around.",
+"kind": "talk"
 },
 {
 "f": "new-thing-get",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "New Thing Get",
 "url": "https://opengameart.org/content/new-thing-get",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "nixon-not-a-crook",
@@ -2307,7 +2562,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.1,
-"quote": "Well, I'm not a crook."
+"quote": "Well, I'm not a crook.",
+"kind": "talk"
 },
 {
 "f": "obama-clean-up-your-mess",
@@ -2316,7 +2572,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.1,
-"quote": "Don't make someone else clean up your mess."
+"quote": "Don't make someone else clean up your mess.",
+"kind": "talk"
 },
 {
 "f": "obama-come-on-man",
@@ -2325,7 +2582,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.1,
-"quote": "Come on, man!"
+"quote": "Come on, man!",
+"kind": "talk"
 },
 {
 "f": "obama-come-on-people",
@@ -2334,7 +2592,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.3,
-"quote": "Come on, people!"
+"quote": "Come on, people!",
+"kind": "talk"
 },
 {
 "f": "obama-hello-everybody",
@@ -2343,7 +2602,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "Hello, everybody."
+"quote": "Hello, everybody.",
+"kind": "talk"
 },
 {
 "f": "obama-i-love-you-back",
@@ -2352,7 +2612,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.0,
-"quote": "I love you back!"
+"quote": "I love you back!",
+"kind": "talk"
 },
 {
 "f": "obama-let-me-be-clear",
@@ -2362,26 +2623,29 @@
 "url": "https://youtu.be/HiOU1Wtt_Jc",
 "quote": "Let me be clear.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "obama-the-math-is-the-math",
-"pool": "short",
+"pool": "long",
 "d": 4.7,
 "src": "YouTube: youtu.be/z-Myi0RJeUU",
 "url": "https://youtu.be/z-Myi0RJeUU",
 "quote": "The math is the math.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "oh-you-scared-me",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Oh You Scared Me",
 "url": "https://opengameart.org/content/oh-you-scared-me",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "oldschool-death",
@@ -2390,7 +2654,8 @@
 "src": "Oldschool Win And Die Jump And Run Sounds",
 "url": "https://opengameart.org/content/oldschool-win-and-die-jump-and-run-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "oldschool-round-end",
@@ -2399,7 +2664,8 @@
 "src": "Oldschool Win And Die Jump And Run Sounds",
 "url": "https://opengameart.org/content/oldschool-win-and-die-jump-and-run-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-1",
@@ -2408,7 +2674,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-2",
@@ -2417,7 +2684,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-3",
@@ -2426,7 +2694,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-4",
@@ -2435,7 +2704,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-5",
@@ -2444,7 +2714,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-6",
@@ -2453,7 +2724,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "other-7",
@@ -2462,7 +2734,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "peacock-scream",
@@ -2471,7 +2744,8 @@
 "src": "Peacock Scream",
 "url": "https://opengameart.org/content/peacock-scream",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "plop-1",
@@ -2480,7 +2754,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "plop-2",
@@ -2489,7 +2764,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "plup",
@@ -2498,7 +2774,8 @@
 "src": "Silly Sound Effects",
 "url": "https://opengameart.org/content/silly-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "point-bell",
@@ -2507,7 +2784,8 @@
 "src": "Point Bell",
 "url": "https://opengameart.org/content/point-bell",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "pop",
@@ -2516,7 +2794,8 @@
 "src": "Random SFX",
 "url": "https://opengameart.org/content/random-sfx-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "positive-sound",
@@ -2525,7 +2804,8 @@
 "src": "Positive Sound",
 "url": "https://opengameart.org/content/positive-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "pot-1",
@@ -2534,7 +2814,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "pot-2",
@@ -2543,25 +2824,28 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "race-best",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "race-good",
-"pool": "short",
+"pool": "long",
 "d": 3.7,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "rat",
@@ -2570,16 +2854,18 @@
 "src": "Squeaky Rat",
 "url": "https://opengameart.org/content/squeaky-rat",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "reagan-oh-shut-up",
 "src": "myinstants: Reagan vs. Heckler",
 "url": "https://www.myinstants.com/media/sounds/reagan-heckler_new.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.5,
-"quote": "Oh, shut up."
+"quote": "Oh, shut up.",
+"kind": "talk"
 },
 {
 "f": "retro-complex1",
@@ -2588,7 +2874,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-complex2",
@@ -2597,7 +2884,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-complex3",
@@ -2606,16 +2894,18 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-complex4",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-fall1",
@@ -2624,7 +2914,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-fall2",
@@ -2633,7 +2924,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-fall3",
@@ -2642,7 +2934,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-monster-roar",
@@ -2651,7 +2944,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-rise1",
@@ -2660,7 +2954,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-rise2",
@@ -2669,7 +2964,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-rise3",
@@ -2678,7 +2974,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-tremolo1",
@@ -2687,7 +2984,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-tremolo2",
@@ -2696,7 +2994,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-tremolo3",
@@ -2705,7 +3004,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-tremolo4",
@@ -2714,7 +3014,8 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "retro-tremolo5",
@@ -2723,25 +3024,28 @@
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "ripping-into-meat",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Ripping Into Meat",
 "url": "https://opengameart.org/content/ripping-into-meat",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "robot-bird",
-"pool": "short",
+"pool": "long",
 "d": 3.5,
 "src": "Angry Robot Bird",
 "url": "https://opengameart.org/content/angry-robot-bird",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "sad-trumpet",
@@ -2750,16 +3054,18 @@
 "src": "Game Over Trumpet Sfx",
 "url": "https://opengameart.org/content/game-over-trumpet-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "scary-high-pitched-ghost",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Scary High Pitched Ghost",
 "url": "https://opengameart.org/content/scary-high-pitched-ghost",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "scream-high-gverb",
@@ -2768,7 +3074,8 @@
 "src": "High Pitch Scream Sounds2",
 "url": "https://opengameart.org/content/high-pitch-scream-sounds2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "scream-high",
@@ -2777,15 +3084,17 @@
 "src": "High Pitch Scream Sounds2",
 "url": "https://opengameart.org/content/high-pitch-scream-sounds2",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "sfx-goats",
-"pool": "short",
+"pool": "long",
 "d": 4.5,
 "src": "Herd of goats bleating, by stilgar (public domain), Wikimedia Commons",
 "url": "https://commons.wikimedia.org/wiki/File:Herd_of_goats_bleating.ogg",
-"grp": "Sound effects"
+"grp": "Sound effects",
+"kind": "sound"
 },
 {
 "f": "sfx-record-scratch",
@@ -2793,7 +3102,8 @@
 "d": 0.4,
 "src": "Scratch Speed, by raccoonanimator (CC-BY 3.0), OpenGameArt",
 "url": "https://opengameart.org/content/scratch-speed",
-"grp": "Sound effects"
+"grp": "Sound effects",
+"kind": "sound"
 },
 {
 "f": "sfx-slide-whistle",
@@ -2801,16 +3111,18 @@
 "d": 1.2,
 "src": "Slide Whistle Down, by joedeshon (CC-BY 3.0), OpenGameArt",
 "url": "https://opengameart.org/content/slide-whistle-down",
-"grp": "Sound effects"
+"grp": "Sound effects",
+"kind": "sound"
 },
 {
 "f": "short-jingle",
-"pool": "short",
+"pool": "long",
 "d": 3.9,
 "src": "Short Jingle",
 "url": "https://opengameart.org/content/short-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "silly-me",
@@ -2819,7 +3131,8 @@
 "src": "Silly Me",
 "url": "https://opengameart.org/content/silly-me",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "sinister-laugh-filtered",
@@ -2828,7 +3141,8 @@
 "src": "Sinister Laugh",
 "url": "https://opengameart.org/content/sinister-laugh",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "sinister-laugh",
@@ -2837,7 +3151,8 @@
 "src": "Sinister Laugh",
 "url": "https://opengameart.org/content/sinister-laugh",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-01",
@@ -2846,7 +3161,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-02",
@@ -2855,7 +3171,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-04",
@@ -2864,7 +3181,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-06",
@@ -2873,7 +3191,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-07",
@@ -2882,7 +3201,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-09",
@@ -2891,7 +3211,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-10",
@@ -2900,7 +3221,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "slime-14",
@@ -2909,7 +3231,8 @@
 "src": "40 Cc0 Water Splash Slime Sfx",
 "url": "https://opengameart.org/content/40-cc0-water-splash-slime-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "so-thats-coming-along",
@@ -2918,7 +3241,8 @@
 "src": "So Thats Coming Along",
 "url": "https://opengameart.org/content/so-thats-coming-along",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splash-1",
@@ -2927,7 +3251,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splash-2",
@@ -2936,7 +3261,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-1",
@@ -2945,7 +3271,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-2",
@@ -2954,7 +3281,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-3",
@@ -2963,7 +3291,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-4",
@@ -2972,7 +3301,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-5",
@@ -2981,7 +3311,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-6",
@@ -2990,7 +3321,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-7",
@@ -2999,7 +3331,8 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splat-8",
@@ -3008,16 +3341,18 @@
 "src": "8 Wet Squish Slurp Impacts",
 "url": "https://opengameart.org/content/8-wet-squish-slurp-impacts",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "splatter",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "2 Wooden Squish Splatter Sequences",
 "url": "https://opengameart.org/content/2-wooden-squish-splatter-sequences",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-badplant",
@@ -3026,7 +3361,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-breath",
@@ -3035,7 +3371,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-laugh",
@@ -3044,7 +3381,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-monster",
@@ -3053,7 +3391,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-near",
@@ -3062,7 +3401,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-quake",
@@ -3071,7 +3411,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-roar",
@@ -3080,7 +3421,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-see",
@@ -3089,7 +3431,8 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-trip",
@@ -3098,16 +3441,18 @@
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spooky-yawn",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-1",
@@ -3116,7 +3461,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-2",
@@ -3125,7 +3471,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-3",
@@ -3134,7 +3481,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-4",
@@ -3143,7 +3491,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-5",
@@ -3152,7 +3501,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-6",
@@ -3161,7 +3511,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-7",
@@ -3170,7 +3521,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-8",
@@ -3179,7 +3531,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "spring-9",
@@ -3188,7 +3541,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squelch",
@@ -3197,7 +3551,8 @@
 "src": "Lo Fi Squelching Noise",
 "url": "https://opengameart.org/content/lo-fi-squelching-noise",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squish-1",
@@ -3206,7 +3561,8 @@
 "src": "Squish Sounds Effects",
 "url": "https://opengameart.org/content/squish-sounds-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squish-2",
@@ -3215,7 +3571,8 @@
 "src": "Squish Sounds Effects",
 "url": "https://opengameart.org/content/squish-sounds-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squish-3",
@@ -3224,7 +3581,8 @@
 "src": "Squish Sounds Effects",
 "url": "https://opengameart.org/content/squish-sounds-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squish-4",
@@ -3233,7 +3591,8 @@
 "src": "Squish Sounds Effects",
 "url": "https://opengameart.org/content/squish-sounds-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squish-5",
@@ -3242,7 +3601,8 @@
 "src": "Squish Sounds Effects",
 "url": "https://opengameart.org/content/squish-sounds-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squish-6",
@@ -3251,7 +3611,8 @@
 "src": "Squish Sounds Effects",
 "url": "https://opengameart.org/content/squish-sounds-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squishpop",
@@ -3260,7 +3621,8 @@
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "squishsplat-impact",
@@ -3269,34 +3631,38 @@
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "stage-clear-1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "stage-clear-2",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "stage-clear-3",
-"pool": "short",
+"pool": "long",
 "d": 3.1,
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "stage-clear-4",
@@ -3305,7 +3671,8 @@
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "steam-whistle-1",
@@ -3314,7 +3681,8 @@
 "src": "Steam Whistle",
 "url": "https://opengameart.org/content/steam-whistle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "steam-whistle-2",
@@ -3323,25 +3691,28 @@
 "src": "Steam Whistle",
 "url": "https://opengameart.org/content/steam-whistle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "strange-girl-scream",
-"pool": "short",
+"pool": "long",
 "d": 3.3,
 "src": "3 Strange Sound Effects",
 "url": "https://opengameart.org/content/3-strange-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "strange-tornado",
-"pool": "short",
+"pool": "long",
 "d": 3.9,
 "src": "3 Strange Sound Effects",
 "url": "https://opengameart.org/content/3-strange-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "strange-warble",
@@ -3350,7 +3721,8 @@
 "src": "3 Strange Sound Effects",
 "url": "https://opengameart.org/content/3-strange-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "swat-1",
@@ -3359,7 +3731,8 @@
 "src": "Fly Swatter Squish Sound",
 "url": "https://opengameart.org/content/fly-swatter-squish-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "swat-2",
@@ -3368,7 +3741,8 @@
 "src": "Fly Swatter Squish Sound",
 "url": "https://opengameart.org/content/fly-swatter-squish-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "swat-3",
@@ -3377,7 +3751,8 @@
 "src": "Fly Swatter Squish Sound",
 "url": "https://opengameart.org/content/fly-swatter-squish-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "swat-4",
@@ -3386,16 +3761,18 @@
 "src": "Fly Swatter Squish Sound",
 "url": "https://opengameart.org/content/fly-swatter-squish-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "the-messy-feast",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "The Messy Feast",
 "url": "https://opengameart.org/content/the-messy-feast",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "theremin-25",
@@ -3404,7 +3781,8 @@
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "theremin-34",
@@ -3413,7 +3791,8 @@
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "theremin-42",
@@ -3422,16 +3801,18 @@
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "theremin-big-14",
-"pool": "short",
+"pool": "long",
 "d": 3.3,
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "theremin-big-18",
@@ -3440,16 +3821,18 @@
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "theremin-big-3",
-"pool": "short",
+"pool": "long",
 "d": 3.6,
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "tiny-battlecry0",
@@ -3458,7 +3841,8 @@
 "src": "Tiny Creatures Sounds",
 "url": "https://opengameart.org/content/tiny-creatures-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "tiny-battlecry1",
@@ -3467,7 +3851,8 @@
 "src": "Tiny Creatures Sounds",
 "url": "https://opengameart.org/content/tiny-creatures-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "tiny-battlecry2",
@@ -3476,7 +3861,8 @@
 "src": "Tiny Creatures Sounds",
 "url": "https://opengameart.org/content/tiny-creatures-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "tiny-laugh",
@@ -3485,25 +3871,28 @@
 "src": "Tiny Creatures Sounds",
 "url": "https://opengameart.org/content/tiny-creatures-sounds",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "toilet-1",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "toilet-2",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "total-fail",
@@ -3512,7 +3901,8 @@
 "src": "Total Fail",
 "url": "https://opengameart.org/content/total-fail",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "trump-a-talented-dog",
@@ -3521,7 +3911,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.9,
-"quote": "A beautiful dog. A talented dog."
+"quote": "A beautiful dog. A talented dog.",
+"kind": "talk"
 },
 {
 "f": "trump-and-we-say-bye-bye",
@@ -3530,7 +3921,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.6,
-"quote": "And we say bye-bye!"
+"quote": "And we say bye-bye!",
+"kind": "talk"
 },
 {
 "f": "trump-bigly",
@@ -3540,7 +3932,8 @@
 "url": "https://youtu.be/Wb8IP5tWcmM",
 "quote": "We're going to speed up the process bigly, because it's very inefficient.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-bing-bing-bang-bang-boom",
@@ -3549,7 +3942,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.6,
-"quote": "Bing bing bang bang boom."
+"quote": "Bing bing bang bang boom.",
+"kind": "talk"
 },
 {
 "f": "trump-bing-bing-bong-bong",
@@ -3558,7 +3952,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.2,
-"quote": "Bing bing bong bong bing bing bing."
+"quote": "Bing bing bong bong bing bing bing.",
+"kind": "talk"
 },
 {
 "f": "trump-bing-bong-short",
@@ -3567,17 +3962,19 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "Bing, bong."
+"quote": "Bing, bong.",
+"kind": "talk"
 },
 {
 "f": "trump-bing-bong",
-"pool": "short",
+"pool": "long",
 "d": 4.4,
 "src": "YouTube: youtu.be/niSLZDVApdQ",
 "url": "https://youtu.be/niSLZDVApdQ",
 "quote": "Total control. Bing bing, bong bong, bing bing bing.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-bing-boom-toilet",
@@ -3586,7 +3983,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.0,
-"quote": "Bing, boom, right under the toilet."
+"quote": "Bing, boom, right under the toilet.",
+"kind": "talk"
 },
 {
 "f": "trump-china-once",
@@ -3595,17 +3993,19 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 0.8,
-"quote": "China."
+"quote": "China.",
+"kind": "talk"
 },
 {
 "f": "trump-concepts-of-a-plan",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
 "src": "YouTube: youtu.be/Hn9r6xNawoE",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You still do not have a plan? I have concepts of a plan.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-died-like-a-dog",
@@ -3614,7 +4014,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.4,
-"quote": "He died like a dog."
+"quote": "He died like a dog.",
+"kind": "talk"
 },
 {
 "f": "trump-dont-be-rude",
@@ -3623,7 +4024,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.1,
-"quote": "Don't be rude."
+"quote": "Don't be rude.",
+"kind": "talk"
 },
 {
 "f": "trump-dont-know-what-theyre-doing",
@@ -3632,7 +4034,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.4,
-"quote": "They don't know what the fuck they're doing."
+"quote": "They don't know what the fuck they're doing.",
+"kind": "talk"
 },
 {
 "f": "trump-eh",
@@ -3641,7 +4044,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 0.5,
-"quote": "Ehh!"
+"quote": "Ehh!",
+"kind": "talk"
 },
 {
 "f": "trump-everythings-a-computer",
@@ -3650,7 +4054,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.4,
-"quote": "Everything's a computer!"
+"quote": "Everything's a computer!",
+"kind": "talk"
 },
 {
 "f": "trump-granite",
@@ -3660,7 +4065,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You know, granite is un-meltable by blowtorches.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-have-i-done-a-good-job",
@@ -3669,25 +4075,28 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 3.0,
-"quote": "Have I done a good job? Have I done a good job?"
+"quote": "Have I done a good job? Have I done a good job?",
+"kind": "talk"
 },
 {
 "f": "trump-hot-dogs",
 "src": "myinstants: TRUMP HOT DOGS",
 "url": "https://www.myinstants.com/media/sounds/trump-hot-dogs.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.7,
-"quote": "Hot dogs! Let's talk about hot dogs. I just had one, actually."
+"quote": "Hot dogs! Let's talk about hot dogs. I just had one, actually.",
+"kind": "talk"
 },
 {
 "f": "trump-i-approve-this-message",
 "src": "myinstants: donald trump approves this",
 "url": "https://www.myinstants.com/media/sounds/donald-trump-approves-this.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
-"quote": "I'm Donald Trump and I approve this message."
+"quote": "I'm Donald Trump and I approve this message.",
+"kind": "talk"
 },
 {
 "f": "trump-i-dont-think-so",
@@ -3696,7 +4105,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "I don't think so."
+"quote": "I don't think so.",
+"kind": "talk"
 },
 {
 "f": "trump-i-love-cows",
@@ -3705,16 +4115,18 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.4,
-"quote": "I love cows."
+"quote": "I love cows.",
+"kind": "talk"
 },
 {
 "f": "trump-i-love-miners",
 "src": "myinstants: Trump quote about minors",
 "url": "https://www.myinstants.com/media/sounds/trump-quote-about-minors.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
-"quote": "For miners. Do we love miners? I love miners."
+"quote": "For miners. Do we love miners? I love miners.",
+"kind": "talk"
 },
 {
 "f": "trump-i-love-tesla",
@@ -3723,7 +4135,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.4,
-"quote": "I love Tesla!"
+"quote": "I love Tesla!",
+"kind": "talk"
 },
 {
 "f": "trump-it-comes-from-china",
@@ -3732,34 +4145,38 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.0,
-"quote": "It comes from China."
+"quote": "It comes from China.",
+"kind": "talk"
 },
 {
 "f": "trump-its-all-fake-news",
 "src": "myinstants: It's All Fake News",
 "url": "https://www.myinstants.com/media/sounds/fake-news-great.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
-"quote": "It's all fake news. It's phony stuff. It didn't happen."
+"quote": "It's all fake news. It's phony stuff. It didn't happen.",
+"kind": "talk"
 },
 {
 "f": "trump-jobs-jobs-jobs",
 "src": "myinstants: Donald Trump - Jobs, Jobs, Jobs",
 "url": "https://www.myinstants.com/media/sounds/donald-trump-jobs-jobs-jobs.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
-"quote": "Jobs, jobs, jobs."
+"quote": "Jobs, jobs, jobs.",
+"kind": "talk"
 },
 {
 "f": "trump-know-a-lot-about-trucks",
 "src": "myinstants: Bing Bong",
 "url": "https://www.myinstants.com/media/sounds/donald-trump-talks-about-trucks-vine-1.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.1,
-"quote": "Hello, you people know a lot about trucks. Bing, bing, bong. Thank you very much."
+"quote": "Hello, you people know a lot about trucks. Bing, bing, bong. Thank you very much.",
+"kind": "talk"
 },
 {
 "f": "trump-little-rocket-man",
@@ -3768,7 +4185,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.6,
-"quote": "Little Rocket Man."
+"quote": "Little Rocket Man.",
+"kind": "talk"
 },
 {
 "f": "trump-look-at-this-guy",
@@ -3777,7 +4195,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "Look at this guy!"
+"quote": "Look at this guy!",
+"kind": "talk"
 },
 {
 "f": "trump-made-in-china",
@@ -3786,7 +4205,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.5,
-"quote": "Made in China."
+"quote": "Made in China.",
+"kind": "talk"
 },
 {
 "f": "trump-made-in-the-usa",
@@ -3795,7 +4215,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.6,
-"quote": "Made in the USA."
+"quote": "Made in the USA.",
+"kind": "talk"
 },
 {
 "f": "trump-mr-tough-guy",
@@ -3804,7 +4225,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "Mr. Tough Guy."
+"quote": "Mr. Tough Guy.",
+"kind": "talk"
 },
 {
 "f": "trump-obamna",
@@ -3813,7 +4235,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.9,
-"quote": "Obamna."
+"quote": "Obamna.",
+"kind": "talk"
 },
 {
 "f": "trump-positively-toward-negative",
@@ -3823,7 +4246,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I tested positively toward negative, right?",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-quiet-quiet",
@@ -3832,7 +4256,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "Quiet, quiet."
+"quote": "Quiet, quiet.",
+"kind": "talk"
 },
 {
 "f": "trump-sad",
@@ -3841,25 +4266,28 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 0.8,
-"quote": "Sad."
+"quote": "Sad.",
+"kind": "talk"
 },
 {
 "f": "trump-scarface",
 "src": "myinstants: Trump Scarface",
 "url": "https://www.myinstants.com/media/sounds/trump-scarface.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.2,
-"quote": "Al Capone, the greatest of them all. Gangster. Scarface."
+"quote": "Al Capone, the greatest of them all. Gangster. Scarface.",
+"kind": "talk"
 },
 {
 "f": "trump-soccer-field",
 "src": "myinstants: Trump - Soccer Field",
 "url": "https://www.myinstants.com/media/sounds/trump-soccer-field.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 3.2,
-"quote": "A million dollars, building a soccer field."
+"quote": "A million dollars, building a soccer field.",
+"kind": "talk"
 },
 {
 "f": "trump-stable-genius",
@@ -3869,7 +4297,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I'm an extremely stable genius.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-telephonically",
@@ -3879,7 +4308,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Through phone, through telephone. Telephonically, as they say.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "trump-thats-not-nice",
@@ -3888,25 +4318,28 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.2,
-"quote": "That's not nice."
+"quote": "That's not nice.",
+"kind": "talk"
 },
 {
 "f": "trump-the-best-words",
 "src": "myinstants: Trump's Best Words",
 "url": "https://www.myinstants.com/media/sounds/trumps-best-words.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.3,
-"quote": "I know words. I have the best words. But there's no better word than stupid."
+"quote": "I know words. I have the best words. But there's no better word than stupid.",
+"kind": "talk"
 },
 {
 "f": "trump-what-did-i-do",
 "src": "myinstants: Trump What Did I Do?",
 "url": "https://www.myinstants.com/media/sounds/trump-what-did-i-do.mp3",
 "grp": "Presidents",
-"pool": "short",
+"pool": "long",
 "d": 4.0,
-"quote": "What happened? What did I do?"
+"quote": "What happened? What did I do?",
+"kind": "talk"
 },
 {
 "f": "trump-win-washington-state",
@@ -3915,7 +4348,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 2.5,
-"quote": "I think we're going to win Washington State."
+"quote": "I think we're going to win Washington State.",
+"kind": "talk"
 },
 {
 "f": "trump-wrong-short",
@@ -3924,7 +4358,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 0.7,
-"quote": "Wrong!"
+"quote": "Wrong!",
+"kind": "talk"
 },
 {
 "f": "trump-you-are-fake-news",
@@ -3933,7 +4368,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.4,
-"quote": "You are fake news."
+"quote": "You are fake news.",
+"kind": "talk"
 },
 {
 "f": "trump-youd-be-in-jail",
@@ -3942,7 +4378,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.4,
-"quote": "Because you'd be in jail."
+"quote": "Because you'd be in jail.",
+"kind": "talk"
 },
 {
 "f": "trump-youre-fired",
@@ -3951,7 +4388,8 @@
 "grp": "Presidents",
 "pool": "short",
 "d": 1.3,
-"quote": "You're fired."
+"quote": "You're fired.",
+"kind": "talk"
 },
 {
 "f": "tss",
@@ -3960,7 +4398,8 @@
 "src": "Random SFX",
 "url": "https://opengameart.org/content/random-sfx-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "tts-andrew-your-turn",
@@ -3969,7 +4408,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Andrew, wake up. It is your turn."
+"quote": "Andrew, wake up. It is your turn.",
+"kind": "talk"
 },
 {
 "f": "tts-board-wipe-incoming",
@@ -3978,7 +4418,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Warning, board wipe incoming."
+"quote": "Warning, board wipe incoming.",
+"kind": "talk"
 },
 {
 "f": "tts-commander-damage",
@@ -3987,7 +4428,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "commander damage"
+"quote": "commander damage",
+"kind": "talk"
 },
 {
 "f": "tts-counterspell",
@@ -3996,7 +4438,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Counterspell"
+"quote": "Counterspell",
+"kind": "talk"
 },
 {
 "f": "tts-i-have-a-response",
@@ -4005,7 +4448,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Hold on, I have a response."
+"quote": "Hold on, I have a response.",
+"kind": "talk"
 },
 {
 "f": "tts-in-response",
@@ -4014,7 +4458,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "in response."
+"quote": "in response.",
+"kind": "talk"
 },
 {
 "f": "tts-is-that-a-combo",
@@ -4023,7 +4468,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Wait, is that a combo?"
+"quote": "Wait, is that a combo?",
+"kind": "talk"
 },
 {
 "f": "tts-kingmaker",
@@ -4032,7 +4478,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Kingmaker!"
+"quote": "Kingmaker!",
+"kind": "talk"
 },
 {
 "f": "tts-lenn-your-turn",
@@ -4041,7 +4488,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Lenn is thinking. Please stand by."
+"quote": "Lenn is thinking. Please stand by.",
+"kind": "talk"
 },
 {
 "f": "tts-lethal",
@@ -4050,7 +4498,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "That is lethal!"
+"quote": "That is lethal!",
+"kind": "talk"
 },
 {
 "f": "tts-mana-flooded",
@@ -4059,7 +4508,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Mana flooded."
+"quote": "Mana flooded.",
+"kind": "talk"
 },
 {
 "f": "tts-mana-screwed",
@@ -4068,7 +4518,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Stuck on two lands. Mana screw."
+"quote": "Stuck on two lands. Mana screw.",
+"kind": "talk"
 },
 {
 "f": "tts-mulligan-to-five",
@@ -4077,7 +4528,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Mulligan to five."
+"quote": "Mulligan to five.",
+"kind": "talk"
 },
 {
 "f": "tts-not-the-threat",
@@ -4086,7 +4538,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "I am not the threat here."
+"quote": "I am not the threat here.",
+"kind": "talk"
 },
 {
 "f": "tts-pass-the-turn",
@@ -4095,7 +4548,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Pass the turn already."
+"quote": "Pass the turn already.",
+"kind": "talk"
 },
 {
 "f": "tts-rand-your-turn",
@@ -4104,7 +4558,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Rand, Rand, it is your turn."
+"quote": "Rand, Rand, it is your turn.",
+"kind": "talk"
 },
 {
 "f": "tts-read-the-card",
@@ -4113,7 +4568,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Can I read that card?"
+"quote": "Can I read that card?",
+"kind": "talk"
 },
 {
 "f": "tts-resistance-is-futile",
@@ -4122,7 +4578,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Resistance is futile."
+"quote": "Resistance is futile.",
+"kind": "talk"
 },
 {
 "f": "tts-scoop",
@@ -4131,7 +4588,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "I scoop."
+"quote": "I scoop.",
+"kind": "talk"
 },
 {
 "f": "tts-shuffle-up",
@@ -4140,7 +4598,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Shuffle up and deal."
+"quote": "Shuffle up and deal.",
+"kind": "talk"
 },
 {
 "f": "tts-sol-ring-turn-one",
@@ -4149,7 +4608,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Sol Ring. Turn one."
+"quote": "Sol Ring. Turn one.",
+"kind": "talk"
 },
 {
 "f": "tts-somebody-deal-with-that",
@@ -4158,7 +4618,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Somebody deal with that."
+"quote": "Somebody deal with that.",
+"kind": "talk"
 },
 {
 "f": "tts-target-him",
@@ -4167,7 +4628,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Don't target me. Target him."
+"quote": "Don't target me. Target him.",
+"kind": "talk"
 },
 {
 "f": "tts-topdeck-mode",
@@ -4176,7 +4638,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Top Deck Mode, activated."
+"quote": "Top Deck Mode, activated.",
+"kind": "talk"
 },
 {
 "f": "tts-trent-your-turn",
@@ -4185,7 +4648,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "Hey, Trent. Are you even paying attention?"
+"quote": "Hey, Trent. Are you even paying attention?",
+"kind": "talk"
 },
 {
 "f": "tts-you-have-been-assimilated",
@@ -4194,7 +4658,8 @@
 "src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
-"quote": "You have been assimilated."
+"quote": "You have been assimilated.",
+"kind": "talk"
 },
 {
 "f": "tuba-happy",
@@ -4203,16 +4668,18 @@
 "src": "Happy And Sad Tuba Fanfare",
 "url": "https://opengameart.org/content/happy-and-sad-tuba-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "tuba-sad",
-"pool": "short",
+"pool": "long",
 "d": 3.7,
 "src": "Happy And Sad Tuba Fanfare",
 "url": "https://opengameart.org/content/happy-and-sad-tuba-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "uah",
@@ -4221,7 +4688,8 @@
 "src": "Silly Sound Effects",
 "url": "https://opengameart.org/content/silly-sound-effects",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "undead-1",
@@ -4230,7 +4698,8 @@
 "src": "Undead Moans",
 "url": "https://opengameart.org/content/undead-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "undead-2",
@@ -4239,7 +4708,8 @@
 "src": "Undead Moans",
 "url": "https://opengameart.org/content/undead-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "undead-3",
@@ -4248,7 +4718,8 @@
 "src": "Undead Moans",
 "url": "https://opengameart.org/content/undead-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "undead-4",
@@ -4257,7 +4728,8 @@
 "src": "Undead Moans",
 "url": "https://opengameart.org/content/undead-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "victory-6",
@@ -4266,16 +4738,18 @@
 "src": "Victory 6",
 "url": "https://opengameart.org/content/victory-6",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "video-game-cheerful-ending",
-"pool": "short",
+"pool": "long",
 "d": 3.7,
 "src": "Video Game Cheerful Ending",
 "url": "https://opengameart.org/content/video-game-cheerful-ending",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "voice-lets-try-again",
@@ -4284,7 +4758,8 @@
 "src": "Win Lose Voice Speech",
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "voice-well-done",
@@ -4293,7 +4768,8 @@
 "src": "Win Lose Voice Speech",
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "vulture",
@@ -4302,7 +4778,8 @@
 "src": "Vulture Imitation",
 "url": "https://opengameart.org/content/vulture-imitation",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-1",
@@ -4311,7 +4788,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-2",
@@ -4320,7 +4798,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-3",
@@ -4329,7 +4808,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-4",
@@ -4338,7 +4818,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-5",
@@ -4347,34 +4828,38 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-chanting-sound",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-helicopter-like-sound",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weird-rocket-launch-sound",
-"pool": "short",
+"pool": "long",
 "d": 4.8,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-1",
@@ -4383,7 +4868,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-10",
@@ -4392,7 +4878,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-11",
@@ -4401,7 +4888,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-12",
@@ -4410,7 +4898,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-13",
@@ -4419,7 +4908,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-14",
@@ -4428,7 +4918,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-15",
@@ -4437,7 +4928,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-16",
@@ -4446,7 +4938,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-17",
@@ -4455,7 +4948,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-18",
@@ -4464,7 +4958,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-19",
@@ -4473,7 +4968,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-2",
@@ -4482,7 +4978,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-20",
@@ -4491,7 +4988,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-21",
@@ -4500,7 +4998,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-22",
@@ -4509,7 +5008,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-23",
@@ -4518,7 +5018,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-24",
@@ -4527,7 +5028,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-25",
@@ -4536,7 +5038,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-26",
@@ -4545,7 +5048,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-27",
@@ -4554,7 +5058,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-28",
@@ -4563,7 +5068,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-29",
@@ -4572,7 +5078,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-3",
@@ -4581,7 +5088,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-30",
@@ -4590,7 +5098,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-4",
@@ -4599,7 +5108,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-5",
@@ -4608,7 +5118,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-6",
@@ -4617,7 +5128,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-7",
@@ -4626,7 +5138,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-8",
@@ -4635,7 +5148,8 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "weirdo-9",
@@ -4644,88 +5158,98 @@
 "src": "30 Weird CC0 SFX",
 "url": "https://opengameart.org/content/30-weird-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-bandoneon",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-banjo",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-fretless",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-harpsichord",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-nylon",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-saw",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-sound-effect",
-"pool": "short",
+"pool": "long",
 "d": 4.5,
 "src": "Win Sound Effect",
 "url": "https://opengameart.org/content/win-sound-effect",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-square",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "win-steeldrums",
-"pool": "short",
+"pool": "long",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "witch-cackle",
@@ -4734,7 +5258,8 @@
 "src": "Witch Cackle",
 "url": "https://opengameart.org/content/witch-cackle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "wobble-1",
@@ -4743,7 +5268,8 @@
 "src": "Wood Wobbling Rattling",
 "url": "https://opengameart.org/content/wood-wobbling-rattling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "wobble-2",
@@ -4752,7 +5278,8 @@
 "src": "Wood Wobbling Rattling",
 "url": "https://opengameart.org/content/wood-wobbling-rattling",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "wolf-monster-sound",
@@ -4761,7 +5288,8 @@
 "src": "Wolf Monster Sound",
 "url": "https://opengameart.org/content/wolf-monster-sound",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie-moan-5",
@@ -4770,7 +5298,8 @@
 "src": "Zombie Moans 01 By Emopreben",
 "url": "https://opengameart.org/content/zombie-moans-01-by-emopreben",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie-moan-6",
@@ -4779,7 +5308,8 @@
 "src": "Zombie Moans 01 By Emopreben",
 "url": "https://opengameart.org/content/zombie-moans-01-by-emopreben",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie-moan-7",
@@ -4788,25 +5318,28 @@
 "src": "Zombie Moans 01 By Emopreben",
 "url": "https://opengameart.org/content/zombie-moans-01-by-emopreben",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie-moans-preview",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Zombie Moans 01 By Emopreben",
 "url": "https://opengameart.org/content/zombie-moans-01-by-emopreben",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie-moans",
-"pool": "short",
+"pool": "long",
 "d": 5.0,
 "src": "Zombie Moans",
 "url": "https://opengameart.org/content/zombie-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie-pain",
@@ -4815,7 +5348,8 @@
 "src": "Zombie Pain",
 "url": "https://opengameart.org/content/zombie-pain",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie2-fastzombie1",
@@ -4824,7 +5358,8 @@
 "src": "Zombie Noises And Moans",
 "url": "https://opengameart.org/content/zombie-noises-and-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie2-zombienoise1",
@@ -4833,7 +5368,8 @@
 "src": "Zombie Noises And Moans",
 "url": "https://opengameart.org/content/zombie-noises-and-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie2-zombienoise2",
@@ -4842,7 +5378,8 @@
 "src": "Zombie Noises And Moans",
 "url": "https://opengameart.org/content/zombie-noises-and-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "zombie2-zombienoise3",
@@ -4851,7 +5388,8 @@
 "src": "Zombie Noises And Moans",
 "url": "https://opengameart.org/content/zombie-noises-and-moans",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/10-fanfares",
@@ -4860,7 +5398,8 @@
 "src": "10 Fanfares",
 "url": "https://opengameart.org/content/10-fanfares",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/a-lonely-and-mournful-tune",
@@ -4869,7 +5408,8 @@
 "src": "A Lonely And Mournful Tune",
 "url": "https://opengameart.org/content/a-lonely-and-mournful-tune",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/accordion-long",
@@ -4879,7 +5419,8 @@
 "url": "https://opengameart.org/content/accordion-sound",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/applause-in-a-large-hall-or-church",
@@ -4888,7 +5429,8 @@
 "src": "Applause In A Large Hall Or Church",
 "url": "https://opengameart.org/content/applause-in-a-large-hall-or-church",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/awkward-trumpet",
@@ -4897,7 +5439,8 @@
 "src": "Happy Awkward Trumpet",
 "url": "https://opengameart.org/content/happy-awkward-trumpet",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/biden-300-million-billion",
@@ -4906,7 +5449,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 6.3,
-"quote": "Somewhere between 700 billion and a trillion, 300 million billion dollars."
+"quote": "Somewhere between 700 billion and a trillion, 300 million billion dollars.",
+"kind": "talk"
 },
 {
 "f": "long/biden-corn-pop",
@@ -4915,7 +5459,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 5.4,
-"quote": "And Corn Pop was a bad dude. And he ran a bunch of bad boys."
+"quote": "And Corn Pop was a bad dude. And he ran a bunch of bad boys.",
+"kind": "talk"
 },
 {
 "f": "long/biden-hairy-legs",
@@ -4924,7 +5469,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 7.5,
-"quote": "I got hairy legs, hairy legs that turn blonde in the sun."
+"quote": "I got hairy legs, hairy legs that turn blonde in the sun.",
+"kind": "talk"
 },
 {
 "f": "long/biden-more-than-100-years",
@@ -4933,7 +5479,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 12.0,
-"quote": "COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it."
+"quote": "COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it.",
+"kind": "talk"
 },
 {
 "f": "long/bush-federal-program",
@@ -4943,7 +5490,8 @@
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "They want the federal government controlling Social Security like it's some kind of federal program.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/bush-fool-me-once",
@@ -4953,7 +5501,8 @@
 "url": "https://youtu.be/Hl7FKfl3O2Y",
 "quote": "Fool me once, shame on... shame on you. Fool me, we can't get fooled again.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/bush-harm-our-country",
@@ -4963,7 +5512,8 @@
 "url": "https://youtu.be/U41dt5X9Fvs",
 "quote": "Our enemies never stop thinking about new ways to harm our country and our people, and neither do we.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/bush-i-believe-what-i-believe",
@@ -4973,7 +5523,8 @@
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "I know what I believe... and I believe what I believe is right.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/bush-literacy-test",
@@ -4983,7 +5534,8 @@
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "You teach a child to read, and he or her will be able to pass a literacy test.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/bush-now-watch-this-drive",
@@ -4993,7 +5545,8 @@
 "url": "https://youtu.be/TCm9788Tb5g",
 "quote": "I call upon all nations to stop these terrorist killers. Thank you. Now watch this drive.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/bush-shoe-dodge",
@@ -5002,7 +5555,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 10.1,
-"quote": "(The shoe throw in Baghdad, 2008: a reporter shouts, two shoes fly, Bush ducks.) Thank you very much."
+"quote": "(The shoe throw in Baghdad, 2008: a reporter shouts, two shoes fly, Bush ducks.) Thank you very much.",
+"kind": "talk"
 },
 {
 "f": "long/bush-the-decider",
@@ -5012,7 +5566,8 @@
 "url": "https://youtu.be/E2Zv1T4Qdv4",
 "quote": "I hear the voices... but I'm the decider, and I decide what is best.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/clinton-sexual-relations",
@@ -5021,7 +5576,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 9.6,
-"quote": "I want you to listen to me. I'm going to say this again. I did not have sexual relations with that woman. Miss Lewinsky."
+"quote": "I want you to listen to me. I'm going to say this again. I did not have sexual relations with that woman. Miss Lewinsky.",
+"kind": "talk"
 },
 {
 "f": "long/cozy-clear",
@@ -5030,7 +5586,8 @@
 "src": "Cozy Puzzle Jingle Result",
 "url": "https://opengameart.org/content/cozy-puzzle-jingle-result",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/cozy-fail",
@@ -5039,7 +5596,8 @@
 "src": "Cozy Puzzle Jingle Result",
 "url": "https://opengameart.org/content/cozy-puzzle-jingle-result",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/creepy-chant",
@@ -5049,7 +5607,8 @@
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/demon-no-going-back",
@@ -5058,7 +5617,8 @@
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/diarrhea",
@@ -5068,7 +5628,8 @@
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/dog-barking",
@@ -5078,7 +5639,8 @@
 "url": "https://opengameart.org/content/dog-sounds",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/evil-cackle",
@@ -5087,7 +5649,8 @@
 "src": "Evil Cackle Laugh 1",
 "url": "https://opengameart.org/content/evil-cackle-laugh-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/fart-symphony",
@@ -5096,7 +5659,8 @@
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/female-warrior-cheer",
@@ -5105,7 +5669,8 @@
 "src": "Female Warrior Cheer",
 "url": "https://opengameart.org/content/female-warrior-cheer",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/fireworks-with-applause-happy-people",
@@ -5114,7 +5679,8 @@
 "src": "Fireworks With Applause Happy People",
 "url": "https://opengameart.org/content/fireworks-with-applause-happy-people",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/fish-feast",
@@ -5124,7 +5690,8 @@
 "url": "https://opengameart.org/content/monster-ripping-into-fish",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/game-over-8",
@@ -5133,7 +5700,8 @@
 "src": "Game Over 8",
 "url": "https://opengameart.org/content/game-over-8",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/game-over-ii",
@@ -5142,7 +5710,8 @@
 "src": "Game Over Ii",
 "url": "https://opengameart.org/content/game-over-ii",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/game-over-instrumental",
@@ -5151,7 +5720,8 @@
 "src": "Game Over Instrumental",
 "url": "https://opengameart.org/content/game-over-instrumental",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/game-over-jingle",
@@ -5160,7 +5730,8 @@
 "src": "Game Over Short Jingle",
 "url": "https://opengameart.org/content/game-over-short-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/game-over-yarakashi",
@@ -5169,7 +5740,8 @@
 "src": "Yarakashitagameover Music",
 "url": "https://opengameart.org/content/yarakashitagameover-music",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/gameover-or-underwater",
@@ -5178,7 +5750,8 @@
 "src": "Gameover Or Underwater",
 "url": "https://opengameart.org/content/gameover-or-underwater",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/glorious-victory-fanfare-nes",
@@ -5187,7 +5760,8 @@
 "src": "Glorious Victory Fanfare Nes",
 "url": "https://opengameart.org/content/glorious-victory-fanfare-nes",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/goblin-feast",
@@ -5196,7 +5770,8 @@
 "src": "Goblin Feast",
 "url": "https://opengameart.org/content/goblin-feast",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/grunts",
@@ -5206,7 +5781,8 @@
 "url": "https://opengameart.org/content/little-grunts",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/high-ghost",
@@ -5216,7 +5792,8 @@
 "url": "https://opengameart.org/content/scary-high-pitched-ghost",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/horror-scream",
@@ -5225,7 +5802,8 @@
 "src": "Horror Scream1",
 "url": "https://opengameart.org/content/horror-scream1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/horror-sting",
@@ -5234,7 +5812,8 @@
 "src": "String And Piano Horror Stings",
 "url": "https://opengameart.org/content/string-and-piano-horror-stings",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/hungry-ghoul",
@@ -5243,7 +5822,8 @@
 "src": "Hungry Ghoul",
 "url": "https://opengameart.org/content/hungry-ghoul",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/hyoshi-area-clear",
@@ -5252,7 +5832,8 @@
 "src": "Hyoshi Area Clear",
 "url": "https://opengameart.org/content/hyoshi-area-clear",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/hyper-ultra-fanfare",
@@ -5261,7 +5842,8 @@
 "src": "Hyper Ultra Fanfare",
 "url": "https://opengameart.org/content/hyper-ultra-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/icy-game-over",
@@ -5270,7 +5852,8 @@
 "src": "Icy Game Over",
 "url": "https://opengameart.org/content/icy-game-over",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/icy-level-up",
@@ -5279,7 +5862,8 @@
 "src": "Icy Level Up",
 "url": "https://opengameart.org/content/icy-level-up",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/jfk-return-him-safely",
@@ -5288,7 +5872,8 @@
 "src": "NASA: President Kennedy",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "Presidents",
-"quote": "This nation should commit itself to landing a man on the Moon and returning him safely to the Earth."
+"quote": "This nation should commit itself to landing a man on the Moon and returning him safely to the Earth.",
+"kind": "talk"
 },
 {
 "f": "long/jfk-we-choose-the-moon",
@@ -5297,7 +5882,8 @@
 "src": "NASA: President Kennedy",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "Presidents",
-"quote": "We choose to go to the Moon in this decade... not because they are easy, but because they are hard."
+"quote": "We choose to go to the Moon in this decade... not because they are easy, but because they are hard.",
+"kind": "talk"
 },
 {
 "f": "long/jingle-05",
@@ -5306,7 +5892,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/jingle-08",
@@ -5315,7 +5902,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/jingle-11",
@@ -5324,7 +5912,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/jingle-17",
@@ -5333,7 +5922,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/jingle-18",
@@ -5342,7 +5932,8 @@
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/just-a-random-fanfare",
@@ -5351,7 +5942,8 @@
 "src": "Just A Random Fanfare",
 "url": "https://opengameart.org/content/just-a-random-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/laugh-edison-1",
@@ -5359,7 +5951,8 @@
 "d": 8.0,
 "src": "Edison Laughing Record (1923), public domain 78 rpm record",
 "url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-edison-2",
@@ -5367,7 +5960,8 @@
 "d": 8.0,
 "src": "Edison Laughing Record (1923), public domain 78 rpm record",
 "url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-edison-3",
@@ -5375,7 +5969,8 @@
 "d": 8.0,
 "src": "Edison Laughing Record (1923), public domain 78 rpm record",
 "url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-okeh-1",
@@ -5383,7 +5978,8 @@
 "d": 8.0,
 "src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-okeh-2",
@@ -5391,7 +5987,8 @@
 "d": 8.0,
 "src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-okeh-3",
@@ -5399,7 +5996,8 @@
 "d": 8.0,
 "src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-parlophone-1",
@@ -5407,7 +6005,8 @@
 "d": 8.0,
 "src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-parlophone-2",
@@ -5415,7 +6014,8 @@
 "d": 8.0,
 "src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-parlophone-3",
@@ -5423,7 +6023,8 @@
 "d": 8.0,
 "src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-regal-1",
@@ -5431,7 +6032,8 @@
 "d": 8.0,
 "src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-regal-2",
@@ -5439,7 +6041,8 @@
 "d": 8.0,
 "src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-regal-3",
@@ -5447,7 +6050,8 @@
 "d": 8.0,
 "src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-singing-lesson-1",
@@ -5455,7 +6059,8 @@
 "d": 8.0,
 "src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-singing-lesson-2",
@@ -5463,7 +6068,8 @@
 "d": 8.0,
 "src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laugh-singing-lesson-3",
@@ -5471,7 +6077,8 @@
 "d": 8.0,
 "src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
 "url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records"
+"grp": "Laughing records",
+"kind": "sound"
 },
 {
 "f": "long/laughing-fit",
@@ -5481,7 +6088,8 @@
 "url": "https://opengameart.org/content/do-you-remember-laughter",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/level-complete",
@@ -5490,7 +6098,8 @@
 "src": "Level Complete",
 "url": "https://opengameart.org/content/level-complete",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/maniacal-laughter",
@@ -5499,7 +6108,8 @@
 "src": "Maniacal Laughter Pack 1",
 "url": "https://opengameart.org/content/maniacal-laughter-pack-1",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/medieval-defeat",
@@ -5508,7 +6118,8 @@
 "src": "Medieval Defeat Theme",
 "url": "https://opengameart.org/content/medieval-defeat-theme",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/medieval-victory",
@@ -5517,7 +6128,8 @@
 "src": "Medieval Victory Theme",
 "url": "https://opengameart.org/content/medieval-victory-theme",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/messy-feast",
@@ -5527,7 +6139,8 @@
 "url": "https://opengameart.org/content/the-messy-feast",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/nasa-cardiac-arrests",
@@ -5536,7 +6149,8 @@
 "src": "NASA: Apollo 12",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "That's one of the better sims, believe me. We've had a couple of cardiac arrests down here too."
+"quote": "That's one of the better sims, believe me. We've had a couple of cardiac arrests down here too.",
+"kind": "talk"
 },
 {
 "f": "long/nasa-houston-problem",
@@ -5545,7 +6159,8 @@
 "src": "NASA: Apollo 13",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "Okay, Houston, we've had a problem here. Say again, please. Houston, we've had a problem."
+"quote": "Okay, Houston, we've had a problem here. Say again, please. Houston, we've had a problem.",
+"kind": "talk"
 },
 {
 "f": "long/nasa-liftoff",
@@ -5554,7 +6169,8 @@
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "Five, four, three, two, one, zero. All engines running. Liftoff. We have a liftoff."
+"quote": "Five, four, three, two, one, zero. All engines running. Liftoff. We have a liftoff.",
+"kind": "talk"
 },
 {
 "f": "long/nasa-merry-christmas",
@@ -5563,7 +6179,8 @@
 "src": "NASA: Apollo 8",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "We close with good night, good luck, a merry Christmas, and God bless all of you on the good Earth."
+"quote": "We close with good night, good luck, a merry Christmas, and God bless all of you on the good Earth.",
+"kind": "talk"
 },
 {
 "f": "long/nasa-one-small-step",
@@ -5572,7 +6189,8 @@
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "That's one small step for man. One giant leap for mankind."
+"quote": "That's one small step for man. One giant leap for mankind.",
+"kind": "talk"
 },
 {
 "f": "long/nasa-turn-blue",
@@ -5581,7 +6199,8 @@
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
-"quote": "You got a bunch of guys about to turn blue. We're breathing again. Thanks a lot."
+"quote": "You got a bunch of guys about to turn blue. We're breathing again. Thanks a lot.",
+"kind": "talk"
 },
 {
 "f": "long/obama-biggie-and-tupac",
@@ -5591,7 +6210,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Did we fake the moon landing? What really happened in Roswell? And where are Biggie and Tupac?",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-bucket-list",
@@ -5601,7 +6221,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Do you have a bucket list? I have something that rhymes with bucket list.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-dick-cheney",
@@ -5611,7 +6232,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Dick Cheney thinks I'm the worst president of his lifetime. I think Dick Cheney is the worst president of my lifetime.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-go-down-as-a-president",
@@ -5621,7 +6243,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Well, @realDonaldTrump, at least I will go down as a president.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-indiana-pizza",
@@ -5631,7 +6254,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "He is a great friend. We've gotten so close, some places in Indiana won't serve us pizza anymore.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-iphone",
@@ -5641,7 +6265,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "I have an iPhone, but it's like the phone you give your two-year-old.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-matt-damon",
@@ -5651,7 +6276,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Matt Damon said he was disappointed in my performance. Well, Matt, I just saw The Adjustment Bureau.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-out",
@@ -5661,7 +6287,8 @@
 "url": "https://youtu.be/6dEA7krBxys",
 "quote": "And with that, I just have two more words to say: Obama out.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-some-people-are-so-dumb",
@@ -5671,7 +6298,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Some people still say I'm arrogant and aloof, condescending. Some people are so dumb.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-third-hangover",
@@ -5681,7 +6309,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "If I ran a third time, it would be like doing a third Hangover movie.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-third-term",
@@ -5691,7 +6320,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Some folks really want to see a pot-smoking socialist in the White House. We could get a third Obama term after all.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-won-both-of-them",
@@ -5701,7 +6331,8 @@
 "url": "https://youtu.be/SktnQxmmUmA",
 "quote": "I have no more campaigns to run... I know, because I won both of them.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/obama-yes-we-crayon",
@@ -5711,7 +6342,8 @@
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Yes we crayon. That was good.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/race-finish",
@@ -5720,7 +6352,8 @@
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/race-intro",
@@ -5729,7 +6362,8 @@
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/ripping-meat",
@@ -5739,7 +6373,8 @@
 "url": "https://opengameart.org/content/ripping-into-meat",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/sad-blues",
@@ -5748,7 +6383,8 @@
 "src": "Beansjam Sad Budi Blues",
 "url": "https://opengameart.org/content/beansjam-sad-budi-blues",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sad-ending-1",
@@ -5757,7 +6393,8 @@
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sad-ending-2",
@@ -5766,7 +6403,8 @@
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sad-ending-3",
@@ -5775,7 +6413,8 @@
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sad-game-over",
@@ -5784,7 +6423,8 @@
 "src": "Sad Game Over",
 "url": "https://opengameart.org/content/sad-game-over",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sad-walk-with-sad-melodica",
@@ -5793,7 +6433,8 @@
 "src": "Sad Walk With Sad Melodica",
 "url": "https://opengameart.org/content/sad-walk-with-sad-melodica",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sadness",
@@ -5802,7 +6443,8 @@
 "src": "Sadness",
 "url": "https://opengameart.org/content/sadness",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/sega-victory",
@@ -5811,7 +6453,8 @@
 "src": "Sega Mega Drivegenesis Victory Jingle",
 "url": "https://opengameart.org/content/sega-mega-drivegenesis-victory-jingle",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/simple-battle-fanfare",
@@ -5820,7 +6463,8 @@
 "src": "Simple Battle Fanfare",
 "url": "https://opengameart.org/content/simple-battle-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/something-sad",
@@ -5829,7 +6473,8 @@
 "src": "Something Sad",
 "url": "https://opengameart.org/content/something-sad",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/space-chorus",
@@ -5837,7 +6482,8 @@
 "d": 8.0,
 "src": "NASA: Plasmawaves - Chorus",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-comet-tempel",
@@ -5845,7 +6491,8 @@
 "d": 8.0,
 "src": "NASA: Stardust: Passing Comet Tempel 1",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-earth-magnetic-drum",
@@ -5853,7 +6500,8 @@
 "d": 6.3,
 "src": "NASA: Sounds of Earth's Magnetic Drum in Space",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-enceladus",
@@ -5861,7 +6509,8 @@
 "d": 8.0,
 "src": "NASA: Cassini: Enceladus Sound",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-europa",
@@ -5869,7 +6518,8 @@
 "d": 8.0,
 "src": "NASA: Audio from NASA’s Juno Mission: Europa Flyby",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-fanfare",
@@ -5878,7 +6528,8 @@
 "src": "Space Fanfare",
 "url": "https://opengameart.org/content/space-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/space-interstellar-plasma",
@@ -5886,7 +6537,8 @@
 "d": 8.0,
 "src": "NASA: Voyager: Interstellar Plasma Sounds",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-jupiter-bow-shock",
@@ -5894,7 +6546,8 @@
 "d": 8.0,
 "src": "NASA: Juno: Crossing Jupiter's Bow Shock",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-jupiter-lightning",
@@ -5902,7 +6555,8 @@
 "d": 7.6,
 "src": "NASA: Voyager: Lightning on Jupiter",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-jupiter-magnetosphere",
@@ -5910,7 +6564,8 @@
 "d": 8.0,
 "src": "NASA: Juno: Entering Jupiter's Magnetosphere",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-langmuir-waves",
@@ -5918,7 +6573,8 @@
 "d": 7.8,
 "src": "NASA: Parker Solar Probe - Langmuir Waves",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-plasmaspheric-hiss",
@@ -5926,7 +6582,8 @@
 "d": 8.0,
 "src": "NASA: Plasmaspheric Hiss",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-saturn-radio",
@@ -5934,7 +6591,8 @@
 "d": 8.0,
 "src": "NASA: Cassini: Saturn Radio Emissions #2",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/space-star-kepler",
@@ -5942,7 +6600,8 @@
 "d": 6.7,
 "src": "NASA: Kepler: Star KIC12268220C Light Curve Waves to Sound",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
-"grp": "NASA"
+"grp": "NASA",
+"kind": "sound"
 },
 {
 "f": "long/the-burger-pope-round-clear",
@@ -5951,7 +6610,8 @@
 "src": "The Burger Pope Round Clear",
 "url": "https://opengameart.org/content/the-burger-pope-round-clear",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/the-heros-passing",
@@ -5960,7 +6620,8 @@
 "src": "The Heros Passing",
 "url": "https://opengameart.org/content/the-heros-passing",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/tiny-sad-lonely-theme",
@@ -5969,7 +6630,8 @@
 "src": "Tiny Sad Lonely Theme",
 "url": "https://opengameart.org/content/tiny-sad-lonely-theme",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/tragic-death",
@@ -5978,7 +6640,8 @@
 "src": "Tragic Death",
 "url": "https://opengameart.org/content/tragic-death",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/troll",
@@ -5988,7 +6651,8 @@
 "url": "https://opengameart.org/content/big-scary-troll-sounds",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/trop-la-win",
@@ -5997,7 +6661,8 @@
 "src": "Trop La Win",
 "url": "https://opengameart.org/content/trop-la-win",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/trump-abdul",
@@ -6007,7 +6672,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I told Abdul, don't do it anymore... You're gonna have to figure that out, Abdul.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-believe-me",
@@ -6017,7 +6683,8 @@
 "url": "https://youtu.be/s2DIp8_r9uU",
 "quote": "Believe me, believe me, believe me...",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-black-community",
@@ -6027,7 +6694,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Nobody has done more for the black community than Donald Trump. With the exception of Abraham Lincoln, possible exception.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-china-compilation",
@@ -6036,7 +6704,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 11.5,
-"quote": "China. China. China. China. China. China. China. China. China. China."
+"quote": "China. China. China. China. China. China. China. China. China. China.",
+"kind": "talk"
 },
 {
 "f": "long/trump-china",
@@ -6046,7 +6715,8 @@
 "url": "https://youtu.be/dYQYRDETHkM",
 "quote": "China. China. China.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-eating-the-dogs",
@@ -6056,7 +6726,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "In Springfield, they're eating the dogs. They're eating the cats. They're eating the pets.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-fat-pigs",
@@ -6066,7 +6737,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You've called women you don't like fat pigs, dogs, slobs and disgusting animals. Only Rosie O'Donnell.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-great-great-wall",
@@ -6075,7 +6747,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 10.0,
-"quote": "I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. Mark my words."
+"quote": "I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. Mark my words.",
+"kind": "talk"
 },
 {
 "f": "long/trump-hannibal-lecter",
@@ -6085,7 +6758,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Has anyone ever seen The Silence of the Lambs? The late, great Hannibal Lecter. He oftentimes would have a friend for dinner.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-i-am-the-chosen-one",
@@ -6095,7 +6769,8 @@
 "url": "https://youtu.be/RSCIndGqYWY",
 "quote": "Somebody had to do it. I am the chosen one.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-i-love-babies",
@@ -6105,7 +6780,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I love babies. I hear that baby crying. Actually, I was only kidding. You can get the baby out of here.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-kiss-obamas-ass",
@@ -6114,7 +6790,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 10.0,
-"quote": "He was only a good vice president because he understood how to kiss Barack Obama's ass."
+"quote": "He was only a good vice president because he understood how to kiss Barack Obama's ass.",
+"kind": "talk"
 },
 {
 "f": "long/trump-knock-knock",
@@ -6124,7 +6801,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You think you go through the door. If you're a normal person, you say, knock knock, may I come in?",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-like-a-smart-person",
@@ -6134,7 +6812,8 @@
 "url": "https://youtu.be/QAjIdPUfJEQ",
 "quote": "Is Donald Trump an intellectual? Trust me, I'm like a smart person.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-magnets",
@@ -6144,7 +6823,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "All I know about magnets is this: give me a glass of water, drop it on the magnets, that's the end of the magnet.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-small-hands",
@@ -6154,7 +6834,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "He referred to my hands, if they're small, something else must be small. I guarantee you there's no problem.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-standpoint-of-water",
@@ -6164,7 +6845,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Tough hurricane. One of the wettest we've ever seen, from the standpoint of water.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-start-your-engines",
@@ -6173,7 +6855,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 6.2,
-"quote": "Gentlemen, start your engines!"
+"quote": "Gentlemen, start your engines!",
+"kind": "talk"
 },
 {
 "f": "long/trump-three-vaccines",
@@ -6182,7 +6865,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 5.6,
-"quote": "I came up with three vaccines, all very, very good."
+"quote": "I came up with three vaccines, all very, very good.",
+"kind": "talk"
 },
 {
 "f": "long/trump-tired-of-winning",
@@ -6191,7 +6875,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 10.5,
-"quote": "We're going to win so much, you may even get tired of winning. And you'll say, please, please, it's too much winning. We can't take it anymore."
+"quote": "We're going to win so much, you may even get tired of winning. And you'll say, please, please, it's too much winning. We can't take it anymore.",
+"kind": "talk"
 },
 {
 "f": "long/trump-turn-black",
@@ -6201,7 +6886,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "She was always of Indian heritage... I didn't know she was black until a number of years ago, when she happened to turn black.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-turn-off-the-lights",
@@ -6211,7 +6897,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Turn them off, they're too bright. Turn off the lights, turn off the lights.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-very-large-brain",
@@ -6221,7 +6908,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "China has total respect for Donald Trump's very, very large brain.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-we-love-puerto-rico",
@@ -6231,7 +6919,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "We love Puerto Rico. Puerto Rico. Ah! Ah!",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-who-built-the-cages",
@@ -6240,7 +6929,8 @@
 "grp": "Presidents",
 "pool": "long",
 "d": 9.8,
-"quote": "Who built the cages? I'd love you to ask that. Who built the cages, Joe?"
+"quote": "Who built the cages? I'd love you to ask that. Who built the cages, Joe?",
+"kind": "talk"
 },
 {
 "f": "long/trump-word-salad",
@@ -6250,7 +6940,8 @@
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Tropical storm. Isaias. Isaiasis. Totality. Fresh vegetables. Fatalities.",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/trump-wrong",
@@ -6260,7 +6951,8 @@
 "url": "https://youtu.be/b2Ec_oHjEFM",
 "quote": "Wrong. (Interrupting Hillary Clinton at a 2016 debate.)",
 "grp": "Presidents",
-"lic": "See note"
+"lic": "See note",
+"kind": "talk"
 },
 {
 "f": "long/victory-8-bit",
@@ -6269,7 +6961,8 @@
 "src": "Victory 8 Bit",
 "url": "https://opengameart.org/content/victory-8-bit",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/victory-fanfare-short",
@@ -6278,7 +6971,8 @@
 "src": "Victory Fanfare",
 "url": "https://opengameart.org/content/victory-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/victory-fanfare",
@@ -6287,7 +6981,8 @@
 "src": "Victory Fanfare",
 "url": "https://opengameart.org/content/victory-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/victory-sting",
@@ -6296,7 +6991,8 @@
 "src": "Victory Sting",
 "url": "https://opengameart.org/content/victory-sting",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/vomit",
@@ -6306,7 +7002,8 @@
 "url": "https://opengameart.org/content/bad-sound-crap",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 },
 {
 "f": "long/weird-sad-song",
@@ -6315,7 +7012,8 @@
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/win-fanfare",
@@ -6324,7 +7022,8 @@
 "src": "Win Fanfare",
 "url": "https://opengameart.org/content/win-fanfare",
 "grp": "OpenGameArt",
-"lic": "CC0"
+"lic": "CC0",
+"kind": "sound"
 },
 {
 "f": "long/zombie-horde",
@@ -6334,6 +7033,7 @@
 "url": "https://opengameart.org/content/zombie-moans",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"note": "full-length cut"
+"note": "full-length cut",
+"kind": "sound"
 }
 ]

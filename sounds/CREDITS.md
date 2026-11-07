@@ -192,8 +192,9 @@ credited above).
 - [Beansjam Sad Budi Blues](https://opengameart.org/content/beansjam-sad-budi-blues)
 - [String And Piano Horror Stings](https://opengameart.org/content/string-and-piano-horror-stings)
 
-To add a clip: drop a CC0 MP3 (5 s max) here, add its name to `TURN_SOUNDS` (or, for a 5 to 12 s clip in `long/`, `LONG_SOUNDS`) in `index.html`, and
-credit it above.
+To add a clip: drop a CC0 MP3 here (12 s max; since v1.15 anything over 3 s plays in the long pool,
+wherever the file sits), run `python3 tools/sounds/make_list.py`, set its `kind` (`sound`, or `talk`
+for anything with words) and source in `sounds/clips.json`, run the script again, and credit it above.
 
 ## Added in v1.11 (presidents)
 
