@@ -478,6 +478,11 @@ details.field[open] > summary { margin-bottom: 10px; }
 .who-row { display: flex; align-items: center; gap: 10px; }
 .who-row > span { font-size: 17px; font-weight: 600; }
 .name-note { margin: 2px 0 0; font-size: 15px; color: var(--hot); }
+.speaker-note { margin: 4px 0 0; font-size: 14px; line-height: 1.35; opacity: .8; }
+/* The speaker phone after a reload: the phone won't play sound until it's touched once (v1.20). */
+.speaker-wake { position: fixed; left: 50%; top: 12px; transform: translateX(-50%); z-index: 60;
+  max-width: calc(100% - 32px); padding: 10px 16px; border-radius: 12px; background: #e8b44a; color: #1d1b17;
+  font-size: 16px; font-weight: 600; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.5); pointer-events: none; }
 .pick {
   flex: none; width: 40px; height: 40px; padding: 0; border-radius: 50%;
   border: 2px solid var(--line); background: transparent;
@@ -569,6 +574,14 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="off">Off</button>
       </div>
     </div>
+    <div class="field">
+      <span>Speaker</span>
+      <div class="seg" id="segSpeaker">
+        <button type="button" data-v="each">Each phone</button>
+        <button type="button" data-v="here">This phone</button>
+      </div>
+      <p class="speaker-note" id="speakerNote"></p>
+    </div>
     <details class="field" id="meField" open>
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
@@ -607,7 +620,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.19';
+  const VERSION = '1.20';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -739,6 +752,13 @@ details.field[open] > summary { margin-bottom: 10px; }
   if (state.sound === true) state.sound = 'all';
   if (state.sound === false) state.sound = 'off';
   if (!['all', 'turn', 'off'].includes(state.sound)) state.sound = 'all';
+  // This phone's own id (v1.20), random and kept on this phone only, so the table can tell the
+  // speaker phone apart from the rest even when two phones are both Center.
+  if (typeof state.phone !== 'string' || !/^[a-z0-9]{6,16}$/.test(state.phone)) state.phone = Math.random().toString(36).slice(2, 12).padEnd(8, '0');
+  // The speaker phone (v1.20): the one hooked up to the table's speaker, which plays every phone's
+  // turn button. Synced: its id, its owner (for the menu's "Rand's phone") and when it last checked
+  // in. All null when each phone plays its own.
+  if (!state.speaker || typeof state.speaker !== 'object') state.speaker = { id: null, me: null, at: null };
   // Per table size, the player whose turn it is (null before anyone's started).
   if (!state.turns || typeof state.turns !== 'object') state.turns = {};
   TURN_KEYS.forEach(k => { if (!Number.isInteger(state.turns[k])) state.turns[k] = null; });
@@ -893,8 +913,10 @@ details.field[open] > summary { margin-bottom: 10px; }
     out: 'trump-youre-fired trump-and-we-say-bye-bye trump-sad biden-come-on-man sad-trumpet tuba-sad total-fail better-luck-next-time oldschool-death demon-game-over little-girl-saying-game-over voice-lets-try-again tts-lethal tts-scoop long/obama-out bush-misunderestimated long/sad-ending-1 long/sad-ending-2 long/sad-ending-3 long/sad-game-over long/tragic-death long/medieval-defeat long/game-over-jingle long/nasa-houston-problem long/awkward-trumpet'.split(' '),
     win: 'long/trump-tired-of-winning and-the-winner-is victory-6 16bit-success-sound win-sound-effect nasa-eagle-has-landed long/victory-fanfare long/glorious-victory-fanfare-nes long/sega-victory long/medieval-victory long/win-fanfare long/trump-i-am-the-chosen-one long/nasa-one-small-step long/laugh-okeh-1 long/hyper-ultra-fanfare long/fireworks-with-applause-happy-people'.split(' '),
   };
-  function play(name) {
+  function play(name, here) {
     if (state.sound !== 'all') return;
+    // A knockout or a win goes to the speaker phone when there is one (v1.20); life ticks stay here.
+    if (EVENT_SOUNDS[name] && !here && remoteSpeaker()) { ring(name); return; }
     unlock();
     if (!audio) return;
     if (EVENT_SOUNDS[name]) {
@@ -957,8 +979,11 @@ details.field[open] > summary { margin-bottom: 10px; }
   const ahead = () => Object.keys(pools).flatMap(len => Object.keys(pools[len])
     .filter(kind => pools[len][kind].list.length).flatMap(kind => nextUp(pools[len][kind], AHEAD[len][kind] || 1)));
   function prime() { if (audio) { primed = true; ahead().forEach(load); } }
-  function turnSound() {
+  // `here` plays on this phone whatever the speaker setting (the speaker phone itself, a ping it
+  // heard, or the Sound setting's own preview).
+  function turnSound(here) {
     if (state.sound === 'off') return;
+    if (!here && remoteSpeaker()) { ring('turn'); return; }
     unlock();
     if (!audio) return;
     if (!left.some(n => n > 0)) left = all.map(p => p.list.length);
@@ -1385,6 +1410,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
     document.querySelectorAll('#segSound button').forEach(b => b.classList.toggle('on', b.dataset.v === state.sound));
+    syncSpeaker();
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
     const center = state.mode !== 1 && state.me === CENTER;
     const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : state.mode);
@@ -1429,6 +1455,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const b = e.target.closest('.pick');
     if (!b) return;
     state.me = +b.dataset.v; marking = []; save(); build(); syncMenu();
+    if (amSpeaker()) { state.speaker.me = state.me; send({ 'speaker/me': state.me }); }
   });
   // New pairs start both 1v1s over, so once either has begun it takes a second tap.
   // v is Rand's opponent; a second tap on the same choice confirms once a game has begun.
@@ -1626,7 +1653,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   }));
   // Turning sound on plays a turn sound, so it's clear the phone isn't muted.
   document.querySelectorAll('#segSound button').forEach(b => b.addEventListener('click', () => {
-    state.sound = b.dataset.v; save(); syncMenu(); turnSound();
+    state.sound = b.dataset.v; save(); syncMenu(); turnSound(true);
   }));
   // Logs game k if it finished, starts it over, and returns the patch to send.
   function resetGame(k) {
@@ -1843,7 +1870,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   const RESULTS_URL = DB + '/tables/t7q2xm4k-results';
 
   const inc = d => ({ '.sv': { increment: d } });
-  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'names/0', 'names/1', 'names/2', 'names/3',
+  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'speaker/id', 'speaker/me', 'speaker/at', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'names/0', 'names/1', 'names/2', 'names/3',
     'colors/0', 'colors/1', 'colors/2', 'colors/3']
     .concat(...KEYS.map(k => [].concat(...Array.from({ length: SIZE[k] }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${k}/${i}/${f}`)))),
@@ -1855,7 +1882,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
+  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, speaker: state.speaker, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Increments fall back to plain values if the database refuses them.
   function send(patch) {
@@ -1874,6 +1901,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (p === 'mode') return MODES.includes(v);
     if (p === 'pairs') return [1, 2, 3].includes(v);
     if (p === 'sitout') return [0, 1, 2, 3].includes(v);
+    if (p === 'speaker/id') return v === null || (typeof v === 'string' && /^[a-z0-9]{6,16}$/.test(v));
+    if (p === 'speaker/me') return v === null || [0, 1, 2, 3, CENTER].includes(v);
+    if (p === 'speaker/at') return v === null || (typeof v === 'number' && isFinite(v) && v > 0);
     if (p.startsWith('bgs/')) return ARTS.includes(v);
     if (p === 'start') return [20, 30, 40].includes(v);
     // A blank or wrong-box name from another phone (or someone mid-edit) is ignored; see badName.
@@ -1914,10 +1944,14 @@ details.field[open] > summary { margin-bottom: 10px; }
       // A seat reset by a phone from before v3.0 carries no concession: it's back in.
       if (v === undefined && p.endsWith('/conceded') && getAt(mirror, p.slice(0, -'/conceded'.length))) v = false;
       // A table that holds no meta, turn or turn timer (cleared, or set up by an older phone) has none.
-      if (v === undefined && /^(meta|turns|clock)\//.test(p) && mirror && typeof mirror === 'object') v = null;
+      if (v === undefined && /^(meta|turns|clock|speaker)\//.test(p) && mirror && typeof mirror === 'object') v = null;
       if (v !== undefined && v !== was && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
-    if (!changed.length) return;
+    hearPing();
+    // The speaker setting changes only the menu and the wake-up note, never the board.
+    if (changed.some(x => x.p.startsWith('speaker/'))) { syncSpeaker(); speakerWake(); }
+    changed.splice(0, changed.length, ...changed.filter(x => !x.p.startsWith('speaker/')));
+    if (!changed.length) { save(); return; }
     save();
     if (changed.some(x => !/^(games|meta|turns|clock)\//.test(x.p))) {
       if (changed.some(x => ['mode', 'pairs', 'sitout'].includes(x.p))) marking = [];
@@ -1936,13 +1970,75 @@ details.field[open] > summary { margin-bottom: 10px; }
     paintMini();
   }
 
+  // ---- speaker phone (v1.20) ----
+  // Usually only one phone is hooked up to the table's speaker. When it's set as the speaker phone,
+  // every other phone's turn button (and its knockout and win sounds) sends a ping through the live
+  // table instead of playing, and the speaker phone plays it: a clip from its own shuffled pools,
+  // so nothing repeats across the table either. Life ticks still play on the phone that was tapped.
+  // The speaker phone checks in every 30 s; if it hasn't for 90 s (it slept, or left), or this
+  // phone is offline, each phone plays its own again so no tap goes silent.
+  let live = false, pingSeen = null;
+  const amSpeaker = () => state.speaker.id === state.phone;
+  const speakerFresh = () => !!state.speaker.id && Date.now() - (state.speaker.at || 0) < 90e3;
+  const remoteSpeaker = () => live && speakerFresh() && !amSpeaker();
+  function ring(k) { send({ 'ping/n': inc(1), 'ping/k': k, 'ping/by': state.phone }); }
+  // A ping counts up; the speaker plays each new one. The first count a connection sees is only noted.
+  function hearPing() {
+    const n = getAt(mirror, 'ping/n'), k = getAt(mirror, 'ping/k');
+    if (typeof n !== 'number' || pingSeen === null) return;
+    if (n <= pingSeen) { pingSeen = n; return; }
+    pingSeen = n;
+    if (!amSpeaker() || getAt(mirror, 'ping/by') === state.phone) return;
+    if (k === 'turn') turnSound(true);
+    else if (k === 'out' || k === 'win') play(k, true);
+  }
+  function checkIn() {
+    if (!amSpeaker() || document.visibilityState !== 'visible') return;
+    wake();
+    state.speaker.at = Date.now(); save();
+    send({ 'speaker/at': state.speaker.at });
+  }
+  setInterval(checkIn, 30e3);
+  document.addEventListener('visibilitychange', () => { checkIn(); speakerWake(); });
+  function setSpeaker(here) {
+    state.speaker = here ? { id: state.phone, me: state.me, at: Date.now() } : { id: null, me: null, at: null };
+    send({ 'speaker/id': state.speaker.id, 'speaker/me': state.speaker.me, 'speaker/at': state.speaker.at });
+    save(); syncSpeaker();
+    if (here) { unlock(); wake(); turnSound(true); }
+    speakerWake();
+  }
+  function syncSpeaker() {
+    const here = amSpeaker(), other = !!state.speaker.id && !here;
+    document.querySelectorAll('#segSpeaker button').forEach(b =>
+      b.classList.toggle('on', b.dataset.v === (here ? 'here' : other ? '' : 'each')));
+    const e = state.speaker.me;
+    const who = e === CENTER ? 'The Center phone' : e != null ? (state.names[e].trim() || DEFAULT_NAMES[e]) + "'s phone" : 'Another phone';
+    document.getElementById('speakerNote').textContent =
+      here ? 'Every turn button plays here. Keep this phone awake with the page open.'
+      : other && speakerFresh() ? who + ' plays every turn button (it\'s on the speaker).'
+      : other ? who + ' was the speaker but hasn\'t checked in, so each phone plays its own for now.'
+      : 'Each phone plays its own turn button. Pick This phone on the one hooked up to the speaker.';
+  }
+  document.querySelectorAll('#segSpeaker button').forEach(b => b.addEventListener('click', () => setSpeaker(b.dataset.v === 'here')));
+  // After a reload the speaker phone can't make sound until someone touches it, so it says so.
+  const wakeNote = document.createElement('div');
+  wakeNote.className = 'speaker-wake'; wakeNote.hidden = true;
+  wakeNote.textContent = 'Speaker phone: tap anywhere to turn its sound on';
+  document.body.appendChild(wakeNote);
+  function speakerWake() {
+    wakeNote.hidden = !(amSpeaker() && state.sound !== 'off' && (!audio || audio.state !== 'running'));
+  }
+  document.addEventListener('pointerdown', () => setTimeout(speakerWake, 300), true);
+
   function setLive(on) {
+    live = on;
     document.getElementById('ver').textContent =
       'v' + VERSION + ' · ' + (on ? 'Sharing live with this table' : 'Offline, this phone only');
   }
   let stream = null;
   function connect() {
     if (stream) stream.close();
+    pingSeen = null;
     stream = new EventSource(TABLE_URL);
     stream.onopen = () => setLive(true);
     stream.onerror = () => setLive(stream.readyState === EventSource.OPEN); // it reconnects by itself
@@ -1951,9 +2047,11 @@ details.field[open] > summary { margin-bottom: 10px; }
       // The first device here starts the table from its own game.
       if (path === '/' && data === null) {
         fetch(TABLE_URL, { method: 'PUT', body: JSON.stringify(shared()) }).catch(() => {});
+        pingSeen = 0;
         return;
       }
       putIn(path, data);
+      if (path === '/') pingSeen = getAt(mirror, 'ping/n') || 0;
       adopt();
     });
     stream.addEventListener('patch', e => {
@@ -1972,6 +2070,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
 
   build();
+  speakerWake();
+  checkIn();
 })();
 </script>
 </body>
