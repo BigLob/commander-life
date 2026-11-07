@@ -101,6 +101,16 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    from this phone's player at bottom left. The seats keep their edge classes, so a Center phone
    still turns each one to face its owner's side and an upright phone faces them all to its owner. */
 .board.n4.quad { grid-template-areas: "left top" "bottom right"; grid-template-rows: 1fr 1fr; }
+/* Big button (v1.22, a 4-player layout option, made for an iPad on the table): Table's seats on the
+   phone's edges with a cell of their own in the middle (.hub-spot), so the turn button can be huge
+   without covering the side seats' totals. placeTurn() sizes it to the cell. */
+.board.n4.hub {
+  grid-template-areas: "top top top" "left hub right" "bottom bottom bottom";
+  grid-template-rows: 1fr minmax(40vmin, 1.4fr) 1fr; grid-template-columns: 1fr 40vmin 1fr;
+}
+.hub-spot { grid-area: hub; }
+.hub ~ .turn-big { border-width: 5px; box-shadow: 0 0 0 3px var(--line), 0 0 44px rgba(255, 179, 71, .6), 0 8px 20px rgba(0, 0, 0, .55); }
+.hub + .menu-btn { transform: none; }
 /* Spotlight (v3.35, the default at 3 and 4 players): whoever has the turn takes the bottom half
    (v3.36; it was the top), the others share the top in turn order after them. Everyone faces this
    phone's player. */
@@ -557,6 +567,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="spot">Spotlight</button>
         <button type="button" data-v="table">Table</button>
         <button type="button" data-v="quad">Quadrants</button>
+        <button type="button" data-v="hub">Big button</button>
       </div>
     </div>
     <div class="field" id="layoutField">
@@ -620,7 +631,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.21';
+  const VERSION = '1.22';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -744,9 +755,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
   if (!['split', 'classic'].includes(state.layout2)) state.layout2 = 'split';
   // How a three- or four-seat board is laid out on this phone: 'spot' (the turn's player big, the
-  // default), 'table' (around the edges) or 'quad' (a quarter each, four seats only). Kept on this
-  // phone only. See layoutOf() for where each one can't be used.
-  if (!['spot', 'table', 'quad'].includes(state.layout4)) state.layout4 = 'spot';
+  // default), 'table' (around the edges), 'quad' (a quarter each, four seats only) or 'hub' (around
+  // the edges with a huge turn button in the middle, four seats only). Kept on this phone only. See
+  // layoutOf() for where each one can't be used.
+  if (!['spot', 'table', 'quad', 'hub'].includes(state.layout4)) state.layout4 = 'spot';
   // Sound on this phone: 'all', 'turn' (the turn button only) or 'off'. Kept on this phone only.
   // v1.2 kept it as true or false.
   if (state.sound === true) state.sound = 'all';
@@ -1048,7 +1060,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   function layoutOf(n) {
     if (n < 3) return null;
     let lay = state.layout4;
-    if (lay === 'quad' && n !== 4) lay = 'spot';
+    if ((lay === 'quad' || lay === 'hub') && n !== 4) lay = 'spot';
     if (lay === 'spot' && (state.me === CENTER || state.mode === SPLIT)) lay = 'table';
     return lay;
   }
@@ -1072,7 +1084,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const board = document.createElement('div');
     const lay = layoutOf(n);
     board.className = duel || duel4 ? 'board duel'
-      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'spot' ? ' spot' : '');
+      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
     // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
@@ -1082,6 +1094,11 @@ details.field[open] > summary { margin-bottom: 10px; }
       seats[i] = (duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, duel4 ? i === mySeat() : duel && !k));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
+    }
+    if (lay === 'hub') {
+      const hub = document.createElement('div');
+      hub.className = 'hub-spot';
+      board.appendChild(hub);
     }
     app.appendChild(board);
     const mb = document.createElement('button');
@@ -1163,6 +1180,18 @@ details.field[open] > summary { margin-bottom: 10px; }
   // there the turn and menu buttons sit on the line above the bottom seat instead.
   function placeTurn() {
     const board = app.querySelector('.board'), btns = app.querySelectorAll('.turn-big, .menu-btn');
+    btns.forEach(b => { b.style.top = b.style.left = b.style.width = b.style.height = ''; });
+    // Big button: the turn button fills the middle cell, the menu button sits in its corner. Layout
+    // offsets, not screen rects, so a pinned (turned) board measures the same.
+    const hub = board && board.querySelector('.hub-spot');
+    if (hub) {
+      const x = hub.offsetLeft, y = hub.offsetTop, w = hub.offsetWidth, h = hub.offsetHeight;
+      const d = Math.round(.86 * Math.min(w, h));
+      const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn');
+      Object.assign(tb.style, { left: x + w / 2 + 'px', top: y + h / 2 + 'px', width: d + 'px', height: d + 'px' });
+      Object.assign(mb.style, { left: x + w - 46 + 'px', top: y + h - 46 + 'px' });
+      return;
+    }
     const s0 = board && board.matches('.n4.table:not(.quad):not(.spot)') && board.querySelector('.s0');
     const y = s0 ? (s0.offsetParent === board ? board.offsetTop : 0) + s0.offsetTop - 3 : 0;
     btns.forEach(b => { b.style.top = s0 ? y + 'px' : ''; });
@@ -1420,6 +1449,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || (state.mode === SPLIT && center));
     document.querySelector('#segLayout4 [data-v="spot"]').hidden = center || state.mode === SPLIT;
     document.querySelector('#segLayout4 [data-v="quad"]').hidden = state.mode === 3;
+    document.querySelector('#segLayout4 [data-v="hub"]').hidden = state.mode === 3;
     document.getElementById('pickFirst').hidden = state.mode === 1;
     // Who plays whom in the two 1v1s: Rand's pick sets both pairs.
     document.getElementById('pairsField').hidden = state.mode !== SPLIT;
