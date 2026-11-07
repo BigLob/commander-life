@@ -1,4 +1,5 @@
-"""Rebuild sounds/index.html, the list of every turn-button clip, and the turn button's pools in
+"""Rebuild sounds/index.html, the list of every turn-button clip, sounds/lines.html, every spoken line
+with who says it, its occasion (from) and source, and the turn button's pools in
 index.html (TURN_POOLS), from sounds/clips.json.
 
 sounds/clips.json holds each clip's file (f, 'long/' prefix for files in sounds/long/), pool,
@@ -26,6 +27,9 @@ for sub in ('', 'long'):
 json.dump(seen, open(os.path.join(root, 'clips.json'), 'w'), indent=0, ensure_ascii=False)
 t = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'list-template.html')).read()
 open(os.path.join(root, 'index.html'), 'w').write(t.replace('/*CLIPS*/[]', json.dumps(seen, ensure_ascii=False, separators=(',', ':'))))
+lt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lines-template.html')).read()
+lines = [{k: c[k] for k in ('f', 'd', 'quote', 'who', 'from', 'src', 'url', 'grp', 'note') if c.get(k)} for c in seen if c.get('kind') == 'talk']
+open(os.path.join(root, 'lines.html'), 'w').write(lt.replace('/*LINES*/[]', json.dumps(lines, ensure_ascii=False, separators=(',', ':'))))
 pools = {p: {k: ' '.join(c['f'] for c in seen if c['pool'] == p and c['kind'] == k) for k in ('sound', 'talk')}
          for p in ('short', 'long')}
 page = os.path.join(root, '..', 'index.html')

@@ -7,13 +7,14 @@ sync live. Plain HTML pages, no build step, no framework.
 
 End every reply about anything in this repo with icon-only links to the live pages, on one line:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [📚](https://biglob.github.io/commander-life/decks/) [🔊](https://biglob.github.io/commander-life/sounds/)
+[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [📚](https://biglob.github.io/commander-life/decks/) [🔊](https://biglob.github.io/commander-life/sounds/) [🗣️](https://biglob.github.io/commander-life/sounds/lines.html)
 
 🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Fav, Bench and Trash
 tabs). When we build a new page, add its icon link to this line. Its editable claude.ai artifact is
 https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; don't put it in the footer).
 📚 is the deck list, `decks/`: a card carousel for every precon the group owns (see below).
 🔊 is the clip list, `sounds/index.html`: every turn-button sound with its length, pool and source, each playable.
+🗣️ is the spoken lines, `sounds/lines.html`: every clip with words, grouped by speaker, with the original occasion and where it came from.
 
 ## Where things live
 
@@ -57,7 +58,9 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.17; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.18; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.18: **Mega Man 1 to 3 sounds and the spoken-lines page.** 20 NES effects and jingles (`megaman-*`, `megaman2-*`, `megaman3-*`; group "Mega Man" in `clips.json`): 10 from archive.org's "Mega Man sound effects" upload (death, teleport in and out, landing, boss door, enemy hit and explode, Met shot, big energy, thrust; shared by Mega Man 1 to 3), 10 from myinstants uploads named for the game (1-up, Mega Man 2 buster, teleport, game over and boss-defeated jingle, Mega Man 3 stage clear, spawn, Proto Man's whistle full and short). Capcom's, not CC0. Left out: Mega Man 4 and later (charge shots), Mega Man X, the cartoon, and uploads that don't name the game. sounds-resource.com and KHInsider are blocked from the sandbox (Cloudflare 403). **Spoken lines** (`sounds/lines.html`, built by `make_list.py` from `lines-template.html`): every `talk` clip grouped by speaker, with its words, original occasion and source. `clips.json` gained `who` (speaker) and `from` (occasion, filled only where well documented: debates, speeches, the Correspondents' Dinners, Apollo and Mercury flights; 124 of 211), and YouTube sources now carry the upload's title and channel (from YouTube's oEmbed, which the sandbox can reach). The 35 OpenGameArt voice lines got their words.
+- **Pool ratios follow the content.** Since v1.17 there's no ratio to keep up: each tap is weighted by the clips each pool has left, so adding sounds or dialogue shifts the mix by itself. What matters is tagging each new clip's `kind` right (`talk` for anything with words) and giving talk clips `quote`, `who` and, when known, `from`.
 - v1.17: **dialogue as often as its share too.** Dialogue was a flat 30% of taps (`TALK_SHARE`, gone), though it's 26% of short clips and 35% of long ones, so short lines repeated before long ones had all played. Now each tap picks one of the four pools (short or long, sound or talk) weighted by the clips it has left this round (`left`, one count per pool in `all`), so all four run out together. Dialogue is about 30% of the clips, so it's still about 30% of taps.
 - v1.16: **long clips as often as their share.** A long clip used to come after every 3 to 10 short ones (about 13% of taps), though long clips are 43% of the library, so they took three times as long to come round. Now each tap is long with the chance long clips have among those not yet played this round (`left`, reset when both run out), so short and long run out together, with natural runs of either. `LONG_EVERY` is gone.
 - v1.15: **how turn-button clips are picked.** Short is now 3 s at most and long anything over 3 s (it was 5 s), set by each clip's length, not its folder (`sounds/long/` still holds only the over-5 s cuts; the root has both). Every clip is also a `sound` or `talk` (dialogue: anything with words, from the quote field or a faster-whisper screen of the rest, checked by hand) in `sounds/clips.json`. Each tap still plays a long clip after every 3 to 10 short ones (until v1.16), and is dialogue 30% of the time (`TALK_SHARE`) and a sound otherwise. Four pools, each its own shuffled bag (`TURN_POOLS`, written into `index.html` by `tools/sounds/make_list.py`, which replaced the hand-kept `TURN_SOUNDS` and `LONG_SOUNDS`). The clip list shows each clip's kind and filters by it.

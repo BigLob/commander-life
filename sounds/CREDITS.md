@@ -450,3 +450,36 @@ anonymous meme cuts from news footage. A few overlap on purpose with the v1.11 l
 | `trump-you-are-fake-news` | 1.4 s | You are fake news. | [myinstants: Donald Trump: Fake news](https://www.myinstants.com/media/sounds/donald-trump-fake-news-sound-effect.mp3) |
 | `trump-youd-be-in-jail` | 1.4 s | Because you'd be in jail. | [myinstants: Donald Trump: because you'd be](https://www.myinstants.com/media/sounds/because-youd-be-in-jail.mp3) |
 | `trump-youre-fired` | 1.3 s | You're fired. | [myinstants: You're Fired (Trump)](https://www.myinstants.com/media/sounds/youre-fired-trump.mp3) |
+
+## Added in v1.18 (Mega Man 1 to 3)
+
+NES sound effects and jingles from Capcom's Mega Man (1987), Mega Man 2 (1988) and Mega Man 3 (1990).
+Not CC0: these are Capcom's, ripped from the games by fans. The `archive.org` ones come from the
+"Mega Man sound effects" upload (archive.org/details/megaman_nes_snes_sounds), whose NES effects are
+shared across the series (its charge-shot sounds, from Mega Man 4 on, were left out); the rest are
+myinstants.com uploads named for Mega Man 1, 2 or 3. Clips from Mega Man 4 and later, Mega Man X, the
+cartoon, and uploads that don't say which game were left out. Trimmed of silence (Proto Man's whistle
+cut to 10 s), loudness-matched (EBU R128, -16 LUFS) and converted to mono 64 kbps MP3.
+
+| File | Length | What | From |
+| --- | --- | --- | --- |
+| `long/megaman2-victory` | 5.5 s | Mega Man 2 boss defeated | [myinstants: Mega Man 2 NES Vitoria](https://www.myinstants.com/media/sounds/mm2-victory.mp3) |
+| `long/megaman3-proto-man-whistle` | 10.0 s | Mega Man 3: Proto Man's whistle | [myinstants: Mega Man 3 Proto Man's Whistle](https://www.myinstants.com/media/sounds/mega-man-3-proto-mans-whistle.mp3) |
+| `megaman-1up` | 1.1 s | 1-up | [myinstants: Mega Man - 1UP](https://www.myinstants.com/media/sounds/mega-man-1up.mp3) |
+| `megaman-big-health` | 0.6 s | Big energy pickup; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_bigHealth)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-boss-door` | 0.5 s | Boss door opening; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_doorOpen)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-death` | 2.0 s | Mega Man dies; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_deadSound)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-enemy-explode` | 0.8 s | Enemy destroyed; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_enemyGoneSound)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-enemy-hit` | 0.2 s | Enemy hit; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_enemyHit)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-game-over` | 2.7 s | Game over | [myinstants: Mega Man Game Over 1](https://www.myinstants.com/media/sounds/mega-man-game-over-1_9e7lhlo.mp3) |
+| `megaman-landing` | 0.3 s | Landing from a jump; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_landing)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-met-shot` | 0.2 s | Met (hard hat) shooting; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_hardHatShoot)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-teleport-in` | 1.0 s | Teleport in; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_teleportIn)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-teleport-out` | 1.2 s | Teleport out; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_teleport2)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman-thrust` | 0.7 s | Thrust; NES effect shared by Mega Man 1 to 3 | [archive.org: Mega Man sound effects (nes_thrust)](https://archive.org/details/megaman_nes_snes_sounds) |
+| `megaman2-buster` | 0.2 s | Mega Man 2 buster shot | [myinstants: mega man pellet noise](https://www.myinstants.com/media/sounds/mega-man-2-sfx-8-online-audio-converter.mp3) |
+| `megaman2-game-over` | 2.8 s | Mega Man 2 game over | [myinstants: Mega Man 2 Game Over](https://www.myinstants.com/media/sounds/mega-man-2-game-over.mp3) |
+| `megaman2-teleport-in` | 0.2 s | Mega Man 2 teleport in | [myinstants: Mega Man 2 - Teleport In](https://www.myinstants.com/media/sounds/mega-man-2-teleport-in.mp3) |
+| `megaman3-proto-man-whistle-short` | 2.7 s | Mega Man 3: Proto Man's whistle (short) | [myinstants: Protoman Whistle](https://www.myinstants.com/media/sounds/protoman-whistle.mp3) |
+| `megaman3-spawn` | 0.2 s | Mega Man 3 spawn | [myinstants: Rockman 3, 4, 5, 6 spawn](https://www.myinstants.com/media/sounds/rockman-3-4-5-6-spawn.mp3) |
+| `megaman3-stage-clear` | 3.7 s | Mega Man 3 stage clear | [myinstants: Mega Man 3 Stage Clear](https://www.myinstants.com/media/sounds/mega-man-3-stage-clear_SMkoYD7.mp3) |

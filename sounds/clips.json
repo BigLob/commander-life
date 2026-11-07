@@ -217,7 +217,10 @@
 "url": "https://opengameart.org/content/au-yeah",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Oh yeah!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "baby-sound-effect",
@@ -267,7 +270,8 @@
 "pool": "short",
 "d": 1.0,
 "quote": "Come on, man!",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-gibberish",
@@ -277,7 +281,8 @@
 "pool": "long",
 "d": 3.3,
 "quote": "I was in the fudg... fudg... fudg...",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-kids-better-than-people",
@@ -287,7 +292,8 @@
 "pool": "short",
 "d": 2.2,
 "quote": "Everybody knows I like kids better than people.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-never-been-poor",
@@ -297,7 +303,8 @@
 "pool": "long",
 "d": 4.7,
 "quote": "I'm going to say something outrageous. I have never been particularly poor.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-old-as-i-am",
@@ -307,7 +314,8 @@
 "pool": "long",
 "d": 3.4,
 "quote": "I no more think of myself as being as old as I am than fly.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-single-word",
@@ -317,7 +325,8 @@
 "pool": "short",
 "d": 2.7,
 "quote": "America can be defined in a single word: I-was-in-the-foot-in-the-foot.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-smart-guys",
@@ -327,7 +336,8 @@
 "pool": "short",
 "d": 2.9,
 "quote": "Well, I'm sick and tired of smart guys!",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-stupid-son-of-a-bitch",
@@ -337,7 +347,9 @@
 "pool": "short",
 "d": 1.8,
 "quote": "What a stupid son of a bitch.",
-"kind": "talk"
+"kind": "talk",
+"from": "White House event, Jan 24, 2022 (about Fox News's Peter Doocy, on a live mic)",
+"who": "Joe Biden"
 },
 {
 "f": "biden-take-a-test",
@@ -347,7 +359,8 @@
 "pool": "long",
 "d": 4.4,
 "quote": "Why the hell would I take a test? Come on, man!",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-what-am-i-doing-here",
@@ -357,7 +370,8 @@
 "pool": "long",
 "d": 3.9,
 "quote": "And what am I doing here?",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-what-in-the-heck",
@@ -367,7 +381,8 @@
 "pool": "short",
 "d": 2.8,
 "quote": "What in the heck are we talking about here?",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-who-does-he-think-he-is",
@@ -377,7 +392,8 @@
 "pool": "long",
 "d": 4.9,
 "quote": "Who in the hell does he think he is? Who does he think he is?",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "biden-will-you-shut-up-man",
@@ -387,7 +403,9 @@
 "pool": "short",
 "d": 1.7,
 "quote": "Would you shut up, man?",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debate with Donald Trump, Sept 29, 2020",
+"who": "Joe Biden"
 },
 {
 "f": "biden-you-know-the-thing",
@@ -397,7 +415,8 @@
 "pool": "short",
 "d": 1.9,
 "quote": "You know, the thing.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "big-boing",
@@ -503,122 +522,139 @@
 "f": "bush-bulgaria-achievements",
 "pool": "long",
 "d": 5.0,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "People of Bulgaria ought to be proud of the achievements that they have achieved.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "George W. Bush"
 },
 {
 "f": "bush-fish-coexist",
 "pool": "long",
 "d": 4.8,
-"src": "YouTube: youtu.be/20Jcrk6jGfo",
+"src": "YouTube: \"I know the human being and fish can coexist peacefully\" (Goth Pop TV)",
 "url": "https://youtu.be/20Jcrk6jGfo",
 "quote": "I know the human being and fish can coexist peacefully.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign stop, Saginaw, Michigan, Sept 29, 2000",
+"who": "George W. Bush"
 },
 {
 "f": "bush-food-on-your-family",
 "pool": "short",
 "d": 2.1,
-"src": "YouTube: youtu.be/_v4tig8HnlU",
+"src": "YouTube: \"Bush Bites - Food On Your Family\" (Atomic Wedgie)",
 "url": "https://youtu.be/_v4tig8HnlU",
 "quote": "You're working hard to put food on your family.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign stop, Nashua, New Hampshire, Jan 27, 2000",
+"who": "George W. Bush"
 },
 {
 "f": "bush-is-our-children-learning",
 "pool": "long",
 "d": 4.0,
-"src": "YouTube: youtu.be/GC-6Vc8YX9c",
+"src": "YouTube: \"George Bush - Is Our Kids Learning\" (rvankaam)",
 "url": "https://youtu.be/GC-6Vc8YX9c",
 "quote": "Rarely is the question asked: is our children learning?",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign speech, Florence, South Carolina, Jan 11, 2000",
+"who": "George W. Bush"
 },
 {
 "f": "bush-let-me-let-me",
 "pool": "long",
 "d": 3.2,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "Let me, let me, let me, let me.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "George W. Bush"
 },
 {
 "f": "bush-misunderestimated",
 "pool": "short",
 "d": 1.1,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "They misunderestimated me.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign rally, Bentonville, Arkansas, Nov 6, 2000",
+"who": "George W. Bush"
 },
 {
 "f": "bush-one-finger-salute",
 "pool": "short",
 "d": 2.7,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "Just a one finger victory salute.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "George W. Bush"
 },
 {
 "f": "bush-prime-minister-of-india",
 "pool": "long",
 "d": 5.0,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "The new Prime Minister of India is, uh, uh, no.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "George W. Bush"
 },
 {
 "f": "bush-the-google",
 "pool": "long",
 "d": 3.7,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "One of the things I've used on the Google is to pull up map.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "CNBC interview, Oct 2006",
+"who": "George W. Bush"
 },
 {
 "f": "bush-we-will-fail",
 "pool": "long",
 "d": 5.0,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "Not one doubt in my mind that we will fail.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "George W. Bush"
 },
 {
 "f": "bush-where-wings-take-dream",
 "pool": "long",
 "d": 4.1,
-"src": "YouTube: youtu.be/ijiqLeqYeoU",
+"src": "YouTube: \"💪Bush Gives Words of Wisdom💡(Where Wings Take Dream)😌\" (The Ace of Knaves)",
 "url": "https://youtu.be/ijiqLeqYeoU",
 "quote": "Families is where our nation finds hope, where wings take dream.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign speech, La Crosse, Wisconsin, Oct 18, 2000",
+"who": "George W. Bush"
 },
 {
 "f": "castle-fanfare",
@@ -708,7 +744,10 @@
 "url": "https://opengameart.org/content/cheers-0",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Cheers!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "chipper-chopper-upper",
@@ -1048,7 +1087,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "We will feast on your soul.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-feeble-humans",
@@ -1058,7 +1100,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "You feeble humans! Do you think you can defeat me?",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-game-over",
@@ -1068,7 +1113,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Game over!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-he-s-escaped",
@@ -1078,7 +1126,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "He's escaped! Search over there! Don't let him get away!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-kill-him-slowly",
@@ -1088,7 +1139,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Kill him! Slowly, I want to watch.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-kill-them-slowly",
@@ -1098,7 +1152,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Kill them slowly. I want to watch.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-laughs",
@@ -1118,7 +1175,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "I'll make you my pet!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-moohaaa-laugh",
@@ -1138,7 +1198,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "You are not welcome here.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-nothing-to-fear",
@@ -1148,7 +1211,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "There is nothing to fear.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-nowhere-to-run",
@@ -1158,7 +1224,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "There is nowhere to run!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-search-all-dungens",
@@ -1168,7 +1237,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Search all the dungeons!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-search-the-grounds",
@@ -1178,7 +1250,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Search the grounds!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-she-s-escaped",
@@ -1188,7 +1263,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "She's escaped! Search everywhere! Don't let her get away!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-silence",
@@ -1198,7 +1276,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Silence!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-smell-flesh-boy",
@@ -1208,7 +1289,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "I can smell your flesh, boy.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-smell-flesh-girl",
@@ -1218,7 +1302,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "I can smell your flesh, girl.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-snigger-1",
@@ -1238,7 +1325,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Why don't you stay for dinner?",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-they-ve-escaped",
@@ -1248,7 +1338,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "They've escaped! Search everywhere! Don't let them get away!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-visitor",
@@ -1258,7 +1351,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "We have a visitor!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-voice-game-over",
@@ -1268,7 +1364,10 @@
 "url": "https://opengameart.org/content/demon-voice-game-over",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Game over.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-wait-she-s-mine",
@@ -1278,7 +1377,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Wait! She's mine!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-welcome-to-hell",
@@ -1288,7 +1390,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Welcome to hell.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "demon-you-fools-let-him-escape",
@@ -1298,7 +1403,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "You fools, you have let him escape!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "dishes-1",
@@ -1788,7 +1896,10 @@
 "url": "https://opengameart.org/content/gotcha",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Gotcha!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "gross-crachat",
@@ -2008,7 +2119,10 @@
 "url": "https://opengameart.org/content/he-will-decide-your-fate",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "He will decide your fate.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "hihihihihihihihing",
@@ -2138,7 +2252,10 @@
 "url": "https://opengameart.org/content/i-see-you-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "I see you.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "insect-or-alien-scream-short",
@@ -2158,7 +2275,9 @@
 "pool": "short",
 "d": 3.0,
 "quote": "Ich bin ein Berliner.",
-"kind": "talk"
+"kind": "talk",
+"from": "Speech in West Berlin, June 26, 1963",
+"who": "John F. Kennedy"
 },
 {
 "f": "jingle-14",
@@ -2463,7 +2582,10 @@
 "url": "https://opengameart.org/content/little-girl-saying-game-over",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Game over.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "maniacal-laughter-pack-1",
@@ -2474,6 +2596,204 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "megaman-1up",
+"src": "myinstants: Mega Man - 1UP",
+"url": "https://www.myinstants.com/media/sounds/mega-man-1up.mp3",
+"grp": "Mega Man",
+"d": 1.1,
+"pool": "short",
+"kind": "sound",
+"note": "1-up",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-big-health",
+"src": "archive.org: Mega Man sound effects (nes_bigHealth)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.6,
+"pool": "short",
+"kind": "sound",
+"note": "Big energy pickup; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-boss-door",
+"src": "archive.org: Mega Man sound effects (nes_doorOpen)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.5,
+"pool": "short",
+"kind": "sound",
+"note": "Boss door opening; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-death",
+"src": "archive.org: Mega Man sound effects (nes_deadSound)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 2.0,
+"pool": "short",
+"kind": "sound",
+"note": "Mega Man dies; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-enemy-explode",
+"src": "archive.org: Mega Man sound effects (nes_enemyGoneSound)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.8,
+"pool": "short",
+"kind": "sound",
+"note": "Enemy destroyed; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-enemy-hit",
+"src": "archive.org: Mega Man sound effects (nes_enemyHit)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.2,
+"pool": "short",
+"kind": "sound",
+"note": "Enemy hit; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-game-over",
+"src": "myinstants: Mega Man Game Over 1",
+"url": "https://www.myinstants.com/media/sounds/mega-man-game-over-1_9e7lhlo.mp3",
+"grp": "Mega Man",
+"d": 2.7,
+"pool": "short",
+"kind": "sound",
+"note": "Game over",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-landing",
+"src": "archive.org: Mega Man sound effects (nes_landing)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.3,
+"pool": "short",
+"kind": "sound",
+"note": "Landing from a jump; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-met-shot",
+"src": "archive.org: Mega Man sound effects (nes_hardHatShoot)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.2,
+"pool": "short",
+"kind": "sound",
+"note": "Met (hard hat) shooting; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-teleport-in",
+"src": "archive.org: Mega Man sound effects (nes_teleportIn)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 1.0,
+"pool": "short",
+"kind": "sound",
+"note": "Teleport in; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-teleport-out",
+"src": "archive.org: Mega Man sound effects (nes_teleport2)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 1.2,
+"pool": "short",
+"kind": "sound",
+"note": "Teleport out; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman-thrust",
+"src": "archive.org: Mega Man sound effects (nes_thrust)",
+"url": "https://archive.org/details/megaman_nes_snes_sounds",
+"grp": "Mega Man",
+"d": 0.7,
+"pool": "short",
+"kind": "sound",
+"note": "Thrust; NES effect shared by Mega Man 1 to 3",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman2-buster",
+"src": "myinstants: mega man pellet noise",
+"url": "https://www.myinstants.com/media/sounds/mega-man-2-sfx-8-online-audio-converter.mp3",
+"grp": "Mega Man",
+"d": 0.2,
+"pool": "short",
+"kind": "sound",
+"note": "Mega Man 2 buster shot",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman2-game-over",
+"src": "myinstants: Mega Man 2 Game Over",
+"url": "https://www.myinstants.com/media/sounds/mega-man-2-game-over.mp3",
+"grp": "Mega Man",
+"d": 2.8,
+"pool": "short",
+"kind": "sound",
+"note": "Mega Man 2 game over",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman2-teleport-in",
+"src": "myinstants: Mega Man 2 - Teleport In",
+"url": "https://www.myinstants.com/media/sounds/mega-man-2-teleport-in.mp3",
+"grp": "Mega Man",
+"d": 0.2,
+"pool": "short",
+"kind": "sound",
+"note": "Mega Man 2 teleport in",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman3-proto-man-whistle-short",
+"src": "myinstants: Protoman Whistle",
+"url": "https://www.myinstants.com/media/sounds/protoman-whistle.mp3",
+"grp": "Mega Man",
+"d": 2.7,
+"pool": "short",
+"kind": "sound",
+"note": "Mega Man 3: Proto Man's whistle (short)",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman3-spawn",
+"src": "myinstants: Rockman 3, 4, 5, 6 spawn",
+"url": "https://www.myinstants.com/media/sounds/rockman-3-4-5-6-spawn.mp3",
+"grp": "Mega Man",
+"d": 0.2,
+"pool": "short",
+"kind": "sound",
+"note": "Mega Man 3 spawn",
+"lic": "Capcom game audio"
+},
+{
+"f": "megaman3-stage-clear",
+"src": "myinstants: Mega Man 3 Stage Clear",
+"url": "https://www.myinstants.com/media/sounds/mega-man-3-stage-clear_SMkoYD7.mp3",
+"grp": "Mega Man",
+"d": 3.7,
+"pool": "long",
+"kind": "sound",
+"note": "Mega Man 3 stage clear",
+"lic": "Capcom game audio"
 },
 {
 "f": "monster-ripping-into-fish",
@@ -2493,7 +2813,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "I think we need to do a little more all-weather testing.",
-"kind": "talk"
+"kind": "talk",
+"from": "Apollo 12, after lightning struck the rocket at launch, Nov 14, 1969",
+"who": "Pete Conrad"
 },
 {
 "f": "nasa-clock-has-started",
@@ -2503,7 +2825,8 @@
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
 "quote": "I feel the liftoff. The clock has started.",
-"kind": "talk"
+"kind": "talk",
+"who": "NASA astronauts and Mission Control"
 },
 {
 "f": "nasa-eagle-has-landed",
@@ -2513,7 +2836,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "Houston, Tranquility Base here. The Eagle has landed.",
-"kind": "talk"
+"kind": "talk",
+"from": "Apollo 11 Moon landing, July 20, 1969",
+"who": "Neil Armstrong"
 },
 {
 "f": "nasa-fireflies",
@@ -2523,7 +2848,9 @@
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
 "quote": "I have the fireflies.",
-"kind": "talk"
+"kind": "talk",
+"from": "Friendship 7 (Mercury-Atlas 6), John Glenn's orbital flight, Feb 20, 1962",
+"who": "John Glenn"
 },
 {
 "f": "nasa-godspeed-john-glenn",
@@ -2533,7 +2860,9 @@
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
 "quote": "Godspeed, John Glenn.",
-"kind": "talk"
+"kind": "talk",
+"from": "Friendship 7 launch (Mercury-Atlas 6), Feb 20, 1962",
+"who": "Scott Carpenter"
 },
 {
 "f": "nasa-zero-g",
@@ -2543,7 +2872,9 @@
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
 "grp": "NASA",
 "quote": "Roger, zero G, and I feel fine. Capsule is turning around.",
-"kind": "talk"
+"kind": "talk",
+"from": "Friendship 7 (Mercury-Atlas 6), John Glenn's orbital flight, Feb 20, 1962",
+"who": "John Glenn"
 },
 {
 "f": "new-thing-get",
@@ -2563,7 +2894,9 @@
 "pool": "short",
 "d": 1.1,
 "quote": "Well, I'm not a crook.",
-"kind": "talk"
+"kind": "talk",
+"from": "Press conference with newspaper editors, Disney's Contemporary Resort, Florida, Nov 17, 1973",
+"who": "Richard Nixon"
 },
 {
 "f": "obama-clean-up-your-mess",
@@ -2573,7 +2906,8 @@
 "pool": "short",
 "d": 2.1,
 "quote": "Don't make someone else clean up your mess.",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "obama-come-on-man",
@@ -2583,7 +2917,8 @@
 "pool": "short",
 "d": 1.1,
 "quote": "Come on, man!",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "obama-come-on-people",
@@ -2593,7 +2928,8 @@
 "pool": "short",
 "d": 1.3,
 "quote": "Come on, people!",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "obama-hello-everybody",
@@ -2603,7 +2939,8 @@
 "pool": "short",
 "d": 1.2,
 "quote": "Hello, everybody.",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "obama-i-love-you-back",
@@ -2613,29 +2950,32 @@
 "pool": "short",
 "d": 1.0,
 "quote": "I love you back!",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "obama-let-me-be-clear",
 "pool": "short",
 "d": 1.8,
-"src": "YouTube: youtu.be/HiOU1Wtt_Jc",
+"src": "YouTube: \"let me be clear\" (Barack Obama)",
 "url": "https://youtu.be/HiOU1Wtt_Jc",
 "quote": "Let me be clear.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "obama-the-math-is-the-math",
 "pool": "long",
 "d": 4.7,
-"src": "YouTube: youtu.be/z-Myi0RJeUU",
+"src": "YouTube: \"BARACK OBAMA GIANT STUTTER ON 60 MINUTES\" (beyondimaginable)",
 "url": "https://youtu.be/z-Myi0RJeUU",
 "quote": "The math is the math.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "oh-you-scared-me",
@@ -2645,7 +2985,10 @@
 "url": "https://opengameart.org/content/oh-you-scared-me",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Oh, you scared me.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "oldschool-death",
@@ -2865,7 +3208,8 @@
 "pool": "long",
 "d": 3.5,
 "quote": "Oh, shut up.",
-"kind": "talk"
+"kind": "talk",
+"who": "Ronald Reagan"
 },
 {
 "f": "retro-complex1",
@@ -3132,7 +3476,10 @@
 "url": "https://opengameart.org/content/silly-me",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Huh, silly me.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "sinister-laugh-filtered",
@@ -3912,7 +4259,8 @@
 "pool": "short",
 "d": 2.9,
 "quote": "A beautiful dog. A talented dog.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-and-we-say-bye-bye",
@@ -3922,18 +4270,20 @@
 "pool": "short",
 "d": 1.6,
 "quote": "And we say bye-bye!",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-bigly",
 "pool": "short",
 "d": 3.0,
-"src": "YouTube: youtu.be/Wb8IP5tWcmM",
+"src": "YouTube: \"Donald Trump \"bigly\"\" (Trish Dukes)",
 "url": "https://youtu.be/Wb8IP5tWcmM",
 "quote": "We're going to speed up the process bigly, because it's very inefficient.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-bing-bing-bang-bang-boom",
@@ -3943,7 +4293,8 @@
 "pool": "short",
 "d": 1.6,
 "quote": "Bing bing bang bang boom.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-bing-bing-bong-bong",
@@ -3953,7 +4304,8 @@
 "pool": "short",
 "d": 2.2,
 "quote": "Bing bing bong bong bing bing bing.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-bing-bong-short",
@@ -3963,18 +4315,20 @@
 "pool": "short",
 "d": 1.2,
 "quote": "Bing, bong.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-bing-bong",
 "pool": "long",
 "d": 4.4,
-"src": "YouTube: youtu.be/niSLZDVApdQ",
+"src": "YouTube: \"Donald Trump-Bing Bong original\" (Xavier R.)",
 "url": "https://youtu.be/niSLZDVApdQ",
 "quote": "Total control. Bing bing, bong bong, bing bing bing.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-bing-boom-toilet",
@@ -3984,7 +4338,8 @@
 "pool": "short",
 "d": 2.0,
 "quote": "Bing, boom, right under the toilet.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-china-once",
@@ -3994,18 +4349,21 @@
 "pool": "short",
 "d": 0.8,
 "quote": "China.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-concepts-of-a-plan",
 "pool": "long",
 "d": 4.0,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You still do not have a plan? I have concepts of a plan.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debate with Kamala Harris, Sept 10, 2024",
+"who": "Donald Trump"
 },
 {
 "f": "trump-died-like-a-dog",
@@ -4015,7 +4373,9 @@
 "pool": "short",
 "d": 1.4,
 "quote": "He died like a dog.",
-"kind": "talk"
+"kind": "talk",
+"from": "Announcing the death of Abu Bakr al-Baghdadi, Oct 27, 2019",
+"who": "Donald Trump"
 },
 {
 "f": "trump-dont-be-rude",
@@ -4025,7 +4385,8 @@
 "pool": "short",
 "d": 1.1,
 "quote": "Don't be rude.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-dont-know-what-theyre-doing",
@@ -4035,7 +4396,8 @@
 "pool": "short",
 "d": 2.4,
 "quote": "They don't know what the fuck they're doing.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-eh",
@@ -4045,7 +4407,8 @@
 "pool": "short",
 "d": 0.5,
 "quote": "Ehh!",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-everythings-a-computer",
@@ -4055,18 +4418,20 @@
 "pool": "short",
 "d": 1.4,
 "quote": "Everything's a computer!",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-granite",
 "pool": "short",
 "d": 2.7,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You know, granite is un-meltable by blowtorches.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-have-i-done-a-good-job",
@@ -4076,7 +4441,8 @@
 "pool": "short",
 "d": 3.0,
 "quote": "Have I done a good job? Have I done a good job?",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-hot-dogs",
@@ -4086,7 +4452,8 @@
 "pool": "long",
 "d": 3.7,
 "quote": "Hot dogs! Let's talk about hot dogs. I just had one, actually.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-i-approve-this-message",
@@ -4096,7 +4463,9 @@
 "pool": "long",
 "d": 4.0,
 "quote": "I'm Donald Trump and I approve this message.",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign ads",
+"who": "Donald Trump"
 },
 {
 "f": "trump-i-dont-think-so",
@@ -4106,7 +4475,8 @@
 "pool": "short",
 "d": 1.2,
 "quote": "I don't think so.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-i-love-cows",
@@ -4116,7 +4486,8 @@
 "pool": "short",
 "d": 1.4,
 "quote": "I love cows.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-i-love-miners",
@@ -4126,7 +4497,8 @@
 "pool": "long",
 "d": 3.2,
 "quote": "For miners. Do we love miners? I love miners.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-i-love-tesla",
@@ -4136,7 +4508,8 @@
 "pool": "short",
 "d": 1.4,
 "quote": "I love Tesla!",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-it-comes-from-china",
@@ -4146,7 +4519,8 @@
 "pool": "short",
 "d": 2.0,
 "quote": "It comes from China.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-its-all-fake-news",
@@ -4156,7 +4530,8 @@
 "pool": "long",
 "d": 4.1,
 "quote": "It's all fake news. It's phony stuff. It didn't happen.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-jobs-jobs-jobs",
@@ -4166,7 +4541,8 @@
 "pool": "long",
 "d": 4.1,
 "quote": "Jobs, jobs, jobs.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-know-a-lot-about-trucks",
@@ -4176,7 +4552,8 @@
 "pool": "long",
 "d": 4.1,
 "quote": "Hello, you people know a lot about trucks. Bing, bing, bong. Thank you very much.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-little-rocket-man",
@@ -4186,7 +4563,8 @@
 "pool": "short",
 "d": 1.6,
 "quote": "Little Rocket Man.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-look-at-this-guy",
@@ -4196,7 +4574,8 @@
 "pool": "short",
 "d": 1.2,
 "quote": "Look at this guy!",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-made-in-china",
@@ -4206,7 +4585,8 @@
 "pool": "short",
 "d": 1.5,
 "quote": "Made in China.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-made-in-the-usa",
@@ -4216,7 +4596,8 @@
 "pool": "short",
 "d": 1.6,
 "quote": "Made in the USA.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-mr-tough-guy",
@@ -4226,7 +4607,8 @@
 "pool": "short",
 "d": 1.2,
 "quote": "Mr. Tough Guy.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-obamna",
@@ -4236,18 +4618,20 @@
 "pool": "short",
 "d": 1.9,
 "quote": "Obamna.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-positively-toward-negative",
 "pool": "short",
 "d": 2.5,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I tested positively toward negative, right?",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-quiet-quiet",
@@ -4257,7 +4641,8 @@
 "pool": "short",
 "d": 1.2,
 "quote": "Quiet, quiet.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-sad",
@@ -4267,7 +4652,8 @@
 "pool": "short",
 "d": 0.8,
 "quote": "Sad.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-scarface",
@@ -4277,7 +4663,8 @@
 "pool": "long",
 "d": 4.2,
 "quote": "Al Capone, the greatest of them all. Gangster. Scarface.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-soccer-field",
@@ -4287,29 +4674,32 @@
 "pool": "long",
 "d": 3.2,
 "quote": "A million dollars, building a soccer field.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-stable-genius",
 "pool": "short",
 "d": 2.5,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I'm an extremely stable genius.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-telephonically",
 "pool": "short",
 "d": 2.8,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Through phone, through telephone. Telephonically, as they say.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-thats-not-nice",
@@ -4319,7 +4709,8 @@
 "pool": "short",
 "d": 1.2,
 "quote": "That's not nice.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-the-best-words",
@@ -4329,7 +4720,9 @@
 "pool": "long",
 "d": 4.3,
 "quote": "I know words. I have the best words. But there's no better word than stupid.",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign rally, Hilton Head, South Carolina, Dec 30, 2015",
+"who": "Donald Trump"
 },
 {
 "f": "trump-what-did-i-do",
@@ -4339,7 +4732,8 @@
 "pool": "long",
 "d": 4.0,
 "quote": "What happened? What did I do?",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-win-washington-state",
@@ -4349,7 +4743,8 @@
 "pool": "short",
 "d": 2.5,
 "quote": "I think we're going to win Washington State.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-wrong-short",
@@ -4359,7 +4754,8 @@
 "pool": "short",
 "d": 0.7,
 "quote": "Wrong!",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "trump-you-are-fake-news",
@@ -4369,7 +4765,9 @@
 "pool": "short",
 "d": 1.4,
 "quote": "You are fake news.",
-"kind": "talk"
+"kind": "talk",
+"from": "Press conference, Jan 11, 2017 (to CNN's Jim Acosta)",
+"who": "Donald Trump"
 },
 {
 "f": "trump-youd-be-in-jail",
@@ -4379,7 +4777,9 @@
 "pool": "short",
 "d": 1.4,
 "quote": "Because you'd be in jail.",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debate with Hillary Clinton, Oct 9, 2016",
+"who": "Donald Trump"
 },
 {
 "f": "trump-youre-fired",
@@ -4389,7 +4789,9 @@
 "pool": "short",
 "d": 1.3,
 "quote": "You're fired.",
-"kind": "talk"
+"kind": "talk",
+"from": "The Apprentice (NBC, 2004 to 2015)",
+"who": "Donald Trump"
 },
 {
 "f": "tss",
@@ -4409,7 +4811,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Andrew, wake up. It is your turn.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-board-wipe-incoming",
@@ -4419,7 +4823,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Warning, board wipe incoming.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-commander-damage",
@@ -4429,7 +4835,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "commander damage",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-counterspell",
@@ -4439,7 +4847,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Counterspell",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-i-have-a-response",
@@ -4449,7 +4859,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Hold on, I have a response.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-in-response",
@@ -4459,7 +4871,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "in response.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-is-that-a-combo",
@@ -4469,7 +4883,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Wait, is that a combo?",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-kingmaker",
@@ -4479,7 +4895,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Kingmaker!",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-lenn-your-turn",
@@ -4489,7 +4907,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Lenn is thinking. Please stand by.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-lethal",
@@ -4499,7 +4919,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "That is lethal!",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-mana-flooded",
@@ -4509,7 +4931,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Mana flooded.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-mana-screwed",
@@ -4519,7 +4943,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Stuck on two lands. Mana screw.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-mulligan-to-five",
@@ -4529,7 +4955,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Mulligan to five.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-not-the-threat",
@@ -4539,7 +4967,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "I am not the threat here.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-pass-the-turn",
@@ -4549,7 +4979,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Pass the turn already.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-rand-your-turn",
@@ -4559,7 +4991,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Rand, Rand, it is your turn.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-read-the-card",
@@ -4569,7 +5003,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Can I read that card?",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-resistance-is-futile",
@@ -4579,7 +5015,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Resistance is futile.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-scoop",
@@ -4589,7 +5027,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "I scoop.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-shuffle-up",
@@ -4599,7 +5039,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Shuffle up and deal.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-sol-ring-turn-one",
@@ -4609,7 +5051,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Sol Ring. Turn one.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-somebody-deal-with-that",
@@ -4619,7 +5063,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Somebody deal with that.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-target-him",
@@ -4629,7 +5075,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Don't target me. Target him.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-topdeck-mode",
@@ -4639,7 +5087,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Top Deck Mode, activated.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-trent-your-turn",
@@ -4649,7 +5099,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "Hey, Trent. Are you even paying attention?",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tts-you-have-been-assimilated",
@@ -4659,7 +5111,9 @@
 "url": "https://github.com/rhasspy/piper",
 "grp": "Announcer",
 "quote": "You have been assimilated.",
-"kind": "talk"
+"kind": "talk",
+"who": "Announcer (text-to-speech)",
+"from": "Made for this app with Piper text-to-speech"
 },
 {
 "f": "tuba-happy",
@@ -4759,7 +5213,10 @@
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Let's try again.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "voice-well-done",
@@ -4769,7 +5226,10 @@
 "url": "https://opengameart.org/content/win-lose-voice-speech",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Well done.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "vulture",
@@ -5450,7 +5910,8 @@
 "pool": "long",
 "d": 6.3,
 "quote": "Somewhere between 700 billion and a trillion, 300 million billion dollars.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "long/biden-corn-pop",
@@ -5460,7 +5921,9 @@
 "pool": "long",
 "d": 5.4,
 "quote": "And Corn Pop was a bad dude. And he ran a bunch of bad boys.",
-"kind": "talk"
+"kind": "talk",
+"from": "Pool dedication speech, Wilmington, Delaware, 2017",
+"who": "Joe Biden"
 },
 {
 "f": "long/biden-hairy-legs",
@@ -5470,7 +5933,9 @@
 "pool": "long",
 "d": 7.5,
 "quote": "I got hairy legs, hairy legs that turn blonde in the sun.",
-"kind": "talk"
+"kind": "talk",
+"from": "Pool dedication speech, Wilmington, Delaware, 2017",
+"who": "Joe Biden"
 },
 {
 "f": "long/biden-more-than-100-years",
@@ -5480,73 +5945,85 @@
 "pool": "long",
 "d": 12.0,
 "quote": "COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it.",
-"kind": "talk"
+"kind": "talk",
+"who": "Joe Biden"
 },
 {
 "f": "long/bush-federal-program",
 "pool": "long",
 "d": 6.5,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "They want the federal government controlling Social Security like it's some kind of federal program.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign speech, St. Charles, Missouri, Nov 2, 2000",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-fool-me-once",
 "pool": "long",
 "d": 9.9,
-"src": "YouTube: youtu.be/Hl7FKfl3O2Y",
+"src": "YouTube: \"Fool me once, shame on you\" (President George W. Bush)",
 "url": "https://youtu.be/Hl7FKfl3O2Y",
 "quote": "Fool me once, shame on... shame on you. Fool me, we can't get fooled again.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Speech at East Literature Magnet School, Nashville, Sept 17, 2002",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-harm-our-country",
 "pool": "long",
 "d": 9.2,
-"src": "YouTube: youtu.be/U41dt5X9Fvs",
+"src": "YouTube: \"We never stop thinking of ways to harm our people\" (Acadian Hunter)",
 "url": "https://youtu.be/U41dt5X9Fvs",
 "quote": "Our enemies never stop thinking about new ways to harm our country and our people, and neither do we.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Signing the defense appropriations bill, White House, Aug 5, 2004",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-i-believe-what-i-believe",
 "pool": "long",
 "d": 7.5,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "I know what I believe... and I believe what I believe is right.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-literacy-test",
 "pool": "long",
 "d": 5.1,
-"src": "YouTube: youtu.be/HK_MzsVOQRQ",
+"src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
 "quote": "You teach a child to read, and he or her will be able to pass a literacy test.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Speech in Townsend, Tennessee, Feb 21, 2001",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-now-watch-this-drive",
 "pool": "long",
 "d": 10.1,
-"src": "YouTube: youtu.be/TCm9788Tb5g",
+"src": "YouTube: \"George Bush \"Now, Watch This Drive\"\" (קולין)",
 "url": "https://youtu.be/TCm9788Tb5g",
 "quote": "I call upon all nations to stop these terrorist killers. Thank you. Now watch this drive.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Remarks to reporters on a golf course, Kennebunkport, Maine, Aug 4, 2002",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-shoe-dodge",
@@ -5556,18 +6033,22 @@
 "pool": "long",
 "d": 10.1,
 "quote": "(The shoe throw in Baghdad, 2008: a reporter shouts, two shoes fly, Bush ducks.) Thank you very much.",
-"kind": "talk"
+"kind": "talk",
+"from": "Press conference with Iraq's prime minister, Baghdad, Dec 14, 2008",
+"who": "George W. Bush"
 },
 {
 "f": "long/bush-the-decider",
 "pool": "long",
 "d": 6.7,
-"src": "YouTube: youtu.be/E2Zv1T4Qdv4",
+"src": "YouTube: \"Bush the Decider\" (cinefilevideoblog)",
 "url": "https://youtu.be/E2Zv1T4Qdv4",
 "quote": "I hear the voices... but I'm the decider, and I decide what is best.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Rose Garden remarks on Donald Rumsfeld, April 18, 2006",
+"who": "George W. Bush"
 },
 {
 "f": "long/clinton-sexual-relations",
@@ -5577,7 +6058,9 @@
 "pool": "long",
 "d": 9.6,
 "quote": "I want you to listen to me. I'm going to say this again. I did not have sexual relations with that woman. Miss Lewinsky.",
-"kind": "talk"
+"kind": "talk",
+"from": "White House event, Jan 26, 1998",
+"who": "Bill Clinton"
 },
 {
 "f": "long/cozy-clear",
@@ -5618,7 +6101,10 @@
 "url": "https://opengameart.org/content/demon-voice",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Oh, I'm sorry, but I'm afraid that's not possible. Once you enter my domain, there is no going back.",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "long/diarrhea",
@@ -5670,7 +6156,10 @@
 "url": "https://opengameart.org/content/female-warrior-cheer",
 "grp": "OpenGameArt",
 "lic": "CC0",
-"kind": "talk"
+"kind": "talk",
+"quote": "Yeah! Alright! Yes! Yes!",
+"who": "Game voice actor",
+"from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
 "f": "long/fireworks-with-applause-happy-people",
@@ -5873,7 +6362,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "Presidents",
 "quote": "This nation should commit itself to landing a man on the Moon and returning him safely to the Earth.",
-"kind": "talk"
+"kind": "talk",
+"from": "Address to a joint session of Congress, May 25, 1961",
+"who": "John F. Kennedy"
 },
 {
 "f": "long/jfk-we-choose-the-moon",
@@ -5883,7 +6374,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "Presidents",
 "quote": "We choose to go to the Moon in this decade... not because they are easy, but because they are hard.",
-"kind": "talk"
+"kind": "talk",
+"from": "Speech at Rice University, Houston, Sept 12, 1962",
+"who": "John F. Kennedy"
 },
 {
 "f": "long/jingle-05",
@@ -6132,6 +6625,28 @@
 "kind": "sound"
 },
 {
+"f": "long/megaman2-victory",
+"src": "myinstants: Mega Man 2 NES Vitoria",
+"url": "https://www.myinstants.com/media/sounds/mm2-victory.mp3",
+"grp": "Mega Man",
+"d": 5.5,
+"pool": "long",
+"kind": "sound",
+"note": "Mega Man 2 boss defeated",
+"lic": "Capcom game audio"
+},
+{
+"f": "long/megaman3-proto-man-whistle",
+"src": "myinstants: Mega Man 3 Proto Man's Whistle",
+"url": "https://www.myinstants.com/media/sounds/mega-man-3-proto-mans-whistle.mp3",
+"grp": "Mega Man",
+"d": 10.0,
+"pool": "long",
+"kind": "sound",
+"note": "Mega Man 3: Proto Man's whistle",
+"lic": "Capcom game audio"
+},
+{
 "f": "long/messy-feast",
 "pool": "long",
 "d": 12.0,
@@ -6150,7 +6665,8 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "That's one of the better sims, believe me. We've had a couple of cardiac arrests down here too.",
-"kind": "talk"
+"kind": "talk",
+"who": "NASA astronauts and Mission Control"
 },
 {
 "f": "long/nasa-houston-problem",
@@ -6160,7 +6676,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "Okay, Houston, we've had a problem here. Say again, please. Houston, we've had a problem.",
-"kind": "talk"
+"kind": "talk",
+"from": "Apollo 13, after the oxygen tank exploded, April 13, 1970",
+"who": "Jack Swigert and Jim Lovell"
 },
 {
 "f": "long/nasa-liftoff",
@@ -6170,7 +6688,8 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "Five, four, three, two, one, zero. All engines running. Liftoff. We have a liftoff.",
-"kind": "talk"
+"kind": "talk",
+"who": "NASA astronauts and Mission Control"
 },
 {
 "f": "long/nasa-merry-christmas",
@@ -6180,7 +6699,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "We close with good night, good luck, a merry Christmas, and God bless all of you on the good Earth.",
-"kind": "talk"
+"kind": "talk",
+"from": "Apollo 8, Christmas Eve broadcast from lunar orbit, Dec 24, 1968",
+"who": "Frank Borman"
 },
 {
 "f": "long/nasa-one-small-step",
@@ -6190,7 +6711,9 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "That's one small step for man. One giant leap for mankind.",
-"kind": "talk"
+"kind": "talk",
+"from": "Apollo 11, first step on the Moon, July 20, 1969",
+"who": "Neil Armstrong"
 },
 {
 "f": "long/nasa-turn-blue",
@@ -6200,150 +6723,174 @@
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
 "grp": "NASA",
 "quote": "You got a bunch of guys about to turn blue. We're breathing again. Thanks a lot.",
-"kind": "talk"
+"kind": "talk",
+"from": "Apollo 11, Mission Control right after the landing, July 20, 1969",
+"who": "Charlie Duke (Mission Control)"
 },
 {
 "f": "long/obama-biggie-and-tupac",
 "pool": "long",
 "d": 8.8,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Did we fake the moon landing? What really happened in Roswell? And where are Biggie and Tupac?",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2011 (about Donald Trump)",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-bucket-list",
 "pool": "long",
 "d": 9.8,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Do you have a bucket list? I have something that rhymes with bucket list.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2015",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-dick-cheney",
 "pool": "long",
 "d": 10.0,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Dick Cheney thinks I'm the worst president of his lifetime. I think Dick Cheney is the worst president of my lifetime.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2015",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-go-down-as-a-president",
 "pool": "long",
 "d": 7.3,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Well, @realDonaldTrump, at least I will go down as a president.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "\"Mean Tweets\" on Jimmy Kimmel Live, March 2015",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-indiana-pizza",
 "pool": "long",
 "d": 8.2,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "He is a great friend. We've gotten so close, some places in Indiana won't serve us pizza anymore.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2015 (about Joe Biden)",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-iphone",
 "pool": "long",
 "d": 8.9,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "I have an iPhone, but it's like the phone you give your two-year-old.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-matt-damon",
 "pool": "long",
 "d": 9.6,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Matt Damon said he was disappointed in my performance. Well, Matt, I just saw The Adjustment Bureau.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2011",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-out",
 "pool": "long",
 "d": 6.8,
-"src": "YouTube: youtu.be/6dEA7krBxys",
+"src": "YouTube: \"Obama Mic Drop \"Obama Out\"\" (Adam Kohout)",
 "url": "https://youtu.be/6dEA7krBxys",
 "quote": "And with that, I just have two more words to say: Obama out.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2016 (his last one)",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-some-people-are-so-dumb",
 "pool": "long",
 "d": 9.5,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Some people still say I'm arrogant and aloof, condescending. Some people are so dumb.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-third-hangover",
 "pool": "long",
 "d": 5.9,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "If I ran a third time, it would be like doing a third Hangover movie.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-third-term",
 "pool": "long",
 "d": 7.9,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Some folks really want to see a pot-smoking socialist in the White House. We could get a third Obama term after all.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "White House Correspondents' Dinner, 2016 (about Bernie Sanders)",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-won-both-of-them",
 "pool": "long",
 "d": 5.3,
-"src": "YouTube: youtu.be/SktnQxmmUmA",
+"src": "YouTube: \"I have no more campaigns to run... I know cuz I won both of them! -Barack Obama\" (Superhero Events)",
 "url": "https://youtu.be/SktnQxmmUmA",
 "quote": "I have no more campaigns to run... I know, because I won both of them.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "State of the Union address, Jan 20, 2015",
+"who": "Barack Obama"
 },
 {
 "f": "long/obama-yes-we-crayon",
 "pool": "long",
 "d": 5.3,
-"src": "YouTube: youtu.be/NajhG8PpC2A",
+"src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
 "quote": "Yes we crayon. That was good.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Barack Obama"
 },
 {
 "f": "long/race-finish",
@@ -6668,34 +7215,39 @@
 "f": "long/trump-abdul",
 "pool": "long",
 "d": 9.0,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I told Abdul, don't do it anymore... You're gonna have to figure that out, Abdul.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debate with Kamala Harris, Sept 10, 2024",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-believe-me",
 "pool": "long",
 "d": 9.5,
-"src": "YouTube: youtu.be/s2DIp8_r9uU",
+"src": "YouTube: \"Trump Believe Me Comp\" (CJ Foxtau)",
 "url": "https://youtu.be/s2DIp8_r9uU",
 "quote": "Believe me, believe me, believe me...",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Many speeches (a compilation)",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-black-community",
 "pool": "long",
 "d": 9.7,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Nobody has done more for the black community than Donald Trump. With the exception of Abraham Lincoln, possible exception.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-china-compilation",
@@ -6705,40 +7257,48 @@
 "pool": "long",
 "d": 11.5,
 "quote": "China. China. China. China. China. China. China. China. China. China.",
-"kind": "talk"
+"kind": "talk",
+"from": "Many speeches (a compilation)",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-china",
 "pool": "long",
 "d": 5.6,
-"src": "YouTube: youtu.be/dYQYRDETHkM",
+"src": "YouTube: \"Donald Trump says China a lot (Trump China compilation)\" (Random Video Edits)",
 "url": "https://youtu.be/dYQYRDETHkM",
 "quote": "China. China. China.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Many speeches (a compilation)",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-eating-the-dogs",
 "pool": "long",
 "d": 9.0,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "In Springfield, they're eating the dogs. They're eating the cats. They're eating the pets.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debate with Kamala Harris, Sept 10, 2024",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-fat-pigs",
 "pool": "long",
 "d": 9.9,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You've called women you don't like fat pigs, dogs, slobs and disgusting animals. Only Rosie O'Donnell.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Republican primary debate, Cleveland, Aug 6, 2015 (Megyn Kelly asking)",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-great-great-wall",
@@ -6748,40 +7308,47 @@
 "pool": "long",
 "d": 10.0,
 "quote": "I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. Mark my words.",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign launch, Trump Tower, June 16, 2015",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-hannibal-lecter",
 "pool": "long",
 "d": 10.0,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Has anyone ever seen The Silence of the Lambs? The late, great Hannibal Lecter. He oftentimes would have a friend for dinner.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-i-am-the-chosen-one",
 "pool": "long",
 "d": 5.6,
-"src": "YouTube: youtu.be/RSCIndGqYWY",
+"src": "YouTube: \"“I am the chosen one.” - Trump\" (Anarcho Christian)",
 "url": "https://youtu.be/RSCIndGqYWY",
 "quote": "Somebody had to do it. I am the chosen one.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Remarks to reporters on the White House lawn, Aug 21, 2019 (on the China trade war)",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-i-love-babies",
 "pool": "long",
 "d": 9.4,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "I love babies. I hear that baby crying. Actually, I was only kidding. You can get the baby out of here.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Campaign rally, Ashburn, Virginia, Aug 2, 2016",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-kiss-obamas-ass",
@@ -6791,62 +7358,69 @@
 "pool": "long",
 "d": 10.0,
 "quote": "He was only a good vice president because he understood how to kiss Barack Obama's ass.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-knock-knock",
 "pool": "long",
 "d": 7.0,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "You think you go through the door. If you're a normal person, you say, knock knock, may I come in?",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-like-a-smart-person",
 "pool": "long",
 "d": 8.4,
-"src": "YouTube: youtu.be/QAjIdPUfJEQ",
+"src": "YouTube: \"Donald Trump \"trust me I'm like a smart person\"\" (Seven)",
 "url": "https://youtu.be/QAjIdPUfJEQ",
 "quote": "Is Donald Trump an intellectual? Trust me, I'm like a smart person.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-magnets",
 "pool": "long",
 "d": 5.6,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "All I know about magnets is this: give me a glass of water, drop it on the magnets, that's the end of the magnet.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-small-hands",
 "pool": "long",
 "d": 8.2,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "He referred to my hands, if they're small, something else must be small. I guarantee you there's no problem.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Republican primary debate, Detroit, March 3, 2016",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-standpoint-of-water",
 "pool": "long",
 "d": 7.0,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Tough hurricane. One of the wettest we've ever seen, from the standpoint of water.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-start-your-engines",
@@ -6856,7 +7430,9 @@
 "pool": "long",
 "d": 6.2,
 "quote": "Gentlemen, start your engines!",
-"kind": "talk"
+"kind": "talk",
+"from": "Daytona 500, Feb 16, 2020",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-three-vaccines",
@@ -6866,7 +7442,8 @@
 "pool": "long",
 "d": 5.6,
 "quote": "I came up with three vaccines, all very, very good.",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-tired-of-winning",
@@ -6876,51 +7453,58 @@
 "pool": "long",
 "d": 10.5,
 "quote": "We're going to win so much, you may even get tired of winning. And you'll say, please, please, it's too much winning. We can't take it anymore.",
-"kind": "talk"
+"kind": "talk",
+"from": "2016 campaign rallies",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-turn-black",
 "pool": "long",
 "d": 7.4,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "She was always of Indian heritage... I didn't know she was black until a number of years ago, when she happened to turn black.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "National Association of Black Journalists convention, Chicago, July 31, 2024",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-turn-off-the-lights",
 "pool": "long",
 "d": 9.8,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Turn them off, they're too bright. Turn off the lights, turn off the lights.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-very-large-brain",
 "pool": "long",
 "d": 8.5,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "China has total respect for Donald Trump's very, very large brain.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-we-love-puerto-rico",
 "pool": "long",
 "d": 8.8,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "We love Puerto Rico. Puerto Rico. Ah! Ah!",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-who-built-the-cages",
@@ -6930,29 +7514,35 @@
 "pool": "long",
 "d": 9.8,
 "quote": "Who built the cages? I'd love you to ask that. Who built the cages, Joe?",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debate with Joe Biden, Oct 22, 2020",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-word-salad",
 "pool": "long",
 "d": 7.8,
-"src": "YouTube: youtu.be/Hn9r6xNawoE",
+"src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
 "quote": "Tropical storm. Isaias. Isaiasis. Totality. Fresh vegetables. Fatalities.",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Remarks on Tropical Storm Isaias, Aug 2020",
+"who": "Donald Trump"
 },
 {
 "f": "long/trump-wrong",
 "pool": "long",
 "d": 8.8,
-"src": "YouTube: youtu.be/b2Ec_oHjEFM",
+"src": "YouTube: \"Presidential Debate \"Wrong Wrong Wrong\" Trump\" (John Paul Schilling)",
 "url": "https://youtu.be/b2Ec_oHjEFM",
 "quote": "Wrong. (Interrupting Hillary Clinton at a 2016 debate.)",
 "grp": "Presidents",
 "lic": "See note",
-"kind": "talk"
+"kind": "talk",
+"from": "Presidential debates with Hillary Clinton, 2016",
+"who": "Donald Trump"
 },
 {
 "f": "long/victory-8-bit",
