@@ -607,7 +607,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.18';
+  const VERSION = '1.19';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -899,7 +899,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (!audio) return;
     if (EVENT_SOUNDS[name]) {
       const list = EVENT_SOUNDS[name], clip = list[Math.floor(Math.random() * list.length)];
-      load(clip).then(buf => { if (buf) playBuffer(buf); else try { SOUNDS[name](); } catch (e) {} });
+      load(clip).then(buf => { if (buf) playBuffer(buf, clip); else try { SOUNDS[name](); } catch (e) {} });
       return;
     }
     try { SOUNDS[name](); } catch (e) {}
@@ -971,15 +971,33 @@ details.field[open] > summary { margin-bottom: 10px; }
     pool.bag.shift();
     const keep = ahead();
     Object.keys(loaded).forEach(k => { if (k !== name && !keep.includes(k)) delete loaded[k]; });
-    load(name).then(buf => { if (buf) playBuffer(buf); });
+    load(name).then(buf => { if (buf) playBuffer(buf, name); });
     prime();
   }
   // Plays a decoded clip, cutting off whichever clip is still playing.
-  function playBuffer(buf) {
+  // Dialogue is louder (v1.19): the files are loudness-matched with the sounds (about -16.5 LUFS
+  // each), but on a phone speaker words came out quieter than effects. `out` already runs near full
+  // scale, so plain gain only gets squashed by its limiter (measured: +1 dB at most). Instead talk
+  // clips are compressed hard (threshold -30 dB, 6:1), which raises their average level, then given
+  // TALK_GAIN (3×) and a +4 dB lift around 3 kHz, where speech is understood, with the rumble under
+  // 120 Hz cut so it doesn't eat headroom. Measured on six lines: 2.2 dB louder on average, now
+  // about 1.4 dB above the sounds instead of 0.8 dB below.
+  const TALK_GAIN = 3;
+  const TALK = new Set(Object.values(TURN_POOLS).flatMap(p => (p.talk || '').split(' ').filter(Boolean)));
+  function playBuffer(buf, name) {
     try { if (current) current.stop(); } catch (e) {}
     const src = audio.createBufferSource();
     src.buffer = buf;
-    src.connect(out);
+    if (TALK.has(name)) {
+      const hp = audio.createBiquadFilter(), eq = audio.createBiquadFilter(), g = audio.createGain();
+      const comp = audio.createDynamicsCompressor();
+      hp.type = 'highpass'; hp.frequency.value = 120;
+      eq.type = 'peaking'; eq.frequency.value = 3000; eq.Q.value = 0.8; eq.gain.value = 4;
+      comp.threshold.value = -30; comp.knee.value = 6; comp.ratio.value = 6;
+      comp.attack.value = 0.003; comp.release.value = 0.15;
+      g.gain.value = TALK_GAIN;
+      src.connect(hp).connect(eq).connect(comp).connect(g).connect(out);
+    } else src.connect(out);
     src.start();
     current = src;
     src.onended = () => { if (current === src) current = null; };
