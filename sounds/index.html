@@ -32,10 +32,19 @@ li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align
 .q{display:block;font-size:.82rem;color:var(--pres);margin-top:2px;line-height:1.35}
 .src{display:block;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
 .src a{color:inherit}
+/* Random president: one big button, then the quote it played. */
+.rnd{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:0 0 16px}
+#rnd{font:inherit;font-weight:700;font-size:1rem;color:var(--bg);background:var(--pres);border:0;border-radius:12px;padding:12px 18px;min-height:48px;cursor:pointer}
+#rnd:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#rnd.on{background:var(--accent)}
+#now{flex:1 1 200px;min-width:0;font-size:.85rem;color:var(--pres);line-height:1.35}
+#now .src{color:var(--muted)}
+.noplay .rnd{display:none}
 .len{font-family:var(--f-mono);font-size:.82rem;font-variant-numeric:tabular-nums;color:var(--accent);white-space:nowrap}
 </style></head><body>
 <h1>Turn button sounds</h1>
 <p class="sub" id="sum"></p>
+<div class="rnd"><button id="rnd" type="button">🎲 Random president</button><div id="now" aria-live="polite"></div></div>
 <div class="bar" id="grp"></div>
 <div class="bar"><span id="pool" style="display:contents"></span><span class="sep"></span><button id="sort" type="button">Sort: A to Z</button><input id="q" type="search" placeholder="Search names, quotes, sources" aria-label="Search clips" autocomplete="off"></div>
 <p id="count"></p>
@@ -66,9 +75,17 @@ function draw(){
 let au=null,on=null;
 $('list').onclick=e=>{const b=e.target.closest('.play');if(!b)return;
  if(on===b){au.pause();b.classList.remove('on');b.textContent='▶';on=null;return}
- if(au){au.pause();if(on){on.classList.remove('on');on.textContent='▶'}}
+ if(au){au.pause();if(on){on.classList.remove('on');on.textContent='▶'}}$('rnd').classList.remove('on');
  au=new Audio(b.dataset.f+'.mp3');on=b;b.classList.add('on');b.textContent='■';
  au.onended=au.onerror=()=>{b.classList.remove('on');b.textContent='▶';if(on===b)on=null};au.play().catch(()=>au.onerror())};
+/* Random president: deals the Presidents clips from a shuffled bag, so every quote plays once before any repeats. */
+let bag=[];const pres=CLIPS.filter(c=>c.grp==='Presidents');
+const stopAll=()=>{if(au)au.pause();if(on){on.classList.remove('on');on.textContent='▶';on=null}$('rnd').classList.remove('on')};
+$('rnd').onclick=()=>{stopAll();
+ if(!bag.length){bag=pres.slice();for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]]}}
+ const c=bag.pop();au=new Audio(c.f+'.mp3');$('rnd').classList.add('on');
+ $('now').innerHTML=`“${esc(c.quote||c.f)}”<span class="src">${{bush:'George W. Bush',obama:'Barack Obama',trump:'Donald Trump',jfk:'John F. Kennedy'}[c.f.replace(/^long\//,'').split('-')[0]]||''} · ${pres.length-bag.length} of ${pres.length}</span>`;
+ au.onended=au.onerror=()=>$('rnd').classList.remove('on');au.play().catch(()=>au.onerror())};
 draw();
 </script>
 </body></html>
