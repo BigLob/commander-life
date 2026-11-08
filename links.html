@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>All Our Pages</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: every page, carousel and artifact we've made, as one tappable list in sections. Same tokens as the deck pages.
+   Add a row here whenever a new page or artifact is made. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:640px;background:var(--bg);color:var(--fg);font-family:var(--f-display);padding-block:14px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:1.5rem;margin:0 0 18px}
+h2{font-family:var(--f-mono);font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:22px 0 6px}
+ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+li{border-bottom:1px solid var(--line)}
+a{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:11px 2px;color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+a:hover .t{color:var(--accent)}
+.i{font-size:1.3rem;text-align:center;grid-row:span 2}
+.t{font-weight:700;font-size:1rem}
+.d{grid-column:2;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.go{grid-row:1/span 2;grid-column:3;color:var(--accent)}
+.sub a{padding:8px 2px}.sub .t{font-weight:500;font-size:.92rem}
+.note{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin:6px 0 0;line-height:1.5}
+</style></head><body>
+<h1>All our pages</h1>
+
+<h2>Play</h2>
+<ul>
+<li><a href="./"><span class="i">🃏</span><span class="t">Commander Life</span><span class="d">Life counters, synced across phones</span><span class="go">›</span></a></li>
+<li><a href="archenemy.html"><span class="i">😈</span><span class="t">Archenemy</span><span class="d">One archenemy vs three heroes, scheme deck</span><span class="go">›</span></a></li>
+</ul>
+
+<h2>Card carousels</h2>
+<ul>
+<li><a href="decks/"><span class="i">📚</span><span class="t">Our precons</span><span class="d">All 13 decks we own or preordered</span><span class="go">›</span></a></li>
+<li><a href="lands/"><span class="i">🏞️</span><span class="t">Nonbasic lands</span><span class="d">Every Commander-legal nonbasic land, by category</span><span class="go">›</span></a></li>
+<li><a href="xenagos.html"><span class="i">🎉</span><span class="t">Xenagos, the Party Hugger</span><span class="d">Deck, suggestions, Fav, Bench, Trash</span><span class="go">›</span></a></li>
+</ul>
+<ul class="sub">
+<li><a href="decks/borg.html"><span class="i"></span><span class="t">We Are the Borg</span><span class="d">Star Trek Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/federation-fleet.html"><span class="i"></span><span class="t">Federation Fleet</span><span class="d">Star Trek Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/landing-party.html"><span class="i"></span><span class="t">Landing Party</span><span class="d">Star Trek Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/klingon-fury.html"><span class="i"></span><span class="t">Klingon Fury</span><span class="d">Star Trek Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/silverquill-influence.html"><span class="i"></span><span class="t">Silverquill Influence</span><span class="d">Secrets of Strixhaven Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/living-energy.html"><span class="i"></span><span class="t">Living Energy</span><span class="d">Aetherdrift Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/eternal-might.html"><span class="i"></span><span class="t">Eternal Might</span><span class="d">Aetherdrift Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/revival-trance.html"><span class="i"></span><span class="t">Revival Trance</span><span class="d">Final Fantasy Commander</span><span class="go">›</span></a></li>
+<li><a href="decks/first-flight.html"><span class="i"></span><span class="t">First Flight</span><span class="d">Starter Commander Decks</span><span class="go">›</span></a></li>
+<li><a href="decks/grave-danger.html"><span class="i"></span><span class="t">Grave Danger</span><span class="d">Starter Commander Decks</span><span class="go">›</span></a></li>
+<li><a href="decks/chaos-incarnate.html"><span class="i"></span><span class="t">Chaos Incarnate</span><span class="d">Starter Commander Decks</span><span class="go">›</span></a></li>
+<li><a href="decks/draconic-destruction.html"><span class="i"></span><span class="t">Draconic Destruction</span><span class="d">Starter Commander Decks</span><span class="go">›</span></a></li>
+<li><a href="decks/token-triumph.html"><span class="i"></span><span class="t">Token Triumph</span><span class="d">Starter Commander Decks</span><span class="go">›</span></a></li>
+</ul>
+
+<h2>Guides</h2>
+<ul>
+<li><a href="lands/primer.html"><span class="i">📖</span><span class="t">Nonbasic lands primer</span><span class="d">Land types, most played, prices, upgrades for our decks</span><span class="go">›</span></a></li>
+<li><a href="https://github.com/BigLob/commander-life/blob/main/buying-guide.md"><span class="i">💰</span><span class="t">Buying guide</span><span class="d">Booster, precon and beginner-deck prices</span><span class="go">›</span></a></li>
+</ul>
+
+<h2>Sounds</h2>
+<ul>
+<li><a href="sounds/"><span class="i">🔊</span><span class="t">Turn button clips</span><span class="d">Every clip, playable, with source</span><span class="go">›</span></a></li>
+<li><a href="sounds/lines.html"><span class="i">🗣️</span><span class="t">Spoken lines</span><span class="d">Every clip with words, by speaker</span><span class="go">›</span></a></li>
+</ul>
+
+<h2>claude.ai artifacts</h2>
+<p class="note">Private: they open only for the claude.ai account that made them. Previews only; they can't sync a game.</p>
+<ul class="sub">
+<li><a href="https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2"><span class="i">🎉</span><span class="t">Xenagos Party Hugger Cards</span><span class="d">Editable copy of the Xenagos carousel</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/2iDTXny6HTaVnm5k5pwcZH"><span class="i">🟩</span><span class="t">We Are the Borg</span><span class="d">Borg carousel, images built in</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/GBrNmbAkTc79EMsKfc7vN9"><span class="i">🟩</span><span class="t">We Are the Borg Decklist</span><span class="d">Decklist</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/Ld1BCD7myiqqs4xcwEHd1U"><span class="i">⬆️</span><span class="t">First Flight Upgrades</span><span class="d">Upgrade picks</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/VDSDeiJGuUw48d9ukHPfa3"><span class="i">⬆️</span><span class="t">Grave Danger Upgrades</span><span class="d">Upgrade picks</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/56xc2bNsdDa5e4YUu7XcLc"><span class="i">⬆️</span><span class="t">Chaos Incarnate Upgrades</span><span class="d">Upgrade picks</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/2v8hi7tARaN4oBLS9d2KK6"><span class="i">⬆️</span><span class="t">Draconic Destruction Upgrades</span><span class="d">Upgrade picks</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/9mQApGexWmAc42GPrfGtr1"><span class="i">⬆️</span><span class="t">Token Triumph Upgrades</span><span class="d">Upgrade picks</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/Uwkj3fP5L9o2Vgq7VMR1di"><span class="i">🤗</span><span class="t">Group Hug Proxies</span><span class="d">Proxy sheet</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/SMVtW5E8HXpW3zHGBT1UCF"><span class="i">👊</span><span class="t">Punch-Up Browser</span><span class="d">Card browser</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/4Lojc8dLhvSSWwyQAfqwJE"><span class="i">📦</span><span class="t">Commander Precons Catalog</span><span class="d">Precon catalog</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/Y872oYWHjCvoEDQFH7TiNC"><span class="i">📦</span><span class="t">Commander Precons Catalog (second copy)</span><span class="d">Precon catalog</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/CxP4qUeGjTK9XkHeJE2hhs"><span class="i">🐉</span><span class="t">Forgotten Realms Commander Decks</span><span class="d">AFR precons</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/MKhXX3eFdnDBdpK1JPyyFP"><span class="i">💡</span><span class="t">Deck Ideas</span><span class="d">Deck ideas</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/CqLkY2TnPdRgDq7r6t728S"><span class="i">📝</span><span class="t">Want List</span><span class="d">Cards to buy</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/XKDkaimq128iz5n91fBda4"><span class="i">🔊</span><span class="t">Turn Button Sounds</span><span class="d">Clip list copy (no playback)</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/LzFGUh29B93Zb2sjM7uEGU"><span class="i">🃏</span><span class="t">Commander Life</span><span class="d">Preview, this phone only</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/9z7C1ipiKyGVjQ3Y8PzPma"><span class="i">🃏</span><span class="t">Commander Life (older copy)</span><span class="d">Preview, this phone only</span><span class="go">›</span></a></li>
+<li><a href="https://claude.ai/artifact/RuiCBfVWbVowusRFS4D5zc"><span class="i">😈</span><span class="t">Archenemy Table</span><span class="d">Old preview, this phone only</span><span class="go">›</span></a></li>
+</ul>
+</body></html>

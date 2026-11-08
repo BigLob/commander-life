@@ -5,16 +5,15 @@ sync live. Plain HTML pages, no build step, no framework.
 
 ## Replies
 
-End every reply about anything in this repo with icon-only links to the live pages, on one line:
+End every reply about anything in this repo with two icon-only links, on one line:
 
-[🃏](https://biglob.github.io/commander-life/) [😈](https://biglob.github.io/commander-life/archenemy.html) [🎉](https://biglob.github.io/commander-life/xenagos.html) [📚](https://biglob.github.io/commander-life/decks/) [🔊](https://biglob.github.io/commander-life/sounds/) [🗣️](https://biglob.github.io/commander-life/sounds/lines.html)
+[🃏](https://biglob.github.io/commander-life/) [🗂️](https://biglob.github.io/commander-life/links.html)
 
-🎉 is the Xenagos, the Party Hugger card carousel (deck singles, suggestions, Fav, Bench and Trash
-tabs). When we build a new page, add its icon link to this line. Its editable claude.ai artifact is
-https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private, for the user only; don't put it in the footer).
-📚 is the deck list, `decks/`: a card carousel for every precon the group owns (see below).
-🔊 is the clip list, `sounds/index.html`: every turn-button sound with its length, pool and source, each playable.
-🗣️ is the spoken lines, `sounds/lines.html`: every clip with words, grouped by speaker, with the original occasion and where it came from.
+🃏 is the Commander Life board. 🗂️ is `links.html`, a tappable list of every page, carousel, guide and
+claude.ai artifact we've made (the user dropped the per-page icons, sounds included, for this). When
+we build a new page or artifact, add a row to `links.html`, not an icon to the footer. The Xenagos
+editable artifact is https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private; listed in
+`links.html` under claude.ai artifacts, which only open for the account that made them).
 
 ## Where things live
 
@@ -42,7 +41,7 @@ The site only changes when files land on `main` of `BigLob/commander-life`:
 
 1. Make and test the change (in `BigLob/Mtg` or directly here).
 2. Copy `index.html`, `archenemy.html`, `patterns/`, `fonts/`, `art/` and `sounds/` into this repo, commit, push to `main`.
-   `decks/` is built here by `tools/carousel/make.py` (no copy from `BigLob/Mtg`).
+   `decks/` and `lands/` are built here by `tools/carousel/make.py` and `lands.py`, and `links.html` is kept here (no copy from `BigLob/Mtg`).
 3. GitHub Pages republishes in a minute or two. Phones may need a reload.
 
 The cloud sandbox can't reach firebaseio.com or github.io (the proxy returns 403), so test in
@@ -250,6 +249,14 @@ them and `.gitignore` now ignores PNGs at the root).
 - Built by `python3 tools/carousel/make.py [slug ...]` from `tools/carousel/template.html` and `index-template.html`. Decklists come from MTGJSON's deck files (exact printings) or, for decks MTGJSON doesn't have yet (Star Trek), Wizards' decklist article. Card data, prices (the precon printing's, else the cheapest paper printing) and image links come from Scryfall; images load from Scryfall's CDN, so the pages are small but need a connection. Brand-new cards with no price yet show "no price". `decks/decks.json` holds each deck's summary for the index.
 - To add a deck, add a row to `DECKS` in `make.py` and run it for that slug.
 - The claude.ai artifact copy of the Borg page is https://claude.ai/artifact/2iDTXny6HTaVnm5k5pwcZH (private). Artifacts can't load outside images, so `tools/carousel/embed.py <page> <out>` inlines them as WebP (about 6 MB) before publishing.
+
+### `lands/`: nonbasic lands carousel and primer
+- Live at https://biglob.github.io/commander-life/lands/ (carousel) and `lands/primer.html` (the primer: an exec-summary brief on land cycles, most played, prices, how to build a mana base, and the cheapest untapped-dual fixes for each of our decks; written by hand, so update its numbers when decks are added). Not game pages; nothing syncs.
+- The carousel holds every Commander-legal nonbasic land (1,227 in Nov 2026, plus this year's unreleased ones such as the Star Trek planets), most played (EDHREC rank) first. Tabs All, Ours (lands in our precons, read from `decks/*.html`), Fav, Bench, Trash; filters for name, family, category, colors and price. Marks in localStorage (`pc-lands-favs`, `pc-lands-marks`).
+- Built by `python3 tools/carousel/lands.py` from `tools/carousel/lands-template.html` (a copy of the deck carousel with land filters). `cat()` puts each land in one of 40 categories by its type line and rules text (order matters); `FAMILIES` groups them. Price is the cheapest paper printing. It also writes `lands/summary.json` (per category: count, median price, most played) for the primer. Rerun it after adding a deck so the Ours tab picks it up.
+
+### `links.html`: all our pages
+- Live at https://biglob.github.io/commander-life/links.html, the 🗂️ footer link. Hand-kept list in sections: Play, Card carousels (with every deck), Guides, Sounds, claude.ai artifacts.
 
 ### `archenemy.html`: Archenemy (v1.2)
 - Separate page, because its interface differs a lot from Commander Life.

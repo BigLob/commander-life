@@ -1,0 +1,1772 @@
+{
+ "Token makers": {
+  "count": 44,
+  "median": 0.3,
+  "top": [
+   [
+    "Field of the Dead",
+    498,
+    25.18
+   ],
+   [
+    "Castle Ardenvale",
+    720,
+    0.27
+   ],
+   [
+    "Fountainport",
+    938,
+    3.28
+   ],
+   [
+    "Mines of Moria",
+    1002,
+    2.87
+   ],
+   [
+    "The Shire",
+    1196,
+    1.87
+   ],
+   [
+    "Dark Depths",
+    1489,
+    2.75
+   ],
+   [
+    "Westvale Abbey // Ormendahl, Profane Prince",
+    1506,
+    2.24
+   ],
+   [
+    "Adagia, Windswept Bastion",
+    1538,
+    5.73
+   ]
+  ]
+ },
+ "Pain lands": {
+  "count": 17,
+  "median": 0.31,
+  "top": [
+   [
+    "Shivan Reef",
+    113,
+    0.25
+   ],
+   [
+    "Battlefield Forge",
+    115,
+    0.23
+   ],
+   [
+    "Caves of Koilos",
+    123,
+    0.28
+   ],
+   [
+    "Yavimaya Coast",
+    139,
+    0.29
+   ],
+   [
+    "Llanowar Wastes",
+    140,
+    0.69
+   ],
+   [
+    "Underground River",
+    141,
+    0.49
+   ],
+   [
+    "Sulfurous Springs",
+    142,
+    0.47
+   ],
+   [
+    "Adarkar Wastes",
+    143,
+    0.24
+   ]
+  ]
+ },
+ "Artifact lands": {
+  "count": 20,
+  "median": 0.52,
+  "top": [
+   [
+    "Darksteel Citadel",
+    283,
+    0.52
+   ],
+   [
+    "Seat of the Synod",
+    305,
+    0.96
+   ],
+   [
+    "Great Furnace",
+    365,
+    2.5
+   ],
+   [
+    "Treasure Vault",
+    464,
+    1.11
+   ],
+   [
+    "Ancient Den",
+    478,
+    1.89
+   ],
+   [
+    "Vault of Whispers",
+    621,
+    2.02
+   ],
+   [
+    "Razortide Bridge",
+    1064,
+    0.29
+   ],
+   [
+    "Silverbluff Bridge",
+    1175,
+    0.3
+   ]
+  ]
+ },
+ "Original duals": {
+  "count": 10,
+  "median": 249.0,
+  "top": [
+   [
+    "Underground Sea",
+    296,
+    297.0
+   ],
+   [
+    "Volcanic Island",
+    334,
+    396.04
+   ],
+   [
+    "Tundra",
+    348,
+    319.61
+   ],
+   [
+    "Tropical Island",
+    352,
+    250.0
+   ],
+   [
+    "Badlands",
+    377,
+    245.86
+   ],
+   [
+    "Scrubland",
+    379,
+    220.0
+   ],
+   [
+    "Bayou",
+    424,
+    249.0
+   ],
+   [
+    "Taiga",
+    433,
+    219.93
+   ]
+  ]
+ },
+ "Ramp lands": {
+  "count": 60,
+  "median": 1.28,
+  "top": [
+   [
+    "Ancient Tomb",
+    69,
+    57.21
+   ],
+   [
+    "Temple of the False God",
+    84,
+    0.19
+   ],
+   [
+    "Phyrexian Tower",
+    194,
+    12.4
+   ],
+   [
+    "Cabal Coffers",
+    203,
+    22.16
+   ],
+   [
+    "Arena of Glory",
+    372,
+    8.33
+   ],
+   [
+    "Gaea's Cradle",
+    444,
+    303.59
+   ],
+   [
+    "Urza's Tower",
+    835,
+    0.82
+   ],
+   [
+    "Urza's Mine",
+    843,
+    0.69
+   ]
+  ]
+ },
+ "Tribal lands": {
+  "count": 12,
+  "median": 0.41,
+  "top": [
+   [
+    "Temple of the Dragon Queen",
+    2577,
+    0.31
+   ],
+   [
+    "Murmuring Bosk",
+    2738,
+    0.41
+   ],
+   [
+    "Flamekin Village",
+    3604,
+    0.28
+   ],
+   [
+    "Gilt-Leaf Palace",
+    4987,
+    4.43
+   ],
+   [
+    "Secluded Glen",
+    5178,
+    1.17
+   ],
+   [
+    "Primal Beyond",
+    6038,
+    0.24
+   ],
+   [
+    "Auntie's Hovel",
+    10322,
+    9.65
+   ],
+   [
+    "Theorist's Sanctum",
+    11173,
+    0.54
+   ]
+  ]
+ },
+ "Sagas & town lands": {
+  "count": 6,
+  "median": 1.41,
+  "top": [
+   [
+    "Urza's Saga",
+    116,
+    32.4
+   ],
+   [
+    "Midgar, City of Mako // Reactor Raid",
+    1185,
+    1.33
+   ],
+   [
+    "Lindblum, Industrial Regency // Mage Siege",
+    1369,
+    1.86
+   ],
+   [
+    "Ishgard, the Holy See // Faith & Grief",
+    1400,
+    1.41
+   ],
+   [
+    "Jidoor, Aristocratic Capital // Overture",
+    2119,
+    1.17
+   ],
+   [
+    "Zanarkand, Ancient Metropolis // Lasting Fayth",
+    3812,
+    0.49
+   ]
+  ]
+ },
+ "Gates": {
+  "count": 23,
+  "median": 0.29,
+  "top": [
+   [
+    "Talon Gates of Madara",
+    565,
+    15.36
+   ],
+   [
+    "The Black Gate",
+    1186,
+    9.94
+   ],
+   [
+    "Simic Guildgate",
+    1596,
+    0.11
+   ],
+   [
+    "Golgari Guildgate",
+    1660,
+    0.13
+   ],
+   [
+    "Izzet Guildgate",
+    1838,
+    0.1
+   ],
+   [
+    "Dimir Guildgate",
+    1861,
+    0.13
+   ],
+   [
+    "Boros Guildgate",
+    1889,
+    0.08
+   ],
+   [
+    "Orzhov Guildgate",
+    2021,
+    0.1
+   ]
+  ]
+ },
+ "Tri-lands & triomes": {
+  "count": 27,
+  "median": 0.3,
+  "top": [
+   [
+    "Jungle Shrine",
+    326,
+    0.24
+   ],
+   [
+    "Arcane Sanctum",
+    351,
+    0.23
+   ],
+   [
+    "Ketria Triome",
+    360,
+    16.47
+   ],
+   [
+    "Jetmir's Garden",
+    369,
+    15.09
+   ],
+   [
+    "Crumbling Necropolis",
+    373,
+    0.31
+   ],
+   [
+    "Mystic Monastery",
+    375,
+    0.15
+   ],
+   [
+    "Nomad Outpost",
+    381,
+    0.26
+   ],
+   [
+    "Opulent Palace",
+    384,
+    0.26
+   ]
+  ]
+ },
+ "Slow lands": {
+  "count": 20,
+  "median": 1.59,
+  "top": [
+   [
+    "Dreamroot Cascade",
+    174,
+    0.88
+   ],
+   [
+    "Stormcarved Coast",
+    184,
+    2.48
+   ],
+   [
+    "Shipwreck Marsh",
+    223,
+    1.73
+   ],
+   [
+    "Rockfall Vale",
+    224,
+    0.88
+   ],
+   [
+    "Deserted Beach",
+    258,
+    1.59
+   ],
+   [
+    "Shattered Sanctum",
+    259,
+    2.22
+   ],
+   [
+    "Sundown Pass",
+    260,
+    2.42
+   ],
+   [
+    "Haunted Ridge",
+    266,
+    1.3
+   ]
+  ]
+ },
+ "Fetch lands": {
+  "count": 12,
+  "median": 28.65,
+  "top": [
+   [
+    "Polluted Delta",
+    36,
+    20.53
+   ],
+   [
+    "Flooded Strand",
+    37,
+    12.78
+   ],
+   [
+    "Misty Rainforest",
+    42,
+    36.08
+   ],
+   [
+    "Bloodstained Mire",
+    44,
+    14.54
+   ],
+   [
+    "Windswept Heath",
+    45,
+    11.07
+   ],
+   [
+    "Wooded Foothills",
+    47,
+    17.91
+   ],
+   [
+    "Verdant Catacombs",
+    48,
+    28.98
+   ],
+   [
+    "Scalding Tarn",
+    50,
+    35.93
+   ]
+  ]
+ },
+ "Scry lands": {
+  "count": 17,
+  "median": 0.19,
+  "top": [
+   [
+    "Path of Ancestry",
+    14,
+    0.18
+   ],
+   [
+    "Temple of Epiphany",
+    300,
+    0.17
+   ],
+   [
+    "Temple of Silence",
+    312,
+    0.17
+   ],
+   [
+    "Temple of Enlightenment",
+    319,
+    0.14
+   ],
+   [
+    "Temple of Triumph",
+    321,
+    0.19
+   ],
+   [
+    "Temple of Mystery",
+    340,
+    0.17
+   ],
+   [
+    "Temple of Deceit",
+    371,
+    0.19
+   ],
+   [
+    "Temple of Malady",
+    382,
+    0.21
+   ]
+  ]
+ },
+ "Bounce lands": {
+  "count": 12,
+  "median": 0.25,
+  "top": [
+   [
+    "Simic Growth Chamber",
+    324,
+    0.22
+   ],
+   [
+    "Golgari Rot Farm",
+    341,
+    0.27
+   ],
+   [
+    "Dimir Aqueduct",
+    390,
+    0.21
+   ],
+   [
+    "Orzhov Basilica",
+    427,
+    0.19
+   ],
+   [
+    "Izzet Boilerworks",
+    448,
+    0.26
+   ],
+   [
+    "Gruul Turf",
+    471,
+    0.25
+   ],
+   [
+    "Azorius Chancery",
+    481,
+    0.16
+   ],
+   [
+    "Boros Garrison",
+    526,
+    0.2
+   ]
+  ]
+ },
+ "Surveil lands": {
+  "count": 10,
+  "median": 11.71,
+  "top": [
+   [
+    "Undercity Sewers",
+    423,
+    9.14
+   ],
+   [
+    "Underground Mortuary",
+    483,
+    16.12
+   ],
+   [
+    "Hedge Maze",
+    562,
+    13.23
+   ],
+   [
+    "Raucous Theater",
+    569,
+    11.71
+   ],
+   [
+    "Shadowy Backstreet",
+    577,
+    10.55
+   ],
+   [
+    "Thundering Falls",
+    629,
+    15.19
+   ],
+   [
+    "Commercial District",
+    665,
+    7.63
+   ],
+   [
+    "Meticulous Archive",
+    669,
+    14.67
+   ]
+  ]
+ },
+ "Battle lands": {
+  "count": 10,
+  "median": 0.29,
+  "top": [
+   [
+    "Sunken Hollow",
+    87,
+    0.27
+   ],
+   [
+    "Cinder Glade",
+    89,
+    0.26
+   ],
+   [
+    "Smoldering Marsh",
+    95,
+    0.23
+   ],
+   [
+    "Prairie Stream",
+    102,
+    0.17
+   ],
+   [
+    "Canopy Vista",
+    108,
+    0.25
+   ],
+   [
+    "Vernal Fen",
+    636,
+    0.39
+   ],
+   [
+    "Radiant Summit",
+    908,
+    0.29
+   ],
+   [
+    "Sodden Verdure",
+    1216,
+    0.33
+   ]
+  ]
+ },
+ "Pathways": {
+  "count": 10,
+  "median": 4.7,
+  "top": [
+   [
+    "Clearwater Pathway // Murkwater Pathway",
+    821,
+    4.87
+   ],
+   [
+    "Brightclimb Pathway // Grimclimb Pathway",
+    823,
+    4.36
+   ],
+   [
+    "Blightstep Pathway // Searstep Pathway",
+    849,
+    5.66
+   ],
+   [
+    "Riverglide Pathway // Lavaglide Pathway",
+    875,
+    4.62
+   ],
+   [
+    "Needleverge Pathway // Pillarverge Pathway",
+    883,
+    4.36
+   ],
+   [
+    "Cragcrown Pathway // Timbercrown Pathway",
+    1129,
+    3.08
+   ],
+   [
+    "Barkchannel Pathway // Tidechannel Pathway",
+    1143,
+    4.7
+   ],
+   [
+    "Hengegate Pathway // Mistgate Pathway",
+    1166,
+    4.83
+   ]
+  ]
+ },
+ "Graveyard hate": {
+  "count": 2,
+  "median": 1.4,
+  "top": [
+   [
+    "Bojuka Bog",
+    24,
+    1.4
+   ],
+   [
+    "Scavenger Grounds",
+    293,
+    0.2
+   ]
+  ]
+ },
+ "Flip lands": {
+  "count": 32,
+  "median": 2.21,
+  "top": [
+   [
+    "Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun",
+    582,
+    7.79
+   ],
+   [
+    "Ojer Taq, Deepest Foundation // Temple of Civilization",
+    936,
+    31.88
+   ],
+   [
+    "Ojer Axonil, Deepest Might // Temple of Power",
+    1545,
+    23.79
+   ],
+   [
+    "Brass's Tunnel-Grinder // Tecutlan, the Searing Rift",
+    1616,
+    2.82
+   ],
+   [
+    "Matzalantli, the Great Door // The Core",
+    1845,
+    2.23
+   ],
+   [
+    "Ojer Kaslem, Deepest Growth // Temple of Cultivation",
+    2067,
+    6.77
+   ],
+   [
+    "Thousand Moons Smithy // Barracks of the Thousand",
+    2099,
+    3.18
+   ],
+   [
+    "Primal Amulet // Primal Wellspring",
+    2188,
+    11.46
+   ]
+  ]
+ },
+ "Cycling duals": {
+  "count": 10,
+  "median": 0.26,
+  "top": [
+   [
+    "Sheltered Thicket",
+    655,
+    0.19
+   ],
+   [
+    "Canyon Slough",
+    686,
+    0.23
+   ],
+   [
+    "Irrigated Farmland",
+    811,
+    0.17
+   ],
+   [
+    "Fetid Pools",
+    865,
+    0.29
+   ],
+   [
+    "Scattered Groves",
+    1047,
+    0.27
+   ],
+   [
+    "Festering Thicket",
+    1829,
+    0.3
+   ],
+   [
+    "Glittering Massif",
+    2866,
+    0.26
+   ],
+   [
+    "Rain-Slicked Copse",
+    3023,
+    0.23
+   ]
+  ]
+ },
+ "Any-color lands": {
+  "count": 128,
+  "median": 0.32,
+  "top": [
+   [
+    "Command Tower",
+    2,
+    0.24
+   ],
+   [
+    "Exotic Orchard",
+    9,
+    0.22
+   ],
+   [
+    "City of Brass",
+    94,
+    9.18
+   ],
+   [
+    "Cavern of Souls",
+    112,
+    48.43
+   ],
+   [
+    "Mana Confluence",
+    114,
+    33.87
+   ],
+   [
+    "Reflecting Pool",
+    160,
+    5.38
+   ],
+   [
+    "Nykthos, Shrine to Nyx",
+    163,
+    46.97
+   ],
+   [
+    "Three Tree City",
+    179,
+    27.79
+   ]
+  ]
+ },
+ "Creature lands": {
+  "count": 49,
+  "median": 0.31,
+  "top": [
+   [
+    "Ba Sing Se",
+    1592,
+    4.4
+   ],
+   [
+    "Mutavault",
+    1911,
+    1.0
+   ],
+   [
+    "Inkmoth Nexus",
+    1956,
+    11.98
+   ],
+   [
+    "Raging Ravine",
+    2822,
+    0.15
+   ],
+   [
+    "Blinkmoth Nexus",
+    3111,
+    1.09
+   ],
+   [
+    "Creeping Tar Pit",
+    3144,
+    0.31
+   ],
+   [
+    "Mishra's Factory",
+    3302,
+    0.19
+   ],
+   [
+    "Mech Hangar",
+    3393,
+    0.4
+   ]
+  ]
+ },
+ "Snarls": {
+  "count": 10,
+  "median": 0.23,
+  "top": [
+   [
+    "Choked Estuary",
+    294,
+    0.23
+   ],
+   [
+    "Foreboding Ruins",
+    317,
+    0.28
+   ],
+   [
+    "Frostboil Snarl",
+    332,
+    0.24
+   ],
+   [
+    "Port Town",
+    336,
+    0.15
+   ],
+   [
+    "Fortified Village",
+    343,
+    0.2
+   ],
+   [
+    "Furycalm Snarl",
+    344,
+    0.22
+   ],
+   [
+    "Game Trail",
+    399,
+    0.2
+   ],
+   [
+    "Shineshadow Snarl",
+    422,
+    0.26
+   ]
+  ]
+ },
+ "Shock lands": {
+  "count": 10,
+  "median": 5.1,
+  "top": [
+   [
+    "Watery Grave",
+    49,
+    5.13
+   ],
+   [
+    "Godless Shrine",
+    59,
+    4.76
+   ],
+   [
+    "Hallowed Fountain",
+    60,
+    4.84
+   ],
+   [
+    "Breeding Pool",
+    61,
+    5.58
+   ],
+   [
+    "Steam Vents",
+    62,
+    5.15
+   ],
+   [
+    "Blood Crypt",
+    67,
+    5.05
+   ],
+   [
+    "Stomping Ground",
+    70,
+    4.96
+   ],
+   [
+    "Overgrown Tomb",
+    71,
+    5.1
+   ]
+  ]
+ },
+ "Tapped duals": {
+  "count": 106,
+  "median": 0.21,
+  "top": [
+   [
+    "Abraded Bluffs",
+    3091,
+    0.3
+   ],
+   [
+    "Bristling Backwoods",
+    3761,
+    0.31
+   ],
+   [
+    "Jagged Barrens",
+    3984,
+    0.37
+   ],
+   [
+    "Eroded Canyon",
+    4043,
+    0.3
+   ],
+   [
+    "Creosote Heath",
+    4184,
+    0.42
+   ],
+   [
+    "Baron, Airship Kingdom",
+    4417,
+    0.22
+   ],
+   [
+    "Treno, Dark City",
+    4451,
+    0.2
+   ],
+   [
+    "Rabanastre, Royal City",
+    4622,
+    0.18
+   ]
+  ]
+ },
+ "Check lands": {
+  "count": 15,
+  "median": 0.32,
+  "top": [
+   [
+    "Sulfur Falls",
+    75,
+    0.26
+   ],
+   [
+    "Clifftop Retreat",
+    77,
+    0.26
+   ],
+   [
+    "Dragonskull Summit",
+    82,
+    0.46
+   ],
+   [
+    "Glacial Fortress",
+    86,
+    0.24
+   ],
+   [
+    "Isolated Chapel",
+    88,
+    0.23
+   ],
+   [
+    "Hinterland Harbor",
+    98,
+    0.26
+   ],
+   [
+    "Drowned Catacomb",
+    103,
+    0.35
+   ],
+   [
+    "Woodland Cemetery",
+    111,
+    0.86
+   ]
+  ]
+ },
+ "Filter lands": {
+  "count": 10,
+  "median": 0.52,
+  "top": [
+   [
+    "Rugged Prairie",
+    280,
+    0.26
+   ],
+   [
+    "Cascade Bluffs",
+    291,
+    0.32
+   ],
+   [
+    "Flooded Grove",
+    303,
+    0.29
+   ],
+   [
+    "Fetid Heath",
+    314,
+    0.28
+   ],
+   [
+    "Twilight Mire",
+    356,
+    0.39
+   ],
+   [
+    "Graven Cairns",
+    553,
+    1.41
+   ],
+   [
+    "Mystic Gate",
+    766,
+    0.53
+   ],
+   [
+    "Sunken Ruins",
+    854,
+    0.52
+   ]
+  ]
+ },
+ "Horizon lands": {
+  "count": 9,
+  "median": 2.82,
+  "top": [
+   [
+    "Fiery Islet",
+    882,
+    4.53
+   ],
+   [
+    "Waterlogged Grove",
+    1178,
+    1.17
+   ],
+   [
+    "Sunbaked Canyon",
+    1502,
+    4.01
+   ],
+   [
+    "Horizon of Progress",
+    1532,
+    4.29
+   ],
+   [
+    "Silent Clearing",
+    1625,
+    2.26
+   ],
+   [
+    "Nurturing Peatland",
+    1635,
+    6.82
+   ],
+   [
+    "Horizon Canopy",
+    1681,
+    2.82
+   ],
+   [
+    "Voldaren Estate",
+    2517,
+    0.32
+   ]
+  ]
+ },
+ "Thriving lands": {
+  "count": 5,
+  "median": 0.1,
+  "top": [
+   [
+    "Thriving Isle",
+    1014,
+    0.1
+   ],
+   [
+    "Thriving Heath",
+    1105,
+    0.1
+   ],
+   [
+    "Thriving Grove",
+    1176,
+    0.12
+   ],
+   [
+    "Thriving Bluff",
+    1207,
+    0.11
+   ],
+   [
+    "Thriving Moor",
+    1228,
+    0.09
+   ]
+  ]
+ },
+ "Fast lands": {
+  "count": 10,
+  "median": 1.71,
+  "top": [
+   [
+    "Blackcleave Cliffs",
+    1078,
+    1.71
+   ],
+   [
+    "Seachrome Coast",
+    1152,
+    0.36
+   ],
+   [
+    "Concealed Courtyard",
+    1173,
+    1.12
+   ],
+   [
+    "Razorverge Thicket",
+    1376,
+    0.36
+   ],
+   [
+    "Darkslick Shores",
+    1415,
+    1.8
+   ],
+   [
+    "Inspiring Vantage",
+    1446,
+    1.82
+   ],
+   [
+    "Copperline Gorge",
+    1498,
+    0.81
+   ],
+   [
+    "Blooming Marsh",
+    1546,
+    2.44
+   ]
+  ]
+ },
+ "Budget fetches": {
+  "count": 20,
+  "median": 0.28,
+  "top": [
+   [
+    "Evolving Wilds",
+    19,
+    0.08
+   ],
+   [
+    "Terramorphic Expanse",
+    30,
+    0.09
+   ],
+   [
+    "Myriad Landscape",
+    31,
+    0.19
+   ],
+   [
+    "Fabled Passage",
+    41,
+    0.42
+   ],
+   [
+    "Demolition Field",
+    394,
+    0.28
+   ],
+   [
+    "Urza's Cave",
+    435,
+    2.53
+   ],
+   [
+    "Escape Tunnel",
+    788,
+    0.23
+   ],
+   [
+    "Blighted Woodland",
+    964,
+    0.27
+   ]
+  ]
+ },
+ "Channel lands": {
+  "count": 5,
+  "median": 12.51,
+  "top": [
+   [
+    "Boseiju, Who Endures",
+    78,
+    46.26
+   ],
+   [
+    "Otawara, Soaring City",
+    90,
+    28.01
+   ],
+   [
+    "Takenuma, Abandoned Mire",
+    245,
+    12.51
+   ],
+   [
+    "Eiganjo, Seat of the Empire",
+    376,
+    6.43
+   ],
+   [
+    "Sokenzan, Crucible of Defiance",
+    990,
+    2.5
+   ]
+  ]
+ },
+ "Bond lands": {
+  "count": 10,
+  "median": 5.63,
+  "top": [
+   [
+    "Rejuvenating Springs",
+    148,
+    3.72
+   ],
+   [
+    "Morphic Pool",
+    149,
+    7.63
+   ],
+   [
+    "Training Center",
+    155,
+    3.19
+   ],
+   [
+    "Luxury Suite",
+    161,
+    8.13
+   ],
+   [
+    "Sea of Clouds",
+    165,
+    6.65
+   ],
+   [
+    "Spectator Seating",
+    168,
+    5.63
+   ],
+   [
+    "Vault of Champions",
+    170,
+    4.47
+   ],
+   [
+    "Undergrowth Stadium",
+    177,
+    4.79
+   ]
+  ]
+ },
+ "Card-draw lands": {
+  "count": 65,
+  "median": 0.26,
+  "top": [
+   [
+    "War Room",
+    138,
+    1.41
+   ],
+   [
+    "Mosswort Bridge",
+    199,
+    0.27
+   ],
+   [
+    "Minas Tirith",
+    419,
+    5.85
+   ],
+   [
+    "Bonders' Enclave",
+    531,
+    0.26
+   ],
+   [
+    "Windbrisk Heights",
+    666,
+    0.26
+   ],
+   [
+    "Castle Locthwain",
+    786,
+    1.06
+   ],
+   [
+    "Spinerock Knoll",
+    794,
+    0.32
+   ],
+   [
+    "Forgotten Cave",
+    880,
+    0.12
+   ]
+  ]
+ },
+ "Land removal": {
+  "count": 10,
+  "median": 0.33,
+  "top": [
+   [
+    "Strip Mine",
+    534,
+    10.7
+   ],
+   [
+    "Ghost Quarter",
+    847,
+    0.43
+   ],
+   [
+    "Field of Ruin",
+    929,
+    0.25
+   ],
+   [
+    "Wasteland",
+    1222,
+    9.12
+   ],
+   [
+    "Volatile Fault",
+    2725,
+    0.3
+   ],
+   [
+    "Tectonic Edge",
+    4228,
+    0.33
+   ],
+   [
+    "Dust Bowl",
+    5347,
+    0.95
+   ],
+   [
+    "Encroaching Wastes",
+    10674,
+    0.3
+   ]
+  ]
+ },
+ "Spell lands (MDFC)": {
+  "count": 50,
+  "median": 0.43,
+  "top": [
+   [
+    "Sink into Stupor // Soporific Springs",
+    167,
+    9.37
+   ],
+   [
+    "Fell the Profane // Fell Mire",
+    198,
+    5.57
+   ],
+   [
+    "Malakir Rebirth // Malakir Mire",
+    233,
+    11.36
+   ],
+   [
+    "Witch Enchanter // Witch-Blessed Meadow",
+    289,
+    5.54
+   ],
+   [
+    "Bala Ged Recovery // Bala Ged Sanctuary",
+    318,
+    7.14
+   ],
+   [
+    "Disciple of Freyalise // Garden of Freyalise",
+    452,
+    3.83
+   ],
+   [
+    "Valakut Awakening // Valakut Stoneforge",
+    515,
+    15.25
+   ],
+   [
+    "Pinnacle Monk // Mystic Peak",
+    533,
+    2.03
+   ]
+  ]
+ },
+ "Mono-color utility": {
+  "count": 81,
+  "median": 0.42,
+  "top": [
+   [
+    "Urborg, Tomb of Yawgmoth",
+    76,
+    52.63
+   ],
+   [
+    "Yavimaya, Cradle of Growth",
+    80,
+    12.13
+   ],
+   [
+    "Mystic Sanctuary",
+    175,
+    1.12
+   ],
+   [
+    "Shifting Woodland",
+    362,
+    7.7
+   ],
+   [
+    "Minamo, School at Water's Edge",
+    611,
+    17.54
+   ],
+   [
+    "Shizo, Death's Storehouse",
+    625,
+    8.12
+   ],
+   [
+    "Mortuary Mire",
+    708,
+    0.29
+   ],
+   [
+    "Castle Garenbrig",
+    722,
+    9.37
+   ]
+  ]
+ },
+ "Colorless utility": {
+  "count": 158,
+  "median": 0.36,
+  "top": [
+   [
+    "Reliquary Tower",
+    10,
+    2.85
+   ],
+   [
+    "Rogue's Passage",
+    18,
+    0.38
+   ],
+   [
+    "Command Beacon",
+    183,
+    3.56
+   ],
+   [
+    "Buried Ruin",
+    193,
+    0.28
+   ],
+   [
+    "Karn's Bastion",
+    207,
+    3.25
+   ],
+   [
+    "Ash Barrens",
+    211,
+    0.21
+   ],
+   [
+    "Inventors' Fair",
+    269,
+    18.05
+   ],
+   [
+    "Kessig Wolf Run",
+    410,
+    0.32
+   ]
+  ]
+ },
+ "Typed tapped duals": {
+  "count": 28,
+  "median": 0.35,
+  "top": [
+   [
+    "Haunted Mire",
+    1352,
+    0.23
+   ],
+   [
+    "Tangled Islet",
+    1433,
+    0.2
+   ],
+   [
+    "Radiant Grove",
+    1558,
+    0.24
+   ],
+   [
+    "Sunlit Marsh",
+    1792,
+    0.2
+   ],
+   [
+    "Sacred Peaks",
+    1796,
+    0.24
+   ],
+   [
+    "Wooded Ridgeline",
+    1899,
+    0.26
+   ],
+   [
+    "Contaminated Aquifer",
+    2214,
+    0.28
+   ],
+   [
+    "Idyllic Beachfront",
+    2248,
+    0.24
+   ]
+  ]
+ },
+ "Other untapped duals": {
+  "count": 54,
+  "median": 0.33,
+  "top": [
+   [
+    "Darkwater Catacombs",
+    329,
+    0.28
+   ],
+   [
+    "Skycloud Expanse",
+    346,
+    0.19
+   ],
+   [
+    "Sungrass Prairie",
+    432,
+    0.2
+   ],
+   [
+    "Shadowblood Ridge",
+    442,
+    0.24
+   ],
+   [
+    "Tainted Wood",
+    450,
+    0.28
+   ],
+   [
+    "Tainted Field",
+    457,
+    0.33
+   ],
+   [
+    "Blazemire Verge",
+    494,
+    10.18
+   ],
+   [
+    "Tainted Peak",
+    501,
+    1.02
+   ]
+  ]
+ },
+ "Gain lands": {
+  "count": 40,
+  "median": 0.22,
+  "top": [
+   [
+    "Scoured Barrens",
+    760,
+    0.11
+   ],
+   [
+    "Jungle Hollow",
+    807,
+    0.14
+   ],
+   [
+    "Bloodfell Caves",
+    959,
+    0.11
+   ],
+   [
+    "Dismal Backwater",
+    1040,
+    0.08
+   ],
+   [
+    "Wind-Scarred Crag",
+    1052,
+    0.1
+   ],
+   [
+    "Blossoming Sands",
+    1073,
+    0.13
+   ],
+   [
+    "Swiftwater Cliffs",
+    1084,
+    0.08
+   ],
+   [
+    "Tranquil Cove",
+    1107,
+    0.08
+   ]
+  ]
+ }
+}

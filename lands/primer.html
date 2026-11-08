@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nonbasic Lands Primer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a one-column brief: bottom line, then tables. Same tokens as the deck pages. Tables scroll sideways on a phone instead of the page. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:860px;background:var(--bg);color:var(--fg);font-family:var(--f-display);line-height:1.45;padding-block:14px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+.back{font-family:var(--f-mono);font-size:.8rem;text-decoration:none;display:inline-block;margin-bottom:6px}
+h1{font-size:1.5rem;margin:0 0 4px;text-wrap:balance}
+.sub{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin:0 0 20px}
+h2{font-size:1.05rem;margin:28px 0 8px}
+ul{margin:0;padding-left:1.1em}li{margin:4px 0}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{text-align:left;vertical-align:top;padding:7px 10px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--f-mono);font-size:.7rem;font-weight:500;color:var(--muted);background:var(--surface);white-space:nowrap}
+td.n{font-family:var(--f-mono);white-space:nowrap;color:var(--accent)}
+td.k{font-weight:700;white-space:nowrap}
+.tier{font-family:var(--f-mono);font-size:.72rem;border:1px solid currentColor;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.t1{color:#2f7d32}.t2{color:var(--accent)}.t3{color:var(--muted)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .t1{color:#7fcf84}}
+:root[data-theme="dark"] .t1{color:#7fcf84}
+.note{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+/* phones: each row becomes a small card, every cell labelled with its column (labels set by the script below) */
+@media (max-width:600px){
+ .wrap{overflow:visible}
+ table,tbody,tr,td{display:block}
+ tr:first-child{display:none}
+ tr{padding:9px 12px;border-bottom:1px solid var(--line)}
+ tr:last-child{border-bottom:0}
+ td{border:0;padding:2px 0;white-space:normal!important}
+ td.k{font-size:.95rem;padding-bottom:4px}
+ td:not(.k)::before{content:attr(data-l) ": ";font-family:var(--f-mono);font-size:.68rem;color:var(--muted)}
+}
+</style></head><body>
+<a class="back" href="../links.html">‹ All pages</a> · <a class="back" href="./">Land carousel ›</a>
+<h1>Nonbasic lands: primer</h1>
+<p class="sub">1,227 Commander-legal nonbasic lands in 40 categories · popularity = EDHREC rank · price = cheapest paper printing (Scryfall, Nov 2026)</p>
+
+<h2>Bottom line</h2>
+<ul>
+<li><b>The job:</b> make every color on time. A land that enters tapped costs a turn of mana; untapped duals are the single biggest mana-base upgrade.</li>
+<li><b>Auto-includes:</b> Command Tower (#2 card on EDHREC), Exotic Orchard, Path of Ancestry, Reliquary Tower, Rogue's Passage. All under $3.</li>
+<li><b>Best value per dollar:</b> check lands and pain lands ($0.25 to $0.50) and Bond lands (~$5, untapped every game in multiplayer). Shocks (~$5) are the first "real" upgrade.</li>
+<li><b>Luxury tier:</b> fetches ($11 to $36), surveil lands and triomes (~$12 to $17), channel lands ($6 to $46). Original duals ($220 to $400) aren't worth it at our table.</li>
+<li><b>Our precons:</b> 143 nonbasics across 13 decks, about half enter tapped. Each deck can fix most of that for $1 to $5 (table at the bottom).</li>
+<li><b>Utility lands</b> are free spells in a land slot: graveyard hate (Bojuka Bog), unblockable (Rogue's Passage), removal that is also a land (Boseiju, Otawara). Room for 3 to 8 depending on color count.</li>
+</ul>
+
+<h2>Dual-land ladder</h2>
+<div class="wrap"><table>
+<tr><th>Cycle</th><th>Enters untapped</th><th>Each</th><th>Verdict</th></tr>
+<tr><td class="k">Original duals</td><td>Always, no cost</td><td class="n">$220–400</td><td><span class="tier t3">skip</span> Best land ever printed; price isn't justified casually.</td></tr>
+<tr><td class="k">Fetch lands</td><td>Yes, 1 life; finds a typed land</td><td class="n">$11–36</td><td><span class="tier t1">top</span> Fix any of 2 types, trigger landfall, thin the deck. Strong only with shocks/triomes to fetch.</td></tr>
+<tr><td class="k">Shock lands</td><td>Yes for 2 life</td><td class="n">~$5</td><td><span class="tier t1">top</span> Untapped on any turn, have basic types (fetchable). Best premium buy.</td></tr>
+<tr><td class="k">Bond lands</td><td>With 2+ opponents (always)</td><td class="n">$3–8</td><td><span class="tier t1">top</span> Made for multiplayer: a free untapped dual.</td></tr>
+<tr><td class="k">Check lands</td><td>If you control a matching basic type</td><td class="n">~$0.30</td><td><span class="tier t1">top budget</span> Untapped most turns from turn 2. Better with shocks/triomes.</td></tr>
+<tr><td class="k">Pain lands</td><td>Yes; 1 damage for colored mana</td><td class="n">$0.25–0.70</td><td><span class="tier t1">top budget</span> Always untapped; 40 life absorbs the pings.</td></tr>
+<tr><td class="k">Pathways</td><td>Yes; pick one color as it's played</td><td class="n">$3–6</td><td><span class="tier t2">good</span> Untapped but only one color each game.</td></tr>
+<tr><td class="k">Snarls / reveal lands</td><td>If you reveal a matching basic</td><td class="n">~$0.25</td><td><span class="tier t2">good</span> Untapped when you hold a matching basic; tapped late in the game.</td></tr>
+<tr><td class="k">Slow lands</td><td>From your 3rd land on</td><td class="n">$1–2.50</td><td><span class="tier t2">good</span> Tapped early, untapped late.</td></tr>
+<tr><td class="k">Filter lands</td><td>Yes; needs other mana to filter</td><td class="n">$0.30–1.40</td><td><span class="tier t2">good</span> Great for heavy color costs (WW, UU).</td></tr>
+<tr><td class="k">Horizon lands</td><td>Yes, 1 life; cash in for a card</td><td class="n">$1–7</td><td><span class="tier t2">good</span> Flood insurance.</td></tr>
+<tr><td class="k">Fast lands</td><td>Only with 2 or fewer other lands</td><td class="n">$0.35–1.80</td><td><span class="tier t2">ok</span> Turns 1 to 3 only; Commander games run long.</td></tr>
+<tr><td class="k">Battle lands</td><td>With 2+ basics</td><td class="n">~$0.30</td><td><span class="tier t2">ok</span> Typed (fetchable); needs a basics-heavy deck.</td></tr>
+<tr><td class="k">Surveil lands / triomes</td><td>Tapped; typed, surveil or cycling</td><td class="n">$9–17</td><td><span class="tier t2">ok</span> The best tapped lands; worth it with fetches.</td></tr>
+<tr><td class="k">Temples, gain lands, cycling duals, Thriving, Gates, tri-lands</td><td>Tapped</td><td class="n">$0.10–0.30</td><td><span class="tier t3">replace</span> Precon filler. First cuts when upgrading.</td></tr>
+<tr><td class="k">Bounce lands (karoos)</td><td>Tapped, return a land</td><td class="n">~$0.25</td><td><span class="tier t2">niche</span> Two mana from one card; great with landfall, weak to land removal.</td></tr>
+</table></div>
+
+<h2>Most played (EDHREC rank)</h2>
+<div class="wrap"><table>
+<tr><th>#</th><th>Land</th><th>Why</th><th>Price</th></tr>
+<tr><td class="n">2</td><td class="k">Command Tower</td><td>Any color in your identity, untapped</td><td class="n">$0.24</td></tr>
+<tr><td class="n">9</td><td class="k">Exotic Orchard</td><td>Any color opponents' lands make</td><td class="n">$0.22</td></tr>
+<tr><td class="n">10</td><td class="k">Reliquary Tower</td><td>No max hand size</td><td class="n">$2.85</td></tr>
+<tr><td class="n">14</td><td class="k">Path of Ancestry</td><td>Any color, scry with your creature type</td><td class="n">$0.18</td></tr>
+<tr><td class="n">18</td><td class="k">Rogue's Passage</td><td>Makes your commander unblockable</td><td class="n">$0.38</td></tr>
+<tr><td class="n">19</td><td class="k">Evolving Wilds</td><td>Budget fetch</td><td class="n">$0.08</td></tr>
+<tr><td class="n">24</td><td class="k">Bojuka Bog</td><td>Exile a graveyard</td><td class="n">$1.40</td></tr>
+<tr><td class="n">31</td><td class="k">Myriad Landscape</td><td>Two basics for one land</td><td class="n">$0.19</td></tr>
+<tr><td class="n">36–56</td><td class="k">The 10 fetches</td><td>Polluted Delta leads</td><td class="n">$11–36</td></tr>
+<tr><td class="n">41</td><td class="k">Fabled Passage</td><td>Best budget fetch</td><td class="n">$0.42</td></tr>
+<tr><td class="n">49–67</td><td class="k">The 10 shocks</td><td>Watery Grave leads</td><td class="n">~$5</td></tr>
+<tr><td class="n">69</td><td class="k">Ancient Tomb</td><td>Two colorless mana, 2 damage</td><td class="n">$57</td></tr>
+<tr><td class="n">76 / 80</td><td class="k">Urborg / Yavimaya</td><td>Every land taps for B / G too</td><td class="n">$53 / $12</td></tr>
+<tr><td class="n">78 / 90</td><td class="k">Boseiju / Otawara</td><td>Removal / bounce that is also a land</td><td class="n">$46 / $28</td></tr>
+</table></div>
+
+<h2>Utility lands worth a slot</h2>
+<div class="wrap"><table>
+<tr><th>Role</th><th>Best picks</th><th>Price</th></tr>
+<tr><td class="k">Any color</td><td>Command Tower, Exotic Orchard, City of Brass, Mana Confluence, Reflecting Pool; Cavern of Souls for tribal</td><td class="n">$0.20–48</td></tr>
+<tr><td class="k">Ramp</td><td>Temple of the False God (budget), Ancient Tomb, Cabal Coffers + Urborg, Phyrexian Tower (sacrifice), Gaea's Cradle (creatures)</td><td class="n">$0.20–300+</td></tr>
+<tr><td class="k">Spells in a land slot</td><td>Channel lands (Boseiju, Otawara); MDFCs (Sink into Stupor, Malakir Rebirth, Bala Ged Recovery)</td><td class="n">$2.50–46</td></tr>
+<tr><td class="k">Card advantage</td><td>War Room, Mosswort Bridge (hideaway), cycling lands, Castle Locthwain</td><td class="n">$0.25–6</td></tr>
+<tr><td class="k">Interaction</td><td>Bojuka Bog, Ghost Quarter, Field of Ruin, Strip Mine</td><td class="n">$0.25–11</td></tr>
+<tr><td class="k">Commander help</td><td>Rogue's Passage, Command Beacon, Karn's Bastion (proliferate)</td><td class="n">$0.40–3.60</td></tr>
+<tr><td class="k">Creature lands</td><td>Mutavault, Inkmoth Nexus, the Restless and AFR lands</td><td class="n">$0.15–12</td></tr>
+<tr><td class="k">Tokens</td><td>Field of the Dead (lands decks), Castle Ardenvale, Westvale Abbey</td><td class="n">$0.30–25</td></tr>
+</table></div>
+
+<h2>Building a mana base</h2>
+<ul>
+<li><b>Count:</b> 36 to 38 lands plus about 10 ramp pieces. MDFC spell lands count as half a land.</li>
+<li><b>Duals by colors:</b> 2 colors, 6 to 10 duals; 3 colors, 12 to 18; 4 to 5 colors, as many as fit. Fewer colors leaves room for utility lands.</li>
+<li><b>Tapped-land budget:</b> 4 or fewer. Cut temples, gain lands and tapped tri-lands first.</li>
+<li><b>Build around basic types:</b> shocks, triomes, surveil, battle and typed tapped duals count as Plains, Island and so on, so fetches find them and check lands and snarls see them.</li>
+<li><b>Keep some basics:</b> Myriad Landscape, battle lands and opponents' Path to Exile need them; Blood Moon punishes greedy bases.</li>
+<li><b>Landfall and lands decks:</b> fetches and bounce lands double triggers; add Field of the Dead and land recursion.</li>
+<li><b>Upgrade order:</b> check + pain lands → Bond lands → shocks → fetches → surveil lands / triomes.</li>
+</ul>
+
+<h2>Our decks: cheapest fixes</h2>
+<div class="wrap"><table>
+<tr><th>Deck</th><th>Colors</th><th>Tapped nonbasics now</th><th>Add (untapped, under $2 each)</th><th>Total</th></tr>
+<tr><td class="k">First Flight</td><td>WU</td><td class="n">5 of 9</td><td>Glacial Fortress, Adarkar Wastes, Seachrome Coast</td><td class="n">$0.84</td></tr>
+<tr><td class="k">Grave Danger</td><td>UB</td><td class="n">5 of 8</td><td>Drowned Catacomb, Underground River, Darkslick Shores</td><td class="n">$2.64</td></tr>
+<tr><td class="k">Chaos Incarnate</td><td>BR</td><td class="n">6 of 11</td><td>Dragonskull Summit, Sulfurous Springs, Blackcleave Cliffs</td><td class="n">$2.64</td></tr>
+<tr><td class="k">Draconic Destruction</td><td>RG</td><td class="n">6 of 10</td><td>Rootbound Crag, Karplusan Forest, Copperline Gorge</td><td class="n">$1.61</td></tr>
+<tr><td class="k">Token Triumph</td><td>GW</td><td class="n">5 of 10</td><td>Sunpetal Grove, Brushland, Razorverge Thicket</td><td class="n">$1.27</td></tr>
+<tr><td class="k">Silverquill Influence</td><td>WB</td><td class="n">9 of 21</td><td>Concealed Courtyard (it already has the check, pain and snarl)</td><td class="n">$1.12</td></tr>
+<tr><td class="k">Living Energy</td><td>URG</td><td class="n">7 of 22</td><td>Game Trail, Copperline Gorge, Botanical Sanctum</td><td class="n">$2.48</td></tr>
+<tr><td class="k">Eternal Might</td><td>WUB</td><td class="n">12 of 25</td><td>Port Town, Choked Estuary, Shineshadow Snarl, Seachrome Coast, Concealed Courtyard, Darkslick Shores</td><td class="n">$3.92</td></tr>
+<tr><td class="k">Revival Trance</td><td>RWB</td><td class="n">7 of 27</td><td>Caves of Koilos, Concealed Courtyard, Blackcleave Cliffs, Inspiring Vantage</td><td class="n">$4.93</td></tr>
+<tr><td class="k">We Are the Borg</td><td>WUB</td><td class="n">8 of 26</td><td>Adarkar Wastes, Caves of Koilos, Seachrome Coast, Concealed Courtyard, Darkslick Shores</td><td class="n">$3.80</td></tr>
+<tr><td class="k">Federation Fleet</td><td>WUR</td><td class="n">8 of 25</td><td>Adarkar Wastes, Shivan Reef, Seachrome Coast, Inspiring Vantage</td><td class="n">$2.67</td></tr>
+<tr><td class="k">Landing Party</td><td>GWU</td><td class="n">17 of 31</td><td>Adarkar Wastes, Yavimaya Coast, Brushland, Seachrome Coast, Razorverge Thicket, Botanical Sanctum</td><td class="n">$3.28</td></tr>
+<tr><td class="k">Klingon Fury</td><td>RWB</td><td class="n">8 of 23</td><td>Caves of Koilos, Sulfurous Springs, Concealed Courtyard, Blackcleave Cliffs, Inspiring Vantage</td><td class="n">$5.40</td></tr>
+</table></div>
+<p class="note">Cut temples, gain lands, cycling duals and Thriving lands for these first. Next step for any deck: its color pair's Bond land and shock (~$5 each). The carousel's Ours tab shows every land already in our decks.</p>
+<script>
+/* label each cell with its column's heading, for the stacked phone layout */
+document.querySelectorAll('table').forEach(t=>{const h=[...t.rows[0].cells].map(c=>c.textContent);[...t.rows].slice(1).forEach(r=>[...r.cells].forEach((c,i)=>c.dataset.l=h[i]))});
+</script>
+</body></html>
