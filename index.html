@@ -784,7 +784,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.26';
+  const VERSION = '1.27';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1289,6 +1289,22 @@ details.field[open] > summary { margin-bottom: 10px; }
     pools[len] = {};
     for (const kind in TURN_POOLS[len]) pools[len][kind] = { list: TURN_POOLS[len][kind].split(' ').filter(Boolean), bag: [] };
   }
+  // v1.27: presidential lines were 19% of taps (Trump alone 10%), far too many. Each president's
+  // clips now sit in their own pool per length, weighted down (PRES_WEIGHT), Trump most of all,
+  // so presidents come to roughly 5% of taps and Trump about 1%. Everything else keeps its share.
+  const PRES_WEIGHT = { trump: 0.1 }, PRES_DEFAULT = 0.35;
+  for (const len in pools) {
+    const talk = pools[len].talk;
+    if (!talk) continue;
+    const keep = [];
+    talk.list.forEach(n => {
+      const m = /^(?:long\/)?(bush|obama|trump|biden|jfk|nixon|reagan|clinton)-/.exec(n);
+      if (!m) { keep.push(n); return; }
+      const k = 'pres-' + m[1];
+      (pools[len][k] = pools[len][k] || { list: [], bag: [], weight: PRES_WEIGHT[m[1]] || PRES_DEFAULT }).list.push(n);
+    });
+    talk.list = keep;
+  }
   const all = Object.keys(pools).flatMap(len => Object.values(pools[len]));
   let left = [];
   let current = null, primed = false;
@@ -1323,8 +1339,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (!audio) return;
     if (!left.some(n => n > 0)) left = all.map(p => p.list.length);
     if (!left.some(n => n > 0)) return;
-    let r = Math.random() * left.reduce((a, n) => a + n, 0), i = 0;
-    while (i < left.length - 1 && r >= left[i]) r -= left[i++];
+    const wt = left.map((n, j) => n * (all[j].weight || 1));
+    let r = Math.random() * wt.reduce((a, n) => a + n, 0), i = 0;
+    while (i < wt.length - 1 && r >= wt[i]) r -= wt[i++];
     left[i]--;
     const pool = all[i];
     const name = nextUp(pool, 1)[0];
