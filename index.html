@@ -420,7 +420,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 .turn-big.boing { animation: boing .5s cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes boing { 0% { scale: 1; } 25% { scale: .8 1.1; } 55% { scale: 1.15 .9; } 100% { scale: 1; } }
 .has-mini .turn-big { margin-top: 20px; }
-/* "Just me": the total fills the middle, so the button sits at the bottom. */
+/* "Solo": the total fills the middle, so the button sits at the bottom. */
 .n1 ~ .turn-big { top: auto; bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 14px)); translate: -50% 0; width: 84px; height: 84px; }
 /* The tiles are narrow, so their dagger and flag are sized by width to stay tappable. */
 .duel .tray, .duel .flag { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
@@ -505,7 +505,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   font-size: 18px; font-weight: 600;
 }
 .seg button.on { background: var(--ink); color: var(--table); }
-/* Five table sizes: each button takes the width its label needs, so "Just me" isn't cut off. */
+/* Five table sizes: each button takes the width its label needs, so "Solo" isn't cut off. */
 #segMode { grid-auto-columns: auto; }
 /* Six since Archenemy (v1.25): a flex row that wraps rather than cutting labels off. */
 #segMode { display: flex; flex-wrap: wrap; }
@@ -668,7 +668,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     <div class="field">
       <span>Players</span>
       <div class="seg" id="segMode">
-        <button type="button" id="mode1" data-v="1">Just me</button>
+        <button type="button" id="mode1" data-v="1">Solo</button>
         <button type="button" id="mode2" data-v="2">2</button>
         <button type="button" id="mode3" data-v="3">3</button>
         <button type="button" id="mode4" data-v="4">4</button>
@@ -792,7 +792,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.28';
+  const VERSION = '1.29';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -864,7 +864,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   const SIZE = { 1: 1, 2: 2, 3: 3, 4: 4, a: 2, b: 2, [ARCH]: 4 };
   const KEYS = Object.keys(SIZE);
   const DUELS = ['a', 'b'];
-  // Games with a turn tracker ("Just me" has no turns to pass).
+  // Games with a turn tracker ("Solo" has no turns to pass).
   const TURN_KEYS = KEYS.filter(k => SIZE[k] > 1);
 
   // ---- Archenemy schemes (v1.25, from archenemy.html, which had them from the Archenemy Table prototype) ----
@@ -1583,7 +1583,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   // Each total sits centered in the open space between its seat's name and its turn symbol (v3.33),
   // measured in the face's own unturned layout, so a turned seat centers the same way. This replaces
-  // the readout's lift from the styles. "Just me" has no turn symbol, so its space ends as far from
+  // the readout's lift from the styles. "Solo" has no turn symbol, so its space ends as far from
   // the bottom as the name starts from the top.
   function centerLife() {
     seats.flat().forEach(seat => {
@@ -1993,7 +1993,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       pick.classList.toggle('on', +pick.dataset.v === me);
       pick.setAttribute('aria-pressed', +pick.dataset.v === me);
     });
-    // This phone's player picks their deck (in "Just me", the one seat's).
+    // This phone's player picks their deck (in "Solo", the one seat's).
     const mine = state.mode === 1 ? 0 : edges.includes(state.me) ? state.me : 0;
     document.getElementById('colorLabel').textContent = state.mode === 1 ? 'Deck' : (state.names[mine].trim() || DEFAULT_NAMES[mine]) + "'s deck";
     renderDecks(mine);
