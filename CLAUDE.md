@@ -245,7 +245,7 @@ them and `.gitignore` now ignores PNGs at the root).
 - Tabs: Deck, Suggested, Fav, Bench, Trash. Sort & filter covers type, color, cost, keyword and Fav only.
 
 ### `decks/`: precon card carousels
-- Live at https://biglob.github.io/commander-life/decks/ (`decks/index.html`), one page per deck (`decks/<slug>.html`): the 12 precons in the "Decks we own" table of `buying-guide.md`. Not a game page; nothing syncs.
+- Live at https://biglob.github.io/commander-life/decks/ (`decks/index.html`), one page per deck (`decks/<slug>.html`): the 13 precons in the "Decks we own" table of `buying-guide.md`. Not a game page; nothing syncs.
 - Same carousel as Xenagos, minus Suggested (the user dropped it): Deck, Fav, Bench and Trash tabs, sort and filter, zoom, picks code. Marks are kept per deck in localStorage (`pc-<slug>-favs`, `pc-<slug>-marks`). The commander comes first, then the alternate commander (labelled), then spells by mana value, lands, basics.
 - Built by `python3 tools/carousel/make.py [slug ...]` from `tools/carousel/template.html` and `index-template.html`. Decklists come from MTGJSON's deck files (exact printings) or, for decks MTGJSON doesn't have yet (Star Trek), Wizards' decklist article. Card data, prices (the precon printing's, else the cheapest paper printing) and image links come from Scryfall; images load from Scryfall's CDN, so the pages are small but need a connection. Brand-new cards with no price yet show "no price". `decks/decks.json` holds each deck's summary for the index.
 - To add a deck, add a row to `DECKS` in `make.py` and run it for that slug.

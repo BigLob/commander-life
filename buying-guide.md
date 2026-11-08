@@ -19,6 +19,7 @@ Check this list before buying a deck, so we don't buy a second copy.
 | Token Triumph | Starter Commander Decks (2022) | G W | Emmara, Soul of the Accord | Owned |
 | Living Energy | Aetherdrift Commander (2025) | G U R | Saheeli, Radiant Creator | Owned |
 | Eternal Might | Aetherdrift Commander (2025) | W U B | Temmet, Naktamun's Will | Owned |
+| Silverquill Influence | Secrets of Strixhaven Commander (2026) | W B | Killian, Decisive Mentor (alt: Scriv, the Obligator) | Owned |
 | Revival Trance | Final Fantasy Commander (2025) | R W B | Terra, Herald of Hope | Owned |
 | We Are the Borg | Star Trek Commander (2026) | W U B | The Borg Queen (alt: Locutus of Borg) | Preordered, out Nov 13, 2026 |
 | Landing Party | Star Trek Commander (2026) | G W U | Commander Spock (alt: Captain Kirk, Boldly Going) | Preordered, out Nov 13, 2026 |

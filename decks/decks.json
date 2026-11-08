@@ -118,5 +118,15 @@
   "total": 100,
   "price": 36.74,
   "img": "https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741"
+ },
+ "silverquill-influence": {
+  "slug": "silverquill-influence",
+  "name": "Silverquill Influence",
+  "product": "Secrets of Strixhaven Commander (2026)",
+  "cmd": "Killian, Decisive Mentor",
+  "alt": "Scriv, the Obligator",
+  "total": 100,
+  "price": 95.37,
+  "img": "https://cards.scryfall.io/normal/front/7/6/76b6c35a-bb92-4ad3-8f85-88b9bafc6266.jpg?1783903867"
  }
 }
