@@ -37,7 +37,7 @@ Never add icons to the reply footer for these; the footer stays 🃏 and 🗂️
 | Live sync | Firebase Realtime Database `https://commander-life-39708-default-rtdb.firebaseio.com` |
 
 **Buying cards:** `buying-guide.md` holds the group's price reference (booster packs, precons, the
-Foundations beginner decks, precon win rates). When the user asks whether a price is good, check it
+Foundations beginner decks, precon win rates, and the singles we've bought on TCGplayer). When the user asks whether a price is good, check it
 there, and update it when newer prices turn up. Its "Decks we own" table is the group's precon
 collection (owned and preordered). Keep it current when the user mentions buying a deck.
 

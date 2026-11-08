@@ -106,6 +106,81 @@ wins 25%. Only the rows found through search are here.
 
 All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrade it first.
 
+## Singles we bought
+
+TCGplayer orders for the Xenagos, the Party Hugger deck (https://biglob.github.io/commander-life/xenagos.html).
+Check here before buying a single, so we don't buy it twice.
+
+**Oct 28, 2026: 19 orders, 50 cards, $91.60 in all** ($61.40 cards, $23.34 shipping, $6.86 Texas tax).
+Every card is in the Xenagos deck. Due by Nov 12, 2026, shipped without tracking.
+
+- **Shipping was a quarter of the bill.** Each seller charges its own shipping ($0.99 to $1.99), and
+  in 8 of the 19 orders shipping cost more than the cards (a $0.04 Fling cost $1.64). Next time use
+  TCGplayer's cart optimizer, buy TCGplayer Direct cards (one shipping charge, free over $50), or
+  fill out a seller's order past their free-shipping minimum.
+- **Card prices were fair.** Most were at or under the carousel's price. Best buys: Shizuko $1.79
+  (listed $4.06), Dual Nature $0.90 ($2.70), Keeper of Progenitus $0.67 ($2.09), Xenagos $7.21
+  ($10.16), Recycle $3.00 ($4.92). Paid over: Oath of Druids $5.02 ($3.63), and the two foils,
+  Zendikar Resurgent $3.50 ($2.48) and Dictate of the Twin Gods $2.43 ($1.30).
+- **Still to get for the deck** (unless we have them already): 16 spells, about $156: Emrakul, the
+  Promised End $25, Aggravated Assault $25, Lurking Predators $18, World at War $11, Wurmcoil Engine
+  $10, Savage Beating $9, Horn of Greed $8, Timesifter $7, Collective Voyage $6, Malignus $6, Temple
+  Bell $6, Lotus Cobra $6, Strionic Resonator $6, Overabundance $6, New Frontiers $5, Mass Hysteria
+  $2. Plus 16 nonbasic lands (about $5 together) and 9 Forests and 9 Mountains.
+
+| Card | Printing | Condition | Paid |
+| --- | --- | --- | --- |
+| Xenagos, God of Revels | Born of the Gods | LP | 7.21 |
+| Oath of Druids | Commander 2016 | MP | 5.02 |
+| Howling Mine | Fourth Edition | MP | 5.00 |
+| Magus of the Vineyard | Commander | MP | 3.67 |
+| Zendikar Resurgent | Oath of the Gatewatch | NM foil | 3.50 |
+| Blade of Selves | Commander Legends: Baldur's Gate | NM foil | 3.45 |
+| Recycle | Tempest | MP | 3.00 |
+| Relentless Assault | Commander Legends | LP | 2.97 |
+| Tempt with Discovery | Commander: Bloomburrow | NM | 2.44 |
+| Dictate of the Twin Gods | Launch Party promo | MP foil | 2.43 |
+| Shizuko, Caller of Autumn | Betrayers of Kamigawa | LP | 1.79 |
+| Stonehoof Chieftain | Commander Masters | NM | 1.69 |
+| Sol Ring | Commander: TMNT | LP | 1.50 |
+| Mage Slayer | Alara Reborn | LP | 1.35 |
+| Archetype of Aggression | Born of the Gods | LP | 1.31 |
+| Rite of the Raging Storm | Commander 2015 | MP | 1.17 |
+| Seize the Day | Commander: Marvel Super Heroes | LP | 1.11 |
+| Upwelling | Scourge | LP | 0.99 |
+| Dual Nature | Prophecy | LP | 0.90 |
+| Spellbreaker Behemoth | Commander 2013 | MP | 0.78 |
+| Hydra Omnivore | Commander 2018 | NM | 0.75 |
+| Rhonas the Indomitable | Commander: Foundations | NM | 0.75 |
+| Keeper of Progenitus | Shards of Alara | LP | 0.67 |
+| Beast Within | Commander: Midnight Hunt | LP | 0.67 |
+| Hellkite Charger | Commander: Foundations | NM | 0.65 |
+| Gratuitous Violence | Commander: Forgotten Realms | LP | 0.61 |
+| Wild Evocation | M11 | LP | 0.56 |
+| Rites of Flourishing | Commander: Zendikar Rising | NM | 0.48 |
+| Garruk, Caller of Beasts | Foundations Jumpstart | NM | 0.46 |
+| Avenger of Zendikar | Commander: MH3 | NM | 0.46 |
+| Thunderfoot Baloth | Commander: Duskmourn | NM | 0.43 |
+| Brawn | Eternal Masters | MP | 0.39 |
+| Savage Ventmaw | Dragons of Tarkir | LP | 0.30 |
+| Deus of Calamity | Duel Decks: Heroes vs. Monsters | LP | 0.25 |
+| Terastodon | Commander Legends | LP | 0.25 |
+| Worn Powerstone | The List | NM | 0.25 |
+| Warmonger Hellkite | Commander Anthology Vol. II | MP | 0.25 |
+| Veteran Explorer | Battlebond | LP | 0.23 |
+| Mind Stone | 10th Edition | LP | 0.22 |
+| Temur Battle Rage | Fate Reforged | LP | 0.20 |
+| Zhur-Taa Ancient | Dragon's Maze | LP | 0.20 |
+| Zhur-Taa Druid | Duel Decks: Heroes vs. Monsters | LP | 0.17 |
+| Champion of Rhonas | Amonkhet | LP | 0.15 |
+| Darksteel Ingot | Commander: Thunder Junction | NM | 0.15 |
+| Commander's Sphere | Commander: Final Fantasy | LP | 0.15 |
+| Hoard-Smelter Dragon | Starter Commander Decks | NM | 0.14 |
+| Grab the Reins | Commander 2016 | LP | 0.10 |
+| Skullwinder | Commander Legends: Baldur's Gate | NM | 0.10 |
+| Rapacious One | Commander Masters | NM | 0.09 |
+| Fling | M11 | LP | 0.04 |
+
 ## Sources
 
 - Reality Fracture prices: Wizards' Reality Fracture buyer's guide, tabletopmeta.com, tcgsealedalerts.com
@@ -113,3 +188,4 @@ All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrad
 - Foundations Commander: Wizards' decklist announcement, playgroup.gg, preconforge.com, scrollvault.net,
   everythingedinburgh.com; the $49.99 regular precon MSRP is from the same reporting
 - Win rates: playgroup.gg/commander/precons
+- Singles: the user's TCGplayer order history; listed prices are the Xenagos carousel's (Scryfall)
