@@ -7,7 +7,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout (lands): same carousel as the deck pages, with category, color, price and name filters. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+/* Layout (lands): the deck pages' carousel, one card per land type (then per cycle), with color chips under each card. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
 :root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
 --f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
@@ -76,19 +76,28 @@ footer input{flex:1;accent-color:var(--accent);min-width:0}
 .zbar button:focus-visible{outline:2px solid #e8b44a}
 .zbar .g{display:flex;gap:6px}
 @media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+/* color chips: one per color combo a type or cycle comes in; tapping one shows that land */
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{all:unset;cursor:pointer;display:inline-flex;gap:1px;padding:3px 4px;border:1px solid var(--line);border-radius:999px;touch-action:manipulation}
+.chip[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip.own{background:var(--surface)}
+.pip{font:normal 600 .62rem/1 var(--f-mono);width:1.35em;height:1.35em;border-radius:50%;display:inline-grid;place-items:center;color:#1d1b17}
+.pip.W{background:#f8f6d8}.pip.U{background:#c1d7e9}.pip.B{background:#bab1ab}.pip.R{background:#e49977}.pip.G{background:#a3c095}.pip.C{background:#ccc2c0}
+.shown{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.shown b{color:var(--fg);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shown .pr{color:var(--accent);white-space:nowrap}
+#crumb{font:inherit;font-size:.76rem;color:var(--accent);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:6px 10px;cursor:pointer}
+figure{gap:8px}
 </style>
 <header><h1>Nonbasic lands</h1><a class="back" href="../links.html">‹ All pages</a><span class="total" id="sub"></span></header>
-<div class="seg" id="seg"><button data-v="deck" aria-pressed="true">All</button><button data-v="ours" aria-pressed="false">Ours</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
-<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count and their cost"></span></div>
+<div class="seg" id="seg"><button data-v="types" aria-pressed="true">Types</button><button data-v="ours" aria-pressed="false">Ours</button><button data-v="fav" aria-pressed="false">Fav</button></div>
+<div class="bar"><button id="crumb" hidden>‹ All types</button><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count and their cost"></span></div>
 <div id="fpanel" hidden>
-<label class="wide">Name<input type="search" id="f-q" placeholder="Search lands" autocomplete="off" spellcheck="false"></label>
-<label>Sort<select id="f-sort"><option value="">Most played</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option><option value="g">Category</option></select></label>
-<label>Family<select id="f-fam"><option value="">All</option></select></label>
-<label>Category<select id="f-cat"><option value="">All</option></select></label>
+<label class="wide">Name<input type="search" id="f-q" placeholder="Search all lands" autocomplete="off" spellcheck="false"></label>
+<label>Sort<select id="f-sort"><option value="">Most played</option><option value="f">Land family</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option></select></label>
 <label>Colors<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless</option></select></label>
 <label>Price<select id="f-price"><option value="">Any</option><option value="1">Under $1</option><option value="5">$1 to $5</option><option value="20">$5 to $20</option><option value="99">Over $20</option></select></label>
-<label>Show<select id="f-fav"><option value="">All lands</option><option value="1">Favorites only</option></select></label>
-<div class="share"><span>Move your picks to another page or phone</span><div><input id="f-code" placeholder="Picks code" aria-label="Picks code" autocomplete="off" spellcheck="false"><button id="f-copy">Copy picks</button><button id="f-load">Load</button></div><small id="f-msg" role="status"></small></div>
 </div>
 
 <div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
@@ -96,81 +105,93 @@ footer input{flex:1;accent-color:var(--accent);min-width:0}
 <div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
 <script>
 /* Every Commander-legal nonbasic land, built by tools/carousel/lands.py from Scryfall. Images load from Scryfall's CDN.
-   Fields: n name, p cheapest paper price, s set, t type line, i image, b back face, c color identity, g category, r EDHREC rank, o our decks, u not out yet. */
+   Lands that do the same thing share a card: the Types tab shows one card per category (40), "See all" opens a
+   category as one card per cycle (lands with the same rules text, like the ten shocks). Chips under a card show
+   the color combos it comes in; tapping one shows that land.
+   FAMS: [family, [[category, what it does], ...]]. ALL, most played first: n name, p cheapest paper price, s set,
+   i image, b back face, c colors it makes or fetches, g category, y cycle id, r EDHREC rank, o our decks, u not out yet. */
 const FAMS=/*FAMS*/[];
 const ALL=/*ALL*/[];
-const pv=c=>c.p||0;
-const EVERY=ALL;
-const famOf={};FAMS.forEach(([f,cs])=>cs.forEach(([g])=>famOf[g]=f));
-const catIx={};FAMS.flatMap(([f,cs])=>cs).forEach(([g],i)=>catIx[g]=i);
-/* fav, bench and trash marks, kept on this device only; a card carries at most one mark */
+const DESC={},ORDER={};let oi=0;FAMS.forEach(([f,cs])=>cs.forEach(([g,d])=>{DESC[g]=d;ORDER[g]=oi++}));
+const pv=c=>c.p||0,rk=c=>c.r??1e9;
+/* favorites, kept on this device only */
 const KEY='pc-lands-';
 let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
 const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
-const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
-let mark={};try{mark=JSON.parse(localStorage.getItem(KEY+'marks')||'{}')}catch(e){}
-const saveMarks=()=>{try{localStorage.setItem(KEY+'marks',JSON.stringify(mark))}catch(e){}};
-let tab='deck',D=[];
-const F={q:'',sort:'',fam:'',cat:'',col:'',price:'',fav:''};
+const flip={};const face=m=>flip[m.n]&&m.b?m.b:m.i;
+let tab='types',open=null,D=[];const pick={};
+const F={q:'',sort:'',col:'',price:''};
 const PB={1:[0,1],5:[1,5],20:[5,20],99:[20,1e9]};
 const norm=x=>x.toLowerCase().normalize('NFD').replace(/[^a-z0-9 ]/g,'');
-function sortFilter(list){
- const q=norm(F.q.trim());
- let r=list.filter(c=>(!q||norm(c.n).includes(q))&&(!F.fam||famOf[c.g]==F.fam)&&(!F.cat||c.g==F.cat)&&(!F.col||(F.col=='M'?c.c.length>1:F.col=='C'?!c.c.length:c.c.includes(F.col)))&&(!F.fav||favs[c.n])&&(!F.price||(c.p!=null&&c.p>=PB[F.price][0]&&c.p<PB[F.price][1])));
- const S={ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>(a.p??1e9)-(b.p??1e9),n:(a,b)=>a.n.localeCompare(b.n),g:(a,b)=>catIx[a.g]-catIx[b.g]||(a.r??1e9)-(b.r??1e9)}[F.sort];
- return S?r.slice().sort(S):r}
-const TABS={deck:'All',ours:'Ours',fav:'Fav',bench:'Bench',trash:'Trash'};
-function view(k){if(k=='fav')return EVERY.filter(c=>favs[c.n]&&!mark[c.n]);if(k=='deck')return ALL.filter(c=>!mark[c.n]);if(k=='ours')return ALL.filter(c=>c.o&&!mark[c.n]);
- return EVERY.filter(c=>mark[c.n]==k)}
+function keep(m,q){return (!q||norm(m.n).includes(q))&&(!F.col||(F.col=='M'?m.c.length>1:F.col=='C'?!m.c.length:m.c.includes(F.col)))&&(!F.price||(m.p!=null&&m.p>=PB[F.price][0]&&m.p<PB[F.price][1]))&&(tab!='ours'||m.o)&&(tab!='fav'||favs[m.n])}
+const groupBy=(ms,f)=>{const g=new Map();ms.forEach(m=>{const k=f(m);if(!g.has(k))g.set(k,[]);g.get(k).push(m)});return g};
+const title=it=>it.kind=='cat'?it.g:it.ms[0].n;
+/* what's on the rail: categories, one category's cycles, or (Ours, Fav, a search) single lands */
+function items(){const q=norm(F.q.trim()),ms=ALL.filter(m=>keep(m,q));let out;
+ if(tab=='types'&&!q){
+  if(!open)out=[...groupBy(ms,m=>m.g)].map(([g,mm])=>({k:'t:'+g,kind:'cat',g,ms:mm}));
+  else out=[...groupBy(ms.filter(m=>m.g==open),m=>m.y)].map(([y,mm])=>({k:'y:'+y,kind:'cyc',g:open,ms:mm}))}
+ else out=ms.map(m=>({k:'n:'+m.n,kind:'cyc',g:m.g,ms:[m]}));
+ const best=it=>rk(it.ms[0]),lo=it=>Math.min(...it.ms.map(m=>m.p??1e9)),hi=it=>Math.max(...it.ms.map(pv));
+ const S={'':(a,b)=>best(a)-best(b),f:(a,b)=>ORDER[a.g]-ORDER[b.g]||best(a)-best(b),ph:(a,b)=>hi(b)-hi(a),pl:(a,b)=>lo(a)-lo(b),n:(a,b)=>title(a).localeCompare(title(b))}[F.sort];
+ return out.sort(S)}
+const shown=it=>it.ms[Math.min(pick[it.k]||0,it.ms.length-1)];
 const $=id=>document.getElementById(id), tr=$('track');
-$('sub').innerHTML=ALL.length.toLocaleString('en-US')+' lands · most played first (EDHREC) · <a href="primer.html">Primer</a>';
 const money=v=>v==null?'no price':'$'+v.toFixed(2);
-function fit(){const w=Math.max(120,Math.min(innerWidth*.78,(tr.clientHeight-110)*488/680,340));tr.style.setProperty('--w',w+'px')}
-addEventListener('resize',()=>{fit();go(cur())});
+const esc=x=>String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const pips=c=>c?[...c].map(x=>`<i class="pip ${x}">${x}</i>`).join(''):'<i class="pip C">C</i>';
+/* chips: a category gets one per color combo (its most played land in those colors); a cycle one per land */
+function chips(it){const cur=shown(it);let list;
+ if(it.kind=='cat'){const seen=new Set();list=[];it.ms.forEach((m,i)=>{const c=m.c||'C';if(!seen.has(c)){seen.add(c);list.push(i)}})}
+ else list=it.ms.map((m,i)=>i);
+ if(list.length<2)return '';
+ return '<div class="chips">'+list.map(i=>{const m=it.ms[i],on=it.kind=='cat'?(m.c||'C')==(cur.c||'C'):m==cur;
+  return `<button class="chip${m.o?' own':''}" data-pick="${i}" aria-pressed="${on}" title="${esc(m.n)}" aria-label="${esc(m.n)}">${pips(m.c)}</button>`}).join('')+'</div>'}
+function cycles(g){return new Set(ALL.filter(m=>m.g==g).map(m=>m.y)).size}
+function inner(it){const m=shown(it),n=it.ms.length,fav=favs[m.n];
+ const lo=Math.min(...it.ms.map(x=>x.p??1e9)),hi=Math.max(...it.ms.map(pv));
+ const range=lo>=1e9?'no price':lo==hi?money(lo):money(lo)+' to '+money(hi);
+ const img=`<button class="zb" aria-label="Zoom ${esc(m.n)}"><img src="${face(m)}" alt="${esc(m.n)}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button>`;
+ const fb=`<button data-a="fav"${fav?' class="on"':''}>${fav?'★ Fav':'☆ Fav'}</button>`+(m.b?'<button data-a="flip">Flip</button>':'');
+ if(it.kind=='cat'){const cy=cycles(it.g);
+  return img+`<figcaption><span class="nm">${it.g}<small>${DESC[it.g]}</small><small>${n} land${n>1?'s':''}${cy>1&&cy<n?' in '+cy+' groups':''} · ${range}</small></span></figcaption>`+chips(it)
+   +`<div class="shown"><b>${esc(m.n)}</b><span class="pr">${money(m.p)}</span></div><div class="acts">${fb}${cy>1?`<button data-a="open">See all ${n} ›</button>`:''}</div>`}
+ return img+`<figcaption><span class="nm">${m.n}<small>${it.g}${m.r?' · #'+m.r:''} · ${m.s}${m.u?' · not out yet':''}${n>1?' · 1 of '+n:''}${m.o?'<br><span class="in">'+(m.o.length>3?'In '+m.o.length+' of our decks':'In '+m.o.join(', '))+'</span>':''}</small></span><span class="pr">${money(m.p)}</span></figcaption>`+chips(it)+`<div class="acts">${fb}</div>`}
 let figs=[];
-function btns(c){const home='All';
- const fl=c.b?'<button data-a="flip">Flip</button>':'';
- if(favs[c.n]&&!mark[c.n])return `<button class="on" data-a="unfav">★ Favorite · tap to undo</button>${fl}`;
- return fl+btns2(c,home)}
-function btns2(c,home){
- if(tab=='bench')return `<button data-a="">Back to ${home}</button><button data-a="trash">Trash</button>`;
- if(tab=='trash')return `<button data-a="">Back to ${home}</button><button data-a="bench">Bench</button>`;
- return `<button data-a="fav">Fav</button><button data-a="bench">Bench</button><button data-a="trash">Trash</button>`}
-const esc=x=>x.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
-function render(keep){D=sortFilter(view(tab));fit();
- for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).length+'</span>';b.setAttribute('aria-pressed',k==tab)}
- const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.length+' · '+money(fv.reduce((a,c)=>a+pv(c),0));
-  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${esc(c.n)}"><button class="zb" aria-label="Zoom ${esc(c.n)}"><img src="${face(c)}" alt="${esc(c.n)}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>${c.g}${c.r?' · #'+c.r:''} · ${c.s}${c.u?' · not out yet':''}${c.o?'<br><span class="in">'+(c.o.length>3?'In '+c.o.length+' of our decks':'In '+c.o.join(', '))+'</span>':''}</small></span><span class="pr">${money(c.p)}</span></figcaption><div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No lands match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
- figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+function fit(){const w=Math.max(120,Math.min(innerWidth*.78,(tr.clientHeight-170)*488/680,320));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+function render(keepAt){D=items();fit();
+ const q=norm(F.q.trim()),cnt={types:open?null:new Set(ALL.filter(m=>keep(m,q)).map(m=>m.g)).size,ours:ALL.filter(m=>m.o).length,fav:ALL.filter(m=>favs[m.n]).length};
+ document.querySelectorAll('#seg button').forEach(b=>{const k=b.dataset.v;b.innerHTML={types:'Types',ours:'Ours',fav:'Fav'}[k]+(cnt[k]!=null?'<span class="ct">'+cnt[k]+'</span>':'');b.setAttribute('aria-pressed',k==tab)});
+ $('crumb').hidden=!(tab=='types'&&open&&!q);
+ $('sub').innerHTML=(tab=='types'&&open&&!q?'<b>'+open+'</b> · '+D.length+' card'+(D.length>1?'s':'')+' · ':'')+ALL.length.toLocaleString('en-US')+' lands in '+FAMS.reduce((a,f)=>a+f[1].length,0)+' types · <a href="primer.html">Primer</a>';
+ const fv=ALL.filter(m=>favs[m.n]);$('favtot').textContent='★ '+fv.length+' · '+money(fv.reduce((a,m)=>a+pv(m),0));
+ tr.innerHTML=D.length?D.map((it,i)=>`<figure data-i="${i}">${inner(it)}</figure>`).join(''):'<p class="empty">'+(tab=='fav'&&!ALL.some(m=>favs[m.n])?'No favorites yet. Tap ☆ Fav on a card.':'No lands match these filters.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;
+ if(keepAt!=null&&figs.length){const f=figs[Math.min(keepAt,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const redraw=i=>{figs[i].innerHTML=inner(D[i])};
 const sc=$('scrub');
 function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
 function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
 function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
 tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+let where={};/* where the Types rail was before opening a category, to come back to it */
 render();
-const fsel={q:'f-q',sort:'f-sort',fam:'f-fam',cat:'f-cat',col:'f-col',price:'f-price',fav:'f-fav'};
-FAMS.forEach(([f])=>$('f-fam').add(new Option(f,f)));
-/* the Category list shows only the chosen family's categories, each with its count */
-function cats(){const sel=$('f-cat');sel.length=1;FAMS.forEach(([f,cs])=>{if(F.fam&&f!=F.fam)return;const g=document.createElement('optgroup');g.label=f;cs.forEach(([c,n])=>g.append(new Option(c+' ('+n+')',c)));sel.append(g)});sel.value=F.cat}
-cats();
+const fsel={q:'f-q',sort:'f-sort',col:'f-col',price:'f-price'};
 function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
-for(const k in fsel)$(fsel[k])[k=='q'?'oninput':'onchange']=e=>{F[k]=e.target.value;if(k=='fam'){if(F.cat&&famOf[F.cat]!=F.fam)F.cat='';cats()}syncF();render()};
-$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}cats();syncF();render()};
-/* Browsers keep storage per site, so picks made on the artifact don't reach the github.io page. A code carries them across. */
-const msg=m=>{$('f-msg').textContent=m};
-$('f-copy').onclick=()=>{const code=btoa(JSON.stringify({f:Object.keys(favs),b:Object.keys(mark).filter(k=>mark[k]=='bench'),t:Object.keys(mark).filter(k=>mark[k]=='trash')}));
- $('f-code').value=code;$('f-code').select();
- (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>msg('Copied. Paste it into Load on the other page.'),()=>msg('Select the code above and copy it.'))};
-$('f-load').onclick=()=>{try{const o=JSON.parse(atob($('f-code').value.trim())),ok=new Set(EVERY.map(c=>c.n));
- favs={};mark={};(o.f||[]).forEach(n=>{if(ok.has(n))favs[n]=1});(o.b||[]).forEach(n=>{if(ok.has(n))mark[n]='bench'});(o.t||[]).forEach(n=>{if(ok.has(n))mark[n]='trash'});
- saveFavs();saveMarks();render();msg('Loaded '+Object.keys(favs).length+' favorites, '+Object.keys(mark).length+' benched or trashed.')}catch(e){msg('That code did not work. Copy it again.')}};
+for(const k in fsel)$(fsel[k])[k=='q'?'oninput':'onchange']=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
 $('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
-document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
-tr.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){const f=a.closest('figure'),i=+f.dataset.i,n=f.dataset.n;
- if(a.dataset.a=='flip'){const c=D[i];flip[n]=!flip[n];f.querySelector('img').src=face(c);return}
- if(a.dataset.a=='fav'||a.dataset.a=='unfav'){if(a.dataset.a=='fav')favs[n]=1;else delete favs[n];saveFavs();render(i);return}
- if(a.dataset.a)mark[f.dataset.n]=a.dataset.a;else delete mark[f.dataset.n];saveMarks();render(i);return}
- const z=e.target.closest('.zb');if(z)open(+z.closest('figure').dataset.i)});
+$('crumb').onclick=()=>{open=null;render(where.i)};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;open=null;render()});
+tr.addEventListener('click',e=>{const f=e.target.closest('figure');if(!f)return;const i=+f.dataset.i,it=D[i];
+ const p=e.target.closest('[data-pick]');if(p){pick[it.k]=+p.dataset.pick;redraw(i);return}
+ const a=e.target.closest('[data-a]');if(a){const m=shown(it);
+  if(a.dataset.a=='open'){where={i};open=it.g;render();return}
+  if(a.dataset.a=='flip'){flip[m.n]=!flip[m.n];redraw(i);return}
+  if(a.dataset.a=='fav'){if(favs[m.n])delete favs[m.n];else favs[m.n]=1;saveFavs();
+   if(tab=='fav')render(i);else{redraw(i);$('favtot').textContent='★ '+ALL.filter(x=>favs[x.n]).length+' · '+money(ALL.filter(x=>favs[x.n]).reduce((s,x)=>s+pv(x),0));document.querySelector('#seg [data-v=fav] .ct').textContent=ALL.filter(x=>favs[x.n]).length}return}}
+ const z=e.target.closest('.zb');if(z)openZ(i)});
 
 $('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
 sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
@@ -181,11 +202,11 @@ const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new
 function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
 function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
 function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
-function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
-function open(i){z.classList.add('on');show(i)}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=shown(D[zc]);zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function openZ(i){z.classList.add('on');show(i)}
 function close(){z.classList.remove('on');go(zc)}
 
-$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=face(c)};
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=shown(D[zc]);flip[c.n]=!flip[c.n];zi.src=face(c);redraw(zc)};
 $('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
 st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
 let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
