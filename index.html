@@ -163,6 +163,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .sfy-pill { border: 0; border-radius: 999px; padding: 9px 16px; background: #1ed760; color: #000; font-size: 15px; font-weight: 700; }
 .sfy-pill.alt { background: rgba(255, 255, 255, .12); color: #fff; }
 .sfy-pill.on { outline: 2px solid #1ed760; }
+/* Spotify's green, so the way in is easy to spot. */
+#sfyConnect { align-self: center; padding: 8px 22px; border-radius: 999px; font-size: 16px; background: #1ed760; color: #000; }
 
 .seat {
   position: relative; overflow: hidden; border-radius: 18px;
@@ -470,7 +472,8 @@ details.field[open] > summary { margin-bottom: 10px; }
 /* In the two 1v1s a player's phone shows its own 1v1 and, in a strip on top, the other game's totals.
    Tapping the strip lets this player pick who they play. */
 #app.has-mini { padding-top: 46px; }
-.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left, 0px)); right: max(6px, env(safe-area-inset-right, 0px)); z-index: 11; }
+/* div.mini, not .mini: the menu's small buttons (Concede) are .action.mini, and this pulled them to the top. */
+div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left, 0px)); right: max(6px, env(safe-area-inset-right, 0px)); z-index: 11; }
 .mini-bar {
   width: 100%; height: 34px; display: flex; align-items: center; justify-content: space-between; gap: 8px;
   padding: 0 12px; border-radius: 12px; background: var(--table); border: 2px solid var(--line);
@@ -763,7 +766,7 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="off">Off</button>
       </div>
       <div class="who" id="sfyIdRow"><input id="sfyId" maxlength="64" autocomplete="off" spellcheck="false" aria-label="Spotify client ID" placeholder="Spotify client ID"></div>
-      <button type="button" class="action mini" id="sfyConnect">Connect Spotify</button>
+      <button type="button" class="action" id="sfyConnect">Connect Spotify</button>
       <p class="speaker-note" id="sfyNote"></p>
     </div>
     <div class="field">
@@ -1992,7 +1995,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   // Spotify Premium and a Spotify developer app whose redirect URI is this page (SFY_REDIRECT), and
   // each Spotify account that signs in must be added to that app's User Management. Everything is
   // kept on this phone only (SFY_KEY), never synced.
-  const SPOTIFY_CLIENT_ID = '';
+  const SPOTIFY_CLIENT_ID = 'a0afcb520a5541fb9051ad447dbb42af';
   const SFY_KEY = 'cl-spotify';
   const SFY_SCOPES = 'user-read-playback-state user-modify-playback-state user-read-currently-playing';
   // Spotify matches the redirect URI exactly, so /index.html comes back as the folder.
