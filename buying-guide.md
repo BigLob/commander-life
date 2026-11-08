@@ -114,10 +114,9 @@ Check here before buying a single, so we don't buy it twice.
 **Oct 28, 2026: 19 orders, 50 cards, $91.60 in all** ($61.40 cards, $23.34 shipping, $6.86 Texas tax).
 Every card is in the Xenagos deck. Due by Nov 12, 2026, shipped without tracking.
 
-- **Shipping was a quarter of the bill.** Each seller charges its own shipping ($0.99 to $1.99), and
-  in 8 of the 19 orders shipping cost more than the cards (a $0.04 Fling cost $1.64). Next time use
-  TCGplayer's cart optimizer, buy TCGplayer Direct cards (one shipping charge, free over $50), or
-  fill out a seller's order past their free-shipping minimum.
+- **Shipping was a quarter of the bill** ($0.99 to $1.99 per seller; in 8 of the 19 orders it cost
+  more than the cards). That was TCGplayer's cart optimizer's pick, which counts shipping, so it was
+  still the cheapest total for these 50 cards. Cheap singles from many sellers just cost this much.
 - **Card prices were fair.** Most were at or under the carousel's price. Best buys: Shizuko $1.79
   (listed $4.06), Dual Nature $0.90 ($2.70), Keeper of Progenitus $0.67 ($2.09), Xenagos $7.21
   ($10.16), Recycle $3.00 ($4.92). Paid over: Oath of Druids $5.02 ($3.63), and the two foils,
