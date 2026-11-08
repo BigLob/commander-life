@@ -355,6 +355,16 @@ details.field > summary::after { content: "+"; font-size: 20px; letter-spacing: 
 details.field[open] > summary::after { content: "\2212"; }
 /* Spaced by margins: Safari lays out <details> as a block whatever its display says. */
 details.field[open] > summary { margin-bottom: 10px; }
+/* The current choice, beside the setting's name (v1.27). */
+details.field > summary { gap: 10px; min-height: 30px; }
+details.field > summary .val {
+  margin-left: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 16px; font-weight: 600; letter-spacing: .02em; text-transform: none; color: var(--ink);
+}
+/* New game's starting-life choice. */
+.start-pick { display: flex; flex-direction: column; gap: 8px; margin-top: -8px; }
+.start-pick > span { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+.start-pick .seg button { font-size: 22px; padding-block: 12px; }
 /* Commander damage: the shield opens the attackers above it; while one is marked, only their chip shows. */
 .cmd-btn {
   position: relative; display: grid; place-items: center;
@@ -510,7 +520,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 }
 .action.primary { background: var(--ink); color: var(--table); }
 .action.armed, .seg button.armed { background: var(--hot); color: var(--table); }
-.action.mini { align-self: center; padding: 6px 18px; border-radius: 999px; font-size: 15px; }
+.action.pill { align-self: center; padding: 6px 18px; border-radius: 999px; font-size: 15px; }
 .ghost { border: 1px solid var(--line); border-radius: 12px; background: transparent; padding: 12px; font-size: 17px; color: var(--ink); }
 /* Back to game is as white as New game, so the way out is easy to find. */
 #closeMenu { background: var(--ink); border-color: var(--ink); color: var(--table); }
@@ -658,8 +668,21 @@ details.field[open] > summary { margin-bottom: 10px; }
            Magic's untap symbol, from the Mana font's SVGs (github.com/andrewgioia/mana; symbol (c) Wizards). -->
       <button type="button" class="back-icon" id="closeMenuTop" aria-label="Back to game"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15.773 4.737v12.874l3.355-4.714c1.39 1.751 2.084 3.778 2.084 6.073 0 1.148-0.219 1.936-0.657 2.356-0.439 0.423-1.232 0.635-2.379 0.635-3.173 0-6.558-1.632-10.153-4.895l-3.762 3.715c5.258 4.323 9.956 6.482 14.097 6.482 2.477 0 4.451-0.746 5.916-2.242 1.465-1.495 2.198-3.485 2.198-5.96 0-3.022-1.15-6.316-3.445-9.883l4.713-2.763-11.967-1.678z"/></svg></button>
     </div>
-    <div class="field">
-      <span>Players</span>
+    <!-- New game and Pick who goes first at the top (v1.27). New game opens the starting-life
+         choice; tapping a number is the second tap that starts everyone over. -->
+    <button type="button" class="action primary" id="newGame">New game</button>
+    <div class="start-pick" id="startPick" hidden>
+      <span>Start everyone at</span>
+      <div class="seg" id="segStart">
+        <button type="button" id="start20" data-v="20">20</button>
+        <button type="button" id="start30" data-v="30">30</button>
+        <button type="button" id="start40" data-v="40">40</button>
+      </div>
+    </div>
+    <button type="button" class="action" id="pickFirst">Pick who goes first</button>
+    <!-- Every setting folds away (v1.27), closed by default, its current choice shown beside it. -->
+    <details class="field">
+      <summary><span class="lab">Players</span><b class="val"></b></summary>
       <div class="seg" id="segMode">
         <button type="button" id="mode1" data-v="1">Just me</button>
         <button type="button" id="mode2" data-v="2">2</button>
@@ -668,74 +691,74 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" id="mode5" data-v="5">1v1 ×2</button>
         <button type="button" id="mode6" data-v="6">Archenemy</button>
       </div>
-    </div>
-    <div class="field" id="aeField">
-      <span>Archenemy</span>
+    </details>
+    <details class="field" id="aeField">
+      <summary><span class="lab">Archenemy</span><b class="val"></b></summary>
       <div class="seg" id="segAe">
         <button type="button" data-v="0"></button>
         <button type="button" data-v="1"></button>
         <button type="button" data-v="2"></button>
         <button type="button" data-v="3"></button>
       </div>
-    </div>
-    <div class="field" id="schemesField">
-      <span>Schemes</span>
+    </details>
+    <details class="field" id="schemesField">
+      <summary><span class="lab">Schemes</span><b class="val"></b></summary>
       <div class="seg" id="segSchemes">
         <button type="button" data-v="app">App's deck</button>
         <button type="button" data-v="cards">Our cards</button>
       </div>
       <p class="speaker-note" id="schemesNote"></p>
-    </div>
-    <div class="field" id="pairsField">
-      <span id="pairsLabel">Rand plays</span>
+    </details>
+    <details class="field" id="pairsField">
+      <summary><span class="lab" id="pairsLabel">Rand plays</span><b class="val"></b></summary>
       <div class="seg" id="segPairs">
         <button type="button" data-v="1"></button>
         <button type="button" data-v="2"></button>
         <button type="button" data-v="3"></button>
       </div>
-    </div>
-    <div class="field" id="sitoutField">
-      <span>Sitting out</span>
+    </details>
+    <details class="field" id="sitoutField">
+      <summary><span class="lab">Sitting out</span><b class="val"></b></summary>
       <div class="seg" id="segSitout">
         <button type="button" data-v="0"></button>
         <button type="button" data-v="1"></button>
         <button type="button" data-v="2"></button>
         <button type="button" data-v="3"></button>
       </div>
-    </div>
-    <div class="field" id="layout4Field">
-      <span>Layout</span>
+    </details>
+    <details class="field" id="layout4Field">
+      <summary><span class="lab">Layout</span><b class="val"></b></summary>
       <div class="seg" id="segLayout4">
         <button type="button" data-v="spot">Spotlight</button>
         <button type="button" data-v="table">Table</button>
         <button type="button" data-v="quad">Quadrants</button>
         <button type="button" data-v="hub">Big button</button>
       </div>
-    </div>
-    <div class="field" id="layoutField">
-      <span>1v1 layout</span>
+    </details>
+    <details class="field" id="layoutField">
+      <summary><span class="lab">1v1 layout</span><b class="val"></b></summary>
       <div class="seg" id="segLayout">
         <button type="button" data-v="split">Side by side</button>
         <button type="button" data-v="classic">Classic</button>
       </div>
-    </div>
-    <div class="field">
-      <span>Sound</span>
+    </details>
+    <details class="field">
+      <summary><span class="lab">Sound</span><b class="val"></b></summary>
       <div class="seg" id="segSound">
         <button type="button" data-v="all">All</button>
         <button type="button" data-v="turn">Turn only</button>
         <button type="button" data-v="off">Off</button>
       </div>
-    </div>
-    <div class="field">
-      <span>Speaker</span>
+    </details>
+    <details class="field">
+      <summary><span class="lab">Speaker</span><b class="val"></b></summary>
       <div class="seg" id="segSpeaker">
         <button type="button" data-v="each">Each phone</button>
         <button type="button" data-v="here">This phone</button>
       </div>
       <p class="speaker-note" id="speakerNote"></p>
-    </div>
-    <details class="field" id="meField" open>
+    </details>
+    <details class="field" id="meField">
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
         <div class="who-row" id="edge0"><button type="button" class="pick" data-v="0"></button><input id="name0" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Rand"></div>
@@ -750,17 +773,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       <summary id="colorLabel">Your deck</summary>
       <div class="decks" id="colors"></div>
     </details>
-    <div class="field" id="startField">
-      <span>Starting life</span>
-      <div class="seg" id="segStart">
-        <button type="button" id="start20" data-v="20">20</button>
-        <button type="button" id="start30" data-v="30">30</button>
-        <button type="button" id="start40" data-v="40">40</button>
-      </div>
-    </div>
-    <button type="button" class="action primary" id="newGame">New game</button>
-    <button type="button" class="action" id="pickFirst">Pick who goes first</button>
-    <button type="button" class="action mini" id="concede">Concede</button>
+    <button type="button" class="action pill" id="concede">Concede</button>
     <details class="field" id="resultsField" hidden>
       <summary>Results</summary>
       <div class="results" id="results"></div>
@@ -784,7 +797,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.26';
+  const VERSION = '1.27';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1940,7 +1953,6 @@ details.field[open] > summary { margin-bottom: 10px; }
     document.querySelector('#segLayout4 [data-v="hub"]').hidden = state.mode === 3;
     // In Archenemy the archenemy always goes first, and the life totals are set by the rules.
     document.getElementById('pickFirst').hidden = state.mode === 1 || state.mode === ARCH;
-    document.getElementById('startField').hidden = state.mode === ARCH;
     document.getElementById('aeField').hidden = document.getElementById('schemesField').hidden = state.mode !== ARCH;
     document.querySelectorAll('#segSchemes button').forEach(b => b.classList.toggle('on', b.dataset.v === state.schemes));
     document.getElementById('schemesNote').textContent = state.schemes === 'app'
@@ -2185,14 +2197,23 @@ details.field[open] > summary { margin-bottom: 10px; }
     paintSitout();
     paintMini();
     newGameBtn.classList.remove('armed');
-    newGameBtn.textContent = state.mode === ARCH ? 'New game' : 'New game at ' + state.start;
+    newGameBtn.textContent = 'New game';
     aeArm = null;
     paintAe();
+    paintVals();
     concedeBtn.classList.remove('armed');
     concedeBtn.textContent = playerOf(mySeat()).conceded ? 'Rejoin' : 'Concede';
   }
-  function openMenu() { syncMenu(); menu.hidden = false; }
-  function closeMenu() { menu.hidden = true; openDeck = null; document.getElementById('resultsField').hidden = true; disarm(); }
+  // Each folded setting shows its current choice beside its name: the lit button's label.
+  function paintVals() {
+    document.querySelectorAll('#menu details.field').forEach(d => {
+      const val = d.querySelector(':scope > summary .val'), on = d.querySelector('.seg button.on');
+      if (val) val.textContent = on ? on.textContent : '';
+    });
+  }
+  const startPick = document.getElementById('startPick');
+  function openMenu() { startPick.hidden = true; syncMenu(); menu.hidden = false; }
+  function closeMenu() { menu.hidden = true; startPick.hidden = true; openDeck = null; document.getElementById('resultsField').hidden = true; disarm(); }
 
   menu.addEventListener('click', e => { if (e.target === menu) closeMenu(); });
   document.getElementById('closeMenu').addEventListener('click', closeMenu);
@@ -2211,9 +2232,12 @@ details.field[open] > summary { margin-bottom: 10px; }
     const patch = Object.assign(DEFAULT_START[state.mode] ? setStart(DEFAULT_START[state.mode]) : {}, { mode: state.mode });
     send(patch); save(); build(); syncMenu();
   }));
+  // New game's starting-life choice (v1.27): logs and starts over the games this phone shows at that
+  // life (setStart() also gives it to every game nobody has touched).
   document.querySelectorAll('#segStart button').forEach(b => b.addEventListener('click', () => {
-    send(setStart(+b.dataset.v));
-    save(); build(); syncMenu();
+    const patch = Object.assign({}, ...viewKeys().map(resetGame));
+    send(Object.assign(patch, setStart(+b.dataset.v), reroll()));
+    marking = []; save(); build(); closeMenu();
   }));
   document.querySelectorAll('#segLayout4 button').forEach(b => b.addEventListener('click', () => {
     state.layout4 = b.dataset.v; save(); build(); syncMenu();
@@ -2237,7 +2261,14 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   // New game starts over the games this phone shows: in the two 1v1s, a player's phone restarts
   // only their own 1v1, so the other pair plays on.
+  // Tapping New game opens the starting-life choice, and a number starts the game (v1.27). Archenemy's
+  // life is set by its rules, so there it's New game twice, as before (once, if nothing has happened).
   newGameBtn.addEventListener('click', () => {
+    if (state.mode !== ARCH) {
+      startPick.hidden = !startPick.hidden;
+      document.querySelectorAll('#segStart button').forEach(x => x.classList.toggle('on', +x.dataset.v === state.start));
+      return;
+    }
     if (viewKeys().every(k => untouched(k)) || newGameBtn.classList.contains('armed')) {
       send(Object.assign({}, ...viewKeys().map(resetGame), reroll()));
       marking = []; save(); build(); closeMenu();
@@ -2819,6 +2850,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     speakerWake();
   }
   function syncSpeaker() {
+    setTimeout(paintVals);
     const here = amSpeaker(), other = !!state.speaker.id && !here;
     document.querySelectorAll('#segSpeaker button').forEach(b =>
       b.classList.toggle('on', b.dataset.v === (here ? 'here' : other ? '' : 'each')));
