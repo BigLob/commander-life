@@ -425,20 +425,6 @@ details.field > summary .sum-v { flex: 1; margin-left: .7em; color: var(--ink); 
 /* Upright side seats are too narrow for a row of attackers, so they stack. */
 .upright .s1 .pop, .upright .s3 .pop { flex-direction: column; border-radius: 18px; }
 .seat.marking .cmd-btn, .seat.marking .pop .chip:not(.on) { display: none; }
-/* Side by side, each player concedes from the bottom-left corner of their own half. */
-.flag {
-  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: calc(5 * var(--cqw, 1vw)); z-index: 2;
-  display: flex; align-items: center; gap: .3em; height: 2.4em; padding: 0 .4em 0 .2em;
-  font-size: clamp(12px, min(calc(8.5 * var(--cqh, 1vh)), calc(4.3 * var(--cqw, 1vw))), 19px);
-  font-weight: 600; letter-spacing: .04em; white-space: nowrap;
-  border: 0; border-radius: 999px; background: transparent; color: var(--ink);
-  touch-action: manipulation;
-}
-.flag svg { width: 2em; height: 2em; flex: none; }
-.flag span { -webkit-text-stroke: .14em #000; paint-order: stroke fill; }
-.flag span:empty { display: none; }
-.flag.armed { background: var(--hot); color: var(--table); }
-.flag.armed span { -webkit-text-stroke: 0; }
 /* The turn button (v1.3) replaces the turn tracker: one big gold button in the middle of the
    table. Tapping it plays a random goofy sound (see turnSound()); nothing is tracked. Magic's tap
    symbol on it, from the Mana font's SVGs. */
@@ -455,11 +441,10 @@ details.field > summary .sum-v { flex: 1; margin-left: .7em; color: var(--ink); 
 .has-mini .turn-big { margin-top: 20px; }
 /* "Solo": the total fills the middle, so the button sits at the bottom. */
 .n1 ~ .turn-big { top: auto; bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 14px)); translate: -50% 0; width: 84px; height: 84px; }
-/* The tiles are narrow, so their dagger and flag are sized by width to stay tappable. */
-.duel .tray, .duel .flag { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
+/* The tiles are narrow, so their dagger is sized by width to stay tappable. */
+.duel .tray { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
 /* The deck's mana symbols in the seat's bottom-left corner, as its player sees it (v3.38), level
-   with the dagger opposite. Taps go through them to the life zone. Side by side, the player's own
-   tile has the concede flag there, so the symbols sit just above it. */
+   with the dagger opposite. Taps go through them to the life zone. */
 .seat-mana {
   position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: calc(5 * var(--cqw, 1vw)); z-index: 2;
   height: 2.4em; display: flex; align-items: center; pointer-events: none;
@@ -468,7 +453,6 @@ details.field > summary .sum-v { flex: 1; margin-left: .7em; color: var(--ink); 
 .seat-mana .mana { display: flex; gap: .15em; }
 .seat-mana svg { display: block; width: 1.25em; height: 1.25em; filter: drop-shadow(0 0 0 #000) drop-shadow(0 1px 1.5px rgba(0, 0, 0, .8)); }
 .duel .seat-mana { font-size: clamp(14px, calc(8 * var(--cqw, 1vw)), 19px); }
-.seat-mana.by-flag { bottom: calc(6 * var(--cqh, 1vh) + 2.2em); }
 .seat.marking .pop { display: flex; position: static; padding: 0; background: none; }
 
 /* In the two 1v1s a player's phone shows its own 1v1 and, in a strip on top, the other game's totals.
@@ -833,7 +817,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.33';
+  const VERSION = '1.34';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1060,11 +1044,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   const ICON_MENU = '<img alt="" src="data:image/png;base64,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">';
 
   const ICON_CMD = '<i class="blade" aria-hidden="true"></i>';
-  // A white flag traced in black, like the dagger.
   // Magic's tap symbol, from the Mana font's SVGs (github.com/andrewgioia/mana; symbol (c) Wizards).
   const ICON_CROWN = '<svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 15 1 3.5l6 4.5 5-7 5 7 6-4.5L22 15z"/><circle cx="1" cy="3" r="1.4"/><circle cx="12" cy="1.3" r="1.4"/><circle cx="23" cy="3" r="1.4"/></svg>';
   const ICON_TAP = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27.263 16.227h-12.874l4.714-3.355c-1.751-1.39-3.778-2.084-6.073-2.084-1.148 0-1.936 0.219-2.356 0.656-0.423 0.439-0.635 1.232-0.635 2.379 0 3.173 1.632 6.558 4.895 10.153l-3.715 3.762c-4.323-5.258-6.482-9.956-6.482-14.097 0-2.477 0.746-4.451 2.242-5.916 1.495-1.465 3.485-2.198 5.96-2.198 3.022 0 6.316 1.15 9.883 3.445l2.763-4.713 1.678 11.967z"/></svg>';
-  const ICON_FLAG = '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="#000" stroke-width="4.5"><path d="M5 21V3.5M5 4h13l-3 4.5 3 4.5H5"/></g><path d="M5 4h13l-3 4.5 3 4.5H5z" fill="currentColor"/><path d="M5 21V3.5" stroke="currentColor" stroke-width="2"/></svg>';
 
   // Archenemy's scheme button: a card with an eye on it, outlined in black like the dagger.
   const ICON_SCHEME = '<svg viewBox="0 0 24 24" fill="none" stroke-linejoin="round" aria-hidden="true"><g stroke="#000" stroke-width="4"><rect x="5" y="2.5" width="14" height="19" rx="2.2"/></g><rect x="5" y="2.5" width="14" height="19" rx="2.2" stroke="currentColor" stroke-width="2"/><path d="M7.6 12c1.6-2.6 7.2-2.6 8.8 0-1.6 2.6-7.2 2.6-8.8 0z" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="#000"/></svg>';
@@ -1492,8 +1474,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
     seats = [];
     for (let i = 0; i < n; i++) {
-      // The first spot is the one in the player's own half; it carries their concede flag.
-      seats[i] = (couch ? [(state.mode === SPLIT ? i === mySeat() : edgeOf(i) === 0) ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, couch || (duel4 ? i === mySeat() : duel && !k)));
+      // No concede flag on the seats (v1.34, the user's pick): the menu's Concede does it.
+      seats[i] = (couch ? [(state.mode === SPLIT ? i === mySeat() : edgeOf(i) === 0) ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map(spot => makeSeat(i, spot));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
@@ -1520,12 +1502,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     measure();
   }
 
-  function makeSeat(i, spot, flag) {
+  function makeSeat(i, spot) {
     const seat = document.createElement('section');
     const e = edgeOf(i);
     seat.className = `seat ${spot} k-${bgOf(e)}`;
     seat.style.setProperty('--art', `url(${artUrl(bgOf(e), 'art_crop')})`);
-    const opps = oppsOf(i);
+    // No commander damage in a 1v1 (v1.34, the user's pick: 2, 1v1 ×2, any 1v1 layout), so no dagger.
+    const opps = oppsOf(i), dagger = SIZE[players[i].k] > 2;
     seat.innerHTML = `
       <div class="face">
         <button type="button" class="zone minus" aria-label="${nameOf(e)} lose 1 life"></button>
@@ -1536,15 +1519,14 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         </div>
         <div class="badge" hidden>Goes first</div>
         <div class="badge win-badge" hidden>${ICON_CROWN}<span>Winner</span></div>
-        <div class="tray">
+        ${dagger ? `<div class="tray">
           <div class="pop">
             ${opps.map(o => `<button type="button" class="chip k-${bgOf(o.color)}" data-slot="${o.slot}" aria-label="Mark commander damage from ${o.label}">${swatch(bgOf(o.color))}<span class="ct">${o.label}</span><b>0</b></button>`).join('')}
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
-        </div>
-        ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
+        </div>` : ''}
         ${isAe(i) && state.schemes === 'app' ? `<button type="button" class="sch-btn" aria-label="Schemes">${ICON_SCHEME}<span></span></button>` : ''}
-        ${SHOW_DECKS && state.mode > 1 ? `<div class="seat-mana${flag ? ' by-flag' : ''}" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
+        ${SHOW_DECKS && state.mode > 1 ? `<div class="seat-mana" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
       </div>`;
     bindZone(seat.querySelector('.minus'), i, -1);
     bindZone(seat.querySelector('.plus'), i, 1);
@@ -1553,11 +1535,10 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       toggleMarking(i, +c.dataset.slot);
     }));
     const cmdBtn = seat.querySelector('.cmd-btn');
-    cmdBtn.addEventListener('click', () => {
+    if (cmdBtn) cmdBtn.addEventListener('click', () => {
       cmdBtn.setAttribute('aria-expanded', seat.classList.toggle('open'));
       buzz();
     });
-    if (flag) bindFlag(seat.querySelector('.flag'), i);
     if (isAe(i)) seat.classList.add('arch');
     const sb = seat.querySelector('.sch-btn');
     if (sb) sb.addEventListener('click', () => { buzz(); openSchemes(); });
@@ -1737,15 +1718,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       });
       // The shield carries the most commander damage taken from any one attacker.
       const most = Math.max(0, ...slotsOf(seat).map(slot => p.cmd[slot]));
-      const cmdBtn = seat.querySelector('.cmd-btn'), badge = cmdBtn.querySelector('b');
-      badge.hidden = !most;
-      badge.textContent = most;
-      cmdBtn.classList.toggle('hot', most >= CMD_LETHAL - 6);
-      cmdBtn.setAttribute('aria-expanded', seat.classList.contains('open'));
-      const flag = seat.querySelector('.flag');
-      if (flag && !flag.classList.contains('armed')) {
-        flag.querySelector('span').textContent = p.conceded ? 'Rejoin' : '';
-        flag.setAttribute('aria-label', p.conceded ? 'Rejoin' : 'Concede');
+      const cmdBtn = seat.querySelector('.cmd-btn');
+      if (cmdBtn) {
+        const badge = cmdBtn.querySelector('b');
+        badge.hidden = !most;
+        badge.textContent = most;
+        cmdBtn.classList.toggle('hot', most >= CMD_LETHAL - 6);
+        cmdBtn.setAttribute('aria-expanded', seat.classList.contains('open'));
       }
     });
     if (refit) { fitNames(); centerLife(); }
@@ -1943,23 +1922,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     update(i); save(); buzz();
     settle(k, was);
   }
-  // Side by side, both players share this phone, so each concedes (or rejoins) from their own half.
-  // Like the menu's Concede, it takes a second tap within 3 seconds.
-  function bindFlag(flag, i) {
-    let t = null;
-    flag.addEventListener('click', () => {
-      clearTimeout(t);
-      if (flag.classList.contains('armed')) {
-        flag.classList.remove('armed');
-        toggleConcede(i);
-        return;
-      }
-      flag.classList.add('armed');
-      flag.querySelector('span').textContent = playerOf(i).conceded ? 'Rejoin?' : 'Concede?';
-      buzz();
-      t = setTimeout(() => { flag.classList.remove('armed'); update(i); }, 3000);
-    });
-  }
+
   function toggleMarking(i, slot) {
     marking[i] = marking[i] === slot ? null : slot;
     update(i); buzz(); wake();
