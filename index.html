@@ -784,7 +784,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.25';
+  const VERSION = '1.26';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -980,6 +980,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   };
   // Everything printed in each set, reprints included (Duskmourn's 40 = its four preset decks).
   const AE_LIFE = 40, HERO_LIFE = 20, MIN_SCHEMES = 10, DEAL = 20;
+  // The scheme cards the group owns (v1.26): Archenemy: Nicol Bolas's 20, one tap in the deck builder.
+  const OURS = SETS.find(x => x[0].startsWith('Archenemy: Nicol Bolas'))[1];
   const SET_POOLS = Object.fromEntries(SETS.map(([t, names]) => [t, t.startsWith('Duskmourn') ? [...new Set([...names, ...Object.values(PRESETS).flat()])] : names]));
   const poolFor = sets => [...new Set(sets.flatMap(t => SET_POOLS[t] || []))];
   const isCard = n => typeof n === 'string' && Object.prototype.hasOwnProperty.call(CARDS, n);
@@ -1039,7 +1041,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   if (!['app', 'cards'].includes(state.schemes)) state.schemes = 'app';
   state.scheme = normScheme(state.scheme);
   // The scheme deck builder's picks, kept on this phone only.
-  if (!state.pick || !Array.isArray(state.pick.selected) || !Array.isArray(state.pick.sets)) state.pick = { selected: PRESETS['Jump Scare'].slice(), sets: SETS.map(x => x[0]) };
+  if (!state.pick || !Array.isArray(state.pick.selected) || !Array.isArray(state.pick.sets)) state.pick = { selected: OURS.slice(), sets: SETS.map(x => x[0]) };
+  // v1.25 started the picks on a Duskmourn deck's ten; untouched, they move to our own Bolas cards.
+  if (!state.pick.ours126) { if (state.pick.selected.join() === PRESETS['Jump Scare'].join()) state.pick.selected = OURS.slice(); state.pick.ours126 = true; }
   // Saves from before 2- and 3-player tables (or the two 1v1s) have no games for them yet.
   KEYS.forEach(k => {
     if (!Array.isArray(state.games[k]) || state.games[k].length !== SIZE[k]) state.games[k] = blankGame(k);
@@ -2408,9 +2412,14 @@ details.field[open] > summary { margin-bottom: 10px; }
         <label class="sch-row${sel.has(x) ? ' on' : ''}"><input type="checkbox" data-pick="${esc(x)}"${sel.has(x) ? ' checked' : ''}><span>${esc(x)}${isOngoing(x) ? '<em>Ongoing</em>' : ''}</span></label>`).join('')}</div>`;
     }).join('');
     const top = schBody.scrollTop;
+    const ours = OURS.length === sel.size && OURS.every(x => sel.has(x));
     schBody.innerHTML = `
       <div class="field">
-        <span>Deal at random from</span>
+        <span>The cards we own</span>
+        <div class="chips"><button type="button" data-ours aria-pressed="${ours}">Archenemy: Nicol Bolas<span>${OURS.length}</span></button></div>
+      </div>
+      <div class="field">
+        <span>Or deal at random from</span>
         <div class="chips">${SETS.map(([t]) => `<button type="button" data-set="${esc(t)}" aria-pressed="${sets.has(t)}">${esc(t)}<span>${SET_POOLS[t].length}</span></button>`).join('')}</div>
         <button type="button" class="action" data-deal${pool.length ? '' : ' disabled'}>Deal ${Math.min(DEAL, pool.length)} at random</button>
       </div>
@@ -2436,6 +2445,8 @@ details.field[open] > summary { margin-bottom: 10px; }
       const t = b.dataset.set, cur = new Set(pick.sets);
       cur.has(t) ? cur.delete(t) : cur.add(t);
       pick.sets = SETS.map(x => x[0]).filter(x => cur.has(x));
+    } else if (b.hasAttribute('data-ours')) {
+      pick.selected = OURS.slice();
     } else if (b.dataset.preset != null) {
       pick.selected = PRESETS[b.dataset.preset].slice();
     } else if (b.hasAttribute('data-deal')) {

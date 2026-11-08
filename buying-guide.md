@@ -25,6 +25,7 @@ Check this list before buying a deck, so we don't buy a second copy.
 | Landing Party | Star Trek Commander (2026) | G W U | Commander Spock (alt: Captain Kirk, Boldly Going) | Preordered, out Nov 13, 2026 |
 | Federation Fleet | Star Trek Commander (2026) | R W U | Jean-Luc Picard, Luminary (alt: Captain Janeway, Endgame) | Preordered, out Nov 13, 2026 |
 | Klingon Fury | Star Trek Commander (2026) | R W B | Worf, Defiant Commander (alt: Kor, Cause of Vengeance) | Preordered, out Nov 13, 2026 |
+| Archenemy: Nicol Bolas | Archenemy: Nicol Bolas (2017) | U B R | None (60-card deck plus 20 oversized schemes) | Owned (the user thinks this is the set; confirm) |
 
 When the Star Trek decks arrive, change their status to Owned. Every deck here has a card carousel at
 https://biglob.github.io/commander-life/decks/.
