@@ -134,35 +134,55 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .board.couch { grid-template: "cl cr" 1fr / 1fr 1fr; }
 .d-cl { grid-area: cl; }
 .d-cr { grid-area: cr; }
-/* Spotify remote (v1.31, menu → Spotify, this phone only): Side by side gives the top 20% of the
-   phone to a bar that controls whatever Spotify is playing; the two halves share the rest evenly. */
+/* Spotify remote (v1.31, menu → Spotify, this phone only; every layout since v1.35). Where the
+   seats face one way (Side by side, Couch, Spotlight, 1) the bar takes the top of the phone; where
+   they sit round the edges (Classic, Table, Big button, Quadrants) it takes the middle, so every
+   total stays on the outside and the turn button sits in the bar's hole (.sfy-hole). */
 .board.duel.sfy { grid-template: "sp sp" 1fr "tl tr" 2fr "bl br" 2fr / 1fr 1fr; }
+.board.duel.couch.sfy { grid-template: "sp sp" 1fr "cl cr" 4fr / 1fr 1fr; }
+.board.n1.sfy { grid-template: "sp" 1fr "one" 4fr / 1fr; }
+.board.n1.sfy .seat { grid-area: one; }
+.board.spot.sfy { grid-template-areas: "sp sp sp" "a b c" "main main main"; grid-template-rows: 1fr 2fr 2fr; }
+.board.spot.n3.sfy { grid-template-areas: "sp sp" "a b" "main main"; }
+.board.n2.table.sfy { grid-template-areas: "top" "sp" "bottom"; grid-template-rows: 2fr 1fr 2fr; }
+.board.n3.table.sfy:not(.spot) { grid-template-areas: "left right" "sp sp" "bottom bottom"; grid-template-rows: 2fr 1fr 2fr; }
+.board.n4.table.sfy:not(.spot):not(.quad) { grid-template-areas: "top top top" "left sp right" "bottom bottom bottom"; grid-template-rows: 1.2fr 1.6fr 1.2fr; grid-template-columns: 1fr 1fr 1fr; }
+.board.n4.quad.sfy { grid-template-areas: "left top" "sp sp" "bottom right"; grid-template-rows: 2fr 1fr 2fr; grid-template-columns: 1fr 1fr; }
+.couch.sfy ~ .turn-big { top: 79%; }
 .sfy-bar {
-  grid-area: sp; position: relative; min-height: 0; overflow: hidden; border-radius: 18px;
-  display: flex; align-items: center; gap: 12px; padding: 10px 12px;
-  background: #121212; border: 1px solid var(--line); color: #fff; touch-action: manipulation;
+  grid-area: sp; position: relative; min-height: 0; min-width: 0; overflow: hidden; border-radius: 18px;
+  padding: 10px 12px; background: #121212; border: 1px solid var(--line); color: #fff; touch-action: manipulation;
 }
-/* The art gives up width first, so all five buttons fit on a narrow phone. */
-.sfy-art { flex: none; width: min(30%, 132px); height: auto; max-height: 100%; aspect-ratio: 1; border-radius: 8px; object-fit: cover; background: #282828; }
-.sfy-main { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; }
-.sfy-text { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-.sfy-text b, .sfy-text span, .sfy-dev { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sfy-text b { font-size: 17px; }
-.sfy-text span { font-size: 14px; color: #b3b3b3; }
-.sfy-dev { align-self: flex-start; max-width: 100%; border: 0; padding: 2px 0; background: none; font-size: 13px; color: #1ed760; }
-.sfy-ctl { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
-.sfy-ctl button {
-  flex: none; width: 38px; height: 38px; padding: 8px; border: 0; border-radius: 50%;
+/* On top: the song over its buttons, the menu button in the bottom-right corner. */
+.sfy-in { height: 100%; min-width: 0; display: grid; grid-template: "txt" auto "ctl" 1fr / 1fr; gap: 6px; }
+.sfy-hole { grid-area: hole; display: none; }
+/* In the middle, wide (Classic, 3 players, Quadrants): song | turn button | buttons, menu bottom-left. */
+.table:not(.spot) > .sfy-bar .sfy-in { grid-template: "txt hole ctl" 1fr / 1fr 108px 1fr; }
+.table:not(.spot) > .sfy-bar .sfy-hole { display: block; }
+.table:not(.spot) > .sfy-bar .sfy-text { padding-bottom: 50px; }
+.table:not(.spot) > .sfy-bar .sfy-ctl { padding-right: 0; justify-content: center; }
+/* In the middle, tall (Table and Big button at 4, between the side seats): stacked, menu bottom-right. */
+.n4.table:not(.spot):not(.quad) > .sfy-bar { padding: 10px 8px; }
+.n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-in { grid-template: "txt" auto "hole" minmax(64px, 1fr) "ctl" auto / 1fr; padding-bottom: 48px; }
+.n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-text { padding-bottom: 0; text-align: center; }
+.sfy-text { grid-area: txt; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.sfy-text b { font-size: 17px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.sfy-text span { font-size: 14px; color: #b3b3b3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sfy-text p { margin: 0; font-size: 15px; color: #b3b3b3; line-height: 1.3; }
+.sfy-ctl { grid-area: ctl; min-width: 0; min-height: 0; padding-right: 48px; display: flex; flex-wrap: wrap; align-items: center; align-content: center; gap: 8px; overflow-y: auto; }
+.sfy-ctl button.sfy-b {
+  flex: none; width: 46px; height: 46px; padding: 10px; border: 0; border-radius: 50%;
   display: grid; place-items: center; background: transparent; color: #fff;
 }
-.sfy-ctl button.sfy-play { width: 46px; height: 46px; padding: 11px; background: #1ed760; color: #000; }
+.sfy-ctl button.sfy-play { width: 54px; height: 54px; padding: 13px; background: #1ed760; color: #000; }
 .sfy-ctl svg { width: 100%; height: 100%; fill: currentColor; pointer-events: none; }
-.sfy-empty { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
-.sfy-empty p { margin: 0; font-size: 15px; color: #b3b3b3; line-height: 1.3; }
-.sfy-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-height: 100%; overflow-y: auto; }
 .sfy-pill { border: 0; border-radius: 999px; padding: 9px 16px; background: #1ed760; color: #000; font-size: 15px; font-weight: 700; }
 .sfy-pill.alt { background: rgba(255, 255, 255, .12); color: #fff; }
 .sfy-pill.on { outline: 2px solid #1ed760; }
+#app .sfy-bar .menu-btn { top: auto; left: auto; right: 8px; bottom: 8px; width: 42px; height: 42px; margin: 0; transform: none; }
+#app .table:not(.spot) > .sfy-bar .menu-btn { right: auto; left: 8px; }
+#app .n4.table:not(.spot):not(.quad) > .sfy-bar .menu-btn { left: auto; right: 6px; bottom: 6px; }
+#app .sfy-bar .menu-btn img { height: 25px; }
 /* Spotify's green, so the way in is easy to spot. */
 #sfyConnect { align-self: center; padding: 8px 22px; border-radius: 999px; font-size: 16px; background: #1ed760; color: #000; }
 
@@ -817,7 +837,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.34';
+  const VERSION = '1.35';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1467,8 +1487,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const lay = layoutOf(n);
     board.className = couch ? 'board duel couch' : duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
-    // Side by side with the Spotify remote on: the bar takes the top row of the grid.
-    if ((duel || duel4) && sfy.on) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
+    // The Spotify remote, in every layout (v1.35): the grid gives it the top or the middle (see the styles).
+    if (sfy.on) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
     // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
@@ -1486,7 +1506,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     mb.setAttribute('aria-label', 'Menu');
     mb.innerHTML = ICON_MENU;
     mb.addEventListener('click', openMenu);
-    app.appendChild(mb);
+    // With the Spotify bar, the menu button sits in one of its corners.
+    (board.querySelector('.sfy-bar') || app).appendChild(mb);
     const tb = document.createElement('button');
     tb.type = 'button';
     tb.className = 'turn-big';
@@ -1564,7 +1585,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // Big button: the turn button's center and radius, from the left seat's place on the board. Layout
   // offsets, not screen rects, so a pinned (turned) board measures the same.
   function hubGeom() {
-    const board = app.querySelector('.board.hub'), s1 = board && board.querySelector('.s1');
+    // With the Spotify bar in the middle, Big button is Table with the bar there (the turn button sits in it).
+    const board = app.querySelector('.board.hub:not(.sfy)'), s1 = board && board.querySelector('.s1');
     if (!s1) return null;
     const r = Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
     return { x: board.offsetLeft + board.offsetWidth / 2, y: s1.offsetTop + s1.offsetHeight / 2, r };
@@ -1597,7 +1619,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
   function placeTurn() {
     const board = app.querySelector('.board'), btns = app.querySelectorAll('.turn-big, .menu-btn');
-    btns.forEach(b => { b.style.top = b.style.left = b.style.width = b.style.height = ''; });
+    btns.forEach(b => { b.style.top = b.style.left = b.style.width = b.style.height = b.style.margin = ''; });
     // Big button: the turn button sits where the side seats meet, the menu button on its rim.
     const hub = hubGeom();
     if (hub) {
@@ -1606,10 +1628,21 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       Object.assign(mb.style, { left: hub.x + off - 23 + 'px', top: hub.y + off - 23 + 'px' });
       return;
     }
-    // Side by side with the Spotify bar, the halves meet below the middle: the buttons follow them.
-    const s0 = board && (board.matches('.n4.table:not(.quad):not(.spot)') ? board.querySelector('.s0') : board.matches('.duel.sfy') ? board.querySelector('.d-bl') : null);
+    // Spotify bar in the middle: the turn button sits in its hole, as big as fits (up to 96px).
+    const hole = app.querySelector('.table:not(.spot) > .sfy-bar .sfy-hole');
+    if (hole) {
+      const bar = hole.closest('.sfy-bar'), tb = app.querySelector('.turn-big');
+      const d = Math.max(56, Math.min(96, hole.offsetWidth - 8, hole.offsetHeight - 8));
+      Object.assign(tb.style, { left: bar.offsetLeft + hole.offsetLeft + hole.offsetWidth / 2 + 'px', top: bar.offsetTop + hole.offsetTop + hole.offsetHeight / 2 + 'px', width: d + 'px', height: d + 'px', margin: '0' });
+      return;
+    }
+    // Spotify bar on top: Side by side's halves and the spotlight's rows meet below the middle, so
+    // the turn button follows the seam.
+    const s0 = board && (board.matches('.n4.table:not(.quad):not(.spot)') ? board.querySelector('.s0')
+      : board.matches('.duel.sfy:not(.couch)') ? board.querySelector('.d-bl') : board.matches('.spot.sfy') ? board.querySelector('.sp-main') : null);
     const y = s0 ? (s0.offsetParent === board ? board.offsetTop : 0) + s0.offsetTop - 3 : 0;
-    btns.forEach(b => { b.style.top = s0 ? y + 'px' : ''; });
+    // The menu button in the Spotify bar keeps its corner.
+    btns.forEach(b => { if (!b.closest('.sfy-bar')) b.style.top = s0 ? y + 'px' : ''; });
   }
   // Each total sits centered in the open space between its seat's name and its turn symbol (v3.33),
   // measured in the face's own unturned layout, so a turned seat centers the same way. This replaces
@@ -1977,12 +2010,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   let sfyDevices = null;  // the device list while the picker is open
   let sfyTimer = null, sfyBusy = false;
   const SFY_ICON = {
-    prev: '<svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>',
     next: '<svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>',
     play: '<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
     pause: '<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
-    down: '<svg viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM14 11h8v2h-8z"/></svg>',
-    up: '<svg viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM17 8h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/></svg>',
   };
   const b64url = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
@@ -2082,7 +2112,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sfyKick(0); });
 
   async function sfyDo(a) {
-    const dev = (sfyNow && sfyNow.device) || {};
     try {
       if (a === 'login') return sfyLogin();
       if (a === 'devices') {
@@ -2096,13 +2125,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         const playing = sfyNow && sfyNow.is_playing;
         if (sfyNow) { sfyNow.is_playing = !playing; sfyPaint(); }
         await sfyApi('PUT', playing ? '/me/player/pause' : '/me/player/play');
-      } else if (a === 'next' || a === 'prev') {
-        await sfyApi('POST', a === 'next' ? '/me/player/next' : '/me/player/previous');
-      } else if (a === 'up' || a === 'down') {
-        const v = Math.max(0, Math.min(100, (dev.volume_percent || 0) + (a === 'up' ? 10 : -10)));
-        dev.volume_percent = v; sfyPaint();
-        await sfyApi('PUT', '/me/player/volume?volume_percent=' + v);
-      }
+      } else if (a === 'next') await sfyApi('POST', '/me/player/next');
       if (!a.startsWith('to:') && a !== 'devices') sfyMsg = '';
     } catch (e) {
       sfyMsg = sfyError(e);
@@ -2113,53 +2136,53 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
 
   // The bar itself; build() makes a new one each time and sfyPaint() fills it from the last answer.
+  // v1.35: no album art, volume, previous (start over) or device line, the user's pick. The device
+  // list still opens when nothing is playing, or when Spotify has no device to send a tap to.
   function sfyBar() {
     const bar = document.createElement('div');
     bar.className = 'sfy-bar';
+    bar.innerHTML = '<div class="sfy-in"></div>';
     bar.addEventListener('click', e => { const b = e.target.closest('[data-a]'); if (b) { buzz(); sfyDo(b.dataset.a); } });
     setTimeout(() => { sfyPaint(); if (!sfyTimer && !sfyBusy) sfyKick(0); });
     return bar;
   }
   function sfyPaint() {
-    const bar = app.querySelector('.sfy-bar');
-    if (!bar) return;
-    const btn = (a, icon, label, cls) => `<button type="button" class="${cls || ''}" data-a="${a}" aria-label="${label}">${SFY_ICON[icon]}</button>`;
-    const empty = (msg, buttons) => `<div class="sfy-empty"><p>${esc(msg)}</p>${buttons}</div>`;
+    const inner = app.querySelector('.sfy-bar .sfy-in');
+    if (!inner) return;
+    const btn = (a, icon, label, cls) => `<button type="button" class="sfy-b ${cls || ''}" data-a="${a}" aria-label="${label}">${SFY_ICON[icon]}</button>`;
+    // Every state fills the same three cells: the words, the turn button's hole, the buttons.
+    const cells = (txt, ctl) => `<div class="sfy-text">${txt}</div><div class="sfy-hole"></div><div class="sfy-ctl">${ctl}</div>`;
+    const msg = m => `<p>${esc(m)}</p>`;
     let html;
-    if (!sfy.tok) html = empty(sfyMsg || 'Control Spotify from here', '<button type="button" class="sfy-pill" data-a="login">Connect Spotify</button>');
+    if (!sfy.tok) html = cells(msg(sfyMsg || 'Control Spotify from here'), '<button type="button" class="sfy-pill" data-a="login">Connect Spotify</button>');
     else if (sfyDevices) {
-      html = empty(sfyMsg || (sfyDevices.length ? 'Play on' : 'No Spotify devices on. Open Spotify on a phone or the soundbar.'),
-        `<div class="sfy-list">${sfyDevices.map(d => `<button type="button" class="sfy-pill alt${d.is_active ? ' on' : ''}" data-a="to:${esc(d.id)}">${esc(d.name)}</button>`).join('')}` +
-        `<button type="button" class="sfy-pill alt" data-a="devices">Refresh</button><button type="button" class="sfy-pill alt" data-a="close">Close</button></div>`);
-    } else if (!sfyNow) html = empty(sfyMsg || 'Loading Spotify…', '');
-    else if (!sfyNow.item && !sfyNow.device) html = empty(sfyMsg || 'Nothing playing', '<button type="button" class="sfy-pill" data-a="devices">Pick a device</button>');
+      html = cells(msg(sfyMsg || (sfyDevices.length ? 'Play on' : 'No Spotify devices on. Open Spotify on a phone or the soundbar.')),
+        sfyDevices.map(d => `<button type="button" class="sfy-pill alt${d.is_active ? ' on' : ''}" data-a="to:${esc(d.id)}">${esc(d.name)}</button>`).join('') +
+        '<button type="button" class="sfy-pill alt" data-a="devices">Refresh</button><button type="button" class="sfy-pill alt" data-a="close">Close</button>');
+    } else if (!sfyNow) html = cells(msg(sfyMsg || 'Loading Spotify…'), '');
+    else if (!sfyNow.item && !sfyNow.device) html = cells(msg(sfyMsg || 'Nothing playing'), '<button type="button" class="sfy-pill" data-a="devices">Pick a device</button>');
     else {
-      const it = sfyNow.item || {}, dev = sfyNow.device || {};
-      const imgs = (it.album && it.album.images) || it.images || [];
-      const art = (imgs[1] || imgs[0] || {}).url;
+      const it = sfyNow.item || {};
       const sub = it.artists ? it.artists.map(x => x.name).join(', ') : it.show ? it.show.name : '';
-      const vol = dev.supports_volume !== false && dev.volume_percent != null;
-      html = (art ? `<img class="sfy-art" src="${esc(art)}" alt="">` : '') +
-        `<div class="sfy-main"><div class="sfy-text"><b>${esc(it.name || 'Nothing playing')}</b><span>${esc(sfyMsg || sub)}</span>` +
-        `<button type="button" class="sfy-dev" data-a="devices">${esc(dev.name ? 'On ' + dev.name + (vol ? ' · ' + dev.volume_percent + '%' : '') : 'Pick a device')} ▾</button></div>` +
-        `<div class="sfy-ctl">${btn('prev', 'prev', 'Previous')}${btn('toggle', sfyNow.is_playing ? 'pause' : 'play', sfyNow.is_playing ? 'Pause' : 'Play', 'sfy-play')}${btn('next', 'next', 'Next')}` +
-        (vol ? btn('down', 'down', 'Volume down') + btn('up', 'up', 'Volume up') : '') + '</div></div>';
+      html = cells(`<b>${esc(it.name || 'Nothing playing')}</b><span>${esc(sfyMsg || sub)}</span>`,
+        btn('toggle', sfyNow.is_playing ? 'pause' : 'play', sfyNow.is_playing ? 'Pause' : 'Play', 'sfy-play') + btn('next', 'next', 'Next'));
     }
-    // Only touch the bar when something changed, so the album art doesn't flicker on every poll.
-    if (bar.dataset.html !== html) { bar.innerHTML = html; bar.dataset.html = html; }
+    // Only touch the bar when something changed; the turn button follows its hole.
+    if (inner.dataset.html !== html) { inner.innerHTML = html; inner.dataset.html = html; placeTurn(); }
   }
 
-  // The menu's Spotify remote field: shown wherever Side by side is the 1v1 layout in use.
+  // The menu's Spotify remote field.
   const sfyIdInput = document.getElementById('sfyId');
   function syncSfy() {
-    document.getElementById('sfyField').hidden = document.getElementById('layoutField').hidden || state.layout2 !== 'split';
+    // Every layout has the bar since v1.35, so the field always shows.
+    document.getElementById('sfyField').hidden = false;
     document.querySelectorAll('#segSpotify button').forEach(b => b.classList.toggle('on', (b.dataset.v === 'on') === !!sfy.on));
     document.getElementById('sfyIdRow').hidden = !sfy.on || !!SPOTIFY_CLIENT_ID || !!sfy.tok;
     if (document.activeElement !== sfyIdInput) sfyIdInput.value = sfy.id || '';
     const connect = document.getElementById('sfyConnect');
     connect.hidden = !sfy.on;
     connect.textContent = sfy.tok ? 'Disconnect Spotify' : 'Connect Spotify';
-    document.getElementById('sfyNote').textContent = !sfy.on ? 'A bar across the top of Side by side to play, pause, skip and change the volume of whatever Spotify is playing. Needs Spotify Premium.'
+    document.getElementById('sfyNote').textContent = !sfy.on ? 'A bar to play, pause and skip whatever Spotify is playing: across the top, or in the middle where the seats sit round the edges. Needs Spotify Premium.'
       : sfy.tok ? 'Connected. Controls whatever this Spotify account is playing, on any device.'
       : !sfyId() ? 'Paste the Client ID of your Spotify developer app (its redirect URI must be ' + SFY_REDIRECT + ').'
       : sfyMsg || 'Sign in with the Spotify account that plays the music.';
