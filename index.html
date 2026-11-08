@@ -140,6 +140,10 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    total stays on the outside and the turn button sits in the bar's hole (.sfy-hole). */
 .board.duel.sfy { grid-template: "sp sp" 1fr "tl tr" 2fr "bl br" 2fr / 1fr 1fr; }
 .board.duel.couch.sfy { grid-template: "sp sp" 1fr "cl cr" 4fr / 1fr 1fr; }
+/* Side by side with the bar (v1.36): the phone faces this side only (the user: nobody sits at the
+   far end), so the turned top half is left out and the upright half takes the rest. */
+.board.duel.half.sfy { grid-template: "sp sp" 1fr "bl br" 4fr / 1fr 1fr; }
+.half.sfy ~ .turn-big { top: 79%; }
 .board.n1.sfy { grid-template: "sp" 1fr "one" 4fr / 1fr; }
 .board.n1.sfy .seat { grid-area: one; }
 .board.spot.sfy { grid-template-areas: "sp sp sp" "a b c" "main main main"; grid-template-rows: 1fr 2fr 2fr; }
@@ -165,6 +169,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .n4.table:not(.spot):not(.quad) > .sfy-bar { padding: 10px 8px; }
 .n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-in { grid-template: "txt" auto "hole" minmax(64px, 1fr) "ctl" auto / 1fr; padding-bottom: 48px; }
 .n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-text { padding-bottom: 0; text-align: center; }
+/* No song or artist in the column (v1.36, the user's pick): just play/pause and next. */
+.n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-text.song { display: none; }
 .sfy-text { grid-area: txt; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .sfy-text b { font-size: 17px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .sfy-text span { font-size: 14px; color: #b3b3b3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -837,7 +843,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.35';
+  const VERSION = '1.36';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1485,7 +1491,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     }
     const board = document.createElement('div');
     const lay = layoutOf(n);
-    board.className = couch ? 'board duel couch' : duel || duel4 ? 'board duel'
+    // Side by side with the Spotify bar keeps only the upright half (v1.36).
+    const half = duel && sfy.on;
+    board.className = couch ? 'board duel couch' : half ? 'board duel half' : duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
     // The Spotify remote, in every layout (v1.35): the grid gives it the top or the middle (see the styles).
     if (sfy.on) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
@@ -1495,7 +1503,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     seats = [];
     for (let i = 0; i < n; i++) {
       // No concede flag on the seats (v1.34, the user's pick): the menu's Concede does it.
-      seats[i] = (couch ? [(state.mode === SPLIT ? i === mySeat() : edgeOf(i) === 0) ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map(spot => makeSeat(i, spot));
+      seats[i] = (couch ? [(state.mode === SPLIT ? i === mySeat() : edgeOf(i) === 0) ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : half ? duelSpots(i).filter(s => s[2] === 'b') : duel ? duelSpots(i) : [place(i)]).map(spot => makeSeat(i, spot));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
@@ -1639,7 +1647,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // Spotify bar on top: Side by side's halves and the spotlight's rows meet below the middle, so
     // the turn button follows the seam.
     const s0 = board && (board.matches('.n4.table:not(.quad):not(.spot)') ? board.querySelector('.s0')
-      : board.matches('.duel.sfy:not(.couch)') ? board.querySelector('.d-bl') : board.matches('.spot.sfy') ? board.querySelector('.sp-main') : null);
+      : board.matches('.duel.sfy:not(.couch):not(.half)') ? board.querySelector('.d-bl') : board.matches('.spot.sfy') ? board.querySelector('.sp-main') : null);
     const y = s0 ? (s0.offsetParent === board ? board.offsetTop : 0) + s0.offsetTop - 3 : 0;
     // The menu button in the Spotify bar keeps its corner.
     btns.forEach(b => { if (!b.closest('.sfy-bar')) b.style.top = s0 ? y + 'px' : ''; });
@@ -2151,7 +2159,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (!inner) return;
     const btn = (a, icon, label, cls) => `<button type="button" class="sfy-b ${cls || ''}" data-a="${a}" aria-label="${label}">${SFY_ICON[icon]}</button>`;
     // Every state fills the same three cells: the words, the turn button's hole, the buttons.
-    const cells = (txt, ctl) => `<div class="sfy-text">${txt}</div><div class="sfy-hole"></div><div class="sfy-ctl">${ctl}</div>`;
+    const cells = (txt, ctl, song) => `<div class="sfy-text${song ? ' song' : ''}">${txt}</div><div class="sfy-hole"></div><div class="sfy-ctl">${ctl}</div>`;
     const msg = m => `<p>${esc(m)}</p>`;
     let html;
     if (!sfy.tok) html = cells(msg(sfyMsg || 'Control Spotify from here'), '<button type="button" class="sfy-pill" data-a="login">Connect Spotify</button>');
@@ -2165,7 +2173,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const it = sfyNow.item || {};
       const sub = it.artists ? it.artists.map(x => x.name).join(', ') : it.show ? it.show.name : '';
       html = cells(`<b>${esc(it.name || 'Nothing playing')}</b><span>${esc(sfyMsg || sub)}</span>`,
-        btn('toggle', sfyNow.is_playing ? 'pause' : 'play', sfyNow.is_playing ? 'Pause' : 'Play', 'sfy-play') + btn('next', 'next', 'Next'));
+        btn('toggle', sfyNow.is_playing ? 'pause' : 'play', sfyNow.is_playing ? 'Pause' : 'Play', 'sfy-play') + btn('next', 'next', 'Next'), true);
     }
     // Only touch the bar when something changed; the turn button follows its hole.
     if (inner.dataset.html !== html) { inner.innerHTML = html; inner.dataset.html = html; placeTurn(); }
