@@ -1,5 +1,5 @@
-"""Build lands/index.html: a carousel of every Commander-legal nonbasic land (plus unreleased ones from
-the current year, such as the Star Trek planets), sorted by EDHREC popularity and sorted into cycles.
+"""Build lands/index.html: every Commander-legal nonbasic land (plus unreleased ones from the current
+year, such as the Star Trek planets), shown as one card per category (40), then one card per cycle.
 
 Card data, EDHREC rank and images come from Scryfall. Price is the cheapest paper printing (nonfoil,
 else foil). Each land is put in one category by its type line and rules text (`cat()`); the
@@ -30,6 +30,50 @@ FAMILIES = [
     ('Spell lands', ['Spell lands (MDFC)', 'Flip lands']),
 ]
 BASICS = ['Plains', 'Island', 'Swamp', 'Mountain', 'Forest']
+
+# one line per category: what every land in it does (shown on its card)
+DESC = {
+    'Original duals': 'Two basic types, no drawback. The best duals ever printed.',
+    'Fetch lands': 'Pay 1 life and sacrifice: fetch a land of either basic type, untapped.',
+    'Shock lands': 'Two basic types. Pay 2 life or it enters tapped.',
+    'Pathways': 'Untapped. Pick one of its two colors as you play it.',
+    'Bond lands': 'Untapped with two or more opponents, so always in Commander.',
+    'Check lands': 'Untapped if you control a land of either basic type.',
+    'Fast lands': 'Untapped if you control two or fewer other lands.',
+    'Slow lands': 'Untapped if you control two or more other lands.',
+    'Battle lands': 'Two basic types. Untapped once you have two basics out.',
+    'Snarls': 'Untapped if you reveal a matching basic from your hand.',
+    'Pain lands': 'Untapped. Colorless is free, colored mana costs 1 damage.',
+    'Filter lands': 'Turn one mana into two of its colors, in any mix.',
+    'Horizon lands': 'Pay 1 life per colored mana; sacrifice later to draw a card.',
+    'Other untapped duals': 'Two colors without entering tapped, each with a catch.',
+    'Surveil lands': 'Enter tapped. Two basic types and surveil 1.',
+    'Tri-lands & triomes': 'Enter tapped, three colors. Triomes add basic types and cycling.',
+    'Typed tapped duals': 'Enter tapped. Two basic types, so fetches find them.',
+    'Cycling duals': 'Enter tapped. Two basic types and cycling {2}.',
+    'Tribal lands': 'Untapped if you reveal a card of its creature type.',
+    'Scry lands': 'Enter tapped, scry 1.',
+    'Gain lands': 'Enter tapped, gain 1 life.',
+    'Thriving lands': 'Enter tapped. One fixed color plus one you choose.',
+    'Tapped duals': 'Enter tapped, two colors, some with a small bonus.',
+    'Gates': 'Enter tapped, two colors. Count for Gate cards.',
+    'Bounce lands': 'Enter tapped and return a land; tap for two mana.',
+    'Budget fetches': 'Sacrifice to fetch a basic. Slow but cheap.',
+    'Any-color lands': 'Make any color, some with a cost or condition.',
+    'Ramp lands': 'Make extra mana under some condition.',
+    'Channel lands': 'A land you can discard as a spell instead.',
+    'Creature lands': 'Become a creature.',
+    'Card-draw lands': 'Draw, cycle, scry or surveil from a land slot.',
+    'Token makers': 'Make tokens.',
+    'Land removal': 'Destroy lands.',
+    'Graveyard hate': 'Exile graveyards.',
+    'Artifact lands': 'Lands that are also artifacts.',
+    'Sagas & town lands': 'Saga lands and towns with a spell attached.',
+    'Mono-color utility': 'One color plus a special ability.',
+    'Colorless utility': 'Colorless mana plus a special ability.',
+    'Spell lands (MDFC)': 'A spell on the front, a land on the back.',
+    'Flip lands': 'A card that transforms into a land.',
+}
 
 def get(url):
     for i in range(4):
@@ -110,6 +154,24 @@ def cat(c):
     if any(x in lo for x in ('draw a card', 'draw two', 'hideaway', 'surveil', 'look at the top')): return 'Card-draw lands'
     return 'Mono-color utility' if len(pm) == 1 else 'Colorless utility'
 
+def cycle(c):
+    """Lands with the same rules text once their name, colors, basic types and creature type are blanked
+    out are one cycle (the ten shocks, the five Thriving lands); the page shows a cycle as one card."""
+    o, t = text(c), c['type_line'].split(' // ')[0]
+    names = {c['name'], c['name'].split(' // ')[0], c['name'].split(',')[0]}
+    for f in c.get('card_faces', []): names |= {f['name'], f['name'].split(',')[0]}
+    for n in sorted(names, key=len, reverse=True): o = o.replace(n, '~')
+    o = re.sub(r'\([^)]*\)', '', o)
+    o = re.sub(r'\{[WUBRG]\}', '{M}', o)
+    o = re.sub(r'\{[WUBRG]/[WUBRG]\}', '{M/M}', o)
+    o = re.sub(r'\b(Plains|Islands?|Swamps?|Mountains?|Forests?)\b', 'BASIC', o)
+    o = re.sub(r'\b(white|blue|black|red|green)\b', 'COLOR', o)
+    o = re.sub(r'\b(Soldier|Merfolk|Giant|Goblin|Faerie|Elf|Elemental|Treefolk|Kithkin|Dragon|Wizard)s?\b', 'TRIBE', o)
+    o = re.sub(r'\s+', ' ', o).strip()
+    t = re.sub(r'\b(Plains|Island|Swamp|Mountain|Forest)\b', 'BASIC', t)
+    if 'BASIC' not in t: t = re.sub(r'—.*', '— SUB', t)
+    return t + '|' + o
+
 def colors(c):
     """The colors a land helps with, for the Color filter: its color identity, the colors it can tap for,
     and, for a fetch, the basic types it finds (fetches have no color identity of their own)."""
@@ -132,21 +194,26 @@ def ours():
     return out
 
 def main():
-    cards = search(Q, '&order=edhrec')
+    cache = os.environ.get('LANDS_CACHE')  # a JSON file to reuse Scryfall results while working on the page
+    if cache and os.path.exists(cache):
+        cards, prints = json.load(open(cache))
+    else:
+        cards, prints = search(Q, '&order=edhrec'), search(Q, '&unique=prints')
+        if cache: json.dump([cards, prints], open(cache, 'w'))
     cheap = {}
-    for p in search(Q, '&unique=prints'):
+    for p in prints:
         oid = p.get('oracle_id') or p['card_faces'][0]['oracle_id']
         v = p['prices'].get('usd') or p['prices'].get('usd_foil')
         if v and (oid not in cheap or float(v) < cheap[oid]): cheap[oid] = float(v)
     mine = ours()
-    ALL = []
+    ALL, cyc = [], {}
     for c in cards:
         faces = c.get('card_faces') or []
         iu = c.get('image_uris') or faces[0]['image_uris']
         oid = c.get('oracle_id') or faces[0]['oracle_id']
-        r = {'n': c['name'], 'p': cheap.get(oid), 'q': 1, 's': c['set'].upper(), 't': c['type_line'], 'i': iu['normal'],
-             'm': 0, 'c': colors(c), 'k': [], 'g': cat(c),
-             'r': c.get('edhrec_rank')}
+        g = cat(c)
+        r = {'n': c['name'], 'p': cheap.get(oid), 's': c['set'].upper(), 'i': iu['normal'], 'c': colors(c), 'g': g,
+             'y': cyc.setdefault(g + '|' + cycle(c), len(cyc)), 'r': c.get('edhrec_rank')}
         if faces and len(faces) > 1 and not c.get('image_uris') and faces[1].get('image_uris'):
             r['b'] = faces[1]['image_uris']['normal']
         if c['name'] in mine: r['o'] = mine[c['name']]
@@ -155,7 +222,8 @@ def main():
     counts = collections.Counter(r['g'] for r in ALL)
     known = {x for _, cs in FAMILIES for x in cs}
     assert set(counts) <= known, set(counts) - known
-    fams = [[f, [[x, counts[x]] for x in cs if counts[x]]] for f, cs in FAMILIES]
+    assert set(DESC) == known, set(DESC) ^ known
+    fams = [[f, [[x, DESC[x]] for x in cs if counts[x]]] for f, cs in FAMILIES]
     t = open(os.path.join(HERE, 'lands-template.html')).read()
     t = (t.replace('/*FAMS*/[]', json.dumps(fams)).replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
@@ -168,7 +236,7 @@ def main():
         summ[x] = {'count': len(rs), 'median': ps[len(ps) // 2] if ps else None,
                    'top': [[r['n'], r['r'], r['p']] for r in rs[:8]]}
     json.dump(summ, open(os.path.join(OUT, 'summary.json'), 'w'), indent=1, ensure_ascii=False)
-    print(f'{len(ALL)} lands, {sum(1 for r in ALL if "o" in r)} in our decks, {len(counts)} categories')
+    print(f'{len(ALL)} lands, {sum(1 for r in ALL if "o" in r)} in our decks, {len(counts)} categories, {len(cyc)} cycles and single lands')
 
 if __name__ == '__main__':
     main()

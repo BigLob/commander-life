@@ -10,10 +10,21 @@ End every reply about anything in this repo with two icon-only links, on one lin
 [🃏](https://biglob.github.io/commander-life/) [🗂️](https://biglob.github.io/commander-life/links.html)
 
 🃏 is the Commander Life board. 🗂️ is `links.html`, a tappable list of every page, carousel, guide and
-claude.ai artifact we've made (the user dropped the per-page icons, sounds included, for this). When
-we build a new page or artifact, add a row to `links.html`, not an icon to the footer. The Xenagos
+claude.ai artifact we've made (the user dropped the per-page icons, sounds included, for this). The Xenagos
 editable artifact is https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private; listed in
 `links.html` under claude.ai artifacts, which only open for the account that made them).
+
+## Keep `links.html` current (always)
+
+`links.html` is the group's table of contents. Every time we build or gather something, update it in
+the same commit, without being asked:
+
+- a new page, carousel, guide or tool on the site: add a row in the right section;
+- a new claude.ai artifact (even a preview or a copy): add it under claude.ai artifacts;
+- new info gathered into a file (a price list, primer, deck list, research notes): add or update its row;
+- something renamed, moved or deleted: fix or remove its row; a changed count (say "All 13 decks"): update it.
+
+Never add icons to the reply footer for these; the footer stays 🃏 and 🗂️.
 
 ## Where things live
 
@@ -249,13 +260,13 @@ them and `.gitignore` now ignores PNGs at the root).
 - Live at https://biglob.github.io/commander-life/decks/ (`decks/index.html`), one page per deck (`decks/<slug>.html`): the 13 precons in the "Decks we own" table of `buying-guide.md`. Not a game page; nothing syncs.
 - Same carousel as Xenagos, minus Suggested (the user dropped it): Deck, Fav, Bench and Trash tabs, sort and filter, zoom, picks code. Marks are kept per deck in localStorage (`pc-<slug>-favs`, `pc-<slug>-marks`). The commander comes first, then the alternate commander (labelled), then spells by mana value, lands, basics.
 - Built by `python3 tools/carousel/make.py [slug ...]` from `tools/carousel/template.html` and `index-template.html`. Decklists come from MTGJSON's deck files (exact printings) or, for decks MTGJSON doesn't have yet (Star Trek), Wizards' decklist article. Card data, prices (the precon printing's, else the cheapest paper printing) and image links come from Scryfall; images load from Scryfall's CDN, so the pages are small but need a connection. Brand-new cards with no price yet show "no price". `decks/decks.json` holds each deck's summary for the index.
-- To add a deck, add a row to `DECKS` in `make.py` and run it for that slug.
+- To add a deck, add a row to `DECKS` in `make.py` and run it for that slug, then add the deck to `links.html` (and its count), and rerun `tools/carousel/lands.py` so the lands Ours tab and primer include it.
 - The claude.ai artifact copy of the Borg page is https://claude.ai/artifact/2iDTXny6HTaVnm5k5pwcZH (private). Artifacts can't load outside images, so `tools/carousel/embed.py <page> <out>` inlines them as WebP (about 6 MB) before publishing.
 
 ### `lands/`: nonbasic lands carousel and primer
 - Live at https://biglob.github.io/commander-life/lands/ (carousel) and `lands/primer.html` (the primer: an exec-summary brief on land cycles, most played, prices, how to build a mana base, and the cheapest untapped-dual fixes for each of our decks; written by hand, so update its numbers when decks are added). Not game pages; nothing syncs.
-- The carousel holds every Commander-legal nonbasic land (1,227 in Nov 2026, plus this year's unreleased ones such as the Star Trek planets), most played (EDHREC rank) first. Tabs All, Ours (lands in our precons, read from `decks/*.html`), Fav, Bench, Trash; filters for name, family, category, colors and price. Marks in localStorage (`pc-lands-favs`, `pc-lands-marks`).
-- Built by `python3 tools/carousel/lands.py` from `tools/carousel/lands-template.html` (a copy of the deck carousel with land filters). `cat()` puts each land in one of 40 categories by its type line and rules text (order matters); `FAMILIES` groups them. Price is the cheapest paper printing. It also writes `lands/summary.json` (per category: count, median price, most played) for the primer. Rerun it after adding a deck so the Ours tab picks it up.
+- The carousel holds every Commander-legal nonbasic land (1,227 in Nov 2026, plus this year's unreleased ones such as the Star Trek planets), grouped because the user found 1,227 cards too many: the Types tab shows one card per category (40, most played first) with its one-line description, price range and a chip per color combo it comes in (tap a chip to see that land). "See all" opens a category as one card per cycle (lands whose rules text matches once names, colors, basic types and creature types are blanked: `cycle()` in `lands.py`), each with a chip per land. Single-cycle categories (shocks, fetches) have no "See all". Ours (lands in our precons) and Fav tabs, and a name search, list single lands. Filters: name, colors, price; sorts: most played, land family, price, name. Favorites in localStorage (`pc-lands-favs`); no Bench or Trash.
+- Built by `python3 tools/carousel/lands.py` from `tools/carousel/lands-template.html` (a copy of the deck carousel with land filters). `cat()` puts each land in one of 40 categories by its type line and rules text (order matters); `FAMILIES` groups them and `DESC` holds each category's one-liner. `LANDS_CACHE=<file>` reuses the Scryfall download while working on the page. Price is the cheapest paper printing. It also writes `lands/summary.json` (per category: count, median price, most played) for the primer. Rerun it after adding a deck so the Ours tab picks it up.
 
 ### `links.html`: all our pages
 - Live at https://biglob.github.io/commander-life/links.html, the 🗂️ footer link. Hand-kept list in sections: Play, Card carousels (with every deck), Guides, Sounds, claude.ai artifacts.
@@ -287,6 +298,7 @@ The database rules only open `tables/` to the pages. v3.2 to v3.4 kept the log u
 the log failed with "Couldn't reach the shared log", so keep every new node under `tables/`.
 
 ## Code conventions (both pages)
+- Anything new we build or gather gets a row in `links.html` (see "Keep `links.html` current").
 - Single file, inline CSS and JS, and comments that explain why.
 - Every synced path must be in `allPaths()` and checked in `validValue()`.
 - A new synced field must tolerate older phones that don't send it (see the `conceded` and `meta`
