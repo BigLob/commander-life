@@ -48,6 +48,10 @@ Never send the group an artifact link to play on.
 
 ## Deploying
 
+**Always deploy, never ask.** Once a change is tested, commit it, push it to the session's branch
+and push the same commit to `main` (`git push origin HEAD:main`) in the same turn, without asking
+first. The user always wants changes live. This standing permission covers pushing to `main`.
+
 The site only changes when files land on `main` of `BigLob/commander-life`:
 
 1. Make and test the change (in `BigLob/Mtg` or directly here).
