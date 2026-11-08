@@ -134,6 +134,35 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .board.couch { grid-template: "cl cr" 1fr / 1fr 1fr; }
 .d-cl { grid-area: cl; }
 .d-cr { grid-area: cr; }
+/* Spotify remote (v1.31, menu → Spotify, this phone only): Side by side gives the top 20% of the
+   phone to a bar that controls whatever Spotify is playing; the two halves share the rest evenly. */
+.board.duel.sfy { grid-template: "sp sp" 1fr "tl tr" 2fr "bl br" 2fr / 1fr 1fr; }
+.sfy-bar {
+  grid-area: sp; position: relative; min-height: 0; overflow: hidden; border-radius: 18px;
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+  background: #121212; border: 1px solid var(--line); color: #fff; touch-action: manipulation;
+}
+/* The art gives up width first, so all five buttons fit on a narrow phone. */
+.sfy-art { flex: none; width: min(30%, 132px); height: auto; max-height: 100%; aspect-ratio: 1; border-radius: 8px; object-fit: cover; background: #282828; }
+.sfy-main { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; }
+.sfy-text { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.sfy-text b, .sfy-text span, .sfy-dev { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sfy-text b { font-size: 17px; }
+.sfy-text span { font-size: 14px; color: #b3b3b3; }
+.sfy-dev { align-self: flex-start; max-width: 100%; border: 0; padding: 2px 0; background: none; font-size: 13px; color: #1ed760; }
+.sfy-ctl { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.sfy-ctl button {
+  flex: none; width: 38px; height: 38px; padding: 8px; border: 0; border-radius: 50%;
+  display: grid; place-items: center; background: transparent; color: #fff;
+}
+.sfy-ctl button.sfy-play { width: 46px; height: 46px; padding: 11px; background: #1ed760; color: #000; }
+.sfy-ctl svg { width: 100%; height: 100%; fill: currentColor; pointer-events: none; }
+.sfy-empty { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
+.sfy-empty p { margin: 0; font-size: 15px; color: #b3b3b3; line-height: 1.3; }
+.sfy-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-height: 100%; overflow-y: auto; }
+.sfy-pill { border: 0; border-radius: 999px; padding: 9px 16px; background: #1ed760; color: #000; font-size: 15px; font-weight: 700; }
+.sfy-pill.alt { background: rgba(255, 255, 255, .12); color: #fff; }
+.sfy-pill.on { outline: 2px solid #1ed760; }
 
 .seat {
   position: relative; overflow: hidden; border-radius: 18px;
@@ -727,6 +756,16 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" data-v="couch">Couch</button>
       </div>
     </div>
+    <div class="field" id="sfyField">
+      <span>Spotify remote</span>
+      <div class="seg" id="segSpotify">
+        <button type="button" data-v="on">On</button>
+        <button type="button" data-v="off">Off</button>
+      </div>
+      <div class="who" id="sfyIdRow"><input id="sfyId" maxlength="64" autocomplete="off" spellcheck="false" aria-label="Spotify client ID" placeholder="Spotify client ID"></div>
+      <button type="button" class="action mini" id="sfyConnect">Connect Spotify</button>
+      <p class="speaker-note" id="sfyNote"></p>
+    </div>
     <div class="field">
       <span>Sound</span>
       <div class="seg" id="segSound">
@@ -792,7 +831,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.30';
+  const VERSION = '1.31';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1439,6 +1478,8 @@ details.field[open] > summary { margin-bottom: 10px; }
     const lay = layoutOf(n);
     board.className = couch ? 'board duel couch' : duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
+    // Side by side with the Spotify remote on: the bar takes the top row of the grid.
+    if ((duel || duel4) && sfy.on) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
     // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
@@ -1577,7 +1618,8 @@ details.field[open] > summary { margin-bottom: 10px; }
       Object.assign(mb.style, { left: hub.x + off - 23 + 'px', top: hub.y + off - 23 + 'px' });
       return;
     }
-    const s0 = board && board.matches('.n4.table:not(.quad):not(.spot)') && board.querySelector('.s0');
+    // Side by side with the Spotify bar, the halves meet below the middle: the buttons follow them.
+    const s0 = board && (board.matches('.n4.table:not(.quad):not(.spot)') ? board.querySelector('.s0') : board.matches('.duel.sfy') ? board.querySelector('.d-bl') : null);
     const y = s0 ? (s0.offsetParent === board ? board.offsetTop : 0) + s0.offsetTop - 3 : 0;
     btns.forEach(b => { b.style.top = s0 ? y + 'px' : ''; });
   }
@@ -1943,6 +1985,223 @@ details.field[open] > summary { margin-bottom: 10px; }
     btn.addEventListener('click', e => { if (e.detail === 0) changeLife(i, sign); }); // keyboard
   }
 
+  // ---- Spotify remote (v1.31) ----
+  // A bar across the top 20% of Side by side that controls whatever Spotify is playing on any of
+  // the account's devices (the soundbar, a phone's app): play/pause, skip, volume, and which device
+  // plays. It's Spotify's Web API, signed in with PKCE, so there's no server and no secret: it needs
+  // Spotify Premium and a Spotify developer app whose redirect URI is this page (SFY_REDIRECT), and
+  // each Spotify account that signs in must be added to that app's User Management. Everything is
+  // kept on this phone only (SFY_KEY), never synced.
+  const SPOTIFY_CLIENT_ID = '';
+  const SFY_KEY = 'cl-spotify';
+  const SFY_SCOPES = 'user-read-playback-state user-modify-playback-state user-read-currently-playing';
+  // Spotify matches the redirect URI exactly, so /index.html comes back as the folder.
+  const SFY_REDIRECT = location.origin + location.pathname.replace(/index\.html$/, '');
+  const SFY_API = 'https://api.spotify.com/v1';
+  let sfy = {};
+  try { sfy = JSON.parse(localStorage.getItem(SFY_KEY)) || {}; } catch (e) { sfy = {}; }
+  const sfySave = () => { try { localStorage.setItem(SFY_KEY, JSON.stringify(sfy)); } catch (e) {} };
+  const sfyId = () => SPOTIFY_CLIENT_ID || sfy.id || '';
+  let sfyNow = null;      // the last /me/player answer, {} when nothing is playing
+  let sfyMsg = '';        // a problem to show in the bar
+  let sfyDevices = null;  // the device list while the picker is open
+  let sfyTimer = null, sfyBusy = false;
+  const SFY_ICON = {
+    prev: '<svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>',
+    next: '<svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>',
+    play: '<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
+    down: '<svg viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM14 11h8v2h-8z"/></svg>',
+    up: '<svg viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM17 8h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/></svg>',
+  };
+  const b64url = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+  async function sfyLogin() {
+    if (!sfyId()) { openMenu(); return; }
+    const verifier = b64url(crypto.getRandomValues(new Uint8Array(48)));
+    const challenge = b64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
+    sfy.verifier = verifier;
+    sfy.st = b64url(crypto.getRandomValues(new Uint8Array(12)));
+    sfySave();
+    location.href = 'https://accounts.spotify.com/authorize?' + new URLSearchParams({
+      client_id: sfyId(), response_type: 'code', redirect_uri: SFY_REDIRECT,
+      code_challenge_method: 'S256', code_challenge: challenge, scope: SFY_SCOPES, state: sfy.st,
+    });
+  }
+  async function sfyTokenCall(params) {
+    const r = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ client_id: sfyId(), ...params }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw Object.assign(new Error(j.error_description || j.error || 'HTTP ' + r.status), { status: r.status });
+    // Refresh tokens rotate: keep the new one when Spotify sends one.
+    sfy.tok = { a: j.access_token, r: j.refresh_token || (sfy.tok && sfy.tok.r), exp: Date.now() + (j.expires_in - 60) * 1000 };
+    sfySave();
+  }
+  // Back from Spotify's sign-in page with ?code= (or ?error=): trade the code for tokens.
+  async function sfyReturn() {
+    const q = new URLSearchParams(location.search);
+    if (!sfy.st || q.get('state') !== sfy.st) return;
+    history.replaceState(null, '', SFY_REDIRECT + location.hash);
+    sfyMsg = 'Signing in to Spotify…'; sfyPaint();
+    const verifier = sfy.verifier;
+    delete sfy.st; delete sfy.verifier; sfySave();
+    if (q.get('error')) { sfyMsg = q.get('error') === 'access_denied' ? 'Spotify sign-in cancelled' : 'Spotify: ' + q.get('error'); return; }
+    try {
+      await sfyTokenCall({ grant_type: 'authorization_code', code: q.get('code'), redirect_uri: SFY_REDIRECT, code_verifier: verifier });
+      sfyMsg = '';
+    } catch (e) { sfyMsg = 'Spotify sign-in failed: ' + e.message; }
+  }
+  let sfyRefreshing = null;
+  async function sfyToken(force) {
+    if (!sfy.tok) return null;
+    if (!force && Date.now() < sfy.tok.exp) return sfy.tok.a;
+    if (!sfy.tok.r) { sfyOut('Spotify signed out, connect again'); return null; }
+    sfyRefreshing = sfyRefreshing || sfyTokenCall({ grant_type: 'refresh_token', refresh_token: sfy.tok.r })
+      // A rejected refresh token means signing in again; a dropped connection doesn't.
+      .catch(e => { if (e.status === 400 || e.status === 401) sfyOut('Spotify signed out, connect again'); else throw e; })
+      .finally(() => { sfyRefreshing = null; });
+    await sfyRefreshing;
+    return sfy.tok && sfy.tok.a;
+  }
+  function sfyOut(msg) { sfy.tok = null; sfyNow = null; sfyDevices = null; sfyMsg = msg || ''; sfySave(); }
+  async function sfyApi(method, path, body) {
+    const go = tok => fetch(SFY_API + path, {
+      method, body: body ? JSON.stringify(body) : undefined,
+      headers: { Authorization: 'Bearer ' + tok, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+    });
+    let t = await sfyToken();
+    if (!t) throw Object.assign(new Error('signed out'), { status: 401 });
+    let r = await go(t);
+    if (r.status === 401) {
+      t = await sfyToken(true);
+      if (!t) throw Object.assign(new Error('signed out'), { status: 401 });
+      r = await go(t);
+    }
+    const text = await r.text();
+    let j = null;
+    try { j = text ? JSON.parse(text) : null; } catch (e) {}
+    if (!r.ok) {
+      const er = (j && j.error) || {};
+      throw Object.assign(new Error(er.message || 'HTTP ' + r.status), { status: r.status, reason: er.reason });
+    }
+    return j;
+  }
+  function sfyError(e) {
+    if (!e.status) return "Can't reach Spotify";
+    if (e.status === 401) return sfyMsg || 'Spotify signed out, connect again';
+    if (e.reason === 'PREMIUM_REQUIRED' || /premium/i.test(e.message)) return 'Controlling Spotify needs Premium';
+    if (e.status === 403 && /regist|developer|user/i.test(e.message)) return "This Spotify account isn't added to the app's User Management";
+    if (e.status === 404 || e.reason === 'NO_ACTIVE_DEVICE') return 'Nothing playing: pick a device';
+    if (e.status === 429) return 'Spotify says slow down, try again in a moment';
+    return 'Spotify: ' + e.message;
+  }
+
+  async function sfyPoll() {
+    sfyTimer = null;
+    if (!sfy.tok || !app.querySelector('.sfy-bar') || document.visibilityState !== 'visible' || sfyBusy) return;
+    sfyBusy = true;
+    try { sfyNow = (await sfyApi('GET', '/me/player')) || {}; sfyMsg = ''; }
+    catch (e) { sfyMsg = sfyError(e); }
+    sfyBusy = false;
+    sfyPaint();
+    if (sfy.tok) sfyKick(5000);
+  }
+  function sfyKick(ms) { clearTimeout(sfyTimer); sfyTimer = setTimeout(sfyPoll, ms); }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') sfyKick(0); });
+
+  async function sfyDo(a) {
+    const dev = (sfyNow && sfyNow.device) || {};
+    try {
+      if (a === 'login') return sfyLogin();
+      if (a === 'devices') {
+        sfyDevices = ((await sfyApi('GET', '/me/player/devices')) || {}).devices || [];
+        sfyMsg = '';
+      } else if (a === 'close') sfyDevices = null;
+      else if (a.startsWith('to:')) {
+        sfyDevices = null; sfyPaint();
+        await sfyApi('PUT', '/me/player', { device_ids: [a.slice(3)], play: true });
+      } else if (a === 'toggle') {
+        const playing = sfyNow && sfyNow.is_playing;
+        if (sfyNow) { sfyNow.is_playing = !playing; sfyPaint(); }
+        await sfyApi('PUT', playing ? '/me/player/pause' : '/me/player/play');
+      } else if (a === 'next' || a === 'prev') {
+        await sfyApi('POST', a === 'next' ? '/me/player/next' : '/me/player/previous');
+      } else if (a === 'up' || a === 'down') {
+        const v = Math.max(0, Math.min(100, (dev.volume_percent || 0) + (a === 'up' ? 10 : -10)));
+        dev.volume_percent = v; sfyPaint();
+        await sfyApi('PUT', '/me/player/volume?volume_percent=' + v);
+      }
+      if (!a.startsWith('to:') && a !== 'devices') sfyMsg = '';
+    } catch (e) {
+      sfyMsg = sfyError(e);
+      if (e.status === 404 && a !== 'devices') return sfyDo('devices');
+    }
+    sfyPaint();
+    if (!['devices', 'close'].includes(a)) sfyKick(700);
+  }
+
+  // The bar itself; build() makes a new one each time and sfyPaint() fills it from the last answer.
+  function sfyBar() {
+    const bar = document.createElement('div');
+    bar.className = 'sfy-bar';
+    bar.addEventListener('click', e => { const b = e.target.closest('[data-a]'); if (b) { buzz(); sfyDo(b.dataset.a); } });
+    setTimeout(() => { sfyPaint(); if (!sfyTimer && !sfyBusy) sfyKick(0); });
+    return bar;
+  }
+  function sfyPaint() {
+    const bar = app.querySelector('.sfy-bar');
+    if (!bar) return;
+    const btn = (a, icon, label, cls) => `<button type="button" class="${cls || ''}" data-a="${a}" aria-label="${label}">${SFY_ICON[icon]}</button>`;
+    const empty = (msg, buttons) => `<div class="sfy-empty"><p>${esc(msg)}</p>${buttons}</div>`;
+    let html;
+    if (!sfy.tok) html = empty(sfyMsg || 'Control Spotify from here', '<button type="button" class="sfy-pill" data-a="login">Connect Spotify</button>');
+    else if (sfyDevices) {
+      html = empty(sfyMsg || (sfyDevices.length ? 'Play on' : 'No Spotify devices on. Open Spotify on a phone or the soundbar.'),
+        `<div class="sfy-list">${sfyDevices.map(d => `<button type="button" class="sfy-pill alt${d.is_active ? ' on' : ''}" data-a="to:${esc(d.id)}">${esc(d.name)}</button>`).join('')}` +
+        `<button type="button" class="sfy-pill alt" data-a="devices">Refresh</button><button type="button" class="sfy-pill alt" data-a="close">Close</button></div>`);
+    } else if (!sfyNow) html = empty(sfyMsg || 'Loading Spotify…', '');
+    else if (!sfyNow.item && !sfyNow.device) html = empty(sfyMsg || 'Nothing playing', '<button type="button" class="sfy-pill" data-a="devices">Pick a device</button>');
+    else {
+      const it = sfyNow.item || {}, dev = sfyNow.device || {};
+      const imgs = (it.album && it.album.images) || it.images || [];
+      const art = (imgs[1] || imgs[0] || {}).url;
+      const sub = it.artists ? it.artists.map(x => x.name).join(', ') : it.show ? it.show.name : '';
+      const vol = dev.supports_volume !== false && dev.volume_percent != null;
+      html = (art ? `<img class="sfy-art" src="${esc(art)}" alt="">` : '') +
+        `<div class="sfy-main"><div class="sfy-text"><b>${esc(it.name || 'Nothing playing')}</b><span>${esc(sfyMsg || sub)}</span>` +
+        `<button type="button" class="sfy-dev" data-a="devices">${esc(dev.name ? 'On ' + dev.name + (vol ? ' · ' + dev.volume_percent + '%' : '') : 'Pick a device')} ▾</button></div>` +
+        `<div class="sfy-ctl">${btn('prev', 'prev', 'Previous')}${btn('toggle', sfyNow.is_playing ? 'pause' : 'play', sfyNow.is_playing ? 'Pause' : 'Play', 'sfy-play')}${btn('next', 'next', 'Next')}` +
+        (vol ? btn('down', 'down', 'Volume down') + btn('up', 'up', 'Volume up') : '') + '</div></div>';
+    }
+    // Only touch the bar when something changed, so the album art doesn't flicker on every poll.
+    if (bar.dataset.html !== html) { bar.innerHTML = html; bar.dataset.html = html; }
+  }
+
+  // The menu's Spotify remote field: shown wherever Side by side is the 1v1 layout in use.
+  const sfyIdInput = document.getElementById('sfyId');
+  function syncSfy() {
+    document.getElementById('sfyField').hidden = document.getElementById('layoutField').hidden || state.layout2 !== 'split';
+    document.querySelectorAll('#segSpotify button').forEach(b => b.classList.toggle('on', (b.dataset.v === 'on') === !!sfy.on));
+    document.getElementById('sfyIdRow').hidden = !sfy.on || !!SPOTIFY_CLIENT_ID || !!sfy.tok;
+    if (document.activeElement !== sfyIdInput) sfyIdInput.value = sfy.id || '';
+    const connect = document.getElementById('sfyConnect');
+    connect.hidden = !sfy.on;
+    connect.textContent = sfy.tok ? 'Disconnect Spotify' : 'Connect Spotify';
+    document.getElementById('sfyNote').textContent = !sfy.on ? 'A bar across the top of Side by side to play, pause, skip and change the volume of whatever Spotify is playing. Needs Spotify Premium.'
+      : sfy.tok ? 'Connected. Controls whatever this Spotify account is playing, on any device.'
+      : !sfyId() ? 'Paste the Client ID of your Spotify developer app (its redirect URI must be ' + SFY_REDIRECT + ').'
+      : sfyMsg || 'Sign in with the Spotify account that plays the music.';
+  }
+  document.querySelectorAll('#segSpotify button').forEach(b => b.addEventListener('click', () => {
+    sfy.on = b.dataset.v === 'on'; sfySave(); build(); syncMenu();
+  }));
+  sfyIdInput.addEventListener('input', () => { sfy.id = sfyIdInput.value.trim(); sfySave(); syncSfy(); });
+  document.getElementById('sfyConnect').addEventListener('click', () => {
+    if (sfy.tok) { sfyOut(); sfyPaint(); syncSfy(); } else sfyLogin();
+  });
+
   // ---- menu ----
   const menu = document.getElementById('menu');
   const newGameBtn = document.getElementById('newGame');
@@ -1963,6 +2222,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     // Three or four seats on the board: 3 or 4 players, or a Center phone in the two 1v1s.
     document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || state.mode === ARCH || (state.mode === SPLIT && center));
     document.querySelector('#segLayout4 [data-v="spot"]').hidden = center || state.mode === SPLIT;
+    syncSfy();
     document.querySelector('#segLayout4 [data-v="quad"]').hidden = state.mode === 3;
     document.querySelector('#segLayout4 [data-v="hub"]').hidden = state.mode === 3;
     // In Archenemy the archenemy always goes first, and the life totals are set by the rules.
@@ -2913,6 +3173,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   build();
   speakerWake();
   checkIn();
+  sfyReturn().then(() => { sfyPaint(); syncSfy(); sfyKick(0); });
 })();
 </script>
 </body>
