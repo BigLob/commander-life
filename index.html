@@ -561,10 +561,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 .who-row > span { font-size: 17px; font-weight: 600; }
 .name-note { margin: 2px 0 0; font-size: 15px; color: var(--hot); }
 .speaker-note { margin: 4px 0 0; font-size: 14px; line-height: 1.35; opacity: .8; }
-/* The speaker phone after a reload: the phone won't play sound until it's touched once (v1.20). */
-.speaker-wake { position: fixed; left: 50%; top: 12px; transform: translateX(-50%); z-index: 60;
-  max-width: calc(100% - 32px); padding: 10px 16px; border-radius: 12px; background: #e8b44a; color: #1d1b17;
-  font-size: 16px; font-weight: 600; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.5); pointer-events: none; }
 .pick {
   flex: none; width: 40px; height: 40px; padding: 0; border-radius: 50%;
   border: 2px solid var(--line); background: transparent;
@@ -837,7 +833,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.32';
+  const VERSION = '1.33';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1269,7 +1265,10 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       if (!primed) prime();
     } catch (e) { audio = null; }
   }
-  document.addEventListener('pointerdown', unlock, true);
+  // Sound is on from the start (v1.33): any first touch or key turns it on, with no banner asking
+  // for one (v1.20's "tap anywhere" note is gone), and where the browser lets a page play without
+  // a touch, it's on at load.
+  ['pointerdown', 'touchend', 'click', 'keydown'].forEach(t => document.addEventListener(t, unlock, true));
   // One note: a pitch (Hz, gliding to `to`), when (s from now), how long (s), how loud, and its wave.
   function note(f, at, len, vol, wave = 'sine', to = f) {
     const t = audio.currentTime + at, o = audio.createOscillator(), g = audio.createGain();
@@ -3056,7 +3055,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       }
     }
     // The speaker setting changes only the menu and the wake-up note, never the board.
-    if (changed.some(x => x.p.startsWith('speaker/'))) { syncSpeaker(); speakerWake(); }
+    if (changed.some(x => x.p.startsWith('speaker/'))) syncSpeaker();
     changed.splice(0, changed.length, ...changed.filter(x => !x.p.startsWith('speaker/')));
     if (!changed.length) { save(); return; }
     save();
@@ -3106,13 +3105,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     send({ 'speaker/at': state.speaker.at });
   }
   setInterval(checkIn, 30e3);
-  document.addEventListener('visibilitychange', () => { checkIn(); speakerWake(); });
+  document.addEventListener('visibilitychange', () => { checkIn(); unlock(); });
   function setSpeaker(here) {
     state.speaker = here ? { id: state.phone, me: state.me, at: Date.now() } : { id: null, me: null, at: null };
     send({ 'speaker/id': state.speaker.id, 'speaker/me': state.speaker.me, 'speaker/at': state.speaker.at });
     save(); syncSpeaker();
     if (here) { unlock(); wake(); turnSound(true); }
-    speakerWake();
   }
   function syncSpeaker() {
     const here = amSpeaker(), other = !!state.speaker.id && !here;
@@ -3129,14 +3127,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
   document.querySelectorAll('#segSpeaker button').forEach(b => b.addEventListener('click', () => setSpeaker(b.dataset.v === 'here')));
   // After a reload the speaker phone can't make sound until someone touches it, so it says so.
-  const wakeNote = document.createElement('div');
-  wakeNote.className = 'speaker-wake'; wakeNote.hidden = true;
-  wakeNote.textContent = 'Speaker phone: tap anywhere to turn its sound on';
-  document.body.appendChild(wakeNote);
-  function speakerWake() {
-    wakeNote.hidden = !(amSpeaker() && state.sound !== 'off' && (!audio || audio.state !== 'running'));
-  }
-  document.addEventListener('pointerdown', () => setTimeout(speakerWake, 300), true);
 
   // The footer shows the typical round trip of this phone's writes (v1.21), to see how fast each
   // device really syncs.
@@ -3181,9 +3171,10 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
 
   build();
-  speakerWake();
   checkIn();
   sfyReturn().then(() => { sfyPaint(); syncSfy(); sfyKick(0); });
+  // Sound on at load where the browser allows it (otherwise the first touch does it).
+  unlock();
 })();
 </script>
 </body>
