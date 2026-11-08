@@ -150,7 +150,6 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .board.spot.n3.sfy { grid-template-areas: "sp sp" "a b" "main main"; }
 .board.n2.table.sfy { grid-template-areas: "top" "sp" "bottom"; grid-template-rows: 2fr 1fr 2fr; }
 .board.n3.table.sfy:not(.spot) { grid-template-areas: "left right" "sp sp" "bottom bottom"; grid-template-rows: 2fr 1fr 2fr; }
-.board.n4.table.sfy:not(.spot):not(.quad) { grid-template-areas: "top top top" "left sp right" "bottom bottom bottom"; grid-template-rows: 1.2fr 1.6fr 1.2fr; grid-template-columns: 1fr 1fr 1fr; }
 .board.n4.quad.sfy { grid-template-areas: "left top" "sp sp" "bottom right"; grid-template-rows: 2fr 1fr 2fr; grid-template-columns: 1fr 1fr; }
 .couch.sfy ~ .turn-big { top: 79%; }
 .sfy-bar {
@@ -165,12 +164,18 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .table:not(.spot) > .sfy-bar .sfy-hole { display: block; }
 .table:not(.spot) > .sfy-bar .sfy-text { padding-bottom: 50px; }
 .table:not(.spot) > .sfy-bar .sfy-ctl { padding-right: 0; justify-content: center; }
-/* In the middle, tall (Table and Big button at 4, between the side seats): stacked, menu bottom-right. */
-.n4.table:not(.spot):not(.quad) > .sfy-bar { padding: 10px 8px; }
-.n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-in { grid-template: "txt" auto "hole" minmax(64px, 1fr) "ctl" auto / 1fr; padding-bottom: 48px; }
-.n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-text { padding-bottom: 0; text-align: center; }
-/* No song or artist in the column (v1.36, the user's pick): just play/pause and next. */
-.n4.table:not(.spot):not(.quad) > .sfy-bar .sfy-text.song { display: none; }
+/* 4-player Table and Big button (v1.37, the user's pick from two mockups): no bar. The board is Big
+   button (huge turn button where the side seats meet), play/pause and next sit in a dock at the
+   bottom of the bottom seat (this phone's player, or Rand on a Center phone), and the menu button
+   at the top middle of that seat. */
+.sfy-dock {
+  position: absolute; z-index: 6; left: 50%; bottom: 12px; translate: -50% 0; max-width: 92%;
+  padding: 6px 14px; border-radius: 30px; background: rgba(0, 0, 0, .55); color: #fff; touch-action: manipulation;
+}
+.sfy-dock .sfy-in { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.sfy-dock .sfy-hole, .sfy-dock .sfy-text.song { display: none; }
+.sfy-dock .sfy-text p { font-size: 13px; text-align: center; }
+.sfy-dock .sfy-ctl { padding: 0; justify-content: center; max-height: 120px; }
 .sfy-text { grid-area: txt; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .sfy-text b { font-size: 17px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .sfy-text span { font-size: 14px; color: #b3b3b3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -187,7 +192,6 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .sfy-pill.on { outline: 2px solid #1ed760; }
 #app .sfy-bar .menu-btn { top: auto; left: auto; right: 8px; bottom: 8px; width: 42px; height: 42px; margin: 0; transform: none; }
 #app .table:not(.spot) > .sfy-bar .menu-btn { right: auto; left: 8px; }
-#app .n4.table:not(.spot):not(.quad) > .sfy-bar .menu-btn { left: auto; right: 6px; bottom: 6px; }
 #app .sfy-bar .menu-btn img { height: 25px; }
 /* Spotify's green, so the way in is easy to spot. */
 #sfyConnect { align-self: center; padding: 8px 22px; border-radius: 999px; font-size: 16px; background: #1ed760; color: #000; }
@@ -843,7 +847,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.36';
+  const VERSION = '1.37';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1490,13 +1494,16 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       app.appendChild(mini);
     }
     const board = document.createElement('div');
-    const lay = layoutOf(n);
+    // 4-player Table with Spotify on is drawn as Big button, with the dock in the bottom seat (v1.37).
+    const dock = sfy.on && n === 4 && ['table', 'hub'].includes(layoutOf(n));
+    const lay = dock ? 'hub' : layoutOf(n);
     // Side by side with the Spotify bar keeps only the upright half (v1.36).
     const half = duel && sfy.on;
     board.className = couch ? 'board duel couch' : half ? 'board duel half' : duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
     // The Spotify remote, in every layout (v1.35): the grid gives it the top or the middle (see the styles).
-    if (sfy.on) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
+    if (sfy.on && !dock) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
+    if (dock) board.classList.add('sfyp');
     // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
@@ -1507,6 +1514,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
+    if (dock) { const bar = sfyBar(); bar.className = 'sfy-dock'; board.querySelector('.seat.s0').appendChild(bar); }
     app.appendChild(board);
     const mb = document.createElement('button');
     mb.type = 'button';
@@ -1515,7 +1523,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     mb.innerHTML = ICON_MENU;
     mb.addEventListener('click', openMenu);
     // With the Spotify bar, the menu button sits in one of its corners.
-    (board.querySelector('.sfy-bar') || app).appendChild(mb);
+    (board.querySelector(':scope > .sfy-bar') || app).appendChild(mb);
     const tb = document.createElement('button');
     tb.type = 'button';
     tb.className = 'turn-big';
@@ -1634,6 +1642,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn'), off = .72 * hub.r;
       Object.assign(tb.style, { left: hub.x + 'px', top: hub.y + 'px', width: 2 * hub.r + 'px', height: 2 * hub.r + 'px' });
       Object.assign(mb.style, { left: hub.x + off - 23 + 'px', top: hub.y + off - 23 + 'px' });
+      // With the Spotify dock, the menu button sits at the top middle of the bottom seat instead.
+      const s0 = app.querySelector('.board.sfyp .s0');
+      if (s0) Object.assign(mb.style, { left: hub.x - 23 + 'px', top: s0.offsetTop + 10 + 'px' });
       return;
     }
     // Spotify bar in the middle: the turn button sits in its hole, as big as fits (up to 96px).
@@ -1656,6 +1667,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // measured in the face's own unturned layout, so a turned seat centers the same way. This replaces
   // the readout's lift from the styles. "Solo" has no turn symbol, so its space ends as far from
   // the bottom as the name starts from the top.
+  const DOCK_H = 78; // the Spotify dock and its gap, kept clear of the bottom seat's total
   function centerLife() {
     seats.flat().forEach(seat => {
       const face = seat.querySelector('.face'), readout = seat.querySelector('.readout');
@@ -1665,7 +1677,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       // Padding, not top and bottom: the name is positioned inside the readout, and padding leaves
       // it where it is.
       readout.style.paddingTop = top + 'px';
-      readout.style.paddingBottom = Math.max(0, face.offsetHeight - bottom) + 'px';
+      readout.style.paddingBottom = Math.max(0, face.offsetHeight - bottom) + (seat.querySelector('.sfy-dock') ? DOCK_H : 0) + 'px';
     });
     hubLife();
   }
@@ -1681,6 +1693,11 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       // Big button side seats also cap it to the room the button leaves them (three digits at
       // 0.75 size are about 1.32em wide).
       const caps = group.map(hubFree).filter(Boolean).map(f => Math.min(f.w / 1.32, f.h));
+      // The seat with the Spotify dock gives its bottom to the dock.
+      group.filter(seat => seat.querySelector('.sfy-dock')).forEach(seat => {
+        const name = seat.querySelector('.name');
+        caps.push(.8 * (seat.querySelector('.face').offsetHeight - name.offsetTop - name.offsetHeight - DOCK_H));
+      });
       const px = Math.min(1.1 * Math.min(...group.map(seat => parseFloat(getComputedStyle(seat.querySelector('.life')).fontSize))), ...caps);
       group.forEach(seat => seat.style.setProperty('--life', px + 'px'));
     });
@@ -2108,7 +2125,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 
   async function sfyPoll() {
     sfyTimer = null;
-    if (!sfy.tok || !app.querySelector('.sfy-bar') || document.visibilityState !== 'visible' || sfyBusy) return;
+    if (!sfy.tok || !app.querySelector('.sfy-bar, .sfy-dock') || document.visibilityState !== 'visible' || sfyBusy) return;
     sfyBusy = true;
     try { sfyNow = (await sfyApi('GET', '/me/player')) || {}; sfyMsg = ''; }
     catch (e) { sfyMsg = sfyError(e); }
@@ -2155,7 +2172,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     return bar;
   }
   function sfyPaint() {
-    const inner = app.querySelector('.sfy-bar .sfy-in');
+    const inner = app.querySelector('.sfy-bar .sfy-in, .sfy-dock .sfy-in');
     if (!inner) return;
     const btn = (a, icon, label, cls) => `<button type="button" class="sfy-b ${cls || ''}" data-a="${a}" aria-label="${label}">${SFY_ICON[icon]}</button>`;
     // Every state fills the same three cells: the words, the turn button's hole, the buttons.
@@ -2190,7 +2207,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const connect = document.getElementById('sfyConnect');
     connect.hidden = !sfy.on;
     connect.textContent = sfy.tok ? 'Disconnect Spotify' : 'Connect Spotify';
-    document.getElementById('sfyNote').textContent = !sfy.on ? 'A bar to play, pause and skip whatever Spotify is playing: across the top, or in the middle where the seats sit round the edges. Needs Spotify Premium.'
+    document.getElementById('sfyNote').textContent = !sfy.on ? 'Play, pause and skip whatever Spotify is playing: a bar across the top or the middle, or at the bottom of your seat at 4 players. Needs Spotify Premium.'
       : sfy.tok ? 'Connected. Controls whatever this Spotify account is playing, on any device.'
       : !sfyId() ? 'Paste the Client ID of your Spotify developer app (its redirect URI must be ' + SFY_REDIRECT + ').'
       : sfyMsg || 'Sign in with the Spotify account that plays the music.';
