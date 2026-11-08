@@ -129,6 +129,11 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .d-bl { grid-area: bl; }
 .d-br { grid-area: br; }
 .d-tl .face, .d-tr .face { --rot: 180deg; }
+/* Couch (v1.28): the phone faces two people sitting side by side, so it's one seat each, upright,
+   Rand on the left and Lenn on the right. */
+.board.couch { grid-template: "cl cr" 1fr / 1fr 1fr; }
+.d-cl { grid-area: cl; }
+.d-cr { grid-area: cr; }
 
 .seat {
   position: relative; overflow: hidden; border-radius: 18px;
@@ -466,6 +471,8 @@ details.field[open] > summary { margin-bottom: 10px; }
 /* Beside the turn button (v1.3; before, the menu button had the middle to itself). */
 .table + .menu-btn, .duel + .menu-btn { top: 50%; left: calc(50% + 58px); transform: translateY(-50%); width: 46px; height: 46px; }
 .table + .menu-btn img, .duel + .menu-btn img { height: 27px; }
+/* Couch: the totals fill the middle, so both buttons sit lower, clear of them and of the corner icons. */
+.couch ~ .turn-big, .couch + .menu-btn { top: 74%; }
 .n1 + .menu-btn { top: 16px; right: max(16px, calc(env(safe-area-inset-right, 0px) + 10px)); width: 46px; height: 46px; background: rgba(0, 0, 0, .3); }
 
 /* Menu */
@@ -717,6 +724,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       <div class="seg" id="segLayout">
         <button type="button" data-v="split">Side by side</button>
         <button type="button" data-v="classic">Classic</button>
+        <button type="button" data-v="couch">Couch</button>
       </div>
     </div>
     <div class="field">
@@ -784,7 +792,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.27';
+  const VERSION = '1.28';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1076,7 +1084,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   if (![0, 1, 2, 3, CENTER].includes(state.me)) state.me = 0;
   delete state.flip; // left over from v1.9
   // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
-  if (!['split', 'classic'].includes(state.layout2)) state.layout2 = 'split';
+  if (!['split', 'classic', 'couch'].includes(state.layout2)) state.layout2 = 'split';
   // How a three- or four-seat board is laid out on this phone: 'spot' (the turn's player big, the
   // default), 'table' (around the edges), 'quad' (a quarter each, four seats only) or 'hub' (around
   // the edges with a huge turn button in the middle, four seats only). Kept on this phone only. See
@@ -1415,6 +1423,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   function build() {
     players = viewPlayers();
     const n = players.length;
+    // Couch: one upright seat each, Rand (edge 0) on the left. Not in the two 1v1s, which keep Classic.
+    const couch = n === 2 && state.layout2 === 'couch' && state.mode !== SPLIT;
     const duel = n === 2 && state.layout2 === 'split';
     const duel4 = sideBySide4();
     app.innerHTML = '';
@@ -1427,7 +1437,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     }
     const board = document.createElement('div');
     const lay = layoutOf(n);
-    board.className = duel || duel4 ? 'board duel'
+    board.className = couch ? 'board duel couch' : duel || duel4 ? 'board duel'
       : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
     // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
@@ -1435,7 +1445,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
-      seats[i] = (duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, duel4 ? i === mySeat() : duel && !k));
+      seats[i] = (couch ? [edgeOf(i) === 0 ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, couch || (duel4 ? i === mySeat() : duel && !k)));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
