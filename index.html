@@ -391,6 +391,8 @@ details.field > summary::after { content: "+"; font-size: 20px; letter-spacing: 
 details.field[open] > summary::after { content: "\2212"; }
 /* Spaced by margins: Safari lays out <details> as a block whatever its display says. */
 details.field[open] > summary { margin-bottom: 10px; }
+/* The folded field's current setting, next to its label (Sound, Speaker). */
+details.field > summary .sum-v { flex: 1; margin-left: .7em; color: var(--ink); letter-spacing: .06em; }
 /* Commander damage: the shield opens the attackers above it; while one is marked, only their chip shows. */
 .cmd-btn {
   position: relative; display: grid; place-items: center;
@@ -700,16 +702,16 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     <div class="field">
       <span>Players</span>
       <div class="seg" id="segMode">
-        <button type="button" id="mode1" data-v="1">Solo</button>
+        <button type="button" id="mode1" data-v="1">1</button>
         <button type="button" id="mode2" data-v="2">2</button>
         <button type="button" id="mode3" data-v="3">3</button>
         <button type="button" id="mode4" data-v="4">4</button>
         <button type="button" id="mode5" data-v="5">1v1 ×2</button>
-        <button type="button" id="mode6" data-v="6">Archenemy</button>
+        <button type="button" id="mode6" data-v="6" aria-label="Archenemy">AE</button>
       </div>
     </div>
     <div class="field" id="aeField">
-      <span>Archenemy</span>
+      <span>AE</span>
       <div class="seg" id="segAe">
         <button type="button" data-v="0"></button>
         <button type="button" data-v="1"></button>
@@ -769,22 +771,23 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       <button type="button" class="action" id="sfyConnect">Connect Spotify</button>
       <p class="speaker-note" id="sfyNote"></p>
     </div>
-    <div class="field">
-      <span>Sound</span>
+    <!-- Sound and Speaker fold away (v1.32): set once, rarely touched. The summary shows the setting. -->
+    <details class="field" id="soundField">
+      <summary>Sound<span class="sum-v" id="soundNow"></span></summary>
       <div class="seg" id="segSound">
         <button type="button" data-v="all">All</button>
         <button type="button" data-v="turn">Turn only</button>
         <button type="button" data-v="off">Off</button>
       </div>
-    </div>
-    <div class="field">
-      <span>Speaker</span>
+    </details>
+    <details class="field" id="speakerField">
+      <summary>Speaker<span class="sum-v" id="speakerNow"></span></summary>
       <div class="seg" id="segSpeaker">
         <button type="button" data-v="each">Each phone</button>
         <button type="button" data-v="here">This phone</button>
       </div>
       <p class="speaker-note" id="speakerNote"></p>
-    </div>
+    </details>
     <details class="field" id="meField" open>
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
@@ -834,7 +837,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.31';
+  const VERSION = '1.32';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1137,6 +1140,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   if (state.sound === true) state.sound = 'all';
   if (state.sound === false) state.sound = 'off';
   if (!['all', 'turn', 'off'].includes(state.sound)) state.sound = 'all';
+  // v1.32 puts every phone back on All once (the user's pick), whatever it was set to before.
+  if (!state.sound132) { state.sound = 'all'; state.sound132 = true; }
   // This phone's own id (v1.20), random and kept on this phone only, so the table can tell the
   // speaker phone apart from the rest even when two phones are both Center.
   if (typeof state.phone !== 'string' || !/^[a-z0-9]{6,16}$/.test(state.phone)) state.phone = Math.random().toString(36).slice(2, 12).padEnd(8, '0');
@@ -2216,6 +2221,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
     document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
     document.querySelectorAll('#segSound button').forEach(b => b.classList.toggle('on', b.dataset.v === state.sound));
+    document.getElementById('soundNow').textContent = { all: 'All', turn: 'Turn only', off: 'Off' }[state.sound];
     syncSpeaker();
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
     const center = state.mode !== 1 && state.me === CENTER;
@@ -3112,6 +3118,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const here = amSpeaker(), other = !!state.speaker.id && !here;
     document.querySelectorAll('#segSpeaker button').forEach(b =>
       b.classList.toggle('on', b.dataset.v === (here ? 'here' : other ? '' : 'each')));
+    document.getElementById('speakerNow').textContent = here ? 'This phone' : other && speakerFresh() ? 'Another phone' : 'Each phone';
     const e = state.speaker.me;
     const who = e === CENTER ? 'The Center phone' : e != null ? (state.names[e].trim() || DEFAULT_NAMES[e]) + "'s phone" : 'Another phone';
     document.getElementById('speakerNote').textContent =
