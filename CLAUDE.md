@@ -57,7 +57,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.24; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.25; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.25: **Archenemy in Commander Life** (menu → Players → Archenemy, `ARCH = 6`, its own game key `6`, so it never touches a 4-player game). One archenemy at 40 (`AE_LIFE`) against three heroes at 20 (`HERO_LIFE`), whatever Starting life says (`startOf(k, j)`; the Starting life field and Pick who goes first are hidden, the archenemy goes first). Seat j is edge j. Menu → **Archenemy** picks who (`state.ae`, synced as `ae`, Rand by default; changing it starts the game over, logged first, two taps once begun, like Sitting out). The archenemy's name is gold with a crown (`.seat.arch`). Heroes' daggers offer only the archenemy (`oppsOf()` keeps each chip's cmd slot); the archenemy's offers all three. The game ends when the archenemy is out (the heroes win together, all three get the gold frame and confetti, even ones already out) or every hero is (`winners(k)`, which `finished()`, the party and `record()` use). Results log `mode: 'archenemy'`, `schemes`, and `ae` per seat, and show "The heroes beat Rand" or "Rand, the archenemy, won". Menu → **Schemes** (synced as `schemes`): **App's deck** (`'app'`) or **Our cards** (`'cards'`, the group's physical scheme cards: no scheme button, the app only keeps totals). With App's deck the archenemy's seat has a scheme button in its bottom-left corner (`.sch-btn`, naming the scheme in motion, gold while one is; icon only in the spotlight's small seats) that opens the scheme sheet (`#schemeSheet`) on any phone: the deck builder (deal 20 at random from the sets picked, a Duskmourn Commander deck's ten, or tick by hand; 10 minimum; picks kept on this phone in `state.pick`), then Set in motion, Done (to the bottom) or Keep it in play (ongoing), Abandon, Undo (this phone's own moves), New scheme deck (two taps mid-game) and History. The deck is synced whole as `scheme` (`normScheme()`; Firebase turns arrays into objects and drops empty ones), skipped by `adopt()` while this phone's own write is in flight (`held('scheme')`). A scheme set in motion pops up on every phone (`schemeArrived()`), not on a reload. New game shuffles every scheme back into the deck (`reshuffled()`). The schemes (`SETS`, `PRESETS`, `CARDS`: 102 with full text) come from `archenemy.html`, which stays live as the old page. Older phones reject mode 6 and keep their own mode.
 - v1.24: **winner celebration.** When a game is down to one player, every phone (not just the one that made the last change) shows it: a gold flash from the winner's seat, confetti bursts from it then a shower from the top (one canvas, `.confetti`, removed when the last piece falls), a crowned shining "Winner" banner (`.win-badge`) and a pulsing gold frame for 10 s (`.cheer`, `CHEER_MS`), and a long vibration. After that the winner keeps a gold frame and a gold total (`.won`) until New game. `watchWins()` (run from `update()`) watches `finished(k)` per game: a game already won when the phone first sees it (a reload) gets the frame but no party, and a mistap that brings someone back ends it. Reduced motion: flash and banner only, no confetti.
 - v1.23: **Big button without the empty middle** (the user disliked the black void). The side seats run up to the middle again (Table's grid, rows `1fr 1.4fr 1fr`), so it's all tap area, and the button sits over where they meet: radius `min(21% of the screen's short side, 40% of the middle row)` (`hubGeom()`, about 344 px across on an iPad), the menu button on its lower-right rim (above it, `z-index: 11`). `hubFree()` gives each side seat the room the button leaves it: on a player's phone its inner side is cut off (readout padding), on a Center phone its top (which faces the middle), with the name moved to the bottom by the player's own edge. `hubLife()` (run from `centerLife()`) sets that padding and `fitLife()` caps every total to fit it. The `.hub-spot` cell is gone.
 - v1.22: **Big button layout** (menu → Layout, 4 players, made for an iPad on the table). Table's seats on the edges, with a middle cell of their own (`.hub-spot`, grid area `hub`: 40vmin wide, rows `1fr minmax(40vmin, 1.4fr) 1fr`) so the turn button can be huge without covering the side seats' totals. `placeTurn()` sizes the turn button to 86% of that cell (about 280 px on an iPad) and puts the menu button in its bottom-right corner. Works on a Center phone and a player's phone; at 3 players it falls back like Quadrants. `layout4` value `'hub'`.
@@ -274,8 +275,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 | Path | Used by |
 | --- | --- |
-| `tables/t7q2xm4k` | Commander Life live table |
-| `tables/t7q2xm4k-ae` | Archenemy live table |
+| `tables/t7q2xm4k` | Commander Life live table (Archenemy mode too, since v1.25: `ae`, `schemes`, `scheme`, `games/6`) |
+| `tables/t7q2xm4k-ae` | the old `archenemy.html` page's live table |
 | `tables/t7q2xm4k-results/<gameId>` | Commander Life game log |
 
 The REST API is used directly: an EventSource stream comes in, and PATCH writes go out with
@@ -294,7 +295,7 @@ the log failed with "Couldn't reach the shared log", so keep every new node unde
 
 ## Decisions so far
 - Poison was dropped on purpose.
-- 3v1 does not belong in Commander Life. It lives in `archenemy.html` (v2.9's 3v1 mode was reverted).
+- 3v1 didn't belong in Commander Life (v2.9's 3v1 mode was reverted), but in v1.25 the user asked for Archenemy built in, and it is now a Players option. `archenemy.html` is the older separate page.
 - Seat colors are what the game log records as each player's "color combo", and since v3.21 each
   color pair is a deck.
 

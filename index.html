@@ -500,6 +500,9 @@ details.field[open] > summary { margin-bottom: 10px; }
 .seg button.on { background: var(--ink); color: var(--table); }
 /* Five table sizes: each button takes the width its label needs, so "Just me" isn't cut off. */
 #segMode { grid-auto-columns: auto; }
+/* Six since Archenemy (v1.25): a flex row that wraps rather than cutting labels off. */
+#segMode { display: flex; flex-wrap: wrap; }
+#segMode button { flex: 1 1 auto; }
 #segMode button { padding-inline: 4px; }
 .action {
   border: 0; border-radius: 12px; padding: 14px; font-size: 19px; font-weight: 600;
@@ -546,9 +549,101 @@ details.field[open] > summary { margin-bottom: 10px; }
 .res-note { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.35; }
 .ver { margin: -12px 0 0; text-align: center; font-size: 12px; letter-spacing: .14em; color: var(--ink-2); opacity: .7; }
 
+/* Archenemy (v1.25). The archenemy's name is gold with a crown. */
+.seat.arch .name > .nm { color: var(--turn); }
+.seat.arch .name svg { width: 1.15em; height: auto; margin-right: .3em; vertical-align: -.05em; fill: var(--turn); stroke: #000; stroke-width: 1.6; paint-order: stroke fill; overflow: visible; }
+/* The scheme button, in the archenemy's bottom-left corner (as they see it), level with the dagger.
+   It names the scheme in motion, gold while one is. */
+.sch-btn {
+  position: absolute; bottom: calc(6 * var(--cqh, 1vh)); left: calc(5 * var(--cqw, 1vw)); z-index: 2;
+  display: flex; align-items: center; gap: .3em; height: 2.4em; max-width: calc(52 * var(--cqw, 1vw)); padding: 0 .7em 0 .3em;
+  font-size: clamp(12px, min(calc(8.5 * var(--cqh, 1vh)), calc(4.3 * var(--cqw, 1vw))), 19px);
+  font-weight: 600; letter-spacing: .03em; white-space: nowrap;
+  border: 1px solid var(--line); border-radius: 999px; background: rgba(0, 0, 0, .45); color: var(--ink);
+  touch-action: manipulation;
+}
+.sch-btn svg { width: 1.7em; height: 1.7em; flex: none; }
+.sch-btn span { overflow: hidden; text-overflow: ellipsis; }
+.sch-btn.live { background: var(--turn); border-color: #000; color: #1a1208; }
+.sch-btn.live svg rect:last-of-type { stroke: #1a1208; }
+.upright .s1 .sch-btn, .upright .s3 .sch-btn { max-width: calc(46 * var(--cqw, 1vw)); }
+.seat.marking .sch-btn { display: none; }
+/* The spotlight's small seats have no room for the scheme's name: just the card, gold while one is in motion. */
+.spot .seat:not(.sp-main) .sch-btn { padding-right: .3em; }
+.spot .seat:not(.sp-main) .sch-btn span { display: none; }
+.sch-btn.live circle { fill: var(--turn); }
+
+/* The scheme sheet: like the menu, a little wider for the card text. */
+.sch-sheet .panel { width: min(100%, 480px); gap: 14px; }
+.sch-body { display: flex; flex-direction: column; gap: 14px; }
+.sch-body > * { flex: none; }
+.sch-stat { margin: -6px 0 0; font-size: 15px; color: var(--ink-2); }
+.sch-stat b { color: var(--turn); font-weight: 600; }
+.sch-card {
+  display: flex; flex-direction: column; gap: 10px; padding: 16px;
+  border: 2px solid var(--turn); border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255, 179, 71, .14), rgba(0, 0, 0, .2));
+}
+.sch-type { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--turn); }
+.sch-nm { font-family: var(--f-name); font-size: 30px; line-height: 1.05; text-wrap: balance; }
+.sch-text { font-size: 18px; line-height: 1.4; -webkit-user-select: text; user-select: text; }
+.sch-text p { margin: 0 0 .5em; }
+.sch-text p:last-child { margin-bottom: 0; }
+.sch-text i { color: var(--ink-2); }
+.sch-text.small { font-size: 15px; }
+.sym {
+  display: inline-block; min-width: 1.5em; padding: 0 .3em; border-radius: 999px; text-align: center;
+  background: rgba(255, 255, 255, .12); border: 1px solid var(--line); font-size: .8em; font-weight: 600; line-height: 1.45;
+}
+.reveal { animation: reveal .5s ease-out; }
+@keyframes reveal { from { transform: translateY(10px) scale(.96); opacity: .2; } to { transform: none; opacity: 1; } }
+.sch-motion {
+  border: 3px solid #000; border-radius: 16px; padding: 22px 12px; width: 100%; color: #1a1208;
+  background: radial-gradient(circle at 35% 30%, #ffe2a3, var(--turn) 58%, #b06a14);
+  box-shadow: 0 0 22px rgba(255, 179, 71, .45);
+  font-family: var(--f-name); font-size: 32px; letter-spacing: .04em; text-transform: uppercase;
+}
+.sch-note { margin: 0; font-size: 15px; line-height: 1.4; color: var(--ink-2); text-align: center; text-wrap: pretty; }
+.action.gold { background: var(--turn); color: #1a1208; }
+.action:disabled, .ghost:disabled { opacity: .4; cursor: not-allowed; }
+.ghost.armed { background: var(--hot); border-color: var(--hot); color: var(--table); }
+.sch-og { display: flex; flex-direction: column; gap: 8px; }
+.sch-og > span { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+.og { display: flex; flex-direction: column; gap: 6px; padding: 10px 10px 10px 12px; border-left: 3px solid var(--turn); border-radius: 8px; background: rgba(255, 255, 255, .05); }
+.og-head { display: flex; align-items: center; gap: 10px; }
+.og-head b { flex: 1; min-width: 0; font-family: var(--f-name); font-size: 20px; font-weight: 400; line-height: 1.1; }
+.og button { flex: none; border: 1px solid var(--line); border-radius: 10px; background: transparent; padding: 8px 12px; font-size: 16px; font-weight: 600; }
+.sch-foot { display: flex; gap: 8px; }
+.sch-foot .ghost { flex: 1; }
+.sch-log ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink-2); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { border: 1px solid var(--line); border-radius: 999px; background: transparent; padding: 8px 14px; font-size: 16px; font-weight: 600; }
+.chips button[aria-pressed="true"] { background: var(--ink); color: var(--table); border-color: var(--ink); }
+.chips button span { opacity: .6; margin-left: .3em; font-variant-numeric: tabular-nums; }
+.set-group { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.set-group > h3 { margin: 0; padding: 10px 12px; display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; letter-spacing: .06em; background: rgba(255, 255, 255, .05); }
+.set-group > h3 span { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.sch-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-top: 1px solid var(--line); min-height: 46px; font-size: 17px; cursor: pointer; }
+.sch-row input { width: 20px; height: 20px; flex: none; accent-color: var(--turn); }
+.sch-row.on { background: rgba(255, 179, 71, .1); }
+.sch-row em { margin-left: .5em; font-style: normal; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--turn); }
+.search {
+  width: 100%; min-width: 0; padding: 10px 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: rgba(255, 255, 255, .06); color: var(--ink);
+  font: 600 17px var(--f-ui); -webkit-user-select: text; user-select: text;
+}
+.search:focus-visible { outline: 3px solid var(--hot); outline-offset: 0; }
+/* The builder's count and Start stay in reach at the bottom of the sheet while the list scrolls. */
+.sch-build-foot {
+  position: sticky; bottom: -22px; margin: 0 -20px -22px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  display: flex; align-items: center; gap: 10px; background: var(--panel); border-top: 1px solid var(--line);
+}
+.sch-build-foot p { flex: 1; margin: 0; font-size: 17px; font-weight: 600; }
+.sch-build-foot .action, .sch-build-foot .ghost { flex: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .seat, .zone, .delta { transition: none; }
-  .seat.cheer::after, .seat.cheer .life, .badge.win-badge { animation: none; }
+  .seat.cheer::after, .seat.cheer .life, .badge.win-badge, .reveal { animation: none; }
 }
 </style>
 </head>
@@ -571,7 +666,25 @@ details.field[open] > summary { margin-bottom: 10px; }
         <button type="button" id="mode3" data-v="3">3</button>
         <button type="button" id="mode4" data-v="4">4</button>
         <button type="button" id="mode5" data-v="5">1v1 ×2</button>
+        <button type="button" id="mode6" data-v="6">Archenemy</button>
       </div>
+    </div>
+    <div class="field" id="aeField">
+      <span>Archenemy</span>
+      <div class="seg" id="segAe">
+        <button type="button" data-v="0"></button>
+        <button type="button" data-v="1"></button>
+        <button type="button" data-v="2"></button>
+        <button type="button" data-v="3"></button>
+      </div>
+    </div>
+    <div class="field" id="schemesField">
+      <span>Schemes</span>
+      <div class="seg" id="segSchemes">
+        <button type="button" data-v="app">App's deck</button>
+        <button type="button" data-v="cards">Our cards</button>
+      </div>
+      <p class="speaker-note" id="schemesNote"></p>
     </div>
     <div class="field" id="pairsField">
       <span id="pairsLabel">Rand plays</span>
@@ -637,7 +750,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       <summary id="colorLabel">Your deck</summary>
       <div class="decks" id="colors"></div>
     </details>
-    <div class="field">
+    <div class="field" id="startField">
       <span>Starting life</span>
       <div class="seg" id="segStart">
         <button type="button" id="start20" data-v="20">20</button>
@@ -657,10 +770,21 @@ details.field[open] > summary { margin-bottom: 10px; }
   </div>
 </div>
 
+<!-- Archenemy's scheme deck (v1.25): every phone can open it from the archenemy's seat. -->
+<div class="menu sch-sheet" id="schemeSheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="schTitle">
+    <div class="menu-head">
+      <h2 id="schTitle">Schemes</h2>
+      <button type="button" class="back-icon" id="schClose" aria-label="Back to game"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="sch-body" id="schBody"></div>
+  </div>
+</div>
+
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.24';
+  const VERSION = '1.25';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -713,9 +837,12 @@ details.field[open] > summary { margin-bottom: 10px; }
   const RESULTS_KEY = 'mtg-commander-results-v1';
   // SPLIT is all four playing two 1v1s at once, each its own game ('a' and 'b' below).
   const SPLIT = 5;
-  const MODES = [1, 2, 3, 4, SPLIT];
+  // ARCH is Archenemy (v1.25): one player, the archenemy, at 40 against the other three at 20, with
+  // a scheme deck. Its own game, key 6, so it never touches a 4-player game in progress.
+  const ARCH = 6;
+  const MODES = [1, 2, 3, 4, SPLIT, ARCH];
   // The phone edges each table size seats players at, in clockwise order from the bottom.
-  const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3], [SPLIT]: [0, 1, 2, 3] };
+  const EDGES = { 1: [0], 2: [0, 2], 3: [0, 1, 3], 4: [0, 1, 2, 3], [SPLIT]: [0, 1, 2, 3], [ARCH]: [0, 1, 2, 3] };
   // Who plays at each table size, by their default edge: Rand and Lenn head to head, and Rand,
   // Andrew and Trent at three (seated at the edges above), so the same people play every time.
   const PEOPLE = Object.assign({}, EDGES, { 2: [0, 3] });
@@ -726,11 +853,158 @@ details.field[open] > summary { margin-bottom: 10px; }
   const DEFAULT_START = { 2: 20, 3: 30, 4: 40, [SPLIT]: 20 };
   // Every game the table keeps, by key, and how many play it. One per table size, plus the two 1v1s
   // of SPLIT: 'a' is Rand and whoever he plays, 'b' the other two.
-  const SIZE = { 1: 1, 2: 2, 3: 3, 4: 4, a: 2, b: 2 };
+  const SIZE = { 1: 1, 2: 2, 3: 3, 4: 4, a: 2, b: 2, [ARCH]: 4 };
   const KEYS = Object.keys(SIZE);
   const DUELS = ['a', 'b'];
   // Games with a turn tracker ("Just me" has no turns to pass).
   const TURN_KEYS = KEYS.filter(k => SIZE[k] > 1);
+
+  // ---- Archenemy schemes (v1.25, from archenemy.html, which had them from the Archenemy Table prototype) ----
+  // SETS: every scheme by product; PRESETS: the ten in each Duskmourn Commander deck; CARDS: name ->
+  // [ongoing (1) or not (0), rules text].
+  const SETS = [
+    ["Archenemy (2010)", ["All in Good Time","All Shall Smolder in My Wake","Approach My Molten Realm","Behold the Power of Destruction","Choose Your Champion","Dance, Pathetic Marionette","The Dead Shall Serve","A Display of My Dark Power","Embrace My Diabolical Vision","Every Hope Shall Vanish","Every Last Vestige Shall Rot","Evil Comes to Fruition","The Fate of the Flammable","Feed the Machine","I Bask in Your Silent Awe","I Call on the Ancient Magics","I Delight in Your Convulsions","I Know All, I See All","Ignite the Cloneforge!","Into the Earthen Maw","Introductions Are in Order","The Iron Guardian Stirs","Know Naught but Fire","Look Skyward and Despair","May Civilization Collapse","Mortal Flesh Is Weak","My Crushing Masterstroke","My Genius Knows No Bounds","My Undead Horde Awakens","My Wish Is Your Command","Nature Demands an Offering","Nature Shields Its Own","Nothing Can Stop Me Now","Only Blood Ends Your Nightmares","The Pieces Are Coming Together","Realms Befitting My Majesty","Roots of All Evil","Rotted Ones, Lay Siege","Surrender Your Thoughts","Tooth, Claw, and Tail","The Very Soil Shall Shake","Which of You Burns Brightest?","Your Fate Is Thrice Sealed","Your Puny Minds Cannot Fathom","Your Will Is Not Your Own"]],
+    ["Promos", ["Plots That Span Centuries","Perhaps You've Met My Cohort","Your Inescapable Doom","Drench the Soil in Their Blood","Imprison This Insolent Wretch"]],
+    ["Archenemy: Nicol Bolas (2017)", ["The Mighty Will Fall","Bow to My Command","Know Evil","When Will You Learn?","Choose Your Demise","Delight in the Hunt","Because I Have Willed It","Power Without Equal","There Is No Refuge","My Forces Are Innumerable","Make Yourself Useful","Pay Tribute to Me","This World Belongs to Me","For Each of You, a Gift","Behold My Grandeur","What's Yours Is Now Mine","Every Dream a Nightmare","No One Will Hear Your Cries","My Laughter Echoes","A Reckoning Approaches"]],
+    ["Duskmourn Commander (2024)", ["I Am Untouchable","Mine Is the Only Truth","Your Own Face Mocks You","Kneel Before My Legions","You Are Unworthy of Mercy","Chaos Is My Plaything","Your Plans Mean Nothing","You Will Know True Suffering","My Tendrils Run Deep","Dark Wings Bring Your Downfall","I Am Never Alone","Rot Like the Scum You Are","You Live Only Because I Will It","My Will Is Irresistible","My Wings Enfold All","Your Mistake Is My Triumph","Fear My Authority","Reality Is Mine to Control","Running Is Useless","You Exist Only to Amuse","I Call for Slaughter","I Will Savor Your Agony","Your Nightmares Are Delicious","No Secret Is Hidden from Me","You Cannot Hide from Me","My Champion Stands Supreme","Only I Know What Awaits","My Followers Ascend","Time Bends to My Will","I Am Duskmourn","My Wealth Will Bury You","A Premonition of Your Demise"]],
+  ];
+  const PRESETS = {
+    "Jump Scare": ["My Laughter Echoes","Power Without Equal","I Am Untouchable","Mine Is the Only Truth","Your Own Face Mocks You","Kneel Before My Legions","You Are Unworthy of Mercy","Chaos Is My Plaything","Your Plans Mean Nothing","You Will Know True Suffering"],
+    "Death Toll": ["Choose Your Champion","Plots That Span Centuries","My Tendrils Run Deep","Dark Wings Bring Your Downfall","I Am Never Alone","Rot Like the Scum You Are","You Live Only Because I Will It","My Will Is Irresistible","My Wings Enfold All","Your Mistake Is My Triumph"],
+    "Endless Punishment": ["When Will You Learn?","My Crushing Masterstroke","Fear My Authority","Reality Is Mine to Control","Running Is Useless","You Exist Only to Amuse","I Call for Slaughter","I Will Savor Your Agony","Your Nightmares Are Delicious","No Secret Is Hidden from Me"],
+    "Miracle Worker": ["Choose Your Demise","Behold the Power of Destruction","You Cannot Hide from Me","My Champion Stands Supreme","Only I Know What Awaits","My Followers Ascend","Time Bends to My Will","I Am Duskmourn","My Wealth Will Bury You","A Premonition of Your Demise"],
+  };
+  const CARDS = {
+    "A Display of My Dark Power": [0, "When you set this scheme in motion, until your next turn, whenever a player taps a land for mana, that player adds one mana of any type that land produced."],
+    "A Premonition of Your Demise": [0, "When you set this scheme in motion, reveal the top two cards of your library and put them into your hand. When you reveal one or more nonland cards this way, this scheme deals damage equal to their total mana value to any target."],
+    "A Reckoning Approaches": [0, "When you set this scheme in motion, look at the top six cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order."],
+    "All Shall Smolder in My Wake": [0, "When you set this scheme in motion, destroy up to one target artifact, up to one target enchantment, and up to one target nonbasic land."],
+    "All in Good Time": [0, "When you set this scheme in motion, take an extra turn after this one. Schemes can't be set in motion that turn."],
+    "Approach My Molten Realm": [0, "When you set this scheme in motion, until your next turn, if a source would deal damage, it deals double that damage instead."],
+    "Because I Have Willed It": [1, "(An ongoing scheme remains face up until it's abandoned.)\nSpells you cast cost {1} less to cast.\nAt the beginning of your opponents' end step, if they cast four or more spells this turn, abandon this scheme."],
+    "Behold My Grandeur": [0, "When you set this scheme in motion, add {U}{B}{R}.\nWhen you set this scheme in motion, if you control six or more lands, you may search your library for a card with mana value 6 or greater, reveal it, put it into your hand, then shuffle."],
+    "Behold the Power of Destruction": [0, "When you set this scheme in motion, destroy all nonland permanents target opponent controls."],
+    "Bow to My Command": [1, "(An ongoing scheme remains face up until it's abandoned.)\nAs you set this scheme in motion, choose an opponent.\nCreatures the chosen player controls can't attack you or planeswalkers you control.\nAt the beginning of your opponents' end step, they may tap any number of untapped creatures they control with total power 8 or greater. If they do, abandon this scheme."],
+    "Chaos Is My Plaything": [0, "When you set this scheme in motion, for each opponent, exile target permanent that player controls. Then each player reveals cards from the top of their library until they reveal a permanent card, puts it onto the battlefield, and puts the rest on the bottom of their library in a random order."],
+    "Choose Your Champion": [0, "When you set this scheme in motion, target opponent chooses a player. Until your next turn, only you and the chosen player can cast spells and attack with creatures."],
+    "Choose Your Demise": [0, "When you set this scheme in motion, look at the top four cards of your library and separate them into a face-down pile and a face-up pile. An opponent chooses one of those piles. Put the cards in that pile into your hand and the rest on the bottom of your library in any order."],
+    "Dance, Pathetic Marionette": [0, "When you set this scheme in motion, each opponent reveals cards from the top of their library until they reveal a creature card. Choose one of the revealed creature cards and put it onto the battlefield under your control. Put all other cards revealed this way into their owners' graveyards."],
+    "Dark Wings Bring Your Downfall": [1, "(An ongoing scheme remains face up until it's abandoned.)\nWhenever you attack, create a 5/5 black Demon creature token with flying that's tapped and attacking.\nAt the beginning of each end step, if two or more creatures died under your control this turn, abandon this scheme."],
+    "Delight in the Hunt": [0, "When you set this scheme in motion, create a 3/3 black Horror creature token and prevent all damage that would be dealt to creatures you control this turn."],
+    "Drench the Soil in Their Blood": [0, "When you set this scheme in motion, after this main phase, there is an additional combat phase followed by an additional main phase. Creatures you control gain vigilance until end of turn."],
+    "Embrace My Diabolical Vision": [0, "When you set this scheme in motion, each player shuffles their hand and graveyard into their library. You draw seven cards, then each other player draws four cards."],
+    "Every Dream a Nightmare": [0, "When you set this scheme in motion, each opponent discards a card. You draw a card for each land card discarded this way."],
+    "Every Hope Shall Vanish": [0, "When you set this scheme in motion, each opponent reveals their hand. Choose a nonland card from each of those hands. Those players discard those cards."],
+    "Every Last Vestige Shall Rot": [0, "When you set this scheme in motion, you may pay {X}. If you do, put each nonland permanent target player controls with mana value X or less on the bottom of its owner's library."],
+    "Evil Comes to Fruition": [0, "When you set this scheme in motion, create seven 0/1 green Plant creature tokens. If you control ten or more lands, create seven 3/3 green Elemental creature tokens instead."],
+    "Fear My Authority": [1, "(An ongoing scheme remains face up until it's abandoned.)\nCreatures you control get +2/+2 and have fear. (They can't be blocked except by artifact creatures and/or black creatures.)\nAt the beginning of your upkeep, abandon this scheme unless you discard a card or pay 3 life."],
+    "Feed the Machine": [0, "When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, the player sacrifices two creatures. If the player chooses others, each of your other opponents sacrifices a creature."],
+    "For Each of You, a Gift": [0, "When you set this scheme in motion, for each opponent, create a 3/3 black Horror creature token that attacks that player each combat if able."],
+    "I Am Duskmourn": [1, "(An ongoing scheme remains face up until it's abandoned.)\nAt the beginning of your end step, you may cast a spell from your hand without paying its mana cost. If you do, abandon this scheme."],
+    "I Am Never Alone": [0, "When you set this scheme in motion, create a token that's a copy of your commander, except it's not legendary."],
+    "I Am Untouchable": [1, "(An ongoing scheme remains face up until it's abandoned.)\nYou and permanents you control have hexproof.\nWhen combat damage is dealt to you, create a 4/4 colorless Scarecrow artifact creature token with vigilance, then abandon this scheme."],
+    "I Bask in Your Silent Awe": [1, "(An ongoing scheme remains face up until it's abandoned.)\nEach opponent can't cast more than one spell each turn.\nAt the beginning of your upkeep, if no opponent cast a spell since your last turn ended, abandon this scheme."],
+    "I Call for Slaughter": [0, "When you set this scheme in motion, create three 1/1 red Devil creature tokens with \"When this token dies, it deals 1 damage to any target.\" They gain haste until end of turn. If a source you control would deal damage this turn, it deals that much damage plus 1 instead."],
+    "I Call on the Ancient Magics": [0, "When you set this scheme in motion, each other player searches their library for a card, reveals it, and puts it into their hand. Then you search your library for two cards and put them into your hand. Each player shuffles."],
+    "I Delight in Your Convulsions": [0, "When you set this scheme in motion, each opponent loses 3 life. You gain life equal to the life lost this way."],
+    "I Know All, I See All": [1, "(An ongoing scheme remains face up until it's abandoned.)\nUntap all permanents you control during each opponent's untap step.\nAt the beginning of each end step, if three or more cards were put into your graveyard this turn from anywhere, abandon this scheme."],
+    "I Will Savor Your Agony": [0, "When you set this scheme in motion, choose three. You may choose the same mode more than once.\n• Destroy target creature.\n• Target player draws a card.\n• Target player gains 5 life."],
+    "Ignite the Cloneforge!": [0, "When you set this scheme in motion, create a token that's a copy of target permanent an opponent controls."],
+    "Imprison This Insolent Wretch": [1, "(An ongoing scheme remains face up until it's abandoned.)\nWhen you set this scheme in motion, choose an opponent.\nPermanents the chosen player controls don't untap during their untap step.\nWhen the chosen player is attacked or becomes the target of a spell or ability, abandon this scheme."],
+    "Into the Earthen Maw": [0, "When you set this scheme in motion, exile up to one target creature with flying, up to one target creature without flying, and all cards from up to one target opponent's graveyard."],
+    "Introductions Are in Order": [0, "When you set this scheme in motion, choose one —\n• Search your library for a creature card, reveal it, put it into your hand, then shuffle.\n• You may put a creature card from your hand onto the battlefield."],
+    "Kneel Before My Legions": [0, "When you set this scheme in motion, choose one —\n• Create a 4/4 colorless Scarecrow artifact creature token with vigilance.\n• Creatures you control get +3/+3 and gain vigilance and trample until end of turn."],
+    "Know Evil": [0, "When you set this scheme in motion, until your next turn, up to one target opponent can't attack with creatures, up to one target opponent can't cast creature spells, and up to one target opponent can't cast noncreature spells. You can't choose any player as a target more than once."],
+    "Know Naught but Fire": [0, "When you set this scheme in motion, it deals damage to each opponent equal to the number of cards in that player's hand."],
+    "Look Skyward and Despair": [0, "When you set this scheme in motion, create a 5/5 red Dragon creature token with flying."],
+    "Make Yourself Useful": [0, "When you set this scheme in motion, destroy target creature an opponent controls. If a creature is destroyed this way, you gain life equal to its toughness."],
+    "May Civilization Collapse": [0, "When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, that player sacrifices two lands. If the player chooses others, each of your other opponents sacrifices a land."],
+    "Mine Is the Only Truth": [1, "(An ongoing scheme remains face up until it's abandoned.)\nWhenever a player casts a spell, you draw a card.\nAt the beginning of your upkeep, if you drew a card last turn, abandon this scheme."],
+    "Mortal Flesh Is Weak": [0, "When you set this scheme in motion, each opponent's life total becomes the lowest life total among your opponents."],
+    "My Champion Stands Supreme": [1, "(An ongoing scheme remains face up until it's abandoned.)\nYour commander has ward {2}.\nWhenever your commander attacks, put two +1/+1 counters on it.\nWhen your commander leaves the battlefield, abandon this scheme."],
+    "My Crushing Masterstroke": [0, "When you set this scheme in motion, gain control of all nonland permanents your opponents control until end of turn. Untap those permanents. They gain haste until end of turn. Each of them attacks its owner this turn if able."],
+    "My Followers Ascend": [0, "When you set this scheme in motion, put five +1/+1 counters on a creature you control and it gains flying and vigilance until end of turn. If you control no creatures, instead create a 4/4 colorless Scarecrow artifact creature token with vigilance."],
+    "My Forces Are Innumerable": [1, "(An ongoing scheme remains face up until it's abandoned.)\nAt the beginning of your end step, create a 3/3 black Horror creature token.\nAt the beginning of your opponents' end step, they may sacrifice two creatures. If they do, abandon this scheme."],
+    "My Genius Knows No Bounds": [0, "When you set this scheme in motion, you may pay {X}. If you do, you gain X life and draw X cards."],
+    "My Laughter Echoes": [1, "(An ongoing scheme remains face up until it's abandoned.)\nWhenever you set a non-ongoing scheme in motion, you may abandon this scheme. If you do, set that scheme in motion again."],
+    "My Tendrils Run Deep": [1, "(An ongoing scheme remains face up until it's abandoned.)\nYou may play an additional land on each of your turns.\nAt the beginning of your end step, if you control six or more lands, draw two cards, then abandon this scheme."],
+    "My Undead Horde Awakens": [1, "(An ongoing scheme remains face up until it's abandoned.)\nAt the beginning of your end step, you may put target creature card from an opponent's graveyard onto the battlefield under your control.\nWhen a creature put onto the battlefield with this scheme dies, abandon this scheme."],
+    "My Wealth Will Bury You": [0, "When you set this scheme in motion, create a number of Treasure tokens equal to the number of artifacts and enchantments your opponents control. If they control fewer than four artifacts and enchantments, create four Treasure tokens instead. (Treasure tokens are artifacts with \"{T}, Sacrifice this token: Add one mana of any color.\")"],
+    "My Will Is Irresistible": [0, "When you set this scheme in motion, choose up to three nonland permanents you don't control. Target opponent chooses one of those permanents. You gain control of the rest."],
+    "My Wings Enfold All": [0, "When you set this scheme in motion, choose one —\n• Draw two cards.\n• Until end of turn, whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy."],
+    "My Wish Is Your Command": [0, "When you set this scheme in motion, each opponent reveals their hand. You may choose a noncreature, nonland card revealed this way and cast it without paying its mana cost."],
+    "Nature Demands an Offering": [0, "When you set this scheme in motion, target opponent chooses a creature you don't control and puts it on top of its owner's library, then repeats this process for an artifact, an enchantment, and a land. Then the owner of each permanent chosen this way shuffles."],
+    "Nature Shields Its Own": [1, "(An ongoing scheme remains face up until it's abandoned.)\nWhenever a creature attacks and isn't blocked, if you're the defending player, create a 0/1 green Plant creature token that's blocking that creature.\nWhen four or more creatures attack you, abandon this scheme at end of combat."],
+    "No One Will Hear Your Cries": [0, "When you set this scheme in motion, each opponent chooses a creature they control, then sacrifices the rest."],
+    "No Secret Is Hidden from Me": [0, "When you set this scheme in motion, exile cards from the top of your library until you exile a nonland card. You may cast that card without paying its mana cost. Then if you control six or more lands, repeat this process once."],
+    "Nothing Can Stop Me Now": [1, "(An ongoing scheme remains face up until it's abandoned.)\nIf a source an opponent controls would deal damage to you, prevent 1 of that damage.\nAt the beginning of each end step, if you've been dealt 5 or more damage this turn, abandon this scheme."],
+    "Only Blood Ends Your Nightmares": [0, "When you set this scheme in motion, each opponent sacrifices a creature. Then each opponent who didn't sacrifice a creature discards two cards."],
+    "Only I Know What Awaits": [0, "When you set this scheme in motion, for each card type among permanents your opponents control, you may put a permanent card of that type from your hand onto the battlefield."],
+    "Pay Tribute to Me": [0, "When you set this scheme in motion, each opponent sacrifices a creature. If you control six or more lands, each opponent sacrifices another creature."],
+    "Perhaps You've Met My Cohort": [0, "When you set this scheme in motion, search your library for a planeswalker card, put it onto the battlefield, then shuffle your library."],
+    "Plots That Span Centuries": [0, "When you set this scheme in motion, the next time you would set a scheme in motion, set three schemes in motion instead."],
+    "Power Without Equal": [0, "When you set this scheme in motion, draw three cards. You have no maximum hand size until your next turn. If you control six or more lands, you may cast up to three spells from your hand without paying their mana costs."],
+    "Reality Is Mine to Control": [1, "(An ongoing scheme remains face up until it's abandoned.)\nWhenever you cast a spell, you may abandon this scheme. If you do, copy that spell, and you may choose new targets for the copy."],
+    "Realms Befitting My Majesty": [0, "When you set this scheme in motion, search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle."],
+    "Roots of All Evil": [0, "When you set this scheme in motion, create five 1/1 green Saproling creature tokens."],
+    "Rot Like the Scum You Are": [0, "When you set this scheme in motion, create a 2/2 green Ooze creature token, then put a number of +1/+1 counters on it equal to the number of lands your opponents control."],
+    "Rotted Ones, Lay Siege": [0, "When you set this scheme in motion, for each opponent, create a 2/2 black Zombie creature token that attacks that player each combat if able."],
+    "Running Is Useless": [0, "When you set this scheme in motion, choose any number of creatures with different mana values. Destroy those creatures."],
+    "Surrender Your Thoughts": [0, "When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, that player discards four cards. If the player chooses others, each of your other opponents discards two cards."],
+    "The Dead Shall Serve": [0, "When you set this scheme in motion, for each opponent, put up to one target creature card from that player's graveyard onto the battlefield under your control. Each of those creatures attacks its owner each combat if able."],
+    "The Fate of the Flammable": [0, "When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, this scheme deals 6 damage to that player. If the player chooses others, this scheme deals 3 damage to each of your other opponents."],
+    "The Iron Guardian Stirs": [0, "When you set this scheme in motion, create a 4/6 colorless Golem artifact creature token."],
+    "The Mighty Will Fall": [0, "When you set this scheme in motion, choose an opponent with the highest life total among your opponents. That player loses 7 life."],
+    "The Pieces Are Coming Together": [0, "When you set this scheme in motion, draw two cards. Artifact spells you cast this turn cost {2} less to cast."],
+    "The Very Soil Shall Shake": [1, "(An ongoing scheme remains face up until it's abandoned.)\nCreatures you control get +2/+2 and have trample.\nWhen a creature you control dies, abandon this scheme."],
+    "There Is No Refuge": [0, "When you set this scheme in motion, it deals 3 damage to up to one target creature. Create a 3/3 black Horror creature token."],
+    "This World Belongs to Me": [0, "When you set this scheme in motion, draw two cards. You may play an additional land this turn."],
+    "Time Bends to My Will": [0, "When you set this scheme in motion, take an extra turn after this one. Skip the untap step of that turn."],
+    "Tooth, Claw, and Tail": [0, "When you set this scheme in motion, destroy up to three target nonland permanents."],
+    "What's Yours Is Now Mine": [0, "When you set this scheme in motion, gain control of target creature an opponent controls and untap it."],
+    "When Will You Learn?": [0, "When you set this scheme in motion, each opponent exiles the top card of their library. You may cast any number of spells from among cards exiled this way without paying their mana costs."],
+    "Which of You Burns Brightest?": [0, "When you set this scheme in motion, you may pay {X}. If you do, this scheme deals X damage to target opponent or planeswalker and each creature that player or that planeswalker's controller controls."],
+    "You Are Unworthy of Mercy": [0, "When you set this scheme in motion, each opponent sacrifices a nonland permanent. If you control six or more lands, each opponent sacrifices three nonland permanents instead."],
+    "You Cannot Hide from Me": [1, "(An ongoing scheme remains face up until it's abandoned.)\nAt the beginning of combat on your turn, up to one target creature gets +2/+2 and gains vigilance until end of turn. It can't be blocked this turn.\nAt the beginning of each opponent's end step, if that player has less than half their starting life total, abandon this scheme."],
+    "You Exist Only to Amuse": [0, "When you set this scheme in motion, choose one. If you control six or more lands, choose both instead.\n• Create three 1/1 red Devil creature tokens with \"When this token dies, it deals 1 damage to any target.\"\n• Until your next turn, creatures your opponents control have base power and toughness 1/1 and lose all abilities."],
+    "You Live Only Because I Will It": [0, "When you set this scheme in motion, you may redistribute any number of life totals."],
+    "You Will Know True Suffering": [0, "When you set this scheme in motion, it deals damage equal to your commander's mana value to each noncommander creature your opponents control."],
+    "Your Fate Is Thrice Sealed": [0, "When you set this scheme in motion, reveal the top three cards of your library. Put all land cards revealed this way onto the battlefield and the rest into your hand."],
+    "Your Inescapable Doom": [1, "(An ongoing scheme remains face up.)\nAt the beginning of your end step, put a doom counter on this scheme, then this scheme deals damage equal to the number of doom counters on it to the opponent with the highest life total among your opponents. If two or more players are tied for highest life total, you choose one."],
+    "Your Mistake Is My Triumph": [0, "When you set this scheme in motion, each player mills three cards. Then you put a permanent card from among the milled cards onto the battlefield under your control."],
+    "Your Nightmares Are Delicious": [0, "When you set this scheme in motion, each opponent who has more than five cards in hand discards cards equal to the difference. Then if fewer than three cards were discarded this way, you draw three cards."],
+    "Your Own Face Mocks You": [0, "When you set this scheme in motion, choose up to two target creatures your opponents control. For each one, create a token that's a copy of it. If you created fewer than two tokens this way, create a number of 4/4 colorless Scarecrow artifact creature tokens with vigilance equal to the difference."],
+    "Your Plans Mean Nothing": [0, "When you set this scheme in motion, any number of target players each discard their hands. Each opponent draws cards equal to the number of cards that player discarded minus one. Then if you discarded a card this way, draw seven cards."],
+    "Your Puny Minds Cannot Fathom": [0, "When you set this scheme in motion, draw four cards. You have no maximum hand size until your next turn."],
+    "Your Will Is Not Your Own": [0, "When you set this scheme in motion, gain control of target creature an opponent controls until end of turn. Untap that creature. It gets +3/+3 and gains trample and haste until end of turn."]
+  };
+  // Everything printed in each set, reprints included (Duskmourn's 40 = its four preset decks).
+  const AE_LIFE = 40, HERO_LIFE = 20, MIN_SCHEMES = 10, DEAL = 20;
+  const SET_POOLS = Object.fromEntries(SETS.map(([t, names]) => [t, t.startsWith('Duskmourn') ? [...new Set([...names, ...Object.values(PRESETS).flat()])] : names]));
+  const poolFor = sets => [...new Set(sets.flatMap(t => SET_POOLS[t] || []))];
+  const isCard = n => typeof n === 'string' && Object.prototype.hasOwnProperty.call(CARDS, n);
+  const isOngoing = n => isCard(n) && !!CARDS[n][0];
+  // The scheme deck in play: null until one is shuffled, then { deck, ongoing, current, turn, log }.
+  // Firebase keeps arrays as objects and drops empty ones, so both come back as arrays here.
+  function normScheme(s) {
+    if (!s || typeof s !== 'object') return null;
+    const list = v => (Array.isArray(v) ? v : v && typeof v === 'object' ? Object.values(v) : []).filter(isCard);
+    return {
+      deck: list(s.deck), ongoing: list(s.ongoing),
+      current: isCard(s.current) ? s.current : '',
+      turn: Number.isInteger(s.turn) && s.turn >= 0 ? s.turn : 0,
+      log: (Array.isArray(s.log) ? s.log : s.log && typeof s.log === 'object' ? Object.values(s.log) : []).filter(l => typeof l === 'string').slice(0, 40),
+    };
+  }
+  // Every scheme the deck holds, wherever it is (library, in motion, ongoing).
+  const allSchemes = s => s ? [...s.deck, ...(s.current ? [s.current] : []), ...s.ongoing] : [];
+  function shuffle(a) {
+    a = a.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+  // The same schemes shuffled again for a new game, nothing in motion.
+  const reshuffled = s => s ? normScheme({ deck: shuffle(allSchemes(s)), ongoing: [], current: '', turn: 0, log: [] }) : null;
 
   const ICON_MENU = '<img alt="" src="data:image/png;base64,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">';
 
@@ -741,9 +1015,17 @@ details.field[open] > summary { margin-bottom: 10px; }
   const ICON_TAP = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27.263 16.227h-12.874l4.714-3.355c-1.751-1.39-3.778-2.084-6.073-2.084-1.148 0-1.936 0.219-2.356 0.656-0.423 0.439-0.635 1.232-0.635 2.379 0 3.173 1.632 6.558 4.895 10.153l-3.715 3.762c-4.323-5.258-6.482-9.956-6.482-14.097 0-2.477 0.746-4.451 2.242-5.916 1.495-1.465 3.485-2.198 5.96-2.198 3.022 0 6.316 1.15 9.883 3.445l2.763-4.713 1.678 11.967z"/></svg>';
   const ICON_FLAG = '<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g stroke="#000" stroke-width="4.5"><path d="M5 21V3.5M5 4h13l-3 4.5 3 4.5H5"/></g><path d="M5 4h13l-3 4.5 3 4.5H5z" fill="currentColor"/><path d="M5 21V3.5" stroke="currentColor" stroke-width="2"/></svg>';
 
+  // Archenemy's scheme button: a card with an eye on it, outlined in black like the dagger.
+  const ICON_SCHEME = '<svg viewBox="0 0 24 24" fill="none" stroke-linejoin="round" aria-hidden="true"><g stroke="#000" stroke-width="4"><rect x="5" y="2.5" width="14" height="19" rx="2.2"/></g><rect x="5" y="2.5" width="14" height="19" rx="2.2" stroke="currentColor" stroke-width="2"/><path d="M7.6 12c1.6-2.6 7.2-2.6 8.8 0-1.6 2.6-7.2 2.6-8.8 0z" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="#000"/></svg>';
+
   const blankClock = n => ({ at: null, count: 0, t: Array(n).fill(0), c: Array(n).fill(0) });
-  const blankGame = (n, start) =>
-    Array.from({ length: n }, () => ({ life: start, cmd: [0, 0, 0], conceded: false }));
+  // Archenemy's seats are its four edges in order, so seat j is edge j.
+  const isArch = k => String(k) === String(ARCH);
+  // Where seat j of game k starts: the table's starting life, except in Archenemy (40 for the
+  // archenemy, 20 for each hero, whatever Starting life says).
+  const startOf = (k, j) => isArch(k) ? (j === state.ae ? AE_LIFE : HERO_LIFE) : state.start;
+  const blankGame = k =>
+    Array.from({ length: SIZE[k] }, (_, j) => ({ life: startOf(k, j), cmd: [0, 0, 0], conceded: false }));
 
   const valid = s => s && MODES.includes(s.mode) && [20, 30, 40].includes(s.start) &&
     s.games && typeof s.games === 'object';
@@ -751,9 +1033,16 @@ details.field[open] > summary { margin-bottom: 10px; }
   let state;
   try { state = JSON.parse(localStorage.getItem(KEY)); } catch (e) { state = null; }
   if (!valid(state)) state = { mode: 4, start: 40, games: {} };
+  // Archenemy (v1.25), synced: who the archenemy is (by edge, Rand by default), whether the app deals
+  // the schemes ('app') or the group plays its own scheme cards ('cards'), and the app's scheme deck.
+  if (![0, 1, 2, 3].includes(state.ae)) state.ae = 0;
+  if (!['app', 'cards'].includes(state.schemes)) state.schemes = 'app';
+  state.scheme = normScheme(state.scheme);
+  // The scheme deck builder's picks, kept on this phone only.
+  if (!state.pick || !Array.isArray(state.pick.selected) || !Array.isArray(state.pick.sets)) state.pick = { selected: PRESETS['Jump Scare'].slice(), sets: SETS.map(x => x[0]) };
   // Saves from before 2- and 3-player tables (or the two 1v1s) have no games for them yet.
   KEYS.forEach(k => {
-    if (!Array.isArray(state.games[k]) || state.games[k].length !== SIZE[k]) state.games[k] = blankGame(SIZE[k], state.start);
+    if (!Array.isArray(state.games[k]) || state.games[k].length !== SIZE[k]) state.games[k] = blankGame(k);
   });
   if (!Array.isArray(state.names) || state.names.length !== 4 || state.names.join() === OLD_DEFAULT_NAMES.join()) {
     state.names = DEFAULT_NAMES.slice();
@@ -855,7 +1144,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
-  const untouched = g => g.every(p => p.life === state.start && p.cmd.every(c => c === 0) && !p.conceded);
+  const untouched = k => state.games[k].every((p, j) => p.life === startOf(k, j) && p.cmd.every(c => c === 0) && !p.conceded);
 
   const app = document.getElementById('app');
   // Per player, their seat elements: one, or two in the side-by-side layout (one in each half).
@@ -1071,11 +1360,15 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
 
   // ---- rendering ----
+  // Each opponent's chip keeps its slot in the player's cmd list. In Archenemy a hero only takes
+  // commander damage from the archenemy, so a hero's dagger offers only theirs.
   function oppsOf(i) {
-    if (state.mode === 1) return [0, 1, 2].map(k => ({ label: 'Opp ' + (k + 1), color: k + 1 }));
+    if (state.mode === 1) return [0, 1, 2].map(k => ({ label: 'Opp ' + (k + 1), color: k + 1, slot: k }));
     const { k, j } = players[i];
-    return edgesOf(k).filter((e, s) => s !== j).map(e => ({ label: nameOf(e), color: e }));
+    const opps = edgesOf(k).filter((e, s) => s !== j).map((e, slot) => ({ label: nameOf(e), color: e, slot }));
+    return isArch(k) && players[i].e !== state.ae ? opps.filter(o => o.color === state.ae) : opps;
   }
+  const isAe = i => isArch(players[i].k) && players[i].e === state.ae;
 
   // Side by side, this phone's player takes the left column and the opponent the right: in the top
   // half, turned to face the opponent, that puts the opponent on their own left too.
@@ -1166,11 +1459,12 @@ details.field[open] > summary { margin-bottom: 10px; }
         <div class="badge win-badge" hidden>${ICON_CROWN}<span>Winner</span></div>
         <div class="tray">
           <div class="pop">
-            ${opps.map((o, s) => `<button type="button" class="chip k-${bgOf(o.color)}" data-slot="${s}" aria-label="Mark commander damage from ${o.label}">${swatch(bgOf(o.color))}<span class="ct">${o.label}</span><b>0</b></button>`).join('')}
+            ${opps.map(o => `<button type="button" class="chip k-${bgOf(o.color)}" data-slot="${o.slot}" aria-label="Mark commander damage from ${o.label}">${swatch(bgOf(o.color))}<span class="ct">${o.label}</span><b>0</b></button>`).join('')}
           </div>
           <button type="button" class="cmd-btn" aria-label="Commander damage" aria-expanded="false">${ICON_CMD}<b hidden></b></button>
         </div>
         ${flag ? `<button type="button" class="flag" aria-label="Concede">${ICON_FLAG}<span></span></button>` : ''}
+        ${isAe(i) && state.schemes === 'app' ? `<button type="button" class="sch-btn" aria-label="Schemes">${ICON_SCHEME}<span></span></button>` : ''}
         ${SHOW_DECKS && state.mode > 1 ? `<div class="seat-mana${flag ? ' by-flag' : ''}" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
       </div>`;
     bindZone(seat.querySelector('.minus'), i, -1);
@@ -1185,6 +1479,9 @@ details.field[open] > summary { margin-bottom: 10px; }
       buzz();
     });
     if (flag) bindFlag(seat.querySelector('.flag'), i);
+    if (isAe(i)) seat.classList.add('arch');
+    const sb = seat.querySelector('.sch-btn');
+    if (sb) sb.addEventListener('click', () => { buzz(); openSchemes(); });
     return seat;
   }
 
@@ -1340,7 +1637,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     if (!seats[i]) return;
     const p = playerOf(i);
     const why = outReason(p);
-    const label = state.mode === 1 ? 'Life' : nameOf(edgeOf(i));
+    const label = state.mode === 1 ? 'Life' : (isAe(i) ? ICON_CROWN : '') + nameOf(edgeOf(i));
     let refit = false;
     seats[i].forEach(seat => {
       seat.querySelector('.num').textContent = p.life;
@@ -1372,6 +1669,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       }
     });
     if (refit) { fitNames(); centerLife(); }
+    if (isAe(i)) paintSchemeBtn();
     watchWins();
   }
 
@@ -1392,12 +1690,25 @@ details.field[open] > summary { margin-bottom: 10px; }
   // first, and stops the moment one player is left (see settle()). A logged result is timed by it.
   // Each game (k) has its own clock, so the two 1v1s start, end and are logged on their own.
   function touch(k) {
-    if (!untouched(state.games[k]) || (state.turns[k] != null && state.meta[k].id)) return;
+    if (!untouched(k) || (state.turns[k] != null && state.meta[k].id)) return;
     const m = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), at: Date.now(), end: null };
     state.meta[k] = m;
     send({ [`meta/${k}/id`]: m.id, [`meta/${k}/at`]: m.at, [`meta/${k}/end`]: null });
   }
-  const finished = k => SIZE[k] > 1 && state.games[k].filter(p => !outReason(p)).length === 1;
+  // The seats that won game k, or null while it's on. Normally the last player standing. In
+  // Archenemy the heroes win together once the archenemy is out (even those already knocked out),
+  // and the archenemy wins once every hero is.
+  function winners(k) {
+    const g = state.games[k];
+    if (SIZE[k] < 2) return null;
+    const alive = g.map((p, j) => j).filter(j => !outReason(g[j]));
+    if (!isArch(k)) return alive.length === 1 ? alive : null;
+    const aeIn = alive.includes(state.ae), heroes = g.map((p, j) => j).filter(j => j !== state.ae);
+    if (!aeIn && alive.length) return heroes;
+    if (aeIn && alive.length === 1) return [state.ae];
+    return null;
+  }
+  const finished = k => !!winners(k);
   // The game ends the moment one player is left, and the phone that made that change logs it right
   // then. A change that brings someone back (a mistap) takes the entry out again until the real finish.
   // The end time is shared, so a later New game on any phone logs the same time.
@@ -1429,7 +1740,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   function paintWins() {
     let next = Infinity;
     players.forEach((x, i) => {
-      const w = wins[x.k], won = !!(w && w.on && !outReason(playerOf(i)));
+      const w = wins[x.k], won = !!(w && w.on && (winners(x.k) || []).includes(x.j));
       const left = won ? w.at + CHEER_MS - Date.now() : 0;
       if (left > 0) next = Math.min(next, left);
       (seats[i] || []).forEach(seat => {
@@ -1443,8 +1754,10 @@ details.field[open] > summary { margin-bottom: 10px; }
   }
   const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
   function party(k) {
-    const i = players.findIndex((x, i) => x.k === k && !outReason(playerOf(i)));
-    if (i < 0 || !seats[i]) return;
+    const won = winners(k) || [];
+    const all = players.map((x, i) => i).filter(i => players[i].k === k && won.includes(players[i].j) && seats[i]);
+    const i = all[0];
+    if (i == null) return;
     try { navigator.vibrate && navigator.vibrate([120, 80, 120, 80, 300]); } catch (e) {}
     const r = seats[i][0].getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
     const flash = document.createElement('div');
@@ -1454,9 +1767,10 @@ details.field[open] > summary { margin-bottom: 10px; }
     setTimeout(() => flash.remove(), 1200);
     if (still()) return;
     // Bursts from the winner's seat (both of its tiles side by side), then a shower from the top.
-    seats[i].forEach(s => {
+    // Archenemy's heroes win together: a burst from each of their seats.
+    all.flatMap(i => seats[i]).forEach(s => {
       const b = s.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
-      [0, 350, 800].forEach((t, n) => setTimeout(() => burst(cx, cy, n ? 70 : 140), t));
+      [0, 350, 800].forEach((t, n) => setTimeout(() => burst(cx, cy, n ? (all.length > 1 ? 40 : 70) : (all.length > 1 ? 70 : 140)), t));
     });
     for (let t = 0; t < 2600; t += 130) setTimeout(() => shower(14), 600 + t);
   }
@@ -1612,15 +1926,22 @@ details.field[open] > summary { margin-bottom: 10px; }
     syncSpeaker();
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
     const center = state.mode !== 1 && state.me === CENTER;
-    const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : state.mode);
+    const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : SIZE[state.mode]);
     document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === inUse));
     document.getElementById('layoutField').hidden = !(state.mode === 2 || (state.mode === SPLIT && !center));
     // Three or four seats on the board: 3 or 4 players, or a Center phone in the two 1v1s.
-    document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || (state.mode === SPLIT && center));
+    document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || state.mode === ARCH || (state.mode === SPLIT && center));
     document.querySelector('#segLayout4 [data-v="spot"]').hidden = center || state.mode === SPLIT;
     document.querySelector('#segLayout4 [data-v="quad"]').hidden = state.mode === 3;
     document.querySelector('#segLayout4 [data-v="hub"]').hidden = state.mode === 3;
-    document.getElementById('pickFirst').hidden = state.mode === 1;
+    // In Archenemy the archenemy always goes first, and the life totals are set by the rules.
+    document.getElementById('pickFirst').hidden = state.mode === 1 || state.mode === ARCH;
+    document.getElementById('startField').hidden = state.mode === ARCH;
+    document.getElementById('aeField').hidden = document.getElementById('schemesField').hidden = state.mode !== ARCH;
+    document.querySelectorAll('#segSchemes button').forEach(b => b.classList.toggle('on', b.dataset.v === state.schemes));
+    document.getElementById('schemesNote').textContent = state.schemes === 'app'
+      ? 'The app shuffles and deals the schemes: tap the card button on the archenemy\'s seat.'
+      : 'You play your own scheme cards; the app keeps the life totals.';
     // Who plays whom in the two 1v1s: Rand's pick sets both pairs.
     document.getElementById('pairsField').hidden = state.mode !== SPLIT;
     document.getElementById('sitoutField').hidden = state.mode !== 3;
@@ -1661,7 +1982,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   // v is Rand's opponent; a second tap on the same choice confirms once a game has begun.
   function applyPairs(v) {
     if (v === state.pairs) return;
-    if (!DUELS.every(k => untouched(state.games[k])) && pairArm !== v) {
+    if (!DUELS.every(k => untouched(k)) && pairArm !== v) {
       disarm();
       pairArm = v;
       const mb = document.querySelector(`#segPairs [data-pv="${v}"]`);
@@ -1683,7 +2004,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   let sitArm = null;
   function applySitout(v) {
     if (v === state.sitout) return;
-    if (!untouched(state.games[3]) && sitArm !== v) {
+    if (!untouched(3) && sitArm !== v) {
       disarm();
       sitArm = v;
       const b = document.querySelector(`#segSitout [data-v="${v}"]`);
@@ -1699,6 +2020,49 @@ details.field[open] > summary { margin-bottom: 10px; }
     marking = []; players = viewPlayers(); Object.assign(patch, reroll());
     send(patch); save(); build(); syncMenu();
   }
+  // Who the archenemy is. A new archenemy changes everyone's starting life, so it starts the game
+  // over (logged first, the scheme deck shuffled again), and once it has begun that takes a second tap.
+  let aeArm = null;
+  function applyAe(v) {
+    if (v === state.ae) return;
+    if (!untouched(ARCH) && aeArm !== v) {
+      disarm();
+      aeArm = v;
+      const b = document.querySelector(`#segAe [data-v="${v}"]`);
+      b.classList.add('armed');
+      b.textContent = 'Tap again';
+      armTimer = setTimeout(disarm, 3000);
+      return;
+    }
+    aeArm = null;
+    // Logged under the old archenemy, then started over with the new one's 40 life.
+    const patch = resetGame(ARCH);
+    state.ae = patch.ae = v;
+    state.games[ARCH] = patch['games/' + ARCH] = blankGame(ARCH);
+    marking = []; players = viewPlayers(); Object.assign(patch, reroll());
+    send(patch); save(); build(); syncMenu();
+  }
+  function paintAe() {
+    document.querySelectorAll('#segAe button').forEach(b => {
+      const e = +b.dataset.v, name = state.names[e].trim() || DEFAULT_NAMES[e];
+      b.classList.toggle('on', e === state.ae);
+      b.classList.remove('armed');
+      b.textContent = name;
+      b.setAttribute('aria-label', name + ' is the archenemy');
+    });
+  }
+  document.getElementById('segAe').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (b) applyAe(+b.dataset.v);
+  });
+  // The app's scheme deck or the group's own cards. Only what the archenemy's seat shows changes,
+  // so it doesn't touch the game.
+  document.getElementById('segSchemes').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b || b.dataset.v === state.schemes) return;
+    state.schemes = b.dataset.v;
+    send({ schemes: state.schemes }); save(); build(); syncMenu();
+  });
   function paintSitout() {
     document.querySelectorAll('#segSitout button').forEach(b => {
       const e = +b.dataset.v, name = state.names[e].trim() || DEFAULT_NAMES[e];
@@ -1817,7 +2181,9 @@ details.field[open] > summary { margin-bottom: 10px; }
     paintSitout();
     paintMini();
     newGameBtn.classList.remove('armed');
-    newGameBtn.textContent = 'New game at ' + state.start;
+    newGameBtn.textContent = state.mode === ARCH ? 'New game' : 'New game at ' + state.start;
+    aeArm = null;
+    paintAe();
     concedeBtn.classList.remove('armed');
     concedeBtn.textContent = playerOf(mySeat()).conceded ? 'Rejoin' : 'Concede';
   }
@@ -1829,9 +2195,9 @@ details.field[open] > summary { margin-bottom: 10px; }
   document.getElementById('closeMenuTop').addEventListener('click', closeMenu);
   // Games nobody has touched yet pick up a new starting life right away. Returns the patch to send.
   function setStart(v) {
-    const fresh = KEYS.filter(k => untouched(state.games[k]));
+    const fresh = KEYS.filter(k => untouched(k));
     state.start = v;
-    fresh.forEach(k => { state.games[k] = blankGame(SIZE[k], state.start); });
+    fresh.forEach(k => { state.games[k] = blankGame(k); });
     const reset = { start: state.start };
     fresh.forEach(k => { reset['games/' + k] = state.games[k]; });
     return reset;
@@ -1858,14 +2224,17 @@ details.field[open] > summary { margin-bottom: 10px; }
   // Logs game k if it finished, starts it over, and returns the patch to send.
   function resetGame(k) {
     record(k);
-    state.games[k] = blankGame(SIZE[k], state.start);
+    state.games[k] = blankGame(k);
     if (SIZE[k] > 1) { state.turns[k] = null; state.clock[k] = blankClock(SIZE[k]); }
-    return { ['games/' + k]: state.games[k], ['turns/' + k]: null, ['clock/' + k]: null };
+    const patch = { ['games/' + k]: state.games[k], ['turns/' + k]: null, ['clock/' + k]: null };
+    // A new Archenemy game shuffles every scheme back into the deck.
+    if (isArch(k) && state.scheme) { state.scheme = patch.scheme = reshuffled(state.scheme); undoStack = []; }
+    return patch;
   }
   // New game starts over the games this phone shows: in the two 1v1s, a player's phone restarts
   // only their own 1v1, so the other pair plays on.
   newGameBtn.addEventListener('click', () => {
-    if (viewKeys().every(k => untouched(state.games[k])) || newGameBtn.classList.contains('armed')) {
+    if (viewKeys().every(k => untouched(k)) || newGameBtn.classList.contains('armed')) {
       send(Object.assign({}, ...viewKeys().map(resetGame), reroll()));
       marking = []; save(); build(); closeMenu();
       return;
@@ -1890,7 +2259,7 @@ details.field[open] > summary { margin-bottom: 10px; }
       if (j < 0) return;
       let note = `${DEFAULT_NAMES[j]} has their own name box.`;
       if (state.mode === 3 && j === state.sitout) {
-        if (untouched(state.games[3])) { applySitout(i); note = `${DEFAULT_NAMES[j]} plays and ${DEFAULT_NAMES[i]} sits out.`; }
+        if (untouched(3)) { applySitout(i); note = `${DEFAULT_NAMES[j]} plays and ${DEFAULT_NAMES[i]} sits out.`; }
         else note = `To play ${DEFAULT_NAMES[j]} instead of ${DEFAULT_NAMES[i]}, tap ${DEFAULT_NAMES[i]} under Sitting out.`;
       }
       const el = document.getElementById('nameNote');
@@ -1914,6 +2283,204 @@ details.field[open] > summary { margin-bottom: 10px; }
     toggleConcede(mySeat()); closeMenu();
   });
 
+  // ---- Archenemy's scheme deck (v1.25) ----
+  // The app's own deck of schemes, shared by the whole table: any phone can open it from the
+  // archenemy's seat and make a move (handy for a Center phone or iPad), and each move sends the
+  // whole deck. A scheme set in motion pops up on every phone. With Schemes set to Our cards, none
+  // of this shows: the group plays its physical scheme deck and the app keeps the totals.
+  const sheet = document.getElementById('schemeSheet'), schBody = document.getElementById('schBody');
+  let undoStack = [], building = false, reveal = false, schFilter = '', rebuildArm = false, rebuildTimer = 0;
+  const schClock = () => new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  // Card text as paragraphs: reminder text in italics, {U}-style symbols as small tokens.
+  const cardText = n => (isCard(n) ? CARDS[n][1] : '').split('\n').map(line =>
+    '<p>' + esc(line).replace(/\(([^)]*)\)/g, '<i>($1)</i>').replace(/\{([^}]+)\}/g, '<span class="sym">$1</span>') + '</p>').join('');
+  const schemesOn = () => state.mode === ARCH && state.schemes === 'app';
+  // The button on the archenemy's seat names the scheme in motion, or what to do next.
+  function paintSchemeBtn() {
+    const s = state.scheme;
+    const text = !s ? 'Schemes' : s.current || (s.deck.length ? 'Set in motion' : 'Schemes');
+    app.querySelectorAll('.sch-btn').forEach(b => {
+      b.querySelector('span').textContent = text;
+      b.classList.toggle('live', !!(s && s.current));
+      b.setAttribute('aria-label', s && s.current ? 'Scheme in motion: ' + s.current : 'Schemes');
+    });
+  }
+  function openSchemes() {
+    building = !state.scheme; schFilter = ''; rebuildArm = false;
+    renderSchemes(); sheet.hidden = false; schBody.scrollTop = 0; wake();
+  }
+  function closeSchemes() { sheet.hidden = true; building = false; rebuildArm = false; }
+  sheet.addEventListener('click', e => { if (e.target === sheet) closeSchemes(); });
+  document.getElementById('schClose').addEventListener('click', closeSchemes);
+
+  function renderSchemes() {
+    if (building || !state.scheme) return renderBuilder();
+    const s = state.scheme, ae = nameOf(state.ae);
+    document.getElementById('schTitle').textContent = s.turn ? 'Turn ' + s.turn : 'Schemes';
+    let html = `<p class="sch-stat"><b>${s.deck.length}</b> in the deck${s.ongoing.length ? ` &middot; <b>${s.ongoing.length}</b> ongoing` : ''}</p>`;
+    if (s.current) {
+      html += `<article class="sch-card${reveal ? ' reveal' : ''}">
+          <div class="sch-type">${isOngoing(s.current) ? 'Ongoing scheme' : 'Scheme'}</div>
+          <div class="sch-nm">${esc(s.current)}</div>
+          <div class="sch-text">${cardText(s.current)}</div>
+        </article>` + (isOngoing(s.current)
+        ? '<button type="button" class="action gold" data-act="keep">Keep it in play</button>'
+        : '<button type="button" class="action gold" data-act="done">Done: to the bottom</button>');
+    } else if (s.deck.length) {
+      html += `<button type="button" class="sch-motion" data-act="motion">Set in motion</button>
+        <p class="sch-note">${s.turn ? '' : ae + ' goes first. '}${ae} sets a scheme in motion at the start of each of their turns, before playing anything.</p>`;
+    } else {
+      html += '<p class="sch-note">The scheme deck is empty. Abandon an ongoing scheme to put it back.</p>';
+    }
+    if (s.ongoing.length) {
+      html += `<div class="sch-og"><span>Ongoing</span>${s.ongoing.map((n, i) => `
+        <div class="og"><div class="og-head"><b>${esc(n)}</b><button type="button" data-abandon="${i}">Abandon</button></div><div class="sch-text small">${cardText(n)}</div></div>`).join('')}</div>`;
+    }
+    html += `<div class="sch-foot">
+        <button type="button" class="ghost" data-act="undo"${undoStack.length ? '' : ' disabled'}>Undo</button>
+        <button type="button" class="ghost${rebuildArm ? ' armed' : ''}" data-act="rebuild">${rebuildArm ? 'Tap again' : 'New scheme deck'}</button>
+      </div>`;
+    if (s.log.length) html += `<details class="field sch-log"><summary>History</summary><ul>${s.log.map(l => `<li>${esc(l)}</li>`).join('')}</ul></details>`;
+    schBody.innerHTML = html;
+    reveal = false;
+  }
+
+  // Scheme moves; each sends the whole scheme deck. Undo is this phone's own moves.
+  function schemeMove(fn) {
+    const s = state.scheme;
+    if (!s) return;
+    undoStack.push(JSON.stringify(s));
+    if (undoStack.length > 40) undoStack.shift();
+    const line = fn(s);
+    if (line) s.log.unshift(schClock() + ' · ' + line);
+    s.log = s.log.slice(0, 40);
+    send({ scheme: s });
+    save(); renderSchemes(); paintSchemeBtn(); buzz(); wake();
+  }
+  schBody.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    if (building) return builderClick(b);
+    if (b.dataset.abandon != null) {
+      const i = +b.dataset.abandon;
+      return schemeMove(s => { const n = s.ongoing.splice(i, 1)[0]; if (!n) return ''; s.deck.push(n); return 'Abandoned ' + n + '.'; });
+    }
+    switch (b.dataset.act) {
+      case 'motion':
+        reveal = true;
+        return schemeMove(s => {
+          if (s.current || !s.deck.length) return '';
+          s.current = s.deck.shift(); s.turn++;
+          return `Turn ${s.turn}: set ${s.current} in motion.`;
+        });
+      case 'done': return schemeMove(s => { const n = s.current; s.deck.push(n); s.current = ''; return n + ' went to the bottom.'; });
+      case 'keep': return schemeMove(s => { const n = s.current; s.ongoing.push(n); s.current = ''; return n + ' stays in play.'; });
+      case 'undo': {
+        const prev = undoStack.pop();
+        if (!prev) return;
+        state.scheme = normScheme(JSON.parse(prev));
+        send({ scheme: state.scheme });
+        save(); renderSchemes(); paintSchemeBtn(); buzz();
+        return;
+      }
+      case 'rebuild':
+        // Mid-game it takes a second tap; the current deck stays until the new one is shuffled.
+        clearTimeout(rebuildTimer);
+        if (state.scheme.turn && !rebuildArm) {
+          rebuildArm = true; renderSchemes();
+          rebuildTimer = setTimeout(() => { rebuildArm = false; if (!sheet.hidden && !building) renderSchemes(); }, 3000);
+          return;
+        }
+        rebuildArm = false; building = true; schFilter = ''; renderSchemes(); schBody.scrollTop = 0;
+    }
+  });
+
+  // The deck builder: deal at random from the sets picked, start from a Duskmourn Commander deck's
+  // ten, or tick schemes by hand. The picks are kept on this phone.
+  function renderBuilder() {
+    document.getElementById('schTitle').textContent = 'Scheme deck';
+    const pick = state.pick, sel = new Set(pick.selected), sets = new Set(pick.sets);
+    const pool = poolFor(pick.sets), f = schFilter.trim().toLowerCase(), n = sel.size;
+    const groups = SETS.map(([title, names]) => {
+      const shown = names.filter(x => !f || x.toLowerCase().includes(f));
+      if (!shown.length) return '';
+      return `<div class="set-group"><h3>${esc(title)}<span>${names.filter(x => sel.has(x)).length} / ${names.length}</span></h3>${shown.map(x => `
+        <label class="sch-row${sel.has(x) ? ' on' : ''}"><input type="checkbox" data-pick="${esc(x)}"${sel.has(x) ? ' checked' : ''}><span>${esc(x)}${isOngoing(x) ? '<em>Ongoing</em>' : ''}</span></label>`).join('')}</div>`;
+    }).join('');
+    const top = schBody.scrollTop;
+    schBody.innerHTML = `
+      <div class="field">
+        <span>Deal at random from</span>
+        <div class="chips">${SETS.map(([t]) => `<button type="button" data-set="${esc(t)}" aria-pressed="${sets.has(t)}">${esc(t)}<span>${SET_POOLS[t].length}</span></button>`).join('')}</div>
+        <button type="button" class="action" data-deal${pool.length ? '' : ' disabled'}>Deal ${Math.min(DEAL, pool.length)} at random</button>
+      </div>
+      <div class="field">
+        <span>Or a Duskmourn Commander deck's ten</span>
+        <div class="chips">${Object.keys(PRESETS).map(p => `<button type="button" data-preset="${esc(p)}" aria-pressed="${PRESETS[p].length === sel.size && PRESETS[p].every(x => sel.has(x))}">${esc(p)}</button>`).join('')}</div>
+      </div>
+      <div class="field">
+        <span>Or pick your own</span>
+        <input class="search" id="schFilter" type="search" placeholder="Filter by name" value="${esc(schFilter)}" autocomplete="off">
+      </div>
+      ${groups || '<p class="sch-note">No scheme matches that.</p>'}
+      <div class="sch-build-foot">
+        <p>${n >= MIN_SCHEMES ? n + ' schemes' : n + ' of ' + MIN_SCHEMES}</p>
+        ${state.scheme ? '<button type="button" class="ghost" data-cancel>Cancel</button>' : ''}
+        <button type="button" class="action gold" data-start${n < MIN_SCHEMES ? ' disabled' : ''}>Shuffle and start</button>
+      </div>`;
+    schBody.scrollTop = top;
+  }
+  function builderClick(b) {
+    const pick = state.pick;
+    if (b.dataset.set) {
+      const t = b.dataset.set, cur = new Set(pick.sets);
+      cur.has(t) ? cur.delete(t) : cur.add(t);
+      pick.sets = SETS.map(x => x[0]).filter(x => cur.has(x));
+    } else if (b.dataset.preset != null) {
+      pick.selected = PRESETS[b.dataset.preset].slice();
+    } else if (b.hasAttribute('data-deal')) {
+      pick.selected = shuffle(poolFor(pick.sets)).slice(0, DEAL);
+    } else if (b.hasAttribute('data-cancel')) {
+      building = false; renderSchemes(); return;
+    } else if (b.hasAttribute('data-start')) {
+      const list = pick.selected.filter(isCard);
+      if (list.length < MIN_SCHEMES) return;
+      state.scheme = normScheme({ deck: shuffle(list), ongoing: [], current: '', turn: 0, log: [schClock() + ' · Shuffled ' + list.length + ' schemes.'] });
+      undoStack = []; building = false;
+      send({ scheme: state.scheme });
+      save(); renderSchemes(); paintSchemeBtn(); buzz(); schBody.scrollTop = 0;
+      return;
+    } else return;
+    save(); renderBuilder();
+  }
+  schBody.addEventListener('change', e => {
+    const n = e.target.dataset.pick;
+    if (!n || !building) return;
+    const pick = state.pick;
+    pick.selected = e.target.checked ? [...new Set([...pick.selected, n])] : pick.selected.filter(x => x !== n);
+    save(); renderBuilder();
+  });
+  schBody.addEventListener('input', e => {
+    if (e.target.id !== 'schFilter') return;
+    schFilter = e.target.value; renderBuilder();
+    const el = document.getElementById('schFilter');
+    el.focus(); el.setSelectionRange(el.value.length, el.value.length);
+  });
+  // A scheme deck changed by another phone: a new scheme in motion pops up here too.
+  function schemeArrived(was) {
+    const s = state.scheme;
+    undoStack = [];
+    paintSchemeBtn();
+    const fresh = s && s.current && (!was || was.current !== s.current);
+    if (fresh && schemesOn() && menu.hidden) {
+      reveal = true;
+      if (sheet.hidden) openSchemes(); else if (!building) renderSchemes();
+      try { navigator.vibrate && navigator.vibrate([60, 40, 60]); } catch (e) {}
+      return;
+    }
+    if (!sheet.hidden && !building) renderSchemes();
+  }
+
   // ---- results ----
   // A game is logged when it finishes (see settle()), and again, harmlessly, when New game is tapped,
   // in case it finished on a phone that couldn't log it. Only a real finish counts: a table of two or
@@ -1927,22 +2494,25 @@ details.field[open] > summary { margin-bottom: 10px; }
   function record(k) {
     const n = SIZE[k], g = state.games[k], m = state.meta[k];
     if (n === 1 || !m.id || !m.at) return;
-    const alive = g.map((p, i) => i).filter(i => !outReason(g[i]));
+    const won = winners(k);
     const end = m.end || Date.now();
     const minutes = Math.round((end - m.at) / 60000);
-    if (alive.length !== 1 || minutes < MIN_GAME_MINUTES) return;
+    if (!won || minutes < MIN_GAME_MINUTES) return;
     // The turn in progress when the game ended runs to the end.
     const c = state.clock[k], cur = state.turns[k];
     const turnMs = i => (c.t[i] || 0) + (i === cur && c.at ? Math.max(0, end - c.at) : 0);
     const result = {
-      at: end, minutes, players: n, start: state.start, turns: c.count || 0,
+      at: end, minutes, players: n, start: isArch(k) ? AE_LIFE : state.start, turns: c.count || 0,
+      // Archenemy games say so, and which seat was the archenemy (v1.25).
+      ...(isArch(k) ? { mode: 'archenemy', schemes: state.schemes } : {}),
       seats: g.map((p, i) => {
         const e = edgesOf(k)[i];
         return {
           name: state.names[e].trim() || DEFAULT_NAMES[e], colors: bgOf(e),
           // No deck while decks aren't picked; `colors` is then just the background.
           deck: SHOW_DECKS ? DECKS[colorOf(e).slice(2)].name : '',
-          life: p.life, out: outReason(p) || null, won: i === alive[0],
+          life: p.life, out: outReason(p) || null, won: won.includes(i),
+          ...(isArch(k) ? { ae: i === state.ae } : {}),
           turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
         };
       }),
@@ -1977,9 +2547,11 @@ details.field[open] > summary { margin-bottom: 10px; }
     const list = Object.keys(all).filter(id => okResult(all[id])).sort((a, b) => all[b].at - all[a].at);
     resultsEl.innerHTML = (note ? `<p class="res-note">${esc(note)}</p>` : '') + (list.length ? list.map(id => {
       const r = all[id], win = r.seats.find(x => x.won) || {};
+      // Archenemy: the heroes win as a team.
+      const title = r.mode !== 'archenemy' ? esc(win.name) + ' won' : win.ae ? esc(win.name) + ', the archenemy, won' : 'The heroes beat ' + esc((r.seats.find(x => x.ae) || {}).name || 'the archenemy');
       const day = new Date(r.at).toLocaleDateString([], { month: 'short', day: 'numeric' });
       return `<div class="res-row">
-        <div class="res-head"><b>${esc(win.name)} won</b><span>${deckOf(win) ? esc(deckOf(win)) + ' &middot; ' : ''}${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
+        <div class="res-head"><b>${title}</b><span>${r.mode === 'archenemy' ? 'Archenemy &middot; ' : ''}${deckOf(win) ? esc(deckOf(win)) + ' &middot; ' : ''}${day} &middot; ${+r.minutes || 0} min${r.turns ? ` &middot; ${+r.turns} turns` : ''}${r.pending ? ' &middot; this phone only' : ''}</span>
           <button type="button" class="res-del" data-id="${esc(id)}">Delete</button></div>
         <div class="res-players">${r.seats.map(x => `<span class="${ARTS.includes(x.colors) ? 'k-' + x.colors : ''}${x.won ? ' won' : ''}" title="${esc(deckOf(x))}">${ARTS.includes(x.colors) ? swatch(x.colors) : '<i class="sw"></i>'}${esc(x.name)}${x.turns ? ` ${Math.round((+x.turnSecs || 0) / 60)}m` : ''}</span>`).join('')}</div>
       </div>`;
@@ -2070,7 +2642,7 @@ details.field[open] > summary { margin-bottom: 10px; }
   const RESULTS_URL = DB + '/tables/t7q2xm4k-results';
 
   const inc = d => ({ '.sv': { increment: d } });
-  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'speaker/id', 'speaker/me', 'speaker/at', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'names/0', 'names/1', 'names/2', 'names/3',
+  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'ae', 'schemes', 'speaker/id', 'speaker/me', 'speaker/at', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'names/0', 'names/1', 'names/2', 'names/3',
     'colors/0', 'colors/1', 'colors/2', 'colors/3']
     .concat(...KEYS.map(k => [].concat(...Array.from({ length: SIZE[k] }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${k}/${i}/${f}`)))),
@@ -2082,7 +2654,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, speaker: state.speaker, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
+  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, ae: state.ae, schemes: state.schemes, scheme: state.scheme, speaker: state.speaker, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Own writes in flight (v1.21). The stream echoes each write back a round trip later, so during
   // fast taps it brought back totals this phone had already moved past (tap 40 to 37, then the
@@ -2116,7 +2688,8 @@ details.field[open] > summary { margin-bottom: 10px; }
   function validValue(p, v) {
     if (p === 'mode') return MODES.includes(v);
     if (p === 'pairs') return [1, 2, 3].includes(v);
-    if (p === 'sitout') return [0, 1, 2, 3].includes(v);
+    if (p === 'sitout' || p === 'ae') return [0, 1, 2, 3].includes(v);
+    if (p === 'schemes') return ['app', 'cards'].includes(v);
     if (p === 'speaker/id') return v === null || (typeof v === 'string' && /^[a-z0-9]{6,16}$/.test(v));
     if (p === 'speaker/me') return v === null || [0, 1, 2, 3, CENTER].includes(v);
     if (p === 'speaker/at') return v === null || (typeof v === 'number' && isFinite(v) && v > 0);
@@ -2164,13 +2737,24 @@ details.field[open] > summary { margin-bottom: 10px; }
       if (v !== undefined && v !== was && !held(p) && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
     hearPing();
+    // The scheme deck (v1.25) goes up and comes back whole. While this phone's own move is still on
+    // its way it's left alone, like any path (see held()). A table without one has none.
+    if (mirror && typeof mirror === 'object' && !held('scheme')) {
+      const sch = normScheme(mirror.scheme);
+      if (JSON.stringify(sch) !== JSON.stringify(state.scheme)) {
+        const was = state.scheme;
+        state.scheme = sch;
+        save();
+        schemeArrived(was);
+      }
+    }
     // The speaker setting changes only the menu and the wake-up note, never the board.
     if (changed.some(x => x.p.startsWith('speaker/'))) { syncSpeaker(); speakerWake(); }
     changed.splice(0, changed.length, ...changed.filter(x => !x.p.startsWith('speaker/')));
     if (!changed.length) { save(); return; }
     save();
     if (changed.some(x => !/^(games|meta|turns|clock)\//.test(x.p))) {
-      if (changed.some(x => ['mode', 'pairs', 'sitout'].includes(x.p))) marking = [];
+      if (changed.some(x => ['mode', 'pairs', 'sitout', 'ae'].includes(x.p))) marking = [];
       build();
       if (!menu.hidden) syncMenu();
       return;
