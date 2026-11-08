@@ -792,7 +792,7 @@ details.field[open] > summary { margin-bottom: 10px; }
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.29';
+  const VERSION = '1.30';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1423,12 +1423,12 @@ details.field[open] > summary { margin-bottom: 10px; }
   function build() {
     players = viewPlayers();
     const n = players.length;
-    // Couch: one upright seat each, Rand (edge 0) on the left. Not in the two 1v1s, which keep Classic.
-    const couch = n === 2 && state.layout2 === 'couch' && state.mode !== SPLIT;
+    // Couch: one upright seat each, Rand (edge 0) on the left; in the two 1v1s only this phone's own 1v1 shows, this phone's player on the left, with no strip on top.
+    const couch = n === 2 && state.layout2 === 'couch';
     const duel = n === 2 && state.layout2 === 'split';
     const duel4 = sideBySide4();
     app.innerHTML = '';
-    app.classList.toggle('has-mini', state.mode === SPLIT && state.me !== CENTER && !duel4);
+    app.classList.toggle('has-mini', state.mode === SPLIT && state.me !== CENTER && !duel4 && !couch);
     if (app.classList.contains('has-mini')) {
       const mini = document.createElement('div');
       mini.className = 'mini';
@@ -1445,7 +1445,7 @@ details.field[open] > summary { margin-bottom: 10px; }
     seats = [];
     for (let i = 0; i < n; i++) {
       // The first spot is the one in the player's own half; it carries their concede flag.
-      seats[i] = (couch ? [edgeOf(i) === 0 ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, couch || (duel4 ? i === mySeat() : duel && !k)));
+      seats[i] = (couch ? [(state.mode === SPLIT ? i === mySeat() : edgeOf(i) === 0) ? 'd-cl' : 'd-cr'] : duel4 ? [quadSpot(i)] : duel ? duelSpots(i) : [place(i)]).map((spot, k) => makeSeat(i, spot, couch || (duel4 ? i === mySeat() : duel && !k)));
       seats[i].forEach(seat => board.appendChild(seat));
       deltas[i] = { sum: 0, t: null };
     }
