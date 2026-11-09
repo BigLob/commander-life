@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
+</head><body>
+<title>Rodent Cards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout (rodents): the deck pages' carousel, one card per Magic card with a rodent in it, with chips for its other rodent arts. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;overflow-x:hidden}
+header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
+.total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.back{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);text-decoration:none;order:-1;flex-basis:100%}
+.total a{color:var(--accent)}
+#fpanel .wide{grid-column:1/-1}
+#fpanel input[type=search]{font:inherit;font-size:.85rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 8px;min-width:0}
+figcaption .in{color:var(--accent)}
+.total b{color:var(--accent);font-weight:500}
+.seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
+.seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:6px}
+.bar #fbtn,#f-reset{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.bar #fbtn.on{border-color:var(--accent);color:var(--accent)}
+#fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:8px}
+#fpanel label{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono);min-width:0}
+#fpanel select{font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 4px;min-width:0;width:100%}
+.share{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono)}
+.share div{display:flex;gap:6px}
+.share input{flex:1;min-width:0;font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.share button{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+#f-reset{align-self:end}
+.seg .ct{color:var(--muted);margin-left:3px;font-size:.68rem;font-family:var(--f-mono)}
+.seg button[aria-pressed="true"] .ct{color:inherit;opacity:.8}
+.favtot{margin-left:auto;align-self:center;color:var(--accent);font-family:var(--f-mono);font-size:.85rem;font-weight:500;white-space:nowrap}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{flex:1;min-height:0;display:flex;align-items:center;position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;width:100%;height:100%;align-items:center;padding-inline:calc(50% - var(--w)/2);box-sizing:border-box;--w:200px}
+.track::-webkit-scrollbar{display:none}
+figure{margin:0;flex:0 0 var(--w);scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
+figure .zb{all:unset;cursor:zoom-in;display:block;border-radius:4.5%/3.2%;aspect-ratio:488/680;background:var(--surface)}
+figure .zb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+figure img{width:100%;height:100%;display:block;border-radius:4.5%/3.2%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* per-card actions */
+.acts{display:flex;gap:8px}
+.acts button{flex:1;font:inherit;font-size:.8rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 6px;cursor:pointer;touch-action:manipulation}
+.acts button:focus-visible{outline:2px solid var(--accent)}
+.acts button.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:500}
+figure.fav .zb img{box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.35)}
+.empty{margin:0 auto;max-width:260px;text-align:center;color:var(--muted);font-size:.9rem}
+figcaption{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;line-height:1.25}
+figcaption .nm{min-width:0;font-weight:500}
+figcaption .pr{font-family:var(--f-mono);color:var(--accent);white-space:nowrap}
+figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.7rem}
+.nav{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.2rem;cursor:pointer;z-index:2;opacity:.9}
+.nav.l{left:-6px}.nav.r{right:-6px}
+.nav:focus-visible{outline:2px solid var(--accent)}
+@media (max-width:600px){.nav{display:none}}
+footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+footer input{flex:1;accent-color:var(--accent);min-width:0}
+/* zoom viewer */
+#zoom{touch-action:none;overscroll-behavior:none;position:fixed;inset:0;background:var(--shade);z-index:20;display:none;flex-direction:column;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+#zoom.on{display:flex}
+#stage{flex:1;min-height:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:grab}
+#zimg{max-width:100%;max-height:100%;border-radius:4.5%/3.2%;transform-origin:center;will-change:transform;user-select:none;-webkit-user-drag:none;image-rendering:auto}
+.zbar #zt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;color:#ece8dd;font-size:.9rem}
+.zbar button{touch-action:manipulation;background:#2b3038;color:#ece8dd;border:1px solid #444b55;border-radius:8px;padding:8px 10px;font:inherit;cursor:pointer}
+.zbar button:focus-visible{outline:2px solid #e8b44a}
+.zbar .g{display:flex;gap:6px}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+/* color chips: one per color combo a type or cycle comes in; tapping one shows that land */
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{all:unset;cursor:pointer;display:inline-flex;gap:1px;padding:3px 4px;border:1px solid var(--line);border-radius:999px;touch-action:manipulation}
+.chip[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip.own{background:var(--surface)}
+.pip{font:normal 600 .62rem/1 var(--f-mono);width:1.35em;height:1.35em;border-radius:50%;display:inline-grid;place-items:center;color:#1d1b17}
+.pip.W{background:#f8f6d8}.pip.U{background:#c1d7e9}.pip.B{background:#bab1ab}.pip.R{background:#e49977}.pip.G{background:#a3c095}.pip.C{background:#ccc2c0}
+.shown{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.shown b{color:var(--fg);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shown .pr{color:var(--accent);white-space:nowrap}
+#crumb{font:inherit;font-size:.76rem;color:var(--accent);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:6px 10px;cursor:pointer}
+figure{g.why{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.why span{font-family:var(--f-mono);font-size:.64rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 6px}
+.fl{font-style:italic;color:var(--muted);font-size:.74rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0}
+.chip.n{font:500 .66rem/1 var(--f-mono);color:var(--fg);padding:4px 7px}
+#fpanel{grid-template-columns:repeat(3,minmax(0,1fr))}
+ap:8px}
+</style>
+<header><h1>Rodent cards</h1><a class="back" href="../links.html">‹ All pages</a><span class="total" id="sub"></span></header>
+<div class="seg" id="seg"><button data-v="all" aria-pressed="true">All</button><button data-v="R" aria-pressed="false">Rats</button><button data-v="M" aria-pressed="false">Mice</button><button data-v="S" aria-pressed="false">Squirrels</button><button data-v="O" aria-pressed="false">Other</button><button data-v="fav" aria-pressed="false">Fav</button></div>
+<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count and their cost"></span></div>
+<div id="fpanel" hidden>
+<label class="wide">Name<input type="search" id="f-q" placeholder="Search names" autocomplete="off" spellcheck="false"></label>
+<label>Sort<select id="f-sort"><option value="">Most played</option><option value="new">Newest</option><option value="old">Oldest</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option></select></label>
+<label>Found in<select id="f-why"><option value="">Anywhere</option><option value="T">Creature type</option><option value="N">Name</option><option value="X">Rules text</option><option value="F">Flavor text</option><option value="A">Art</option><option value="a">Art only</option></select></label>
+<label>Kind<select id="f-kind"><option value="">Cards and tokens</option><option value="c">Cards</option><option value="k">Tokens</option><option value="p">Paper cards</option></select></label>
+<label>Colors<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless</option></select></label>
+<label>Price<select id="f-price"><option value="">Any</option><option value="1">Under $1</option><option value="5">$1 to $5</option><option value="20">$5 to $20</option><option value="99">Over $20</option></select></label>
+</div>
+
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
+<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
+<script>
+/* Every Magic card and token with a rodent in its creature type, name, rules text, flavor text or art,
+   built by tools/carousel/rodents.py from Scryfall (art from Scryfall Tagger's art tags). Images load from Scryfall's CDN.
+   ALL, most played first, tokens last: n name, t type line, s set and y year of the printing shown, i image, b back face,
+   p cheapest matching paper price, r EDHREC rank, c colors, a rodents (R rats, M mice, S squirrels, O others),
+   w where it was found (T type, N name, X rules text, F flavor, A art), f a flavor line naming one, k token, d digital only,
+   x other rodent arts [image, set, year]. */
+const ALL=/*ALL*/[];
+const WHY={T:'Type',N:'Name',X:'Text',F:'Flavor',A:'Art'},TABS={all:'All',R:'Rats',M:'Mice',S:'Squirrels',O:'Other',fav:'Fav'};
+const pv=c=>c.p||0,rk=c=>c.r??1e9;
+const KEY='pc-rodents-';
+let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
+const flip={},pick={};
+/* the art on show: 0 is the card's own printing, 1.. its other rodent arts */
+const art=m=>{const k=pick[m.n]||0;return k&&m.x?{i:m.x[k-1][0],s:m.x[k-1][1],y:m.x[k-1][2]}:{i:flip[m.n]&&m.b?m.b:m.i,s:m.s,y:m.y}};
+let tab='all',D=[];
+const F={q:'',sort:'',why:'',kind:'',col:'',price:''};
+const PB={1:[0,1],5:[1,5],20:[5,20],99:[20,1e9]};
+const norm=x=>x.toLowerCase().normalize('NFD').replace(/[^a-z0-9 ]/g,'');
+function keep(m,q,t){t=t??tab;return (!q||norm(m.n).includes(q))
+ &&(t=='all'||(t=='fav'?favs[m.n]:m.a.includes(t)))
+ &&(!F.why||(F.why=='a'?m.w=='A':m.w.includes(F.why)))
+ &&(!F.kind||(F.kind=='k'?m.k:F.kind=='c'?!m.k:!m.k&&!m.d))
+ &&(!F.col||(F.col=='M'?m.c.length>1:F.col=='C'?!m.c.length:m.c.includes(F.col)))
+ &&(!F.price||(m.p!=null&&m.p>=PB[F.price][0]&&m.p<PB[F.price][1]))}
+function items(){const q=norm(F.q.trim()),ms=ALL.filter(m=>keep(m,q));
+ const S={'':(a,b)=>(a.k||0)-(b.k||0)||rk(a)-rk(b),new:(a,b)=>b.y-a.y,old:(a,b)=>a.y-b.y,ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>(a.p??1e9)-(b.p??1e9),n:(a,b)=>a.n.localeCompare(b.n)}[F.sort];
+ return ms.sort(S)}
+const $=id=>document.getElementById(id), tr=$('track');
+const money=v=>v==null?'no price':'$'+v.toFixed(2);
+const esc=x=>String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+function chips(m){if(!m.x)return '';const k=pick[m.n]||0;
+ return '<div class="chips">'+[[m.s,m.y],...m.x.map(a=>[a[1],a[2]])].map((a,i)=>`<button class="chip n" data-pick="${i}" aria-pressed="${i==k}" title="${esc(a[0]+' '+a[1])}">${esc(a[0])}</button>`).join('')+'</div>'}
+function inner(m){const a=art(m),fav=favs[m.n];
+ const img=`<button class="zb" aria-label="Zoom ${esc(m.n)}"><img src="${a.i}" alt="${esc(m.n)}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button>`;
+ const why='<div class="why">'+[...m.w].map(w=>`<span>${WHY[w]}</span>`).join('')+(m.d?'<span>Digital</span>':'')+'</div>';
+ return img+`<figcaption><span class="nm">${esc(m.n)}<small>${esc(m.t)}</small><small>${a.s} · ${a.y}${m.r?' · #'+m.r:''}${m.x?' · '+(m.x.length+1)+' rodent arts':''}</small>${why}</span><span class="pr">${money(m.p)}</span></figcaption>`
+  +(m.f?`<p class="fl">${esc(m.f)}</p>`:'')+chips(m)
+  +`<div class="acts"><button data-a="fav"${fav?' class="on"':''}>${fav?'★ Fav':'☆ Fav'}</button>${m.b&&!(pick[m.n])?'<button data-a="flip">Flip</button>':''}</div>`}
+let figs=[];
+function fit(){const w=Math.max(120,Math.min(innerWidth*.78,(tr.clientHeight-200)*488/680,320));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+function render(keepAt){D=items();fit();const q=norm(F.q.trim());
+ document.querySelectorAll('#seg button').forEach(b=>{const k=b.dataset.v;b.innerHTML=TABS[k]+'<span class="ct">'+ALL.filter(m=>keep(m,q,k)).length+'</span>';b.setAttribute('aria-pressed',k==tab)});
+ const nk=ALL.filter(m=>m.k).length;
+ $('sub').textContent=(ALL.length-nk).toLocaleString('en-US')+' cards and '+nk+' tokens from Scryfall';
+ const fv=ALL.filter(m=>favs[m.n]);$('favtot').textContent='★ '+fv.length+' · '+money(fv.reduce((a,m)=>a+pv(m),0));
+ tr.innerHTML=D.length?D.map((m,i)=>`<figure data-i="${i}"${favs[m.n]?' class="fav"':''}>${inner(m)}</figure>`).join(''):'<p class="empty">'+(tab=='fav'&&!fv.length?'No favorites yet. Tap ☆ Fav on a card.':'No cards match these filters.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;
+ if(keepAt!=null&&figs.length){const f=figs[Math.min(keepAt,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const redraw=i=>{figs[i].innerHTML=inner(D[i]);figs[i].classList.toggle('fav',!!favs[D[i].n])};
+const sc=$('scrub');
+function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
+function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
+function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
+tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+render();
+const fsel={q:'f-q',sort:'f-sort',why:'f-why',kind:'f-kind',col:'f-col',price:'f-price'};
+function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
+for(const k in fsel)$(fsel[k])[k=='q'?'oninput':'onchange']=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
+$('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
+tr.addEventListener('click',e=>{const f=e.target.closest('figure');if(!f)return;const i=+f.dataset.i,m=D[i];
+ const p=e.target.closest('[data-pick]');if(p){pick[m.n]=+p.dataset.pick;redraw(i);return}
+ const a=e.target.closest('[data-a]');if(a){
+  if(a.dataset.a=='flip'){flip[m.n]=!flip[m.n];redraw(i);return}
+  if(a.dataset.a=='fav'){if(favs[m.n])delete favs[m.n];else favs[m.n]=1;saveFavs();
+   if(tab=='fav')render(i);else{redraw(i);const fv=ALL.filter(x=>favs[x.n]);$('favtot').textContent='★ '+fv.length+' · '+money(fv.reduce((s,x)=>s+pv(x),0));document.querySelector('#seg [data-v=fav] .ct').textContent=fv.length}return}}
+ const z=e.target.closest('.zb');if(z)openZ(i)});
+$('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
+sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
+tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key=='ArrowLeft'){go(cur()-1);e.preventDefault()}});
+document.addEventListener('gesturestart',e=>e.preventDefault());
+/* zoom viewer: scale + pan with pointer events (two pointers pinch) */
+const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new Map();let pd=0;
+function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=art(c).i;zi.alt=c.n;$('zfl').hidden=!c.b||!!pick[c.n];$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function openZ(i){z.classList.add('on');show(i)}
+function close(){z.classList.remove('on');go(zc)}
+
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=art(c).i;redraw(zc)};
+$('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
+st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
+let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
+const dist=()=>{const [a,b]=[...ptrs.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+st.addEventListener('pointerdown',e=>{st.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==1){tapOk=true;t0=Date.now();sx=e.clientX;sy=e.clientY}else{tapOk=false;pd=dist()}});
+st.addEventListener('pointermove',e=>{const o=ptrs.get(e.pointerId);if(!o)return;
+ if(tapOk&&Math.hypot(e.clientX-sx,e.clientY-sy)>8)tapOk=false;
+ ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==2){const d=dist(),[a,b]=[...ptrs.values()];if(pd)setS(s*Math.pow(d/pd,.8),(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}
+ else if(ptrs.size==1&&s>1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply()}});
+function up(e){const was=ptrs.size;ptrs.delete(e.pointerId);pd=0;
+ if(e.type=='pointerup'&&was==1&&tapOk&&Date.now()-t0<300){const n=Date.now();if(n-lastTap<350){lastTap=0;s>1?setS(1):setS(2,e.clientX,e.clientY)}else lastTap=n}
+ if(ptrs.size==1){const [k,v]=[...ptrs][0];ptrs.set(k,v)}}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+document.addEventListener('keydown',e=>{if(!z.classList.contains('on'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')show(zc+1);if(e.key=='ArrowLeft')show(zc-1);if(e.key=='+'||e.key=='=')setS(s*1.35);if(e.key=='-')setS(s/1.35)});
+</script>
+
+</body></html>
