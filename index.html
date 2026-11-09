@@ -559,6 +559,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 #segMode { display: flex; flex-wrap: wrap; }
 #segMode button { flex: 1 1 auto; }
 #segMode button { padding-inline: 4px; }
+.sb { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+.sb button {
+  border: 2px solid #000; border-radius: 12px; padding: 14px 8px; font-size: 18px; font-weight: 700; color: #1a1208;
+  background: radial-gradient(circle at 35% 30%, #ffe2a3, var(--turn) 58%, #b06a14); touch-action: manipulation;
+}
+.sb button.boing { animation: boing .5s cubic-bezier(.3, 1.6, .5, 1); }
 .action {
   border: 0; border-radius: 12px; padding: 14px; font-size: 19px; font-weight: 600;
   background: rgba(255, 255, 255, .1);
@@ -709,6 +715,14 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
            Magic's untap symbol, from the Mana font's SVGs (github.com/andrewgioia/mana; symbol (c) Wizards). -->
       <button type="button" class="back-icon" id="closeMenuTop" aria-label="Back to game"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M15.773 4.737v12.874l3.355-4.714c1.39 1.751 2.084 3.778 2.084 6.073 0 1.148-0.219 1.936-0.657 2.356-0.439 0.423-1.232 0.635-2.379 0.635-3.173 0-6.558-1.632-10.153-4.895l-3.762 3.715c5.258 4.323 9.956 6.482 14.097 6.482 2.477 0 4.451-0.746 5.916-2.242 1.465-1.495 2.198-3.485 2.198-5.96 0-3.022-1.15-6.316-3.445-9.883l4.713-2.763-11.967-1.678z"/></svg></button>
     </div>
+    <!-- Soundboard (v1.38): a button per kind of sound, played on tap (through the speaker phone
+         when there is one). Only presidential quotes so far; add a button and a BOARD list for more. -->
+    <div class="field" id="sbField">
+      <span>Soundboard</span>
+      <div class="sb" id="soundboard">
+        <button type="button" data-sb="pres">Presidents</button>
+      </div>
+    </div>
     <div class="field">
       <span>Players</span>
       <div class="seg" id="segMode">
@@ -847,7 +861,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.37';
+  const VERSION = '1.38';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1417,6 +1431,28 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     load(name).then(buf => { if (buf) playBuffer(buf, name); });
     prime();
   }
+  // Soundboard (v1.38): each button plays a clip of its kind, dealt from its own shuffled bag so
+  // none repeats until all have played. It plays whatever the Sound setting (the tap is the ask),
+  // on the speaker phone when there is one. Presidents: every presidential clip, both lengths.
+  const BOARD = {
+    pres: { list: Object.values(pools).flatMap(p => Object.keys(p).filter(k => k.startsWith('pres-')).flatMap(k => p[k].list)), bag: [] },
+  };
+  function boardSound(kind, here) {
+    const pool = BOARD[kind];
+    if (!pool || !pool.list.length) return;
+    if (!here && remoteSpeaker()) { ring('sb-' + kind); return; }
+    unlock();
+    if (!audio) return;
+    const name = nextUp(pool, 1)[0];
+    pool.bag.shift();
+    load(name).then(buf => { if (buf) playBuffer(buf, name); });
+  }
+  document.getElementById('soundboard').addEventListener('click', e => {
+    const b = e.target.closest('[data-sb]');
+    if (!b) return;
+    b.classList.remove('boing'); void b.offsetWidth; b.classList.add('boing');
+    buzz(); boardSound(b.dataset.sb);
+  });
   // Plays a decoded clip, cutting off whichever clip is still playing.
   // Dialogue is louder (v1.19): the files are loudness-matched with the sounds (about -16.5 LUFS
   // each), but on a phone speaker words came out quieter than effects. `out` already runs near full
@@ -3108,6 +3144,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (!amSpeaker() || getAt(mirror, 'ping/by') === state.phone) return;
     if (k === 'turn') turnSound(true);
     else if (k === 'out' || k === 'win') play(k, true);
+    else if (typeof k === 'string' && k.startsWith('sb-')) boardSound(k.slice(3), true);
   }
   function checkIn() {
     if (!amSpeaker() || document.visibilityState !== 'visible') return;
