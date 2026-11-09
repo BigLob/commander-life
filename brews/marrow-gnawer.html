@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
+</head><body>
+<title>Marrow-Gnawer Rats</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout (brew): the deck carousel plus a role, a reason and its sources under each card. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;overflow-x:hidden}
+header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
+.total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.back{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);text-decoration:none;order:-1;flex-basis:100%}
+.total b{color:var(--accent);font-weight:500}
+.seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
+.seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:6px}
+.bar #fbtn,#f-reset{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.bar #fbtn.on{border-color:var(--accent);color:var(--accent)}
+#fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:8px}
+#fpanel label{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono);min-width:0}
+#fpanel select{font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 4px;min-width:0;width:100%}
+.share{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono)}
+.share div{display:flex;gap:6px}
+.share input{flex:1;min-width:0;font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.share button{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+#f-reset{align-self:end}
+.seg .ct{color:var(--muted);margin-left:3px;font-size:.68rem;font-family:var(--f-mono)}
+.seg button[aria-pressed="true"] .ct{color:inherit;opacity:.8}
+.favtot{margin-left:auto;align-self:center;color:var(--accent);font-family:var(--f-mono);font-size:.85rem;font-weight:500;white-space:nowrap}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{flex:1;min-height:0;display:flex;align-items:center;position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;width:100%;height:100%;align-items:center;padding-inline:calc(50% - var(--w)/2);box-sizing:border-box;--w:200px}
+.track::-webkit-scrollbar{display:none}
+figure{margin:0;flex:0 0 var(--w);scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
+figure .zb{all:unset;cursor:zoom-in;display:block;border-radius:4.5%/3.2%;aspect-ratio:488/680;background:var(--surface)}
+figure .zb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+figure img{width:100%;height:100%;display:block;border-radius:4.5%/3.2%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* per-card actions */
+.acts{display:flex;gap:8px}
+.acts button{flex:1;font:inherit;font-size:.8rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 6px;cursor:pointer;touch-action:manipulation}
+.acts button:focus-visible{outline:2px solid var(--accent)}
+.acts button.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:500}
+figure.fav .zb img{box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.35)}
+.empty{margin:0 auto;max-width:260px;text-align:center;color:var(--muted);font-size:.9rem}
+figcaption{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;line-height:1.25}
+figcaption .nm{min-width:0;font-weight:500}
+figcaption .pr{font-family:var(--f-mono);color:var(--accent);white-space:nowrap}
+figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.7rem}
+.nav{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.2rem;cursor:pointer;z-index:2;opacity:.9}
+.nav.l{left:-6px}.nav.r{right:-6px}
+.nav:focus-visible{outline:2px solid var(--accent)}
+@media (max-width:600px){.nav{display:none}}
+footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+footer input{flex:1;accent-color:var(--accent);min-width:0}
+/* zoom viewer */
+#zoom{touch-action:none;overscroll-behavior:none;position:fixed;inset:0;background:var(--shade);z-index:20;display:none;flex-direction:column;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+#zoom.on{display:flex}
+#stage{flex:1;min-height:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:grab}
+#zimg{max-width:100%;max-height:100%;border-radius:4.5%/3.2%;transform-origin:center;will-change:transform;user-select:none;-webkit-user-drag:none;image-rendering:auto}
+.zbar #zt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;color:#ece8dd;font-size:.9rem}
+.zbar button{touch-action:manipulation;background:#2b3038;color:#ece8dd;border:1px solid #444b55;border-radius:8px;padding:8px 10px;font:inherit;cursor:pointer}
+.zbar button:focus-visible{outline:2px solid #e8b44a}
+.zbar .g{display:flex;gap:6px}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+.why{margin:0;font-size:.78rem;line-height:1.3}
+.why b{color:var(--accent);font-weight:500}
+.cite b{color:var(--accent);font-weight:500}
+.cite{margin:0;font-family:var(--f-mono);font-size:.66rem;color:var(--muted);line-height:1.4}
+.cite a,.srcs a{color:var(--accent)}
+.srcs{font-size:.78rem;padding-bottom:6px}
+.srcs summary{cursor:pointer;color:var(--accent);font-family:var(--f-mono);font-size:.72rem}
+.srcs div{color:var(--muted);line-height:1.45;padding-top:4px}
+.srcs p{margin:4px 0}
+figure{gap:7px}
+</style>
+<header><h1 id="h1"></h1><a class="back" id="back" href="../links.html">‹ All pages</a><span class="total" id="sub"></span></header>
+<details class="srcs"><summary>Sources and how cards were chosen</summary><div id="srcs"></div></details>
+<div class="seg" id="seg"><button data-v="deck" aria-pressed="true">Deck</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
+<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count, their cost / whole deck cost"></span></div>
+<div id="fpanel" hidden>
+<label>Sort<select id="f-sort"><option value="">By role</option><option value="e">Most played (EDHREC)</option><option value="y">Synergy (EDHREC)</option><option value="cl">Cost, low to high</option><option value="ch">Cost, high to low</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option><option value="t">Type</option><option value="c">Color</option></select></label>
+<label>Type<select id="f-type"><option value="">All</option></select></label>
+<label>Color<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless or land</option></select></label>
+<label>Cost<select id="f-cost"><option value="">Any</option><option value="0">0 to 1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6 or more</option></select></label>
+<label>Role<select id="f-kw"><option value="">All</option></select></label>
+<label>Show<select id="f-fav"><option value="">All cards</option><option value="1">Favorites only</option></select></label>
+<div class="share"><span>Move your picks to another page or phone</span><div><input id="f-code" placeholder="Picks code" aria-label="Picks code" autocomplete="off" spellcheck="false"><button id="f-copy">Copy picks</button><button id="f-load">Load</button></div><small id="f-msg" role="status"></small></div>
+</div>
+
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
+<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
+<script>
+/* A brewed deck, built by tools/carousel/brew.py from EDHREC's average deck for the commander, Scryfall card data and a hand-written reason per card.
+   Images load from Scryfall's CDN. Extra fields: k [role], e [share of the commander's decks that play it, EDHREC synergy], u Scryfall page. */
+const CFG={"slug": "brew-marrow-gnawer", "deck": "Marrow-Gnawer Rats", "set": "", "cmd": "Marrow-Gnawer", "alt": null, "decks": 14592, "edh": "https://edhrec.com/commanders/marrow-gnawer", "srcs": "<p><b>The list</b> is <a href=\"https://edhrec.com/average-decks/marrow-gnawer\" target=\"_blank\" rel=\"noopener\">EDHREC's average Marrow-Gnawer deck</a>: the cards played most across the 14,592 Marrow-Gnawer decks EDHREC has (pulled Nov 9 2026).</p><p><b>Under each card</b>: its role (from its rules text: the <i>card text</i> link, on Scryfall), then EDHREC's numbers from the <a href=\"https://edhrec.com/commanders/marrow-gnawer\" target=\"_blank\" rel=\"noopener\">commander page</a>: the share of those decks that play it, and synergy, how much more often it is played here than in other mono-black decks (near 0% means a generic staple).</p><p><b>Prices</b> are the cheapest paper printing on Scryfall.</p>", "sub": "100 cards · $472 in singles · from 14,592 decks on EDHREC"};
+const ALL=[{"n":"Marrow-Gnawer","p":17.99,"q":1,"s":"CHK","t":"Legendary Creature — Rat Rogue","i":"https://cards.scryfall.io/normal/front/7/2/72e4548b-c171-4f10-b896-af37543dcf0f.jpg?1783944312","m":5,"c":"B","k":["Commander"],"u":"https://scryfall.com/card/chk/124/marrow-gnawer","e":[1,0]},{"n":"Rat Colony","p":5.07,"q":17,"s":"DOM","t":"Creature — Rat","i":"https://cards.scryfall.io/normal/front/4/f/4f618e07-f06f-45d2-8512-e6cef88c0434.jpg?1783935003","m":2,"c":"B","k":["Rat"],"u":"https://scryfall.com/card/dom/101/rat-colony","e":[0.754,0.7]},{"n":"Ink-Eyes, Servant of Oni","p":9.55,"q":1,"s":"PCA","t":"Legendary Creature — Rat Ninja","i":"https://cards.scryfall.io/normal/front/5/5/55ed38fc-dc1f-4a03-8869-147f7eb8646b.jpg?1783936836","m":6,"c":"B","k":["Rat"],"u":"https://scryfall.com/card/pca/33/ink-eyes-servant-of-oni","e":[0.412,0.382]},{"n":"Persistent Marshstalker","p":0.31,"q":1,"s":"BLB","t":"Creature — Rat Berserker","i":"https://cards.scryfall.io/normal/front/8/b/8b900c71-713b-4b7e-b4be-ad9f4aa0c139.jpg?1783910832","m":2,"c":"B","k":["Rat"],"u":"https://scryfall.com/card/blb/104/persistent-marshstalker","e":[0.389,0.361]},{"n":"Typhoid Rats","p":0.18,"q":1,"s":"J25","t":"Creature — Rat","i":"https://cards.scryfall.io/normal/front/6/c/6c37f680-770b-4d0e-8bf7-44ba3449d419.jpg?1783908707","m":1,"c":"B","k":["Rat"],"u":"https://scryfall.com/card/j25/497/typhoid-rats","e":[0.372,0.338]},{"n":"Swarm of Rats","p":0.68,"q":1,"s":"9ED","t":"Creature — Rat","i":"https://cards.scryfall.io/normal/front/b/a/ba1a92e2-6a8f-45fe-84cc-08fde6210077.jpg?1783943981","m":2,"c":"B","k":["Rat"],"u":"https://scryfall.com/card/9ed/166/swarm-of-rats","e":[0.347,0.324]},{"n":"Piper of the Swarm","p":0.47,"q":1,"s":"AFC","t":"Creature — Human Warlock","i":"https://cards.scryfall.io/normal/front/b/4/b4810704-beb8-499c-a921-26f672fd33b2.jpg?1783926215","m":2,"c":"B","k":["Token maker"],"u":"https://scryfall.com/card/afc/106/piper-of-the-swarm","e":[0.824,0.758]},{"n":"Pack Rat","p":2.64,"q":1,"s":"RTR","t":"Creature — Rat","i":"https://cards.scryfall.io/normal/front/1/7/170693f5-13db-4191-99b1-e527ffb5b88e.jpg?1783940361","m":2,"c":"B","k":["Token maker"],"u":"https://scryfall.com/card/rtr/73/pack-rat","e":[0.787,0.731]},{"n":"Ogre Slumlord","p":0.31,"q":1,"s":"OTC","t":"Creature — Ogre Rogue","i":"https://cards.scryfall.io/normal/front/7/6/76995067-81a3-41c5-bc95-bfa5a953700d.jpg?1783911926","m":5,"c":"B","k":["Token maker"],"u":"https://scryfall.com/card/otc/145/ogre-slumlord","e":[0.774,0.681]},{"n":"Lord Skitter, Sewer King","p":4.15,"q":1,"s":"WOE","t":"Legendary Creature — Rat Noble","i":"https://cards.scryfall.io/normal/front/7/2/729877be-4894-4ef5-9e60-de8a8fb2bdc0.jpg?1783915106","m":3,"c":"B","k":["Token maker"],"u":"https://scryfall.com/card/woe/97/lord-skitter-sewer-king","e":[0.644,0.566]},{"n":"Rat King, Verminister","p":1.01,"q":1,"s":"TMT","t":"Legendary Creature — Rat Avatar","i":"https://cards.scryfall.io/normal/front/b/e/be464d88-8933-46e8-97b0-3be05f1976a3.jpg?1783904102","m":2,"c":"B","k":["Token maker"],"u":"https://scryfall.com/card/tmt/71/rat-king-verminister","e":[0.436,0.404]},{"n":"Tangled Colony","p":0.85,"q":1,"s":"WOE","t":"Creature — Rat","i":"https://cards.scryfall.io/normal/front/7/7/77111ce8-6469-4bf7-882a-4ded1e5d7cad.jpg?1783915099","m":2,"c":"B","k":["Token maker"],"u":"https://scryfall.com/card/woe/113/tangled-colony","e":[0.345,0.317]},{"n":"Ashcoat of the Shadow Swarm","p":3.91,"q":1,"s":"J22","t":"Legendary Creature — Rat Warlock","i":"https://cards.scryfall.io/normal/front/2/f/2fce5989-a2a0-4825-b90a-a1f78659b6e0.jpg?1783919189","m":4,"c":"B","k":["Payoff"],"u":"https://scryfall.com/card/j22/19/ashcoat-of-the-shadow-swarm","e":[0.55,0.514]},{"n":"Thornbite Staff","p":13.06,"q":1,"s":"MOR","t":"Kindred Artifact — Shaman Equipment","i":"https://cards.scryfall.io/normal/front/c/1/c1ab3225-64a9-411e-b22b-1869e958b8e5.jpg?1783942774","m":2,"c":"","k":["Payoff"],"u":"https://scryfall.com/card/mor/145/thornbite-staff","e":[0.411,0.383]},{"n":"Vanquisher's Banner","p":3.88,"q":1,"s":"LCC","t":"Artifact","i":"https://cards.scryfall.io/normal/front/e/f/efa6944e-b5e2-4584-ae37-f5b59a8ec75e.jpg?1783913835","m":5,"c":"","k":["Payoff"],"u":"https://scryfall.com/card/lcc/316/vanquishers-banner","e":[0.411,0.374]},{"n":"Coat of Arms","p":11.99,"q":1,"s":"DDS","t":"Artifact","i":"https://cards.scryfall.io/normal/front/5/1/513d4c36-6ad4-4ee9-b161-3136eb59504f.jpg?1783936560","m":5,"c":"","k":["Payoff"],"u":"https://scryfall.com/card/dds/58/coat-of-arms","e":[0.345,0.32]},{"n":"Haunted One","p":4.54,"q":1,"s":"CLB","t":"Legendary Enchantment — Background","i":"https://cards.scryfall.io/normal/front/d/c/dc53b1af-0f4a-4475-a131-27cb5d5b0cf1.jpg?1783922514","m":3,"c":"B","k":["Payoff"],"u":"https://scryfall.com/card/clb/654/haunted-one","e":[0.312,0.289]},{"n":"Patchwork Banner","p":1.83,"q":1,"s":"MSC","t":"Artifact","i":"https://cards.scryfall.io/normal/front/5/3/537ea7e7-e8e8-4736-bdd9-1085f1a7c259.jpg?1783903215","m":3,"c":"","k":["Payoff"],"u":"https://scryfall.com/card/msc/207/patchwork-banner","e":[0.285,0.235]},{"n":"Bontu's Monument","p":2.7,"q":1,"s":"DMC","t":"Legendary Artifact","i":"https://cards.scryfall.io/normal/front/1/7/171a9a3f-6278-4921-9848-2b8459869d6c.jpg?1783921400","m":3,"c":"","k":["Drain"],"u":"https://scryfall.com/card/dmc/179/bontus-monument","e":[0.63,0.345]},{"n":"Ayara, First of Locthwain","p":4.93,"q":1,"s":"ELD","t":"Legendary Creature — Elf Noble","i":"https://cards.scryfall.io/normal/front/e/d/ed0ace28-9a33-4f0d-b8c8-f5517f20ccf1.jpg?1783932644","m":3,"c":"B","k":["Drain"],"u":"https://scryfall.com/card/eld/75/ayara-first-of-locthwain","e":[0.563,0.305]},{"n":"Valley Rotcaller","p":2.41,"q":1,"s":"BLB","t":"Creature — Squirrel Warlock","i":"https://cards.scryfall.io/normal/front/4/d/4da80a9a-b1d5-4fc5-92f7-36946195d0c7.jpg?1783910826","m":2,"c":"B","k":["Drain"],"u":"https://scryfall.com/card/blb/119/valley-rotcaller","e":[0.411,0.383]},{"n":"Mirkwood Bats","p":0.97,"q":1,"s":"LTR","t":"Creature — Bat","i":"https://cards.scryfall.io/normal/front/1/5/15f035df-784a-4dc8-b7f5-77139a4e6e99.jpg?1783916303","m":4,"c":"B","k":["Drain"],"u":"https://scryfall.com/card/ltr/95/mirkwood-bats","e":[0.357,0.274]},{"n":"Gruesome Fate","p":0.23,"q":1,"s":"GNT","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/6/1/611e1c69-1343-48ad-a669-8ccd1c1efe24.jpg?1783933979","m":3,"c":"B","k":["Drain"],"u":"https://scryfall.com/card/gnt/30/gruesome-fate","e":[0.354,0.335]},{"n":"Foul-Tongue Shriek","p":0.13,"q":1,"s":"DTK","t":"Instant","i":"https://cards.scryfall.io/normal/front/8/1/81d98ee0-6b32-4735-89f1-b37da766761f.jpg?1783938597","m":1,"c":"B","k":["Drain"],"u":"https://scryfall.com/card/dtk/103/foul-tongue-shriek","e":[0.272,0.256]},{"n":"Karumonix, the Rat King","p":0.72,"q":1,"s":"ONE","t":"Legendary Creature — Phyrexian Rat","i":"https://cards.scryfall.io/normal/front/f/1/f16e282d-8941-46c7-a974-c05b6f73c964.jpg?1783918045","m":3,"c":"B","k":["Draw"],"u":"https://scryfall.com/card/one/98/karumonix-the-rat-king","e":[0.77,0.725]},{"n":"Skullclamp","p":3.54,"q":1,"s":"TRC","t":"Artifact — Equipment","i":"https://cards.scryfall.io/normal/front/e/1/e1da8b79-249b-439a-a0ad-c8784bd716df.jpg?1793021175","m":1,"c":"","k":["Draw"],"u":"https://scryfall.com/card/trc/498/skullclamp","e":[0.606,0.379]},{"n":"Herald's Horn","p":3.03,"q":1,"s":"TRC","t":"Artifact","i":"https://cards.scryfall.io/normal/front/e/8/e8fcf84c-0c2e-42c4-b860-622227e3cde3.jpg?1793197563","m":3,"c":"","k":["Draw"],"u":"https://scryfall.com/card/trc/493/heralds-horn","e":[0.534,0.479]},{"n":"Village Rites","p":0.34,"q":1,"s":"INR","t":"Instant","i":"https://cards.scryfall.io/normal/front/4/2/42ed35e9-51cd-468a-86a9-9412553cf50d.jpg?1783908135","m":1,"c":"B","k":["Draw"],"u":"https://scryfall.com/card/inr/137/village-rites","e":[0.48,0.219]},{"n":"Thrumming Stone","p":20.54,"q":1,"s":"2X2","t":"Legendary Artifact","i":"https://cards.scryfall.io/normal/front/1/4/14adc0af-de61-4872-916c-3cf480dece46.jpg?1783921787","m":5,"c":"","k":["Draw"],"u":"https://scryfall.com/card/2x2/315/thrumming-stone","e":[0.447,0.408]},{"n":"Species Specialist","p":9.99,"q":1,"s":"C20","t":"Creature — Human Warrior","i":"https://cards.scryfall.io/normal/front/b/b/bb2cbf12-7f35-4162-b1a0-89a1632728c7.jpg?1783931217","m":4,"c":"B","k":["Draw"],"u":"https://scryfall.com/card/c20/47/species-specialist","e":[0.422,0.389]},{"n":"Phyrexian Arena","p":2.48,"q":1,"s":"FDN","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/0/7/0784b6f0-9ebf-43d2-ba0f-a6bc93ba0c48.jpg?1783909072","m":3,"c":"B","k":["Draw"],"u":"https://scryfall.com/card/fdn/180/phyrexian-arena","e":[0.414,0.02]},{"n":"Deadly Dispute","p":0.32,"q":1,"s":"MSC","t":"Instant","i":"https://cards.scryfall.io/normal/front/d/8/d86fa72c-25c1-43ef-9cb0-fe76f7568ed3.jpg?1783903013","m":2,"c":"B","k":["Draw"],"u":"https://scryfall.com/card/msc/794/deadly-dispute","e":[0.354,0.078]},{"n":"Sign in Blood","p":0.27,"q":1,"s":"DSC","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/b/8/b89d9372-8682-4a61-a003-8bccfbb6cbb4.jpg?1783909613","m":2,"c":"B","k":["Draw"],"u":"https://scryfall.com/card/dsc/156/sign-in-blood","e":[0.315,-0.034]},{"n":"Sol Ring","p":1.14,"q":1,"s":"TRC","t":"Artifact","i":"https://cards.scryfall.io/normal/front/f/c/fc817e07-c1f3-469f-9cf7-0945dea7400f.jpg?1793021181","m":1,"c":"","k":["Ramp"],"u":"https://scryfall.com/card/trc/499/sol-ring","e":[0.872,0.018]},{"n":"Jet Medallion","p":14.21,"q":1,"s":"MH3","t":"Artifact","i":"https://cards.scryfall.io/normal/front/d/4/d423365c-a32c-4060-b178-3221e3200387.jpg?1783911209","m":2,"c":"","k":["Ramp"],"u":"https://scryfall.com/card/mh3/292/jet-medallion","e":[0.655,0.036]},{"n":"Dark Ritual","p":0.25,"q":1,"s":"MSC","t":"Instant","i":"https://cards.scryfall.io/normal/front/1/1/11e12a84-e7be-4afc-a230-c2e644743fa8.jpg?1783903013","m":1,"c":"B","k":["Ramp"],"u":"https://scryfall.com/card/msc/793/dark-ritual","e":[0.628,-0.048]},{"n":"Arcane Signet","p":0.41,"q":1,"s":"TRC","t":"Artifact","i":"https://cards.scryfall.io/normal/front/7/9/795df2ee-fbfc-4961-852c-e3ec50cc52da.jpg?1793021117","m":2,"c":"","k":["Ramp"],"u":"https://scryfall.com/card/trc/485/arcane-signet","e":[0.522,-0.093]},{"n":"Black Market","p":5.25,"q":1,"s":"CLB","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/7/8/78c80c6d-f3ae-48d3-ba6a-b9b738e1affb.jpg?1783922463","m":5,"c":"B","k":["Ramp"],"u":"https://scryfall.com/card/clb/739/black-market","e":[0.325,0.124]},{"n":"Ratcatcher","p":9.38,"q":1,"s":"A25","t":"Creature — Ogre Rogue","i":"https://cards.scryfall.io/normal/front/e/9/e9cb08a7-cfcf-49ee-948b-4be859c1d256.jpg?1783935161","m":6,"c":"B","k":["Tutor"],"u":"https://scryfall.com/card/a25/103/ratcatcher","e":[0.495,0.464]},{"n":"Demonic Tutor","p":11.75,"q":1,"s":"CMM","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/a/2/a24b4cb6-cebb-428b-8654-74347a6a8d63.jpg?1783915679","m":2,"c":"B","k":["Tutor"],"u":"https://scryfall.com/card/cmm/150/demonic-tutor","e":[0.32,0.053]},{"n":"Vampiric Tutor","p":49.44,"q":1,"s":"DMR","t":"Instant","i":"https://cards.scryfall.io/normal/front/3/4/34a0203f-9cce-43a4-9cb7-8ce6647895cd.jpg?1783918468","m":1,"c":"B","k":["Tutor"],"u":"https://scryfall.com/card/dmr/108/vampiric-tutor","e":[0.238,0.033]},{"n":"Patriarch's Bidding","p":3.55,"q":1,"s":"MH2","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786","m":5,"c":"B","k":["Recursion"],"u":"https://scryfall.com/card/mh2/275/patriarchs-bidding","e":[0.386,0.348]},{"n":"Echoing Return","p":0.25,"q":1,"s":"MH2","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/3/9/39eb0e67-f989-4430-b2d6-b8b647f0b7ca.jpg?1783926862","m":1,"c":"B","k":["Recursion"],"u":"https://scryfall.com/card/mh2/83/echoing-return","e":[0.321,0.293]},{"n":"Crypt Rats","p":0.57,"q":1,"s":"MH1","t":"Creature — Rat","i":"https://cards.scryfall.io/normal/front/9/6/96916db2-5121-4ff1-880c-369744f11ecf.jpg?1783933130","m":3,"c":"B","k":["Removal"],"u":"https://scryfall.com/card/mh1/84/crypt-rats","e":[0.43,0.389]},{"n":"Feed the Swarm","p":0.18,"q":1,"s":"TLE","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770","m":2,"c":"B","k":["Removal"],"u":"https://scryfall.com/card/tle/257/feed-the-swarm","e":[0.408,-0.095]},{"n":"Grave Pact","p":25.65,"q":1,"s":"CMM","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/f/5/f5a4970b-2ba6-4c91-a301-369369cdf360.jpg?1783915673","m":4,"c":"B","k":["Removal"],"u":"https://scryfall.com/card/cmm/165/grave-pact","e":[0.373,0.175]},{"n":"Kindred Dominance","p":4.89,"q":1,"s":"MSC","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/f/6/f6cd7c08-f5d4-4bdc-a254-809d900b0fc3.jpg?1783903243","m":7,"c":"B","k":["Removal"],"u":"https://scryfall.com/card/msc/156/kindred-dominance","e":[0.364,0.317]},{"n":"Defile","p":1.21,"q":1,"s":"MH1","t":"Instant","i":"https://cards.scryfall.io/normal/front/5/b/5bcb4398-edd1-41a7-a496-b12bce22ceb6.jpg?1783933130","m":1,"c":"B","k":["Removal"],"u":"https://scryfall.com/card/mh1/86/defile","e":[0.355,0.008]},{"n":"Go for the Throat","p":0.27,"q":1,"s":"J25","t":"Instant","i":"https://cards.scryfall.io/normal/front/7/f/7fdafc6a-a53e-421d-8494-2a34f945d178.jpg?1783908726","m":2,"c":"B","k":["Removal"],"u":"https://scryfall.com/card/j25/447/go-for-the-throat","e":[0.269,0.043]},{"n":"Lightning Greaves","p":2.89,"q":1,"s":"TRC","t":"Artifact — Equipment","i":"https://cards.scryfall.io/normal/front/6/5/659ef698-96ea-4fa9-b63c-0da93a2d1e78.jpg?1793197566","m":2,"c":"","k":["Protection"],"u":"https://scryfall.com/card/trc/496/lightning-greaves","e":[0.391,0.055]},{"n":"Swamp","p":0.11,"q":27,"s":"MDD","t":"Basic Land — Swamp","i":"https://cards.scryfall.io/normal/front/b/2/b233b117-9369-45c1-80c5-cc857386b6be.jpg?1791578437","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/mdd/296/swamp","e":[0.976,0.022]},{"n":"Swarmyard","p":4.97,"q":1,"s":"TSR","t":"Land","i":"https://cards.scryfall.io/normal/front/b/8/b89329f2-d386-40a7-9098-6d80beeb8843.jpg?1783927748","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/tsr/284/swarmyard","e":[0.7,0.645]},{"n":"Cabal Coffers","p":22.16,"q":1,"s":"MH2","t":"Land","i":"https://cards.scryfall.io/normal/front/e/1/e1efb0d3-2c72-46ff-bdc1-1069967365a0.jpg?1783926775","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/mh2/301/cabal-coffers","e":[0.576,0.029]},{"n":"Bojuka Bog","p":1.44,"q":1,"s":"SOC","t":"Land","i":"https://cards.scryfall.io/normal/front/5/5/55b5b094-9d2d-4d96-b90c-78fecdae725a.jpg?1783903734","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/soc/363/bojuka-bog","e":[0.491,0.012]},{"n":"Cabal Stronghold","p":13.57,"q":1,"s":"DOM","t":"Land","i":"https://cards.scryfall.io/normal/front/0/b/0bda51ef-ee3e-48d4-92e2-c9083bbe0f80.jpg?1783934950","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/dom/238/cabal-stronghold","e":[0.383,0.048]},{"n":"Three Tree City","p":26.91,"q":1,"s":"BLB","t":"Legendary Land","i":"https://cards.scryfall.io/normal/front/5/6/56f88a48-cced-4a9d-8c19-e4f105f0d8a2.jpg?1783910782","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/blb/260/three-tree-city","e":[0.381,0.334]},{"n":"Mudflat Village","p":0.35,"q":1,"s":"BLB","t":"Land","i":"https://cards.scryfall.io/normal/front/5/3/53ec4ad3-9cf0-4f1b-a9db-d63feee594ab.jpg?1783910783","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/blb/257/mudflat-village","e":[0.327,0.3]},{"n":"Urborg, Tomb of Yawgmoth","p":52.63,"q":1,"s":"TSR","t":"Legendary Land","i":"https://cards.scryfall.io/normal/front/9/e/9e1a9e38-6ffc-490f-b0be-23ba4e8204c6.jpg?1783927747","m":0,"c":"","k":["Land"],"u":"https://scryfall.com/card/tsr/287/urborg-tomb-of-yawgmoth","e":[0.311,-0.067]}];
+/* price for sums and sorts; cards not sold yet have none */
+const pv=c=>c.p||0;
+const EVERY=ALL;
+/* fav, bench and trash marks, kept on this device only, one set per deck; a card carries at most one mark */
+const KEY='pc-'+CFG.slug+'-';
+let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
+const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
+let mark={};try{mark=JSON.parse(localStorage.getItem(KEY+'marks')||'{}')}catch(e){}
+const saveMarks=()=>{try{localStorage.setItem(KEY+'marks',JSON.stringify(mark))}catch(e){}};
+const DECK_TOTAL=ALL.reduce((a,c)=>a+pv(c)*c.q,0);
+let tab='deck',D=[];
+/* sort and filter, applied on top of whichever tab is open */
+const F={sort:'',type:'',col:'',cost:'',kw:'',fav:''};
+const TYPES=['Creature','Planeswalker','Artifact','Enchantment','Instant','Sorcery','Land'];
+const COLS='WUBRG';
+const typeOf=c=>{const i=TYPES.findIndex(t=>c.t.includes(t));return i<0?99:i};
+const colOf=c=>c.c.length==1?COLS.indexOf(c.c):c.c.length>1?5:6;
+function sortFilter(list){
+ let r=list.filter(c=>(!F.type||c.t.includes(F.type))&&(!F.col||(F.col=='M'?c.c.length>1:F.col=='C'?!c.c.length:c.c.includes(F.col)))&&(!F.kw||c.k.includes(F.kw))&&(!F.fav||favs[c.n])&&(!F.cost||(F.cost=='6'?c.m>=6:F.cost=='0'?c.m<=1:c.m==+F.cost)));
+ const S={e:(a,b)=>(b.e?b.e[0]:0)-(a.e?a.e[0]:0),y:(a,b)=>(b.e?b.e[1]:0)-(a.e?a.e[1]:0),cl:(a,b)=>a.m-b.m||pv(b)-pv(a),ch:(a,b)=>b.m-a.m||pv(b)-pv(a),ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>pv(a)-pv(b),n:(a,b)=>a.n.localeCompare(b.n),t:(a,b)=>typeOf(a)-typeOf(b)||b.m-a.m,c:(a,b)=>colOf(a)-colOf(b)||b.m-a.m}[F.sort];
+ return S?r.slice().sort(S):r}
+const TABS={deck:'Deck',fav:'Fav',bench:'Bench',trash:'Trash'};
+function view(k){if(k=='fav')return EVERY.filter(c=>favs[c.n]&&!mark[c.n]);if(k=='deck')return ALL.filter(c=>!mark[c.n]);
+ return EVERY.filter(c=>mark[c.n]==k).sort((a,b)=>b.m-a.m||pv(b)-pv(a))}
+const $=id=>document.getElementById(id), tr=$('track');
+$('h1').textContent=CFG.deck;
+/* the deck list lives beside the page on the live site; a claude.ai artifact has no neighbours */
+if(location.hostname&&!location.hostname.endsWith('github.io'))$('back').hidden=true;$('sub').innerHTML=CFG.sub;$('srcs').innerHTML=CFG.srcs;
+document.querySelector('.srcs').addEventListener('toggle',()=>{fit();go(cur())});
+/* each card's role and EDHREC's numbers for it in the commander's decks, with links to both */
+const pct=x=>Math.round(x*100)+'%';
+function why(c){const e=c.e;
+ return `<p class="cite"><b>${c.k[0]}</b> · ${e?(c.n==CFG.cmd?'Commander of '+CFG.decks.toLocaleString('en-US')+' decks':'In '+pct(e[0])+' of '+CFG.decks.toLocaleString('en-US')+' decks · synergy '+(e[1]>=0?'+':'−')+pct(Math.abs(e[1]))):''} · <a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
+const money=v=>v==null?'no price':'$'+v.toFixed(2);
+function fit(){const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+let figs=[];
+function btns(c){const home='Deck';
+ const fl=c.b?'<button data-a="flip">Flip</button>':'';
+ if(favs[c.n]&&!mark[c.n])return `<button class="on" data-a="unfav">★ Favorite · tap to undo</button>${fl}`;
+ return fl+btns2(c,home)}
+function btns2(c,home){
+ if(tab=='bench')return `<button data-a="">Back to ${home}</button><button data-a="trash">Trash</button>`;
+ if(tab=='trash')return `<button data-a="">Back to ${home}</button><button data-a="bench">Bench</button>`;
+ return `<button data-a="fav">Fav</button><button data-a="bench">Bench</button><button data-a="trash">Trash</button>`}
+function render(keep){D=sortFilter(view(tab));fit();
+ for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).reduce((a,c)=>a+c.q,0)+'</span>';b.setAttribute('aria-pressed',k==tab)}
+ const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.reduce((a,c)=>a+c.q,0)+' · '+money(fv.reduce((a,c)=>a+pv(c)*c.q,0))+' / '+money(DECK_TOTAL);
+  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption>${why(c)}<div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const sc=$('scrub');
+function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
+function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
+function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
+tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+render();
+const fsel={sort:'f-sort',type:'f-type',col:'f-col',cost:'f-cost',kw:'f-kw',fav:'f-fav'};
+TYPES.forEach(t=>$('f-type').add(new Option(t,t)));
+[...new Set(EVERY.flatMap(c=>c.k))].sort().forEach(k=>$('f-kw').add(new Option(k,k)));
+function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
+for(const k in fsel)$(fsel[k]).onchange=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
+/* Browsers keep storage per site, so picks made on the artifact don't reach the github.io page. A code carries them across. */
+const msg=m=>{$('f-msg').textContent=m};
+$('f-copy').onclick=()=>{const code=btoa(JSON.stringify({f:Object.keys(favs),b:Object.keys(mark).filter(k=>mark[k]=='bench'),t:Object.keys(mark).filter(k=>mark[k]=='trash')}));
+ $('f-code').value=code;$('f-code').select();
+ (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>msg('Copied. Paste it into Load on the other page.'),()=>msg('Select the code above and copy it.'))};
+$('f-load').onclick=()=>{try{const o=JSON.parse(atob($('f-code').value.trim())),ok=new Set(EVERY.map(c=>c.n));
+ favs={};mark={};(o.f||[]).forEach(n=>{if(ok.has(n))favs[n]=1});(o.b||[]).forEach(n=>{if(ok.has(n))mark[n]='bench'});(o.t||[]).forEach(n=>{if(ok.has(n))mark[n]='trash'});
+ saveFavs();saveMarks();render();msg('Loaded '+Object.keys(favs).length+' favorites, '+Object.keys(mark).length+' benched or trashed.')}catch(e){msg('That code did not work. Copy it again.')}};
+$('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
+tr.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){const f=a.closest('figure'),i=+f.dataset.i,n=f.dataset.n;
+ if(a.dataset.a=='flip'){const c=D[i];flip[n]=!flip[n];f.querySelector('img').src=face(c);return}
+ if(a.dataset.a=='fav'||a.dataset.a=='unfav'){if(a.dataset.a=='fav')favs[n]=1;else delete favs[n];saveFavs();render(i);return}
+ if(a.dataset.a)mark[f.dataset.n]=a.dataset.a;else delete mark[f.dataset.n];saveMarks();render(i);return}
+ const z=e.target.closest('.zb');if(z)open(+z.closest('figure').dataset.i)});
+
+$('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
+sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
+tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key=='ArrowLeft'){go(cur()-1);e.preventDefault()}});
+document.addEventListener('gesturestart',e=>e.preventDefault());
+/* zoom viewer: scale + pan with pointer events (two pointers pinch) */
+const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new Map();let pd=0;
+function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function open(i){z.classList.add('on');show(i)}
+function close(){z.classList.remove('on');go(zc)}
+
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=face(c)};
+$('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
+st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
+let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
+const dist=()=>{const [a,b]=[...ptrs.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+st.addEventListener('pointerdown',e=>{st.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==1){tapOk=true;t0=Date.now();sx=e.clientX;sy=e.clientY}else{tapOk=false;pd=dist()}});
+st.addEventListener('pointermove',e=>{const o=ptrs.get(e.pointerId);if(!o)return;
+ if(tapOk&&Math.hypot(e.clientX-sx,e.clientY-sy)>8)tapOk=false;
+ ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==2){const d=dist(),[a,b]=[...ptrs.values()];if(pd)setS(s*Math.pow(d/pd,.8),(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}
+ else if(ptrs.size==1&&s>1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply()}});
+function up(e){const was=ptrs.size;ptrs.delete(e.pointerId);pd=0;
+ if(e.type=='pointerup'&&was==1&&tapOk&&Date.now()-t0<300){const n=Date.now();if(n-lastTap<350){lastTap=0;s>1?setS(1):setS(2,e.clientX,e.clientY)}else lastTap=n}
+ if(ptrs.size==1){const [k,v]=[...ptrs][0];ptrs.set(k,v)}}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+document.addEventListener('keydown',e=>{if(!z.classList.contains('on'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')show(zc+1);if(e.key=='ArrowLeft')show(zc-1);if(e.key=='+'||e.key=='=')setS(s*1.35);if(e.key=='-')setS(s/1.35)});
+</script>
+
+</body></html>
