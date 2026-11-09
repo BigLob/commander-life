@@ -38,10 +38,11 @@ https://biglob.github.io/commander-life/decks/.
 | Reality Fracture Play Booster box (30 packs) | $164.70 (30 × $5.49) | ≤ $165 | ≤ $180 | > $200 | Online was about $178 in late Sept 2026. Good for a group draft. |
 | Reality Fracture Collector Booster (15 cards) | $26.99 | ≤ $27 | ≤ $30 | > $30 | Skip: mostly foils and alternate art, not stronger cards. |
 | Reality Fracture Collector box (12 packs) | $323.88 (12 × $26.99) | n/a | n/a | n/a | Selling for $400–590 because of a serialized chase card. Skip. |
+| Reality Fracture Secret Lair Bundle | $89.99 | ≤ $90 | ≤ $110 | > $130 | 2 Collector Boosters, 6 Play Boosters, 2 random Secret Lair mythics (of 10), 20 foil borderless basics, spindown die. The packs alone are about $87 at MSRP, so at $90 the mythics, lands and die are nearly free. Stores listed it at $90–199. |
 | Masters 25 pack (2018 reprint set, 15 cards) | none (old set) | ≤ $5 | n/a | ≥ $10 | Usually $10–15. Mostly draft commons, little for Commander. Sealed box (24) sold $210–290 on eBay in 2026. |
 | Mystery Booster Commander Edition | n/a | n/a | n/a | n/a | Released Oct 19, 2026, but not sold in regular stores. |
 
-Our six Reality Fracture Collector Boosters (Nov 9, 2026) came to $230.94 at market against $161.94 paid, a third of it one Japan showcase Jace ([pulls/fra-collector-2026-11-09.md](pulls/fra-collector-2026-11-09.md)).
+Our Nov 9, 2026 haul: 2 Collector Boosters at $25 and 2 Secret Lair Bundles at $90, $230 in all. The six Collector Boosters alone came to $230.94 at market, a third of it one Japan showcase Jace, with the 12 Play Boosters, 4 Secret Lair mythics and 40 foil basics on top ([pulls/fra-collector-2026-11-09.md](pulls/fra-collector-2026-11-09.md)).
 
 For upgrading decks, buying single cards beats buying packs.
 
@@ -111,6 +112,7 @@ All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrad
 ## Sources
 
 - Reality Fracture prices: Wizards' Reality Fracture buyer's guide, tabletopmeta.com, tcgsealedalerts.com
+- Reality Fracture Secret Lair Bundle: nerdsnack.com, miniaturemarket.com, gamestop.com, facetofacegames.com (Nov 2026)
 - Masters 25: pricecharting.com (eBay sales, Mar to May 2026), toywiz.com
 - Foundations Commander: Wizards' decklist announcement, playgroup.gg, preconforge.com, scrollvault.net,
   everythingedinburgh.com; the $49.99 regular precon MSRP is from the same reporting
