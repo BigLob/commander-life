@@ -289,10 +289,125 @@ VREN = {
     'Swamp': ('Land', 'Basics for black, most of the deck\'s mana: Tainted Isle needs a Swamp.'),
 }
 
+# Lenn's Chatterfang: a gift deck, hand-picked (not EDHREC's average) for Lenn, who likes token builds. Bracket 3:
+# three Game Changers (Gaea's Cradle, Demonic Tutor, Seedborn Muse), no two-card infinite combos (Earthcraft + Squirrel
+# Nest and Ivy Lane Denizen + Scurry Oak are left out for that, and Pitiless Plunderer too: with Chatterfang it loops by
+# itself, Commander Spellbook's two-card combo), no land destruction, no extra turns. It will be
+# proxied, so price didn't limit the picks. Compared with the average deck it plays more token makers, a third
+# doubler-style replacement (Tippy-Toe), more anthems and overrun finishers, and fewer drain-only cards.
+LENN = {
+    'Chatterfang, Squirrel General': ('Commander', 'Every token you make comes with that many Squirrels, and spare Squirrels become removal.'),
+    # token makers
+    'Chitterspitter': ('Token maker', 'A Squirrel for {G} (two with Chatterfang), and it grows every Squirrel each upkeep.'),
+    'Deep Forest Hermit': ('Token maker', 'Four Squirrels on entering (eight with Chatterfang), and Squirrels get +1/+1.'),
+    'Deranged Hermit': ('Token maker', 'Four Squirrels (eight), and Squirrels get +1/+1; skip the echo and sacrifice it to Ashnod\'s Altar or Skullclamp it.'),
+    'Hazel of the Rootbloom': ('Token maker', 'Copies a token each end step (two if it is a Squirrel), and taps tokens for mana.'),
+    "Hazel's Brewmaster": ('Token maker', 'A Food and a Squirrel every time it enters or attacks.'),
+    'Peregrin Took': ('Token maker', 'Every token creation adds a Food, and Chatterfang adds a Squirrel for that Food.'),
+    'Tippy-Toe, Terrific Partner': ('Token maker', 'Like Peregrin: every token creation adds a Food (and its Squirrel), and gaining life draws a card each end step.'),
+    'The Unbeatable Squirrel Girl': ('Token maker', 'A Squirrel when it enters or attacks, and for four mana doubles your Squirrels.'),
+    'Scurry of Squirrels': ('Token maker', 'Myriad makes attacking copies of it each combat, each with a Squirrel.'),
+    'Scurry Oak': ('Token maker', 'Evolves as bigger creatures arrive, and each counter makes a Squirrel (two with Chatterfang).'),
+    'Camellia, the Seedmiser': ('Token maker', 'Sacrificing Food makes Squirrels, and other Squirrels get menace.'),
+    'Tendershoot Dryad': ('Token maker', 'A Saproling at the start of every player\'s upkeep (plus a Squirrel each), and they get +2/+2 once you control ten permanents.'),
+    'Bitterblossom': ('Token maker', 'A flying Faerie (and a Squirrel) every upkeep for two mana.'),
+    'Garruk, Cursed Huntsman': ('Token maker', 'Two Wolves a turn (plus two Squirrels), or kill a creature and draw.'),
+    'Squirrel Nest': ('Token maker', 'Turns a land into a Squirrel every turn; two with Chatterfang, and every turn with Seedborn Muse.'),
+    'Scute Swarm': ('Token maker', 'An Insect (and a Squirrel) per land played; at six lands it copies itself.'),
+    'Chatterstorm': ('Token maker', 'Storm: a Squirrel for every spell cast before it this turn, each doubled.'),
+    'Swarmyard Massacre': ('Token maker', 'Four Squirrels, then every creature that isn\'t a Squirrel, Rat, Insect or Spider gets −1/−1 per Squirrel you have.'),
+    'Verdant Command': ('Token maker', 'Four Squirrels at instant speed, or exile a graveyard card or gain 3 life.'),
+    'Pest Infestation': ('Token maker', 'Destroys X artifacts or enchantments and makes twice X Pests (plus as many Squirrels).'),
+    'Rootcast Apprenticeship': ('Token maker', 'Copy a token, make a Squirrel, add counters or make someone sacrifice an artifact.'),
+    # token doublers
+    'Doubling Season': ('Token doubler', 'Doubles every token, Chatterfang\'s Squirrels included, and every counter.'),
+    'Parallel Lives': ('Token doubler', 'Doubles every token, Chatterfang\'s Squirrels included.'),
+    'Second Harvest': ('Token doubler', 'Copies every token at instant speed, and Chatterfang adds that many Squirrels again.'),
+    'Academy Manufactor': ('Token doubler', 'Each Food, Treasure or Clue becomes one of each, so three Squirrels.'),
+    # payoffs
+    'Seedborn Muse': ('Payoff', 'Untaps everything on every player\'s turn: Squirrel Nest, Chitterspitter and Gaea\'s Cradle make Squirrels or mana four times a round.'),
+    'Squirrel Sovereign': ('Payoff', 'Other Squirrels get +1/+1.'),
+    'The Odd Acorn Gang': ('Payoff', 'Squirrels pump each other, and Squirrel hits draw cards.'),
+    'Honored Dreyleader': ('Payoff', 'A +1/+1 counter for every Squirrel and Food that enters.'),
+    'Champion of Lambholt': ('Payoff', 'Grows with every creature that enters, and nothing smaller can block your creatures.'),
+    'Sword of the Squeak': ('Payoff', 'Attaches free to each Squirrel that enters and grows with every 1/1.'),
+    'Beastmaster Ascension': ('Payoff', 'Seven attackers and everything gets +5/+5.'),
+    'Craterhoof Behemoth': ('Payoff', 'Every creature gets trample and +X/+X for your creature count: with a board of tokens, the game ends.'),
+    # drain
+    'Zulaport Cutthroat': ('Drain', 'Each of your creatures dying drains every opponent for 1.'),
+    'Mirkwood Bats': ('Drain', 'Each token made or sacrificed pings every opponent.'),
+    "Nadier's Nightblade": ('Drain', 'Each token leaving drains every opponent for 1.'),
+    'The Meathook Massacre': ('Drain', 'Each of your creatures dying drains every opponent, and a small X sweeps away little blockers (keep it below your anthems).'),
+    'Valley Rotcaller': ('Drain', 'Attacks drain 1 per other Squirrel.'),
+    # sac outlets
+    "Ashnod's Altar": ('Sac outlet', 'Free sacrifice that turns each Squirrel into two mana and sets off every death trigger.'),
+    'Ravenous Squirrel': ('Sac outlet', 'Sacrifice anything to draw, and it grows.'),
+    # draw
+    'Skullclamp': ('Draw', 'Equip a 1/1 Squirrel for 1: two cards.'),
+    'Toski, Bearer of Secrets': ('Draw', 'A card for each creature that hits a player.'),
+    'Deadly Dispute': ('Draw', 'Sacrifice a Squirrel: draw two, plus a Treasure and a Squirrel.'),
+    'Idol of Oblivion': ('Draw', 'A card on any turn you made a token.'),
+    'Black Market Connections': ('Draw', 'Cards, a Treasure or a Shapeshifter each turn, each token bringing a Squirrel.'),
+    'Shamanic Revelation': ('Draw', 'A card per creature: a full grip off a board of tokens.'),
+    # ramp
+    'Sol Ring': ('Ramp', 'Two extra mana from turn one.'),
+    'Arcane Signet': ('Ramp', 'Black or green, so Chatterfang lands a turn early.'),
+    'Birds of Paradise': ('Ramp', 'Turn-one mana of any color.'),
+    'Gilded Goose': ('Ramp', 'Food (and a Squirrel) on entering, and Food into mana.'),
+    'Jaheira, Friend of the Forest': ('Ramp', 'Every token taps for {G}.'),
+    'Cryptolith Rite': ('Ramp', 'Every creature taps for any color, Squirrels included.'),
+    'Tireless Provisioner': ('Ramp', 'A Food or Treasure (and a Squirrel) per land played.'),
+    'Prosperous Innkeeper': ('Ramp', 'A Treasure (and a Squirrel) on entering, and 1 life per creature that enters, which turns on Tippy-Toe\'s draw.'),
+    "Nature's Lore": ('Ramp', 'An untapped Forest (Bayou or Overgrown Tomb) for two.'),
+    # tutors
+    'Demonic Tutor': ('Tutor', 'Finds the doubler, Craterhoof, or whatever the table needs answered.'),
+    "Green Sun's Zenith": ('Tutor', 'Finds any green creature: Deranged Hermit, Hazel, Craterhoof.'),
+    # removal and protection
+    "Assassin's Trophy": ('Removal', 'Destroys any permanent at instant speed.'),
+    'Beast Within': ('Removal', 'Destroys any permanent; its owner gets a 3/3.'),
+    'Deadly Rollick': ('Removal', 'Free with Chatterfang out: exile a creature.'),
+    'Saw in Half': ('Removal', 'Kills a creature, or splits one of yours into two tokens (and two Squirrels).'),
+    'Maelstrom Pulse': ('Removal', 'Destroys a permanent and every copy of it, for example an opponent\'s token army.'),
+    'Heroic Intervention': ('Protection', 'Hexproof and indestructible for the whole board against a wipe.'),
+    'Arachnogenesis': ('Protection', 'Stops a big attack and makes a Spider (and a Squirrel) per attacker.'),
+    # lands
+    "Gaea's Cradle": ('Land', 'A green mana per creature: tokens become mana.'),
+    'Swarmyard': ('Land', 'Regenerates a Squirrel.'),
+    'Yavimaya, Cradle of Growth': ('Land', 'Every land is a Forest: green from every land and forestwalk for Chatterfang.'),
+    'Oran-Rief, the Vastwood': ('Land', 'A +1/+1 counter on each green creature that entered this turn.'),
+    'Three Tree City': ('Land', 'Name Squirrel: a mana per Squirrel.'),
+    'Phyrexian Tower': ('Land', 'Sacrifice a Squirrel for {B}{B}.'),
+    'Fountainport': ('Land', 'Sacrifice a token to draw; makes Fish and Treasure (each with a Squirrel).'),
+    'Bojuka Bog': ('Land', 'Exiles a graveyard on entering.'),
+    'Boseiju, Who Endures': ('Land', 'A Forest that is also an instant answer to an artifact, enchantment or nonbasic land.'),
+    'Urborg, Tomb of Yawgmoth': ('Land', 'Every land is a Swamp too, so black from every land.'),
+    'Command Tower': ('Land', 'Either color.'),
+    'Bayou': ('Land', 'Untapped Swamp Forest; fetchable.'),
+    'Overgrown Tomb': ('Land', 'Untapped Swamp Forest; fetchable.'),
+    'Verdant Catacombs': ('Land', 'Fetches Bayou or Overgrown Tomb.'),
+    'Polluted Delta': ('Land', 'Fetches a Swamp: Bayou or Overgrown Tomb.'),
+    'Misty Rainforest': ('Land', 'Fetches a Forest: Bayou or Overgrown Tomb.'),
+    'Woodland Cemetery': ('Land', 'Untapped dual with a Swamp or Forest out.'),
+    'Llanowar Wastes': ('Land', 'Untapped dual for 1 damage.'),
+    'Twilight Mire': ('Land', 'One mana into two of black and green.'),
+    'Undergrowth Stadium': ('Land', 'Untapped dual with two or more opponents.'),
+    'Necroblossom Snarl': ('Land', 'Untapped dual if you show a Swamp or Forest.'),
+    'Blooming Marsh': ('Land', 'Untapped dual early.'),
+    'Darkbore Pathway': ('Land', 'Black or green side, untapped.'),
+    'Forest': ('Land', 'Seven: Nature\'s Lore and the duals want them.'),
+    'Swamp': ('Land', 'Five, for the black duals.'),
+}
+
 BREWS = {
     'chatterfang': {'name': 'Chatterfang Squirrels', 'edhrec': 'chatterfang-squirrel-general', 'why': CHATTERFANG, 'colors': 'black-green'},
     'marrow-gnawer': {'name': 'Marrow-Gnawer Rats', 'edhrec': 'marrow-gnawer', 'why': MARROW, 'colors': 'mono-black'},
     'vren': {'name': 'Vren Rats', 'edhrec': 'vren-the-relentless', 'why': VREN, 'colors': 'blue-black'},
+    # hand-picked: the list is LENN itself (not EDHREC's average deck); EDHREC's numbers still show where it has them
+    'chatterfang-lenn': {'name': "Lenn's Chatterfang Tokens", 'edhrec': 'chatterfang-squirrel-general', 'why': LENN, 'colors': 'black-green',
+                         'pick': {'Forest': 7, 'Swamp': 5},
+                         'about': 'A gift deck for Lenn, who likes token builds. Bracket 3: three Game Changers (Gaea\'s Cradle, Demonic Tutor, '
+                                  'Seedborn Muse), no two-card infinite combos, no land destruction or extra turns. Built to be proxied, so price '
+                                  'didn\'t limit the picks. Every card is Commander-legal.'},
 }
 
 def get(url, data=None):
@@ -315,13 +430,19 @@ def cheapest(name):
 
 def build(slug, b):
     edh = 'https://json.edhrec.com/pages'
-    page, avg = get(f"{edh}/commanders/{b['edhrec']}.json"), get(f"{edh}/average-decks/{b['edhrec']}.json")
+    page = get(f"{edh}/commanders/{b['edhrec']}.json")
     decks = page['container']['json_dict']['card']['num_decks']
     stats = {}
     for l in page['container']['json_dict']['cardlists']:
         for v in l['cardviews']: stats.setdefault(v['name'], [round(v['num_decks'] / v['potential_decks'], 3), round(v['synergy'], 3)])
-    cmd = avg['deck']['commander'][0]
-    lst = [(cmd, 1)] + [(n, q) for t, cs in avg['deck']['cards'].items() for n, q in cs]
+    if 'pick' in b:  # hand-picked list: the reasons dict in order, commander first, basics counted in 'pick'
+        lst = [(n, b['pick'].get(n, 1)) for n in b['why']]
+        cmd = lst[0][0]
+    else:
+        avg = get(f"{edh}/average-decks/{b['edhrec']}.json")
+        cmd = avg['deck']['commander'][0]
+        lst = [(cmd, 1)] + [(n, q) for t, cs in avg['deck']['cards'].items() for n, q in cs]
+    assert sum(q for _, q in lst) == 100, f'{sum(q for _, q in lst)} cards, not 100'
     miss = [n for n, _ in lst if n not in b['why']]
     assert not miss, f'no reason written for: {miss}'
     found = {}
@@ -348,14 +469,17 @@ def build(slug, b):
     total = sum((r['p'] or 0) * r['q'] for r in ALL)
     edh_page = f"https://edhrec.com/commanders/{b['edhrec']}"
     avg_page = f"https://edhrec.com/average-decks/{b['edhrec']}"
-    srcs = (f'<p><b>The list</b> is <a href="{avg_page}" target="_blank" rel="noopener">EDHREC\'s average {html.escape(cmd.split(",")[0])} deck</a>: '
-            f'the cards played most across the {decks:,} {html.escape(cmd.split(",")[0])} decks EDHREC has (pulled {time.strftime("%b %-d %Y")}).</p>'
-            f'<p><b>Under each card</b>: its role (from its rules text: the <i>card text</i> link, on Scryfall), '
+    lead = (f'<p><b>The list</b> is hand-picked. {html.escape(b["about"])}</p>' if 'pick' in b else
+            f'<p><b>The list</b> is <a href="{avg_page}" target="_blank" rel="noopener">EDHREC\'s average {html.escape(cmd.split(",")[0])} deck</a>: '
+            f'the cards played most across the {decks:,} {html.escape(cmd.split(",")[0])} decks EDHREC has (pulled {time.strftime("%b %-d %Y")}).</p>')
+    srcs = (lead + f'<p><b>Under each card</b>: its role (from its rules text: the <i>card text</i> link, on Scryfall), '
             f'then EDHREC\'s numbers from the <a href="{edh_page}" target="_blank" rel="noopener">commander page</a>: the share of those decks that play it, '
-            f'and synergy, how much more often it is played here than in other {b["colors"]} decks (near 0% means a generic staple).</p>'
+            f'and synergy, how much more often it is played here than in other {b["colors"]} decks (near 0% means a generic staple)'
+            f'{"; cards EDHREC has no numbers for show only their role" if "pick" in b else ""}.</p>'
             '<p><b>Prices</b> are the cheapest paper printing on Scryfall.</p>')
     cfg = {'slug': 'brew-' + slug, 'deck': b['name'], 'set': '', 'cmd': cmd, 'alt': None, 'decks': decks, 'edh': edh_page, 'srcs': srcs,
-           'sub': f'{sum(r["q"] for r in ALL)} cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC'}
+           'sub': (f'{sum(r["q"] for r in ALL)} cards · Bracket 3 · tokens · a gift for Lenn (to proxy; ${total:,.0f} in singles)' if 'pick' in b else
+                   f'{sum(r["q"] for r in ALL)} cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC')}
     t = open(os.path.join(HERE, 'brew-template.html')).read()
     t = (t.replace('__TITLE__', html.escape(b['name'])).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
           .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))

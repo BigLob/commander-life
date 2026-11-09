@@ -138,7 +138,7 @@ document.querySelector('.srcs').addEventListener('toggle',()=>{fit();go(cur())})
 /* each card's role and EDHREC's numbers for it in the commander's decks, with links to both */
 const pct=x=>Math.round(x*100)+'%';
 function why(c){const e=c.e;
- return `<p class="cite"><b>${c.k[0]}</b> · ${e?(c.n==CFG.cmd?'Commander of '+CFG.decks.toLocaleString('en-US')+' decks':'In '+pct(e[0])+' of '+CFG.decks.toLocaleString('en-US')+' decks · synergy '+(e[1]>=0?'+':'−')+pct(Math.abs(e[1]))):''} · <a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
+ return `<p class="cite"><b>${c.k[0]}</b> · ${e?(c.n==CFG.cmd?'Commander of '+CFG.decks.toLocaleString('en-US')+' decks':'In '+pct(e[0])+' of '+CFG.decks.toLocaleString('en-US')+' decks · synergy '+(e[1]>=0?'+':'−')+pct(Math.abs(e[1])))+' · ':''}<a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
 const money=v=>v==null?'no price':'$'+v.toFixed(2);
 function fit(){const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
 addEventListener('resize',()=>{fit();go(cur())});
