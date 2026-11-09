@@ -8,6 +8,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Commander Life</title>
+<!-- Installing from Chrome on Android opens it as its own full-screen app (no address bar) only with a manifest. -->
+<link rel="manifest" href="app/manifest.json">
+<link rel="icon" href="app/icon-192.png">
+<link rel="apple-touch-icon" href="app/icon-192.png">
 <link rel="preload" href="fonts/Matrix-Bold.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="fonts/Mplantin.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="fonts/Beleren-Bold-digits.woff" as="font" type="font/woff" crossorigin>
@@ -847,7 +851,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.39';
+  const VERSION = '1.40';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
