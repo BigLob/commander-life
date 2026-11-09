@@ -398,16 +398,32 @@ LENN = {
     'Swamp': ('Land', 'Five, for the black duals.'),
 }
 
+# Lenn's deck at Bracket 2: the four cards that make it Bracket 3 swapped out (three Game Changers, and Peregrin Took,
+# whose Food loops with Camellia in three- and four-card infinite combos). Same order, so the swap is card for card.
+LENN_B2_SWAPS = [
+    ("Gaea's Cradle", 'Golgari Rot Farm', ('Land', 'Taps for two mana; stands in for Gaea\'s Cradle, a Game Changer.')),
+    ('Demonic Tutor', 'Sylvan Library', ('Draw', 'Sees three cards a turn and keeps the best (or pays 4 life each for more); stands in for Demonic Tutor, a Game Changer.')),
+    ('Seedborn Muse', 'Drey Keeper', ('Token maker', 'Two Squirrels (four with Chatterfang), and {3}{B} gives every Squirrel +1/+0 and menace; stands in for Seedborn Muse, a Game Changer.')),
+    ('Peregrin Took', 'Bastion of Remembrance', ('Drain', 'A creature token (and a Squirrel) on entering, and each of your creatures dying drains every opponent; stands in for Peregrin Took, whose Food loops with Camellia.')),
+]
+_sw = {a: (b, w) for a, b, w in LENN_B2_SWAPS}
+LENN_B2 = {_sw[n][0] if n in _sw else n: _sw[n][1] if n in _sw else v for n, v in LENN.items()}
+
 BREWS = {
     'chatterfang': {'name': 'Chatterfang Squirrels', 'edhrec': 'chatterfang-squirrel-general', 'why': CHATTERFANG, 'colors': 'black-green'},
     'marrow-gnawer': {'name': 'Marrow-Gnawer Rats', 'edhrec': 'marrow-gnawer', 'why': MARROW, 'colors': 'mono-black'},
     'vren': {'name': 'Vren Rats', 'edhrec': 'vren-the-relentless', 'why': VREN, 'colors': 'blue-black'},
     # hand-picked: the list is LENN itself (not EDHREC's average deck); EDHREC's numbers still show where it has them
-    'chatterfang-lenn': {'name': "Lenn's Chatterfang Tokens", 'edhrec': 'chatterfang-squirrel-general', 'why': LENN, 'colors': 'black-green',
-                         'pick': {'Forest': 7, 'Swamp': 5},
+    'chatterfang-lenn': {'name': "Lenn's Chatterfang Tokens (Bracket 3)", 'edhrec': 'chatterfang-squirrel-general', 'why': LENN, 'colors': 'black-green',
+                         'pick': {'Forest': 7, 'Swamp': 5}, 'bracket': 3,
                          'about': 'A gift deck for Lenn, who likes token builds. Bracket 3: three Game Changers (Gaea\'s Cradle, Demonic Tutor, '
                                   'Seedborn Muse), no two-card infinite combos, no land destruction or extra turns. Built to be proxied, so price '
                                   'didn\'t limit the picks. Every card is Commander-legal.'},
+    'chatterfang-lenn-b2': {'name': "Lenn's Chatterfang Tokens (Bracket 2)", 'edhrec': 'chatterfang-squirrel-general', 'why': LENN_B2, 'colors': 'black-green',
+                            'pick': {'Forest': 7, 'Swamp': 5}, 'bracket': 2,
+                            'about': 'The Bracket 2 version of Lenn\'s gift deck: the Bracket 3 list with four swaps. No Game Changers, no '
+                                     'infinite combos of any size (Commander Spellbook finds none), one tutor (Green Sun\'s Zenith), no land '
+                                     'destruction or extra turns. Every card is Commander-legal.'},
 }
 
 def get(url, data=None):
@@ -472,19 +488,30 @@ def build(slug, b):
     lead = (f'<p><b>The list</b> is hand-picked. {html.escape(b["about"])}</p>' if 'pick' in b else
             f'<p><b>The list</b> is <a href="{avg_page}" target="_blank" rel="noopener">EDHREC\'s average {html.escape(cmd.split(",")[0])} deck</a>: '
             f'the cards played most across the {decks:,} {html.escape(cmd.split(",")[0])} decks EDHREC has (pulled {time.strftime("%b %-d %Y")}).</p>')
+    if 'bracket' in b:  # Lenn's two versions: the swap list and the proxy order, on both pages
+        li = ''.join(f'<li>{html.escape(a)} → {html.escape(c)}</li>' for a, c, _ in LENN_B2_SWAPS)
+        lead += ('<p><b>Two versions.</b> <a href="chatterfang-lenn.html">Bracket 3</a> and <a href="chatterfang-lenn-b2.html">Bracket 2</a> '
+                 f'share 96 cards. To go from Bracket 3 to Bracket 2, swap:</p><ul>{li}</ul>'
+                 '<p><a href="chatterfang-lenn-proxies.txt">Proxy order</a>: every card both versions need, one of each, basics left out.</p>')
     srcs = (lead + f'<p><b>Under each card</b>: its role (from its rules text: the <i>card text</i> link, on Scryfall), '
             f'then EDHREC\'s numbers from the <a href="{edh_page}" target="_blank" rel="noopener">commander page</a>: the share of those decks that play it, '
             f'and synergy, how much more often it is played here than in other {b["colors"]} decks (near 0% means a generic staple)'
             f'{"; cards EDHREC has no numbers for show only their role" if "pick" in b else ""}.</p>'
             '<p><b>Prices</b> are the cheapest paper printing on Scryfall.</p>')
     cfg = {'slug': 'brew-' + slug, 'deck': b['name'], 'set': '', 'cmd': cmd, 'alt': None, 'decks': decks, 'edh': edh_page, 'srcs': srcs,
-           'sub': (f'{sum(r["q"] for r in ALL)} cards · Bracket 3 · tokens · a gift for Lenn (to proxy; ${total:,.0f} in singles)' if 'pick' in b else
+           'sub': (f'{sum(r["q"] for r in ALL)} cards · Bracket {b["bracket"]} · tokens · a gift for Lenn (to proxy; ${total:,.0f} in singles)' if 'pick' in b else
                    f'{sum(r["q"] for r in ALL)} cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC')}
     t = open(os.path.join(HERE, 'brew-template.html')).read()
     t = (t.replace('__TITLE__', html.escape(b['name'])).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
           .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w').write(t)
+    if 'bracket' in b:  # the proxy order covers both versions, so either can be built from one print run
+        names = sorted({n for n in list(LENN) + list(LENN_B2) if n not in ('Forest', 'Swamp')})
+        open(os.path.join(OUT, 'chatterfang-lenn-proxies.txt'), 'w').write(
+            "Lenn's Chatterfang Tokens: proxy order for both versions (Bracket 3 and Bracket 2), basics left out.\n"
+            f"{len(names)} cards. Bracket 3 only: {', '.join(a for a, _, _ in LENN_B2_SWAPS)}. "
+            f"Bracket 2 only: {', '.join(c for _, c, _ in LENN_B2_SWAPS)}.\n\n" + ''.join(f'1 {n}\n' for n in names))
     print(f'{slug}: {sum(r["q"] for r in ALL)} cards, ${total:.2f}, from {decks} decks; no price: {[r["n"] for r in ALL if r["p"] is None]}')
 
 if __name__ == '__main__':
