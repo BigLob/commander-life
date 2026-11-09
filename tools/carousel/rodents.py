@@ -128,7 +128,7 @@ def main():
     legends = [r for r in ALL if 'Legendary' in front(r) and 'Creature' in front(r) and r.get('l')]  # Commander-legal only (the user's ask)
     pages = [('index.html', ALL, 'Rodent Cards', 'Rodent cards', {'noun': 'cards', 'other': '<a href="legends.html">Legendary creatures ›</a>'}),
              ('legends.html', legends, 'Rodent Legends', 'Rodent legendary creatures',
-              {'noun': 'Commander-legal legendary creatures', 'legends': 1, 'other': '<a href="./">All rodent cards ›</a>'})]
+              {'noun': 'legal legends', 'legends': 1, 'other': '<a href="./">All rodent cards ›</a>'})]
     os.makedirs(OUT, exist_ok=True)
     for fn, rows, title, h1, page in pages:
         t = open(os.path.join(HERE, 'rodents-template.html')).read()

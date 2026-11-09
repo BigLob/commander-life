@@ -95,6 +95,21 @@ figure{g.why{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .chip.n{font:500 .66rem/1 var(--f-mono);color:var(--fg);padding:4px 7px}
 #fpanel{grid-template-columns:repeat(3,minmax(0,1fr))}
 ap:8px}
+/* compact top (the user: the top took half the phone): one-line summary, tabs on one scrolling row */
+header{padding-block:8px 4px;row-gap:2px}
+h1{font-size:1.05rem}
+.back{font-size:.74rem}
+.total{font-size:.72rem;flex-basis:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-block:2px 4px;margin-inline:-2px;padding-inline:2px}
+.seg::-webkit-scrollbar{display:none}
+/* on a very short screen the card can't fit at a readable size: keep it 150px wide and let the rail scroll down instead of cutting it off */
+.track{align-items:safe center;overflow-y:auto}
+.seg button{flex:0 0 auto;padding:5px 9px}
+.bar{padding-bottom:4px}
+.bar #fbtn,#f-reset{padding:5px 9px}
+figcaption small{font-size:.66rem}
+.chips{gap:4px}.chip.n{padding:3px 6px}
+.acts button{padding:6px}
 </style>
 <header><h1>Rodent cards</h1><a class="back" href="../links.html">‹ All pages</a><span class="total" id="sub"></span></header>
 <div class="seg" id="seg"><button data-v="all" aria-pressed="true">All</button><button data-v="R" aria-pressed="false">Rats</button><button data-v="M" aria-pressed="false">Mice</button><button data-v="S" aria-pressed="false">Squirrels</button><button data-v="O" aria-pressed="false">Other</button><button data-v="fav" aria-pressed="false">Fav</button></div>
@@ -166,14 +181,21 @@ function inner(m){const a=art(m),fav=favs[m.n];
   +(m.f?`<p class="fl">${esc(m.f)}</p>`:'')+chips(m)
   +`<div class="acts"><button data-a="fav"${fav?' class="on"':''}>${fav?'★ Fav':'☆ Fav'}</button>${m.b&&!(pick[m.n])?'<button data-a="flip">Flip</button>':''}</div>`}
 let figs=[];
-function fit(){const w=Math.max(120,Math.min(innerWidth*.78,(tr.clientHeight-200)*488/680,320));tr.style.setProperty('--w',w+'px')}
+/* size the card so the whole figure (image plus caption, chips and buttons) fits the rail: measure what the
+   caption takes on the cards that have the tallest captions, then fit the image in what's left (twice, since a
+   narrower card wraps its text onto more lines, so it settles over a few passes) */
+function fit(){const set=w=>tr.style.setProperty('--w',Math.max(150,Math.min(innerWidth*.8,w,320))+'px');
+ set((tr.clientHeight-200)*488/680);
+ const fs=[...tr.querySelectorAll('figure')];if(!fs.length)return;
+ for(let k=0;k<4;k++){let extra=0;fs.forEach(f=>{const z=f.querySelector('.zb');if(z)extra=Math.max(extra,f.offsetHeight-z.offsetHeight)});
+  set((tr.clientHeight-extra-6)*488/680)}}
 addEventListener('resize',()=>{fit();go(cur())});
-function render(keepAt){D=items();fit();const q=norm(F.q.trim());
+function render(keepAt){D=items();const q=norm(F.q.trim());
  document.querySelectorAll('#seg button').forEach(b=>{const k=b.dataset.v;b.innerHTML=TABS[k]+'<span class="ct">'+ALL.filter(m=>keep(m,q,k)).length+'</span>';b.setAttribute('aria-pressed',k==tab)});
  $('sub').innerHTML=ALL.length.toLocaleString('en-US')+' '+PAGE.noun+' from Scryfall'+(D.length<ALL.length&&tab=='all'?' · '+D.length+' shown':'')+' · '+PAGE.other;
  const fv=ALL.filter(m=>favs[m.n]);$('favtot').textContent='★ '+fv.length+' · '+money(fv.reduce((a,m)=>a+pv(m),0));
  tr.innerHTML=D.length?D.map((m,i)=>`<figure data-i="${i}"${favs[m.n]?' class="fav"':''}>${inner(m)}</figure>`).join(''):'<p class="empty">'+(tab=='fav'&&!fv.length?'No favorites yet. Tap ☆ Fav on a card.':'No cards match these filters.')+'</p>';
- figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;
+ figs=[...tr.querySelectorAll('figure')];fit();sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;
  if(keepAt!=null&&figs.length){const f=figs[Math.min(keepAt,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
 const redraw=i=>{figs[i].innerHTML=inner(D[i]);figs[i].classList.toggle('fav',!!favs[D[i].n])};
 const sc=$('scrub');
