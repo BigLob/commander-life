@@ -1,0 +1,83 @@
+<title>Commander Soundboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Alegreya+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: one column on a dark card table; a big gold button per kind of sound, and under it what just played. One look, dark like the game. */
+:root {
+  --felt: #15181c; --rim: #2a2f36; --ink: #f2ecdf; --ink-2: #a39d90;
+  --gold: #ffb347; --gold-hi: #ffe2a3; --gold-lo: #b06a14; --coal: #1a1208;
+  --f-display: "Cinzel", Georgia, serif; --f-body: "Alegreya Sans", system-ui, sans-serif;
+  color-scheme: dark;
+}
+html { background: var(--felt); }
+body {
+  margin: 0; min-height: 100%; background: radial-gradient(120% 70% at 50% 0%, #1f242b, var(--felt)); color: var(--ink);
+  font-family: var(--f-body); font-size: 17px; line-height: 1.45;
+  padding-block: 24px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 34rem; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: 1.7rem; letter-spacing: .06em; text-transform: uppercase; text-wrap: balance; }
+.sub { margin: 4px 0 0; color: var(--ink-2); }
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.pad {
+  aspect-ratio: 1; max-width: 100%; border: 3px solid #000; border-radius: 50%; padding: 12px; cursor: pointer;
+  display: grid; place-content: center; gap: 4px; text-align: center; color: var(--coal);
+  background: radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 58%, var(--gold-lo));
+  box-shadow: 0 0 0 2px var(--rim), 0 0 26px rgba(255, 179, 71, .45), 0 6px 14px rgba(0, 0, 0, .6);
+  font: inherit; touch-action: manipulation;
+}
+.pad b { font-family: var(--f-display); font-size: 1.15rem; letter-spacing: .04em; }
+.pad span { font-size: .85rem; font-weight: 500; }
+.pad:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.pad.boing { animation: boing .5s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes boing { 0% { scale: 1; } 25% { scale: .85 1.08; } 55% { scale: 1.08 .92; } 100% { scale: 1; } }
+@media (prefers-reduced-motion: reduce) { .pad.boing { animation: none; } }
+.now { min-height: 5.5em; padding: 14px 16px; border-left: 3px solid var(--gold); background: rgba(255, 255, 255, .04); border-radius: 0 12px 12px 0; }
+.now q { display: block; font-size: 1.2rem; font-weight: 500; quotes: "\201C" "\201D"; }
+.now .who { margin-top: 6px; color: var(--ink-2); font-size: .95rem; }
+.now .idle { color: var(--ink-2); }
+.foot { color: var(--ink-2); font-size: .9rem; }
+.foot a { color: var(--gold); }
+</style>
+<main>
+  <header>
+    <h1>Soundboard</h1>
+    <p class="sub">Tap a button for a random clip. Nothing repeats until every clip of that kind has played.</p>
+  </header>
+  <div class="board" id="board">
+    <button type="button" class="pad" data-k="pres"><b>Presidents</b><span id="n-pres"></span></button>
+  </div>
+  <div class="now" id="now" aria-live="polite"><span class="idle">Tap a button to play.</span></div>
+  <p class="foot">The same clips play on Commander Life's turn button. Every clip and its source: <a href="https://biglob.github.io/commander-life/sounds/">the clip list</a>.</p>
+</main>
+<script>
+// KINDS: per kind, its clips ({ f: file, q: words, w: who }); SRC: where each file plays from
+// (a sounds/ path on the site, an embedded data: URI in the claude.ai copy). Both are filled in by
+// tools/sounds/make_soundboard.py from sounds/clips.json.
+const KINDS = /*KINDS*/{};
+const SRC = /*SRC*/{};
+const bags = {};
+let playing = null;
+for (const k in KINDS) { const n = document.getElementById('n-' + k); if (n) n.textContent = KINDS[k].length + ' clips'; }
+// Each kind deals from its own shuffled bag, refilled when empty.
+function next(k) {
+  if (!bags[k] || !bags[k].length) {
+    const d = KINDS[k].slice();
+    for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [d[i], d[j]] = [d[j], d[i]]; }
+    bags[k] = d;
+  }
+  return bags[k].shift();
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+document.getElementById('board').addEventListener('click', e => {
+  const b = e.target.closest('[data-k]');
+  if (!b) return;
+  b.classList.remove('boing'); void b.offsetWidth; b.classList.add('boing');
+  const c = next(b.dataset.k);
+  if (playing) { playing.pause(); playing = null; }
+  const a = new Audio(SRC[c.f]);
+  playing = a;
+  a.play().catch(() => {});
+  document.getElementById('now').innerHTML = (c.q ? `<q>${esc(c.q)}</q>` : '<q>(no words)</q>') + (c.w ? `<div class="who">${esc(c.w)}</div>` : '');
+});
+</script>
