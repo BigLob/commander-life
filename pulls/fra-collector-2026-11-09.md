@@ -1,6 +1,6 @@
-# Reality Fracture Collector Booster pulls (Nov 9, 2026)
+# Reality Fracture Collector Booster and Secret Lair pulls (Nov 9, 2026)
 
-Six Collector Boosters opened Nov 9, 2026: two bought loose at $25 each, four from two Secret Lair Bundles at $90 each ($230 spent in all; the bundles also held 12 Play Boosters, 4 Secret Lair mythics, 40 foil basics and 2 spindown dice, not priced here). Prices are TCGplayer market price (its average of recent sales) for the exact printing and finish, via Scryfall, on Nov 9, 2026.
+Six Collector Boosters opened Nov 9, 2026: two bought loose at $25 each, four from two Secret Lair Bundles at $90 each ($230 spent in all; the list includes the bundles' 4 Secret Lair mythics, Seasoned Cryomancer, Sphinx's Approach, Overwrite the Multiverse and Omnipresence (FRA 441, 442, 445, 448), $27.03 together; the bundles' 12 Play Boosters (not opened yet), 40 foil basics and 2 spindown dice aren't priced here). Prices are TCGplayer market price (its average of recent sales) for the exact printing and finish, via Scryfall, on Nov 9, 2026.
 
 - **85 cards, $230.94 total**, about $38.49 a pack (MSRP $26.99).
 - The Japan showcase **The Theorist, Jace Beleren** is a third of the value on its own.
