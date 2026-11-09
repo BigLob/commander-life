@@ -1,4 +1,4 @@
-"""Build rodents/index.html: every Magic card (and token) with a rat, mouse, squirrel or other rodent
+"""Build rodents/index.html: every Magic card (no tokens) with a rat, mouse, squirrel or other rodent
 in its creature type, name, rules text, flavor text or art.
 
 Each search runs on Scryfall twice: once for each card's default printing (what the page shows), once
@@ -81,6 +81,8 @@ def main():
     ALL = []
     for o, c in default.items():
         if c['name'].startswith('A-'): continue  # Arena's rebalanced copies of a card already listed
+        if c.get('layout') in ('token', 'double_faced_token') or 'Token' in c['type_line'] or c['type_line'].startswith('Card'):
+            continue  # tokens, and Alchemy's Bounty and Event cards, aren't cards you put in a deck (the user dropped them)
         if c['name'].endswith(' Checklist'): continue  # a set's checklist card lists names, it isn't a rodent card
         ps = list(prints[o].values())
         # words that matched, for the tab (a type match is in the type line, names/text/flavor in their words)
@@ -109,7 +111,6 @@ def main():
              'p': min(cheap) if cheap else None, 'r': c.get('edhrec_rank'), 'c': ''.join(x for x in 'WUBRG' if x in colors),
              'a': ''.join(k for k in 'RMSO' if k in kinds[o]) or 'O', 'w': ''.join(k for k in 'TNXFA' if k in why[o])}
         if len(fs) > 1 and not show.get('image_uris') and fs[1].get('image_uris'): r['b'] = fs[1]['image_uris']['normal']
-        if c.get('layout') in ('token', 'double_faced_token') or 'Token' in c['type_line']: r['k'] = 1
         if all(p.get('digital') for p in ps): r['d'] = 1
         if flav and 'F' in r['w']: r['f'] = flav[0]
         # other printings whose art is tagged with a rodent, one per illustration, for the art chips
@@ -120,13 +121,13 @@ def main():
                 arts.append([(p.get('image_uris') or faces(p)[0]['image_uris'])['normal'], p['set'].upper(), p['released_at'][:4]])
         if arts: r['x'] = arts
         ALL.append(r)
-    ALL.sort(key=lambda r: (r.get('k', 0), r['r'] or 1e9, r['n']))
+    ALL.sort(key=lambda r: (r['r'] or 1e9, r['n']))
     t = open(os.path.join(HERE, 'rodents-template.html')).read()
     t = t.replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':')))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w').write(t)
     cnt = collections.Counter(k for r in ALL for k in r['a'])
-    print(len(ALL), 'entries,', sum(1 for r in ALL if r.get('k')), 'tokens;', dict(cnt), dict(collections.Counter(k for r in ALL for k in r['w'])))
+    print(len(ALL), 'cards,', sum(1 for r in ALL if r.get('d')), 'digital only;', dict(cnt), dict(collections.Counter(k for r in ALL for k in r['w'])))
 
 if __name__ == '__main__':
     main()
