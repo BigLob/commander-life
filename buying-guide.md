@@ -41,6 +41,8 @@ https://biglob.github.io/commander-life/decks/.
 | Masters 25 pack (2018 reprint set, 15 cards) | none (old set) | ≤ $5 | n/a | ≥ $10 | Usually $10–15. Mostly draft commons, little for Commander. Sealed box (24) sold $210–290 on eBay in 2026. |
 | Mystery Booster Commander Edition | n/a | n/a | n/a | n/a | Released Oct 19, 2026, but not sold in regular stores. |
 
+Our six Reality Fracture Collector Boosters (Nov 9, 2026) came to $230.94 at market against $161.94 paid, a third of it one Japan showcase Jace ([pulls/fra-collector-2026-11-09.md](pulls/fra-collector-2026-11-09.md)).
+
 For upgrading decks, buying single cards beats buying packs.
 
 ## Commander decks (precons)
