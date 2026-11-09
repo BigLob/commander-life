@@ -1,8 +1,8 @@
 # Reality Fracture pulls (Nov 2026)
 
-Everything opened so far: Collector Boosters and the Secret Lair Bundles' mythics (the Play Boosters aren't opened yet). The first six Collector Boosters cost $230 (two loose at $25, four from two Secret Lair Bundles at $90); more packs were added Nov 9, 2026, cost not recorded. Prices are TCGplayer market price (its average of recent sales) for the exact printing and finish, via Scryfall, on Nov 9, 2026. Every card here is Commander-legal.
+Everything opened so far: Collector Boosters and the Secret Lair Bundles' mythics (the Play Boosters aren't opened yet). The first six Collector Boosters cost $230 (two loose at $25, four from two Secret Lair Bundles at $90); the second batch was one more Secret Lair Bundle and two more Collector Boosters, about $140 at the same prices. That makes 10 Collector Boosters and 3 bundles, about $370 in all; the 18 Play Boosters, 60 foil basics and 3 spindown dice aren't priced here. Prices are TCGplayer market price (its average of recent sales) for the exact printing and finish, via Scryfall, on Nov 9, 2026. Every card here is Commander-legal.
 
-- **145 cards, $406.46 total.** The first batch (85 cards) was $230.94.
+- **145 cards, $406.46 total.** The first batch (85 cards) was $230.94; the second (60 cards) $175.52.
 - 20 cards are worth $5 or more, $307.44 together; 96 are under $1.
 
 | Qty | Card | Set # | Version | Foil | Each | Total |
