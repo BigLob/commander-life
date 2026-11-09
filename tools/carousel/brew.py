@@ -1,0 +1,192 @@
+"""Build a brewed deck carousel: brews/<slug>.html, with a role, a reason and sources under every card.
+
+The list is EDHREC's average deck for the commander (the cards most played across every deck EDHREC has
+for it). Each card's numbers (share of those decks that play it, and EDHREC's synergy: how much more often
+it's played with this commander than in other decks of its colors) come from EDHREC's commander page.
+The reason is hand-written from the card's own rules text (linked to Scryfall). Prices are the cheapest
+paper printing on Scryfall.
+Run from the repo root:  python3 tools/carousel/brew.py [slug ...]
+"""
+import html, json, os, sys, time, urllib.parse, urllib.request
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT = os.path.join(HERE, '..', '..', 'brews')
+UA = {'User-Agent': 'commander-life/1.0', 'Accept': 'application/json'}
+ROLES = ['Commander', 'Token maker', 'Token doubler', 'Payoff', 'Drain', 'Sac outlet', 'Draw', 'Ramp', 'Tutor',
+         'Removal', 'Protection', 'Land']
+
+# card -> (role, why). Chatterfang: "If one or more tokens would be created under your control, those tokens
+# plus that many 1/1 green Squirrel creature tokens are created instead. {B}, Sacrifice X Squirrels: target
+# creature gets +X/-X." So every token maker is also a Squirrel maker, and Squirrels are removal and fodder.
+CHATTERFANG = {
+    'Chatterfang, Squirrel General': ('Commander', 'Whenever you make tokens you get that many Squirrels too, and {B}, sacrifice X Squirrels gives a creature +X/−X, so spare Squirrels become removal. Forestwalk makes it unblockable against Forests.'),
+    # token makers
+    'Chitterspitter': ('Token maker', 'Makes a Squirrel for {G} (two with Chatterfang) and eats a token each upkeep to pump every Squirrel.'),
+    'Camellia, the Seedmiser': ('Token maker', 'Sacrificing Food makes Squirrels, and gives your other Squirrels menace.'),
+    'Deep Forest Hermit': ('Token maker', 'Four Squirrels on entering (eight with Chatterfang), and all Squirrels get +1/+1.'),
+    'Hazel of the Rootbloom': ('Token maker', 'Copies a token each end step, two copies if it is a Squirrel, and taps your tokens for mana.'),
+    "Hazel's Brewmaster": ('Token maker', 'A Food (and a Squirrel) every time it enters or attacks, plus graveyard exile.'),
+    'Peregrin Took': ('Token maker', 'Adds a Food to every token creation, and Chatterfang adds a Squirrel for that Food too.'),
+    'Scurry Oak': ('Token maker', 'Grows by evolve as bigger creatures arrive, and each time it gets counters it makes a Squirrel (two with Chatterfang).'),
+    'Scurry of Squirrels': ('Token maker', 'Myriad makes attacking token copies of it each combat, and Chatterfang adds a Squirrel per copy.'),
+    'Scute Swarm': ('Token maker', 'An Insect for each land you play (plus a Squirrel); at six lands it copies itself instead.'),
+    'The Unbeatable Squirrel Girl': ('Token maker', 'A Squirrel when it enters or attacks, and for four mana doubles the Squirrels you have.'),
+    'Garruk, Cursed Huntsman': ('Token maker', 'Two Wolves every turn (plus two Squirrels), or kill a creature and draw.'),
+    'Squirrel Nest': ('Token maker', 'Turns a land into a Squirrel every turn; with Chatterfang, two.'),
+    'Squirrel Sanctuary': ('Token maker', 'A Squirrel on entering, and it returns to hand when a nontoken creature dies so you can cast it again.'),
+    'Chatter of the Squirrel': ('Token maker', 'A Squirrel now and another from the graveyard (flashback); each is two with Chatterfang.'),
+    'Chatterstorm': ('Token maker', 'Storm: a Squirrel for every spell cast before it this turn, each doubled by Chatterfang.'),
+    'Swarmyard Massacre': ('Token maker', 'Two Squirrels (four), then every creature that is not a Squirrel, Rat, Insect or Spider gets −1/−1 per Squirrel you have: often a one-sided wipe.'),
+    'Verdant Command': ('Token maker', 'Two Squirrels (four) at instant speed, or exile a graveyard card or gain 3 life.'),
+    'Rootcast Apprenticeship': ('Token maker', 'Pick three: copy a token, make a Squirrel, add +1/+1 counters, or make an opponent sacrifice an artifact.'),
+    # token doublers
+    'Academy Manufactor': ('Token doubler', 'Each Food, Treasure or Clue becomes one of each, three tokens, so Chatterfang adds three Squirrels.'),
+    'Doubling Season': ('Token doubler', 'Doubles every token you make, Chatterfang\'s Squirrels included, and every counter.'),
+    'Parallel Lives': ('Token doubler', 'Doubles every token you make, Chatterfang\'s Squirrels included.'),
+    'Second Harvest': ('Token doubler', 'Copies every token you control at instant speed, and Chatterfang adds that many Squirrels again.'),
+    'For the Common Good': ('Token doubler', 'Copies one token X times, then makes all your tokens indestructible and gains life for each.'),
+    # payoffs
+    'Honored Dreyleader': ('Payoff', 'Gets a +1/+1 counter for every Squirrel and Food that enters.'),
+    'Squirrel Mob': ('Payoff', 'Gets +1/+1 for every other Squirrel on the battlefield.'),
+    'Squirrel Sovereign': ('Payoff', 'Other Squirrels get +1/+1, so the 1/1 tokens become real attackers.'),
+    'The Odd Acorn Gang': ('Payoff', 'Squirrels pump each other, and you draw when Squirrels deal combat damage.'),
+    'Toski, Bearer of Secrets': ('Draw', 'Draws a card for each creature that hits a player, and is indestructible.'),
+    'Sword of the Squeak': ('Payoff', 'Attaches itself free to each Squirrel that enters, and grows with every 1/1 you control.'),
+    'Beastmaster Ascension': ('Payoff', 'Attack with seven Squirrels and every creature you have gets +5/+5.'),
+    'Valley Rotcaller': ('Drain', 'When it attacks, each opponent loses 1 life per other Squirrel, Bat, Lizard and Rat you control.'),
+    # drain
+    'Blood Artist': ('Drain', 'Any creature dying drains a player for 1, so sacrificing Squirrels ends games.'),
+    'Zulaport Cutthroat': ('Drain', 'Each of your creatures dying drains every opponent for 1.'),
+    'Bastion of Remembrance': ('Drain', 'Each of your creatures dying drains every opponent for 1, and it brings a creature token (plus a Squirrel).'),
+    'Mirkwood Bats': ('Drain', 'Each opponent loses 1 whenever you make or sacrifice a token, so every Chatterfang trigger pings twice.'),
+    "Nadier's Nightblade": ('Drain', 'Each token that leaves the battlefield drains every opponent for 1.'),
+    # sacrifice outlets
+    "Ashnod's Altar": ('Sac outlet', 'Free sacrifice that turns each Squirrel into two mana, setting off every death trigger.'),
+    'Warren Soultrader': ('Sac outlet', 'Pay 1 life and sacrifice a creature for a Treasure; the Treasure is a token, so Chatterfang adds a Squirrel to sacrifice next.'),
+    'Ravenous Squirrel': ('Sac outlet', 'Sacrifice anything to draw and gain 1 life, and it grows with every sacrifice.'),
+    'Pitiless Plunderer': ('Ramp', 'A Treasure for each of your creatures that dies, and each Treasure brings a Squirrel.'),
+    # draw
+    'Skullclamp': ('Draw', 'Equip a 1/1 Squirrel for 1 and it dies at once: two cards per Squirrel.'),
+    'Idol of Oblivion': ('Draw', 'Draws a card on any turn you made a token, which is nearly every turn here.'),
+    'Moldervine Reclamation': ('Draw', 'Draws a card and gains 1 life whenever one of your creatures dies.'),
+    'Deadly Dispute': ('Draw', 'Sacrifice a Squirrel to draw two and make a Treasure (and another Squirrel).'),
+    'Plumb the Forbidden': ('Draw', 'Sacrifice any number of Squirrels at instant speed for a card each, for example in answer to a wipe.'),
+    'Shamanic Revelation': ('Draw', 'Draws a card for each creature you control: with a board of Squirrels, a full grip.'),
+    'Black Market Connections': ('Draw', 'Each turn pick cards, a Treasure or a 3/2 Shapeshifter for life; the tokens bring Squirrels.'),
+    # ramp
+    'Sol Ring': ('Ramp', 'Two extra mana from turn one; in nearly every Commander deck.'),
+    'Arcane Signet': ('Ramp', 'Taps for black or green, so Chatterfang lands a turn early.'),
+    'Golgari Signet': ('Ramp', 'Two-mana rock that makes black and green.'),
+    'Talisman of Resilience': ('Ramp', 'Two-mana rock for black or green.'),
+    'Gilded Goose': ('Ramp', 'Makes Food (and a Squirrel each time) and turns Food into any color of mana.'),
+    'Jaheira, Friend of the Forest': ('Ramp', 'Every token taps for {G}, so a board of Squirrels is a pile of mana.'),
+    'Prosperous Innkeeper': ('Ramp', 'A Treasure (and a Squirrel) on entering, and 1 life for every creature that enters after.'),
+    'Thornvault Forager': ('Ramp', 'Taps for mana, and for {3}{G} finds any Squirrel card in your library.'),
+    'Tireless Provisioner': ('Ramp', 'A Food or Treasure for every land you play, each bringing a Squirrel.'),
+    'Cultivate': ('Ramp', 'Two basic lands: one onto the battlefield, one to hand.'),
+    "Nature's Lore": ('Ramp', 'Puts a Forest (Overgrown Tomb counts) onto the battlefield untapped.'),
+    'Rampant Growth': ('Ramp', 'Puts a basic land onto the battlefield for two mana.'),
+    'Demonic Tutor': ('Tutor', 'Finds whatever the game needs: Second Harvest, a doubler, or a sacrifice outlet.'),
+    # removal and protection
+    "Assassin's Trophy": ('Removal', 'Destroys any permanent an opponent controls, at instant speed, for two mana.'),
+    'Beast Within': ('Removal', 'Destroys any permanent; its owner gets a 3/3 Beast.'),
+    'Putrefy': ('Removal', 'Destroys an artifact or creature at instant speed.'),
+    'Saw in Half': ('Removal', 'Kills an opponent\'s creature, or splits one of yours into two tokens, which brings two Squirrels.'),
+    'Heroic Intervention': ('Protection', 'Your whole board gains hexproof and indestructible against a wipe.'),
+    # lands
+    'Swarmyard': ('Land', 'Regenerates a Squirrel, so Squirrels can attack and block without dying.'),
+    'Yavimaya, Cradle of Growth': ('Land', 'Every land is a Forest, so every land taps for green and Chatterfang\'s forestwalk works against everyone.'),
+    'Oran-Rief, the Vastwood': ('Land', 'A +1/+1 counter on each green creature that entered this turn, every Squirrel token included.'),
+    'Bojuka Bog': ('Land', 'Exiles a player\'s graveyard when it enters.'),
+    'Command Tower': ('Land', 'Taps for either color with no drawback.'),
+    'Exotic Orchard': ('Land', 'In a four-player game it almost always taps for both colors.'),
+    'Path of Ancestry': ('Land', 'Either color, and scry 1 when you cast a Squirrel with it.'),
+    'Golgari Rot Farm': ('Land', 'Taps for two mana, and replaying the land it returns is another landfall trigger.'),
+    'Overgrown Tomb': ('Land', 'Untapped dual that is a Swamp and a Forest, so Nature\'s Lore and Verdant Catacombs find it.'),
+    'Verdant Catacombs': ('Land', 'Fetches Overgrown Tomb or a basic, and makes two landfall triggers.'),
+    'Woodland Cemetery': ('Land', 'Dual that comes in untapped once you have a Swamp or Forest.'),
+    'Llanowar Wastes': ('Land', 'Untapped dual for 1 damage.'),
+    'Necroblossom Snarl': ('Land', 'Untapped dual if you show a Swamp or Forest.'),
+    'Tainted Wood': ('Land', 'Untapped dual while you have a Swamp.'),
+    'Temple of Malady': ('Land', 'Tapped dual with scry 1.'),
+    'Twilight Mire': ('Land', 'Turns one mana into two of black and green in any mix.'),
+    'Undergrowth Stadium': ('Land', 'Untapped dual in any game with two or more opponents.'),
+    'Viridescent Bog': ('Land', 'Turns one mana into black and green.'),
+    'Forest': ('Land', 'Basics: Nature\'s Lore, Cultivate and Rampant Growth fetch them, and Woodland Cemetery and Necroblossom Snarl need them.'),
+    'Swamp': ('Land', 'Basics for black: Tainted Wood, Woodland Cemetery and Necroblossom Snarl need a Swamp.'),
+}
+
+BREWS = {
+    'chatterfang': {'name': 'Chatterfang Squirrels', 'edhrec': 'chatterfang-squirrel-general', 'why': CHATTERFANG},
+}
+
+def get(url, data=None):
+    req = urllib.request.Request(url, data=data, headers=dict(UA, **({'Content-Type': 'application/json'} if data else {})))
+    for i in range(4):
+        try:
+            return json.loads(urllib.request.urlopen(req, timeout=60).read())
+        except Exception:
+            if i == 3: raise
+            time.sleep(2 ** i)
+
+def cheapest(name):
+    q = urllib.parse.quote(f'!"{name}" game:paper')
+    try:
+        r = get(f'https://api.scryfall.com/cards/search?q={q}&unique=prints')
+        ps = [float(x['prices'].get('usd') or x['prices'].get('usd_foil')) for x in r['data'] if x['prices'].get('usd') or x['prices'].get('usd_foil')]
+        return min(ps) if ps else None
+    finally:
+        time.sleep(0.11)
+
+def build(slug, b):
+    edh = 'https://json.edhrec.com/pages'
+    page, avg = get(f"{edh}/commanders/{b['edhrec']}.json"), get(f"{edh}/average-decks/{b['edhrec']}.json")
+    decks = page['container']['json_dict']['card']['num_decks']
+    stats = {}
+    for l in page['container']['json_dict']['cardlists']:
+        for v in l['cardviews']: stats.setdefault(v['name'], [round(v['num_decks'] / v['potential_decks'], 3), round(v['synergy'], 3)])
+    cmd = avg['deck']['commander'][0]
+    lst = [(cmd, 1)] + [(n, q) for t, cs in avg['deck']['cards'].items() for n, q in cs]
+    miss = [n for n, _ in lst if n not in b['why']]
+    assert not miss, f'no reason written for: {miss}'
+    found = {}
+    for i in range(0, len(lst), 75):
+        r = get('https://api.scryfall.com/cards/collection', json.dumps({'identifiers': [{'name': n} for n, _ in lst[i:i + 75]]}).encode())
+        for c in r['data']: found[c['name']] = found[c['name'].split(' // ')[0]] = c
+        time.sleep(0.15)
+    ALL = []
+    for n, q in lst:
+        c = found[n]
+        faces = c.get('card_faces') or []
+        iu = c.get('image_uris') or faces[0]['image_uris']
+        colors = c.get('colors', faces[0].get('colors', []) if faces else [])
+        role, why = b['why'][n]
+        r = {'n': n, 'p': cheapest(n), 'q': q, 's': c['set'].upper(), 't': c['type_line'],
+             'i': iu['normal'], 'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': [role],
+             'w': html.escape(why), 'u': c['scryfall_uri'].split('?')[0]}
+        if n in stats: r['e'] = stats[n]
+        if n == cmd: r['e'] = [1, 0]
+        if len(faces) > 1 and not c.get('image_uris'): r['b'] = faces[1]['image_uris']['normal']
+        ALL.append(r)
+    ALL.sort(key=lambda r: (ROLES.index(r['k'][0]), -(r['e'][0] if 'e' in r else 0)))
+    total = sum((r['p'] or 0) * r['q'] for r in ALL)
+    edh_page = f"https://edhrec.com/commanders/{b['edhrec']}"
+    avg_page = f"https://edhrec.com/average-decks/{b['edhrec']}"
+    srcs = (f'<p><b>The list</b> is <a href="{avg_page}" target="_blank" rel="noopener">EDHREC\'s average {html.escape(cmd.split(",")[0])} deck</a>: '
+            f'the cards played most across the {decks:,} {html.escape(cmd.split(",")[0])} decks EDHREC has (pulled {time.strftime("%b %-d %Y")}).</p>'
+            f'<p><b>Under each card</b>: its role and why it is in, written from the card\'s own rules text (the <i>card text</i> link, on Scryfall); '
+            f'then EDHREC\'s numbers from the <a href="{edh_page}" target="_blank" rel="noopener">commander page</a>: the share of those decks that play it, '
+            'and synergy, how much more often it is played here than in other black-green decks (near 0% means a generic staple).</p>'
+            '<p><b>Prices</b> are the cheapest paper printing on Scryfall.</p>')
+    cfg = {'slug': 'brew-' + slug, 'deck': b['name'], 'set': '', 'cmd': cmd, 'alt': None, 'decks': decks, 'edh': edh_page, 'srcs': srcs,
+           'sub': f'{sum(r["q"] for r in ALL)} cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC'}
+    t = open(os.path.join(HERE, 'brew-template.html')).read()
+    t = (t.replace('__TITLE__', html.escape(b['name'])).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
+          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+    os.makedirs(OUT, exist_ok=True)
+    open(os.path.join(OUT, slug + '.html'), 'w').write(t)
+    print(f'{slug}: {sum(r["q"] for r in ALL)} cards, ${total:.2f}, from {decks} decks; no price: {[r["n"] for r in ALL if r["p"] is None]}')
+
+if __name__ == '__main__':
+    for s in sys.argv[1:] or BREWS:
+        build(s, BREWS[s])
