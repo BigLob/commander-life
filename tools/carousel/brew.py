@@ -1,4 +1,5 @@
-"""Build a brewed deck carousel: brews/<slug>.html, with a role, a reason and sources under every card.
+"""Build a brewed deck carousel: brews/<slug>.html, with a role and sources under every card (the user cut the per-card reason line; the reasons stay
+here as notes for picking roles).
 
 The list is EDHREC's average deck for the commander (the cards most played across every deck EDHREC has
 for it). Each card's numbers (share of those decks that play it, and EDHREC's synergy: how much more often
@@ -163,7 +164,7 @@ def build(slug, b):
         role, why = b['why'][n]
         r = {'n': n, 'p': cheapest(n), 'q': q, 's': c['set'].upper(), 't': c['type_line'],
              'i': iu['normal'], 'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': [role],
-             'w': html.escape(why), 'u': c['scryfall_uri'].split('?')[0]}
+             'u': c['scryfall_uri'].split('?')[0]}
         if n in stats: r['e'] = stats[n]
         if n == cmd: r['e'] = [1, 0]
         if len(faces) > 1 and not c.get('image_uris'): r['b'] = faces[1]['image_uris']['normal']
@@ -174,7 +175,7 @@ def build(slug, b):
     avg_page = f"https://edhrec.com/average-decks/{b['edhrec']}"
     srcs = (f'<p><b>The list</b> is <a href="{avg_page}" target="_blank" rel="noopener">EDHREC\'s average {html.escape(cmd.split(",")[0])} deck</a>: '
             f'the cards played most across the {decks:,} {html.escape(cmd.split(",")[0])} decks EDHREC has (pulled {time.strftime("%b %-d %Y")}).</p>'
-            f'<p><b>Under each card</b>: its role and why it is in, written from the card\'s own rules text (the <i>card text</i> link, on Scryfall); '
+            f'<p><b>Under each card</b>: its role (from its rules text: the <i>card text</i> link, on Scryfall), '
             f'then EDHREC\'s numbers from the <a href="{edh_page}" target="_blank" rel="noopener">commander page</a>: the share of those decks that play it, '
             'and synergy, how much more often it is played here than in other black-green decks (near 0% means a generic staple).</p>'
             '<p><b>Prices</b> are the cheapest paper printing on Scryfall.</p>')
