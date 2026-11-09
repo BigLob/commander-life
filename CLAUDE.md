@@ -86,7 +86,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.40; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.41; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.41: **the Spotify dock's play/pause sits at the middle of the seat**, next to its right: an invisible spacer the width of next on the dock's left (`.sfy-dock .sfy-text.song ~ .sfy-ctl::before`, only while a song shows) balances it.
 - v1.40: **installable app.** `app/manifest.json` (display `fullscreen`, start and scope the site root) and the Planeswalker flame icon (`app/icon-192.png`, `app/icon-512.png`, the menu button's `ICON_MENU` on the page's dark background), linked from `index.html`. Without a manifest, Chrome on Android's Install opened the page with an address bar. Chrome reports no installability errors. A phone that installed it before has to remove that icon and install again to pick up the manifest; later updates arrive by themselves.
 - v1.39: **the soundboard moved out of the game** (the user: not in Commander Life). v1.38's menu field, `BOARD`, `boardSound()` and the `sb-` pings are gone; it's its own page now (see `sounds/soundboard.html` below).
 - v1.38: **Soundboard** at the top of the menu (`#sbField`, `.sb`): a gold button per kind of sound, starting with **Presidents** (every presidential clip, both lengths, from the `pres-*` pools). Each kind is its own shuffled bag (`BOARD`, `boardSound()`), so nothing repeats until all have played. Plays whatever the Sound setting (the tap is the ask), and on the speaker phone when there is one (`ring('sb-<kind>')`, handled in `hearPing()`; phones older than v1.38 ignore it). To add a kind: a `data-sb` button and a `BOARD` entry.

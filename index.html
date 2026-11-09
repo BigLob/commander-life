@@ -180,6 +180,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .sfy-dock .sfy-hole, .sfy-dock .sfy-text.song { display: none; }
 .sfy-dock .sfy-text p { font-size: 13px; text-align: center; }
 .sfy-dock .sfy-ctl { padding: 0; justify-content: center; max-height: 120px; }
+/* v1.41: play/pause at the seat's middle (the user's ask), next to its right. An invisible spacer the
+   size of next on the left balances it; only while a song shows (the .song text comes before). */
+.sfy-dock .sfy-text.song ~ .sfy-ctl::before { content: ''; flex: none; width: 46px; height: 46px; }
 .sfy-text { grid-area: txt; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .sfy-text b { font-size: 17px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .sfy-text span { font-size: 14px; color: #b3b3b3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -851,7 +854,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.40';
+  const VERSION = '1.41';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
