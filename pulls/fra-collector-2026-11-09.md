@@ -1,8 +1,8 @@
 # Reality Fracture Collector Booster pulls (Nov 9, 2026)
 
-Six Collector Boosters opened Nov 9, 2026. Prices are TCGplayer market price (its average of recent sales) for the exact printing and finish, via Scryfall, on Nov 9, 2026.
+Six Collector Boosters opened Nov 9, 2026: two bought loose at $25 each, four from two Secret Lair Bundles at $90 each ($230 spent in all; the bundles also held 12 Play Boosters, 4 Secret Lair mythics, 40 foil basics and 2 spindown dice, not priced here). Prices are TCGplayer market price (its average of recent sales) for the exact printing and finish, via Scryfall, on Nov 9, 2026.
 
-- **85 cards, $230.94 total**, against $161.94 for the six packs at $26.99 (about $38.49 a pack).
+- **85 cards, $230.94 total**, about $38.49 a pack (MSRP $26.99).
 - The Japan showcase **The Theorist, Jace Beleren** is a third of the value on its own.
 - 27 cards are worth $1 or more; the rest are bulk (under $1).
 
