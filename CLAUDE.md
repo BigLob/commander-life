@@ -14,6 +14,20 @@ claude.ai artifact we've made (the user dropped the per-page icons, sounds inclu
 editable artifact is https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private; listed in
 `links.html` under claude.ai artifacts, which only open for the account that made them).
 
+## Commander legality (always)
+
+The user's rule: **call out or mark any card that isn't Commander-legal**, everywhere.
+
+- In replies: whenever a card comes up (a suggestion, a list, a price check), say so if it isn't legal in
+  Commander (banned, an Un-card or playtest card, Arena/MTGO only, or not released yet). Check Scryfall's
+  `legalities.commander` rather than memory.
+- On pages: every card page marks such cards. The rodent pages show a red "Not Commander-legal" chip
+  (and the legends page only lists legal ones); `make.py` and `brew.py` set the card's note to
+  "Not Commander-legal"; the lands page says "not Commander-legal yet (not out)" for unreleased lands.
+  Any new card page must do the same.
+- Pages that list cards meant to be played (decks, brews, commander lists) default to legal cards only,
+  unless the user asks for everything.
+
 ## Keep `links.html` current (always)
 
 `links.html` is the group's table of contents. Every time we build or gather something, update it in
@@ -288,7 +302,7 @@ them and `.gitignore` now ignores PNGs at the root).
 ### `rodents/`: rodent cards carousel
 - Live at https://biglob.github.io/commander-life/rodents/. Every Magic card (673 in Nov 2026; Arena/MTGO-only ones included and labelled "Arena only"; no tokens, the user dropped them, nor Alchemy Bounty/Event cards) with a rodent in its creature type (Rat, Mouse, Squirrel, Hamster, Beaver, Porcupine, Capybara), name, rules text, flavor text (any printing) or art (Scryfall Tagger art tags: `art:rat`, `art:mouse`, `art:squirrel` and the rarer ones). Rabbits, hedgehogs, moles, shrews and otters aren't rodents and are left out. Not a game page; nothing syncs.
 - Tabs All, Rats, Mice, Squirrels, Other, Fav; filters for where it was found (type, name, text, flavor, art, art only), card type, Legendary (any, only, none), Printed (paper only hides the Arena-only cards), colors, price. Sorts: most played, card type (front face's main type, creature first, then by popularity), newest, oldest, price, name. A card found by its art shows a rodent printing, with a chip per other rodent illustration. Price is the cheapest matching paper printing. Favorites in localStorage (`pc-rodents-favs`).
-- **`rodents/legends.html`** (live at https://biglob.github.io/commander-life/rodents/legends.html): the same data cut to legendary creatures (84 in Nov 2026, 68 Commander-legal, 41 with a rodent creature type), for picking a commander. Default order puts rodents by creature type first, then ones with a rodent in name or rules text, then art or flavor only, each by popularity (`rel()`). Card type and Legendary filters are hidden there (`data-all`, `PAGE.legends`). Both pages link to each other and share favorites. Both have Printed → Commander-legal (`l`), and cards that aren't show a "Not Commander-legal" chip (Un-cards, playtest cards).
+- **`rodents/legends.html`** (live at https://biglob.github.io/commander-life/rodents/legends.html): the same data cut to Commander-legal legendary creatures only (68 in Nov 2026; 84 before the user asked for legal only), for picking a commander. Default order puts rodents by creature type first, then ones with a rodent in name or rules text, then art or flavor only, each by popularity (`rel()`). Card type and Legendary filters are hidden there (`data-all`, `PAGE.legends`). Both pages link to each other and share favorites. Both have Printed → Commander-legal (`l`); on the main page, cards that aren't legal show a red "Not Commander-legal" chip (Un-cards, playtest cards, Arena-only).
 - Built by `python3 tools/carousel/rodents.py` (writes both pages) from `tools/carousel/rodents-template.html` (`RODENTS_CACHE=<file>` reuses the download). Scryfall times out on one long regex, so each field is searched in three chunks (`CHUNKS`). Rerun it to pick up new sets and newly tagged art.
 
 ### `brews/`: brewed decks with a reason per card

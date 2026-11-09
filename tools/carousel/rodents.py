@@ -1,4 +1,4 @@
-"""Build rodents/index.html and rodents/legends.html: every Magic card (no tokens), and every legendary creature, with a rat, mouse, squirrel or other rodent
+"""Build rodents/index.html and rodents/legends.html: every Magic card (no tokens), and every Commander-legal legendary creature, with a rat, mouse, squirrel or other rodent
 in its creature type, name, rules text, flavor text or art.
 
 Each search runs on Scryfall twice: once for each card's default printing (what the page shows), once
@@ -125,17 +125,17 @@ def main():
     ALL.sort(key=lambda r: (r['r'] or 1e9, r['n']))
     # two pages from one template: every rodent card, and only the legendary creatures (possible commanders)
     front = lambda r: r['t'].split(' // ')[0].split('—')[0]
-    legends = [r for r in ALL if 'Legendary' in front(r) and 'Creature' in front(r)]
+    legends = [r for r in ALL if 'Legendary' in front(r) and 'Creature' in front(r) and r.get('l')]  # Commander-legal only (the user's ask)
     pages = [('index.html', ALL, 'Rodent Cards', 'Rodent cards', {'noun': 'cards', 'other': '<a href="legends.html">Legendary creatures ›</a>'}),
              ('legends.html', legends, 'Rodent Legends', 'Rodent legendary creatures',
-              {'noun': 'legendary creatures', 'legends': 1, 'other': '<a href="./">All rodent cards ›</a>'})]
+              {'noun': 'Commander-legal legendary creatures', 'legends': 1, 'other': '<a href="./">All rodent cards ›</a>'})]
     os.makedirs(OUT, exist_ok=True)
     for fn, rows, title, h1, page in pages:
         t = open(os.path.join(HERE, 'rodents-template.html')).read()
         t = (t.replace('__TITLE__', title).replace('__H1__', h1).replace('/*PAGE*/{}', json.dumps(page))
               .replace('/*ALL*/[]', json.dumps(rows, ensure_ascii=False, separators=(',', ':'))))
         open(os.path.join(OUT, fn), 'w').write(t)
-    print(len(legends), 'legendary creatures,', sum(1 for r in legends if r.get('l')), 'Commander-legal,',
+    print(len(legends), 'legendary creatures,', sum(1 for r in legends if r.get('l')), 'Commander-legal (all of them),',
           sum(1 for r in legends if 'T' in r['w']), 'with a rodent creature type')
     cnt = collections.Counter(k for r in ALL for k in r['a'])
     print(len(ALL), 'cards,', sum(1 for r in ALL if r.get('d')), 'digital only;', dict(cnt), dict(collections.Counter(k for r in ALL for k in r['w'])))

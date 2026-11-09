@@ -96,6 +96,7 @@ def record(qty, c):
     r = {'n': c['name'], 'p': p, 'q': qty, 's': c['set'].upper(), 't': c['type_line'], 'i': iu['normal'],
          'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': c.get('keywords', [])}
     if back: r['b'] = back
+    if c.get('legalities', {}).get('commander') != 'legal': r['note'] = 'Not Commander-legal'  # always flagged (house rule)
     return r
 
 def build(slug, name, product, cmd, alt, src):

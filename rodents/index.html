@@ -89,6 +89,7 @@ footer input{flex:1;accent-color:var(--accent);min-width:0}
 .shown .pr{color:var(--accent);white-space:nowrap}
 #crumb{font:inherit;font-size:.76rem;color:var(--accent);background:transparent;border:1px solid var(--accent);border-radius:8px;padding:6px 10px;cursor:pointer}
 figure{g.why{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.why span.bad{color:#b3261e;border-color:currentColor}
 .why span{font-family:var(--f-mono);font-size:.64rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 6px}
 .fl{font-style:italic;color:var(--muted);font-size:.74rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0}
 .chip.n{font:500 .66rem/1 var(--f-mono);color:var(--fg);padding:4px 7px}
@@ -160,7 +161,7 @@ function chips(m){if(!m.x)return '';const k=pick[m.n]||0;
  return '<div class="chips">'+[[m.s,m.y],...m.x.map(a=>[a[1],a[2]])].map((a,i)=>`<button class="chip n" data-pick="${i}" aria-pressed="${i==k}" title="${esc(a[0]+' '+a[1])}">${esc(a[0])}</button>`).join('')+'</div>'}
 function inner(m){const a=art(m),fav=favs[m.n];
  const img=`<button class="zb" aria-label="Zoom ${esc(m.n)}"><img src="${a.i}" alt="${esc(m.n)}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button>`;
- const why='<div class="why">'+[...m.w].map(w=>`<span>${WHY[w]}</span>`).join('')+(m.d?'<span>Arena only</span>':!m.l?'<span>Not Commander-legal</span>':'')+'</div>';
+ const why='<div class="why">'+[...m.w].map(w=>`<span>${WHY[w]}</span>`).join('')+(m.d?'<span>Arena only</span>':'')+(m.l?'':'<span class="bad">Not Commander-legal</span>')+'</div>';
  return img+`<figcaption><span class="nm">${esc(m.n)}<small>${esc(m.t)}</small><small>${a.s} · ${a.y}${m.r?' · #'+m.r:''}${m.x?' · '+(m.x.length+1)+' rodent arts':''}</small>${why}</span><span class="pr">${money(m.p)}</span></figcaption>`
   +(m.f?`<p class="fl">${esc(m.f)}</p>`:'')+chips(m)
   +`<div class="acts"><button data-a="fav"${fav?' class="on"':''}>${fav?'★ Fav':'☆ Fav'}</button>${m.b&&!(pick[m.n])?'<button data-a="flip">Flip</button>':''}</div>`}

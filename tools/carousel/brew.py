@@ -340,6 +340,7 @@ def build(slug, b):
              'i': iu['normal'], 'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': [role],
              'u': c['scryfall_uri'].split('?')[0]}
         if n in stats: r['e'] = stats[n]
+        if c['legalities'].get('commander') != 'legal': r['note'] = 'Not Commander-legal'  # always flagged (house rule)
         if n == cmd: r['e'] = [1, 0]
         if len(faces) > 1 and not c.get('image_uris'): r['b'] = faces[1]['image_uris']['normal']
         ALL.append(r)

@@ -156,7 +156,7 @@ function inner(it){const m=shown(it),n=it.ms.length,fav=favs[m.n];
  if(it.kind=='cat'){const cy=cycles(it.g);
   return img+`<figcaption><span class="nm">${it.g}<small>${DESC[it.g]}</small><small>${n} land${n>1?'s':''}${cy>1&&cy<n?' in '+cy+' groups':''} · ${range}</small></span></figcaption>`+chips(it)
    +`<div class="shown"><b>${esc(m.n)}</b><span class="pr">${money(m.p)}</span></div><div class="acts">${fb}${cy>1?`<button data-a="open">See all ${n} ›</button>`:''}</div>`}
- return img+`<figcaption><span class="nm">${m.n}<small>${it.g}${m.r?' · #'+m.r:''} · ${m.s}${m.u?' · not out yet':''}${n>1?' · 1 of '+n:''}${m.o?'<br><span class="in">'+(m.o.length>3?'In '+m.o.length+' of our decks':'In '+m.o.join(', '))+'</span>':''}</small></span><span class="pr">${money(m.p)}</span></figcaption>`+chips(it)+`<div class="acts">${fb}</div>`}
+ return img+`<figcaption><span class="nm">${m.n}<small>${it.g}${m.r?' · #'+m.r:''} · ${m.s}${m.u?' · not Commander-legal yet (not out)':''}${n>1?' · 1 of '+n:''}${m.o?'<br><span class="in">'+(m.o.length>3?'In '+m.o.length+' of our decks':'In '+m.o.join(', '))+'</span>':''}</small></span><span class="pr">${money(m.p)}</span></figcaption>`+chips(it)+`<div class="acts">${fb}</div>`}
 let figs=[];
 function fit(){const w=Math.max(120,Math.min(innerWidth*.78,(tr.clientHeight-170)*488/680,320));tr.style.setProperty('--w',w+'px')}
 addEventListener('resize',()=>{fit();go(cur())});
