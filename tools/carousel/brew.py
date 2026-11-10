@@ -512,6 +512,9 @@ def build(slug, b):
             "Lenn's Chatterfang Tokens: proxy order for both versions (Bracket 3 and Bracket 2), basics left out.\n"
             f"{len(names)} cards. Bracket 3 only: {', '.join(a for a, _, _ in LENN_B2_SWAPS)}. "
             f"Bracket 2 only: {', '.join(c for _, c, _ in LENN_B2_SWAPS)}.\n\n" + ''.join(f'1 {n}\n' for n in names))
+    if slug == 'chatterfang-lenn-b2':  # paste-ready for Moxfield's import box (for the Reddit post): plain "qty name" lines only
+        open(os.path.join(OUT, 'chatterfang-lenn-b2-moxfield.txt'), 'w').write(
+            ''.join(f'{b["pick"].get(n, 1)} {n}\n' for n in b['why']))
     print(f'{slug}: {sum(r["q"] for r in ALL)} cards, ${total:.2f}, from {decks} decks; no price: {[r["n"] for r in ALL if r["p"] is None]}')
 
 if __name__ == '__main__':
