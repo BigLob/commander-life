@@ -292,7 +292,7 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    turned with it so it's upright for its player, dimmed a little so the white totals stay readable. */
 .face::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)), var(--art) center / cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .22)), var(--art) var(--artpos, center) / cover no-repeat;
 }
 .face {
   position: absolute; top: 50%; left: 50%;
@@ -906,7 +906,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.48';
+  const VERSION = '1.49';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1612,6 +1612,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const e = edgeOf(i);
     seat.className = `seat ${spot} k-${bgOf(e)}`;
     seat.style.setProperty('--art', `url(${artUrl(bgOf(e), 'art_crop')})`);
+    seat.dataset.art = bgOf(e);
     // No commander damage in a 1v1 (v1.34, the user's pick: 2, 1v1 ×2, any 1v1 layout), so no dagger.
     const opps = oppsOf(i), dagger = SIZE[players[i].k] > 2;
     seat.innerHTML = `
@@ -1755,8 +1756,26 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // the readout's lift from the styles. "Solo" has no turn symbol, so its space ends as far from
   // the bottom as the name starts from the top.
   const DOCK_H = 78; // the Spotify dock and its gap, kept clear of the bottom seat's total
+  // v1.49: each background is cropped round its character's face (the user's ask), whatever shape
+  // the seat is on this device: the face point goes as near the seat's middle as the crop allows.
+  // Every art_crop is 626 × 457. Face points by eye, as fractions of the picture (x, y).
+  const ART_W = 626, ART_H = 457;
+  const FACES = {
+    uw: [.6, .2], bu: [.5, .13], rb: [.5, .38], gr: [.63, .25], gw: [.4, .24], le: [.46, .35], le2: [.42, .2],
+    em: [.52, .2], em2: [.33, .17], rt: [.72, .25], rt2: [.38, .2], bq: [.5, .22], lo: [.53, .16], pi: [.48, .2],
+    ja: [.6, .22], sp: [.57, .38], ki: [.46, .15], wo: [.47, .2], ko: [.53, .13],
+  };
+  function placeArt(seat) {
+    const f = FACES[seat.dataset.art], face = seat.querySelector('.face');
+    if (!f || !face) return;
+    // Measured in the face's own unturned layout, so a turned seat crops the same way for its player.
+    const w = face.offsetWidth, h = face.offsetHeight, k = Math.max(w / ART_W, h / ART_H);
+    const fit = (box, size, at) => Math.min(0, Math.max(box - size, box / 2 - at * size));
+    seat.style.setProperty('--artpos', `${fit(w, ART_W * k, f[0])}px ${fit(h, ART_H * k, f[1])}px`);
+  }
   function centerLife() {
     seats.flat().forEach(seat => {
+      placeArt(seat);
       const face = seat.querySelector('.face'), readout = seat.querySelector('.readout');
       const name = seat.querySelector('.name'), nm = name.querySelector('.nm');
       const top = name.offsetTop + (nm ? nm.offsetTop + nm.offsetHeight : name.offsetHeight);
