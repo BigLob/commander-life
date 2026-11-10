@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Table Stools</title>
+<title>Bar-Height Chairs</title>
 <!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
 <link rel="manifest" href="/commander-life/app/manifest.json">
 <script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
@@ -58,74 +58,75 @@ details.how p{margin:.4em 0;line-height:1.4}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
 </head><body>
-<header><h1>Stools for the table</h1>
-<div class="sub">Mid-century · bar height · padded seat and back · prices Nov 10, 2026. ×3 is three stools (the bench is the fourth seat).</div></header>
+<header><h1>Bar-height chairs</h1>
+<div class="sub">Chair-like, not stool-like: tall padded backs, most with arms · mid-century · prices Nov 10, 2026. ×3 is three chairs (the bench is the fourth seat).</div></header>
 <details class="how"><summary>How these were picked</summary>
-<p>Bar height (about 29 to 31" seat; the adjustable ones reach it), an upholstered seat <i>and</i> back, and a mid-century look. Prices are each store's own listing on Nov 10, 2026, per stool (sets of 2 divided).</p>
-<p>Comfort is my rating out of 5 from the specs: cushion thickness, back height, arms, swivel. Wipe-clean is for kitchen use: leather, vegan leather or performance fabric.</p>
-<p>"Mid tier" is $300 to $720 a stool; four cheaper picks are marked so you have a floor to compare with. Wayfair, West Elm, Pottery Barn and Crate &amp; Barrel block automated lookups, so they're not here.</p></details>
+<p>Bar height (29 to 31" seat), an upholstered seat <i>and</i> a back that rises at least about 9" above it, chair-shaped rather than stool-shaped, and a mid-century look. Prices are each store's own listing on Nov 10, 2026, per chair.</p>
+<p>Comfort is my rating out of 5 from the specs: cushion, back height and shape, arms. Wipe-clean means leather or vegan leather; "Stain-resistant" is performance fabric, which spot-cleans.</p>
+<p>Mid tier is up to $720 a chair; "Step up" ones run $749 to $900. Wayfair, West Elm, Pottery Barn and Crate &amp; Barrel block automated lookups, so they're not here.</p></details>
 <div class="bar" id="seg"></div>
-<div class="rail"><button class="nav l" id="prev" aria-label="Previous">‹</button><div class="track" id="track" tabindex="0" aria-label="Stools"></div><button class="nav r" id="next" aria-label="Next">›</button></div>
-<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to stool"></footer>
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous">‹</button><div class="track" id="track" tabindex="0" aria-label="Chairs"></div><button class="nav r" id="next" aria-label="Next">›</button></div>
+<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to chair"></footer>
 <script>
-/* Stools picked by hand from each store's own product feed (Nov 10, 2026). p = price per stool, set = sold in pairs,
-   seat = seat height in inches, back = backrest height, c = comfort out of 5 (my read of the specs). */
+/* Chair-like bar stools picked by hand from each store's own product feed (Nov 10, 2026): TOV, Modway, Blu Dot, Sunpan and 2Modern.
+   p = lowest bar-height price per chair (hi = highest color), seat = seat height, back = how far the back rises above the seat,
+   c = comfort out of 5 (my read of the specs). The user asked for chairs, not stools: the first version's backless-looking stools were dropped. */
 const S=[
-{id:'discern',n:'Discern Performance Velvet',s:'Modway',p:349.45,hi:427.51,url:'https://modway.com/products/discern-performance-velvet-bar-stool',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-5473-NAV_1.jpg',
- seat:'29.5"',back:'12.5"',w:'17.5"',c:5,wipe:'some',swivel:0,arms:1,
- t:'Thickest cushion here (4" dense foam), wraparound back with side arms. Brushed brass legs give it the mid-century glam look. Performance velvet resists stains but is still fabric. Gray $349, navy and light blue $428.'},
-{id:'remington',n:'Remington Wood Bar Stool',s:'Modway',p:401.68,url:'https://modway.com/products/remington-wood-bar-stool-by-modway-eei-7245',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-7245-CHA_1.jpg',
- seat:'29"',back:'11.5" + pillow',w:'22"',c:5,wipe:0,swivel:0,arms:1,
- t:'Closest to an armchair: wide 22" seat, 2.5" cushion, a loose back pillow and wood arms. Slub-weave fabric is the catch for a kitchen table. At 22" wide it just fits one per 48" side.'},
-{id:'chip',n:'Chip Barstool',s:'Blu Dot',p:476,url:'https://www.bludot.com/products/chip-stool',img:'https://cdn.shopify.com/s/files/1/0681/5943/9027/files/cylindo_rendering_CH1-BAR-UPHOLSTERY_-CP_LEG_FINISH_-WL-1.jpg',
- seat:'bar ver.',back:'10"',w:'18"',c:4,wipe:1,swivel:0,arms:0,
- t:'The most classic mid-century shape: walnut or white oak legs, foam-wrapped molded back. Crypton fabric repels spills; slate leather is $556. Reviewers say it holds up to kids. Spec sheet lists the counter version (25" seat); confirm the bar seat height.'},
+{id:'malone',n:'Malone Chenille',s:'TOV',p:399,hi:499,url:'https://www.tovfurniture.com/products/malone-performance-chenille-stool',img:'https://cdn.shopify.com/s/files/1/0711/0924/7263/files/media_fcab7dd4-ceb5-422f-bb17-029146b1ceb4.jpg',
+ seat:'bar ver.',back:'barrel',w:'24"',c:5,wipe:'some',arms:1,
+ t:'Fully upholstered barrel back that curves into open arms, with a plush cocoon seat. Contract-grade chenille, spot-clean. At 24" it is the widest here and still fits one per side. Blush $399, other colors $499. The listed dimensions are the counter version, so confirm the bar seat height.'},
+{id:'savour',n:'Savour Tufted Velvet',s:'Modway',p:575.29,url:'https://modway.com/products/savour-tufted-performance-velvet-bar-stool-by-modway-eei-3911',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-3911-CHA.jpg',
+ seat:'29"',back:'11.5"',w:'19"',c:5,wipe:'some',arms:1,
+ t:'A club chair on gold legs: the tufted back wraps around into arms, over dense foam. Stain-resistant performance velvet. Arrives assembled.'},
+{id:'remington',n:'Remington Wood',s:'Modway',p:401.68,url:'https://modway.com/products/remington-wood-bar-stool-by-modway-eei-7245',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-7245-CHA_1.jpg',
+ seat:'29"',back:'11.5" + pillow',w:'22"',c:5,wipe:0,arms:1,
+ t:'A mid-century armchair at bar height: wood frame and arms, a wide 22" seat with a 2.5" cushion, and a loose back pillow. Slub-weave fabric, so not wipe-clean.'},
+{id:'hawkins',n:'Hawkins',s:'Four Hands · 2Modern',p:749,hi:1349,url:'https://www.2modern.com/products/hawkins-stool',img:'https://cdn.shopify.com/s/files/1/0265/0083/files/230067-018_FRT_1.jpg',
+ seat:'30.5"',back:'11.9"',w:'18.9"',c:5,wipe:'some',arms:1,
+ t:'A sculpted curved back that wraps into low arms (9.5" above the seat), on a webbed seat with some give. Natural performance fabric $749 resists spills; top-grain leather is $1,349. Hospitality grade.'},
+{id:'discern',n:'Discern Velvet',s:'Modway',p:349.45,hi:427.51,url:'https://modway.com/products/discern-performance-velvet-bar-stool',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-5473-GRY_1.jpg',
+ seat:'29.5"',back:'12.5"',w:'17.5"',c:5,wipe:'some',arms:1,
+ t:'A dining armchair shape with the thickest cushion here (4" dense foam), on brushed brass legs. Performance velvet. Gray $349; navy and light blue $428.'},
+{id:'talia',n:'Talia Vegan Leather',s:'Modway',p:419.75,url:'https://modway.com/products/talia-41-inch-vegan-leather-bar-stool-by-modway-eei-7668',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-7668-TST_1.jpg',
+ seat:'28.5"',back:'12"',w:'18"',c:4,wipe:1,arms:1,
+ t:'The most enclosed chair here: the curved back flows into wide arms that run to the floor. Vegan leather wipes clean. More sculptural modern than mid-century, and its 28.5" seat runs a little low for a 42" table.'},
+{id:'josephine',n:'Josephine',s:'Eichholtz · 2Modern',p:695,url:'https://www.2modern.com/products/josephine-counter-and-bar-stool',img:'https://cdn.shopify.com/s/files/1/0265/0083/files/A_1_A121268_2_1.jpg',
+ seat:'29.9"',back:'≈11"',w:'22.6"',c:4,wipe:0,arms:0,
+ t:'A sculpted shell whose back sweeps forward like wings and holds your sides. High-density foam; made in the Netherlands. Textured fabric: vacuum and spot-clean.'},
 {id:'racer',n:'Racer Barstool',s:'Blu Dot',p:476,hi:520,url:'https://www.bludot.com/products/racer-stool',img:'https://cdn.shopify.com/s/files/1/0681/5943/9027/files/ra1-barstl-cf_front_49b269bb-3455-47cf-a158-ac42077ff710.jpg',
- seat:'30"',back:'12"',w:'21"',c:4,wipe:0,swivel:0,arms:1,
- t:'Channel-stitched seat and a curved back that wraps into arms, on a steel sled base. Wide 21" seat. Velvet or Maharam fabric, BIFMA commercial rated.'},
-{id:'sola',n:'Sola Adjustable Swivel',s:'Poly & Bark',p:369,url:'https://polyandbark.com/products/sola-counter-stool-cinnamon-brown',img:'https://cdn.shopify.com/s/files/1/1150/6518/files/DI-H01-SBN_2_c0d8f070-291c-4937-a026-9265dd701780.jpg',
- seat:'20.7–31.5"',back:'13.5"',w:'20.5"',c:4,wipe:1,swivel:1,arms:0,
- t:'Tallest back of the swivels and the widest seat (20.5 × 19"). Gas lift goes from counter to bar height, so it also fits if the table turns out shorter. Vegan leather wipes clean.'},
-{id:'cavo',n:'Cavo Adjustable Swivel',s:'Poly & Bark',p:369,url:'https://polyandbark.com/products/cavo-counter-stool-mink-brown',img:'https://cdn.shopify.com/s/files/1/1150/6518/files/DI-T825-BRN_b9de137f-481d-422d-bab7-660382669781.jpg',
- seat:'21.3–32.3"',back:'13"',w:'18"',c:4,wipe:1,swivel:1,arms:0,
- t:'Oval floating back on a crescent seat: the most Eames-like of the bunch. High-resilience foam, adjustable footrest height (4 to 15"), vegan leather.'},
-{id:'finta',n:'Finta Adjustable Swivel',s:'Poly & Bark',p:369,url:'https://polyandbark.com/products/finta-counter-stool-mink-brown',img:'https://cdn.shopify.com/s/files/1/1150/6518/files/DI-H02-BRN_1_4a7b0e71-ac5c-4496-a46f-23b282e7065e.jpg',
- seat:'22–32.7"',back:'13.2"',w:'19.5"',c:4,wipe:1,swivel:1,arms:0,
- t:'Deepest seat of the swivels (20.5") with a curved bucket back. Vegan leather, gas lift, round pedestal base.'},
-{id:'yark',n:'Yark Adjustable Swivel',s:'Poly & Bark',p:369,url:'https://polyandbark.com/products/yark-counter-stool-cinnamon-brown',img:'https://cdn.shopify.com/s/files/1/1150/6518/files/DI-H03-SBN_1_be6b7db2-83c6-4dca-9673-ddf4471c15d4.jpg',
- seat:'22–32.5"',back:'11.5"',w:'18"',c:3,wipe:1,swivel:1,arms:0,
- t:'Round seat with a low wraparound back. Comfortable for a meal, less support than Sola or Cavo for a long game.'},
-{id:'vito',n:'Vito Adjustable Swivel',s:'Poly & Bark',p:336,url:'https://polyandbark.com/products/vito-counter-stool-cinnamon-brown',img:'https://cdn.shopify.com/s/files/1/1150/6518/files/DI-H04-SBN_1_85c2b150-3ca8-4f7b-a31a-002389e7edeb.jpg',
- seat:'20.5–31"',back:'5"',w:'17.5"',c:2,wipe:1,swivel:1,arms:0,
- t:'Looks great, but the crescent back is only 5" tall: it holds your hips, not your back. Listed for comparison.'},
-{id:'adorn',n:'Adorn Performance Velvet',s:'Modway',p:184.98,hi:265.65,low:1,url:'https://modway.com/products/adorn-performance-velvet-bar-stool',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-3909-GRY_1.jpg',
- seat:'29.5"',back:'11.5"',w:'16.5"',c:3,wipe:'some',swivel:0,arms:0,
- t:'Vintage-modern scoop back on tapered legs with brass tips. Stain-resistant velvet, 2.5" foam, arrives assembled. Narrow 16.5" seat. White $185, grays $266.'},
-{id:'caledonia',n:'Caledonia (set of 2)',s:'Modway',p:203.84,set:1,low:1,url:'https://modway.com/products/caledonia-wood-bar-stools-set-of-2',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-6820-BLK-BEI_1.jpg',
- seat:'30.5"',back:'15.5" cane',w:'18.5"',c:3,wipe:'some',swivel:0,arms:0,
- t:'Tall cane back on an elm frame, removable 2" seat cushion (take it off to wash). Cane back has no padding. $408 a pair.'},
-{id:'cordial',n:'Cordial (set of 2)',s:'Modway',p:147.63,set:1,low:1,url:'https://modway.com/products/cordial-fabric-bar-stools-set-of-2-by-modway-eei-4526',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-4526-BEI_1.jpg',
- seat:'29.5"',back:'12"',w:'19"',c:3,wipe:0,swivel:0,arms:0,
- t:'Retro shell back, quilted on one side, gold-tipped legs. Plain polyester fabric in beige: pretty, but not for a kitchen table. $295 a pair.'},
-{id:'juno',n:'Juno Vegan Leather (set of 2)',s:'Modway',p:101.63,set:1,low:1,url:'https://modway.com/products/juno-vegan-leather-wood-bar-stool-set-of-2',img:'https://cdn.shopify.com/s/files/1/0582/6982/7244/files/EEI-6554-BRN_1.jpg',
- seat:'30"',back:'6"',w:'18.5"',c:2,wipe:1,swivel:0,arms:0,
- t:'The textbook mid-century barstool shape, splayed wood legs and footrest, wipe-clean vegan leather. The back is only 6" tall, so it\'s a perch, not a seat for a three-hour game. $203 a pair.'}
+ seat:'30"',back:'12"',w:'21"',c:4,wipe:0,arms:1,
+ t:'A space-age bucket: the channel-stitched back curves into arms, over a wide 21" seat on a steel sled base. Velvet or Maharam fabric. BIFMA commercial rated.'},
+{id:'benton',n:'Benton',s:'Four Hands · 2Modern',p:749,hi:949,url:'https://www.2modern.com/products/benton-stool',img:'https://cdn.shopify.com/s/files/1/0265/0083/products/fourhands-benton-stool-fabric-color-fayette-cloud.jpg',
+ seat:'30.25"',back:'≈14"',w:'19.75"',c:4,wipe:'some',arms:0,
+ t:'The tallest back here: a padded panel about 14" above the seat, on a slim iron frame with an oak deck. Performance fabric $749; leather $949. Arrives assembled.'},
+{id:'leighland',n:'Leighland',s:'Sunpan',p:853,hi:898,url:'https://sunpan.com/products/leighland-barstool',img:'https://cdn.shopify.com/s/files/1/0619/7441/3506/products/104903.jpg',
+ seat:'29.5"',back:'≈12.5"',w:'18.5"',c:4,wipe:1,arms:0,
+ t:'A classic dining chair at bar height: diamond-stitched faux leather back, wood-frame seat, antique brass base. Grey $853; brown and black $898.'},
+{id:'jazelle',n:'Jazelle',s:'Four Hands · 2Modern',p:799,hi:899,url:'https://www.2modern.com/products/jazelle-counter-stool',img:'https://cdn.shopify.com/s/files/1/0265/0083/files/fourhands-jazelle-1counter-stool-back-cushion-altair-sienna-height-bar--31-in-height.jpg',
+ seat:'31"',back:'9.5"',w:'22.25"',c:4,wipe:'some',arms:0,
+ t:'Solid oak frame, a cushioned seat on webbing and a padded back bolster: mid-century meets the 70s. The 31" seat is on the tall side. Ochre $799; sienna $899.'},
+{id:'lucia',n:'Lucia',s:'Urbia · 2Modern',p:769,url:'https://www.2modern.com/products/lucia-bar-and-counter-stool',img:'https://cdn.shopify.com/s/files/1/0265/0083/files/BSM-246586-06.jpg',
+ seat:'30"',back:'10.25"',w:'19.25"',c:4,wipe:'some',arms:0,
+ t:'Scandinavian mid-century: solid wood with slim tapered legs, a rounded upholstered back and a foam seat. Commercial grade, made in Brazil. Wipe with a damp cloth.'},
+{id:'hayden',n:'Hayden',s:'Sunpan',p:808,url:'https://sunpan.com/products/hayden-barstool',img:'https://cdn.shopify.com/s/files/1/0619/7441/3506/files/100969.jpg',
+ seat:'30"',back:'≈9"',w:'20.5"',c:4,wipe:0,arms:0,
+ t:'A barrel back that hugs your sides like a club chair, over a wide 20.5" seat. The fabric is part linen, so it is not great with spills.'}
 ];
 const $=id=>document.getElementById(id),tr=$('track'),sc=$('scrub');
 const money=v=>'$'+Math.round(v).toLocaleString();
 /* favorites, kept on this device only */
 let favs={};try{favs=JSON.parse(localStorage.getItem('stools-favs')||'{}')}catch(e){}
 const save=()=>{try{localStorage.setItem('stools-favs',JSON.stringify(favs))}catch(e){}};
-const TABS={all:['All',s=>1],mid:['Mid tier',s=>!s.low],wipe:['Wipe-clean',s=>s.wipe===1],swivel:['Swivel',s=>s.swivel],fav:['★ Fav',s=>favs[s.id]]};
+const TABS={all:['All',s=>1],mid:['Mid tier',s=>s.p<=720],arms:['Arms',s=>s.arms],wipe:['Wipe-clean',s=>s.wipe===1],fav:['★ Fav',s=>favs[s.id]]};
 const SORTS={c:['Comfort',(a,b)=>b.c-a.c||a.p-b.p],pl:['Price, low',(a,b)=>a.p-b.p],ph:['Price, high',(a,b)=>b.p-a.p]};
 let tab='all',sort='c',D=[];
 const stars=n=>'●'.repeat(n)+'○'.repeat(5-n);
 const yn=(v,y,n,some)=>v===1||v===true?`<span class="chip y">${y}</span>`:v==='some'?`<span class="chip">${some}</span>`:n?`<span class="chip n">${n}</span>`:'';
 function card(s,i){const each=s.hi?money(s.p)+'–'+money(s.hi):money(s.p);
- return `<article class="card${favs[s.id]?' fav':''}" data-i="${i}"><div class="pic"><img src="${s.img}?width=700" alt="${s.n}" loading="lazy" referrerpolicy="no-referrer"><span class="tier${s.low?' low':''}">${s.low?'Cheaper pick':'Mid tier'}</span></div>
+ return `<article class="card${favs[s.id]?' fav':''}" data-i="${i}"><div class="pic"><img src="${s.img}?width=700" alt="${s.n}" loading="lazy" referrerpolicy="no-referrer"><span class="tier${s.p>720?' low':''}">${s.p>720?'Step up':'Mid tier'}</span></div>
  <div class="info"><div class="top"><span class="nm">${s.n}<span class="st">${s.s}</span></span><span class="pr">${each}<small>each · ×3 ${money(s.p*3)}</small></span></div>
  <div class="comfort">Comfort <b>${stars(s.c)}</b></div>
- <div class="chips"><span class="chip">Seat ${s.seat}</span><span class="chip">Back ${s.back}</span><span class="chip">${s.w} wide</span>${yn(s.wipe,'Wipe-clean','Fabric','Stain-resistant')}${s.swivel?'<span class="chip y">Swivel</span>':''}${s.arms?'<span class="chip y">Arms</span>':''}</div>
+ <div class="chips"><span class="chip">Seat ${s.seat}</span><span class="chip">Back ${s.back}</span><span class="chip">${s.w} wide</span>${yn(s.wipe,'Wipe-clean','Fabric','Stain-resistant')}${s.arms?'<span class="chip y">Arms</span>':''}</div>
  <p class="take">${s.t}</p>
  <div class="acts"><button data-a="fav" class="${favs[s.id]?'on':''}">${favs[s.id]?'★ Fav':'☆ Fav'}</button><a href="${s.url}" target="_blank" rel="noopener">See at ${s.s} ›</a></div></div></article>`}
 function fit(){const h=tr.clientHeight;const w=Math.max(220,Math.min(innerWidth*.84,360));tr.style.setProperty('--w',w+'px');tr.style.setProperty('--ph',Math.max(130,Math.min(w*.85,h-330))+'px')}
@@ -134,7 +135,7 @@ function render(){
   `<select id="sort" aria-label="Sort">${Object.entries(SORTS).map(([k,[l]])=>`<option value="${k}"${k==sort?' selected':''}>${l}</option>`).join('')}</select>`;
  $('sort').onchange=e=>{sort=e.target.value;render()};
  D=S.filter(TABS[tab][1]).sort(SORTS[sort][1]);fit();
- tr.innerHTML=D.length?D.map(card).join(''):'<p class="empty">Nothing here yet. Tap ☆ Fav on a stool to keep it.</p>';
+ tr.innerHTML=D.length?D.map(card).join(''):'<p class="empty">Nothing here yet. Tap ☆ Fav on a chair to keep it.</p>';
  sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;upd()}
 const figs=()=>[...tr.querySelectorAll('.card')];
 function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs().forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
