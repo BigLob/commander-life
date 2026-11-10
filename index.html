@@ -174,17 +174,20 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* On top: the song over its buttons, the menu button in the bottom-right corner. */
 .sfy-in { height: 100%; min-width: 0; display: grid; grid-template: "txt" auto "ctl" 1fr / 1fr; gap: 6px; }
 .sfy-hole { grid-area: hole; display: none; }
-/* In the middle, wide (Classic, 3 players, Quadrants): song | turn button | buttons, menu bottom-left. */
-.table:not(.spot) > .sfy-bar .sfy-in { grid-template: "txt hole ctl" 1fr / 1fr 108px 1fr; }
+/* In the middle, wide (Classic, 3 players, Quadrants). v1.46 (the user's sketch): the turn button
+   takes the right third, full height; on the left the song and artist fill the top and play, next
+   and the menu button sit in a row under them (the menu button over .sfy-mspot, by placeTurn()). */
+.table:not(.spot) > .sfy-bar .sfy-in { grid-template: "txt hole" 1fr "ctl hole" auto / 1fr 36%; column-gap: 10px; }
+.sfy-mspot { display: none; flex: none; width: 42px; height: 42px; }
+.table:not(.spot) > .sfy-bar .sfy-mspot { display: block; }
 .table:not(.spot) > .sfy-bar .sfy-hole { display: block; }
-/* v1.42: the song and artist wrap to fill the space left of the turn button, down to the menu button
-   (the user's ask), and stop there by whole lines (sfyFit() sets each one's line count). A margin,
-   not padding, keeps the menu button's room, so overflow is clipped above it. */
-.table:not(.spot) > .sfy-bar .sfy-text { margin-bottom: 50px; min-height: 0; overflow: hidden; }
+/* v1.42: the song and artist wrap to fill the space left of the turn button, down to the buttons
+   (the user's ask), and stop there by whole lines (sfyFit() sets each one's line count). */
+.table:not(.spot) > .sfy-bar .sfy-text { min-height: 0; overflow: hidden; }
 .table:not(.spot) > .sfy-bar .sfy-text > * { flex: none; overflow-wrap: anywhere; }
 .table:not(.spot) > .sfy-bar .sfy-text b { -webkit-line-clamp: none; font-size: calc(17px * var(--sfb, 1)); }
 .table:not(.spot) > .sfy-bar .sfy-text span { white-space: normal; line-height: 1.25; display: -webkit-box; -webkit-box-orient: vertical; font-size: calc(14px * var(--sfs, 1)); }
-.table:not(.spot) > .sfy-bar .sfy-ctl { padding-right: 0; justify-content: center; }
+.table:not(.spot) > .sfy-bar .sfy-ctl { padding-right: 0; justify-content: flex-start; }
 /* 4-player Table and Big button (v1.37, the user's pick from two mockups): no bar. The board is Big
    button (huge turn button where the side seats meet), play/pause and next sit in a dock at the
    bottom of the bottom seat (this phone's player, or Rand on a Center phone), and the menu button
@@ -871,7 +874,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.45';
+  const VERSION = '1.46';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1693,12 +1696,15 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       Object.assign(mb.style, { left: x0 + w - 10 - m + 'px', top: y0 + h - 10 - m / 2 + 'px', width: m + 'px', height: m + 'px', margin: '0' });
       return;
     }
-    // Spotify bar in the middle: the turn button sits in its hole, as big as fits (up to 96px).
+    // Spotify bar in the middle: the turn button sits in its hole, as big as fits (up to 200px), and
+    // the menu button on its spot after play and next (v1.46).
     const hole = app.querySelector('.table:not(.spot) > .sfy-bar .sfy-hole');
     if (hole) {
       const bar = hole.closest('.sfy-bar'), tb = app.querySelector('.turn-big');
-      const d = Math.max(56, Math.min(96, hole.offsetWidth - 8, hole.offsetHeight - 8));
+      const d = Math.max(56, Math.min(200, hole.offsetWidth - 8, hole.offsetHeight - 8));
       Object.assign(tb.style, { left: bar.offsetLeft + hole.offsetLeft + hole.offsetWidth / 2 + 'px', top: bar.offsetTop + hole.offsetTop + hole.offsetHeight / 2 + 'px', width: d + 'px', height: d + 'px', margin: '0' });
+      const spot = bar.querySelector('.sfy-mspot'), mb = bar.querySelector('.menu-btn');
+      if (spot && mb) Object.assign(mb.style, { left: spot.offsetLeft + 'px', top: spot.offsetTop - spot.parentNode.scrollTop + 'px' });
       sfyFit();
       return;
     }
@@ -2255,7 +2261,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (!inner) return;
     const btn = (a, icon, label, cls) => `<button type="button" class="sfy-b ${cls || ''}" data-a="${a}" aria-label="${label}">${SFY_ICON[icon]}</button>`;
     // Every state fills the same three cells: the words, the turn button's hole, the buttons.
-    const cells = (txt, ctl, song) => `<div class="sfy-text${song ? ' song' : ''}">${txt}</div><div class="sfy-hole"></div><div class="sfy-ctl">${ctl}</div>`;
+    // The buttons end with the menu button's spot (shown only in the middle bar).
+    const cells = (txt, ctl, song) => `<div class="sfy-text${song ? ' song' : ''}">${txt}</div><div class="sfy-hole"></div><div class="sfy-ctl">${ctl}<i class="sfy-mspot"></i></div>`;
     const msg = m => `<p>${esc(m)}</p>`;
     let html;
     if (!sfy.tok) html = cells(msg(sfyMsg || 'Control Spotify from here'), '<button type="button" class="sfy-pill" data-a="login">Connect Spotify</button>');
