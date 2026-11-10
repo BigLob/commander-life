@@ -86,7 +86,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.41; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.42; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.42: **the middle Spotify bar's song and artist fill their box** (left of the turn button, above the menu button): they wrap instead of cutting to one line, grow up to 1.6× when there's room (no word broken), and when they don't fit stop at whole lines with an ellipsis, song first, artist keeping one line (`sfyFit()`, run from `placeTurn()`; `.sfy-text` keeps the menu button's room as a margin so overflow clips above it).
 - v1.41: **the Spotify dock's play/pause sits at the middle of the seat**, next to its right: an invisible spacer the width of next on the dock's left (`.sfy-dock .sfy-text.song ~ .sfy-ctl::before`, only while a song shows) balances it.
 - v1.40: **installable app.** `app/manifest.json` (display `fullscreen`, start and scope the site root) and the Planeswalker flame icon (`app/icon-192.png`, `app/icon-512.png`, the menu button's `ICON_MENU` on the page's dark background), linked from `index.html`. Without a manifest, Chrome on Android's Install opened the page with an address bar. Chrome reports no installability errors. A phone that installed it before has to remove that icon and install again to pick up the manifest; later updates arrive by themselves.
 - v1.39: **the soundboard moved out of the game** (the user: not in Commander Life). v1.38's menu field, `BOARD`, `boardSound()` and the `sb-` pings are gone; it's its own page now (see `sounds/soundboard.html` below).
