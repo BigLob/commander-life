@@ -326,6 +326,10 @@ them and `.gitignore` now ignores PNGs at the root).
 ### Every other page in the app
 - Every page but `index.html` and `archenemy.html` links `app/manifest.json` and, when opened inside the installed app (display-mode fullscreen/standalone), shows a gold **🃏 Board** button bottom-left back to the board (snippet marked `app-board-link`, right after `<title>`, also in every template under `tools/`). Why: the app has no address bar, and the deck pages had no way back; installing from a deck page without a manifest also made the icon open that page. New pages need the same snippet.
 
+### `furniture/stools.html`: stools for the game/kitchen table
+- Live at https://biglob.github.io/commander-life/furniture/stools.html. 13 mid-century bar-height stools with padded seat and back (9 mid tier, $300 to $720 each; 4 cheaper ones marked), for a 4×4 ft bar-height table that's also the kitchen table: 3 stools plus a backless bench. Each card: price each and ×3, seat and back height, width, wipe-clean, swivel, arms, a comfort rating out of 5 (from the specs) and a store link. Tabs All, Mid tier, Wipe-clean, Swivel, Fav (localStorage `stools-favs`).
+- Data written by hand into the page from each store's Shopify feed (`/products.json`, Nov 10, 2026: Blu Dot, Modway, Poly & Bark); images hotlink Shopify's CDN. Wayfair, AllModern, West Elm, Pottery Barn, Crate & Barrel and CB2 return 403/429 to the sandbox.
+
 ### `links.html`: all our pages
 - Live at https://biglob.github.io/commander-life/links.html, the 🗂️ footer link. Hand-kept list in sections: Play, Card carousels (with every deck), Guides, Sounds, claude.ai artifacts.
 
