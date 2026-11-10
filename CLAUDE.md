@@ -86,7 +86,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.46; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.47; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.47: **next is the big Spotify button** (54 px, the user: it's tapped most), play/pause the small green one (46 px), same places, in every Spotify layout. **Spotify text in the card-text font everywhere**: MPlantin's non-ASCII Unicode map was scrambled (’ drew Ê, – drew ·), so accents, curly quotes and dashes fell back to Georgia. `fonts/Mplantin-text.woff` (replaces `Mplantin.woff`; a new name so phones don't keep the old file under the wider range) has its Unicode map rebuilt from the font's Mac Roman table, keeping only the 98 characters checked by eye (Latin-1 letters, Œœ, ’‘“”„, – —, …, •, †‡, ™ and a few more; not ·, ×, ÷, ¬ or Ò, which are blank). The page-wide `unicode-range` lists them, so the menu gets them too. Also: the 4-player dock's play and next had wrapped onto two lines (the dock may only take half the seat's width); a song's buttons now stay on one line.
 - v1.46: **new middle Spotify bar** (Classic, 3-player Table, Quadrants, any Center phone; the user's sketch): the turn button takes the right 36%, full height, up to 200 px (was 96); on the left the song and artist fill the top and a row under them holds play/pause, next and the menu button, left to right. The menu button is placed by `placeTurn()` over `.sfy-mspot`, a spacer `sfyPaint()` adds at the end of every state's buttons (shown only in the middle bar), so it also follows Connect Spotify or the device list.
 - v1.45: **the menu button sits in the button box's bottom-right corner** (10 px in), not beside the turn button.
 - v1.44: **button box in Classic and Side by side** (the user's ask: seats pulled in to the short edges by a third, room for a bigger, better-looking button box). Without the Spotify bar, 2-player Classic and Side by side (also 1v1 ×2's, and the four-seat Side by side) put each seat in a third of the phone (board class `boxed`, rows `1fr 1fr 1fr`, area `mid`) with a dark rounded box between them (`.btn-box`). `placeTurn()` sizes the turn button to fit it (76% of its height, 48% of its width, 96 to 200 px) and the menu button (46 to 64 px) in the room to its right, at most 28 px out on a wide screen. Couch and the Spotify layouts are unchanged.
@@ -254,7 +255,7 @@ them and `.gitignore` now ignores PNGs at the root).
   and asked for it). `fonts/Beleren-Bold-digits.woff` is Beleren2016 Bold from Card Conjurer's repo
   (github.com/Investigamer/cardconjurer, `fonts/beleren-b.ttf`), subset to space, digits, + and −
   only (4 KB), so the page doesn't carry the whole Wizards font. Both are limited by `unicode-range` to
-  plain ASCII (plus Matrix's minus), because their other symbols are blank or wrongly mapped
+  plain ASCII (plus Matrix's minus; since v1.47 MPlantin also covers the checked non-ASCII characters), because their other symbols are blank or wrongly mapped
   (×, ·, … fall back to Georgia). `Matrix-Bold.woff` has patched line metrics: the original's
   positive descent made the line box half height and clipped the names.
 - Life totals and names are white with a black outline; names are large (v3.13: up to 34px, 13% of the seat's height). Since v3.18 a name that's too wide for

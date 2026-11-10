@@ -25,7 +25,10 @@
 /* Life totals in Beleren Bold (v3.31), the font on Magic card names. Only the digits, + and - are
    kept (fonts/Beleren-Bold-digits.woff), all a total needs. */
 @font-face { font-family: "Beleren"; src: url(fonts/Beleren-Bold-digits.woff) format("woff"); font-weight: 100 900; font-display: block; unicode-range: U+20, U+2B, U+2D, U+30-39, U+B1, U+2212; }
-@font-face { font-family: "MPlantin"; src: url(fonts/Mplantin.woff) format("woff"); font-weight: 100 900; font-display: swap; unicode-range: U+20-7E; }
+/* v1.47: Mplantin-text.woff is Mplantin.woff with its Unicode map rebuilt from its Mac Roman table
+   (the original's non-ASCII map was scrambled: ’ drew Ê, – drew ·), keeping only the characters
+   checked by eye, so accents, curly quotes, dashes and … in song titles show in the card-text font. */
+@font-face { font-family: "MPlantin"; src: url(fonts/Mplantin-text.woff) format("woff"); font-weight: 100 900; font-display: swap; unicode-range: U+20-7E, U+A1-A3, U+A5, U+A7-AB, U+AE, U+B1, U+B4-B6, U+B8, U+BA-BB, U+BF-CF, U+D1, U+D3-D6, U+D8-DC, U+DF-EF, U+F1-F6, U+F8-FC, U+FF, U+131, U+152-153, U+178, U+192, U+2013-2014, U+2018-2019, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2122; }
 /* Layout: full-bleed seats around the phone; table seats face their own table edge, 1-player fills the screen. */
 :root {
   --table: #0c0e11;
@@ -202,7 +205,10 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .sfy-dock .sfy-ctl { padding: 0; justify-content: center; max-height: 120px; }
 /* v1.41: play/pause at the seat's middle (the user's ask), next to its right. An invisible spacer the
    size of next on the left balances it; only while a song shows (the .song text comes before). */
-.sfy-dock .sfy-text.song ~ .sfy-ctl::before { content: ''; flex: none; width: 46px; height: 46px; }
+.sfy-dock .sfy-text.song ~ .sfy-ctl::before { content: ''; flex: none; width: 54px; height: 54px; }
+/* The dock sits at left 50%, so it may only take half the seat's width, and play and next wrapped
+   onto two lines (v1.46); a song's buttons stay on one. */
+.sfy-dock .sfy-text.song ~ .sfy-ctl { flex-wrap: nowrap; }
 .sfy-text { grid-area: txt; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .sfy-text b { font-size: 17px; line-height: 1.2; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .sfy-text span { font-size: 14px; color: #b3b3b3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -212,7 +218,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
   flex: none; width: 46px; height: 46px; padding: 10px; border: 0; border-radius: 50%;
   display: grid; place-items: center; background: transparent; color: #fff;
 }
-.sfy-ctl button.sfy-play { width: 54px; height: 54px; padding: 13px; background: #1ed760; color: #000; }
+/* v1.47: next is the big one (the user: it's tapped most), play/pause the small green one. */
+.sfy-ctl button.sfy-play { width: 46px; height: 46px; padding: 12px; background: #1ed760; color: #000; }
+.sfy-ctl button.sfy-b[data-a="next"] { width: 54px; height: 54px; padding: 8px; }
 .sfy-ctl svg { width: 100%; height: 100%; fill: currentColor; pointer-events: none; }
 .sfy-pill { border: 0; border-radius: 999px; padding: 9px 16px; background: #1ed760; color: #000; font-size: 15px; font-weight: 700; }
 .sfy-pill.alt { background: rgba(255, 255, 255, .12); color: #fff; }
@@ -874,7 +882,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.46';
+  const VERSION = '1.47';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
