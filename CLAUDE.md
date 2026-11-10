@@ -316,6 +316,9 @@ them and `.gitignore` now ignores PNGs at the root).
 - The list is EDHREC's average deck for the commander (json.edhrec.com/pages/average-decks/<slug>.json, reachable from the sandbox; Moxfield's API is blocked). Under each card, one line: its role (Token maker, Token doubler, Payoff, Drain, Sac outlet, Draw, Ramp, Tutor, Removal, Protection, Land), then EDHREC's numbers from the commander page (share of the commander's decks that play it, and synergy) with links to EDHREC and the card's Scryfall page. A "Sources and how cards were chosen" fold-out explains it. The user cut the per-card reason sentence; the hand-written reasons stay in `brew.py` as notes (only the role is shown). The Role filter is the template's Keyword filter (roles go in `k`); sorts add Most played and Synergy.
 - Built by `python3 tools/carousel/brew.py [slug]` from `tools/carousel/brew-template.html` (a copy of the deck template). Roles and reasons live in the script (`CHATTERFANG`, `MARROW`, `VREN`); it stops if EDHREC's average deck has a card with none, so add one when EDHREC's list shifts. To add a brew: a reasons dict and a `BREWS` entry, then a row in `links.html`.
 
+### Every other page in the app
+- Every page but `index.html` and `archenemy.html` links `app/manifest.json` and, when opened inside the installed app (display-mode fullscreen/standalone), shows a gold **🃏 Board** button bottom-left back to the board (snippet marked `app-board-link`, right after `<title>`, also in every template under `tools/`). Why: the app has no address bar, and the deck pages had no way back; installing from a deck page without a manifest also made the icon open that page. New pages need the same snippet.
+
 ### `links.html`: all our pages
 - Live at https://biglob.github.io/commander-life/links.html, the 🗂️ footer link. Hand-kept list in sections: Play, Card carousels (with every deck), Guides, Sounds, claude.ai artifacts.
 
