@@ -171,8 +171,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    not padding, keeps the menu button's room, so overflow is clipped above it. */
 .table:not(.spot) > .sfy-bar .sfy-text { margin-bottom: 50px; min-height: 0; overflow: hidden; }
 .table:not(.spot) > .sfy-bar .sfy-text > * { flex: none; overflow-wrap: anywhere; }
-.table:not(.spot) > .sfy-bar .sfy-text b { -webkit-line-clamp: none; font-size: calc(17px * var(--sf, 1)); }
-.table:not(.spot) > .sfy-bar .sfy-text span { white-space: normal; line-height: 1.25; display: -webkit-box; -webkit-box-orient: vertical; font-size: calc(14px * var(--sf, 1)); }
+.table:not(.spot) > .sfy-bar .sfy-text b { -webkit-line-clamp: none; font-size: calc(17px * var(--sfb, 1)); }
+.table:not(.spot) > .sfy-bar .sfy-text span { white-space: normal; line-height: 1.25; display: -webkit-box; -webkit-box-orient: vertical; font-size: calc(14px * var(--sfs, 1)); }
 .table:not(.spot) > .sfy-bar .sfy-ctl { padding-right: 0; justify-content: center; }
 /* 4-player Table and Big button (v1.37, the user's pick from two mockups): no bar. The board is Big
    button (huge turn button where the side seats meet), play/pause and next sit in a dock at the
@@ -860,7 +860,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.42';
+  const VERSION = '1.43';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -2185,28 +2185,37 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     setTimeout(() => { sfyPaint(); if (!sfyTimer && !sfyBusy) sfyKick(0); });
     return bar;
   }
-  // The middle bar's song and artist (v1.42) fill the space above the menu button: as big as fits
-  // with no word broken (up to 1.6×). If they don't fit even at 1×, as many whole lines as fit, the
-  // song first, the artist keeping at least one; whatever is cut ends in an ellipsis.
+  // The middle bar's song and artist fill the space above the menu button (v1.42; v1.43 bigger, the
+  // user's ask). The song grows first, as big as fits with no word broken (up to 3×), leaving one
+  // line of artist; then the artist grows into what's left, never bigger than the song. Neither goes
+  // below its normal size: what doesn't fit there is cut by whole lines, ending in an ellipsis.
   function sfyFit() {
     const t = app.querySelector('.table:not(.spot) > .sfy-bar .sfy-text.song');
     if (!t) return;
-    const b = t.querySelector('b'), s = t.querySelector('span');
+    const b = t.querySelector('b'), s = t.querySelector('span'), has = !!s.textContent;
     b.style.webkitLineClamp = s.style.webkitLineClamp = '';
+    t.style.setProperty('--sfb', 1); t.style.setProperty('--sfs', 1);
     const H = t.clientHeight, gap = parseFloat(getComputedStyle(t).rowGap) || 0;
-    const fits = () => b.offsetHeight + gap + s.offsetHeight <= H && b.scrollWidth <= b.clientWidth && s.scrollWidth <= s.clientWidth;
+    const lh = el => parseFloat(getComputedStyle(el).lineHeight);
+    const wide = el => el.scrollWidth <= el.clientWidth;
+    const grow = (el, v, max, ok) => {
+      let f = max;
+      for (; f > 1; f = Math.round((f - .05) * 100) / 100) { t.style.setProperty(v, f); if (wide(el) && ok()) return true; }
+      t.style.setProperty(v, 1);
+      return wide(el) && ok();
+    };
     b.style.overflowWrap = s.style.overflowWrap = 'normal';
-    let ok = false;
-    for (let f = 1.6; f >= 1 && !ok; f = Math.round((f - .1) * 10) / 10) { t.style.setProperty('--sf', f); ok = fits(); }
+    const artistLine = has ? gap + lh(s) : 0;
+    const songOk = grow(b, '--sfb', 3, () => b.offsetHeight + artistLine <= H);
+    const fb = parseFloat(t.style.getPropertyValue('--sfb'));
+    const artistOk = !has || grow(s, '--sfs', fb * 17 / 14, () => b.offsetHeight + gap + s.offsetHeight <= H);
     b.style.overflowWrap = s.style.overflowWrap = '';
-    if (ok) return;
-    t.style.setProperty('--sf', 1);
-    if (b.offsetHeight + gap + s.offsetHeight <= H) return;
-    const bl = parseFloat(getComputedStyle(b).lineHeight), sl = parseFloat(getComputedStyle(s).lineHeight);
-    const sRoom = s.textContent ? gap + sl : 0;
-    const bk = Math.max(1, Math.min(Math.round(b.offsetHeight / bl), Math.floor((H - sRoom) / bl)));
-    b.style.webkitLineClamp = bk;
-    if (s.textContent) s.style.webkitLineClamp = Math.max(1, Math.floor((H - bk * bl - gap) / sl));
+    if (songOk && artistOk) return;
+    if (!songOk) {
+      const bk = Math.max(1, Math.min(Math.round(b.offsetHeight / lh(b)), Math.floor((H - artistLine) / lh(b))));
+      b.style.webkitLineClamp = bk;
+    }
+    if (has && b.offsetHeight + gap + s.offsetHeight > H) s.style.webkitLineClamp = Math.max(1, Math.floor((H - b.offsetHeight - gap) / lh(s)));
   }
   function sfyPaint() {
     const inner = app.querySelector('.sfy-bar .sfy-in, .sfy-dock .sfy-in');
