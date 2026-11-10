@@ -13,7 +13,7 @@ import html, json, os, sys, time, urllib.parse, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', '..', 'brews')
 UA = {'User-Agent': 'commander-life/1.0', 'Accept': 'application/json'}
-ROLES = ['Commander', 'Rat', 'Token maker', 'Token doubler', 'Payoff', 'Drain', 'Sac outlet', 'Draw', 'Ramp', 'Tutor',
+ROLES = ['Commander', 'Rat', 'Squirrel maker', 'Food maker', 'Food eater', 'Squirrel payoff', 'Token maker', 'Token doubler', 'Payoff', 'Drain', 'Sac outlet', 'Draw', 'Ramp', 'Tutor',
          'Recursion', 'Removal', 'Counter', 'Protection', 'Land']
 
 # card -> (role, why). Chatterfang: "If one or more tokens would be created under your control, those tokens
@@ -409,6 +409,110 @@ LENN_B2_SWAPS = [
 _sw = {a: (b, w) for a, b, w in LENN_B2_SWAPS}
 LENN_B2 = {_sw[n][0] if n in _sw else n: _sw[n][1] if n in _sw else v for n, v in LENN.items()}
 
+# Lenn's Camellia: the replacement for Lenn's Chatterfang, after Reddit's review said Chatterfang plays far above a table
+# of new players on precons. Bracket 2 by power, not just on paper. The user's rule: almost every card makes Squirrels,
+# and anything else needs a good reason. Camellia turns every Food sacrificed into a Squirrel, so a card counts if it
+# makes Squirrel tokens (Squirrel maker), makes Food (Food maker) or sacrifices Food (Food eater); the few others say why.
+# Left out on purpose: Chatterfang (what we moved away from), Peregrin Took and Tippy-Toe (Tippy-Toe + Ninja Pizza +
+# Camellia is an infinite loop on Commander Spellbook; Peregrin's Food loops the same way), Academy Manufactor, Ashnod's
+# Altar, Doubling Season, Parallel Lives, Skullclamp, Craterhoof, Beastmaster Ascension, and fetch lands and original
+# duals. Spellbook (find-my-combos, estimate-bracket) finds no combos and no Game Changers. Roles 'A/B': A is the filter
+# and sort role, B a second job.
+CAMELLIA = {
+    'Camellia, the Seedmiser': ('Commander', 'Every Food you sacrifice becomes a 1/1 Squirrel, other Squirrels get menace, and {2}, Forage pumps every other Squirrel.'),
+    # makes Squirrel tokens itself
+    'Chatter of the Squirrel': ('Squirrel maker', 'A Squirrel for {G}, and another from the graveyard for {1}{G}.'),
+    'Squirrel Sanctuary': ('Squirrel maker', 'A Squirrel for {G}, and it comes back to hand when a nontoken creature dies, to cast again.'),
+    'Nested Shambler': ('Squirrel maker', 'A one-drop that leaves Squirrels behind when it dies (as many as its power).'),
+    'Chatterstorm': ('Squirrel maker', 'A Squirrel for each spell cast before it this turn: a late-game burst.'),
+    'Verdant Command': ('Squirrel maker/Removal', 'Two Squirrels at instant speed, plus graveyard exile, 3 life or a stopped planeswalker.'),
+    'Bushy Bodyguard': ('Squirrel maker', 'Pay offspring {2} for a token copy (a Squirrel), and foraging a Food grows it and makes another via Camellia.'),
+    'Chitterspitter': ('Squirrel maker', 'A Squirrel for {G} every turn, and every Squirrel grows each upkeep.'),
+    'Squirrel Nest': ('Squirrel maker', 'Turns a land into a Squirrel every turn.'),
+    'Scurry Oak': ('Squirrel maker', 'A Squirrel each time it gets +1/+1 counters: Camellia\'s forage and Honored Dreyleader-sized creatures feed it.'),
+    'Scurry of Squirrels': ('Squirrel maker', 'Myriad: attacking token copies of it (each a Squirrel) at every other opponent.'),
+    'Cloakwood Hermit': ('Squirrel maker', 'Gives Camellia two Squirrels each end step a creature died, chump blockers included.'),
+    'The Unbeatable Squirrel Girl': ('Squirrel maker', 'A Squirrel when she enters or attacks, and late game {1}{G}{G}{G} doubles your Squirrels.'),
+    'Hazel of the Rootbloom': ('Squirrel maker/Ramp', 'Two copies of a Squirrel token every end step, and taps your tokens for mana.'),
+    'Rootcast Apprenticeship': ('Squirrel maker', 'Three modes: Squirrels, copies of your best token, counters, or an artifact edict.'),
+    'Acorn Harvest': ('Squirrel maker', 'Two Squirrels, then two more from the graveyard (flashback).'),
+    'Second Harvest': ('Squirrel maker', 'Copies every token you have at instant speed, Squirrels and Food alike.'),
+    'For the Common Good': ('Squirrel maker/Protection', 'X copies of a token, then all your tokens are indestructible until your next turn: answers a board wipe.'),
+    'Deep Forest Hermit': ('Squirrel maker', 'Four Squirrels on entering, and Squirrels get +1/+1 while it stays.'),
+    'Drey Keeper': ('Squirrel maker', 'Two Squirrels, and {3}{B} gives them +1/+0 and menace for the swing.'),
+    'Swarmyard Massacre': ('Squirrel maker/Removal', 'Two Squirrels, then every non-Squirrel creature shrinks by your Squirrel count: a mostly one-sided wipe.'),
+    # makes Food: Camellia turns each one into a Squirrel when it is eaten
+    'Gilded Goose': ('Food maker/Ramp', 'Food on entering and for {1}{G}, and eats Food for mana (a Squirrel each time).'),
+    'Many Partings': ('Food maker/Ramp', 'A basic land to hand and a Food, for {G}.'),
+    "Scavenger's Talent": ('Food maker', 'A Food each turn one of your creatures dies, so Squirrels lost in combat come back.'),
+    "Witch's Oven": ('Food maker', 'Sacrifice a creature for Food (two if it is big), and the Food becomes a Squirrel.'),
+    'Vinereap Mentor': ('Food maker', 'A Squirrel that leaves a Food when it enters and when it dies.'),
+    'Bakersbane Duo': ('Food maker', 'A two-drop Squirrel with a Food.'),
+    'Pippin, Warden of Isengard': ('Food maker', 'Food for {1} every turn, and four Foods give the team +3/+3 and haste (plus four Squirrels).'),
+    'Trail of Crumbs': ('Food maker/Draw', 'A Food, and each Food eaten digs two cards deep for a permanent.'),
+    'Savor': ('Food maker/Removal', '−2/−2 at instant speed, plus a Food.'),
+    'Pawpatch Formation': ('Food maker/Removal', 'Kills a flier or an enchantment, or draws a card and makes a Food.'),
+    'Revive the Shire': ('Food maker', 'Gets back any permanent card, plus a Food.'),
+    'Campsite Cuisine': ('Food maker', 'Food from each legend (Camellia, Hazel, Squirrel Girl, Pippin, Greta, Meatsqueak, Elanor, Toski, Acorn Gang), and Foods pump attackers.'),
+    'Tireless Provisioner': ('Food maker/Ramp', 'A Food or a Treasure for every land played.'),
+    'Heaped Harvest': ('Food maker/Ramp', 'A Food that fetches a basic land when it enters and again when eaten.'),
+    'Meatsqueak, Hoard Lord': ('Food maker', 'A Squirrel that makes a Food each turn something dies, and gives Squirrels +3/+3 per seven Foods.'),
+    'Savvy Hunter': ('Food maker/Draw', 'A Food each time it attacks or blocks, and two Foods draw a card.'),
+    'Greta, Sweettooth Scourge': ('Food maker/Draw', 'A Food, then eats Food for +1/+1 counters or cards.'),
+    'Tainted Treats': ('Food maker/Removal', 'Kills an artifact or creature at instant speed, and a Food if it was small.'),
+    'Hot Dog Cart': ('Food maker/Ramp', 'A mana rock of any color that comes with a Food.'),
+    'Nuka-Cola Vending Machine': ('Food maker/Ramp', 'Food for {1} every turn, and each Food eaten leaves a Treasure too.'),
+    'Ninja Pizza': ('Food maker/Ramp', 'A Food every turn, and any Food can be eaten for mana (a Squirrel each time).'),
+    "Hazel's Brewmaster": ('Food maker', 'A Squirrel that makes Food on entering and attacking, and shares graveyards\' abilities with your Foods.'),
+    "Night of the Sweets' Revenge": ('Food maker/Ramp', 'Every Food taps for {G}, and late it gives the team +X/+X per Food: a finisher.'),
+    'Bake into a Pie': ('Food maker/Removal', 'Kills any creature at instant speed, plus a Food.'),
+    'Elanor Gardner': ('Food maker/Ramp', 'A Food, and a basic land each turn you ate one.'),
+    'Stew the Coneys': ('Food maker/Removal', 'One of your creatures fights one of theirs one-sidedly, plus a Food.'),
+    'Midnight Snack': ('Food maker/Drain', 'A Food each turn you attack, and late it drains an opponent for the life you gained.'),
+    'Spider Food': ('Food maker/Removal', 'Kills an artifact, enchantment or flier, plus a Food.'),
+    "Bumbleflower's Sharepot": ('Food maker/Removal', 'A Food now, and later {5} destroys any nonland permanent.'),
+    'Lembas': ('Food maker/Draw', 'A Food that draws a card, and it shuffles back in after it is eaten.'),
+    # eats Food: each forage or Food sacrifice is a Squirrel from Camellia
+    'Thornvault Forager': ('Food eater/Ramp', 'A Squirrel mana dork that eats Food for two mana, and finds a Squirrel late.'),
+    'Ravenous Squirrel': ('Food eater/Draw', 'Sacrifices Food or creatures to draw, growing each time.'),
+    'Corpseberry Cultivator': ('Food eater', 'Eats a Food every combat to grow (and makes a Squirrel).'),
+    'Treetop Sentries': ('Food eater/Draw', 'A Squirrel with reach that eats a Food to draw.'),
+    'Curious Forager': ('Food eater', 'A Squirrel that eats a Food to get back any permanent card.'),
+    'Feed the Cycle': ('Food eater/Removal', 'Kills a creature or planeswalker; pay with a Food and get a Squirrel back.'),
+    # Squirrels that reward having Squirrels
+    'Squirrel Sovereign': ('Squirrel payoff', 'A Squirrel lord: every other Squirrel gets +1/+1.'),
+    'Honored Dreyleader': ('Squirrel payoff', 'A Squirrel that grows with every Squirrel and Food that arrives.'),
+    'The Odd Acorn Gang': ('Squirrel payoff/Draw', 'Squirrels pump each other, and Squirrel hits draw cards.'),
+    'Valley Rotcaller': ('Squirrel payoff/Drain', 'A Squirrel whose attacks drain 1 per other Squirrel: how the deck closes games.'),
+    'Toski, Bearer of Secrets': ('Squirrel payoff/Draw', 'An indestructible Squirrel that draws a card per creature that hits.'),
+    # not Squirrels, with a reason
+    'Sol Ring': ('Ramp', 'Not a Squirrel: two mana on turn one, in every precon, so it keeps the deck at precon level, not above it.'),
+    'Heroic Intervention': ('Protection', 'Not a Squirrel: a board wipe is the one thing that beats a token deck, and this stops it.'),
+    # lands: 35 and a land-or-trick
+    'Revitalizing Repast': ('Land/Protection', 'A land when you need one, or a counter and indestructible to save a creature from removal.'),
+    'Command Tower': ('Land', 'Either color, untapped.'),
+    'Gingerbread Cabin': ('Land', 'A Forest that makes a Food when it enters untapped (three other Forests).'),
+    'The Shire': ('Land', 'Untapped with a legend out, and makes Food late.'),
+    'Restless Cottage': ('Land', 'Either color; late it attacks as a 4/4 that makes a Food.'),
+    'Swarmyard': ('Land', 'Regenerates a Squirrel.'),
+    'Oakhollow Village': ('Land', 'Green for creatures, and +1/+1 counters on Squirrels that just arrived.'),
+    'Mudflat Village': ('Land', 'Black for creatures, and sacrifices to get a Squirrel card back.'),
+    'Woodland Cemetery': ('Land', 'Untapped dual with a Swamp or Forest out.'),
+    'Llanowar Wastes': ('Land', 'Untapped dual for 1 damage.'),
+    'Golgari Rot Farm': ('Land', 'Taps for two.'),
+    'Jungle Hollow': ('Land', 'Dual with 1 life.'),
+    'Golgari Guildgate': ('Land', 'Dual.'),
+    'Temple of Malady': ('Land', 'Dual with scry 1.'),
+    'Evolving Wilds': ('Land', 'Fetches a basic.'),
+    'Path of Ancestry': ('Land', 'Either color, and scry when it casts a Squirrel.'),
+    'Necroblossom Snarl': ('Land', 'Untapped dual if you show a Swamp or Forest.'),
+    'Twilight Mire': ('Land', 'One mana into two of black and green.'),
+    'Undergrowth Stadium': ('Land', 'Untapped dual with two or more opponents.'),
+    'Three Tree City': ('Land', 'Name Squirrel: a mana per Squirrel.'),
+    'Forest': ('Land', 'Ten: the deck is mostly green, and Gingerbread Cabin wants Forests.'),
+    'Swamp': ('Land', 'Six, for the black cards.'),
+}
+
 BREWS = {
     'chatterfang': {'name': 'Chatterfang Squirrels', 'edhrec': 'chatterfang-squirrel-general', 'why': CHATTERFANG, 'colors': 'black-green'},
     'marrow-gnawer': {'name': 'Marrow-Gnawer Rats', 'edhrec': 'marrow-gnawer', 'why': MARROW, 'colors': 'mono-black'},
@@ -424,6 +528,13 @@ BREWS = {
                             'about': 'The Bracket 2 version of Lenn\'s gift deck: the Bracket 3 list with four swaps. No Game Changers, no '
                                      'infinite combos of any size (Commander Spellbook finds none), one tutor (Green Sun\'s Zenith), no land '
                                      'destruction or extra turns. Every card is Commander-legal.'},
+    'camellia-lenn': {'name': "Lenn's Camellia Squirrels (Bracket 2)", 'edhrec': 'camellia-the-seedmiser', 'why': CAMELLIA, 'colors': 'black-green',
+                      'pick': {'Forest': 10, 'Swamp': 6}, 'show_why': True, 'gift': 'a gift for Lenn',
+                      'about': 'Lenn\'s gift deck, rebuilt around Camellia after Reddit\'s review found Chatterfang far too strong for a table of '
+                               'new players on precons. Almost every card makes Squirrels: Squirrel tokens itself, or Food, which Camellia turns '
+                               'into a Squirrel when it is eaten, or it eats Food. The few that don\'t say why they are here. Bracket 2: no Game '
+                               'Changers, no infinite combos (Commander Spellbook finds none), one Squirrel tutor, no land destruction or extra '
+                               'turns, and no doublers, Craterhoof or fetch lands. Average mana value 2.7, with 36 lands. Every card is Commander-legal.'},
 }
 
 def get(url, data=None):
@@ -474,9 +585,10 @@ def build(slug, b):
         colors = c.get('colors', faces[0].get('colors', []) if faces else [])
         role, why = b['why'][n]
         r = {'n': n, 'p': cheapest(n), 'q': q, 's': c['set'].upper(), 't': c['type_line'],
-             'i': iu['normal'], 'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': [role],
+             'i': iu['normal'], 'm': int(c.get('cmc', 0)), 'c': ''.join(x for x in 'WUBRG' if x in colors), 'k': role.split('/'),
              'u': c['scryfall_uri'].split('?')[0]}
         if n in stats: r['e'] = stats[n]
+        if b.get('show_why'): r['w'] = why  # this deck shows each card's reason (the user: anything not a Squirrel maker needs one)
         if c['legalities'].get('commander') != 'legal': r['note'] = 'Not Commander-legal'  # always flagged (house rule)
         if n == cmd: r['e'] = [1, 0]
         if len(faces) > 1 and not c.get('image_uris'): r['b'] = faces[1]['image_uris']['normal']
@@ -488,7 +600,7 @@ def build(slug, b):
     lead = (f'<p><b>The list</b> is hand-picked. {html.escape(b["about"])}</p>' if 'pick' in b else
             f'<p><b>The list</b> is <a href="{avg_page}" target="_blank" rel="noopener">EDHREC\'s average {html.escape(cmd.split(",")[0])} deck</a>: '
             f'the cards played most across the {decks:,} {html.escape(cmd.split(",")[0])} decks EDHREC has (pulled {time.strftime("%b %-d %Y")}).</p>')
-    if 'bracket' in b:  # Lenn's two versions: the swap list and the proxy order, on both pages
+    if slug.startswith('chatterfang-lenn'):  # Lenn's two versions: the swap list and the proxy order, on both pages
         li = ''.join(f'<li>{html.escape(a)} → {html.escape(c)}</li>' for a, c, _ in LENN_B2_SWAPS)
         lead += ('<p><b>Two versions.</b> <a href="chatterfang-lenn.html">Bracket 3</a> and <a href="chatterfang-lenn-b2.html">Bracket 2</a> '
                  f'share 96 cards. To go from Bracket 3 to Bracket 2, swap:</p><ul>{li}</ul>'
@@ -499,21 +611,21 @@ def build(slug, b):
             f'{"; cards EDHREC has no numbers for show only their role" if "pick" in b else ""}.</p>'
             '<p><b>Prices</b> are the cheapest paper printing on Scryfall.</p>')
     cfg = {'slug': 'brew-' + slug, 'deck': b['name'], 'set': '', 'cmd': cmd, 'alt': None, 'decks': decks, 'edh': edh_page, 'srcs': srcs,
-           'sub': (f'{sum(r["q"] for r in ALL)} cards · Bracket {b["bracket"]} · tokens · a gift for Lenn (to proxy; ${total:,.0f} in singles)' if 'pick' in b else
+           'sub': (f'{sum(r["q"] for r in ALL)} cards · Bracket {b.get("bracket", 2)} · {"Squirrels" if b.get("show_why") else "tokens"} · {b.get("gift", "a gift for Lenn")} (to proxy; ${total:,.0f} in singles)' if 'pick' in b else
                    f'{sum(r["q"] for r in ALL)} cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC')}
     t = open(os.path.join(HERE, 'brew-template.html')).read()
     t = (t.replace('__TITLE__', html.escape(b['name'])).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
           .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w').write(t)
-    if 'bracket' in b:  # the proxy order covers both versions, so either can be built from one print run
+    if slug.startswith('chatterfang-lenn'):  # the proxy order covers both versions, so either can be built from one print run
         names = sorted({n for n in list(LENN) + list(LENN_B2) if n not in ('Forest', 'Swamp')})
         open(os.path.join(OUT, 'chatterfang-lenn-proxies.txt'), 'w').write(
             "Lenn's Chatterfang Tokens: proxy order for both versions (Bracket 3 and Bracket 2), basics left out.\n"
             f"{len(names)} cards. Bracket 3 only: {', '.join(a for a, _, _ in LENN_B2_SWAPS)}. "
             f"Bracket 2 only: {', '.join(c for _, c, _ in LENN_B2_SWAPS)}.\n\n" + ''.join(f'1 {n}\n' for n in names))
-    if slug == 'chatterfang-lenn-b2':  # paste-ready for Moxfield's import box (for the Reddit post): plain "qty name" lines only
-        open(os.path.join(OUT, 'chatterfang-lenn-b2-moxfield.txt'), 'w').write(
+    if slug in ('chatterfang-lenn-b2', 'camellia-lenn'):  # paste-ready for Moxfield's import box (for Reddit reviews): plain "qty name" lines only
+        open(os.path.join(OUT, slug + '-moxfield.txt'), 'w').write(
             ''.join(f'{b["pick"].get(n, 1)} {n}\n' for n in b['why']))
     print(f'{slug}: {sum(r["q"] for r in ALL)} cards, ${total:.2f}, from {decks} decks; no price: {[r["n"] for r in ALL if r["p"] is None]}')
 
