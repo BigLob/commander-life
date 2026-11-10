@@ -297,6 +297,9 @@ them and `.gitignore` now ignores PNGs at the root).
 - Card images are embedded as WebP data URIs (about 11 MB), so the page works offline. Bench, Trash and Fav marks are kept in that browser's localStorage only.
 - Tabs: Deck, Suggested, Fav, Bench, Trash. Sort & filter covers type, color, cost, keyword and Fav only.
 
+### `xenagos-to-buy.html`: Xenagos cards still to buy
+- Live at https://biglob.github.io/commander-life/xenagos-to-buy.html. The deck carousel cut to the cards we don't own yet: 16 spells, 16 nonbasic lands and 18 basics (50 cards, about $161 at the cheapest paper printings, Nov 10, 2026). The other 50 spells came from 19 TCGplayer orders placed Oct 28, 2026, all received by Nov 10. Built by `python3 tools/carousel/xenagos_buy.py` (lists in the script, `template.html`, back link to `xenagos.html`); when cards arrive, take them out of the script's lists and rebuild.
+
 ### `decks/`: precon card carousels
 - Live at https://biglob.github.io/commander-life/decks/ (`decks/index.html`), one page per deck (`decks/<slug>.html`): the 13 precons in the "Decks we own" table of `buying-guide.md`. Not a game page; nothing syncs.
 - Same carousel as Xenagos, minus Suggested (the user dropped it): Deck, Fav, Bench and Trash tabs, sort and filter, zoom, picks code. Marks are kept per deck in localStorage (`pc-<slug>-favs`, `pc-<slug>-marks`). The commander comes first, then the alternate commander (labelled), then spells by mana value, lands, basics.
