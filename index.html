@@ -125,6 +125,17 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .sp-2 { grid-area: b; }
 .sp-3 { grid-area: c; }
 .board.n1 { grid-template: 1fr / 1fr; }
+/* The button box (v1.44, the user's ask): in Classic and Side by side, without the Spotify bar, each
+   seat is a third shorter, pulled in to its short edge, and the middle third holds the turn and menu
+   buttons, both bigger (sized in placeTurn()). */
+.board.n2.table.boxed { grid-template-areas: "top" "mid" "bottom"; grid-template-rows: 1fr 1fr 1fr; }
+.board.duel.boxed { grid-template: "tl tr" 1fr "mid mid" 1fr "bl br" 1fr / 1fr 1fr; }
+.btn-box {
+  grid-area: mid; min-height: 0; border-radius: 18px; border: 2px solid var(--line);
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 179, 71, .16), transparent 62%), var(--table);
+}
+.boxed ~ .turn-big { border-width: 4px; box-shadow: 0 0 0 3px var(--line), 0 0 36px rgba(255, 179, 71, .6), 0 8px 18px rgba(0, 0, 0, .55); }
+.boxed + .menu-btn img { height: 36px; }
 /* Head to head, side by side: each half of the phone faces one player and shows both totals, theirs
    on the left, so each player's colors run down one side. The top half is turned to the far player. */
 .board.duel { grid-template: "tl tr" 1fr "bl br" 1fr / 1fr 1fr; }
@@ -860,7 +871,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.43';
+  const VERSION = '1.44';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1517,6 +1528,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // The Spotify remote, in every layout (v1.35): the grid gives it the top or the middle (see the styles).
     if (sfy.on && !dock) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
     if (dock) board.classList.add('sfyp');
+    // Classic and Side by side (not Couch) without the bar: the button box in the middle (v1.44).
+    if (!sfy.on && !couch && (n === 2 || duel4)) {
+      board.classList.add('boxed');
+      const box = document.createElement('div');
+      box.className = 'btn-box';
+      board.appendChild(box);
+    }
     // In the spotlight, this phone's player and then everyone after them, clockwise.
     builtSpot = lay === 'spot' ? spotPlayer() : null;
     const place = i => lay !== 'spot' ? 's' + posOf(i) : (builtSpot - i + n) % n ? 'sp-' + (builtSpot - i + n) % n : 'sp-main';
@@ -1658,6 +1676,20 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       // With the Spotify dock, the menu button sits at the top middle of the bottom seat instead.
       const s0 = app.querySelector('.board.sfyp .s0');
       if (s0) Object.assign(mb.style, { left: hub.x - 23 + 'px', top: s0.offsetTop + 10 + 'px' });
+      return;
+    }
+    // The button box (v1.44): the turn button as big as fits in its middle, the menu button in the
+    // room to its right (centered there on a phone, kept close on a wide screen).
+    const box = board && board.querySelector(':scope > .btn-box');
+    if (box) {
+      const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn');
+      const x0 = (box.offsetParent === board ? board.offsetLeft : 0) + box.offsetLeft;
+      const y0 = (box.offsetParent === board ? board.offsetTop : 0) + box.offsetTop;
+      const w = box.offsetWidth, h = box.offsetHeight, cx = x0 + w / 2, cy = y0 + h / 2;
+      const d = Math.max(96, Math.min(200, .76 * h, .48 * w));
+      const m = Math.max(46, Math.min(64, .3 * h));
+      Object.assign(tb.style, { left: cx + 'px', top: cy + 'px', width: d + 'px', height: d + 'px', margin: '0' });
+      Object.assign(mb.style, { left: cx + d / 2 + Math.min((x0 + w - cx - d / 2) / 2, m / 2 + 28) - m / 2 + 'px', top: cy + 'px', width: m + 'px', height: m + 'px', margin: '0' });
       return;
     }
     // Spotify bar in the middle: the turn button sits in its hole, as big as fits (up to 96px).
