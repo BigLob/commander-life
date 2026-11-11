@@ -548,3 +548,117 @@ Lego Star Wars sounds, Elden Ring, and Palpatine's laugh (laughs were cut in v1.
 | `sw-dont-fail-me-again` | Don't fail me again. | [myinstants: Don't fail me again Vader](https://www.myinstants.com/media/sounds/dont-fail-me-again-vader.mp3) |
 | `sw-braver-than-most` | Then you will die braver than most. | [myinstants: Then You Will Die Braver Than Most](https://www.myinstants.com/media/sounds/then-you-will-die-braver-than-most.mp3) |
 | `sw-force-is-strong` | The force is strong with this one. | [myinstants: The force is strong Vader](https://www.myinstants.com/media/sounds/the-force-is-strong-with-this-one.mp3) |
+
+## Added in v1.55 (more games, movies and TV, more announcer lines)
+
+52 game, film and TV clips from meme uploads on myinstants.com (Halo, Zelda, Mario, Pokémon, Metal Gear,
+Street Fighter, Mortal Kombat, Unreal Tournament and Quake III, Skyrim, Portal, StarCraft, WarCraft, Lord of the
+Rings, Monty Python, The Office, The Simpsons, Star Trek, Jurassic Park, game shows and Law & Order), screened by
+faster-whisper transcript, cut, loudness-matched to -16 LUFS and saved as mono 64 kbps MP3. They belong to their
+owners, not CC0. Nelson's "Ha-ha!" was left out (laughs were cut in v1.50); no Pokémon fainting cry was found, so
+four Pokémon cries stand in.
+
+| Clip | Words or sound | Source |
+| --- | --- | --- |
+| `halo-double-kill` | Double kill! | [myinstants: Halo 1 Double Kill](https://www.myinstants.com/media/sounds/halo-1-double-kill.mp3) |
+| `halo-killtacular` | Killtacular! | [myinstants: halo killtacular](https://www.myinstants.com/media/sounds/halo-killtacular.mp3) |
+| `halo-shield-recharge` | Shield recharging | [myinstants: Halo shield recharge sound](https://www.myinstants.com/media/sounds/halo-shield-recharge-sound_aJRP2Um.mp3) |
+| `zelda-item-get` | Item get | [myinstants: Zelda - Item Get](https://www.myinstants.com/media/sounds/139-item-catch.mp3) |
+| `zelda-secret` | Secret found | [myinstants: Zelda Secret](https://www.myinstants.com/media/sounds/loz_secret_BL9kfi1.mp3) |
+| `zelda-secret-oot` | Secret found (Ocarina of Time) | [myinstants: Ocarina of Time Secret](https://www.myinstants.com/media/sounds/ocarina-of-time-secret.mp3) |
+| `zelda-hey-listen` | Hey! Listen! | [myinstants: Hey Listen Zelda](https://www.myinstants.com/media/sounds/zelda-navi-listen.mp3) |
+| `mario-coin` | Coin | [myinstants: Mario coin sound](https://www.myinstants.com/media/sounds/mario_coin_sound.mp3) |
+| `mario-1up` | 1-up | [myinstants: Mario 1UP](https://www.myinstants.com/media/sounds/mario-1up.mp3) |
+| `mario-pipe` | Down the pipe | [myinstants: Super Mario Pipe](https://www.myinstants.com/media/sounds/super-mario-bros.mp3) |
+| `mario-death` | Mario dies | [myinstants: Super Mario Death](https://www.myinstants.com/media/sounds/super-mario-death-sound-sound-effect.mp3) |
+| `pokemon-bulbasaur` | Bulbasaur cry | [myinstants: Pokemon Bulbasaur Cry](https://www.myinstants.com/media/sounds/001-bulbasaur.mp3) |
+| `pokemon-clefairy` | Clefairy cry | [myinstants: Pokemon Clefairy Cry](https://www.myinstants.com/media/sounds/035-clefairy.mp3) |
+| `pokemon-meowth` | Meowth cry | [myinstants: Pokemon Meowth Cry](https://www.myinstants.com/media/sounds/052-meowth.mp3) |
+| `pokemon-pikachu` | Pikachu | [myinstants: Pikachu sound](https://www.myinstants.com/media/sounds/pikachu_scream.mp3) |
+| `mgs-alert` | Alert! (the "!") | [myinstants: Metal Gear Solid Alert](https://www.myinstants.com/media/sounds/tindeck_1.mp3) |
+| `sf-hadouken` | Hadouken! | [myinstants: Hadouken! - Ryu](https://www.myinstants.com/media/sounds/ryu_hadouken.mp3) |
+| `sf-ko` | K.O.! | [myinstants: Street Fighter K.O](https://www.myinstants.com/media/sounds/mlg-resource-street-fighter-ko-greenscreen.mp3) |
+| `mk-finish-him` | Finish him! | [myinstants: Mortal Kombat - Finish him!](https://www.myinstants.com/media/sounds/20_2.mp3) |
+| `mk-fatality` | Fatality. | [myinstants: Mortal Kombat - Fatality](https://www.myinstants.com/media/sounds/16_2.mp3) |
+| `ut-monster-kill` | M-M-M-Monster kill! | [myinstants: UT - Monster Kill](https://www.myinstants.com/media/sounds/ut-monster-kill_1iyCEdo.mp3) |
+| `ut-godlike` | Godlike! | [myinstants: UT - Godlike](https://www.myinstants.com/media/sounds/ut-godlike.mp3) |
+| `ut-killing-spree` | Killing spree! | [myinstants: UT - Killing Spree](https://www.myinstants.com/media/sounds/ut-killing-spree.mp3) |
+| `ut-head-hunter` | Head hunter! | [myinstants: UT- Head Hunter](https://www.myinstants.com/media/sounds/ut-head-hunter.mp3) |
+| `quake-humiliation` | Humiliation! | [myinstants: humiliation quake](https://www.myinstants.com/media/sounds/humiliation-quake.mp3) |
+| `quake-impressive` | Impressive! | [myinstants: Quake 3 Impressive](https://www.myinstants.com/media/sounds/impressive-quake-iii-arena-announcer.mp3) |
+| `quake-excellent` | Excellent! | [myinstants: Excellent Quake](https://www.myinstants.com/media/sounds/excellent.mp3) |
+| `skyrim-fus-ro-dah` | Fus ro dah! | [myinstants: Skyrim - Fus Ro Dah](https://www.myinstants.com/media/sounds/skyrim-fus-ro-dah.mp3) |
+| `portal-are-you-still-there` | Are you still there? | [myinstants: Portal Turret: Are you still there?](https://www.myinstants.com/media/sounds/portal-turret-are-you-still-there_pGWToTI.mp3) |
+| `portal-there-you-are` | There you are. | [myinstants: Portal - There you are](https://www.myinstants.com/media/sounds/portal-there-you-are.mp3) |
+| `portal-target-acquired` | Target acquired. | [myinstants: Portal - Target acquired](https://www.myinstants.com/media/sounds/portal-target-acquired.mp3) |
+| `portal-goodbye` | Goodbye. | [myinstants: Portal - Goodbye](https://www.myinstants.com/media/sounds/portal-goodbye.mp3) |
+| `portal-sleep-mode` | Sleep mode activated. | [myinstants: Portal - Sleep-mode Activated](https://www.myinstants.com/media/sounds/portal-sleep-mode-activated.mp3) |
+| `glados-oh-its-you` | Oh. It's you. | [myinstants: Glados Oh its you](https://www.myinstants.com/media/sounds/glados-oh-its-you.mp3) |
+| `glados-hello-imbecile` | Hello, imbecile. | [myinstants: Portal GLaDOS Hello, Imbecile](https://www.myinstants.com/media/sounds/helloo-imbecile.mp3) |
+| `sc-nuclear-launch` | Nuclear launch detected. | [myinstants: nuclear launch detected](https://www.myinstants.com/media/sounds/tadupd04.mp3) |
+| `wc-work-work` | Work work. | [myinstants: Warcraft Peon - Work work](https://www.myinstants.com/media/sounds/wc3-peon-says-work-work-only-.mp3) |
+| `lotr-you-shall-not-pass` | You shall not pass! | [myinstants: YOU SHALL NOT PASS!](https://www.myinstants.com/media/sounds/gandalf_shallnotpass.mp3) |
+| `long/mp-message-for-you` | Message for you, sir! | [myinstants: Message for you, Sir!](https://www.myinstants.com/media/sounds/message-for-you-sir.mp3) |
+| `long/mp-run-away` | Run away! | [myinstants: Run Away!](https://www.myinstants.com/media/sounds/monty-python-the-holy-grail-run-away.mp3) |
+| `mp-completely-different` | And now for something completely different. | [myinstants: Something completely different](https://www.myinstants.com/media/sounds/and_now_for_something_NoxEECM.mp3) |
+| `mp-i-got-better` | I got better. | [myinstants: Monty Python-I Got Better](https://www.myinstants.com/media/sounds/monty-python-i-got-better.mp3) |
+| `long/mp-holy-hand-grenade` | Monty Python and the Holy Grail: the Holy Hand Grenade | [myinstants: Holy Hand Grenade](https://www.myinstants.com/media/sounds/hhg.mp3) |
+| `long/office-no-god-please-no` | No! God! No! God, please, no! No! No! Nooooo! | [myinstants: The Office - No God Please No](https://www.myinstants.com/media/sounds/the-office-no-god-please-no.mp3) |
+| `simpsons-doh` | D'oh! | [myinstants: Homer Simpson - D'OH](https://www.myinstants.com/media/sounds/doh_r4RZcVw.mp3) |
+| `trek-communicator` | Communicator chirp | [myinstants: Classic Star Trek Communicator](https://www.myinstants.com/media/sounds/communicator.mp3) |
+| `trek-red-alert` | Red alert | [myinstants: Red Alert Star Trek](https://www.myinstants.com/media/sounds/belay-that-order-number-one.mp3) |
+| `trek-make-it-so` | Make it so. | [myinstants: Capt. Picard Make It So](https://www.myinstants.com/media/sounds/capt-picard-make-it-so.mp3) |
+| `jp-t-rex` | T. rex roar | [myinstants: Jurassic Park T Rex Roar](https://www.myinstants.com/media/sounds/jurassic-park-t-rex-roar_lb9FQOm.mp3) |
+| `tpir-fail-horn` | The Price Is Right fail horn | [myinstants: Price is Right Fail Horn](https://www.myinstants.com/media/sounds/you-got-fail-hornd.mp3) |
+| `long/jeopardy-think` | Jeopardy! think music (first 8 s) | [myinstants: Final Jeopardy Thinking Music](https://www.myinstants.com/media/sounds/jeopardy-final-jeopardy-thinking-music.mp3) |
+| `law-and-order` | Law & Order "dun dun" | [myinstants: Law and Order DUN DUN](https://www.myinstants.com/media/sounds/dun_dun_1.mp3) |
+
+44 more announcer lines made for this app with Piper (the same voices and treatment as v1.13's): Magic calls,
+each of our decks' face commanders, and jabs at the players (Trent most of all, at the user's request).
+
+| Clip | Words | Source |
+| --- | --- | --- |
+| `tts-another-sol-ring` | Another Sol Ring. Shocking. Truly shocking. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cyclonic-rift` | Cyclonic Rift. Overloaded. Say goodbye to everything you love. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-commander-tax` | Commander tax. Pay up. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-do-you-pay-the-one` | Do you pay the one? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-hold-priority` | Hold priority. The stack is getting tall. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-nobody-blocks` | Nobody blocks? Bold strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-thats-a-board-wipe` | That is a board wipe. Everybody say goodbye to your creatures. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-one-more-turn` | Extra turn detected. Somebody get snacks. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-archenemy-rises` | The archenemy rises. Heroes, try not to embarrass yourselves. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-isperia` | All rise for Isperia, Supreme Judge. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-gisa-geralf` | Gisa and Geralf have entered the battlefield. Hide the graveyard. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-kardur` | Kardur, Doomscourge. Everybody attack somebody else. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-atarka` | Atarka, World Render. Run. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-emmara` | Emmara, Soul of the Accord. Here come the tokens. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-saheeli` | Saheeli, Radiant Creator, is building something. Be afraid. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-temmet` | Temmet, Naktamun's Will. The tokens are getting bigger. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-killian` | Killian, Decisive Mentor. Class is in session. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-quintorius` | Quintorius, History Chaser. The spirits are restless. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-terra` | Terra, Herald of Hope, has entered the battlefield. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-borg-queen` | The Borg Queen has entered the battlefield. Resistance is futile. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-picard` | Jean-Luc Picard has taken command. Engage. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-spock` | Commander Spock. Fascinating. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-cmd-worf` | Worf, Defiant Commander. Today is a good day to die. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-not-a-strategy` | Rand, the turn button is not a strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-calculating` | Rand is calculating. Please hold. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-suspicious` | Rand looks suspiciously calm. Check the graveyard. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-bold` | Andrew, that was a bold play. Bold is not the same as good. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-thinking` | Andrew has entered thinking mode. Snacks are recommended. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-politics` | Andrew is making a deal. Do not trust the deal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-tokens` | Lenn is making tokens again. Somebody count them. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-squirrels` | Lenn, the squirrels have unionized. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-all-of-them` | Lenn, you cannot attack with all of them. Oh. You can. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-geological` | Trent. Trent. It is still your turn. It has been your turn for a geological era. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-card` | Trent, that card does not do what you think it does. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-breaking-news` | Breaking news. Trent has made a mistake. More at eleven. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-mana` | Trent, your mana base called. It wants a divorce. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-snack` | Threat assessment. Trent is not the threat. Trent is the snack. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-combo` | Attention. Trent is about to explain a combo. Get comfortable. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-voted` | The table has voted. Trent, you are the target. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-read` | Trent, please read your card. Out loud. Slowly. Like we have time. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-dramatic` | Trent, if you are going to scoop, at least make it dramatic. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-nobody-surprised` | Trent has been eliminated. Nobody is surprised. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-shuffle` | Trent, shuffling harder does not make the deck better. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-sorry` | On behalf of the table, we would like to apologize to Trent. Just kidding. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |

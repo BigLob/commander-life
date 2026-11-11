@@ -2004,6 +2004,32 @@
 "kind": "sound"
 },
 {
+"f": "glados-hello-imbecile",
+"src": "myinstants: Portal GLaDOS Hello, Imbecile",
+"url": "https://www.myinstants.com/media/sounds/helloo-imbecile.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "Hello, imbecile.",
+"who": "GLaDOS",
+"note": "Portal",
+"d": 2.8,
+"pool": "short"
+},
+{
+"f": "glados-oh-its-you",
+"src": "myinstants: Glados Oh its you",
+"url": "https://www.myinstants.com/media/sounds/glados-oh-its-you.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "Oh. It's you.",
+"who": "GLaDOS",
+"note": "Portal 2",
+"d": 2.0,
+"pool": "short"
+},
+{
 "f": "glass-4",
 "pool": "short",
 "d": 0.9,
@@ -2265,6 +2291,43 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "halo-double-kill",
+"src": "myinstants: Halo 1 Double Kill",
+"url": "https://www.myinstants.com/media/sounds/halo-1-double-kill.mp3",
+"grp": "Halo",
+"kind": "talk",
+"lic": "Bungie / Microsoft game audio",
+"quote": "Double kill!",
+"who": "Halo announcer",
+"note": "Halo: Combat Evolved",
+"d": 1.4,
+"pool": "short"
+},
+{
+"f": "halo-killtacular",
+"src": "myinstants: halo killtacular",
+"url": "https://www.myinstants.com/media/sounds/halo-killtacular.mp3",
+"grp": "Halo",
+"kind": "talk",
+"lic": "Bungie / Microsoft game audio",
+"quote": "Killtacular!",
+"who": "Halo announcer",
+"note": "Halo",
+"d": 1.3,
+"pool": "short"
+},
+{
+"f": "halo-shield-recharge",
+"src": "myinstants: Halo shield recharge sound",
+"url": "https://www.myinstants.com/media/sounds/halo-shield-recharge-sound_aJRP2Um.mp3",
+"grp": "Halo",
+"kind": "sound",
+"lic": "Bungie / Microsoft game audio",
+"note": "Shield recharging",
+"d": 2.9,
+"pool": "short"
 },
 {
 "f": "he-will-decide-your-fate",
@@ -2595,6 +2658,17 @@
 "kind": "sound"
 },
 {
+"f": "jp-t-rex",
+"src": "myinstants: Jurassic Park T Rex Roar",
+"url": "https://www.myinstants.com/media/sounds/jurassic-park-t-rex-roar_lb9FQOm.mp3",
+"grp": "Jurassic Park",
+"kind": "sound",
+"lic": "Universal film audio",
+"note": "T. rex roar",
+"d": 4.6,
+"pool": "long"
+},
+{
 "f": "jumpscare-sound",
 "pool": "long",
 "d": 3.5,
@@ -2603,6 +2677,17 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "law-and-order",
+"src": "myinstants: Law and Order DUN DUN",
+"url": "https://www.myinstants.com/media/sounds/dun_dun_1.mp3",
+"grp": "Game shows",
+"kind": "sound",
+"lic": "TV audio",
+"note": "Law & Order \"dun dun\"",
+"d": 1.4,
+"pool": "short"
 },
 {
 "f": "level-up-long",
@@ -2646,6 +2731,63 @@
 "quote": "Game over.",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
+},
+{
+"f": "lotr-you-shall-not-pass",
+"src": "myinstants: YOU SHALL NOT PASS!",
+"url": "https://www.myinstants.com/media/sounds/gandalf_shallnotpass.mp3",
+"grp": "Lord of the Rings",
+"kind": "talk",
+"lic": "New Line Cinema film audio",
+"quote": "You shall not pass!",
+"who": "Gandalf",
+"note": "The Fellowship of the Ring",
+"d": 4.7,
+"pool": "long"
+},
+{
+"f": "mario-1up",
+"src": "myinstants: Mario 1UP",
+"url": "https://www.myinstants.com/media/sounds/mario-1up.mp3",
+"grp": "Mario",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "1-up",
+"d": 1.0,
+"pool": "short"
+},
+{
+"f": "mario-coin",
+"src": "myinstants: Mario coin sound",
+"url": "https://www.myinstants.com/media/sounds/mario_coin_sound.mp3",
+"grp": "Mario",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "Coin",
+"d": 1.1,
+"pool": "short"
+},
+{
+"f": "mario-death",
+"src": "myinstants: Super Mario Death",
+"url": "https://www.myinstants.com/media/sounds/super-mario-death-sound-sound-effect.mp3",
+"grp": "Mario",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "Mario dies",
+"d": 2.8,
+"pool": "short"
+},
+{
+"f": "mario-pipe",
+"src": "myinstants: Super Mario Pipe",
+"url": "https://www.myinstants.com/media/sounds/super-mario-bros.mp3",
+"grp": "Mario",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "Down the pipe",
+"d": 0.9,
+"pool": "short"
 },
 {
 "f": "megaman-1up",
@@ -2846,6 +2988,43 @@
 "lic": "Capcom game audio"
 },
 {
+"f": "mgs-alert",
+"src": "myinstants: Metal Gear Solid Alert",
+"url": "https://www.myinstants.com/media/sounds/tindeck_1.mp3",
+"grp": "Metal Gear",
+"kind": "sound",
+"lic": "Konami game audio",
+"note": "Alert! (the \"!\")",
+"d": 1.2,
+"pool": "short"
+},
+{
+"f": "mk-fatality",
+"src": "myinstants: Mortal Kombat - Fatality",
+"url": "https://www.myinstants.com/media/sounds/16_2.mp3",
+"grp": "Mortal Kombat",
+"kind": "talk",
+"lic": "Midway / Warner Bros. game audio",
+"quote": "Fatality.",
+"who": "Shao Kahn",
+"note": "Mortal Kombat",
+"d": 1.8,
+"pool": "short"
+},
+{
+"f": "mk-finish-him",
+"src": "myinstants: Mortal Kombat - Finish him!",
+"url": "https://www.myinstants.com/media/sounds/20_2.mp3",
+"grp": "Mortal Kombat",
+"kind": "talk",
+"lic": "Midway / Warner Bros. game audio",
+"quote": "Finish him!",
+"who": "Shao Kahn",
+"note": "Mortal Kombat",
+"d": 1.6,
+"pool": "short"
+},
+{
 "f": "monster-ripping-into-fish",
 "pool": "long",
 "d": 5.0,
@@ -2854,6 +3033,30 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "mp-completely-different",
+"src": "myinstants: Something completely different",
+"url": "https://www.myinstants.com/media/sounds/and_now_for_something_NoxEECM.mp3",
+"grp": "Monty Python",
+"kind": "talk",
+"lic": "Python (Monty) Pictures audio",
+"quote": "And now for something completely different.",
+"note": "Monty Python's Flying Circus",
+"d": 2.1,
+"pool": "short"
+},
+{
+"f": "mp-i-got-better",
+"src": "myinstants: Monty Python-I Got Better",
+"url": "https://www.myinstants.com/media/sounds/monty-python-i-got-better.mp3",
+"grp": "Monty Python",
+"kind": "talk",
+"lic": "Python (Monty) Pictures audio",
+"quote": "I got better.",
+"note": "Monty Python and the Holy Grail",
+"d": 0.9,
+"pool": "short"
 },
 {
 "f": "nasa-all-weather-testing",
@@ -3181,6 +3384,50 @@
 "kind": "sound"
 },
 {
+"f": "pokemon-bulbasaur",
+"src": "myinstants: Pokemon Bulbasaur Cry",
+"url": "https://www.myinstants.com/media/sounds/001-bulbasaur.mp3",
+"grp": "Pokémon",
+"kind": "sound",
+"lic": "Nintendo / Game Freak game audio",
+"note": "Bulbasaur cry",
+"d": 1.0,
+"pool": "short"
+},
+{
+"f": "pokemon-clefairy",
+"src": "myinstants: Pokemon Clefairy Cry",
+"url": "https://www.myinstants.com/media/sounds/035-clefairy.mp3",
+"grp": "Pokémon",
+"kind": "sound",
+"lic": "Nintendo / Game Freak game audio",
+"note": "Clefairy cry",
+"d": 0.6,
+"pool": "short"
+},
+{
+"f": "pokemon-meowth",
+"src": "myinstants: Pokemon Meowth Cry",
+"url": "https://www.myinstants.com/media/sounds/052-meowth.mp3",
+"grp": "Pokémon",
+"kind": "sound",
+"lic": "Nintendo / Game Freak game audio",
+"note": "Meowth cry",
+"d": 0.7,
+"pool": "short"
+},
+{
+"f": "pokemon-pikachu",
+"src": "myinstants: Pikachu sound",
+"url": "https://www.myinstants.com/media/sounds/pikachu_scream.mp3",
+"grp": "Pokémon",
+"kind": "sound",
+"lic": "Nintendo / Game Freak game audio",
+"note": "Pikachu",
+"d": 1.0,
+"pool": "short"
+},
+{
 "f": "pop",
 "pool": "short",
 "d": 0.4,
@@ -3189,6 +3436,71 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "portal-are-you-still-there",
+"src": "myinstants: Portal Turret: Are you still there?",
+"url": "https://www.myinstants.com/media/sounds/portal-turret-are-you-still-there_pGWToTI.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "Are you still there?",
+"who": "Turret",
+"note": "Portal",
+"d": 1.5,
+"pool": "short"
+},
+{
+"f": "portal-goodbye",
+"src": "myinstants: Portal - Goodbye",
+"url": "https://www.myinstants.com/media/sounds/portal-goodbye.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "Goodbye.",
+"who": "Turret",
+"note": "Portal",
+"d": 0.9,
+"pool": "short"
+},
+{
+"f": "portal-sleep-mode",
+"src": "myinstants: Portal - Sleep-mode Activated",
+"url": "https://www.myinstants.com/media/sounds/portal-sleep-mode-activated.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "Sleep mode activated.",
+"who": "Turret",
+"note": "Portal",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "portal-target-acquired",
+"src": "myinstants: Portal - Target acquired",
+"url": "https://www.myinstants.com/media/sounds/portal-target-acquired.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "Target acquired.",
+"who": "Turret",
+"note": "Portal",
+"d": 1.5,
+"pool": "short"
+},
+{
+"f": "portal-there-you-are",
+"src": "myinstants: Portal - There you are",
+"url": "https://www.myinstants.com/media/sounds/portal-there-you-are.mp3",
+"grp": "Portal",
+"kind": "talk",
+"lic": "Valve game audio",
+"quote": "There you are.",
+"who": "Turret",
+"note": "Portal",
+"d": 1.6,
+"pool": "short"
 },
 {
 "f": "positive-sound",
@@ -3219,6 +3531,45 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "quake-excellent",
+"src": "myinstants: Excellent Quake",
+"url": "https://www.myinstants.com/media/sounds/excellent.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "Excellent!",
+"who": "Quake III announcer",
+"note": "Quake III Arena",
+"d": 0.9,
+"pool": "short"
+},
+{
+"f": "quake-humiliation",
+"src": "myinstants: humiliation quake",
+"url": "https://www.myinstants.com/media/sounds/humiliation-quake.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "Humiliation!",
+"who": "Quake III announcer",
+"note": "Quake III Arena",
+"d": 1.4,
+"pool": "short"
+},
+{
+"f": "quake-impressive",
+"src": "myinstants: Quake 3 Impressive",
+"url": "https://www.myinstants.com/media/sounds/impressive-quake-iii-arena-announcer.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "Impressive!",
+"who": "Quake III announcer",
+"note": "Quake III Arena",
+"d": 1.1,
+"pool": "short"
 },
 {
 "f": "race-best",
@@ -3452,6 +3803,19 @@
 "kind": "sound"
 },
 {
+"f": "sc-nuclear-launch",
+"src": "myinstants: nuclear launch detected",
+"url": "https://www.myinstants.com/media/sounds/tadupd04.mp3",
+"grp": "StarCraft",
+"kind": "talk",
+"lic": "Blizzard game audio",
+"quote": "Nuclear launch detected.",
+"who": "Adjutant",
+"note": "StarCraft",
+"d": 2.3,
+"pool": "short"
+},
+{
 "f": "scary-high-pitched-ghost",
 "pool": "long",
 "d": 5.0,
@@ -3480,6 +3844,32 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "sf-hadouken",
+"src": "myinstants: Hadouken! - Ryu",
+"url": "https://www.myinstants.com/media/sounds/ryu_hadouken.mp3",
+"grp": "Street Fighter",
+"kind": "talk",
+"lic": "Capcom game audio",
+"quote": "Hadouken!",
+"who": "Ryu",
+"note": "Street Fighter II",
+"d": 0.7,
+"pool": "short"
+},
+{
+"f": "sf-ko",
+"src": "myinstants: Street Fighter K.O",
+"url": "https://www.myinstants.com/media/sounds/mlg-resource-street-fighter-ko-greenscreen.mp3",
+"grp": "Street Fighter",
+"kind": "talk",
+"lic": "Capcom game audio",
+"quote": "K.O.!",
+"who": "Announcer",
+"note": "Street Fighter II",
+"d": 4.4,
+"pool": "long"
 },
 {
 "f": "sfx-goats",
@@ -3530,6 +3920,32 @@
 "quote": "Huh, silly me.",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
+},
+{
+"f": "simpsons-doh",
+"src": "myinstants: Homer Simpson - D'OH",
+"url": "https://www.myinstants.com/media/sounds/doh_r4RZcVw.mp3",
+"grp": "The Simpsons",
+"kind": "talk",
+"lic": "20th Television audio",
+"quote": "D'oh!",
+"who": "Homer Simpson",
+"note": "The Simpsons",
+"d": 0.6,
+"pool": "short"
+},
+{
+"f": "skyrim-fus-ro-dah",
+"src": "myinstants: Skyrim - Fus Ro Dah",
+"url": "https://www.myinstants.com/media/sounds/skyrim-fus-ro-dah.mp3",
+"grp": "Skyrim",
+"kind": "talk",
+"lic": "Bethesda game audio",
+"quote": "Fus ro dah!",
+"who": "The Dragonborn",
+"note": "Skyrim",
+"d": 2.2,
+"pool": "short"
 },
 {
 "f": "slime-01",
@@ -4875,6 +5291,52 @@
 "kind": "sound"
 },
 {
+"f": "tpir-fail-horn",
+"src": "myinstants: Price is Right Fail Horn",
+"url": "https://www.myinstants.com/media/sounds/you-got-fail-hornd.mp3",
+"grp": "Game shows",
+"kind": "sound",
+"lic": "TV audio",
+"note": "The Price Is Right fail horn",
+"d": 4.0,
+"pool": "long"
+},
+{
+"f": "trek-communicator",
+"src": "myinstants: Classic Star Trek Communicator",
+"url": "https://www.myinstants.com/media/sounds/communicator.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV audio",
+"note": "Communicator chirp",
+"d": 0.6,
+"pool": "short"
+},
+{
+"f": "trek-make-it-so",
+"src": "myinstants: Capt. Picard Make It So",
+"url": "https://www.myinstants.com/media/sounds/capt-picard-make-it-so.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV audio",
+"quote": "Make it so.",
+"who": "Jean-Luc Picard",
+"note": "Star Trek: The Next Generation",
+"d": 0.7,
+"pool": "short"
+},
+{
+"f": "trek-red-alert",
+"src": "myinstants: Red Alert Star Trek",
+"url": "https://www.myinstants.com/media/sounds/belay-that-order-number-one.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV audio",
+"note": "Red alert",
+"d": 4.5,
+"pool": "long"
+},
+{
 "f": "trump-a-talented-dog",
 "src": "myinstants: TRUMP - A BEAUTIFUL DOG",
 "url": "https://www.myinstants.com/media/sounds/sfx-trump-a-beautiful-dog-a-talented-dog.mp3",
@@ -5427,6 +5889,42 @@
 "kind": "sound"
 },
 {
+"f": "tts-andrew-bold",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Andrew, that was a bold play. Bold is not the same as good.",
+"who": "Announcer (at Andrew)",
+"lic": "Made for this app",
+"d": 3.2,
+"pool": "long"
+},
+{
+"f": "tts-andrew-politics",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Andrew is making a deal. Do not trust the deal.",
+"who": "Announcer (at Andrew)",
+"lic": "Made for this app",
+"d": 2.5,
+"pool": "short"
+},
+{
+"f": "tts-andrew-thinking",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Andrew has entered thinking mode. Snacks are recommended.",
+"who": "Announcer (at Andrew)",
+"lic": "Made for this app",
+"d": 3.8,
+"pool": "long"
+},
+{
 "f": "tts-andrew-your-turn",
 "pool": "short",
 "d": 2.7,
@@ -5437,6 +5935,30 @@
 "kind": "talk",
 "who": "Announcer (text-to-speech)",
 "from": "Made for this app with Piper text-to-speech"
+},
+{
+"f": "tts-another-sol-ring",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Another Sol Ring. Shocking. Truly shocking.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 2.8,
+"pool": "short"
+},
+{
+"f": "tts-archenemy-rises",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "The archenemy rises. Heroes, try not to embarrass yourselves.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.8,
+"pool": "long"
 },
 {
 "f": "tts-board-wipe-incoming",
@@ -5451,6 +5973,174 @@
 "from": "Made for this app with Piper text-to-speech"
 },
 {
+"f": "tts-cmd-atarka",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Atarka, World Render. Run.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 2.0,
+"pool": "short"
+},
+{
+"f": "tts-cmd-borg-queen",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "The Borg Queen has entered the battlefield. Resistance is futile.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 4.6,
+"pool": "long"
+},
+{
+"f": "tts-cmd-emmara",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Emmara, Soul of the Accord. Here come the tokens.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.4,
+"pool": "long"
+},
+{
+"f": "tts-cmd-gisa-geralf",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Gisa and Geralf have entered the battlefield. Hide the graveyard.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.8,
+"pool": "long"
+},
+{
+"f": "tts-cmd-isperia",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "All rise for Isperia, Supreme Judge.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "tts-cmd-kardur",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Kardur, Doomscourge. Everybody attack somebody else.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 4.2,
+"pool": "long"
+},
+{
+"f": "tts-cmd-killian",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Killian, Decisive Mentor. Class is in session.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.1,
+"pool": "long"
+},
+{
+"f": "tts-cmd-picard",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Jean-Luc Picard has taken command. Engage.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.0,
+"pool": "short"
+},
+{
+"f": "tts-cmd-quintorius",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Quintorius, History Chaser. The spirits are restless.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 4.2,
+"pool": "long"
+},
+{
+"f": "tts-cmd-saheeli",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Saheeli, Radiant Creator, is building something. Be afraid.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.8,
+"pool": "long"
+},
+{
+"f": "tts-cmd-spock",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Commander Spock. Fascinating.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "tts-cmd-temmet",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Temmet, Naktamun's Will. The tokens are getting bigger.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.5,
+"pool": "long"
+},
+{
+"f": "tts-cmd-terra",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Terra, Herald of Hope, has entered the battlefield.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.0,
+"pool": "short"
+},
+{
+"f": "tts-cmd-worf",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Worf, Defiant Commander. Today is a good day to die.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.2,
+"pool": "long"
+},
+{
 "f": "tts-commander-damage",
 "pool": "short",
 "d": 1.0,
@@ -5463,6 +6153,18 @@
 "from": "Made for this app with Piper text-to-speech"
 },
 {
+"f": "tts-commander-tax",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Commander tax. Pay up.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 1.4,
+"pool": "short"
+},
+{
 "f": "tts-counterspell",
 "pool": "short",
 "d": 0.9,
@@ -5473,6 +6175,42 @@
 "kind": "talk",
 "who": "Announcer (text-to-speech)",
 "from": "Made for this app with Piper text-to-speech"
+},
+{
+"f": "tts-cyclonic-rift",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Cyclonic Rift. Overloaded. Say goodbye to everything you love.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 4.7,
+"pool": "long"
+},
+{
+"f": "tts-do-you-pay-the-one",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Do you pay the one?",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 1.0,
+"pool": "short"
+},
+{
+"f": "tts-hold-priority",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Hold priority. The stack is getting tall.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 2.4,
+"pool": "short"
 },
 {
 "f": "tts-i-have-a-response",
@@ -5521,6 +6259,42 @@
 "kind": "talk",
 "who": "Announcer (text-to-speech)",
 "from": "Made for this app with Piper text-to-speech"
+},
+{
+"f": "tts-lenn-all-of-them",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Lenn, you cannot attack with all of them. Oh. You can.",
+"who": "Announcer (at Lenn)",
+"lic": "Made for this app",
+"d": 4.2,
+"pool": "long"
+},
+{
+"f": "tts-lenn-squirrels",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Lenn, the squirrels have unionized.",
+"who": "Announcer (at Lenn)",
+"lic": "Made for this app",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "tts-lenn-tokens",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Lenn is making tokens again. Somebody count them.",
+"who": "Announcer (at Lenn)",
+"lic": "Made for this app",
+"d": 3.4,
+"pool": "long"
 },
 {
 "f": "tts-lenn-your-turn",
@@ -5583,6 +6357,18 @@
 "from": "Made for this app with Piper text-to-speech"
 },
 {
+"f": "tts-nobody-blocks",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Nobody blocks? Bold strategy.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 2.5,
+"pool": "short"
+},
+{
 "f": "tts-not-the-threat",
 "pool": "short",
 "d": 1.6,
@@ -5595,6 +6381,18 @@
 "from": "Made for this app with Piper text-to-speech"
 },
 {
+"f": "tts-one-more-turn",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Extra turn detected. Somebody get snacks.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.2,
+"pool": "long"
+},
+{
 "f": "tts-pass-the-turn",
 "pool": "short",
 "d": 1.2,
@@ -5605,6 +6403,42 @@
 "kind": "talk",
 "who": "Announcer (text-to-speech)",
 "from": "Made for this app with Piper text-to-speech"
+},
+{
+"f": "tts-rand-calculating",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Rand is calculating. Please hold.",
+"who": "Announcer (at Rand)",
+"lic": "Made for this app",
+"d": 2.0,
+"pool": "short"
+},
+{
+"f": "tts-rand-not-a-strategy",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Rand, the turn button is not a strategy.",
+"who": "Announcer (at Rand)",
+"lic": "Made for this app",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "tts-rand-suspicious",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Rand looks suspiciously calm. Check the graveyard.",
+"who": "Announcer (at Rand)",
+"lic": "Made for this app",
+"d": 3.4,
+"pool": "long"
 },
 {
 "f": "tts-rand-your-turn",
@@ -5703,6 +6537,18 @@
 "from": "Made for this app with Piper text-to-speech"
 },
 {
+"f": "tts-thats-a-board-wipe",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "That is a board wipe. Everybody say goodbye to your creatures.",
+"who": "Announcer",
+"lic": "Made for this app",
+"d": 3.1,
+"pool": "long"
+},
+{
 "f": "tts-topdeck-mode",
 "pool": "short",
 "d": 1.9,
@@ -5713,6 +6559,150 @@
 "kind": "talk",
 "who": "Announcer (text-to-speech)",
 "from": "Made for this app with Piper text-to-speech"
+},
+{
+"f": "tts-trent-breaking-news",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Breaking news. Trent has made a mistake. More at eleven.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 3.3,
+"pool": "long"
+},
+{
+"f": "tts-trent-card",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent, that card does not do what you think it does.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 3.3,
+"pool": "long"
+},
+{
+"f": "tts-trent-combo",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Attention. Trent is about to explain a combo. Get comfortable.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 4.4,
+"pool": "long"
+},
+{
+"f": "tts-trent-dramatic",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent, if you are going to scoop, at least make it dramatic.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 3.2,
+"pool": "long"
+},
+{
+"f": "tts-trent-geological",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent. Trent. It is still your turn. It has been your turn for a geological era.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 4.2,
+"pool": "long"
+},
+{
+"f": "tts-trent-mana",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent, your mana base called. It wants a divorce.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 3.8,
+"pool": "long"
+},
+{
+"f": "tts-trent-nobody-surprised",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent has been eliminated. Nobody is surprised.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 3.7,
+"pool": "long"
+},
+{
+"f": "tts-trent-read",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent, please read your card. Out loud. Slowly. Like we have time.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 5.2,
+"pool": "long"
+},
+{
+"f": "tts-trent-shuffle",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Trent, shuffling harder does not make the deck better.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 2.5,
+"pool": "short"
+},
+{
+"f": "tts-trent-snack",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "Threat assessment. Trent is not the threat. Trent is the snack.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 3.1,
+"pool": "long"
+},
+{
+"f": "tts-trent-sorry",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "On behalf of the table, we would like to apologize to Trent. Just kidding.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 5.1,
+"pool": "long"
+},
+{
+"f": "tts-trent-voted",
+"src": "Made for this app: Piper text-to-speech (voices Ryan and Alan)",
+"url": "https://github.com/rhasspy/piper",
+"grp": "Announcer",
+"kind": "talk",
+"quote": "The table has voted. Trent, you are the target.",
+"who": "Announcer (at Trent)",
+"lic": "Made for this app",
+"d": 2.6,
+"pool": "short"
 },
 {
 "f": "tts-trent-your-turn",
@@ -5809,6 +6799,58 @@
 "kind": "sound"
 },
 {
+"f": "ut-godlike",
+"src": "myinstants: UT - Godlike",
+"url": "https://www.myinstants.com/media/sounds/ut-godlike.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "Godlike!",
+"who": "Unreal Tournament announcer",
+"note": "Unreal Tournament",
+"d": 1.6,
+"pool": "short"
+},
+{
+"f": "ut-head-hunter",
+"src": "myinstants: UT- Head Hunter",
+"url": "https://www.myinstants.com/media/sounds/ut-head-hunter.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "Head hunter!",
+"who": "Unreal Tournament announcer",
+"note": "Unreal Tournament",
+"d": 1.7,
+"pool": "short"
+},
+{
+"f": "ut-killing-spree",
+"src": "myinstants: UT - Killing Spree",
+"url": "https://www.myinstants.com/media/sounds/ut-killing-spree.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "Killing spree!",
+"who": "Unreal Tournament announcer",
+"note": "Unreal Tournament",
+"d": 2.0,
+"pool": "short"
+},
+{
+"f": "ut-monster-kill",
+"src": "myinstants: UT - Monster Kill",
+"url": "https://www.myinstants.com/media/sounds/ut-monster-kill_1iyCEdo.mp3",
+"grp": "Unreal and Quake",
+"kind": "talk",
+"lic": "Epic Games and id Software game audio",
+"quote": "M-M-M-Monster kill!",
+"who": "Unreal Tournament announcer",
+"note": "Unreal Tournament",
+"d": 3.0,
+"pool": "short"
+},
+{
 "f": "victory-6",
 "pool": "short",
 "d": 1.5,
@@ -5863,6 +6905,19 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "wc-work-work",
+"src": "myinstants: Warcraft Peon - Work work",
+"url": "https://www.myinstants.com/media/sounds/wc3-peon-says-work-work-only-.mp3",
+"grp": "WarCraft",
+"kind": "talk",
+"lic": "Blizzard game audio",
+"quote": "Work work.",
+"who": "Peon",
+"note": "WarCraft",
+"d": 1.0,
+"pool": "short"
 },
 {
 "f": "weird-1",
@@ -6363,6 +7418,52 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "zelda-hey-listen",
+"src": "myinstants: Hey Listen Zelda",
+"url": "https://www.myinstants.com/media/sounds/zelda-navi-listen.mp3",
+"grp": "Zelda",
+"kind": "talk",
+"lic": "Nintendo game audio",
+"quote": "Hey! Listen!",
+"who": "Navi",
+"note": "Ocarina of Time",
+"d": 1.2,
+"pool": "short"
+},
+{
+"f": "zelda-item-get",
+"src": "myinstants: Zelda - Item Get",
+"url": "https://www.myinstants.com/media/sounds/139-item-catch.mp3",
+"grp": "Zelda",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "Item get",
+"d": 2.6,
+"pool": "short"
+},
+{
+"f": "zelda-secret-oot",
+"src": "myinstants: Ocarina of Time Secret",
+"url": "https://www.myinstants.com/media/sounds/ocarina-of-time-secret.mp3",
+"grp": "Zelda",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "Secret found (Ocarina of Time)",
+"d": 1.4,
+"pool": "short"
+},
+{
+"f": "zelda-secret",
+"src": "myinstants: Zelda Secret",
+"url": "https://www.myinstants.com/media/sounds/loz_secret_BL9kfi1.mp3",
+"grp": "Zelda",
+"kind": "sound",
+"lic": "Nintendo game audio",
+"note": "Secret found",
+"d": 1.8,
+"pool": "short"
 },
 {
 "f": "zombie-moan-5",
@@ -6993,6 +8094,17 @@
 "kind": "sound"
 },
 {
+"f": "long/jeopardy-think",
+"src": "myinstants: Final Jeopardy Thinking Music",
+"url": "https://www.myinstants.com/media/sounds/jeopardy-final-jeopardy-thinking-music.mp3",
+"grp": "Game shows",
+"kind": "sound",
+"lic": "TV audio",
+"note": "Jeopardy! think music (first 8 s)",
+"d": 8.0,
+"pool": "long"
+},
+{
 "f": "long/jfk-return-him-safely",
 "pool": "long",
 "d": 9.9,
@@ -7138,6 +8250,42 @@
 "lic": "CC0",
 "note": "full-length cut",
 "kind": "sound"
+},
+{
+"f": "long/mp-holy-hand-grenade",
+"src": "myinstants: Holy Hand Grenade",
+"url": "https://www.myinstants.com/media/sounds/hhg.mp3",
+"grp": "Monty Python",
+"kind": "sound",
+"lic": "Python (Monty) Pictures audio",
+"note": "Monty Python and the Holy Grail: the Holy Hand Grenade",
+"d": 5.2,
+"pool": "long"
+},
+{
+"f": "long/mp-message-for-you",
+"src": "myinstants: Message for you, Sir!",
+"url": "https://www.myinstants.com/media/sounds/message-for-you-sir.mp3",
+"grp": "Monty Python",
+"kind": "talk",
+"lic": "Python (Monty) Pictures audio",
+"quote": "Message for you, sir!",
+"note": "Monty Python and the Holy Grail",
+"d": 5.5,
+"pool": "long"
+},
+{
+"f": "long/mp-run-away",
+"src": "myinstants: Run Away!",
+"url": "https://www.myinstants.com/media/sounds/monty-python-the-holy-grail-run-away.mp3",
+"grp": "Monty Python",
+"kind": "talk",
+"lic": "Python (Monty) Pictures audio",
+"quote": "Run away!",
+"who": "King Arthur",
+"note": "Monty Python and the Holy Grail",
+"d": 6.0,
+"pool": "long"
 },
 {
 "f": "long/nasa-cardiac-arrests",
@@ -7373,6 +8521,19 @@
 "lic": "See note",
 "kind": "talk",
 "who": "Barack Obama"
+},
+{
+"f": "long/office-no-god-please-no",
+"src": "myinstants: The Office - No God Please No",
+"url": "https://www.myinstants.com/media/sounds/the-office-no-god-please-no.mp3",
+"grp": "The Office",
+"kind": "talk",
+"lic": "NBC TV audio",
+"quote": "No! God! No! God, please, no! No! No! Nooooo!",
+"who": "Michael Scott",
+"note": "The Office",
+"d": 7.7,
+"pool": "long"
 },
 {
 "f": "long/race-finish",
