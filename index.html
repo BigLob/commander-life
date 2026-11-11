@@ -908,7 +908,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.56';
+  const VERSION = '1.57';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1727,17 +1727,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn'), off = .72 * hub.r;
       Object.assign(tb.style, { left: hub.x + 'px', top: hub.y + 'px', width: 2 * hub.r + 'px', height: 2 * hub.r + 'px' });
       Object.assign(mb.style, { left: hub.x + off - 23 + 'px', top: hub.y + off - 23 + 'px' });
-      // With the Spotify dock, the menu button sits under the turn button, centered on the seam
-      // between the side seats and the bottom seat (v1.52, the user's ask; before, it hung 10 px
-      // into the bottom seat).
-      const s0 = app.querySelector('.board.sfyp .s0');
-      if (s0) {
-        // The menu button's styles may lift it by half its height (translateY(-50%)); allow for either.
-        const side = app.querySelector('.board.sfyp .s1, .board.sfyp .s3');
-        const half = getComputedStyle(mb).transform === 'none' ? mb.offsetHeight / 2 : 0;
-        const seam = side ? (side.offsetTop + side.offsetHeight + s0.offsetTop) / 2 : s0.offsetTop;
-        Object.assign(mb.style, { left: hub.x - mb.offsetWidth / 2 + 'px', top: seam - half + 'px' });
-      }
+      menuAtTop(mb);
       return;
     }
     // The button box (v1.44): the turn button as big as fits in its middle, the menu button in the
@@ -1774,6 +1764,26 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const y = s0 ? (s0.offsetParent === board ? board.offsetTop : 0) + s0.offsetTop - 3 : 0;
     // The menu button in the Spotify bar keeps its corner.
     btns.forEach(b => { if (!b.closest('.sfy-bar')) b.style.top = s0 ? y + 'px' : ''; });
+    const mb = app.querySelector('.menu-btn');
+    if (mb && !mb.closest('.sfy-bar')) menuAtTop(mb);
+  }
+  // v1.57 (the user's ask): on a 4-player Table board (also Big button and the Spotify dock, on a
+  // player's phone or a Center phone) the menu button sits where three seats' corners meet: the
+  // top seat's bottom edge and the two side seats' top corners. It replaces v1.52's spot on the
+  // bottom seam and the turn button's rim. Measured from the seats' boxes, so it holds on any
+  // screen; the button's styles may lift it by half its height (translateY(-50%)).
+  function menuAtTop(mb) {
+    const board = app.querySelector('.board');
+    if (!board || !board.matches('.n4.table:not(.quad):not(.spot)')) return false;
+    const t = board.querySelector('.seat.s2'), l = board.querySelector('.seat.s1'), r = board.querySelector('.seat.s3');
+    if (!t || !l || !r) return false;
+    const P = (mb.offsetParent || document.body).getBoundingClientRect();
+    const T = t.getBoundingClientRect(), L = l.getBoundingClientRect(), R = r.getBoundingClientRect();
+    const x = (Math.min(L.right, R.right) + Math.max(L.left, R.left)) / 2 - P.left;
+    const y = (T.bottom + Math.min(L.top, R.top)) / 2 - P.top;
+    const half = getComputedStyle(mb).transform === 'none' ? mb.offsetHeight / 2 : 0;
+    Object.assign(mb.style, { left: x - mb.offsetWidth / 2 + 'px', top: y - half + 'px', margin: '0' });
+    return true;
   }
   // Each total sits centered in the open space between its seat's name and its turn symbol (v3.33),
   // measured in the face's own unturned layout, so a turned seat centers the same way. This replaces
