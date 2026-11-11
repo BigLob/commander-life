@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
+</head><body>
+<title>Silverquill Influence: most cut</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout (cuts): the deck carousel cut to a precon's 15 most-removed cards, with EDHREC's cut share and links under each card. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;overflow-x:hidden}
+header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
+.total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.back{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);text-decoration:none;order:-1;flex-basis:100%}
+.total b{color:var(--accent);font-weight:500}
+.seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
+.seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:6px}
+.bar #fbtn,#f-reset{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.bar #fbtn.on{border-color:var(--accent);color:var(--accent)}
+#fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:8px}
+#fpanel label{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono);min-width:0}
+#fpanel select{font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 4px;min-width:0;width:100%}
+.share{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono)}
+.share div{display:flex;gap:6px}
+.share input{flex:1;min-width:0;font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.share button{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+#f-reset{align-self:end}
+.seg .ct{color:var(--muted);margin-left:3px;font-size:.68rem;font-family:var(--f-mono)}
+.seg button[aria-pressed="true"] .ct{color:inherit;opacity:.8}
+.favtot{margin-left:auto;align-self:center;color:var(--accent);font-family:var(--f-mono);font-size:.85rem;font-weight:500;white-space:nowrap}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{flex:1;min-height:0;display:flex;align-items:center;position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;width:100%;height:100%;align-items:center;padding-inline:calc(50% - var(--w)/2);box-sizing:border-box;--w:200px}
+.track::-webkit-scrollbar{display:none}
+figure{margin:0;flex:0 0 var(--w);scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
+figure .zb{all:unset;cursor:zoom-in;display:block;border-radius:4.5%/3.2%;aspect-ratio:488/680;background:var(--surface)}
+figure .zb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+figure img{width:100%;height:100%;display:block;border-radius:4.5%/3.2%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* per-card actions */
+.acts{display:flex;gap:8px}
+.acts button{flex:1;font:inherit;font-size:.8rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 6px;cursor:pointer;touch-action:manipulation}
+.acts button:focus-visible{outline:2px solid var(--accent)}
+.acts button.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:500}
+figure.fav .zb img{box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.35)}
+.empty{margin:0 auto;max-width:260px;text-align:center;color:var(--muted);font-size:.9rem}
+figcaption{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;line-height:1.25}
+figcaption .nm{min-width:0;font-weight:500}
+figcaption .pr{font-family:var(--f-mono);color:var(--accent);white-space:nowrap}
+figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.7rem}
+.nav{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.2rem;cursor:pointer;z-index:2;opacity:.9}
+.nav.l{left:-6px}.nav.r{right:-6px}
+.nav:focus-visible{outline:2px solid var(--accent)}
+@media (max-width:600px){.nav{display:none}}
+footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+footer input{flex:1;accent-color:var(--accent);min-width:0}
+/* zoom viewer */
+#zoom{touch-action:none;overscroll-behavior:none;position:fixed;inset:0;background:var(--shade);z-index:20;display:none;flex-direction:column;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+#zoom.on{display:flex}
+#stage{flex:1;min-height:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:grab}
+#zimg{max-width:100%;max-height:100%;border-radius:4.5%/3.2%;transform-origin:center;will-change:transform;user-select:none;-webkit-user-drag:none;image-rendering:auto}
+.zbar #zt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;color:#ece8dd;font-size:.9rem}
+.zbar button{touch-action:manipulation;background:#2b3038;color:#ece8dd;border:1px solid #444b55;border-radius:8px;padding:8px 10px;font:inherit;cursor:pointer}
+.zbar button:focus-visible{outline:2px solid #e8b44a}
+.zbar .g{display:flex;gap:6px}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+.why{margin:0;font-size:.78rem;line-height:1.3}
+.why b{color:var(--accent);font-weight:500}
+.cite b{color:var(--accent);font-weight:500}
+.cite{margin:0;font-family:var(--f-mono);font-size:.66rem;color:var(--muted);line-height:1.4}
+.cite a,.srcs a{color:var(--accent)}
+.srcs{font-size:.78rem;padding-bottom:6px}
+.srcs summary{cursor:pointer;color:var(--accent);font-family:var(--f-mono);font-size:.72rem}
+.srcs div{color:var(--muted);line-height:1.45;padding-top:4px}
+.srcs p{margin:4px 0}
+figure{gap:7px}
+</style>
+<header><h1 id="h1"></h1><a class="back" id="back" href="./">‹ All decks</a><span class="total" id="sub"></span></header>
+<details class="srcs"><summary>Sources and how this list was made</summary><div id="srcs"></div></details>
+<div class="seg" id="seg"><button data-v="deck" aria-pressed="true">Deck</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
+<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count, their cost / whole deck cost"></span></div>
+<div id="fpanel" hidden>
+<label>Sort<select id="f-sort"><option value="">Most cut first</option><option value="cl">Cost, low to high</option><option value="ch">Cost, high to low</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option><option value="t">Type</option><option value="c">Color</option></select></label>
+<label>Type<select id="f-type"><option value="">All</option></select></label>
+<label>Color<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless or land</option></select></label>
+<label>Cost<select id="f-cost"><option value="">Any</option><option value="0">0 to 1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6 or more</option></select></label>
+<label>Kind<select id="f-kw"><option value="">All</option></select></label>
+<label>Show<select id="f-fav"><option value="">All cards</option><option value="1">Favorites only</option></select></label>
+<div class="share"><span>Move your picks to another page or phone</span><div><input id="f-code" placeholder="Picks code" aria-label="Picks code" autocomplete="off" spellcheck="false"><button id="f-copy">Copy picks</button><button id="f-load">Load</button></div><small id="f-msg" role="status"></small></div>
+</div>
+
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
+<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
+<script>
+/* A precon's 15 most-cut cards, built by tools/carousel/cuts.py from EDHREC's precon page (Cards to Cut plus Lands to Cut) and the card data on decks/<slug>.html.
+   Images load from Scryfall's CDN. Extra fields: k [Spell or Land], r rank (1 = most cut), x share of EDHREC's decks from this precon that cut it, u Scryfall page. */
+const CFG={"slug": "cuts-silverquill-influence", "deck": "Silverquill Influence: most cut", "set": "Secrets of Strixhaven Commander (2026)", "cmd": "Killian, Decisive Mentor", "alt": "Scriv, the Obligator", "decks": 6794, "edh": "https://edhrec.com/precon/silverquill-influence", "srcs": "<p><b>Source:</b> <a href=\"https://edhrec.com/precon/silverquill-influence\" target=\"_blank\" rel=\"noopener\">EDHREC, Silverquill Influence precon page</a>, read Nov 11, 2026. EDHREC finds decklists on deck sites (Moxfield, Archidekt and others) that started from this precon with Killian, Decisive Mentor as commander: 6,794 of them. Its \"Cards to Cut\" and \"Lands to Cut\" lists give, for each card the precon came with, the share of those decks that took it out.</p><p><b>How this list was made:</b> both lists merged (35 cards), sorted by that share, top 15 kept. Lands count as cuts too. The share is under each card (\"cut from 80% of 6,794 decks\"). The cards themselves, prices included, come from <a href=\"../decks/silverquill-influence.html\">our Silverquill Influence carousel</a> (Scryfall).</p><p><b>Alt commander:</b> Scriv, the Obligator decks (504 on EDHREC) are counted separately and not in this list.</p>", "sub": "Secrets of Strixhaven Commander (2026) · <b>Killian, Decisive Mentor</b> · 15 most cut of 6,794 decks on EDHREC · <a href=\"../decks/silverquill-influence.html\">full deck ›</a>"};
+const ALL=[{"n":"Intermediate Chirography","p":0.29,"q":1,"s":"SOC","t":"Enchantment — Class","i":"https://cards.scryfall.io/normal/front/d/6/d60c64aa-57a9-4082-82f4-af0d89c1a52d.jpg?1783903857","m":2,"c":"B","k":["Spell"],"r":1,"x":0.799,"u":"https://scryfall.com/search?q=%21%22Intermediate%20Chirography%22"},{"n":"Secret Rendezvous","p":0.32,"q":1,"s":"SOC","t":"Sorcery","i":"https://cards.scryfall.io/normal/front/9/b/9be712b3-14ed-4a73-b3d3-5b76b2c5db64.jpg?1783903802","m":3,"c":"W","k":["Spell"],"r":2,"x":0.796,"u":"https://scryfall.com/search?q=%21%22Secret%20Rendezvous%22"},{"n":"Keen Duelist","p":0.37,"q":1,"s":"SOC","t":"Creature — Human Wizard","i":"https://cards.scryfall.io/normal/front/0/4/0446a3df-6f77-4b86-b694-ce99feb3d9ab.jpg?1783903783","m":2,"c":"B","k":["Spell"],"r":3,"x":0.782,"u":"https://scryfall.com/search?q=%21%22Keen%20Duelist%22"},{"n":"Tomik, Wielder of Law","p":0.37,"q":1,"s":"SOC","t":"Legendary Creature — Human Advisor","i":"https://cards.scryfall.io/normal/front/8/a/8a7fc460-fc49-480f-8ee2-28a173509f0b.jpg?1783903744","m":3,"c":"WB","k":["Spell"],"r":4,"x":0.733,"u":"https://scryfall.com/search?q=%21%22Tomik%2C%20Wielder%20of%20Law%22"},{"n":"Combat Calligrapher","p":0.29,"q":1,"s":"SOC","t":"Creature — Bird Cleric","i":"https://cards.scryfall.io/normal/front/3/c/3c154814-72e4-4cca-a927-66c58602ae80.jpg?1783903811","m":4,"c":"W","k":["Spell"],"r":5,"x":0.692,"u":"https://scryfall.com/search?q=%21%22Combat%20Calligrapher%22"},{"n":"Nils, Discipline Enforcer","p":0.34,"q":1,"s":"SOC","t":"Legendary Creature — Human Cleric","i":"https://cards.scryfall.io/normal/front/c/3/c34cff04-01b0-4849-85bf-9e0b034be0e6.jpg?1783903804","m":3,"c":"W","k":["Spell"],"r":6,"x":0.639,"u":"https://scryfall.com/search?q=%21%22Nils%2C%20Discipline%20Enforcer%22"},{"n":"Firemane Commando","p":0.68,"q":1,"s":"SOC","t":"Creature — Angel Soldier","i":"https://cards.scryfall.io/normal/front/c/8/c86269cc-bf4d-44b4-ad4b-8356857c532f.jpg?1783903808","m":4,"c":"W","k":["Spell"],"r":7,"x":0.621,"u":"https://scryfall.com/search?q=%21%22Firemane%20Commando%22"},{"n":"Fallen Ideal","p":0.25,"q":1,"s":"SOC","t":"Enchantment — Aura","i":"https://cards.scryfall.io/normal/front/f/5/f54acc9f-d128-49d4-b1a9-47a7ece13833.jpg?1783903820","m":3,"c":"B","k":["Spell"],"r":8,"x":0.562,"u":"https://scryfall.com/search?q=%21%22Fallen%20Ideal%22"},{"n":"Shadrix Silverquill","p":0.37,"q":1,"s":"SOC","t":"Legendary Creature — Elder Dragon","i":"https://cards.scryfall.io/normal/front/2/1/214a695b-208e-4fd5-9ceb-23c882eadcf7.jpg?1783903745","m":5,"c":"WB","k":["Spell"],"r":9,"x":0.557,"u":"https://scryfall.com/search?q=%21%22Shadrix%20Silverquill%22"},{"n":"Raffine's Guidance","p":0.21,"q":1,"s":"SOC","t":"Enchantment — Aura","i":"https://cards.scryfall.io/normal/front/8/e/8eb97e21-442b-4f23-a846-f0a0135a5c31.jpg?1783903803","m":1,"c":"W","k":["Spell"],"r":10,"x":0.544,"u":"https://scryfall.com/search?q=%21%22Raffine%27s%20Guidance%22"},{"n":"Mangara, the Diplomat","p":0.39,"q":1,"s":"SOC","t":"Legendary Creature — Human Cleric","i":"https://cards.scryfall.io/normal/front/4/9/49d0d7ec-4bee-47d3-91a6-43510be65402.jpg?1783903806","m":4,"c":"W","k":["Spell"],"r":11,"x":0.528,"u":"https://scryfall.com/search?q=%21%22Mangara%2C%20the%20Diplomat%22"},{"n":"Ajani's Chosen","p":0.26,"q":1,"s":"SOC","t":"Creature — Cat Soldier","i":"https://cards.scryfall.io/normal/front/b/c/bc20cca0-303f-4463-85ae-26b80ff26211.jpg?1783903815","m":4,"c":"W","k":["Spell"],"r":12,"x":0.507,"u":"https://scryfall.com/search?q=%21%22Ajani%27s%20Chosen%22"},{"n":"Defacing Duskmage // Vandal's Edit","p":0.43,"q":1,"s":"SOC","t":"Creature — Dog Warlock // Instant","i":"https://cards.scryfall.io/normal/front/c/3/c35a1c6f-1656-4619-9ab8-40044c857a7f.jpg?1783903850","m":2,"c":"WB","k":["Spell"],"r":13,"x":0.501,"u":"https://scryfall.com/search?q=%21%22Defacing%20Duskmage%20//%20Vandal%27s%20Edit%22"},{"n":"Sentinel's Eyes","p":0.3,"q":1,"s":"SOC","t":"Enchantment — Aura","i":"https://cards.scryfall.io/normal/front/9/f/9f50278a-06fc-4b11-a1d2-d28cd213ff8f.jpg?1783903801","m":1,"c":"W","k":["Spell"],"r":14,"x":0.452,"u":"https://scryfall.com/search?q=%21%22Sentinel%27s%20Eyes%22"},{"n":"Eldrazi Conscription","p":1.51,"q":1,"s":"SOC","t":"Kindred Enchantment — Eldrazi Aura","i":"https://cards.scryfall.io/normal/front/3/3/33965c48-a7ce-4a04-8251-8eeb2d908c0b.jpg?1783903818","m":8,"c":"","k":["Spell"],"r":15,"x":0.435,"u":"https://scryfall.com/search?q=%21%22Eldrazi%20Conscription%22"}];
+/* price for sums and sorts; cards not sold yet have none */
+const pv=c=>c.p||0;
+const EVERY=ALL;
+/* fav, bench and trash marks, kept on this device only, one set per deck; a card carries at most one mark */
+const KEY='pc-'+CFG.slug+'-';  /* cuts-<deck>, apart from the deck page's own marks */
+let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
+const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
+let mark={};try{mark=JSON.parse(localStorage.getItem(KEY+'marks')||'{}')}catch(e){}
+const saveMarks=()=>{try{localStorage.setItem(KEY+'marks',JSON.stringify(mark))}catch(e){}};
+const DECK_TOTAL=ALL.reduce((a,c)=>a+pv(c)*c.q,0);
+let tab='deck',D=[];
+/* sort and filter, applied on top of whichever tab is open */
+const F={sort:'',type:'',col:'',cost:'',kw:'',fav:''};
+const TYPES=['Creature','Planeswalker','Artifact','Enchantment','Instant','Sorcery','Land'];
+const COLS='WUBRG';
+const typeOf=c=>{const i=TYPES.findIndex(t=>c.t.includes(t));return i<0?99:i};
+const colOf=c=>c.c.length==1?COLS.indexOf(c.c):c.c.length>1?5:6;
+function sortFilter(list){
+ let r=list.filter(c=>(!F.type||c.t.includes(F.type))&&(!F.col||(F.col=='M'?c.c.length>1:F.col=='C'?!c.c.length:c.c.includes(F.col)))&&(!F.kw||c.k.includes(F.kw))&&(!F.fav||favs[c.n])&&(!F.cost||(F.cost=='6'?c.m>=6:F.cost=='0'?c.m<=1:c.m==+F.cost)));
+ const S={cl:(a,b)=>a.m-b.m||pv(b)-pv(a),ch:(a,b)=>b.m-a.m||pv(b)-pv(a),ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>pv(a)-pv(b),n:(a,b)=>a.n.localeCompare(b.n),t:(a,b)=>typeOf(a)-typeOf(b)||b.m-a.m,c:(a,b)=>colOf(a)-colOf(b)||b.m-a.m}[F.sort];
+ return S?r.slice().sort(S):r}
+const TABS={deck:'Deck',fav:'Fav',bench:'Bench',trash:'Trash'};
+function view(k){if(k=='fav')return EVERY.filter(c=>favs[c.n]&&!mark[c.n]);if(k=='deck')return ALL.filter(c=>!mark[c.n]);
+ return EVERY.filter(c=>mark[c.n]==k).sort((a,b)=>b.m-a.m||pv(b)-pv(a))}
+const $=id=>document.getElementById(id), tr=$('track');
+$('h1').textContent=CFG.deck;
+/* the deck list lives beside the page on the live site; a claude.ai artifact has no neighbours */
+if(location.hostname&&!location.hostname.endsWith('github.io'))$('back').hidden=true;$('sub').innerHTML=CFG.sub;$('srcs').innerHTML=CFG.srcs;
+document.querySelector('.srcs').addEventListener('toggle',()=>{fit();go(cur())});
+/* each card's rank and the share of EDHREC's decks built from this precon that cut it, with links to the source and the card */
+const pct=x=>Math.round(x*100)+'%';
+function why(c){return `<p class="cite"><b>#${c.r} most cut</b> · cut from ${pct(c.x)} of ${CFG.decks.toLocaleString('en-US')} decks · <a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
+const money=v=>v==null?'no price':'$'+v.toFixed(2);
+function fit(){const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+let figs=[];
+function btns(c){const home='Deck';
+ const fl=c.b?'<button data-a="flip">Flip</button>':'';
+ if(favs[c.n]&&!mark[c.n])return `<button class="on" data-a="unfav">★ Favorite · tap to undo</button>${fl}`;
+ return fl+btns2(c,home)}
+function btns2(c,home){
+ if(tab=='bench')return `<button data-a="">Back to ${home}</button><button data-a="trash">Trash</button>`;
+ if(tab=='trash')return `<button data-a="">Back to ${home}</button><button data-a="bench">Bench</button>`;
+ return `<button data-a="fav">Fav</button><button data-a="bench">Bench</button><button data-a="trash">Trash</button>`}
+function render(keep){D=sortFilter(view(tab));fit();
+ for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).reduce((a,c)=>a+c.q,0)+'</span>';b.setAttribute('aria-pressed',k==tab)}
+ const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.reduce((a,c)=>a+c.q,0)+' · '+money(fv.reduce((a,c)=>a+pv(c)*c.q,0))+' / '+money(DECK_TOTAL);
+  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption>${why(c)}<div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const sc=$('scrub');
+function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
+function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
+function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
+tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+render();
+const fsel={sort:'f-sort',type:'f-type',col:'f-col',cost:'f-cost',kw:'f-kw',fav:'f-fav'};
+TYPES.forEach(t=>$('f-type').add(new Option(t,t)));
+[...new Set(EVERY.flatMap(c=>c.k))].sort().forEach(k=>$('f-kw').add(new Option(k,k)));
+function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
+for(const k in fsel)$(fsel[k]).onchange=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
+/* Browsers keep storage per site, so picks made on the artifact don't reach the github.io page. A code carries them across. */
+const msg=m=>{$('f-msg').textContent=m};
+$('f-copy').onclick=()=>{const code=btoa(JSON.stringify({f:Object.keys(favs),b:Object.keys(mark).filter(k=>mark[k]=='bench'),t:Object.keys(mark).filter(k=>mark[k]=='trash')}));
+ $('f-code').value=code;$('f-code').select();
+ (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>msg('Copied. Paste it into Load on the other page.'),()=>msg('Select the code above and copy it.'))};
+$('f-load').onclick=()=>{try{const o=JSON.parse(atob($('f-code').value.trim())),ok=new Set(EVERY.map(c=>c.n));
+ favs={};mark={};(o.f||[]).forEach(n=>{if(ok.has(n))favs[n]=1});(o.b||[]).forEach(n=>{if(ok.has(n))mark[n]='bench'});(o.t||[]).forEach(n=>{if(ok.has(n))mark[n]='trash'});
+ saveFavs();saveMarks();render();msg('Loaded '+Object.keys(favs).length+' favorites, '+Object.keys(mark).length+' benched or trashed.')}catch(e){msg('That code did not work. Copy it again.')}};
+$('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
+tr.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){const f=a.closest('figure'),i=+f.dataset.i,n=f.dataset.n;
+ if(a.dataset.a=='flip'){const c=D[i];flip[n]=!flip[n];f.querySelector('img').src=face(c);return}
+ if(a.dataset.a=='fav'||a.dataset.a=='unfav'){if(a.dataset.a=='fav')favs[n]=1;else delete favs[n];saveFavs();render(i);return}
+ if(a.dataset.a)mark[f.dataset.n]=a.dataset.a;else delete mark[f.dataset.n];saveMarks();render(i);return}
+ const z=e.target.closest('.zb');if(z)open(+z.closest('figure').dataset.i)});
+
+$('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
+sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
+tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key=='ArrowLeft'){go(cur()-1);e.preventDefault()}});
+document.addEventListener('gesturestart',e=>e.preventDefault());
+/* zoom viewer: scale + pan with pointer events (two pointers pinch) */
+const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new Map();let pd=0;
+function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function open(i){z.classList.add('on');show(i)}
+function close(){z.classList.remove('on');go(zc)}
+
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=face(c)};
+$('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
+st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
+let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
+const dist=()=>{const [a,b]=[...ptrs.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+st.addEventListener('pointerdown',e=>{st.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==1){tapOk=true;t0=Date.now();sx=e.clientX;sy=e.clientY}else{tapOk=false;pd=dist()}});
+st.addEventListener('pointermove',e=>{const o=ptrs.get(e.pointerId);if(!o)return;
+ if(tapOk&&Math.hypot(e.clientX-sx,e.clientY-sy)>8)tapOk=false;
+ ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==2){const d=dist(),[a,b]=[...ptrs.values()];if(pd)setS(s*Math.pow(d/pd,.8),(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}
+ else if(ptrs.size==1&&s>1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply()}});
+function up(e){const was=ptrs.size;ptrs.delete(e.pointerId);pd=0;
+ if(e.type=='pointerup'&&was==1&&tapOk&&Date.now()-t0<300){const n=Date.now();if(n-lastTap<350){lastTap=0;s>1?setS(1):setS(2,e.clientX,e.clientY)}else lastTap=n}
+ if(ptrs.size==1){const [k,v]=[...ptrs][0];ptrs.set(k,v)}}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+document.addEventListener('keydown',e=>{if(!z.classList.contains('on'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')show(zc+1);if(e.key=='ArrowLeft')show(zc-1);if(e.key=='+'||e.key=='=')setS(s*1.35);if(e.key=='-')setS(s/1.35)});
+</script>
+
+</body></html>
