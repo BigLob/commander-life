@@ -869,7 +869,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       </div>
       <p class="speaker-note" id="speakerNote"></p>
     </details>
-    <details class="field" id="meField" open>
+    <!-- Folded by default since v1.54, like Sound and Speaker; the summary names this phone's owner. -->
+    <details class="field" id="meField">
       <summary id="meLabel">This phone is</summary>
       <div class="who" id="who">
         <div class="who-row" id="edge0"><button type="button" class="pick" data-v="0"></button><input id="name0" maxlength="12" autocomplete="off" aria-label="Player name" placeholder="Rand"></div>
@@ -907,7 +908,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.53';
+  const VERSION = '1.54';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -2360,10 +2361,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const connect = document.getElementById('sfyConnect');
     connect.hidden = !sfy.on;
     connect.textContent = sfy.tok ? 'Disconnect Spotify' : 'Connect Spotify';
-    document.getElementById('sfyNote').textContent = !sfy.on ? 'Play, pause and skip whatever Spotify is playing: a bar across the top or the middle, or at the bottom of your seat at 4 players. Needs Spotify Premium.'
+    // v1.54: no note while the remote is off (the user cut the explainer); the empty note is hidden.
+    const sfyNote = document.getElementById('sfyNote');
+    sfyNote.textContent = !sfy.on ? ''
       : sfy.tok ? 'Connected. Controls whatever this Spotify account is playing, on any device.'
       : !sfyId() ? 'Paste the Client ID of your Spotify developer app (its redirect URI must be ' + SFY_REDIRECT + ').'
       : sfyMsg || 'Sign in with the Spotify account that plays the music.';
+    sfyNote.hidden = !sfyNote.textContent;
   }
   document.querySelectorAll('#segSpotify button').forEach(b => b.addEventListener('click', () => {
     sfy.on = b.dataset.v === 'on'; sfySave(); build(); syncMenu();
