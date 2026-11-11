@@ -154,5 +154,17 @@
   "img": "https://cards.scryfall.io/normal/front/9/1/91d023e6-b50f-4bfa-8b05-aa349552d29a.jpg?1783918632",
   "edh": "https://edhrec.com/precon/token-triumph",
   "date": "2026-11-11"
+ },
+ "lorehold-spirit": {
+  "slug": "lorehold-spirit",
+  "name": "Lorehold Spirit",
+  "product": "Secrets of Strixhaven Commander (2026)",
+  "cmd": "Quintorius, History Chaser",
+  "decks": 6467,
+  "top": "Secret Rendezvous",
+  "topx": 0.807,
+  "img": "https://cards.scryfall.io/normal/front/9/b/9be712b3-14ed-4a73-b3d3-5b76b2c5db64.jpg?1783903802",
+  "edh": "https://edhrec.com/precon/lorehold-spirit",
+  "date": "2026-11-11"
  }
 }

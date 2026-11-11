@@ -128,5 +128,15 @@
   "total": 100,
   "price": 95.37,
   "img": "https://cards.scryfall.io/normal/front/7/6/76b6c35a-bb92-4ad3-8f85-88b9bafc6266.jpg?1783903867"
+ },
+ "lorehold-spirit": {
+  "slug": "lorehold-spirit",
+  "name": "Lorehold Spirit",
+  "product": "Secrets of Strixhaven Commander (2026)",
+  "cmd": "Quintorius, History Chaser",
+  "alt": "Excava, the Risen Past",
+  "total": 100,
+  "price": 79.45,
+  "img": "https://cards.scryfall.io/normal/front/0/7/0742f19d-179c-43c4-ab95-4160c56b4384.jpg?1783903867"
  }
 }
