@@ -265,7 +265,7 @@ v1.50 removed every laughing clip (the laughing records, evil laughs, cackles, g
   before 1926 are public domain since 2026). Each cut is the loudest 8 s (or 4 s) of the record.
 - `sfx-*`: the goats are public domain (Wikimedia Commons); the slide whistle and record scratch are CC-BY 3.0
   (credit below).
-- `tts-*`: announcer lines made for this app with Piper text-to-speech (voices en_US Ryan and en_GB Alan, pitched
+- `tts-*`: announcer lines made for this app with Piper text-to-speech (all remade in v1.56, see below) (voices en_US Ryan and en_GB Alan, pitched
   down a little with a short echo).
 
 The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from clips already in these folders.
@@ -302,32 +302,6 @@ The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from cli
 | `long/space-plasmaspheric-hiss` | 8.0 s |  | [NASA: Plasmaspheric Hiss](https://soundcloud.com/nasa/sets/spookyspacesounds) |
 | `long/space-saturn-radio` | 8.0 s |  | [NASA: Cassini: Saturn Radio Emissions #2](https://soundcloud.com/nasa/sets/spookyspacesounds) |
 | `long/space-star-kepler` | 6.7 s |  | [NASA: Kepler: Star KIC12268220C Light Curve Waves to Sound](https://soundcloud.com/nasa/sets/spookyspacesounds) |
-| `tts-andrew-your-turn` | 2.7 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-board-wipe-incoming` | 1.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-commander-damage` | 1.0 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-counterspell` | 0.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-i-have-a-response` | 2.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-in-response` | 1.1 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-is-that-a-combo` | 1.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-kingmaker` | 0.7 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-your-turn` | 2.0 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lethal` | 0.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-mana-flooded` | 1.0 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-mana-screwed` | 2.3 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-mulligan-to-five` | 1.1 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-not-the-threat` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-pass-the-turn` | 1.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-your-turn` | 2.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-read-the-card` | 1.1 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-resistance-is-futile` | 1.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-scoop` | 0.8 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-shuffle-up` | 1.4 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-sol-ring-turn-one` | 1.3 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-somebody-deal-with-that` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-target-him` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-topdeck-mode` | 1.9 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-your-turn` | 2.2 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-you-have-been-assimilated` | 1.6 s |  | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 
 ## Added in v1.14 (more presidents)
 
@@ -613,52 +587,125 @@ four Pokémon cries stand in.
 | `long/jeopardy-think` | Jeopardy! think music (first 8 s) | [myinstants: Final Jeopardy Thinking Music](https://www.myinstants.com/media/sounds/jeopardy-final-jeopardy-thinking-music.mp3) |
 | `law-and-order` | Law & Order "dun dun" | [myinstants: Law and Order DUN DUN](https://www.myinstants.com/media/sounds/dun_dun_1.mp3) |
 
-44 more announcer lines made for this app with Piper (the same voices and treatment as v1.13's): Magic calls,
-each of our decks' face commanders, and jabs at the players (Trent most of all, at the user's request).
+v1.55's 44 announcer lines were replaced in v1.56 (see below).
+
+## Added in v1.56 (Star Trek, XCOM, announcer lines remade)
+
+40 Star Trek clips, mostly the original series and The Next Generation: lines from Kirk (KHAAAN!), Spock,
+McCoy, Scotty, Picard and the Borg from myinstants.com uploads, and TrekCore's sound library
+(trekcore.com/audio: transporters, red alerts, doors, tribbles, the bosun whistle, Borg sounds and the TOS voice
+clips). No Q clip could be found on any site the sandbox reaches. 2 XCOM: Enemy Unknown soldier lines (the only
+XCOM clips found; none from XCOM 2: War of the Chosen). Screened by faster-whisper, cut, loudness-matched to -16
+LUFS, mono 64 kbps MP3. They belong to their owners (Paramount, Firaxis / 2K), not CC0.
+
+| Clip | Words or sound | Source |
+| --- | --- | --- |
+| `trek-khan` | KHAAAAN! | [myinstants: Star Trek-KHAN!](https://www.myinstants.com/media/sounds/star-trek-khan.mp3) |
+| `long/trek-borg` | We are the Borg. You will be assimilated. Resistance is futile. | [myinstants: Borg sound](https://www.myinstants.com/media/sounds/we-are-the-borg_fRqf3XS.mp3) |
+| `trek-resistance-is-futile` | Resistance is futile. | [myinstants: Resistance is futile](https://www.myinstants.com/media/sounds/resistance_is_futile.mp3) |
+| `trek-line-drawn` | The line must be drawn here! | [myinstants: captain picard](https://www.myinstants.com/media/sounds/captain-picard.mp3) |
+| `trek-shut-up-wesley` | Shut up, Wesley! | [myinstants: ShutUpWesley](https://www.myinstants.com/media/sounds/shut-up-wesley-famous-star-trek-line.mp3) |
+| `trek-out-of-your-mind` | You are out of your mind! | [myinstants: You Are Out of Your Mind](https://www.myinstants.com/media/sounds/you-are-out-of-your-mind.mp3) |
+| `trek-captains-log` | Captain's log, supplemental. | [myinstants: Captain's Log](https://www.myinstants.com/media/sounds/kirk_captainslogsupplemental.mp3) |
+| `trek-incoming` | Incoming transmission. | [myinstants: tng incoming transmission](https://www.myinstants.com/media/sounds/incoming_R5FCCOC.mp3) |
+| `trek-captain-not-aboard` | The captain is not on the ship. | [myinstants: tng captain not onboard](https://www.myinstants.com/media/sounds/the-captain-is-not-on-the-ship_badp70b.mp3) |
+| `trek-live-long` | Live long and prosper. | [myinstants: Live Long and Prosper](https://www.myinstants.com/media/sounds/spock_livelong.mp3) |
+| `trek-beam-me-up` | Beam me up, Scotty. | [myinstants: beam me up scotty](https://www.myinstants.com/media/sounds/beam-me-up-scotty.mp3) |
+| `trek-shields-up` | Scotty, shields up. | [myinstants: scotty shields up](https://www.myinstants.com/media/sounds/scotty-shields-up.mp3) |
+| `trek-no-win` | I don't believe in the no-win scenario. | [myinstants: I Don't Believe in No Win Situations](https://www.myinstants.com/media/sounds/vo_dontbelievenowin.mp3) |
+| `trek-maximum-warp` | Maximum warp. | [TrekCore: Kirk: Maximum warp](https://www.trekcore.com/audio/other/voice_kirk_maximumwarp.mp3) |
+| `trek-dead-jim` | He's dead, Jim. | [TrekCore: McCoy: He's dead, Jim](https://www.trekcore.com/audio/other/voice_mccoy_deadjim.mp3) |
+| `trek-doctor-not-mechanic` | I'm a doctor, not a mechanic. | [TrekCore: McCoy: I'm a doctor, not a mechanic](https://www.trekcore.com/audio/other/voice_mccoy_doctornotmechanic.mp3) |
+| `trek-vulcan-mind` | You're out of your Vulcan mind, Spock! | [TrekCore: McCoy: out of your Vulcan mind](https://www.trekcore.com/audio/other/voice_mccoy_outofvulcanmind.mp3) |
+| `trek-what-is-this` | What in the name of heaven is this? | [TrekCore: McCoy: What is this?](https://www.trekcore.com/audio/other/voice_mccoy_whatisthis.mp3) |
+| `trek-pile-of-junk` | The warp drive's a hopeless pile of junk! | [TrekCore: Scotty: pile of junk](https://www.trekcore.com/audio/other/voice_scotty_pileofjunk.mp3) |
+| `trek-fascinating` | Fascinating. | [TrekCore: Spock: Fascinating](https://www.trekcore.com/audio/other/voice_spock_fascinating.mp3) |
+| `trek-most-illogical` | Most illogical. | [TrekCore: Spock: Most illogical](https://www.trekcore.com/audio/other/voice_spock_mostillogical.mp3) |
+| `trek-vulcans-never-bluff` | Vulcans never bluff. | [TrekCore: Spock: Vulcans never bluff](https://www.trekcore.com/audio/other/voice_spock_vulcansneverbluff.mp3) |
+| `trek-logic-impeccable` | Your logic was impeccable, Captain. | [myinstants: Logic Impeccable TOS](https://www.myinstants.com/media/sounds/logic-impeccable-tos.mp3) |
+| `trek-qapla` | Qapla'! | [myinstants: Klingon Qapla](https://www.myinstants.com/media/sounds/klingon-success-qapla.mp3) |
+| `long/trek-tos-chime` | TOS opening chime | [myinstants: Star Trek TOS opening chime](https://www.myinstants.com/media/sounds/star-trek-opening.mp3) |
+| `long/trek-fight` | TOS fight music (first 7 s) | [myinstants: Star Trek fight sound](https://www.myinstants.com/media/sounds/amok_time.mp3) |
+| `trek-tng-transporter` | TNG transporter | [myinstants: Star trek TNG transporter](https://www.myinstants.com/media/sounds/tng_transporter9.mp3) |
+| `trek-tos-transporter` | TOS transporter | [myinstants: star trek TOS Transporter materialization](https://www.myinstants.com/media/sounds/star-trek-tos-transporter-materialization.mp3) |
+| `trek-photon-torpedo` | Photon torpedo | [myinstants: Star Trek - Photon Torpedo](https://www.myinstants.com/media/sounds/tng_torpedo2_clean.mp3) |
+| `long/trek-tribbles` | Tribbles | [TrekCore: Tribbles](https://www.trekcore.com/audio/other/tos_many_tribble.mp3) |
+| `trek-tribble-angry` | Angry tribble | [TrekCore: Angry tribble](https://www.trekcore.com/audio/other/tos_tribble_angry.mp3) |
+| `trek-bosun-whistle` | TOS bosun whistle | [TrekCore: TOS bosun whistle](https://www.trekcore.com/audio/other/tos_bosun_whistle_1.mp3) |
+| `trek-tos-red-alert` | TOS red alert | [TrekCore: TOS red alert](https://www.trekcore.com/audio/redalertandklaxons/tos_red_alert.mp3) |
+| `trek-tng-red-alert` | TNG red alert | [TrekCore: TNG red alert](https://www.trekcore.com/audio/redalertandklaxons/tng_red_alert1.mp3) |
+| `trek-tos-door` | TOS door buzzer | [TrekCore: TOS door buzzer](https://www.trekcore.com/audio/doors/tos_door_buzzer.mp3) |
+| `trek-tng-door` | TNG doors | [TrekCore: TNG doors](https://www.trekcore.com/audio/doors/tng_doors.mp3) |
+| `trek-borg-adapt` | Borg adapting | [TrekCore: Borg adapt](https://www.trekcore.com/audio/aliensounds/borg_adapt.mp3) |
+| `trek-borg-cut` | Borg cutting beam | [TrekCore: Borg cutting beam](https://www.trekcore.com/audio/aliensounds/borg_cut_clean.mp3) |
+| `trek-borg-transporter` | Borg transporter | [TrekCore: Borg transporter](https://www.trekcore.com/audio/aliensounds/borg_transporter.mp3) |
+| `trek-klingon-decloak` | Klingon Bird of Prey decloaks | [TrekCore: Klingon decloak](https://www.trekcore.com/audio/cloaking/decloak_birdofprey.mp3) |
+| `xcom-cant-take-much` | I can't take much more of it! | [myinstants: Xcom - Can't take much](https://www.myinstants.com/media/sounds/xcom-canttake.mp3) |
+| `xcom-losing-control` | I'm losing control of the situation! | [myinstants: Xcom - Losing control](https://www.myinstants.com/media/sounds/xcom-losingcontrol.mp3) |
+
+Every announcer line was remade (70 old ones removed, 60 new): each now starts with a player's name (the user's
+rule), none names a commander (the app doesn't know who plays what), and none hints at Lenn's gift deck. Trent gets
+the most. Same Piper voices and treatment as v1.13.
 
 | Clip | Words | Source |
 | --- | --- | --- |
-| `tts-another-sol-ring` | Another Sol Ring. Shocking. Truly shocking. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cyclonic-rift` | Cyclonic Rift. Overloaded. Say goodbye to everything you love. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-commander-tax` | Commander tax. Pay up. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-do-you-pay-the-one` | Do you pay the one? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-hold-priority` | Hold priority. The stack is getting tall. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-nobody-blocks` | Nobody blocks? Bold strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-thats-a-board-wipe` | That is a board wipe. Everybody say goodbye to your creatures. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-one-more-turn` | Extra turn detected. Somebody get snacks. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-archenemy-rises` | The archenemy rises. Heroes, try not to embarrass yourselves. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-isperia` | All rise for Isperia, Supreme Judge. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-gisa-geralf` | Gisa and Geralf have entered the battlefield. Hide the graveyard. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-kardur` | Kardur, Doomscourge. Everybody attack somebody else. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-atarka` | Atarka, World Render. Run. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-emmara` | Emmara, Soul of the Accord. Here come the tokens. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-saheeli` | Saheeli, Radiant Creator, is building something. Be afraid. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-temmet` | Temmet, Naktamun's Will. The tokens are getting bigger. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-killian` | Killian, Decisive Mentor. Class is in session. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-quintorius` | Quintorius, History Chaser. The spirits are restless. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-terra` | Terra, Herald of Hope, has entered the battlefield. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-borg-queen` | The Borg Queen has entered the battlefield. Resistance is futile. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-picard` | Jean-Luc Picard has taken command. Engage. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-spock` | Commander Spock. Fascinating. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-cmd-worf` | Worf, Defiant Commander. Today is a good day to die. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-your-turn` | Rand. Rand. It is your turn. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-rand-not-a-strategy` | Rand, the turn button is not a strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-rand-calculating` | Rand is calculating. Please hold. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-rand-suspicious` | Rand looks suspiciously calm. Check the graveyard. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-sol-ring` | Rand, another Sol Ring? Shocking. Truly shocking. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-counterspell` | Rand, counterspell. Everyone act surprised. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-pay-the-one` | Rand, do you pay the one? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-lethal` | Rand, that is lethal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-shuffle-up` | Rand, shuffle up and deal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-mulligan` | Rand, mulligan to five. Bold. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-not-the-threat` | Rand says Rand is not the threat. Rand is the threat. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-flooded` | Rand is mana flooded. Send help. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-your-turn` | Andrew, wake up. It is your turn. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-andrew-bold` | Andrew, that was a bold play. Bold is not the same as good. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-andrew-thinking` | Andrew has entered thinking mode. Snacks are recommended. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-andrew-politics` | Andrew is making a deal. Do not trust the deal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-tokens` | Lenn is making tokens again. Somebody count them. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-squirrels` | Lenn, the squirrels have unionized. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-all-of-them` | Lenn, you cannot attack with all of them. Oh. You can. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-geological` | Trent. Trent. It is still your turn. It has been your turn for a geological era. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-cyclonic-rift` | Andrew, Cyclonic Rift. Overloaded. Say goodbye to everything you love. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-commander-tax` | Andrew, commander tax. Pay up. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-hold-priority` | Andrew, hold priority. The stack is getting tall. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-combo` | Andrew, wait. Is that a combo? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-screwed` | Andrew is stuck on two lands. Mana screw. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-board-wipe` | Andrew, warning. Board wipe incoming. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-kingmaker` | Andrew, kingmaker. Kingmaker! | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-andrew-assimilated` | Andrew, you have been assimilated. Resistance is futile. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-your-turn` | Lenn is thinking. Please stand by. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-nobody-blocks` | Lenn, nobody blocks? Bold strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-response` | Lenn, you have a response? Of course you do. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-extra-turn` | Lenn, extra turn detected. Somebody get snacks. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-board-wipe` | Lenn, that is a board wipe. Say goodbye. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-topdeck` | Lenn is in top deck mode. Activated. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-pass-the-turn` | Lenn, pass the turn already. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-read-the-card` | Lenn, can I read that card? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-innocent` | Lenn looks innocent. Lenn is never innocent. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-commander-damage` | Lenn, commander damage. Write it down. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-deal-with-that` | Lenn, somebody deal with that. Probably you. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-lenn-archenemy` | Lenn, the archenemy rises. Try not to embarrass yourself. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-your-turn` | Trent. Hey, Trent. Are you even paying attention? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `long/tts-trent-geological` | Trent. Trent. It is still your turn. It has been your turn for a geological era. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-card` | Trent, that card does not do what you think it does. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-breaking-news` | Breaking news. Trent has made a mistake. More at eleven. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-breaking-news` | Trent has made a mistake. Breaking news. More at eleven. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-mana` | Trent, your mana base called. It wants a divorce. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-snack` | Threat assessment. Trent is not the threat. Trent is the snack. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-combo` | Attention. Trent is about to explain a combo. Get comfortable. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-voted` | The table has voted. Trent, you are the target. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-snack` | Trent is not the threat. Trent is the snack. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-combo` | Trent is about to explain a combo. Get comfortable. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-voted` | Trent, the table has voted. You are the target. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-read` | Trent, please read your card. Out loud. Slowly. Like we have time. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-dramatic` | Trent, if you are going to scoop, at least make it dramatic. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-nobody-surprised` | Trent has been eliminated. Nobody is surprised. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
 | `tts-trent-shuffle` | Trent, shuffling harder does not make the deck better. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-sorry` | On behalf of the table, we would like to apologize to Trent. Just kidding. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-sorry` | Trent, on behalf of the table, we apologize. Just kidding. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `long/tts-trent-target-yourself` | Trent, do not target me. Target anyone else. Actually, target yourself. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-two-cards` | Trent, that was not a combo. That was two cards next to each other. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-rules-text` | Trent, the rules text is on the card. You are allowed to read it. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-mid` | Trent, your deck is not mid. Mid would be an upgrade. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-i-scoop` | Trent, I scoop. Not you. Me. Because of you. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-one-more-thing` | Trent, every time you say one more thing, a planeswalker loses a loyalty counter. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-drew-a-card` | Trent drew a card. Congratulations. The bar was on the floor. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-stalling` | Trent, are you mulliganing, or just stalling? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-blockers` | Trent, bold of you to attack the player with the most blockers. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-own-board` | Trent, that was a board wipe. It was also your board. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-trent-top-of-library` | Trent, the top of your library has filed a restraining order. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
