@@ -1158,16 +1158,6 @@
 "from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
-"f": "demon-laughs",
-"pool": "long",
-"d": 5.0,
-"src": "Demon Voice",
-"url": "https://opengameart.org/content/demon-voice",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "demon-make-you-my-pet",
 "pool": "short",
 "d": 2.3,
@@ -1179,16 +1169,6 @@
 "quote": "I'll make you my pet!",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
-},
-{
-"f": "demon-moohaaa-laugh",
-"pool": "long",
-"d": 4.1,
-"src": "Demon Voice",
-"url": "https://opengameart.org/content/demon-voice",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
 },
 {
 "f": "demon-not-welcome",
@@ -1306,16 +1286,6 @@
 "quote": "I can smell your flesh, girl.",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
-},
-{
-"f": "demon-snigger-1",
-"pool": "short",
-"d": 1.1,
-"src": "Demon Voice",
-"url": "https://opengameart.org/content/demon-voice",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
 },
 {
 "f": "demon-stay-for-dinner",
@@ -1539,76 +1509,6 @@
 "kind": "sound"
 },
 {
-"f": "evil-cackle-laugh-1",
-"pool": "long",
-"d": 5.0,
-"src": "Evil Cackle Laugh 1",
-"url": "https://opengameart.org/content/evil-cackle-laugh-1",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "evil-cackle-laugh-2",
-"pool": "short",
-"d": 2.7,
-"src": "Evil Cackle Laugh 2",
-"url": "https://opengameart.org/content/evil-cackle-laugh-2",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "evil-cyber-laugh",
-"pool": "short",
-"d": 2.8,
-"src": "Evil Cyber Laugh",
-"url": "https://opengameart.org/content/evil-cyber-laugh",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "evil-laugh",
-"pool": "short",
-"d": 2.6,
-"src": "Evil Laugh",
-"url": "https://opengameart.org/content/evil-laugh",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "evil-laugh2",
-"pool": "short",
-"d": 1.9,
-"src": "Evil Laugh 2",
-"url": "https://opengameart.org/content/evil-laugh-2",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "evil-laughter-0",
-"pool": "long",
-"d": 4.0,
-"src": "Evil Laughter 0",
-"url": "https://opengameart.org/content/evil-laughter-0",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "evil-laughter",
-"pool": "long",
-"d": 4.4,
-"src": "Evil Laughter",
-"url": "https://opengameart.org/content/evil-laughter",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "evil-screech-1",
 "pool": "long",
 "d": 5.0,
@@ -1819,16 +1719,6 @@
 "kind": "sound"
 },
 {
-"f": "ghostly-cackle-laugh-1",
-"pool": "long",
-"d": 3.8,
-"src": "Ghostly Cackle Laugh 1",
-"url": "https://opengameart.org/content/ghostly-cackle-laugh-1",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "girly-scream",
 "pool": "short",
 "d": 0.7,
@@ -1982,16 +1872,6 @@
 "kind": "sound"
 },
 {
-"f": "group-giggling",
-"pool": "long",
-"d": 5.0,
-"src": "Group Giggling",
-"url": "https://opengameart.org/content/group-giggling",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "growl-monster-1",
 "pool": "short",
 "d": 0.6,
@@ -2123,16 +2003,6 @@
 "quote": "He will decide your fate.",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
-},
-{
-"f": "hihihihihihihihing",
-"pool": "short",
-"d": 1.1,
-"src": "Hihihihihihihihing",
-"url": "https://opengameart.org/content/hihihihihihihihing",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
 },
 {
 "f": "horn-1",
@@ -2460,91 +2330,6 @@
 "kind": "sound"
 },
 {
-"f": "laugh-1",
-"pool": "short",
-"d": 1.6,
-"src": "Do You Remember Laughter",
-"url": "https://opengameart.org/content/do-you-remember-laughter",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "laugh-2",
-"pool": "short",
-"d": 2.0,
-"src": "Do You Remember Laughter",
-"url": "https://opengameart.org/content/do-you-remember-laughter",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "laugh-3",
-"pool": "short",
-"d": 2.7,
-"src": "Do You Remember Laughter",
-"url": "https://opengameart.org/content/do-you-remember-laughter",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "laugh-4",
-"pool": "short",
-"d": 2.9,
-"src": "Do You Remember Laughter",
-"url": "https://opengameart.org/content/do-you-remember-laughter",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "laugh-edison-4",
-"pool": "long",
-"d": 4.0,
-"src": "Edison Laughing Record (1923), public domain 78 rpm record",
-"url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "laugh-okeh-4",
-"pool": "long",
-"d": 4.0,
-"src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "laugh-parlophone-4",
-"pool": "long",
-"d": 4.0,
-"src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "laugh-regal-4",
-"pool": "long",
-"d": 4.0,
-"src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "laugh-singing-lesson-4",
-"pool": "long",
-"d": 4.0,
-"src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
 "f": "level-up-long",
 "pool": "short",
 "d": 2.1,
@@ -2586,16 +2371,6 @@
 "quote": "Game over.",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
-},
-{
-"f": "maniacal-laughter-pack-1",
-"pool": "long",
-"d": 5.0,
-"src": "Maniacal Laughter Pack 1",
-"url": "https://opengameart.org/content/maniacal-laughter-pack-1",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
 },
 {
 "f": "megaman-1up",
@@ -3482,26 +3257,6 @@
 "from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
-"f": "sinister-laugh-filtered",
-"pool": "short",
-"d": 2.3,
-"src": "Sinister Laugh",
-"url": "https://opengameart.org/content/sinister-laugh",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "sinister-laugh",
-"pool": "short",
-"d": 2.2,
-"src": "Sinister Laugh",
-"url": "https://opengameart.org/content/sinister-laugh",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "slime-01",
 "pool": "short",
 "d": 0.5,
@@ -3713,16 +3468,6 @@
 },
 {
 "f": "spooky-breath",
-"pool": "short",
-"d": 2.1,
-"src": "Nhfea Sound",
-"url": "https://opengameart.org/content/nhfea-sound",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "spooky-laugh",
 "pool": "short",
 "d": 2.1,
 "src": "Nhfea Sound",
@@ -4205,16 +3950,6 @@
 "f": "tiny-battlecry2",
 "pool": "short",
 "d": 0.6,
-"src": "Tiny Creatures Sounds",
-"url": "https://opengameart.org/content/tiny-creatures-sounds",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "tiny-laugh",
-"pool": "short",
-"d": 1.6,
 "src": "Tiny Creatures Sounds",
 "url": "https://opengameart.org/content/tiny-creatures-sounds",
 "grp": "OpenGameArt",
@@ -5712,16 +5447,6 @@
 "kind": "sound"
 },
 {
-"f": "witch-cackle",
-"pool": "short",
-"d": 1.2,
-"src": "Witch Cackle",
-"url": "https://opengameart.org/content/witch-cackle",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "wobble-1",
 "pool": "short",
 "d": 0.9,
@@ -6129,16 +5854,6 @@
 "kind": "sound"
 },
 {
-"f": "long/evil-cackle",
-"pool": "long",
-"d": 9.1,
-"src": "Evil Cackle Laugh 1",
-"url": "https://opengameart.org/content/evil-cackle-laugh-1",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
 "f": "long/fart-symphony",
 "pool": "long",
 "d": 12.0,
@@ -6439,167 +6154,11 @@
 "kind": "sound"
 },
 {
-"f": "long/laugh-edison-1",
-"pool": "long",
-"d": 8.0,
-"src": "Edison Laughing Record (1923), public domain 78 rpm record",
-"url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-edison-2",
-"pool": "long",
-"d": 8.0,
-"src": "Edison Laughing Record (1923), public domain 78 rpm record",
-"url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-edison-3",
-"pool": "long",
-"d": 8.0,
-"src": "Edison Laughing Record (1923), public domain 78 rpm record",
-"url": "https://archive.org/details/edison-51063_01_8860",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-okeh-1",
-"pool": "long",
-"d": 8.0,
-"src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-okeh-2",
-"pool": "long",
-"d": 8.0,
-"src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-okeh-3",
-"pool": "long",
-"d": 8.0,
-"src": "The Okeh Laughing Record (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/OkehLaughingRecord",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-parlophone-1",
-"pool": "long",
-"d": 8.0,
-"src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-parlophone-2",
-"pool": "long",
-"d": 8.0,
-"src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-parlophone-3",
-"pool": "long",
-"d": 8.0,
-"src": "The Parlophone Laughing Record (1925), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-regal-1",
-"pool": "long",
-"d": 8.0,
-"src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-regal-2",
-"pool": "long",
-"d": 8.0,
-"src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-regal-3",
-"pool": "long",
-"d": 8.0,
-"src": "The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-singing-lesson-1",
-"pool": "long",
-"d": 8.0,
-"src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-singing-lesson-2",
-"pool": "long",
-"d": 8.0,
-"src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laugh-singing-lesson-3",
-"pool": "long",
-"d": 8.0,
-"src": "The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record",
-"url": "https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b",
-"grp": "Laughing records",
-"kind": "sound"
-},
-{
-"f": "long/laughing-fit",
-"pool": "long",
-"d": 11.9,
-"src": "Do You Remember Laughter",
-"url": "https://opengameart.org/content/do-you-remember-laughter",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"note": "full-length cut",
-"kind": "sound"
-},
-{
 "f": "long/level-complete",
 "pool": "long",
 "d": 12.0,
 "src": "Level Complete",
 "url": "https://opengameart.org/content/level-complete",
-"grp": "OpenGameArt",
-"lic": "CC0",
-"kind": "sound"
-},
-{
-"f": "long/maniacal-laughter",
-"pool": "long",
-"d": 11.9,
-"src": "Maniacal Laughter Pack 1",
-"url": "https://opengameart.org/content/maniacal-laughter-pack-1",
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"

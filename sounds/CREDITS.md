@@ -15,7 +15,6 @@ loudness-matched and converted to mono MP3 for `index.html`'s turn button (v1.3)
 | `big-boing` | [Boing](https://opengameart.org/content/boing) |
 | `fart-*` | [Gastric Distress](https://opengameart.org/content/gastric-distress) |
 | `grunt-*` | [Little Grunts](https://opengameart.org/content/little-grunts) |
-| `laugh-*` | [Do You Remember Laughter](https://opengameart.org/content/do-you-remember-laughter) |
 | `frog-*` | [Mutant Frog](https://opengameart.org/content/mutant-frog) |
 | `accordion` | [Accordion Sound](https://opengameart.org/content/accordion-sound) |
 | `robot-bird` | [Angry Robot Bird](https://opengameart.org/content/angry-robot-bird) |
@@ -43,16 +42,9 @@ loudness-matched and converted to mono MP3 for `index.html`'s turn button (v1.3)
 | `ccut` | [Ccut](https://opengameart.org/content/ccut) |
 | `chipper-chopper-upper` | [Chipper Chopper Upper](https://opengameart.org/content/chipper-chopper-upper) |
 | `chant-16`, `chant-20`, `chant-22`, `chant-8`, `chant-ethereal` | [Creepy Incoherent Chanting](https://opengameart.org/content/creepy-incoherent-chanting) |
-| `demon-dies`, `demon-laughs`, `demon-moohaaa-laugh`, `demon-snigger-1`, `demon-feast-on-soul`, `demon-feeble-humans` and 20 more | [Demon Voice](https://opengameart.org/content/demon-voice) |
+| `demon-dies`, `demon-feast-on-soul`, `demon-feeble-humans` and 20 more | [Demon Voice](https://opengameart.org/content/demon-voice) |
 | `demon-voice-game-over` | [Demon Voice Game Over](https://opengameart.org/content/demon-voice-game-over) |
 | `dog-2`, `dog-bark`, `dog-bark-3`, `dog-sad-dog-1` | [Dog Sounds](https://opengameart.org/content/dog-sounds) |
-| `evil-cackle-laugh-1` | [Evil Cackle Laugh 1](https://opengameart.org/content/evil-cackle-laugh-1) |
-| `evil-cackle-laugh-2` | [Evil Cackle Laugh 2](https://opengameart.org/content/evil-cackle-laugh-2) |
-| `evil-cyber-laugh` | [Evil Cyber Laugh](https://opengameart.org/content/evil-cyber-laugh) |
-| `evil-laugh` | [Evil Laugh](https://opengameart.org/content/evil-laugh) |
-| `evil-laugh2` | [Evil Laugh 2](https://opengameart.org/content/evil-laugh-2) |
-| `evil-laughter` | [Evil Laughter](https://opengameart.org/content/evil-laughter) |
-| `evil-laughter-0` | [Evil Laughter 0](https://opengameart.org/content/evil-laughter-0) |
 | `evil-screech-1` | [Evil Screech 1](https://opengameart.org/content/evil-screech-1) |
 | `excited-horror-sound` | [Excited Horror Sound](https://opengameart.org/content/excited-horror-sound) |
 | `female-high-pitched-scream-sfx` | [Female High Pitched Scream Sfx](https://opengameart.org/content/female-high-pitched-scream-sfx) |
@@ -64,13 +56,10 @@ loudness-matched and converted to mono MP3 for `index.html`'s turn button (v1.3)
 | `ghost` | [Ghost](https://opengameart.org/content/ghost) |
 | `ghost-breath` | [Ghost Breath](https://opengameart.org/content/ghost-breath) |
 | `ghost-moan-1`, `ghost-moan-2`, `ghost-moan-3`, `ghost-moan-4`, `ghost-moan-5` | [Ghost Monster Voice Moaning Growling](https://opengameart.org/content/ghost-monster-voice-moaning-growling) |
-| `ghostly-cackle-laugh-1` | [Ghostly Cackle Laugh 1](https://opengameart.org/content/ghostly-cackle-laugh-1) |
 | `girly-scream` | [Girly Scream](https://opengameart.org/content/girly-scream) |
 | `goblin-feast` | [Goblin Feast](https://opengameart.org/content/goblin-feast) |
-| `group-giggling` | [Group Giggling](https://opengameart.org/content/group-giggling) |
 | `he-will-decide-your-fate` | [He Will Decide Your Fate](https://opengameart.org/content/he-will-decide-your-fate) |
 | `scream-high`, `scream-high-gverb` | [High Pitch Scream Sounds2](https://opengameart.org/content/high-pitch-scream-sounds2) |
-| `hihihihihihihihing` | [Hihihihihihihihing](https://opengameart.org/content/hihihihihihihihing) |
 | `horror-bassy-3`, `horror-bassy-6`, `horror-bassy-9`, `horror-high-5`, `horror-mid-10`, `horror-mid-16` | [Horror Hit Soundpack 1](https://opengameart.org/content/horror-hit-soundpack-1) |
 | `horror-scream1` | [Horror Scream1](https://opengameart.org/content/horror-scream1) |
 | `huh` | [Huh](https://opengameart.org/content/huh) |
@@ -80,16 +69,14 @@ loudness-matched and converted to mono MP3 for `index.html`'s turn button (v1.3)
 | `jumpscare-sound` | [Jumpscare Sound](https://opengameart.org/content/jumpscare-sound) |
 | `little-girl-saying-game-over` | [Little Girl Saying Game Over](https://opengameart.org/content/little-girl-saying-game-over) |
 | `squelch` | [Lo Fi Squelching Noise](https://opengameart.org/content/lo-fi-squelching-noise) |
-| `maniacal-laughter-pack-1` | [Maniacal Laughter Pack 1](https://opengameart.org/content/maniacal-laughter-pack-1) |
 | `monster-ripping-into-fish` | [Monster Ripping Into Fish](https://opengameart.org/content/monster-ripping-into-fish) |
-| `spooky-laugh`, `spooky-near`, `spooky-roar`, `spooky-see`, `spooky-yawn`, `spooky-monster` and 4 more | [Nhfea Sound](https://opengameart.org/content/nhfea-sound) |
+| `spooky-near`, `spooky-roar`, `spooky-see`, `spooky-yawn`, `spooky-monster` and 3 more | [Nhfea Sound](https://opengameart.org/content/nhfea-sound) |
 | `oh-you-scared-me` | [Oh You Scared Me](https://opengameart.org/content/oh-you-scared-me) |
 | `cough` | [Old Man Cough](https://opengameart.org/content/old-man-cough) |
 | `peacock-scream` | [Peacock Scream](https://opengameart.org/content/peacock-scream) |
 | `retro-monster-roar` | [Retro Monster Roar](https://opengameart.org/content/retro-monster-roar) |
 | `ripping-into-meat` | [Ripping Into Meat](https://opengameart.org/content/ripping-into-meat) |
 | `scary-high-pitched-ghost` | [Scary High Pitched Ghost](https://opengameart.org/content/scary-high-pitched-ghost) |
-| `sinister-laugh`, `sinister-laugh-filtered` | [Sinister Laugh](https://opengameart.org/content/sinister-laugh) |
 | `so-thats-coming-along` | [So Thats Coming Along](https://opengameart.org/content/so-thats-coming-along) |
 | `door-spring-1`, `door-spring-2`, `door-spring-3`, `door-spring-4`, `door-spring-5`, `door-spring-6` | [Spring Sounds](https://opengameart.org/content/spring-sounds) |
 | `rat` | [Squeaky Rat](https://opengameart.org/content/squeaky-rat) |
@@ -98,13 +85,12 @@ loudness-matched and converted to mono MP3 for `index.html`'s turn button (v1.3)
 | `the-messy-feast` | [The Messy Feast](https://opengameart.org/content/the-messy-feast) |
 | `horn-1`, `horn-2` | [Their Coming Generic Horn Sound](https://opengameart.org/content/their-coming-generic-horn-sound) |
 | `theremin-big-14`, `theremin-big-18`, `theremin-big-3`, `theremin-25`, `theremin-34`, `theremin-42` | [Theremin Sci Fi Sparkles](https://opengameart.org/content/theremin-sci-fi-sparkles) |
-| `tiny-battlecry0`, `tiny-battlecry1`, `tiny-battlecry2`, `tiny-laugh` | [Tiny Creatures Sounds](https://opengameart.org/content/tiny-creatures-sounds) |
+| `tiny-battlecry0`, `tiny-battlecry1`, `tiny-battlecry2` | [Tiny Creatures Sounds](https://opengameart.org/content/tiny-creatures-sounds) |
 | `undead-1`, `undead-2`, `undead-3`, `undead-4` | [Undead Moans](https://opengameart.org/content/undead-moans) |
 | `vulture` | [Vulture Imitation](https://opengameart.org/content/vulture-imitation) |
 | `weird-chanting-sound` | [Weird Chanting Sound](https://opengameart.org/content/weird-chanting-sound) |
 | `weird-helicopter-like-sound` | [Weird Helicopter Like Sound](https://opengameart.org/content/weird-helicopter-like-sound) |
 | `weird-rocket-launch-sound` | [Weird Rocket Launch Sound](https://opengameart.org/content/weird-rocket-launch-sound) |
-| `witch-cackle` | [Witch Cackle](https://opengameart.org/content/witch-cackle) |
 | `wolf-monster-sound` | [Wolf Monster Sound](https://opengameart.org/content/wolf-monster-sound) |
 | `wobble-1`, `wobble-2` | [Wood Wobbling Rattling](https://opengameart.org/content/wood-wobbling-rattling) |
 | `zombie-moans` | [Zombie Moans](https://opengameart.org/content/zombie-moans) |
@@ -271,6 +257,8 @@ speakers (Hillary Clinton in `trump-wrong`, a reporter in `trump-concepts-of-a-p
 
 ## Added in v1.13 (NASA, laughing records, sound effects, announcer)
 
+v1.50 removed every laughing clip (the laughing records, evil laughs, cackles, giggles), at the user's request.
+
 - `nasa-*`, `space-*`, `jfk-*`: NASA's public-domain audio from soundcloud.com/nasa (Apollo, Mercury, President
   Kennedy and "Spooky Sounds from Across the Solar System" sets), cut to one line or the first 8 s.
 - `laugh-*`: 78 rpm laughing records from 1922 to 1925 on archive.org, public domain in the US (recordings made
@@ -286,26 +274,6 @@ The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from cli
 | --- | --- | --- | --- |
 | `long/jfk-return-him-safely` | 9.9 s | This nation should commit itself to landing a man on the Moon and returning him safely to the Earth. | [NASA: President Kennedy](https://soundcloud.com/nasa/sets/apollo-sounds) |
 | `long/jfk-we-choose-the-moon` | 8.0 s | We choose to go to the Moon in this decade... not because they are easy, but because they are hard. | [NASA: President Kennedy](https://soundcloud.com/nasa/sets/apollo-sounds) |
-| `long/laugh-edison-1` | 8.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
-| `long/laugh-edison-2` | 8.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
-| `long/laugh-edison-3` | 8.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
-| `laugh-edison-4` | 4.0 s |  | [Edison Laughing Record (1923), public domain 78 rpm record](https://archive.org/details/edison-51063_01_8860) |
-| `long/laugh-okeh-1` | 8.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
-| `long/laugh-okeh-2` | 8.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
-| `long/laugh-okeh-3` | 8.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
-| `laugh-okeh-4` | 4.0 s |  | [The Okeh Laughing Record (1922), public domain 78 rpm record](https://archive.org/details/OkehLaughingRecord) |
-| `long/laugh-parlophone-1` | 8.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
-| `long/laugh-parlophone-2` | 8.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
-| `long/laugh-parlophone-3` | 8.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
-| `laugh-parlophone-4` | 4.0 s |  | [The Parlophone Laughing Record (1925), public domain 78 rpm record](https://archive.org/details/78_the-parlophone-laughing-record-that-kruschen-feeling_gbia0540045a) |
-| `long/laugh-regal-1` | 8.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
-| `long/laugh-regal-2` | 8.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
-| `long/laugh-regal-3` | 8.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
-| `laugh-regal-4` | 4.0 s |  | [The Laughing Record, Regal Comedy Four (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record_regal-comedy-four_gbia0243543a) |
-| `long/laugh-singing-lesson-1` | 8.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
-| `long/laugh-singing-lesson-2` | 8.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
-| `long/laugh-singing-lesson-3` | 8.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
-| `laugh-singing-lesson-4` | 4.0 s |  | [The Laughing Record #2: The Singing Lesson (1922), public domain 78 rpm record](https://archive.org/details/78_the-laughing-record-2-the-singing-lesson_gbia0180518b) |
 | `nasa-all-weather-testing` | 4.4 s | I think we need to do a little more all-weather testing. | [NASA: Apollo 12](https://soundcloud.com/nasa/sets/apollo-sounds) |
 | `long/nasa-cardiac-arrests` | 5.6 s | That's one of the better sims, believe me. We've had a couple of cardiac arrests down here too. | [NASA: Apollo 12](https://soundcloud.com/nasa/sets/apollo-sounds) |
 | `nasa-clock-has-started` | 4.1 s | I feel the liftoff. The clock has started. | [NASA: Mercury 7](https://soundcloud.com/nasa/sets/mercury-sounds) |
