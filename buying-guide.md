@@ -43,7 +43,7 @@ https://biglob.github.io/commander-life/decks/.
 | Masters 25 pack (2018 reprint set, 15 cards) | none (old set) | ≤ $5 | n/a | ≥ $10 | Usually $10–15. Mostly draft commons, little for Commander. Sealed box (24) sold $210–290 on eBay in 2026. |
 | Mystery Booster Commander Edition | n/a | n/a | n/a | n/a | Released Oct 19, 2026, but not sold in regular stores. |
 
-Our Nov 9, 2026 haul: 2 Collector Boosters at $25 and 2 Secret Lair Bundles at $90, $230 in all. The six Collector Boosters and the 4 Secret Lair mythics (FRA 441, 442, 445, 448; $27.03 of it) came to $230.94 at market, a third of it one Japan showcase Jace, with the 12 Play Boosters (unopened) and 40 foil basics on top. A second batch (1 more bundle and 2 more Collector Boosters, about $140) added $175.52: 145 cards, $406.46 at market for about $370 spent, with 18 Play Boosters still unopened ([pulls/fra-collector-2026-11-09.md](pulls/fra-collector-2026-11-09.md)).
+Our Nov 9, 2026 haul: 2 Collector Boosters at $25 and 2 Secret Lair Bundles at $90, $230 in all. The six Collector Boosters and the 4 Secret Lair mythics (FRA 441, 442, 445, 448; $27.03 of it) came to $230.94 at market, a third of it one Japan showcase Jace, with the 12 Play Boosters (unopened) and 40 foil basics on top. A second batch (1 more bundle and 2 more Collector Boosters, about $140) added $175.52: 145 cards, $406.46 at market for about $370 spent, with 18 Play Boosters still unopened. The pulls have since been sold.
 
 For upgrading decks, buying single cards beats buying packs.
 
