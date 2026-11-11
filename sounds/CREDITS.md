@@ -451,3 +451,100 @@ cut to 10 s), loudness-matched (EBU R128, -16 LUFS) and converted to mono 64 kbp
 | `megaman3-proto-man-whistle-short` | 2.7 s | Mega Man 3: Proto Man's whistle (short) | [myinstants: Protoman Whistle](https://www.myinstants.com/media/sounds/protoman-whistle.mp3) |
 | `megaman3-spawn` | 0.2 s | Mega Man 3 spawn | [myinstants: Rockman 3, 4, 5, 6 spawn](https://www.myinstants.com/media/sounds/rockman-3-4-5-6-spawn.mp3) |
 | `megaman3-stage-clear` | 3.7 s | Mega Man 3 stage clear | [myinstants: Mega Man 3 Stage Clear](https://www.myinstants.com/media/sounds/mega-man-3-stage-clear_SMkoYD7.mp3) |
+
+## Added in v1.51 (Duke Nukem, Doom, Dark Souls, Star Wars)
+
+87 game and film clips from meme uploads on myinstants.com, screened by faster-whisper transcript, cut,
+loudness-matched to -16 LUFS and saved as mono 64 kbps MP3. They belong to their owners (3D Realms and
+Gearbox, id Software, FromSoftware, Lucasfilm), not CC0. Left out: French Duke lines, remixes and meme edits,
+Lego Star Wars sounds, Elden Ring, and Palpatine's laugh (laughs were cut in v1.50).
+
+| Clip | Words or sound | Source |
+| --- | --- | --- |
+| `duke-kick-ass` | It's time to kick ass and chew bubble gum, and I am all out of gum. | [myinstants: It's Time to kick ass](https://www.myinstants.com/media/sounds/duke_nukem_time_to_kick_ass.mp3) |
+| `duke-hail-to-the-king` | Hail to the king, baby! | [myinstants: Hail to the King](https://www.myinstants.com/media/sounds/duke_nukem_hail_to_the_king_baby.mp3) |
+| `duke-come-get-some` | Come get some. | [myinstants: Come Get Some - Duke nukem 3D](https://www.myinstants.com/media/sounds/duke-nukem-3d-come-get-some_EFlq9O8.mp3) |
+| `duke-rip-your-head-off` | I'll rip your head off and shit down your neck. | [myinstants: Il rip your head off and Sh1T down your neck](https://www.myinstants.com/media/sounds/il-rip-your-head-off-and-sh1t-down-your-neck.mp3) |
+| `duke-one-eyed-freak` | It's down to you and me, you one-eyed freak! | [myinstants: Duke Nukem: One Eyed Freak](https://www.myinstants.com/media/sounds/duke-nukem-one-eyed-freak.mp3) |
+| `duke-hell-yeah` | Hell yeah! | [myinstants: duke nukem hell yea](https://www.myinstants.com/media/sounds/hell-yeah_dBN35mW.mp3) |
+| `duke-christmas` | What are you waiting for, Christmas? | [myinstants: what are waiting for, Christma](https://www.myinstants.com/media/sounds/what-are-waiting-for-christmas-vifwar7jxcq.mp3) |
+| `duke-birth-control` | You're an inspiration for birth control. | [myinstants: Inspiration for Birth Control](https://www.myinstants.com/media/sounds/inspiration-for-birth-control.mp3) |
+| `duke-much-better` | Ah, much better. | [myinstants: Duke Nukem Much Better](https://www.myinstants.com/media/sounds/duke-nukem-much-better.mp3) |
+| `duke-shit-happens` | Shit happens. | [myinstants: Duke Nukem Shit Happens!](https://www.myinstants.com/media/sounds/duke-nukem-shit-happens.mp3) |
+| `duke-little-friend` | Say hello to my little friend. | [myinstants: Say hello Duke](https://www.myinstants.com/media/sounds/say-hello-to-my-little-friend_oIH8e98.mp3) |
+| `duke-riff` | Theme riff | [myinstants: Duke nukem riff 1](https://www.myinstants.com/media/sounds/duke-1.mp3) |
+| `long/duke-lot-of-words` | Wow, that's a lot of words. Too bad I'm not reading them. | [myinstants: Duke Nukem wow that's a lot of words](https://www.myinstants.com/media/sounds/duke-nukem-wow-thats-a-lot-of-words.mp3) |
+| `long/duke-theme` | Grabbag, the theme (first 8 s) | [myinstants: Duke Nukem](https://www.myinstants.com/media/sounds/official-duke-nukem-forever-theme-song-grabbag-mix1-v2-phomastered.mp3) |
+| `doom-shotgun` | Shotgun | [myinstants: Doom Shotgun](https://www.myinstants.com/media/sounds/8d82b5_doom_shotgun_firing_sound_effect.mp3) |
+| `doom-super-shotgun` | Super shotgun (Doom II) | [myinstants: Super shotgun sound](https://www.myinstants.com/media/sounds/super-shotgun-sound.mp3) |
+| `doom-player-death` | Doomguy dies | [myinstants: ACTUAL doom guy death scream](https://www.myinstants.com/media/sounds/actual-doom-guy-death-scream.mp3) |
+| `doom-oof` | Doomguy grunt | [myinstants: Doomguy Unf (Grunt)](https://www.myinstants.com/media/sounds/doomguy-unf-grunt.mp3) |
+| `doom-revenant` | Revenant scream | [myinstants: Doom Revenant Scream](https://www.myinstants.com/media/sounds/aaaaaaaaaa_X70rUNC.mp3) |
+| `doom-cacodemon-fireball` | Cacodemon fireball | [myinstants: Caccodemon Fireball sound](https://www.myinstants.com/media/sounds/caccodemon-fireball-sound.mp3) |
+| `doom-cacodemon` | Cacodemon sees you | [myinstants: Caccodemon Spot Sound Effect](https://www.myinstants.com/media/sounds/caccodemon-spot-sound-effect.mp3) |
+| `doom-death-2` | Death scream | [myinstants: DooM 1/II death](https://www.myinstants.com/media/sounds/doom-1-ii-death.mp3) |
+| `doom-monster-down` | Monster dies | [myinstants: Doom 1 Monster Down](https://www.myinstants.com/media/sounds/doom-1-monster-down.mp3) |
+| `doom-monster-hit` | Monster hit | [myinstants: Doom 1 Monster Hit](https://www.myinstants.com/media/sounds/doom-1-monster-hit.mp3) |
+| `doom-baron` | Baron of Hell | [myinstants: Baron of hell doom](https://www.myinstants.com/media/sounds/baron-of-hell.mp3) |
+| `long/doom-e1m1` | At Doom's Gate, E1M1 (first 8 s) | [myinstants: At-Doom's-Gate](https://www.myinstants.com/media/sounds/doom-ost-e1m1-at-dooms-gatedodoc.mp3) |
+| `long/souls-you-died` | YOU DIED | [myinstants: YOU DIED(dark souls)](https://www.myinstants.com/media/sounds/you-died-dark-souls.mp3) |
+| `souls-bonfire-lit` | Bonfire lit | [myinstants: Dark Souls Bonfire Lit](https://www.myinstants.com/media/sounds/dark-souls-bonfire-lit.mp3) |
+| `souls-item-get` | Item picked up | [myinstants: Dark Souls - Item Get](https://www.myinstants.com/media/sounds/dark-souls-item-get.mp3) |
+| `souls-estus` | Estus flask | [myinstants: DARK SOULS - estus flask](https://www.myinstants.com/media/sounds/dark-souls-estus-flask.mp3) |
+| `souls-parry` | Parry | [myinstants: Parry Dark souls](https://www.myinstants.com/media/sounds/dark-souls-ii-parry-sound-effect.mp3) |
+| `souls-backstab` | Backstab | [myinstants: Dark Souls Stab Sound](https://www.myinstants.com/media/sounds/dark-souls-stab-sound.mp3) |
+| `souls-siegmeyer-hmm` | Siegmeyer of Catarina, the onion knight, thinking | [myinstants: onion knight hmm 1](https://www.myinstants.com/media/sounds/onion-knight-hmm-1.mp3) |
+| `souls-siegmeyer-hmm-2` | Siegmeyer thinking again | [myinstants: onion knight hmm 3](https://www.myinstants.com/media/sounds/onion-knight-hmm-3.mp3) |
+| `souls-siegmeyer-oh` | Siegmeyer surprised | [myinstants: onion knight oh](https://www.myinstants.com/media/sounds/onion-knight-oh.mp3) |
+| `long/souls-victory-achieved` | VICTORY ACHIEVED | [myinstants: You Defeated/Victory Achieved](https://www.myinstants.com/media/sounds/bossout.mp3) |
+| `long/souls-praise-the-sun` | Praise the sun! | [myinstants: Praise the SUN!!](https://www.myinstants.com/media/sounds/praise-the-sun.mp3) |
+| `souls-jolly-cooperation` | Jolly cooperation. | [myinstants: Jolly Cooperation Solaire](https://www.myinstants.com/media/sounds/jolly-cooperation_v4ONOsU.mp3) |
+| `long/souls-solaire` | Ah, hello. I am Solaire of Astora, an adherent of the Lord of Sunlight. | [myinstants: Im Solaire](https://www.myinstants.com/media/sounds/im-solaire.mp3) |
+| `souls-very-good` | Very good! | [myinstants: Dark Souls - Very Good](https://www.myinstants.com/media/sounds/very-good_1.mp3) |
+| `souls-help-me` | Help me! | [myinstants: Dark Souls Carving - Help Me!](https://www.myinstants.com/media/sounds/help-me_1.mp3) |
+| `souls-im-sorry` | I'm sorry! | [myinstants: Dark Souls Carving - I'm Sorry](https://www.myinstants.com/media/sounds/im-sorry.mp3) |
+| `souls-hello` | Hello! | [myinstants: Dark Souls - Hello Carving](https://www.myinstants.com/media/sounds/hello-carving.mp3) |
+| `souls-thank-you` | Thank you! | [myinstants: Dark Souls Thank You Item](https://www.myinstants.com/media/sounds/dark-souls-thank-you-item.mp3) |
+| `souls-old-friend` | Old friend. | [myinstants: Old friend (Seigward)](https://www.myinstants.com/media/sounds/old-friend-seigward.mp3) |
+| `souls-fire-keeper` | Ashen One, hearest thou my voice still? | [myinstants: Dark Souls 3 - Fire Keeper](https://www.myinstants.com/media/sounds/ashen-one-hearest-thou-my-voice-still_2tOKys6.mp3) |
+| `souls-summon` | Summon sign | [myinstants: Dark souls summoning sound](https://www.myinstants.com/media/sounds/dark-souls-summoning-sound.mp3) |
+| `souls-mimic-death` | Mimic dies | [myinstants: Mimic Death Cry - Dark Souls](https://www.myinstants.com/media/sounds/mimic-death-cry-dark-souls.mp3) |
+| `souls-yes-indeed` | Yes, indeed. | [myinstants: Dark Souls Yes, Indeed](https://www.myinstants.com/media/sounds/dark-souls-yes-indeed.mp3) |
+| `souls-boss-pain` | Boss hurt | [myinstants: Dark Souls - Boss Pain](https://www.myinstants.com/media/sounds/ds_boss_oooahaaah_3qBnMzG.mp3) |
+| `sw-r2d2` | R2-D2 beeps | [myinstants: R2D2 Classic Sound](https://www.myinstants.com/media/sounds/r2d2-classic-sound.mp3) |
+| `sw-r2d2-excited` | R2-D2 excited | [myinstants: R2D2 excited](https://www.myinstants.com/media/sounds/r2d2-excited.mp3) |
+| `sw-r2d2-scream` | R2-D2 screams | [myinstants: R2D2 SCREAM](https://www.myinstants.com/media/sounds/r2d2_scream_converted.mp3) |
+| `sw-r2d2-sad` | R2-D2 sad | [myinstants: Sad R2D2](https://www.myinstants.com/media/sounds/sad-r2d2.mp3) |
+| `sw-chewbacca` | Chewbacca roar | [myinstants: Chewbacca ROAR](https://www.myinstants.com/media/sounds/chewy_roar.mp3) |
+| `sw-lightsaber-on` | Lightsaber on | [myinstants: Lightsaber ON](https://www.myinstants.com/media/sounds/lightsaber_02.mp3) |
+| `sw-lightsaber-off` | Lightsaber off | [myinstants: lightsaber off](https://www.myinstants.com/media/sounds/lightsaber-off.mp3) |
+| `sw-lightsaber-clash` | Lightsaber clash | [myinstants: Lightsaber Clash](https://www.myinstants.com/media/sounds/2-clash.mp3) |
+| `sw-blaster` | Blaster | [myinstants: Star wars blaster sound 1](https://www.myinstants.com/media/sounds/star-wars-blaster-sound-1.mp3) |
+| `sw-tie-fighter` | TIE fighter scream | [myinstants: TIE Fighter roar](https://www.myinstants.com/media/sounds/tie-fighter-roar.mp3) |
+| `long/sw-vader-breathing` | Darth Vader's breathing | [myinstants: Darth Vader Breathing](https://www.myinstants.com/media/sounds/swvader02.mp3) |
+| `sw-i-am-your-father` | I am your father. | [myinstants: (Vader)I am your father](https://www.myinstants.com/media/sounds/i-am-your-father_rCXrfcX.mp3) |
+| `long/sw-vader-noooo` | Nooooooo! | [myinstants: Darth Vader NOOOOOOOOO!](https://www.myinstants.com/media/sounds/nooo.mp3) |
+| `sw-most-impressive` | Most impressive. | [myinstants: Most impressive Darth Vader](https://www.myinstants.com/media/sounds/most-impresive-vader.mp3) |
+| `sw-i-have-you-now` | I have you now! | [myinstants: I have you now! - Darth Vader](https://www.myinstants.com/media/sounds/ihaveyounow.mp3) |
+| `sw-lack-of-faith` | I find your lack of faith disturbing. | [myinstants: darth vader lack of faith](https://www.myinstants.com/media/sounds/i-find-your-lack-of-faith-disturbing-star-wars-episode-iv.mp3) |
+| `sw-its-a-trap` | It's a trap! | [myinstants: It's a trap! (Clean)](https://www.myinstants.com/media/sounds/its-a-trap-clean.mp3) |
+| `sw-hello-there` | Hello there. | [myinstants: “Hello There” Obi Wan](https://www.myinstants.com/media/sounds/obi-wan_says_hello_thereyoutubetomp4.mp3) |
+| `sw-chosen-one` | You were the chosen one! | [myinstants: You were the chosen one (Star Wars).](https://www.myinstants.com/media/sounds/you-were-the-chosen-one-star-wars.mp3) |
+| `sw-do-it` | Do it. | [myinstants: Chancellor Palpatine - Do It](https://www.myinstants.com/media/sounds/chancellor-palpatine-do-it.mp3) |
+| `long/sw-i-love-democracy` | I love democracy. I love the Republic. | [myinstants: I love Democracy](https://www.myinstants.com/media/sounds/i-love-democracy-i-love-the-republic.mp3) |
+| `sw-order-66` | Execute order 66. | [myinstants: Palpatine Order 66](https://www.myinstants.com/media/sounds/palpatine-order-66.mp3) |
+| `sw-plagueis` | Did you ever hear the tragedy of Darth Plagueis the Wise? | [myinstants: The Tragedy of Darth Plagueis](https://www.myinstants.com/media/sounds/the-tragedy-of-darth-plagueis-the-wise.mp3) |
+| `sw-roger-roger` | Roger, roger. | [myinstants: Roger Roger (Star Wars Droid)](https://www.myinstants.com/media/sounds/star-wars-b1-battle-droid_kampfdroide-roger-roger-sound.mp3) |
+| `sw-utinni` | Utinni! | [myinstants: Jawa - Utinni!](https://www.myinstants.com/media/sounds/utinni.mp3) |
+| `sw-tusken-raider` | Tusken Raider cry | [myinstants: tusken raider cry](https://www.myinstants.com/media/sounds/tusken-raider-cry.mp3) |
+| `sw-wilhelm-scream` | The Wilhelm scream (a stormtrooper falls in A New Hope) | [myinstants: Wilhelm Scream (Original Recording)](https://www.myinstants.com/media/sounds/wilhelm-scream-original-recording.mp3) |
+| `sw-bad-feeling` | I have a very bad feeling about this. | [myinstants: I have a very bad feeling about this!](https://www.myinstants.com/media/sounds/i-have-a-very-bad-feeling-about-this.mp3) |
+| `long/sw-do-or-do-not` | Alright, I'll give it a try. No! Try not! Do! Or do not! There is no try. | [myinstants: yoda do or do not there is no try](https://www.myinstants.com/media/sounds/yoda-do-or-do-not-there-is-no-try.mp3) |
+| `sw-out-of-hand` | This is getting out of hand. Now there are two of them. | [myinstants: This is getting out of hand Now there are two of](https://www.myinstants.com/media/sounds/this-is-getting-out-of-hand-now-there-are-two-of-them.mp3) |
+| `long/sw-imperial-march` | The Imperial March (first 8 s) | [myinstants: Imperial march (star wars)](https://www.myinstants.com/media/sounds/imperial_march.mp3) |
+| `long/sw-cantina` | Cantina Band (first 8 s) | [myinstants: Star Wars Cantina](https://www.myinstants.com/media/sounds/cantina-band.mp3) |
+| `sw-seismic-charge` | Seismic charge | [myinstants: star wars Seismic charge](https://www.myinstants.com/media/sounds/star-wars-seismic-charge.mp3) |
+| `sw-i-hate-you` | I hate you! | [myinstants: (Anakin) I hate you](https://www.myinstants.com/media/sounds/hate-you_CJxWsxV.mp3) |
+| `sw-dont-fail-me-again` | Don't fail me again. | [myinstants: Don't fail me again Vader](https://www.myinstants.com/media/sounds/dont-fail-me-again-vader.mp3) |
+| `sw-braver-than-most` | Then you will die braver than most. | [myinstants: Then You Will Die Braver Than Most](https://www.myinstants.com/media/sounds/then-you-will-die-braver-than-most.mp3) |
+| `sw-force-is-strong` | The force is strong with this one. | [myinstants: The force is strong Vader](https://www.myinstants.com/media/sounds/the-force-is-strong-with-this-one.mp3) |
