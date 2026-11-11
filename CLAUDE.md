@@ -86,7 +86,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.52; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.53; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.53: **menu reordered, Concede cut, footer trimmed** (the user's ask). Menu order: Players (with its AE, Schemes, pairs and Sitting out fields), Layout and 1v1 layout, Starting life, New game, Pick who goes first, then Spotify, Sound, Speaker, This phone is, deck, Results, Back to game. The menu's Concede (`#concede`, `toggleConcede()`) is gone, so nothing can concede now; a `conceded` flag from an older phone still counts. The footer shows only the version (`v1.53`; " · offline" when the phone has lost the table); "Sharing live with this table" and the round-trip time are gone (`trips` is still collected). Tapping it still shows Results.
 - v1.52: **menu button centered on the seam** in 4-player Table with Spotify (the dock layout): it sits under the turn button, its middle on the gap between the side seats and the bottom seat, in line with the side seats' own seam (`placeTurn()`; v1.37 hung it 10 px into the bottom seat). `.menu-btn` keeps `translateY(-50%)` there, so the code checks the computed transform.
 - v1.51: **long clips half as often, steady weights, and four new groups.** `LONG_FACTOR` (0.5) weights the long pools so long clips come up half as often as their share of the library (about 18% of taps); the weight is worked out from the clip counts at load, so it holds as clips are added. `turnSound()` now picks a pool by its size times its weight on every tap (the round counter `left` is gone), so the weights (presidents too) hold all night instead of only delaying clips to the end of a round. Each pool's shuffled bag lives in the page until it reloads; New game doesn't reset it. 87 clips from myinstants uploads, screened by faster-whisper: **Duke Nukem** (14, `duke-*`), **Doom** (12, `doom-*`), **Dark Souls** (24, `souls-*`), **Star Wars** (37, `sw-*`), 761 clips in all; groups of the same names in `clips.json`, credits in `sounds/CREDITS.md`. Left out: French Duke lines, remixes, meme edits, Lego Star Wars, Elden Ring, Palpatine's laugh. `out` gained YOU DIED, Doomguy's death, Vader's Nooo, the Wilhelm scream, Shit happens and You were the chosen one; `win` gained VICTORY ACHIEVED, Hail to the king, Hell yeah, Most impressive and Praise the sun. faster-whisper isn't preinstalled: `pip install faster-whisper`, and decode audio with ffmpeg to a numpy array (its own decoder fails with this PyAV).
 - v1.50: **every laughing clip cut** (the user's ask): 46 clips (the 1920s laughing records, `laugh-*`, evil laughs, cackles, giggles, `hihihihihihihihing`, `demon-snigger-1`), 674 clips left; `long/laugh-okeh-1` left the win list. The **Sound map** artifact (https://claude.ai/artifact/HPPNAAMu8io4Pn8Kg9HzC6, built from `sounds/clips.json` with a genre per clip by file-name rules and a simulation of `turnSound()` over a 150-tap night) shows each genre, its clips and its share per trigger, for the user to plan bigger changes. Note: `PRES_WEIGHT` only delays presidents within a round (a round is every clip once), it doesn't remove them.
@@ -270,8 +271,8 @@ them and `.gitignore` now ignores PNGs at the root).
   The dagger has a black outline, no ring, and sits in the seat's bottom-right corner as its player sees it.
   Since v3.38 the deck's mana symbols sit in the bottom-left corner (`.seat-mana`, from `manaOf()`;
   not in "Solo"); taps pass through them, and side by side they sit above the concede flag.
-- **Concede** (menu, under Pick who goes first): only this phone's seat, two taps to confirm.
-  It becomes Rejoin. A new game clears all concessions.
+- **Concede** (removed in v1.53; was in the menu under Pick who goes first): only this phone's seat, two taps to confirm.
+  It became Rejoin. A new game clears all concessions.
 - **Game log** (v3.2; automatic since v3.14): an invisible clock starts at a game's first life change
   or first turn-tracker tap and stops the moment one player is left. The phone that made that change
   logs the game right then. If a later change brings someone back (a mistap), the entry is deleted
@@ -293,7 +294,7 @@ them and `.gitignore` now ignores PNGs at the root).
   button beside its title (`#closeMenuTop`) that goes back to the game, so nobody has to scroll down.
 - The menu button in the middle of the table shows the Planeswalker flame (v3.20), an inline PNG
   in `ICON_MENU`.
-- Version shows in the menu footer with the sync status. Bump `VERSION` on every release.
+- Version shows in the menu footer (since v1.53 without the sync status, except "offline"). Bump `VERSION` on every release.
 
 ### `xenagos.html`: Xenagos, the Party Hugger card carousel
 - Live at https://biglob.github.io/commander-life/xenagos.html (since it landed on `main`). A standalone copy of the claude.ai artifact; republish both when it changes. Not a game page; nothing here syncs.

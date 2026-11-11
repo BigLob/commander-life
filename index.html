@@ -813,6 +813,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         <button type="button" data-v="3"></button>
       </div>
     </div>
+    <!-- v1.53 order (the user's ask): Players, Layout, Starting life with New game and Pick who goes
+         first, then the rest. Concede is gone. -->
     <div class="field" id="layout4Field">
       <span>Layout</span>
       <div class="seg" id="segLayout4">
@@ -830,6 +832,16 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         <button type="button" data-v="couch">Couch</button>
       </div>
     </div>
+    <div class="field" id="startField">
+      <span>Starting life</span>
+      <div class="seg" id="segStart">
+        <button type="button" id="start20" data-v="20">20</button>
+        <button type="button" id="start30" data-v="30">30</button>
+        <button type="button" id="start40" data-v="40">40</button>
+      </div>
+    </div>
+    <button type="button" class="action primary" id="newGame">New game</button>
+    <button type="button" class="action" id="pickFirst">Pick who goes first</button>
     <div class="field" id="sfyField">
       <span>Spotify remote</span>
       <div class="seg" id="segSpotify">
@@ -872,17 +884,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       <summary id="colorLabel">Your deck</summary>
       <div class="decks" id="colors"></div>
     </details>
-    <div class="field" id="startField">
-      <span>Starting life</span>
-      <div class="seg" id="segStart">
-        <button type="button" id="start20" data-v="20">20</button>
-        <button type="button" id="start30" data-v="30">30</button>
-        <button type="button" id="start40" data-v="40">40</button>
-      </div>
-    </div>
-    <button type="button" class="action primary" id="newGame">New game</button>
-    <button type="button" class="action" id="pickFirst">Pick who goes first</button>
-    <button type="button" class="action mini" id="concede">Concede</button>
     <details class="field" id="resultsField" hidden>
       <summary>Results</summary>
       <div class="results" id="results"></div>
@@ -906,7 +907,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.52';
+  const VERSION = '1.53';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -2097,17 +2098,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // v1.3 dropped the turn tracker for the turn button (see build()). Phones from before still sync
   // turns/ and clock/, so those stay in the table, but nothing here shows them.
 
-  function toggleConcede(i) {
-    const { k, j } = players[i];
-    touch(k);
-    const was = finished(k), p = playerOf(i);
-    p.conceded = !p.conceded;
-    if (p.conceded) play('out');
-    send({ [`games/${k}/${j}/conceded`]: p.conceded });
-    marking[i] = null;
-    update(i); save(); buzz();
-    settle(k, was);
-  }
+  // v1.53: no way to concede any more (the seat flags went in v1.34, the menu button now). A
+  // `conceded` flag from an older phone is still honored by the game.
 
   function toggleMarking(i, slot) {
     marking[i] = marking[i] === slot ? null : slot;
@@ -2384,7 +2376,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // ---- menu ----
   const menu = document.getElementById('menu');
   const newGameBtn = document.getElementById('newGame');
-  const concedeBtn = document.getElementById('concede');
   let armTimer = null;
 
   function syncMenu() {
@@ -2418,7 +2409,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     document.getElementById('sitoutField').hidden = state.mode !== 3;
     document.getElementById('pairsLabel').textContent = (state.names[pairMe()].trim() || DEFAULT_NAMES[pairMe()]) + ' plays';
     // A phone in the center has no seat of its own to concede or color.
-    document.getElementById('concede').hidden = state.mode === 1 || center;
     document.getElementById('colorField').hidden = center || !SHOW_DECKS;
     document.getElementById('meField').hidden = state.mode === 1;
     const edges = PEOPLE[state.mode];
@@ -2655,8 +2645,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     newGameBtn.textContent = state.mode === ARCH ? 'New game' : 'New game at ' + state.start;
     aeArm = null;
     paintAe();
-    concedeBtn.classList.remove('armed');
-    concedeBtn.textContent = playerOf(mySeat()).conceded ? 'Rejoin' : 'Concede';
   }
   function openMenu() { syncMenu(); menu.hidden = false; }
   function closeMenu() { menu.hidden = true; openDeck = null; document.getElementById('resultsField').hidden = true; disarm(); }
@@ -2749,19 +2737,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   document.getElementById('firstAskGo').addEventListener('click', () => { hideAsk(); pickFirst(); });
   document.getElementById('firstAskX').addEventListener('click', hideAsk);
 
-  // Conceding (or taking it back) only touches this phone's seat, and takes a second tap.
+  // This phone's own seat (v1.53 cut the menu's Concede, its last user here; the layouts use it).
   const mySeat = () => Math.max(0, players.findIndex(p => p.e === state.me));
-  concedeBtn.addEventListener('click', () => {
-    if (!concedeBtn.classList.contains('armed')) {
-      const conceded = playerOf(mySeat()).conceded;
-      disarm();
-      concedeBtn.classList.add('armed');
-      concedeBtn.textContent = conceded ? 'Tap again to rejoin' : 'Tap again to concede';
-      armTimer = setTimeout(disarm, 3000);
-      return;
-    }
-    toggleConcede(mySeat()); closeMenu();
-  });
 
   // ---- Archenemy's scheme deck (v1.25) ----
   // The app's own deck of schemes, shared by the whole table: any phone can open it from the
@@ -3312,9 +3289,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // The footer shows the typical round trip of this phone's writes (v1.21), to see how fast each
   // device really syncs.
   function showVer() {
-    const t = trips.slice().sort((a, b) => a - b), ms = t.length ? t[t.length >> 1] : null;
-    document.getElementById('ver').textContent = 'v' + VERSION + ' · ' +
-      (live ? 'Sharing live with this table' + (ms != null ? ' · ' + ms + ' ms' : '') : 'Offline, this phone only');
+    // v1.53: just the version (the user cut "Sharing live with this table" and the round trip);
+    // "offline" still shows when the phone has lost the table, since then it isn't syncing.
+    document.getElementById('ver').textContent = 'v' + VERSION + (live ? '' : ' · offline');
   }
   function setLive(on) { live = on; showVer(); }
   let stream = null;
