@@ -2093,6 +2093,60 @@
 "from": "A free (CC0) game voice pack on OpenGameArt"
 },
 {
+"f": "gow-boomer",
+"src": "Gears of war Boomer (myinstants)",
+"url": "https://www.myinstants.com/en/instant/gears-of-war-boomer/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "sound",
+"d": 1.5,
+"pool": "short"
+},
+{
+"f": "gow-cog-tag",
+"src": "Gears of war cog tag (myinstants)",
+"url": "https://www.myinstants.com/en/instant/gears-of-war-cog-tag/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "sound",
+"d": 3.8,
+"pool": "long"
+},
+{
+"f": "gow-leviathan",
+"src": "goddamn Leviathan (myinstants)",
+"url": "https://www.myinstants.com/en/instant/goddamn-leviathan/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "talk",
+"quote": "It's a goddamn Leviathan!",
+"who": "Gears of War",
+"d": 3.4,
+"pool": "long"
+},
+{
+"f": "gow-marcus-nice",
+"src": "Marcus Fenix, NICE! (myinstants)",
+"url": "https://www.myinstants.com/en/instant/marcus-fenix-nice-2/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "talk",
+"quote": "NICE!",
+"who": "Marcus Fenix",
+"d": 1.6,
+"pool": "short"
+},
+{
+"f": "gow-reload",
+"src": "Reload Gears (myinstants)",
+"url": "https://www.myinstants.com/en/instant/y2mate_RzC2aMc/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "sound",
+"d": 1.4,
+"pool": "short"
+},
+{
 "f": "gross-crachat",
 "pool": "short",
 "d": 2.4,
@@ -8323,6 +8377,26 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "long/gow-locust-theme",
+"src": "Locust Theme - Doctor Nowhere (myinstants)",
+"url": "https://www.myinstants.com/en/instant/locust-theme-doctor-nowhere/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "sound",
+"d": 14.2,
+"pool": "long"
+},
+{
+"f": "long/gow-theme",
+"src": "Gears of War theme (myinstants, \"XboxGears\")",
+"url": "https://www.myinstants.com/en/instant/gears_theme/",
+"grp": "Gears of War",
+"lic": "Microsoft / The Coalition (not CC0)",
+"kind": "sound",
+"d": 16.2,
+"pool": "long"
 },
 {
 "f": "long/grunts",

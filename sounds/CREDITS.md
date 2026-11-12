@@ -710,3 +710,14 @@ more human), with a few contractions so they read like speech.
 | `tts-trent-blockers` | Trent, bold of you to attack the player with the most blockers. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
 | `tts-trent-own-board` | Trent, that was a board wipe. It was also your board. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
 | `tts-trent-top-of-library` | Trent, the top of your library has filed a restraining order. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+
+## Gears of War (v1.59)
+
+Microsoft's and The Coalition's, not CC0. From myinstants.com uploads, loudness-matched to -16 LUFS, mono MP3.
+
+| File | Words | Source |
+| --- | --- | --- |
+| `gow-marcus-nice` | NICE! | [myinstants](https://www.myinstants.com/en/instant/marcus-fenix-nice-2/) |
+| `gow-leviathan` | It's a goddamn Leviathan! | [myinstants](https://www.myinstants.com/en/instant/goddamn-leviathan/) |
+| `gow-cog-tag`, `gow-boomer`, `gow-reload` | (effects) | myinstants: Gears of war cog tag, Gears of war Boomer, Reload Gears |
+| `long/gow-theme`, `long/gow-locust-theme` | (music) | myinstants: XboxGears, Locust Theme - Doctor Nowhere |
