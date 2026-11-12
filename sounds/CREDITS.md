@@ -265,8 +265,8 @@ v1.50 removed every laughing clip (the laughing records, evil laughs, cackles, g
   before 1926 are public domain since 2026). Each cut is the loudest 8 s (or 4 s) of the record.
 - `sfx-*`: the goats are public domain (Wikimedia Commons); the slide whistle and record scratch are CC-BY 3.0
   (credit below).
-- `tts-*`: announcer lines made for this app with Piper text-to-speech (all remade in v1.56, see below) (voices en_US Ryan and en_GB Alan, pitched
-  down a little with a short echo).
+- `tts-*`: announcer lines made for this app with Kokoro text-to-speech (Apache 2.0; female voices Heart and Bella,
+  since v1.58; v1.13 to v1.57 used Piper's male voices Ryan and Alan), by `tools/sounds/make_tts.py`.
 
 The knockout and win sounds (`EVENT_SOUNDS` in `index.html`) are picked from clips already in these folders.
 
@@ -645,67 +645,68 @@ LUFS, mono 64 kbps MP3. They belong to their owners (Paramount, Firaxis / 2K), n
 
 Every announcer line was remade (70 old ones removed, 60 new): each now starts with a player's name (the user's
 rule), none names a commander (the app doesn't know who plays what), and none hints at Lenn's gift deck. Trent gets
-the most. Same Piper voices and treatment as v1.13.
+the most. Since v1.58 they're spoken by Kokoro's female voices Heart and Bella (the user asked for female voices that sound
+more human), with a few contractions so they read like speech.
 
 | Clip | Words | Source |
 | --- | --- | --- |
-| `tts-rand-your-turn` | Rand. Rand. It is your turn. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-not-a-strategy` | Rand, the turn button is not a strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-calculating` | Rand is calculating. Please hold. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-suspicious` | Rand looks suspiciously calm. Check the graveyard. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-sol-ring` | Rand, another Sol Ring? Shocking. Truly shocking. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-counterspell` | Rand, counterspell. Everyone act surprised. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-pay-the-one` | Rand, do you pay the one? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-lethal` | Rand, that is lethal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-shuffle-up` | Rand, shuffle up and deal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-mulligan` | Rand, mulligan to five. Bold. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-not-the-threat` | Rand says Rand is not the threat. Rand is the threat. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-rand-flooded` | Rand is mana flooded. Send help. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-your-turn` | Andrew, wake up. It is your turn. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-bold` | Andrew, that was a bold play. Bold is not the same as good. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-thinking` | Andrew has entered thinking mode. Snacks are recommended. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-politics` | Andrew is making a deal. Do not trust the deal. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-cyclonic-rift` | Andrew, Cyclonic Rift. Overloaded. Say goodbye to everything you love. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-commander-tax` | Andrew, commander tax. Pay up. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-hold-priority` | Andrew, hold priority. The stack is getting tall. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-combo` | Andrew, wait. Is that a combo? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-screwed` | Andrew is stuck on two lands. Mana screw. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-board-wipe` | Andrew, warning. Board wipe incoming. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-kingmaker` | Andrew, kingmaker. Kingmaker! | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-andrew-assimilated` | Andrew, you have been assimilated. Resistance is futile. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-your-turn` | Lenn is thinking. Please stand by. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-nobody-blocks` | Lenn, nobody blocks? Bold strategy. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-response` | Lenn, you have a response? Of course you do. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-extra-turn` | Lenn, extra turn detected. Somebody get snacks. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-board-wipe` | Lenn, that is a board wipe. Say goodbye. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-topdeck` | Lenn is in top deck mode. Activated. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-pass-the-turn` | Lenn, pass the turn already. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-read-the-card` | Lenn, can I read that card? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-innocent` | Lenn looks innocent. Lenn is never innocent. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-commander-damage` | Lenn, commander damage. Write it down. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-deal-with-that` | Lenn, somebody deal with that. Probably you. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-lenn-archenemy` | Lenn, the archenemy rises. Try not to embarrass yourself. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-your-turn` | Trent. Hey, Trent. Are you even paying attention? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `long/tts-trent-geological` | Trent. Trent. It is still your turn. It has been your turn for a geological era. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-card` | Trent, that card does not do what you think it does. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-breaking-news` | Trent has made a mistake. Breaking news. More at eleven. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-mana` | Trent, your mana base called. It wants a divorce. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-snack` | Trent is not the threat. Trent is the snack. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-combo` | Trent is about to explain a combo. Get comfortable. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-voted` | Trent, the table has voted. You are the target. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-read` | Trent, please read your card. Out loud. Slowly. Like we have time. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-dramatic` | Trent, if you are going to scoop, at least make it dramatic. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-nobody-surprised` | Trent has been eliminated. Nobody is surprised. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-shuffle` | Trent, shuffling harder does not make the deck better. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-sorry` | Trent, on behalf of the table, we apologize. Just kidding. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `long/tts-trent-target-yourself` | Trent, do not target me. Target anyone else. Actually, target yourself. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-two-cards` | Trent, that was not a combo. That was two cards next to each other. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-rules-text` | Trent, the rules text is on the card. You are allowed to read it. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-mid` | Trent, your deck is not mid. Mid would be an upgrade. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-i-scoop` | Trent, I scoop. Not you. Me. Because of you. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-one-more-thing` | Trent, every time you say one more thing, a planeswalker loses a loyalty counter. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-drew-a-card` | Trent drew a card. Congratulations. The bar was on the floor. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-stalling` | Trent, are you mulliganing, or just stalling? | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-blockers` | Trent, bold of you to attack the player with the most blockers. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-own-board` | Trent, that was a board wipe. It was also your board. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
-| `tts-trent-top-of-library` | Trent, the top of your library has filed a restraining order. | [Made for this app: Piper text-to-speech (voices Ryan and Alan)](https://github.com/rhasspy/piper) |
+| `tts-rand-your-turn` | Rand. Rand. It's your turn. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-not-a-strategy` | Rand, the turn button isn't a strategy. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-calculating` | Rand's calculating. Please hold. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-suspicious` | Rand looks suspiciously calm. Check the graveyard. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-sol-ring` | Rand, another Sol Ring? Shocking. Truly shocking. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-counterspell` | Rand, counterspell. Everyone act surprised. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-pay-the-one` | Rand, do you pay the one? | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-lethal` | Rand, that's lethal. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-shuffle-up` | Rand, shuffle up and deal. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-mulligan` | Rand, mulligan to five. Bold. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-not-the-threat` | Rand says Rand isn't the threat. Rand is the threat. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-rand-flooded` | Rand's mana flooded. Send help. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-your-turn` | Andrew, wake up. It's your turn. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-bold` | Andrew, that was a bold play. Bold isn't the same as good. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-thinking` | Andrew has entered thinking mode. Snacks are recommended. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-politics` | Andrew is making a deal. Don't trust the deal. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-cyclonic-rift` | Andrew, Cyclonic Rift. Overloaded. Say goodbye to everything you love. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-commander-tax` | Andrew, commander tax. Pay up. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-hold-priority` | Andrew, hold priority. The stack is getting tall. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-combo` | Andrew, wait. Is that a combo? | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-screwed` | Andrew's stuck on two lands. Mana screw. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-board-wipe` | Andrew, warning. Board wipe incoming. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-kingmaker` | Andrew, kingmaker. Kingmaker! | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-andrew-assimilated` | Andrew, you have been assimilated. Resistance is futile. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-your-turn` | Lenn's thinking. Please stand by. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-nobody-blocks` | Lenn, nobody blocks? Bold strategy. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-response` | Lenn, you have a response? Of course you do. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-extra-turn` | Lenn, extra turn detected. Somebody get snacks. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-board-wipe` | Lenn, that's a board wipe. Say goodbye. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-topdeck` | Lenn is in top deck mode. Activated. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-pass-the-turn` | Lenn, pass the turn already. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-read-the-card` | Lenn, can I read that card? | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-innocent` | Lenn looks innocent. Lenn is never innocent. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-commander-damage` | Lenn, commander damage. Write it down. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-deal-with-that` | Lenn, somebody deal with that. Probably you. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-lenn-archenemy` | Lenn, the archenemy rises. Try not to embarrass yourself. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-your-turn` | Trent. Hey, Trent. Are you even paying attention? | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `long/tts-trent-geological` | Trent. Trent. It's still your turn. It's been your turn for a geological era. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-card` | Trent, that card doesn't do what you think it does. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-breaking-news` | Trent has made a mistake. Breaking news. More at eleven. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-mana` | Trent, your mana base called. It wants a divorce. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-snack` | Trent isn't the threat. Trent is the snack. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-combo` | Trent is about to explain a combo. Get comfortable. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-voted` | Trent, the table has voted. You're the target. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-read` | Trent, please read your card. Out loud. Slowly. Like we have time. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-dramatic` | Trent, if you're going to scoop, at least make it dramatic. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-nobody-surprised` | Trent's been eliminated. Nobody is surprised. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-shuffle` | Trent, shuffling harder doesn't make the deck better. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-sorry` | Trent, on behalf of the table, we apologize. Just kidding. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `long/tts-trent-target-yourself` | Trent, don't target me. Target anyone else. Actually, target yourself. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-two-cards` | Trent, that wasn't a combo. That was two cards next to each other. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-rules-text` | Trent, the rules text is on the card. You're allowed to read it. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-mid` | Trent, your deck isn't mid. Mid would be an upgrade. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-i-scoop` | Trent, I scoop. Not you. Me. Because of you. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-one-more-thing` | Trent, every time you say one more thing, a planeswalker loses a loyalty counter. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-drew-a-card` | Trent drew a card. Congratulations. The bar was on the floor. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-stalling` | Trent, are you mulliganing, or just stalling? | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-blockers` | Trent, bold of you to attack the player with the most blockers. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-own-board` | Trent, that was a board wipe. It was also your board. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
+| `tts-trent-top-of-library` | Trent, the top of your library has filed a restraining order. | [Made for this app: Kokoro text-to-speech (voices Heart and Bella)](https://github.com/hexgrad/kokoro) |
