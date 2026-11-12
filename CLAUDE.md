@@ -318,8 +318,8 @@ them and `.gitignore` now ignores PNGs at the root).
 - To add a deck, add a row to `DECKS` in `make.py` and run it for that slug, then add the deck to `links.html` (and its count), and rerun `tools/carousel/lands.py` so the lands Ours tab and primer include it.
 - The claude.ai artifact copy of the Borg page is https://claude.ai/artifact/2iDTXny6HTaVnm5k5pwcZH (private). Artifacts can't load outside images, so `tools/carousel/embed.py <page> <out>` inlines them as WebP (about 6 MB) before publishing.
 
-### `decks/tokens.html`: tokens in our precons
-- Live at https://biglob.github.io/commander-life/decks/tokens.html. Every token each precon we own makes (the 14 in `make.py`'s `DECKS` plus Archenemy: Nicol Bolas with its 20 schemes), with stats and the cards that make it; under each deck its copy effects (embalm, eternalize, encore, squad, replicate, populate, "token that's a copy"), emblems, and Monarch or energy. A fold-out lists tokens shared by more than one deck. Not a game page; nothing syncs.
+### `decks/tokens.html`: tokens in our decks
+- Live at https://biglob.github.io/commander-life/decks/tokens.html. Every token each deck we own makes (the 14 in `make.py`'s `DECKS`, Archenemy: Nicol Bolas with its 20 schemes, and the Xenagos group hug deck, read from `xenagos.html`'s Deck tab, so rerun after the Xenagos list changes), with stats and the cards that make it; under each deck its copy effects (embalm, eternalize, encore, squad, replicate, populate, "token that's a copy"), emblems, and Monarch or energy. A fold-out lists tokens shared by more than one deck. Not a game page; nothing syncs.
 - Built by `python3 tools/carousel/tokens.py` from `tools/carousel/tokens-template.html` (`TOKENS_CACHE=<file>` reuses the download). Tokens come from Scryfall's `all_parts`; every card mentioning a token was read by hand in Nov 2026 and the fixes are in the script (`FIX_COLORS`: Scryfall's Tribble token is colorless, the cards say white; `WHO`: tokens that go to another player). Rerun it after adding a deck to `make.py`, and read any new token-making card it lists.
 
 ### `cuts/`: most-cut cards per precon

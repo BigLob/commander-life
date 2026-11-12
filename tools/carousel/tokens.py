@@ -1,7 +1,7 @@
 """Build decks/tokens.html: every token, copy effect, emblem and game marker each of our precons uses.
 
 Reads the decklists the same way make.py does (MTGJSON or Wizards' article), plus the Archenemy: Nicol
-Bolas deck and its 20 schemes. A card's tokens come from Scryfall's `all_parts` (component "token"),
+Bolas deck and its 20 schemes, and our own Xenagos group hug deck (from xenagos.html's Deck tab). A card's tokens come from Scryfall's `all_parts` (component "token"),
 each fetched for its exact stats. Scryfall's generic "Copy" helper and copy effects it doesn't link
 (replicate, populate, "create a token that's a copy") go in a separate Copies list, since those tokens
 are whatever they copy. Every card whose text mentions a token was read by hand in Nov 2026; the
@@ -16,7 +16,14 @@ import make
 
 OUT = os.path.join(HERE, '..', '..', 'decks', 'tokens.html')
 AE = ('archenemy-nicol-bolas', 'Archenemy: Nicol Bolas', 'Archenemy: Nicol Bolas (2017)', None, None, ('mtgjson', 'ArchenemyNicolBolas_E01'))
-DECKS = make.DECKS + [AE]
+XEN = ('xenagos', 'Xenagos, the Party Hugger', 'Our own group hug deck (Xenagos, God of Revels)', None, None, ('xenagos',))
+DECKS = make.DECKS + [AE, XEN]
+
+def xenagos_list():
+    """The 100 cards in xenagos.html's Deck tab (its ALL list; SUG, the suggestions, isn't the deck)."""
+    s = open(os.path.join(HERE, '..', '..', 'xenagos.html')).read()
+    i = s.index('const ALL=') + len('const ALL=')
+    return [(r.get('q', 1), {'name': r['n']}, r['n']) for r in json.JSONDecoder().raw_decode(s[i:])[0]]
 COLORS = {'W': 'white', 'U': 'blue', 'B': 'black', 'R': 'red', 'G': 'green'}
 
 # Scryfall's Star Trek Tribble token is colorless, but both cards that make it say "white Tribble".
@@ -25,7 +32,9 @@ FIX_COLORS = {'Tribble': ['W']}
 WHO = {'Pongify': 'for the creature\'s controller', 'Beast Within': 'for the permanent\'s controller',
        'Generous Gift': 'for the permanent\'s controller', 'Skyclave Apparition': 'for the exiled card\'s owner',
        'Koloth, Tribble Hunter': 'every player gets two', 'Shadrix Silverquill': 'any player you pick',
-       'Combat Calligrapher': 'whoever attacks your opponent', 'Fractured Identity': 'every other player gets one'}
+       'Combat Calligrapher': 'whoever attacks your opponent', 'Fractured Identity': 'every other player gets one',
+       'Terastodon': 'for each destroyed permanent\'s controller', 'Rite of the Raging Storm': 'every player gets one each upkeep',
+       'Dual Nature': 'every player, for each of their creatures'}
 # Copy effects that Scryfall doesn't link to the Copy helper.
 COPY_TEXT = re.compile(r"replicate|populate|token that's a copy|tokens that are copies|token copy|copy becomes a token|copies become tokens", re.I)
 # Embalm and eternalize tokens are listed by Scryfall under the card's own name: they belong with Copies too.
@@ -39,7 +48,7 @@ def load():
         return json.load(open(cache))
     decks, toks = {}, {}
     for d in DECKS:
-        lst = make.decklist(d[5])
+        lst = xenagos_list() if d is XEN else make.decklist(d[5])
         if d is AE:  # make.decklist reads only commander + main deck; the schemes make tokens too
             ae = json.loads(make.get('https://mtgjson.com/api/v5/decks/ArchenemyNicolBolas_E01.json'))['data']
             lst += [(1, {'name': s['name']}, s['name']) for s in ae['schemes']]
@@ -97,7 +106,7 @@ def build(data):
                 e['by'].append((n, WHO.get(n)))
             if is_copy:
                 how = ('Embalm' if 'Embalm' in t else 'Eternalize' if 'Eternalize' in t else 'Encore' if 'Encore' in t else
-                       'Squad' if 'Squad' in t else 'Replicate' if 'eplicate' in t else 'Populate' if 'Populate' in t else '')
+                       'Squad' if 'Squad' in t else 'Myriad' if 'myriad' in t else 'Replicate' if 'eplicate' in t else 'Populate' if 'Populate' in t else '')
                 copies.append((n, how, WHO.get(n)))
             m = re.search(r'emblem with "([^"]+)"(?: and "([^"]+)")?', t)
             if m:
