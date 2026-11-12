@@ -113,6 +113,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    up to the middle (v1.22 left an empty cell round the button), so all of it is tap area; their
    totals are moved clear of the button (hubLife()). */
 .board.n4.hub { grid-template-rows: 1fr 1.4fr 1fr; }
+/* iPad at 3 players (v1.61): the side seats tall, the button where they meet. */
+.board.n3.hub:not(.sfy) { grid-template-rows: 1.4fr 1fr; }
 /* On a Center phone the side seats' tops face the middle, under the button, so their names go to
    the bottom, by their player's own edge. */
 .hub:not(.upright) .s1 .name, .hub:not(.upright) .s3 .name { top: auto; bottom: calc(7 * var(--cqh, 1vh)); }
@@ -579,11 +581,15 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 .first-x svg { display: block; width: 100%; height: 100%; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; fill: none; }
 .menu {
   position: fixed; inset: 0; z-index: 20;
-  display: grid; place-items: center; padding: 20px;
+  /* v1.61: the row is the screen's height, not the panel's. With a plain auto row, Safari grew the
+     row to the whole menu, so the panel's max-height never applied: no scrolling and the bottom
+     cut off on the iPad. */
+  display: grid; place-items: center; grid-template: minmax(0, 1fr) / minmax(0, 1fr); padding: 20px;
   background: rgba(0, 0, 0, .65); touch-action: manipulation;
 }
 .panel {
   width: min(100%, 360px); max-height: 100%; overflow-y: auto; touch-action: pan-y;
+  -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
   display: flex; flex-direction: column; gap: 18px;
   padding: 22px 20px; border-radius: 20px;
   background: var(--panel); border: 1px solid var(--line);
@@ -612,6 +618,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 #segMode { display: flex; flex-wrap: wrap; }
 #segMode button { flex: 1 1 auto; }
 #segMode button { padding-inline: 4px; }
+/* v1.61: four 1v1 layouts since iPad joined, and the long "The speaker phone": wrap rather than cut. */
+#segLayout, #segMine { display: flex; flex-wrap: wrap; }
+#segLayout button, #segMine button { flex: 1 1 auto; padding-inline: 8px; }
 .action {
   border: 0; border-radius: 12px; padding: 14px; font-size: 19px; font-weight: 600;
   background: rgba(255, 255, 255, .1);
@@ -651,6 +660,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 .res-del { flex: none; border: 1px solid var(--line); border-radius: 999px; background: transparent; padding: 3px 12px; font-size: 14px; color: var(--ink-2); }
 .res-del.armed { background: var(--hot); border-color: var(--hot); color: var(--table); }
 .res-note { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.35; }
+/* v1.61, the user's ask: on an iPad (a big screen both ways) the menu and its buttons are a third
+   bigger. Each item is zoomed, not the panel, so the panel's scrolling and max-height stay as is. */
+@media (min-width: 700px) and (min-height: 700px) {
+  .menu .panel { width: min(100%, 480px); gap: 22px; padding: 28px 26px; }
+  .sch-sheet .panel { width: min(100%, 640px); }
+  .menu .panel > * { zoom: 1.33; }
+}
 .ver { margin: -12px 0 0; text-align: center; font-size: 12px; letter-spacing: .14em; color: var(--ink-2); opacity: .7; }
 
 /* Archenemy (v1.25). The archenemy's name is gold with a crown. */
@@ -821,7 +837,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         <button type="button" data-v="spot">Spotlight</button>
         <button type="button" data-v="table">Table</button>
         <button type="button" data-v="quad">Quadrants</button>
-        <button type="button" data-v="hub">Big button</button>
+        <button type="button" data-v="ipad">iPad</button>
       </div>
     </div>
     <div class="field" id="layoutField">
@@ -830,6 +846,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         <button type="button" data-v="split">Side by side</button>
         <button type="button" data-v="classic">Classic</button>
         <button type="button" data-v="couch">Couch</button>
+        <button type="button" data-v="ipad">iPad</button>
       </div>
     </div>
     <div class="field" id="startField">
@@ -916,7 +933,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.60';
+  const VERSION = '1.61';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1211,7 +1228,11 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // default), 'table' (around the edges), 'quad' (a quarter each, four seats only) or 'hub' (around
   // the edges with a huge turn button in the middle, four seats only). Kept on this phone only. See
   // layoutOf() for where each one can't be used.
-  if (!['spot', 'table', 'quad', 'hub'].includes(state.layout4)) state.layout4 = 'spot';
+  // v1.61: Big button became the iPad view, one setting for every player count (state.ipad, kept on
+  // this phone only); a phone that had Big button picked keeps it.
+  if (state.layout4 === 'hub') { state.ipad = true; state.layout4 = 'table'; }
+  state.ipad = state.ipad === true;
+  if (!['spot', 'table', 'quad'].includes(state.layout4)) state.layout4 = 'spot';
   // Sound on this phone: 'all', 'turn' (the turn button only) or 'off'. Kept on this phone only.
   // v1.2 kept it as true or false.
   if (state.sound === true) state.sound = 'all';
@@ -1247,7 +1268,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   let players = [];
   // Side by side in the two 1v1s (v1.1): a player's phone shows all four. Their own 1v1 takes the
   // bottom half, upright, and the other 1v1 the top half, turned to face the far side.
-  const sideBySide4 = () => state.mode === SPLIT && state.me !== CENTER && state.layout2 === 'split';
+  const sideBySide4 = () => state.mode === SPLIT && state.me !== CENTER && state.layout2 === 'split' && !state.ipad;
   function viewPlayers() {
     if (state.mode !== SPLIT) return PEOPLE[state.mode].map((e, j) => ({ k: state.mode, j, e }));
     const all = [0, 1, 2, 3].map(e => ({ k: duelOf(e), j: edgesOf(duelOf(e)).indexOf(e), e }));
@@ -1554,8 +1575,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // one turn order and a player to face, so a Center phone and the two 1v1s use the table instead.
   function layoutOf(n) {
     if (n < 3) return null;
+    if (state.ipad) return 'hub';
     let lay = state.layout4;
-    if ((lay === 'quad' || lay === 'hub') && n !== 4) lay = 'spot';
+    if (lay === 'quad' && n !== 4) lay = 'spot';
     if (lay === 'spot' && (state.me === CENTER || state.mode === SPLIT)) lay = 'table';
     return lay;
   }
@@ -1567,8 +1589,10 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     players = viewPlayers();
     const n = players.length;
     // Couch: one upright seat each, Rand (edge 0) on the left; in the two 1v1s only this phone's own 1v1 shows, this phone's player on the left, with no strip on top.
-    const couch = n === 2 && state.layout2 === 'couch';
-    const duel = n === 2 && state.layout2 === 'split';
+    // The iPad view (v1.61) at two players is Classic's button box with a much bigger button.
+    const ipad2 = n === 2 && state.ipad;
+    const couch = n === 2 && state.layout2 === 'couch' && !ipad2;
+    const duel = n === 2 && state.layout2 === 'split' && !ipad2;
     const duel4 = sideBySide4();
     app.innerHTML = '';
     app.classList.toggle('has-mini', state.mode === SPLIT && state.me !== CENTER && !duel4 && !couch);
@@ -1581,7 +1605,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const board = document.createElement('div');
     // 4-player Table with Spotify on is drawn as Big button, with the dock in the bottom seat (v1.37).
     const dock = sfy.on && n === 4 && ['table', 'hub'].includes(layoutOf(n));
-    const lay = dock ? 'hub' : layoutOf(n);
+    // At 3 players the iPad view with the Spotify bar is Table with the bar in the middle.
+    const lay = dock ? 'hub' : sfy.on && n === 3 && layoutOf(n) === 'hub' ? 'table' : layoutOf(n);
     // Side by side with the Spotify bar keeps only the upright half (v1.36).
     const half = duel && sfy.on;
     board.className = couch ? 'board duel couch' : half ? 'board duel half' : duel || duel4 ? 'board duel'
@@ -1592,6 +1617,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // Classic and Side by side (not Couch) without the bar: the button box in the middle (v1.44).
     if (!sfy.on && !couch && (n === 2 || duel4)) {
       board.classList.add('boxed');
+      if (ipad2) board.classList.add('ipad');
       const box = document.createElement('div');
       box.className = 'btn-box';
       board.appendChild(box);
@@ -1746,8 +1772,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const x0 = (box.offsetParent === board ? board.offsetLeft : 0) + box.offsetLeft;
       const y0 = (box.offsetParent === board ? board.offsetTop : 0) + box.offsetTop;
       const w = box.offsetWidth, h = box.offsetHeight, cx = x0 + w / 2, cy = y0 + h / 2;
-      const d = Math.max(96, Math.min(200, .76 * h, .48 * w));
-      const m = Math.max(46, Math.min(64, .3 * h));
+      const big = board.classList.contains('ipad');
+      const d = big ? Math.max(96, Math.min(.86 * h, .6 * w)) : Math.max(96, Math.min(200, .76 * h, .48 * w));
+      const m = Math.max(46, Math.min(big ? 72 : 64, .3 * h));
       Object.assign(tb.style, { left: cx + 'px', top: cy + 'px', width: d + 'px', height: d + 'px', margin: '0' });
       // The menu button's styles lift it by half its height (translateY(-50%)), so top is its middle.
       Object.assign(mb.style, { left: x0 + w - 10 - m + 'px', top: y0 + h - 10 - m / 2 + 'px', width: m + 'px', height: m + 'px', margin: '0' });
@@ -2405,21 +2432,20 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   function syncMenu() {
     document.querySelectorAll('#segMode button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.mode));
     document.querySelectorAll('#segStart button').forEach(b => b.classList.toggle('on', +b.dataset.v === state.start));
-    document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', b.dataset.v === state.layout2));
+    document.querySelectorAll('#segLayout button').forEach(b => b.classList.toggle('on', state.ipad ? b.dataset.v === 'ipad' : b.dataset.v === state.layout2));
     document.querySelectorAll('#segSound button').forEach(b => b.classList.toggle('on', b.dataset.v === state.sound));
     document.getElementById('soundNow').textContent = { all: 'All', turn: 'Turn only', off: 'Off' }[state.sound];
     syncSpeaker();
     // Lights the layout actually in use here, which can differ from the one picked (see layoutOf()).
     const center = state.mode !== 1 && state.me === CENTER;
     const inUse = layoutOf(state.mode === SPLIT ? (center ? 4 : 2) : SIZE[state.mode]);
-    document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === inUse));
+    document.querySelectorAll('#segLayout4 button').forEach(b => b.classList.toggle('on', b.dataset.v === (inUse === 'hub' ? 'ipad' : inUse)));
     document.getElementById('layoutField').hidden = !(state.mode === 2 || (state.mode === SPLIT && !center));
     // Three or four seats on the board: 3 or 4 players, or a Center phone in the two 1v1s.
     document.getElementById('layout4Field').hidden = !(state.mode === 3 || state.mode === 4 || state.mode === ARCH || (state.mode === SPLIT && center));
     document.querySelector('#segLayout4 [data-v="spot"]').hidden = center || state.mode === SPLIT;
     syncSfy();
     document.querySelector('#segLayout4 [data-v="quad"]').hidden = state.mode === 3;
-    document.querySelector('#segLayout4 [data-v="hub"]').hidden = state.mode === 3;
     // In Archenemy the archenemy always goes first, and the life totals are set by the rules.
     document.getElementById('pickFirst').hidden = state.mode === 1 || state.mode === ARCH;
     document.getElementById('startField').hidden = state.mode === ARCH;
@@ -2695,10 +2721,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     save(); build(); syncMenu();
   }));
   document.querySelectorAll('#segLayout4 button').forEach(b => b.addEventListener('click', () => {
-    state.layout4 = b.dataset.v; save(); build(); syncMenu();
+    if (b.dataset.v === 'ipad') state.ipad = true; else { state.ipad = false; state.layout4 = b.dataset.v; }
+    save(); build(); syncMenu();
   }));
   document.querySelectorAll('#segLayout button').forEach(b => b.addEventListener('click', () => {
-    state.layout2 = b.dataset.v; save(); build(); syncMenu();
+    if (b.dataset.v === 'ipad') state.ipad = true; else { state.ipad = false; state.layout2 = b.dataset.v; }
+    save(); build(); syncMenu();
   }));
   // Turning sound on plays a turn sound, so it's clear the phone isn't muted.
   document.querySelectorAll('#segSound button').forEach(b => b.addEventListener('click', () => {
