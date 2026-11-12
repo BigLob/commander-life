@@ -14,7 +14,7 @@ S = 'fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-li
 ICONS = {
     'spawn': f'<path {S} d="M50 50 m0 0 a5 5 0 0 1 10 0 a12 12 0 0 1 -24 0 a20 20 0 0 1 40 0 a28 28 0 0 1 -56 0 a36 36 0 0 1 72 0"/>',
     'plant': f'<g {S}><path d="M50 90 V45"/><path d="M50 60 C20 60 14 36 18 24 C40 24 50 40 50 60Z"/><path d="M50 48 C80 48 86 24 82 12 C60 12 50 28 50 48Z"/><path d="M30 90 H70"/></g>',
-    'elephant': f'<g {S}><circle cx="42" cy="40" r="26"/><path d="M42 66 C42 88 58 90 62 74 C64 66 56 64 56 70"/><path d="M64 44 C86 30 92 60 72 66"/><circle cx="34" cy="34" r="2" fill="#000"/><path d="M52 66 C60 76 66 74 70 64"/></g>',
+    'elephant': f'<g {S}><path d="M26 40 C26 24 42 18 58 18 C78 18 92 30 92 50 V82 H79 V66 H62 V82 H49 V64 C36 64 28 56 26 46"/><path d="M26 40 C14 42 12 62 16 76 C18 84 28 84 28 76"/><path d="M52 36 C64 36 66 56 54 58 C46 58 42 44 52 36Z"/><path d="M30 56 C24 62 26 68 32 66"/></g><circle cx="38" cy="34" r="2.5" fill="#000"/>',
     'rager': f'<path {S} d="M58 8 L24 56 H46 L38 92 L76 40 H54 Z"/>',
     'beast': f'<g {S}><path d="M50 52 C34 52 26 70 32 78 C38 86 46 80 50 80 C54 80 62 86 68 78 C74 70 66 52 50 52Z"/><ellipse cx="22" cy="46" rx="7" ry="10"/><ellipse cx="38" cy="28" rx="7" ry="10"/><ellipse cx="62" cy="28" rx="7" ry="10"/><ellipse cx="78" cy="46" rx="7" ry="10"/></g>',
     'wurm': f'<g {S}><path d="M16 74 C16 46 44 66 50 46 C56 26 84 40 84 24"/><circle cx="84" cy="22" r="7"/><path d="M30 64 l-4 -8 M46 56 l-2 -8 M62 38 l4 -6"/></g>',
@@ -39,11 +39,11 @@ T = {
  'beast':   ('Beast',          'G', 'Creature — Beast', '', '3/3', ('beast',)),
  'emblem':  ('Garruk Emblem',  '—', 'Emblem', 'Creatures you control get +3/+3 and have trample.', '', ('emblem',)),
  'plant':   ('Plant',          'G', 'Creature — Plant', '', '0/1', ('plant',)),
- 'copy':    ('Copy',           '—', 'Token', 'Copy of another permanent. Write what it copies below.', '', ('copy',)),
+ 'copy':    ('Copy',           '—', 'Token', '', '', ('copy',)),
 }
 def panel(key, rot=0, back=False):
     n, c, ty, rules, pt, ic = T[key]
-    extra = '<div class="lines"><i></i><i></i></div>' if key == 'copy' else ''
+    extra = ''
     return (f'<div class="pn{" bk" if back else ""}"><span class="cl">{c}</span>'
             f'<div class="ic">{icon(*ic, rot=rot)}</div><h2>{html.escape(n)}</h2><p class="ty">{html.escape(ty)}</p>'
             f'<p class="ru">{html.escape(rules)}</p>{extra}'
@@ -83,7 +83,7 @@ html{{background:#ccc}}body{{margin:0;font-family:Georgia,serif;color:#000}}
 .pn{{box-sizing:border-box;width:2.5in;height:3.5in;border:3px solid #000;border-radius:12px;padding:.14in;position:relative;
   display:flex;flex-direction:column;background:#fff}}
 .pn.bk{{border-style:double;border-width:7px}}
-.cl{{position:absolute;top:.12in;left:.12in;width:.34in;height:.34in;border:2px solid #000;border-radius:50%;font:700 12pt/.34in system-ui,sans-serif;text-align:center}}
+.cl{{position:absolute;top:.12in;right:.12in;width:.34in;height:.34in;border:2px solid #000;border-radius:50%;font:700 12pt/.34in system-ui,sans-serif;text-align:center}}
 .ic{{display:flex;justify-content:center;margin-top:.05in}}.ic svg{{width:1.45in;height:1.45in;display:block}}
 h2{{margin:.08in 0 0;font:700 19pt/1 Georgia,serif;text-align:center}}
 .ty{{margin:.05in 0;font:italic 8.5pt/1.2 Georgia,serif;text-align:center;border-bottom:1.5px solid #000;border-top:1.5px solid #000;padding:.03in 0}}
