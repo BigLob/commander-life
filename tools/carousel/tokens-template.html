@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Precon Tokens</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Every token each precon we own makes, built by tools/carousel/tokens.py. Same tokens (colors, fonts) as links.html. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;color-scheme:dark}
+html{background:var(--bg);scroll-padding-top:56px}
+body{margin:0 auto;max-width:720px;background:var(--bg);color:var(--fg);font-family:var(--f-display);padding:14px max(16px,env(safe-area-inset-right,0px)) 60px max(16px,env(safe-area-inset-left,0px))}
+h1{font-size:1.5rem;margin:0 0 6px}
+.lede{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);line-height:1.5;margin:0 0 12px}
+nav{position:sticky;top:0;z-index:2;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding:8px 0;margin:0 0 4px;border-bottom:1px solid var(--line);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;font-family:var(--f-mono);font-size:.72rem;color:var(--fg);text-decoration:none;background:var(--surface);border-radius:999px;padding:5px 10px}
+nav a:hover{color:var(--accent)}
+section{padding-top:18px}
+h2{font-size:1.2rem;margin:0}
+h3{font-family:var(--f-mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+.sub{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin:2px 0 8px;line-height:1.5}.ct{color:var(--accent)}
+ul{list-style:none;margin:0;padding:0}
+.toks{border-top:1px solid var(--line)}
+.tok{display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line);align-items:start}
+.tok img{width:78px;aspect-ratio:488/680;border-radius:4px;display:block;background:var(--surface);object-fit:cover}
+.tok div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tok b{font-size:1rem}
+.st{font-family:var(--f-mono);font-size:.74rem;color:var(--accent)}
+.ab{font-size:.85rem}
+.by{font-size:.82rem;color:var(--muted);line-height:1.4}.by em{font-style:normal;font-family:var(--f-mono);font-size:.72rem}
+i{color:var(--muted)}
+.plain li{font-size:.86rem;padding:4px 0;line-height:1.4}
+.note{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin:0 0 6px;line-height:1.5}
+details{margin:6px 0 4px;border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+summary{cursor:pointer;font-weight:700;font-size:.95rem}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.back{display:inline-block;margin:0 0 10px;font-family:var(--f-mono);font-size:.74rem;color:var(--accent);text-decoration:none}
+</style></head><body>
+<a class="back" href="./">‹ Our precons</a>
+<h1>Tokens in our precons</h1>
+<p class="lede">Every token each of our 14 Commander precons and the Archenemy deck can make, from a read of every card (Scryfall, Nov 12, 2026). Each token lists the cards that make it. Tap a token for its Scryfall page. Copy tokens, emblems and things like Monarch and energy are listed under each deck.</p>
+<details><summary>Tokens shared by more than one deck</summary><!--SHARED--></details>
+<nav><!--NAV--></nav>
+<!--DECKS-->
+</body></html>
