@@ -4,6 +4,7 @@ upside down), a dashed fold line, the front panel below. Cut round the grey outl
 in a sleeve. 4 per US Letter page, printed single-sided, so no duplex alignment. Print at 100%.
 Counts (the user's, Nov 2026): Eldrazi Spawn 5 (backed by Plant), Elephant 3, Lightning Rager 2, Wurm (deathtouch),
 Wurm (lifelink), Beast and Garruk emblem 1 each, all backed by Copy: 14 cards, 4 pages.
+Page 4 also carries 10 round Station counters (a bolt in a ring, quarter size) for the Star Trek precons' Spacecraft.
 Colour is a corner letter (G, R, C) and the icon, never ink. The PDF is printed with Playwright, Letter, no margins.
 Run from the repo root:  python3 tools/carousel/tokens_bw.py
 """
@@ -62,6 +63,10 @@ for n, i in enumerate(range(0, len(CARDS), 4), 1):
             body += f'<div class="cd h" style="grid-row:{j+1}"><div>{panel(b, back=True)}</div><div>{front}</div></div>'
         else:
             body += f'<div class="cd v"><div class="turn">{panel(b, back=True)}</div><div>{front}</div></div>'
+    if n == (len(CARDS) + 3) // 4 and len(CARDS) % 4 == 2:
+        # Page 4 has a free row: 10 Station charge counters for the Star Trek precons' Spacecraft, quarter-sized (0.96 in).
+        bolt = '<svg viewBox="0 0 100 100"><g transform="translate(14 14) scale(.72)">' + ICONS['rager'] + '</g></svg>'
+        body += '<div class="stn"><em>Station counters ×10 (Star Trek Spacecraft), quarter size</em>' + ('<div class="co">' + bolt + '</div>') * 10 + '</div>'
     body += '</section>'
 board = re.search(r'<!-- app-board-link.*?</script>', open(os.path.join(ROOT, 'xenagos-proxies.html')).read(), re.S).group(0)
 page = f'''<!doctype html>
@@ -79,6 +84,9 @@ html{{background:#ccc}}body{{margin:0;font-family:Georgia,serif;color:#000}}
 .cd.v{{grid-column:2;grid-row:1/3;width:2.5in;height:7in;display:grid;grid-template-rows:3.5in 3.5in}}
 .cd.h::after{{content:"";position:absolute;top:0;bottom:0;left:2.5in;border-left:1px dashed #999}}
 .cd.v::after{{content:"";position:absolute;left:0;right:0;top:3.5in;border-top:1px dashed #999}}
+.stn{{grid-column:1;grid-row:3;width:5in;display:flex;flex-wrap:wrap;gap:.04in;align-content:flex-start;padding-top:.1in}}
+.stn em{{flex:0 0 100%;font:italic 8pt system-ui,sans-serif;color:#999;margin-bottom:.04in}}
+.co{{width:.96in;height:.96in;box-sizing:border-box;border-radius:50%;outline:.5px solid #999;outline-offset:1px;border:3px solid #000;padding:.05in}}.co svg{{width:100%;height:100%;display:block}}
 .turn{{transform:rotate(180deg)}}
 .pn{{box-sizing:border-box;width:2.5in;height:3.5in;border:3px solid #000;border-radius:12px;padding:.14in;position:relative;
   display:flex;flex-direction:column;background:#fff}}
