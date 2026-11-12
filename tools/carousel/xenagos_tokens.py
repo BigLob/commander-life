@@ -6,10 +6,11 @@ The PDF copy (xenagos-tokens.pdf) is printed from this page with Playwright, Let
 Print at 100% / Actual size, not Fit to page.
 
 How many (the user's picks, Nov 2026; a die on one token stands in for big stacks):
-Eldrazi Spawn 5, Plant 5, Copy 9, Elephant 3, Lightning Rager 2, Beast 1, Wurm with deathtouch 1,
-Wurm with lifelink 1, Garruk emblem 1: 28 faces on 14 cards.
+Eldrazi Spawn 9, Plant 9, Copy 9, Elephant 3, Lightning Rager 2, Beast 1, Wurm with deathtouch 1,
+Wurm with lifelink 1, Garruk emblem 1: 36 faces on 18 cards, two full sheets (the user filled the spare slots
+with more Spawn/Plant).
 How they pair (each token comes from one card, so two faces only clash when both their cards are out):
-- Spawn / Plant x5: Rapacious One and Avenger of Zendikar; when both are out, a die covers the overflow.
+- Spawn / Plant x9: Rapacious One and Avenger of Zendikar; when both are out, a die covers the overflow.
 - Copy on the back of everything else: Copy comes from Dual Nature or Blade of Selves.
 - The two Wurms (both from Wurmcoil Engine) and the three Elephants (Terastodon, possibly to three
   players) sit on separate cards, since they arrive together.
@@ -32,7 +33,7 @@ IMG = {
 SPAWN = [CDN + 'e/0/e0e3826c-3c85-4910-bd6c-04894ea328d0.jpg', CDN + '3/5/35fb1a3d-3f1a-45ba-a643-1dca435c77de.jpg',
          CDN + 'd/0/d0da4f8d-cce9-4d08-8d11-792e0b2af7d0.jpg']  # Rise of the Eldrazi's three arts
 
-CARDS = ([('Eldrazi Spawn', 'Plant')] * 5 + [('Elephant', 'Copy')] * 3 + [('Lightning Rager', 'Copy')] * 2 +
+CARDS = ([('Eldrazi Spawn', 'Plant')] * 9 + [('Elephant', 'Copy')] * 3 + [('Lightning Rager', 'Copy')] * 2 +
          [('Wurm (deathtouch)', 'Copy'), ('Wurm (lifelink)', 'Copy'), ('Beast', 'Copy'),
           ('Garruk, Caller of Beasts emblem', 'Copy')])
 
