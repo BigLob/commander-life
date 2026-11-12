@@ -868,6 +868,14 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         <button type="button" data-v="here">This phone</button>
       </div>
       <p class="speaker-note" id="speakerNote"></p>
+      <!-- v1.60: where THIS phone's own button sounds play when another phone is the speaker. -->
+      <div id="mineBox">
+        <div class="speaker-note">My button sounds play on</div>
+        <div class="seg" id="segMine">
+          <button type="button" data-v="speaker">The speaker phone</button>
+          <button type="button" data-v="here">This phone</button>
+        </div>
+      </div>
     </details>
     <!-- Folded by default since v1.54, like Sound and Speaker; the summary names this phone's owner. -->
     <details class="field" id="meField">
@@ -908,7 +916,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.59';
+  const VERSION = '1.60';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -3260,7 +3268,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   let live = false, pingSeen = null;
   const amSpeaker = () => state.speaker.id === state.phone;
   const speakerFresh = () => !!state.speaker.id && Date.now() - (state.speaker.at || 0) < 90e3;
-  const remoteSpeaker = () => live && speakerFresh() && !amSpeaker();
+  // v1.60: state.mineHere (this phone only, never synced) keeps this phone's own button sounds local
+  // even while another phone is the speaker, so an iPad on the soundbar can play everyone else's.
+  const remoteSpeaker = () => live && speakerFresh() && !amSpeaker() && !state.mineHere;
   function ring(k) { send({ 'ping/n': inc(1), 'ping/k': k, 'ping/by': state.phone }); }
   // A ping counts up; the speaker plays each new one. The first count a connection sees is only noted.
   function hearPing() {
@@ -3291,6 +3301,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     document.querySelectorAll('#segSpeaker button').forEach(b =>
       b.classList.toggle('on', b.dataset.v === (here ? 'here' : other ? '' : 'each')));
     document.getElementById('speakerNow').textContent = here ? 'This phone' : other && speakerFresh() ? 'Another phone' : 'Each phone';
+    document.getElementById('mineBox').hidden = here;
+    document.querySelectorAll('#segMine button').forEach(b => b.classList.toggle('on', (b.dataset.v === 'here') === !!state.mineHere));
     const e = state.speaker.me;
     const who = e === CENTER ? 'The Center phone' : e != null ? (state.names[e].trim() || DEFAULT_NAMES[e]) + "'s phone" : 'Another phone';
     document.getElementById('speakerNote').textContent =
@@ -3300,6 +3312,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       : 'Each phone plays its own turn button. Pick This phone on the one hooked up to the speaker.';
   }
   document.querySelectorAll('#segSpeaker button').forEach(b => b.addEventListener('click', () => setSpeaker(b.dataset.v === 'here')));
+  document.querySelectorAll('#segMine button').forEach(b => b.addEventListener('click', () => {
+    state.mineHere = b.dataset.v === 'here'; save(); syncSpeaker(); turnSound(true);
+  }));
   // After a reload the speaker phone can't make sound until someone touches it, so it says so.
 
   // The footer shows the typical round trip of this phone's writes (v1.21), to see how fast each
