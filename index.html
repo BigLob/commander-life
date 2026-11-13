@@ -77,8 +77,11 @@ body {
   font-family: var(--f-ui); font-size: 16px;
   -webkit-user-select: none; user-select: none;
   -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
-  overscroll-behavior: none; touch-action: none;
+  overscroll-behavior: none;
 }
+/* v1.63: the board and the first-player pill take no panning or zooming. This was on the body until
+   v1.62, which (iPad Safari counts every ancestor's touch-action) also stopped the menu scrolling. */
+#app, .first-ask { touch-action: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
 button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 
@@ -585,15 +588,16 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 .first-x svg { display: block; width: 100%; height: 100%; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; fill: none; }
 .menu {
   position: fixed; inset: 0; z-index: 20;
-  /* v1.61: the row is the screen's height, not the panel's. With a plain auto row, Safari grew the
-     row to the whole menu, so the panel's max-height never applied: no scrolling and the bottom
-     cut off on the iPad. */
-  display: grid; place-items: center; grid-template: minmax(0, 1fr) / minmax(0, 1fr); padding: 20px;
-  background: rgba(0, 0, 0, .65); touch-action: manipulation;
+  /* v1.63: the whole overlay scrolls, not the panel. v1.61's fix (the panel's max-height inside a
+     grid row) still didn't scroll on the iPad, so nothing here depends on a height resolving: the
+     panel takes its full height and the screen-sized overlay scrolls it. Its auto margins center it
+     when it fits and go to 0 when it doesn't, so the top stays reachable. */
+  display: flex; flex-direction: column; padding: 20px;
+  overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  background: rgba(0, 0, 0, .65); touch-action: pan-y;
 }
 .panel {
-  width: min(100%, 360px); max-height: 100%; overflow-y: auto; touch-action: pan-y;
-  -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  flex: none; margin: auto; width: min(100%, 360px);
   display: flex; flex-direction: column; gap: 18px;
   padding: 22px 20px; border-radius: 20px;
   background: var(--panel); border: 1px solid var(--line);
@@ -665,7 +669,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 .res-del.armed { background: var(--hot); border-color: var(--hot); color: var(--table); }
 .res-note { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.35; }
 /* v1.61, the user's ask: on an iPad (a big screen both ways) the menu and its buttons are a third
-   bigger. Each item is zoomed, not the panel, so the panel's scrolling and max-height stay as is. */
+   bigger. Each item is zoomed, not the panel. */
 @media (min-width: 700px) and (min-height: 700px) {
   .menu .panel { width: min(100%, 480px); gap: 22px; padding: 28px 26px; }
   .sch-sheet .panel { width: min(100%, 640px); }
@@ -937,7 +941,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.62';
+  const VERSION = '1.63';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1732,7 +1736,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const board = app.querySelector('.board.hub:not(.sfy)'), s1 = board && board.querySelector('.s1');
     if (!s1) return null;
     const r = Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
-    return { x: board.offsetLeft + board.offsetWidth / 2, y: s1.offsetTop + s1.offsetHeight / 2, r };
+    let y = s1.offsetTop + s1.offsetHeight / 2;
+    // Three seats (v1.63, the user: "off center"): the middle of the screen, not of the side seats,
+    // as long as the button stays clear of the bottom seat.
+    const s0 = board.matches('.n3') && board.querySelector('.s0');
+    if (s0) y = Math.max(y, Math.min(board.offsetTop + board.offsetHeight / 2, s0.offsetTop - r - 6));
+    return { x: board.offsetLeft + board.offsetWidth / 2, y, r };
   }
   // Big button: each side seat's total centers in the part of the seat the button leaves free. On a
   // player's phone that's the outer side of the seat; on a Center phone the side seats' tops face
@@ -2824,7 +2833,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
   function openSchemes() {
     building = !state.scheme; schFilter = ''; rebuildArm = false;
-    renderSchemes(); sheet.hidden = false; schBody.scrollTop = 0; wake();
+    renderSchemes(); sheet.hidden = false; sheet.scrollTop = schBody.scrollTop = 0; wake();
   }
   function closeSchemes() { sheet.hidden = true; building = false; rebuildArm = false; }
   sheet.addEventListener('click', e => { if (e.target === sheet) closeSchemes(); });
