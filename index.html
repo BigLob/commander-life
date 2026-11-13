@@ -362,6 +362,8 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .board.n3.hub:not(.sfy) .seat .readout { inset: auto; }
 .board.n3.hub:not(.sfy) .seat .name { top: 0; bottom: auto; left: 0; right: 0; margin-inline: auto; text-align: center; max-width: var(--nw, 80px); }
 .board.n3.hub:not(.sfy) .seat .tray { right: var(--tr, 8px); bottom: var(--tb, 8px); }
+/* v1.73: while a change shows, the total slides left by half the change's width so the pair stays centered and the total can be bigger. */
+.board.n3.hub:not(.sfy) .seat.chg .life { left: -.33em; }
 /* Narrow tiles: the name stays centered and clear of the menu button where the four tiles meet. */
 .duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
 .duel .name .why { font-size: calc(.6em * var(--wfit, 1)); letter-spacing: .06em; }
@@ -953,7 +955,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.72';
+  const VERSION = '1.73';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1781,7 +1783,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
           poly = out;
         });
         const rot = upright ? 0 : cls === 's1' ? 90 : cls === 's3' ? -90 : 0;
-        let best = null, bs = 0;
+        let best = null, bs = 0, sym = null;
         const N = 30, xs = Array.from({ length: N + 1 }, (_, i) => 10 + i * (W - 20) / N), ys = Array.from({ length: N + 1 }, (_, i) => 10 + i * (H - 20) / N);
         const inside = (x, y) => fa(x, y, 13) >= 0 && fb(x, y, 13) >= 0;
         const away = (x0, y0, x1, y1, px, py, rr) => Math.hypot(Math.max(x0 - px, 0, px - x1), Math.max(y0 - py, 0, py - y1)) >= rr;
@@ -1805,7 +1807,21 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
             if (x0 < 10 || y0 < 10 || x1 > W - 10 || y1 > H - 10) continue;
             if (!(inside(x0, y0) && inside(x1, y0) && inside(x0, y1) && inside(x1, y1))) continue;
             if (!away(x0, y0, x1, y1, cx, cy, R) || !away(x0, y0, x1, y1, mx, my, mR)) continue;
-            bs = sc; best = { x0, y0, x1, y1 };
+            bs = sc; best = { x0, y0, x1, y1 }; sym = { ccx, ccy, hw, hh };
+          }
+        }
+        // v1.73 (the user: Rand's and Trent's names closer to the middle): the name's room grows toward
+        // the face's top (toward the button on a Center phone) as far as the wedge allows, up to 260 px,
+        // and the name sits at its far end, hard by the button, while the total stays centered.
+        let ext = nameBlock;
+        if (sym) {
+          for (let e = nameBlock + 6; e <= 260; e += 6) {
+            let x0 = sym.ccx - sym.hw, x1 = sym.ccx + sym.hw, y0 = sym.ccy - sym.hh, y1 = sym.ccy + sym.hh;
+            if (rot === 0) { y0 -= e; y1 += trayH; } else if (rot === 90) { x1 += e; x0 -= trayH; } else { x0 -= e; x1 += trayH; }
+            if (x0 < 10 || y0 < 10 || x1 > W - 10 || y1 > H - 10) break;
+            if (!(inside(x0, y0) && inside(x1, y0) && inside(x0, y1) && inside(x1, y1))) break;
+            if (!away(x0, y0, x1, y1, cx, cy, R) || !away(x0, y0, x1, y1, mx, my, mR)) break;
+            ext = e; best = { x0, y0, x1, y1 };
           }
         }
         if (!best) for (let i = 0; i < N; i++) for (let j = i + 1; j <= N; j++) {
@@ -1820,7 +1836,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
             bs = sc; best = { x0, y0, x1, y1 };
           }
         }
-        wheelRes[cls] = { poly, best, bs, rot };
+        wheelRes[cls] = { poly, best, bs, rot, ext: sym ? ext : nameBlock };
       });
     }
     const bx = board.getBoundingClientRect();
@@ -1843,7 +1859,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       seat.style.setProperty('--tr', fw - u1 + 'px');
       seat.style.setProperty('--tb', fh - v1 + 'px');
       const w = u1 - u0, h = v1 - v0;
-      seat._wheel = { w, h, nameBlock, trayH, cap: Math.max(20, Math.min(w / 1.8, h - nameBlock - trayH)) };
+      seat._wheel = { w, h, nameBlock: wr.ext, trayH, cap: Math.max(20, Math.min(w / 1.8, h - wr.ext - trayH)) };
       seat._safe = () => ({ left: bx.left + b.x0, right: bx.left + b.x1, top: bx.top + b.y0, bottom: bx.top + b.y1 });
     });
   }
@@ -1885,10 +1901,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     for (let pass = 0; pass < 5; pass++) {
       let k = 1;
       seats.flat().forEach(seat => {
-        const life = seat.querySelector('.life'), d = seat.querySelector('.delta'), had = d.textContent;
+        const life = seat.querySelector('.life'), d = seat.querySelector('.delta'), had = d.textContent, hadChg = seat.classList.contains('chg');
         if (!had) d.textContent = '−88'; // widest digits: Beleren's 1 is narrower than its 8
+        seat.classList.add('chg'); // measured as it is while a change shows (the wheel shifts the total left)
         const S0 = seat._safe ? seat._safe() : seat.getBoundingClientRect(), L = life.getBoundingClientRect(), D = d.getBoundingClientRect();
         if (!had) d.textContent = had;
+        if (!hadChg) seat.classList.remove('chg');
         if (!L.width) return;
         const m = seat._safe ? 0 : 10;
         // The seat's room, also held inside the screen.
@@ -2190,12 +2208,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const st = deltas[i], els = seats[i].map(s => s.querySelector('.delta'));
     st.sum += d;
     clearTimeout(st.t);
+    seats[i].forEach(seat => seat.classList.add('chg'));
     els.forEach(el => {
       el.textContent = st.sum > 0 ? '+' + st.sum : st.sum < 0 ? '−' + -st.sum : '±0';
       el.classList.add('show');
     });
     // v1.67: 3.2 s (was 1.6), the user's ask.
-    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); st.sum = 0; }, 3200);
+    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); seats[i].forEach(seat => seat.classList.remove('chg')); st.sum = 0; }, 3200);
   }
 
   // ---- changes ----
