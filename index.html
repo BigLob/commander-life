@@ -353,6 +353,15 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* iPad view on a Center phone (v1.62): the right seat's name moves to the bottom, where the right
    corner holds its dagger, so it goes back to the left. */
 .n3.hub:not(.upright) .s3 .name { left: calc(6 * var(--cqw, 1vw)); right: auto; text-align: left; }
+/* iPad at three seats (v1.70, the user's ask): a wheel. The turn button sits at the exact middle, a
+   little smaller, and the three seats are 120-degree wedges round it (clip-path, set by wheel()), so
+   the button covers no one's total. Each face's readout, name and dagger sit in a safe rectangle
+   inside the wedge (--nw, and the readout's own box), found by wheel(). */
+.board.n3.hub:not(.sfy) { position: relative; display: block; }
+.board.n3.hub:not(.sfy) .seat { position: absolute; border-radius: 0; grid-area: auto; }
+.board.n3.hub:not(.sfy) .seat .readout { inset: auto; }
+.board.n3.hub:not(.sfy) .seat .name { top: 0; bottom: auto; left: 0; right: 0; margin-inline: auto; text-align: center; max-width: var(--nw, 80px); }
+.board.n3.hub:not(.sfy) .seat .tray { right: var(--tr, 8px); bottom: var(--tb, 8px); }
 /* Narrow tiles: the name stays centered and clear of the menu button where the four tiles meet. */
 .duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
 .duel .name .why { font-size: calc(.6em * var(--wfit, 1)); letter-spacing: .06em; }
@@ -944,7 +953,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.69';
+  const VERSION = '1.70';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1718,6 +1727,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 
   // Size each seat and its face from the actual layout (see .face in the styles).
   function measure() {
+    wheel();
     seats.flat().forEach(seat => {
       seat.style.setProperty('--sw', seat.clientWidth / 100 + 'px');
       seat.style.setProperty('--sh', seat.clientHeight / 100 + 'px');
@@ -1730,22 +1740,132 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     centerLife();
     keepIn();
     placeTurn();
+    clearTray();
+  }
+
+  // v1.70: the 3-player iPad wheel. Three 120-degree wedges round the board's middle (rays at 90, 210
+  // and 330 degrees, 3 px off each so a thin gap shows), each seat the wedge's bounding box clipped to
+  // it. In each wedge the biggest rectangle that clears the button, the menu button and the screen's
+  // edge (10 px) is searched for, scored by the total it could hold (two digits and the change wide,
+  // name above, dagger below), and the face's readout, name and dagger go in it. Results are cached
+  // per size, so the search runs once.
+  let wheelKey = '', wheelRes = null;
+  function wheel() {
+    const board = app.querySelector('.board.n3.hub:not(.sfy)');
+    seats.flat().forEach(seat => { seat._wheel = null; seat._safe = null; });
+    if (!board) { wheelKey = ''; return; }
+    const W = board.clientWidth, H = board.clientHeight, cx = W / 2, cy = H / 2;
+    const r = Math.round(.175 * Math.min(W, H)), R = r + 14, upright = board.classList.contains('upright');
+    const mR = 46, mx = cx, my = 10 + 36; // the menu button at the top middle, with room round it
+    const rad = d => d * Math.PI / 180, cr = (u, v) => u[0] * v[1] - u[1] * v[0];
+    const wedges = { s0: [210, 330], s1: [90, 210], s3: [330, 450] };
+    const any = seats.flat().find(x => x.querySelector('.name'));
+    const nameH = any ? any.querySelector('.name').offsetHeight || 34 : 34;
+    const nameBlock = nameH + 10, trayH = 50;
+    const key = [W, H, upright, nameH].join();
+    if (key !== wheelKey) {
+      wheelKey = key; wheelRes = {};
+      Object.entries(wedges).forEach(([cls, [a, b]]) => {
+        const da = [Math.cos(rad(a)), Math.sin(rad(a))], db = [Math.cos(rad(b)), Math.sin(rad(b))];
+        // f > 0 inside; g off the ray. Screen y is down, so a point's math y is -y.
+        const fa = (x, y, g) => cr(da, [x - cx, -(y - cy)]) - g, fb = (x, y, g) => cr([x - cx, -(y - cy)], db) - g;
+        // Polygon: the board's rectangle clipped by both half-planes (Sutherland-Hodgman).
+        let poly = [[0, 0], [W, 0], [W, H], [0, H]];
+        [fa, fb].forEach(f => {
+          const out = [];
+          poly.forEach((p, i) => {
+            const q = poly[(i + 1) % poly.length], fp = f(p[0], p[1], 3), fq = f(q[0], q[1], 3);
+            if (fp >= 0) out.push(p);
+            if ((fp >= 0) !== (fq >= 0)) { const t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+          });
+          poly = out;
+        });
+        const rot = upright ? 0 : cls === 's1' ? 90 : cls === 's3' ? -90 : 0;
+        let best = null, bs = 0;
+        const N = 30, xs = Array.from({ length: N + 1 }, (_, i) => 10 + i * (W - 20) / N), ys = Array.from({ length: N + 1 }, (_, i) => 10 + i * (H - 20) / N);
+        const inside = (x, y) => fa(x, y, 13) >= 0 && fb(x, y, 13) >= 0;
+        const away = (x0, y0, x1, y1, px, py, rr) => Math.hypot(Math.max(x0 - px, 0, px - x1), Math.max(y0 - py, 0, py - y1)) >= rr;
+        for (let i = 0; i < N; i++) for (let j = i + 1; j <= N; j++) {
+          const x0 = xs[i], x1 = xs[j], w = x1 - x0;
+          for (let k = 0; k < N; k++) for (let l = k + 1; l <= N; l++) {
+            const y0 = ys[k], y1 = ys[l], h = y1 - y0;
+            const fw = rot ? h : w, fh = rot ? w : h;
+            const sc = Math.min(fw / 1.8, fh - nameBlock - trayH);
+            if (sc <= bs) continue;
+            if (!(inside(x0, y0) && inside(x1, y0) && inside(x0, y1) && inside(x1, y1))) continue;
+            if (!away(x0, y0, x1, y1, cx, cy, R) || !away(x0, y0, x1, y1, mx, my, mR)) continue;
+            bs = sc; best = { x0, y0, x1, y1 };
+          }
+        }
+        wheelRes[cls] = { poly, best, bs, rot };
+      });
+    }
+    const bx = board.getBoundingClientRect();
+    seats.flat().forEach(seat => {
+      const cls = ['s0', 's1', 's3'].find(c => seat.classList.contains(c)), wr = cls && wheelRes[cls];
+      if (!wr || !wr.best) return;
+      const xs = wr.poly.map(p => p[0]), ys = wr.poly.map(p => p[1]);
+      const L = Math.floor(Math.min(...xs)), T = Math.floor(Math.min(...ys)), Rr = Math.ceil(Math.max(...xs)), B = Math.ceil(Math.max(...ys));
+      const bw = Rr - L, bh = B - T, clip = 'polygon(' + wr.poly.map(p => (p[0] - L).toFixed(1) + 'px ' + (p[1] - T).toFixed(1) + 'px').join(',') + ')';
+      Object.assign(seat.style, { left: L + 'px', top: T + 'px', width: bw + 'px', height: bh + 'px', clipPath: clip, webkitClipPath: clip });
+      // The safe rectangle in this seat's face frame (the face is turned by rot about the seat's middle).
+      const b = wr.best, rot = wr.rot, fw = rot ? bh : bw, fh = rot ? bw : bh, mxs = L + bw / 2, mys = T + bh / 2;
+      const conv = (x, y) => { const dx = x - mxs, dy = y - mys; return rot === 90 ? [dy, -dx] : rot === -90 ? [-dy, dx] : [dx, dy]; };
+      const c1 = conv(b.x0, b.y0), c2 = conv(b.x1, b.y1);
+      const u0 = fw / 2 + Math.min(c1[0], c2[0]), u1 = fw / 2 + Math.max(c1[0], c2[0]);
+      const v0 = fh / 2 + Math.min(c1[1], c2[1]), v1 = fh / 2 + Math.max(c1[1], c2[1]);
+      const ro = seat.querySelector('.readout'), tray = seat.querySelector('.tray');
+      Object.assign(ro.style, { left: u0 + 'px', top: v0 + 'px', width: u1 - u0 + 'px', height: v1 - v0 + 'px' });
+      seat.style.setProperty('--nw', u1 - u0 + 'px');
+      seat.style.setProperty('--tr', fw - u1 + 'px');
+      seat.style.setProperty('--tb', fh - v1 + 'px');
+      const w = u1 - u0, h = v1 - v0;
+      seat._wheel = { w, h, nameBlock, trayH, cap: Math.max(20, Math.min(w / 1.8, h - nameBlock - trayH)) };
+      seat._safe = () => ({ left: bx.left + b.x0, right: bx.left + b.x1, top: bx.top + b.y0, bottom: bx.top + b.y1 });
+    });
+  }
+  // v1.70 (the user: "some of the knife icons are hidden by button on multiple views"): after the
+  // buttons are placed, any seat's dagger that touches the turn or menu button is nudged straight
+  // away from it, in the seat's own turned frame.
+  function clearTray() {
+    const btns = Array.from(app.querySelectorAll('.turn-big, .menu-btn')).filter(b => b.offsetWidth && !b.closest('.sfy-bar'));
+    app.querySelectorAll('.seat .tray').forEach(t => { t.style.transform = ''; });
+    app.querySelectorAll('.seat .tray').forEach(t => {
+      const face = t.closest('.face'), rot = parseFloat(getComputedStyle(face).getPropertyValue('--rot')) || 0, a = rot * Math.PI / 180;
+      let tx = 0, ty = 0;
+      for (let pass = 0; pass < 3; pass++) {
+        const cb = t.querySelector('.cmd-btn').getBoundingClientRect();
+        let moved = false;
+        btns.forEach(b => {
+          const B = b.getBoundingClientRect(), bcx = (B.left + B.right) / 2, bcy = (B.top + B.bottom) / 2, br = Math.max(B.width, B.height) / 2 + 6;
+          const px = Math.max(cb.left, Math.min(bcx, cb.right)), py = Math.max(cb.top, Math.min(bcy, cb.bottom));
+          const d = Math.hypot(px - bcx, py - bcy);
+          if (d >= br) return;
+          let ux = (cb.left + cb.right) / 2 - bcx, uy = (cb.top + cb.bottom) / 2 - bcy, n = Math.hypot(ux, uy) || 1;
+          ux /= n; uy /= n;
+          const push = br - d + 2, sx = ux * push, sy = uy * push;
+          tx += sx * Math.cos(a) + sy * Math.sin(a); ty += -sx * Math.sin(a) + sy * Math.cos(a); moved = true;
+          t.style.transform = `translate(${tx}px, ${ty}px)`;
+        });
+        if (!moved) break;
+      }
+    });
   }
   // The 3-player iPad view (v1.67): after layout, each total and its change ("−10" while measuring)
   // must sit at least 10 px inside its seat; if any pair would spill over (the user saw them cut off
   // on the iPad, whose Safari draws the digits differently), every total shrinks until all fit.
   // Screen rects, so this also holds on a pinned (turned) board.
   function keepIn() {
-    if (!app.querySelector('.board.n3.hub')) return;
+    if (!app.querySelector('.board')) return;
     for (let pass = 0; pass < 3; pass++) {
       let k = 1;
       seats.flat().forEach(seat => {
         const life = seat.querySelector('.life'), d = seat.querySelector('.delta'), had = d.textContent;
         if (!had) d.textContent = '−10';
-        const S = seat.getBoundingClientRect(), L = life.getBoundingClientRect(), D = d.getBoundingClientRect();
+        const S = seat._safe ? seat._safe() : seat.getBoundingClientRect(), L = life.getBoundingClientRect(), D = d.getBoundingClientRect();
         if (!had) d.textContent = had;
         const l = Math.min(L.left, D.left), r = Math.max(L.right, D.right), t = Math.min(L.top, D.top), b = Math.max(L.bottom, D.bottom);
-        const cx = (l + r) / 2, cy = (t + b) / 2, m = 10;
+        const cx = (l + r) / 2, cy = (t + b) / 2, m = seat._safe ? 0 : 10;
         k = Math.min(k, (Math.min(cx - S.left, S.right - cx) - m) / ((r - l) / 2), (Math.min(cy - S.top, S.bottom - cy) - m) / ((b - t) / 2));
       });
       if (!(k < 1)) return;
@@ -1763,7 +1883,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (!s1) return null;
     // 21% of the short side (v1.64 tried 25% at three seats; v1.65 went back, the user found it too big).
     const n3 = board.matches('.n3');
-    const r = Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
+    // v1.70: three seats make a wheel, so the button is a little smaller (17.5%) and never bounded by a seat's height.
+    const r = n3 ? Math.round(.175 * Math.min(board.offsetWidth, board.offsetHeight)) : Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
     let y = s1.offsetTop + s1.offsetHeight / 2;
     // Three seats (v1.63, the user: "off center"): the middle of the screen, not of the side seats.
     // v1.66: exactly the middle, even where it reaches into the bottom seat (landscape).
@@ -1787,6 +1908,10 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // name moves to the bottom). Null for any other seat.
   function hubFree(seat) {
     const hub = hubGeom();
+    if (hub && seat._wheel) {
+      const wl = seat._wheel;
+      return { pad: { Top: wl.nameBlock, Bottom: wl.trayH, Right: 'calc(.45 * var(--life, 0px))' }, w: wl.w, h: wl.h, cap: wl.cap };
+    }
     const side = !hub ? null : seat.classList.contains('s1') ? 'Right' : seat.classList.contains('s3') ? 'Left' : null;
     if (!side) return null;
     const face = seat.querySelector('.face'), name = seat.querySelector('.name');
