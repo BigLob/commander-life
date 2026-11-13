@@ -944,7 +944,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.64';
+  const VERSION = '1.65';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1738,14 +1738,14 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // With the Spotify bar in the middle, Big button is Table with the bar there (the turn button sits in it).
     const board = app.querySelector('.board.hub:not(.sfy)'), s1 = board && board.querySelector('.s1');
     if (!s1) return null;
-    // v1.64: a quarter of the short side at three seats (the user: bigger), 21% at four.
+    // 21% of the short side (v1.64 tried 25% at three seats; v1.65 went back, the user found it too big).
     const n3 = board.matches('.n3');
-    const r = Math.round(Math.min((n3 ? .25 : .21) * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
+    const r = Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
     let y = s1.offsetTop + s1.offsetHeight / 2;
     // Three seats (v1.63, the user: "off center"): the middle of the screen, not of the side seats,
     // as long as the button stays clear of the bottom seat.
     const s0 = n3 && board.querySelector('.s0');
-    if (s0) y = Math.max(y, Math.min(board.offsetTop + board.offsetHeight / 2, s0.offsetTop - r - 6));
+    if (s0) y = Math.max(y, Math.min(board.offsetTop + board.offsetHeight / 2, s0.offsetTop - r - 14));
     return { x: board.offsetLeft + board.offsetWidth / 2, y, r };
   }
   // Big button: each side seat's total centers in the part of the seat the button leaves free. On a
