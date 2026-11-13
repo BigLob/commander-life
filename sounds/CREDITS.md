@@ -721,3 +721,55 @@ Microsoft's and The Coalition's, not CC0. From myinstants.com uploads, loudness-
 | `gow-leviathan` | It's a goddamn Leviathan! | [myinstants](https://www.myinstants.com/en/instant/goddamn-leviathan/) |
 | `gow-cog-tag`, `gow-boomer`, `gow-reload` | (effects) | myinstants: Gears of war cog tag, Gears of war Boomer, Reload Gears |
 | `long/gow-theme`, `long/gow-locust-theme` | (music) | myinstants: XboxGears, Locust Theme - Doctor Nowhere |
+
+## Book of Mormon readings (v1.68)
+
+40 full verses, 10 seconds at most, read by real people: volunteer readers of LibriVox's recording of the Book of
+Mormon (https://archive.org/details/bookofmormon_1401_librivox, https://librivox.org/book-of-mormon-by-joseph-smith-jr/,
+public domain). 13 different readers: Andrew White, Kalynda, mevans, Jacob Paul Starr, Tony Russell, hgal2010,
+kjpeterson, David Stephenson, Kevin W. Davidson, Sarah LuAnn, Nicholas James Bridgewater, Liberty Stump and Jared Hess.
+Each verse was found by transcribing the section with faster-whisper and matching the text from Project Gutenberg's
+Book of Mormon (ebook 17), then cut, loudness-matched to -16 LUFS and saved as mono 64 kbps MP3.
+
+| File | Reader | Verse | Length |
+| --- | --- | --- | --- |
+| `bom-1-nephi-11-17` | Kalynda | 1 Nephi 11:17 | 6.3 s |
+| `bom-1-nephi-11-33` | Kalynda | 1 Nephi 11:33 | 6.0 s |
+| `bom-1-nephi-13-36` | Kalynda | 1 Nephi 13:36 | 4.5 s |
+| `bom-1-nephi-14-6` | mevans | 1 Nephi 14:6 | 6.5 s |
+| `bom-1-nephi-15-8` | mevans | 1 Nephi 15:8 | 3.7 s |
+| `bom-1-nephi-16-4` | mevans | 1 Nephi 16:4 | 7.6 s |
+| `bom-1-nephi-17-36` | Jacob Paul Starr | 1 Nephi 17:36 | 6.7 s |
+| `bom-1-nephi-17-39` | Jacob Paul Starr | 1 Nephi 17:39 | 5.5 s |
+| `bom-1-nephi-18-3` | Jacob Paul Starr | 1 Nephi 18:3 | 7.9 s |
+| `bom-2-nephi-2-24` | Tony Russell | 2 Nephi 2:24 | 5.7 s |
+| `bom-2-nephi-2-25` | Tony Russell | 2 Nephi 2:25 | 6.4 s |
+| `bom-2-nephi-2-6` | Tony Russell | 2 Nephi 2:6 | 8.3 s |
+| `bom-2-nephi-28-24` | hgal2010 | 2 Nephi 28:24 | 4.2 s |
+| `bom-2-nephi-28-7` | hgal2010 | 2 Nephi 28:7 | 8.8 s |
+| `bom-2-nephi-33-6` | hgal2010 | 2 Nephi 33:6 | 8.8 s |
+| `bom-alma-11-27` | Kevin W. Davidson | Alma 11:27 | 4.0 s |
+| `bom-alma-12-29` | Kevin W. Davidson | Alma 12:29 | 6.7 s |
+| `bom-alma-12-35` | Kevin W. Davidson | Alma 12:35 | 9.2 s |
+| `bom-alma-39-14` | Jared Hess | Alma 39:14 | 6.6 s |
+| `bom-alma-40-25` | Jared Hess | Alma 40:25 | 3.8 s |
+| `bom-alma-41-8` | Jared Hess | Alma 41:8 | 7.8 s |
+| `bom-alma-42-25` | Sarah LuAnn | Alma 42:25 | 8.4 s |
+| `bom-alma-42-8` | Sarah LuAnn | Alma 42:8 | 6.7 s |
+| `bom-alma-5-20` | David Stephenson | Alma 5:20 | 7.5 s |
+| `bom-alma-5-40` | David Stephenson | Alma 5:40 | 7.0 s |
+| `bom-alma-5-55` | David Stephenson | Alma 5:55 | 9.2 s |
+| `bom-alma-7-24` | David Stephenson | Alma 7:24 | 5.9 s |
+| `bom-ether-3-11` | Liberty Stump | Ether 3:11 | 4.3 s |
+| `bom-ether-3-12` | Liberty Stump | Ether 3:12 | 6.3 s |
+| `bom-ether-3-5` | Liberty Stump | Ether 3:5 | 7.0 s |
+| `bom-ether-4-13` | Liberty Stump | Ether 4:13 | 6.6 s |
+| `bom-mormon-5-17` | Nicholas James Bridgewater | Mormon 5:17 | 9.2 s |
+| `bom-mormon-6-20` | Nicholas James Bridgewater | Mormon 6:20 | 6.8 s |
+| `bom-mormon-7-3` | Nicholas James Bridgewater | Mormon 7:3 | 7.2 s |
+| `bom-mormon-8-22` | Nicholas James Bridgewater | Mormon 8:22 | 8.8 s |
+| `bom-mosiah-1-12` | Andrew White | Mosiah 1:12 | 6.4 s |
+| `bom-mosiah-3-6` | Andrew White | Mosiah 3:6 | 6.5 s |
+| `bom-mosiah-4-13` | kjpeterson | Mosiah 4:13 | 7.6 s |
+| `bom-mosiah-4-15` | kjpeterson | Mosiah 4:15 | 7.4 s |
+| `bom-mosiah-7-32` | kjpeterson | Mosiah 7:32 | 5.2 s |
