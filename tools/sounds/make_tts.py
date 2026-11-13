@@ -13,6 +13,7 @@ import soundfile as sf
 from kokoro_onnx import Kokoro
 
 ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
+SPEED = float(os.environ.get('TTS_SPEED', '0.82'))  # v1.71: slower, the user found 1.0 hard to understand
 VOICES = ['af_heart', 'af_bella']
 # Spellings Kokoro says right (it read mana as "Mona"); the words shown in the app stay as written.
 SAY = {'mana': 'manna', 'Mana': 'Manna'}
@@ -27,7 +28,7 @@ for i, c in enumerate(sorted(clips, key=lambda c: c['f'])):
     text = c['quote']
     for a, b in SAY.items():
         text = text.replace(a, b)
-    audio, sr = k.create(text, voice=voice, speed=1.0, lang='en-us')
+    audio, sr = k.create(text, voice=voice, speed=SPEED, lang='en-us')
     with tempfile.NamedTemporaryFile(suffix='.wav') as w:
         sf.write(w.name, audio, sr)
         trim = 'silenceremove=start_periods=1:start_threshold=-50dB'
