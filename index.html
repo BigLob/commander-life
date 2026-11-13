@@ -124,6 +124,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 .hub:not(.upright) .s1 .name, .hub:not(.upright) .s3 .name { top: auto; bottom: calc(7 * var(--cqh, 1vh)); }
 .hub ~ .turn-big { border-width: 5px; box-shadow: 0 0 0 3px var(--line), 0 0 44px rgba(255, 179, 71, .6), 0 8px 20px rgba(0, 0, 0, .55); }
 .hub + .menu-btn { transform: none; z-index: 11; }
+/* iPad at three seats (v1.64): a bigger menu button, at the top middle (placeTurn()). */
+.n3.hub + .menu-btn { width: 72px; height: 72px; border-width: 3px; transform: none; }
+.n3.hub + .menu-btn img { height: 44px; }
 /* Spotlight (v3.35, the default at 3 and 4 players): whoever has the turn takes the bottom half
    (v3.36; it was the top), the others share the top in turn order after them. Everyone faces this
    phone's player. */
@@ -941,7 +944,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.63';
+  const VERSION = '1.64';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1735,11 +1738,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // With the Spotify bar in the middle, Big button is Table with the bar there (the turn button sits in it).
     const board = app.querySelector('.board.hub:not(.sfy)'), s1 = board && board.querySelector('.s1');
     if (!s1) return null;
-    const r = Math.round(Math.min(.21 * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
+    // v1.64: a quarter of the short side at three seats (the user: bigger), 21% at four.
+    const n3 = board.matches('.n3');
+    const r = Math.round(Math.min((n3 ? .25 : .21) * Math.min(innerWidth, innerHeight), .4 * s1.offsetHeight));
     let y = s1.offsetTop + s1.offsetHeight / 2;
     // Three seats (v1.63, the user: "off center"): the middle of the screen, not of the side seats,
     // as long as the button stays clear of the bottom seat.
-    const s0 = board.matches('.n3') && board.querySelector('.s0');
+    const s0 = n3 && board.querySelector('.s0');
     if (s0) y = Math.max(y, Math.min(board.offsetTop + board.offsetHeight / 2, s0.offsetTop - r - 6));
     return { x: board.offsetLeft + board.offsetWidth / 2, y, r };
   }
@@ -1752,8 +1757,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       if (!free) return;
       const readout = seat.querySelector('.readout');
       readout.style.padding = '';
-      readout.style['padding' + free.side] = free.cut + 'px';
-      if (free.side === 'Top') readout.style.paddingBottom = free.name + 'px';
+      Object.entries(free.pad).forEach(([side, px]) => { readout.style['padding' + side] = px + 'px'; });
     });
   }
   // The room a Big button side seat has for its total, in its face's own (unturned) layout: the
@@ -1766,8 +1770,19 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const face = seat.querySelector('.face'), name = seat.querySelector('.name');
     const cut = hub.r + 8 - 3; // half the 6px gap between the seats is free
     const nm = .07 * face.offsetHeight + name.offsetHeight + 6;
-    if (app.querySelector('.board.upright')) return { side, cut, w: face.offsetWidth - cut - 12, h: face.offsetHeight - 2 * nm };
-    return { side: 'Top', cut, name: nm, w: .9 * face.offsetWidth, h: face.offsetHeight - cut - nm };
+    const upright = !!app.querySelector('.board.upright');
+    const beside = upright ? { pad: { [side]: cut }, w: face.offsetWidth - cut - 12, h: face.offsetHeight - 2 * nm }
+      : { pad: { Top: cut, Bottom: nm }, w: .9 * face.offsetWidth, h: face.offsetHeight - cut - nm };
+    // Three seats (v1.64): the button sits low in the side seats, so the part above it may hold a
+    // bigger total than the strip beside it; whichever fits the bigger total wins. On a Center
+    // phone the screen's bottom is the left seat's right side (its top faces the middle) and the
+    // right seat's left side.
+    if (!seat.closest('.n3')) return beside;
+    const below = Math.max(0, seat.offsetTop + seat.offsetHeight - (hub.y - hub.r - 8));
+    const above = upright ? { pad: { Top: nm, Bottom: below }, w: face.offsetWidth - 12, h: face.offsetHeight - below - nm }
+      : { pad: { [side === 'Right' ? 'Right' : 'Left']: below, Bottom: nm }, w: face.offsetWidth - below - 12, h: face.offsetHeight - 2 * nm };
+    const size = f => Math.min(f.w / 1.32, f.h);
+    return size(above) > size(beside) ? above : beside;
   }
   function placeTurn() {
     const board = app.querySelector('.board'), btns = app.querySelectorAll('.turn-big, .menu-btn');
@@ -1778,6 +1793,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn'), off = .72 * hub.r;
       Object.assign(tb.style, { left: hub.x + 'px', top: hub.y + 'px', width: 2 * hub.r + 'px', height: 2 * hub.r + 'px' });
       Object.assign(mb.style, { left: hub.x + off - 23 + 'px', top: hub.y + off - 23 + 'px' });
+      // Three seats (v1.64, the user's ask): the menu button at the top middle, on the side seats' seam.
+      const board = app.querySelector('.board');
+      if (board.matches('.n3')) Object.assign(mb.style, { left: hub.x - mb.offsetWidth / 2 + 'px', top: board.offsetTop + 10 + 'px' });
       menuAtTop(mb);
       return;
     }
