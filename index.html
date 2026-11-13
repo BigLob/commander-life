@@ -944,7 +944,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.66';
+  const VERSION = '1.67';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1728,7 +1728,30 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     fitLife();
     fitNames();
     centerLife();
+    keepIn();
     placeTurn();
+  }
+  // The 3-player iPad view (v1.67): after layout, each total and its change ("−10" while measuring)
+  // must sit at least 10 px inside its seat; if any pair would spill over (the user saw them cut off
+  // on the iPad, whose Safari draws the digits differently), every total shrinks until all fit.
+  // Screen rects, so this also holds on a pinned (turned) board.
+  function keepIn() {
+    if (!app.querySelector('.board.n3.hub')) return;
+    for (let pass = 0; pass < 3; pass++) {
+      let k = 1;
+      seats.flat().forEach(seat => {
+        const life = seat.querySelector('.life'), d = seat.querySelector('.delta'), had = d.textContent;
+        if (!had) d.textContent = '−10';
+        const S = seat.getBoundingClientRect(), L = life.getBoundingClientRect(), D = d.getBoundingClientRect();
+        if (!had) d.textContent = had;
+        const l = Math.min(L.left, D.left), r = Math.max(L.right, D.right), t = Math.min(L.top, D.top), b = Math.max(L.bottom, D.bottom);
+        const cx = (l + r) / 2, cy = (t + b) / 2, m = 10;
+        k = Math.min(k, (Math.min(cx - S.left, S.right - cx) - m) / ((r - l) / 2), (Math.min(cy - S.top, S.bottom - cy) - m) / ((b - t) / 2));
+      });
+      if (!(k < 1)) return;
+      seats.flat().forEach(seat => seat.style.setProperty('--life', parseFloat(seat.style.getPropertyValue('--life')) * k * .98 + 'px'));
+      centerLife();
+    }
   }
   // Four seats around the edges (Table) have the side seats' totals in the middle of the phone, so
   // there the turn and menu buttons sit on the line above the bottom seat instead.
@@ -1756,7 +1779,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       if (!free) return;
       const readout = seat.querySelector('.readout');
       readout.style.padding = '';
-      Object.entries(free.pad).forEach(([side, px]) => { readout.style['padding' + side] = px + 'px'; });
+      Object.entries(free.pad).forEach(([side, px]) => { readout.style['padding' + side] = typeof px === 'number' ? px + 'px' : px; });
     });
   }
   // The room a Big button side seat has for its total, in its face's own (unturned) layout: the
@@ -1780,8 +1803,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const below = Math.max(0, seat.offsetTop + seat.offsetHeight - (hub.y - hub.r - 8));
     const above = upright ? { pad: { Top: nm, Bottom: below }, w: face.offsetWidth - 12, h: face.offsetHeight - below - nm }
       : { pad: { [side === 'Right' ? 'Right' : 'Left']: below, Bottom: nm }, w: face.offsetWidth - below - 12, h: face.offsetHeight - 2 * nm };
-    const size = f => Math.min(f.w / 1.32, f.h);
-    return size(above) > size(beside) ? above : beside;
+    // v1.67: room for the change (the small "−4" to the right of a total) too, which the user saw
+    // cut off at the seat's edge on the iPad. Two digits and the change take about 1.65em, so the
+    // cap leaves a margin; the total moves left by the change's width (0.45 of the total's size,
+    // --life, set by fitLife()) so the pair sits centered.
+    const size = f => Math.min(f.w / 1.8, f.h);
+    const best = size(above) > size(beside) ? above : beside;
+    return { ...best, cap: size(best), pad: { ...best.pad, Right: `calc(${best.pad.Right || 0}px + .45 * var(--life, 0px))` } };
   }
   function placeTurn() {
     const board = app.querySelector('.board'), btns = app.querySelectorAll('.turn-big, .menu-btn');
@@ -1901,7 +1929,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     groupBy(Array.from(board.querySelectorAll('.seat'))).forEach(group => {
       // Big button side seats also cap it to the room the button leaves them (three digits at
       // 0.75 size are about 1.32em wide).
-      const caps = group.map(hubFree).filter(Boolean).map(f => Math.min(f.w / 1.32, f.h));
+      const caps = group.map(hubFree).filter(Boolean).map(f => f.cap || Math.min(f.w / 1.32, f.h));
       // The seat with the Spotify dock gives its bottom to the dock.
       group.filter(seat => seat.querySelector('.sfy-dock')).forEach(seat => {
         const name = seat.querySelector('.name');
@@ -2009,7 +2037,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       el.textContent = st.sum > 0 ? '+' + st.sum : st.sum < 0 ? '−' + -st.sum : '±0';
       el.classList.add('show');
     });
-    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); st.sum = 0; }, 1600);
+    // v1.67: 3.2 s (was 1.6), the user's ask.
+    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); st.sum = 0; }, 3200);
   }
 
   // ---- changes ----
