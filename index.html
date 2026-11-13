@@ -113,8 +113,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
    up to the middle (v1.22 left an empty cell round the button), so all of it is tap area; their
    totals are moved clear of the button (hubLife()). */
 .board.n4.hub { grid-template-rows: 1fr 1.4fr 1fr; }
-/* iPad at 3 players (v1.61): the side seats tall, the button where they meet. */
-.board.n3.hub:not(.sfy) { grid-template-rows: 1.4fr 1fr; }
+/* iPad at 3 players (v1.61): the side seats tall, the button where they meet. v1.62: true thirds
+   (the user's ask): the side seats take two thirds of the height, so each seat is a third of the screen. */
+.board.n3.hub:not(.sfy) { grid-template-rows: 2fr 1fr; }
 /* On a Center phone the side seats' tops face the middle, under the button, so their names go to
    the bottom, by their player's own edge. */
 .hub:not(.upright) .s1 .name, .hub:not(.upright) .s3 .name { top: auto; bottom: calc(7 * var(--cqh, 1vh)); }
@@ -343,6 +344,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* Bigger names still have to fit a narrow seat (see fitNames()). */
 .name { max-width: calc(88 * var(--cqw, 1vw)); white-space: nowrap; overflow: hidden; }
 .n3 .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
+/* iPad view on a Center phone (v1.62): the right seat's name moves to the bottom, where the right
+   corner holds its dagger, so it goes back to the left. */
+.n3.hub:not(.upright) .s3 .name { left: calc(6 * var(--cqw, 1vw)); right: auto; text-align: left; }
 /* Narrow tiles: the name stays centered and clear of the menu button where the four tiles meet. */
 .duel .name { margin-inline: auto; max-width: calc(76 * var(--cqw, 1vw)); }
 .duel .name .why { font-size: calc(.6em * var(--wfit, 1)); letter-spacing: .06em; }
@@ -933,7 +937,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.61';
+  const VERSION = '1.62';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1296,7 +1300,11 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // A player's own 1v1 sits like a two-player table: them at the bottom, their opponent across.
     if (state.mode === SPLIT) return state.me === CENTER ? flipSide(edgeOf(i)) : edgeOf(i) === state.me ? 0 : 2;
     const edges = EDGES[state.mode], n = edges.length;
-    const k = Math.max(0, PEOPLE[state.mode].indexOf(state.me));
+    // The iPad view at three players on a Center iPad (v1.62): its bottom faces whoever sits across
+    // from the empty chair, and the two beside them take the sides, as at the real table. With
+    // Andrew out: Lenn south, Trent left, Rand right (the user's ask).
+    const me = state.mode === 3 && state.me === CENTER && state.ipad ? (state.sitout + 2) % 4 : state.me;
+    const k = Math.max(0, PEOPLE[state.mode].indexOf(me));
     return flipSide(edges[(i - k + n) % n]);
   }
 
