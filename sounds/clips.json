@@ -1290,6 +1290,116 @@
 "kind": "sound"
 },
 {
+"f": "cope-alleluia",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"Alleluia\" (Greater Than Us All)",
+"url": "https://music.apple.com/us/album/alleluia/1570495548?i=1570495551&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 6.1,
+"kind": "sound",
+"note": "Sung: \"Alleluia, alleluia\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-come-to-jesus",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"Come to Jesus\" (Face to Face - Kenneth Cope Collection)",
+"url": "https://music.apple.com/us/album/come-to-jesus/1569822230?i=1569822233&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 7.6,
+"kind": "sound",
+"note": "Sung: \"So sing to Jesus, sing to Jesus\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-eden-s-garden",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"Eden's Garden\" (LDS Superhits of the '90s)",
+"url": "https://music.apple.com/us/album/edens-garden/307193169?i=307193180&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 4.0,
+"kind": "sound",
+"note": "Sung: \"We named her Eden\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-gethsemane",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"Gethsemane\" (Shepherd of My Soul)",
+"url": "https://music.apple.com/us/album/gethsemane/940806444?i=940806472&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 8.2,
+"kind": "sound",
+"note": "Sung: \"My poor Jesus, I'm so sorry\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-his-hands",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"His Hands\" (Greater Than Us All)",
+"url": "https://music.apple.com/us/album/his-hands/1570495548?i=1570495557&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 6.6,
+"kind": "sound",
+"note": "Sung: \"His hands, tools of creation\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-i-will-not-be-still",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"I Will Not Be Still\" (EFY 1999 - A Season for Courage)",
+"url": "https://music.apple.com/us/album/i-will-not-be-still/305695808?i=305695838&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 7.5,
+"kind": "sound",
+"note": "Sung: \"He says if I'll make the choice, he'll help me find my voice\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-never-a-better-hero",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"Never a Better Hero\" (Greater Than Us All)",
+"url": "https://music.apple.com/us/album/never-a-better-hero/1570495548?i=1570495558&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 6.0,
+"kind": "sound",
+"note": "Sung: \"Bringing hope to their hearts, giving man a new start\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-the-carpenter-s-son",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"The Carpenter's Son\" (EFY: The Best of Especially for Youth, Vol. 2)",
+"url": "https://music.apple.com/us/album/the-carpenters-son/305635220?i=305635239&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 5.6,
+"kind": "sound",
+"note": "Sung: \"That's why they called him the carpenter's son\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-we-believe",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"We Believe\" (EFY 2002 - We Believe)",
+"url": "https://music.apple.com/us/album/we-believe/305633359?i=305633419&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 6.7,
+"kind": "sound",
+"note": "Sung: \"We believe in one name under heaven\"",
+"lic": "Copyrighted preview clip"
+},
+{
+"f": "cope-what-have-i-done-with-his-name",
+"src": "Apple iTunes 30-second preview: Kenneth Cope, \"What Have I Done With His Name?\" (EFY: The Best of Especially for Youth, Vol. 2)",
+"url": "https://music.apple.com/us/album/what-have-i-done-with-his-name/305635220?i=305635235&uo=4",
+"grp": "Kenneth Cope",
+"pool": "long",
+"d": 5.3,
+"kind": "sound",
+"note": "Sung: \"What have I done with his name?\"",
+"lic": "Copyrighted preview clip"
+},
+{
 "f": "cough",
 "pool": "long",
 "d": 5.0,

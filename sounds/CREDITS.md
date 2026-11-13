@@ -773,3 +773,22 @@ Book of Mormon (ebook 17), then cut, loudness-matched to -16 LUFS and saved as m
 | `bom-mosiah-4-13` | kjpeterson | Mosiah 4:13 | 7.6 s |
 | `bom-mosiah-4-15` | kjpeterson | Mosiah 4:15 | 7.4 s |
 | `bom-mosiah-7-32` | kjpeterson | Mosiah 7:32 | 5.2 s |
+
+## Kenneth Cope (v1.69)
+
+10 licks from Kenneth Cope's best-known LDS songs, cut from Apple's free 30-second iTunes previews
+(itunes.apple.com/search API, reachable from the sandbox), loudness-matched to -16 LUFS. Copyrighted, not CC0.
+No "Mormon Anthems" album turned up, so these are his popular songs by album.
+
+| File | Song | Lyric | Length |
+| --- | --- | --- | --- |
+| `cope-alleluia` | Kenneth Cope, "Alleluia" (Greater Than Us All) | Sung: "Alleluia, alleluia" | 6.1 s |
+| `cope-come-to-jesus` | Kenneth Cope, "Come to Jesus" (Face to Face - Kenneth Cope Collection) | Sung: "So sing to Jesus, sing to Jesus" | 7.6 s |
+| `cope-eden-s-garden` | Kenneth Cope, "Eden's Garden" (LDS Superhits of the '90s) | Sung: "We named her Eden" | 4.0 s |
+| `cope-gethsemane` | Kenneth Cope, "Gethsemane" (Shepherd of My Soul) | Sung: "My poor Jesus, I'm so sorry" | 8.2 s |
+| `cope-his-hands` | Kenneth Cope, "His Hands" (Greater Than Us All) | Sung: "His hands, tools of creation" | 6.6 s |
+| `cope-i-will-not-be-still` | Kenneth Cope, "I Will Not Be Still" (EFY 1999 - A Season for Courage) | Sung: "He says if I'll make the choice, he'll help me find my voice" | 7.5 s |
+| `cope-never-a-better-hero` | Kenneth Cope, "Never a Better Hero" (Greater Than Us All) | Sung: "Bringing hope to their hearts, giving man a new start" | 6.0 s |
+| `cope-the-carpenter-s-son` | Kenneth Cope, "The Carpenter's Son" (EFY: The Best of Especially for Youth, Vol. 2) | Sung: "That's why they called him the carpenter's son" | 5.6 s |
+| `cope-we-believe` | Kenneth Cope, "We Believe" (EFY 2002 - We Believe) | Sung: "We believe in one name under heaven" | 6.7 s |
+| `cope-what-have-i-done-with-his-name` | Kenneth Cope, "What Have I Done With His Name?" (EFY: The Best of Especially for Youth, Vol. 2) | Sung: "What have I done with his name?" | 5.3 s |
