@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
+</head><body>
+<title>Grave Danger: most added</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout (cuts): the deck carousel cut to a precon's 15 most-removed cards, with EDHREC's cut share and links under each card. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;overflow-x:hidden}
+header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
+.total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.back{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);text-decoration:none;order:-1;flex-basis:100%}
+.total b{color:var(--accent);font-weight:500}
+.seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
+.seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:6px}
+.bar #fbtn,#f-reset{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.bar #fbtn.on{border-color:var(--accent);color:var(--accent)}
+#fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:8px}
+#fpanel label{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono);min-width:0}
+#fpanel select{font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 4px;min-width:0;width:100%}
+.share{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono)}
+.share div{display:flex;gap:6px}
+.share input{flex:1;min-width:0;font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.share button{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+#f-reset{align-self:end}
+.seg .ct{color:var(--muted);margin-left:3px;font-size:.68rem;font-family:var(--f-mono)}
+.seg button[aria-pressed="true"] .ct{color:inherit;opacity:.8}
+.favtot{margin-left:auto;align-self:center;color:var(--accent);font-family:var(--f-mono);font-size:.85rem;font-weight:500;white-space:nowrap}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{flex:1;min-height:0;display:flex;align-items:center;position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;width:100%;height:100%;align-items:center;padding-inline:calc(50% - var(--w)/2);box-sizing:border-box;--w:200px}
+.track::-webkit-scrollbar{display:none}
+figure{margin:0;flex:0 0 var(--w);scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
+figure .zb{all:unset;cursor:zoom-in;display:block;border-radius:4.5%/3.2%;aspect-ratio:488/680;background:var(--surface)}
+figure .zb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+figure img{width:100%;height:100%;display:block;border-radius:4.5%/3.2%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* per-card actions */
+.acts{display:flex;gap:8px}
+.acts button{flex:1;font:inherit;font-size:.8rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 6px;cursor:pointer;touch-action:manipulation}
+.acts button:focus-visible{outline:2px solid var(--accent)}
+.acts button.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:500}
+figure.fav .zb img{box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.35)}
+.empty{margin:0 auto;max-width:260px;text-align:center;color:var(--muted);font-size:.9rem}
+figcaption{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;line-height:1.25}
+figcaption .nm{min-width:0;font-weight:500}
+figcaption .pr{font-family:var(--f-mono);color:var(--accent);white-space:nowrap}
+figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.7rem}
+.nav{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.2rem;cursor:pointer;z-index:2;opacity:.9}
+.nav.l{left:-6px}.nav.r{right:-6px}
+.nav:focus-visible{outline:2px solid var(--accent)}
+@media (max-width:600px){.nav{display:none}}
+footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+footer input{flex:1;accent-color:var(--accent);min-width:0}
+/* zoom viewer */
+#zoom{touch-action:none;overscroll-behavior:none;position:fixed;inset:0;background:var(--shade);z-index:20;display:none;flex-direction:column;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+#zoom.on{display:flex}
+#stage{flex:1;min-height:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:grab}
+#zimg{max-width:100%;max-height:100%;border-radius:4.5%/3.2%;transform-origin:center;will-change:transform;user-select:none;-webkit-user-drag:none;image-rendering:auto}
+.zbar #zt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;color:#ece8dd;font-size:.9rem}
+.zbar button{touch-action:manipulation;background:#2b3038;color:#ece8dd;border:1px solid #444b55;border-radius:8px;padding:8px 10px;font:inherit;cursor:pointer}
+.zbar button:focus-visible{outline:2px solid #e8b44a}
+.zbar .g{display:flex;gap:6px}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+.why{margin:0;font-size:.78rem;line-height:1.3}
+.why b{color:var(--accent);font-weight:500}
+.cite b{color:var(--accent);font-weight:500}
+.cite{margin:0;font-family:var(--f-mono);font-size:.66rem;color:var(--muted);line-height:1.4}
+.cite a,.srcs a{color:var(--accent)}
+.srcs{font-size:.78rem;padding-bottom:6px}
+.srcs summary{cursor:pointer;color:var(--accent);font-family:var(--f-mono);font-size:.72rem}
+.srcs div{color:var(--muted);line-height:1.45;padding-top:4px}
+.srcs p{margin:4px 0}
+figure{gap:7px}
+</style>
+<header><h1 id="h1"></h1><a class="back" id="back" href="./">‹ All decks</a><span class="total" id="sub"></span></header>
+<details class="srcs"><summary>Sources and how this list was made</summary><div id="srcs"></div></details>
+<div class="seg" id="seg"><button data-v="deck" aria-pressed="true">Deck</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
+<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count, their cost / whole deck cost"></span></div>
+<div id="fpanel" hidden>
+<label>Sort<select id="f-sort"><option value="">Most cut first</option><option value="cl">Cost, low to high</option><option value="ch">Cost, high to low</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option><option value="t">Type</option><option value="c">Color</option></select></label>
+<label>Type<select id="f-type"><option value="">All</option></select></label>
+<label>Color<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless or land</option></select></label>
+<label>Cost<select id="f-cost"><option value="">Any</option><option value="0">0 to 1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6 or more</option></select></label>
+<label>Kind<select id="f-kw"><option value="">All</option></select></label>
+<label>Show<select id="f-fav"><option value="">All cards</option><option value="1">Favorites only</option></select></label>
+<div class="share"><span>Move your picks to another page or phone</span><div><input id="f-code" placeholder="Picks code" aria-label="Picks code" autocomplete="off" spellcheck="false"><button id="f-copy">Copy picks</button><button id="f-load">Load</button></div><small id="f-msg" role="status"></small></div>
+</div>
+
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
+<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
+<script>
+/* A precon's 15 most-cut cards, built by tools/carousel/cuts.py from EDHREC's precon page (Cards to Cut plus Lands to Cut) and the card data on decks/<slug>.html.
+   Images load from Scryfall's CDN. Extra fields: k [Spell or Land], r rank (1 = most cut), x share of EDHREC's decks from this precon that cut it, u Scryfall page. */
+const CFG={"slug": "adds-grave-danger", "deck": "Grave Danger: most added", "set": "Starter Commander Decks (2022)", "cmd": "Gisa and Geralf", "alt": null, "decks": 2422, "edh": "https://edhrec.com/precon/grave-danger", "srcs": "<p><b>Source:</b> <a href=\"https://edhrec.com/precon/grave-danger\" target=\"_blank\" rel=\"noopener\">EDHREC, Grave Danger precon page</a>, read Nov 14, 2026. 2,422 decks on deck sites started from this precon with Gisa and Geralf as commander; its \"Cards to Add\" and \"Lands to Add\" lists give the share of them playing each card that is <i>not</i> in the box. Top 20 of both lists merged, by that share. Card data and prices from Scryfall.</p>", "sub": "Starter Commander Decks (2022) · <b>Gisa and Geralf</b> · 20 most added of 2,422 decks on EDHREC · <a href=\"../decks/grave-danger.html\">full deck ›</a>"};
+const ALL=[{"n":"Rooftop Storm","p":2.01,"q":1,"s":"INR","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155","m":6,"c":"U","k":["Spell"],"r":1,"x":0.531,"u":"https://scryfall.com/search?q=%21%22Rooftop%20Storm%22"},{"n":"Gravecrawler","p":1.39,"q":1,"s":"TDC","t":"Creature — Zombie","i":"https://cards.scryfall.io/normal/front/6/9/6987d609-ba0f-42bf-9b61-bdfb943c03b5.jpg?1783907138","m":1,"c":"B","k":["Spell"],"r":2,"x":0.322,"u":"https://scryfall.com/search?q=%21%22Gravecrawler%22"},{"n":"Death Baron","p":5.45,"q":1,"s":"FDN","t":"Creature — Zombie Wizard","i":"https://cards.scryfall.io/normal/front/3/4/34a27142-cf45-4164-9e10-373e5c8bf7c6.jpg?1783908959","m":3,"c":"B","k":["Spell"],"r":3,"x":0.308,"u":"https://scryfall.com/search?q=%21%22Death%20Baron%22"},{"n":"Diregraf Colossus","p":4.5,"q":1,"s":"MIC","t":"Creature — Zombie Giant","i":"https://cards.scryfall.io/normal/front/0/2/02351d67-2d73-43e3-82f7-5277c532d7ac.jpg?1783925341","m":3,"c":"B","k":["Spell"],"r":4,"x":0.258,"u":"https://scryfall.com/search?q=%21%22Diregraf%20Colossus%22"},{"n":"Necroduality","p":8.97,"q":1,"s":"INR","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156","m":4,"c":"U","k":["Spell"],"r":5,"x":0.252,"u":"https://scryfall.com/search?q=%21%22Necroduality%22"},{"n":"Zul Ashur, Lich Lord","p":0.48,"q":1,"s":"FDN","t":"Legendary Creature — Zombie Warlock","i":"https://cards.scryfall.io/normal/front/3/4/34ad4fdb-9805-45b3-ba20-e47a15d6ff38.jpg?1783909107","m":2,"c":"B","k":["Spell","Ward"],"r":6,"x":0.241,"u":"https://scryfall.com/search?q=%21%22Zul%20Ashur%2C%20Lich%20Lord%22"},{"n":"Geralf, Visionary Stitcher","p":1.04,"q":1,"s":"VOW","t":"Legendary Creature — Human Wizard","i":"https://cards.scryfall.io/normal/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892","m":3,"c":"U","k":["Spell"],"r":7,"x":0.241,"u":"https://scryfall.com/search?q=%21%22Geralf%2C%20Visionary%20Stitcher%22"},{"n":"Endless Ranks of the Dead","p":5.08,"q":1,"s":"MIC","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339","m":4,"c":"B","k":["Spell"],"r":8,"x":0.218,"u":"https://scryfall.com/search?q=%21%22Endless%20Ranks%20of%20the%20Dead%22"},{"n":"Headless Rider","p":2.4,"q":1,"s":"VOW","t":"Creature — Zombie","i":"https://cards.scryfall.io/normal/front/c/2/c24018e8-b8f1-44a5-9355-8b79f363569d.jpg?1783924858","m":3,"c":"B","k":["Spell"],"r":9,"x":0.206,"u":"https://scryfall.com/search?q=%21%22Headless%20Rider%22"},{"n":"Accursed Marauder","p":0.43,"q":1,"s":"MH3","t":"Creature — Zombie Warrior","i":"https://cards.scryfall.io/normal/front/5/d/5da14d86-0780-4821-a799-96f64b377df4.jpg?1783911284","m":2,"c":"B","k":["Spell"],"r":10,"x":0.203,"u":"https://scryfall.com/search?q=%21%22Accursed%20Marauder%22"},{"n":"Secrets of the Dead","p":0.47,"q":1,"s":"C19","t":"Enchantment","i":"https://cards.scryfall.io/normal/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776","m":3,"c":"U","k":["Spell"],"r":11,"x":0.193,"u":"https://scryfall.com/search?q=%21%22Secrets%20of%20the%20Dead%22"},{"n":"Wilhelt, the Rotcleaver","p":10.08,"q":1,"s":"MIC","t":"Legendary Creature — Zombie Warrior","i":"https://cards.scryfall.io/normal/front/2/5/2501a911-d072-436d-ae3b-a5164e3b30aa.jpg?1783925384","m":4,"c":"UB","k":["Spell"],"r":12,"x":0.192,"u":"https://scryfall.com/search?q=%21%22Wilhelt%2C%20the%20Rotcleaver%22"},{"n":"Counterspell","p":4.05,"q":1,"s":"DSC","t":"Instant","i":"https://cards.scryfall.io/normal/front/4/f/4f616706-ec97-4923-bb1e-11a69fbaa1f8.jpg?1783909630","m":2,"c":"U","k":["Spell"],"r":13,"x":0.19,"u":"https://scryfall.com/search?q=%21%22Counterspell%22"},{"n":"Carrion Feeder","p":3.45,"q":1,"s":"MH1","t":"Creature — Zombie","i":"https://cards.scryfall.io/normal/front/0/a/0a19da90-880e-4eca-8cf7-6d7baf090d53.jpg?1783933131","m":1,"c":"B","k":["Spell"],"r":14,"x":0.185,"u":"https://scryfall.com/search?q=%21%22Carrion%20Feeder%22"},{"n":"Liliana, Death's Majesty","p":0.39,"q":1,"s":"J25","t":"Legendary Planeswalker — Liliana","i":"https://cards.scryfall.io/normal/front/6/9/69264ed3-b31f-4b92-aec1-e46f91b2068d.jpg?1783908721","m":5,"c":"B","k":["Spell","Mill"],"r":15,"x":0.18,"u":"https://scryfall.com/search?q=%21%22Liliana%2C%20Death%27s%20Majesty%22"},{"n":"Stitcher's Supplier","p":0.42,"q":1,"s":"TDC","t":"Creature — Zombie","i":"https://cards.scryfall.io/normal/front/2/e/2edcde06-b326-476e-884d-770187c785fe.jpg?1783907080","m":1,"c":"B","k":["Spell","Mill"],"r":16,"x":0.168,"u":"https://scryfall.com/search?q=%21%22Stitcher%27s%20Supplier%22"},{"n":"Vile Entomber","p":0.29,"q":1,"s":"FDN","t":"Creature — Zombie Warlock","i":"https://cards.scryfall.io/normal/front/8/3/833b5a32-5d77-4e46-a524-25bada29ef59.jpg?1783908925","m":4,"c":"B","k":["Spell","Deathtouch"],"r":17,"x":0.156,"u":"https://scryfall.com/search?q=%21%22Vile%20Entomber%22"},{"n":"Bladestitched Skaab","p":0.32,"q":1,"s":"INR","t":"Creature — Zombie Soldier","i":"https://cards.scryfall.io/normal/front/a/f/af14d311-0fd5-4979-bc46-1421472c3b0a.jpg?1783908082","m":2,"c":"UB","k":["Spell"],"r":18,"x":0.142,"u":"https://scryfall.com/search?q=%21%22Bladestitched%20Skaab%22"},{"n":"Grimgrin, Corpse-Born","p":3.34,"q":1,"s":"INR","t":"Legendary Creature — Zombie Warrior","i":"https://cards.scryfall.io/normal/front/3/c/3c257fe6-1038-4167-ae78-90309974b925.jpg?1783908076","m":5,"c":"UB","k":["Spell"],"r":19,"x":0.138,"u":"https://scryfall.com/search?q=%21%22Grimgrin%2C%20Corpse-Born%22"},{"n":"Ghoulcaller Gisa","p":3.59,"q":1,"s":"CMM","t":"Legendary Creature — Human Wizard","i":"https://cards.scryfall.io/normal/front/4/4/44d7906e-8a89-4644-acb5-46fbe97ab39f.jpg?1783915675","m":5,"c":"B","k":["Spell"],"r":20,"x":0.137,"u":"https://scryfall.com/search?q=%21%22Ghoulcaller%20Gisa%22"}];
+/* price for sums and sorts; cards not sold yet have none */
+const pv=c=>c.p||0;
+const EVERY=ALL;
+/* fav, bench and trash marks, kept on this device only, one set per deck; a card carries at most one mark */
+const KEY='pc-'+CFG.slug+'-';  /* cuts-<deck>, apart from the deck page's own marks */
+let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
+const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
+let mark={};try{mark=JSON.parse(localStorage.getItem(KEY+'marks')||'{}')}catch(e){}
+const saveMarks=()=>{try{localStorage.setItem(KEY+'marks',JSON.stringify(mark))}catch(e){}};
+const DECK_TOTAL=ALL.reduce((a,c)=>a+pv(c)*c.q,0);
+let tab='deck',D=[];
+/* sort and filter, applied on top of whichever tab is open */
+const F={sort:'',type:'',col:'',cost:'',kw:'',fav:''};
+const TYPES=['Creature','Planeswalker','Artifact','Enchantment','Instant','Sorcery','Land'];
+const COLS='WUBRG';
+const typeOf=c=>{const i=TYPES.findIndex(t=>c.t.includes(t));return i<0?99:i};
+const colOf=c=>c.c.length==1?COLS.indexOf(c.c):c.c.length>1?5:6;
+function sortFilter(list){
+ let r=list.filter(c=>(!F.type||c.t.includes(F.type))&&(!F.col||(F.col=='M'?c.c.length>1:F.col=='C'?!c.c.length:c.c.includes(F.col)))&&(!F.kw||c.k.includes(F.kw))&&(!F.fav||favs[c.n])&&(!F.cost||(F.cost=='6'?c.m>=6:F.cost=='0'?c.m<=1:c.m==+F.cost)));
+ const S={cl:(a,b)=>a.m-b.m||pv(b)-pv(a),ch:(a,b)=>b.m-a.m||pv(b)-pv(a),ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>pv(a)-pv(b),n:(a,b)=>a.n.localeCompare(b.n),t:(a,b)=>typeOf(a)-typeOf(b)||b.m-a.m,c:(a,b)=>colOf(a)-colOf(b)||b.m-a.m}[F.sort];
+ return S?r.slice().sort(S):r}
+const TABS={deck:'Deck',fav:'Fav',bench:'Bench',trash:'Trash'};
+function view(k){if(k=='fav')return EVERY.filter(c=>favs[c.n]&&!mark[c.n]);if(k=='deck')return ALL.filter(c=>!mark[c.n]);
+ return EVERY.filter(c=>mark[c.n]==k).sort((a,b)=>b.m-a.m||pv(b)-pv(a))}
+const $=id=>document.getElementById(id), tr=$('track');
+$('h1').textContent=CFG.deck;
+/* the deck list lives beside the page on the live site; a claude.ai artifact has no neighbours */
+if(location.hostname&&!location.hostname.endsWith('github.io'))$('back').hidden=true;$('sub').innerHTML=CFG.sub;$('srcs').innerHTML=CFG.srcs;
+document.querySelector('.srcs').addEventListener('toggle',()=>{fit();go(cur())});
+/* each card's rank and the share of EDHREC's decks built from this precon that cut it, with links to the source and the card */
+const pct=x=>Math.round(x*100)+'%';
+function why(c){return `<p class="cite"><b>#${c.r} most added</b> · added to ${pct(c.x)} of ${CFG.decks.toLocaleString('en-US')} decks · <a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
+const money=v=>v==null?'no price':'$'+v.toFixed(2);
+function fit(){const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+let figs=[];
+function btns(c){const home='Deck';
+ const fl=c.b?'<button data-a="flip">Flip</button>':'';
+ if(favs[c.n]&&!mark[c.n])return `<button class="on" data-a="unfav">★ Favorite · tap to undo</button>${fl}`;
+ return fl+btns2(c,home)}
+function btns2(c,home){
+ if(tab=='bench')return `<button data-a="">Back to ${home}</button><button data-a="trash">Trash</button>`;
+ if(tab=='trash')return `<button data-a="">Back to ${home}</button><button data-a="bench">Bench</button>`;
+ return `<button data-a="fav">Fav</button><button data-a="bench">Bench</button><button data-a="trash">Trash</button>`}
+function render(keep){D=sortFilter(view(tab));fit();
+ for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).reduce((a,c)=>a+c.q,0)+'</span>';b.setAttribute('aria-pressed',k==tab)}
+ const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.reduce((a,c)=>a+c.q,0)+' · '+money(fv.reduce((a,c)=>a+pv(c)*c.q,0))+' / '+money(DECK_TOTAL);
+  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption>${why(c)}<div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const sc=$('scrub');
+function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
+function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
+function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
+tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+render();
+const fsel={sort:'f-sort',type:'f-type',col:'f-col',cost:'f-cost',kw:'f-kw',fav:'f-fav'};
+TYPES.forEach(t=>$('f-type').add(new Option(t,t)));
+[...new Set(EVERY.flatMap(c=>c.k))].sort().forEach(k=>$('f-kw').add(new Option(k,k)));
+function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
+for(const k in fsel)$(fsel[k]).onchange=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
+/* Browsers keep storage per site, so picks made on the artifact don't reach the github.io page. A code carries them across. */
+const msg=m=>{$('f-msg').textContent=m};
+$('f-copy').onclick=()=>{const code=btoa(JSON.stringify({f:Object.keys(favs),b:Object.keys(mark).filter(k=>mark[k]=='bench'),t:Object.keys(mark).filter(k=>mark[k]=='trash')}));
+ $('f-code').value=code;$('f-code').select();
+ (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>msg('Copied. Paste it into Load on the other page.'),()=>msg('Select the code above and copy it.'))};
+$('f-load').onclick=()=>{try{const o=JSON.parse(atob($('f-code').value.trim())),ok=new Set(EVERY.map(c=>c.n));
+ favs={};mark={};(o.f||[]).forEach(n=>{if(ok.has(n))favs[n]=1});(o.b||[]).forEach(n=>{if(ok.has(n))mark[n]='bench'});(o.t||[]).forEach(n=>{if(ok.has(n))mark[n]='trash'});
+ saveFavs();saveMarks();render();msg('Loaded '+Object.keys(favs).length+' favorites, '+Object.keys(mark).length+' benched or trashed.')}catch(e){msg('That code did not work. Copy it again.')}};
+$('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
+tr.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){const f=a.closest('figure'),i=+f.dataset.i,n=f.dataset.n;
+ if(a.dataset.a=='flip'){const c=D[i];flip[n]=!flip[n];f.querySelector('img').src=face(c);return}
+ if(a.dataset.a=='fav'||a.dataset.a=='unfav'){if(a.dataset.a=='fav')favs[n]=1;else delete favs[n];saveFavs();render(i);return}
+ if(a.dataset.a)mark[f.dataset.n]=a.dataset.a;else delete mark[f.dataset.n];saveMarks();render(i);return}
+ const z=e.target.closest('.zb');if(z)open(+z.closest('figure').dataset.i)});
+
+$('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
+sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
+tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key=='ArrowLeft'){go(cur()-1);e.preventDefault()}});
+document.addEventListener('gesturestart',e=>e.preventDefault());
+/* zoom viewer: scale + pan with pointer events (two pointers pinch) */
+const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new Map();let pd=0;
+function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function open(i){z.classList.add('on');show(i)}
+function close(){z.classList.remove('on');go(zc)}
+
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=face(c)};
+$('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
+st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
+let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
+const dist=()=>{const [a,b]=[...ptrs.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+st.addEventListener('pointerdown',e=>{st.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==1){tapOk=true;t0=Date.now();sx=e.clientX;sy=e.clientY}else{tapOk=false;pd=dist()}});
+st.addEventListener('pointermove',e=>{const o=ptrs.get(e.pointerId);if(!o)return;
+ if(tapOk&&Math.hypot(e.clientX-sx,e.clientY-sy)>8)tapOk=false;
+ ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==2){const d=dist(),[a,b]=[...ptrs.values()];if(pd)setS(s*Math.pow(d/pd,.8),(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}
+ else if(ptrs.size==1&&s>1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply()}});
+function up(e){const was=ptrs.size;ptrs.delete(e.pointerId);pd=0;
+ if(e.type=='pointerup'&&was==1&&tapOk&&Date.now()-t0<300){const n=Date.now();if(n-lastTap<350){lastTap=0;s>1?setS(1):setS(2,e.clientX,e.clientY)}else lastTap=n}
+ if(ptrs.size==1){const [k,v]=[...ptrs][0];ptrs.set(k,v)}}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+document.addEventListener('keydown',e=>{if(!z.classList.contains('on'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')show(zc+1);if(e.key=='ArrowLeft')show(zc-1);if(e.key=='+'||e.key=='=')setS(s*1.35);if(e.key=='-')setS(s/1.35)});
+</script>
+
+</body></html>
