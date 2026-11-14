@@ -955,7 +955,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.73';
+  const VERSION = '1.74';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1641,9 +1641,11 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (sfy.on && !dock) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
     if (dock) board.classList.add('sfyp');
     // Classic and Side by side (not Couch) without the bar: the button box in the middle (v1.44).
-    if (!sfy.on && !couch && (n === 2 || duel4)) {
+    // The iPad's 1v1 (v1.74, the user's ask) has no box: with no Spotify bar the two seats fill the
+    // screen and the button sits on their seam.
+    if (!sfy.on && ipad2) board.classList.add('ipad');
+    else if (!sfy.on && !couch && (n === 2 || duel4)) {
       board.classList.add('boxed');
-      if (ipad2) board.classList.add('ipad');
       const box = document.createElement('div');
       box.className = 'btn-box';
       board.appendChild(box);
@@ -1998,6 +2000,17 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const board = app.querySelector('.board');
       if (board.matches('.n3')) Object.assign(mb.style, { left: hub.x - mb.offsetWidth / 2 + 'px', top: board.offsetTop + 10 + 'px' });
       menuAtTop(mb);
+      return;
+    }
+    // The iPad's 1v1 (v1.74): two full seats, the turn button big on their seam, the menu button
+    // beside it (the menu button's styles lift it by half its height, so top is its middle).
+    if (board && board.matches('.n2.ipad')) {
+      const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn');
+      const cx = (board.offsetParent === app ? board.offsetLeft : 0) + board.offsetWidth / 2, cy = board.offsetTop + board.offsetHeight / 2;
+      const d = Math.max(96, Math.min(.19 * board.offsetHeight, .3 * board.offsetWidth));
+      const m = Math.max(46, Math.min(72, d * .4));
+      Object.assign(tb.style, { left: cx + 'px', top: cy + 'px', width: d + 'px', height: d + 'px', margin: '0' });
+      Object.assign(mb.style, { left: cx + d / 2 + 14 + 'px', top: cy + 'px', width: m + 'px', height: m + 'px', margin: '0' });
       return;
     }
     // The button box (v1.44): the turn button as big as fits in its middle, the menu button in the
