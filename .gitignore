@@ -1,3 +1,9 @@
 # Test screenshots never belong in the site; real images live in art/ and patterns/.
 /*.png
 __pycache__/
+# Micro Center monitor: local config (ntfy topic), state, browser profile, debug dumps.
+tools/microcenter/config.json
+tools/microcenter/state.json
+tools/microcenter/state.json.tmp
+tools/microcenter/profile/
+tools/microcenter/debug/
