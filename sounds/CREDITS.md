@@ -937,3 +937,15 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 | `long/wb-scooby-intro` | Scooby-Doo, Where Are You? theme | [myinstants: Scooby doo intro](https://www.myinstants.com/media/sounds/scooby-doo-intro.mp3) |
 | `long/wb-scooby-zoinks` | Shaggy: “Zoinks, zoinks, zoinks!” | [myinstants: yeeeeaaaa zoinks](https://www.myinstants.com/media/sounds/yeeeeaaaa-zoinks.mp3) |
 | `long/wb-tom-dont-believe` | Tom and Jerry: “Don't you believe it!” | [myinstants: Tom and Jerry Don't you believe it](https://www.myinstants.com/media/sounds/tom-and-jerry-dont-you-believe-it.mp3) |
+
+## Cult leaders: Jim Jones (v1.78)
+
+5 excerpts of Jim Jones (Peoples Temple) from FBI tape Q 696, his interview on Jim Dunbar's San Francisco TV talk show (taped off the air, around the Watergate hearings, 1973). The tape is a US government recording released through the Jonestown Institute (sdsu.edu) and hosted on archive.org: https://archive.org/details/Q696JimJonesInterviewOnTvTalkShow . Found by transcribing the hour with faster-whisper; Jones is the guest answering the host and callers. The 1978 Jonestown "death tape" is deliberately not used.
+
+| File | Words |
+| --- | --- |
+| `jones-premonition` | “I had a feeling, deep feeling there, a premonition.” |
+| `long/jones-college-students` | “Otherwise, only young college students would have been in there, and so they couldn't have possibly survived.” |
+| `long/jones-medical-science` | “First place, I don't tell anyone that they are healed. I tell them to go and see… We do not in any way oppose medical science.” |
+| `long/jones-two-oclock` | “I just simply could not let them do it. I held them till two o'clock in the morning.” |
+| `long/jones-wait-one-day` | “We don't ask them to wait one minute. We ask them to wait one day. We tell them to go immediately to their doctor.” |

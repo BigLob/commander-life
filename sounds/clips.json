@@ -3880,6 +3880,20 @@
 "kind": "sound"
 },
 {
+"f": "jones-premonition",
+"src": "archive.org: FBI tape Q 696, Jim Jones interview on TV talk show (Jonestown Institute)",
+"url": "https://archive.org/details/Q696JimJonesInterviewOnTvTalkShow",
+"grp": "Cult leaders",
+"kind": "talk",
+"lic": "FBI recording of Peoples Temple (US government), via Jonestown Institute / archive.org",
+"quote": "I had a feeling, deep feeling there, a premonition.",
+"who": "Jim Jones (Peoples Temple)",
+"from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
+"note": "Jim Jones (Peoples Temple)",
+"d": 2.8,
+"pool": "short"
+},
+{
 "f": "jp-t-rex",
 "src": "myinstants: Jurassic Park T Rex Roar",
 "url": "https://www.myinstants.com/media/sounds/jurassic-park-t-rex-roar_lb9FQOm.mp3",
@@ -10388,6 +10402,62 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "long/jones-college-students",
+"src": "archive.org: FBI tape Q 696, Jim Jones interview on TV talk show (Jonestown Institute)",
+"url": "https://archive.org/details/Q696JimJonesInterviewOnTvTalkShow",
+"grp": "Cult leaders",
+"kind": "talk",
+"lic": "FBI recording of Peoples Temple (US government), via Jonestown Institute / archive.org",
+"quote": "Otherwise, only young college students would have been in there, and so they couldn't have possibly survived.",
+"who": "Jim Jones (Peoples Temple)",
+"from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
+"note": "Jim Jones (Peoples Temple)",
+"d": 5.0,
+"pool": "long"
+},
+{
+"f": "long/jones-medical-science",
+"src": "archive.org: FBI tape Q 696, Jim Jones interview on TV talk show (Jonestown Institute)",
+"url": "https://archive.org/details/Q696JimJonesInterviewOnTvTalkShow",
+"grp": "Cult leaders",
+"kind": "talk",
+"lic": "FBI recording of Peoples Temple (US government), via Jonestown Institute / archive.org",
+"quote": "First place, I don't tell anyone that they are healed. I tell them to go and see… We do not in any way oppose medical science.",
+"who": "Jim Jones (Peoples Temple)",
+"from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
+"note": "Jim Jones (Peoples Temple)",
+"d": 9.5,
+"pool": "long"
+},
+{
+"f": "long/jones-two-oclock",
+"src": "archive.org: FBI tape Q 696, Jim Jones interview on TV talk show (Jonestown Institute)",
+"url": "https://archive.org/details/Q696JimJonesInterviewOnTvTalkShow",
+"grp": "Cult leaders",
+"kind": "talk",
+"lic": "FBI recording of Peoples Temple (US government), via Jonestown Institute / archive.org",
+"quote": "I just simply could not let them do it. I held them till two o'clock in the morning.",
+"who": "Jim Jones (Peoples Temple)",
+"from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
+"note": "Jim Jones (Peoples Temple)",
+"d": 4.3,
+"pool": "long"
+},
+{
+"f": "long/jones-wait-one-day",
+"src": "archive.org: FBI tape Q 696, Jim Jones interview on TV talk show (Jonestown Institute)",
+"url": "https://archive.org/details/Q696JimJonesInterviewOnTvTalkShow",
+"grp": "Cult leaders",
+"kind": "talk",
+"lic": "FBI recording of Peoples Temple (US government), via Jonestown Institute / archive.org",
+"quote": "We don't ask them to wait one minute. We ask them to wait one day. We tell them to go immediately to their doctor.",
+"who": "Jim Jones (Peoples Temple)",
+"from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
+"note": "Jim Jones (Peoples Temple)",
+"d": 5.5,
+"pool": "long"
 },
 {
 "f": "long/just-a-random-fanfare",
