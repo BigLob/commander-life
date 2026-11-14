@@ -955,7 +955,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.81';
+  const VERSION = '1.82';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -2270,8 +2270,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       el.textContent = st.sum > 0 ? '+' + st.sum : st.sum < 0 ? '−' + -st.sum : '±0';
       el.classList.add('show');
     });
-    // v1.67: 3.2 s (was 1.6); v1.81: 6.4 s, the user's ask.
-    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); seats[i].forEach(seat => seat.classList.remove('chg')); st.sum = 0; }, 6400);
+    // v1.67: 3.2 s (was 1.6); v1.81: 6.4 s; v1.82: 10 s, the user's ask.
+    st.t = setTimeout(() => { els.forEach(el => el.classList.remove('show')); seats[i].forEach(seat => seat.classList.remove('chg')); st.sum = 0; }, 10000);
   }
 
   // ---- changes ----

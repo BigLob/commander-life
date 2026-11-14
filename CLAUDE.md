@@ -98,8 +98,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.81; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
-- v1.81: **damage and life change numbers linger 6.4 s** (was 3.2 s; the user's ask, `showDelta()`).
+### `index.html`: Commander Life (current v1.82; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.82: **damage and life change numbers linger 10 s** (v1.81 6.4 s, v1.67 3.2 s; the user's ask, `showDelta()`).
 - v1.80: **all 40 Book of Mormon readings cut** (the user: no scripture longer than 3 s; every one ran 3.7 to 9.2 s). Don't add scripture readings over 3 s.
 - v1.74: **iPad 1v1 has no black box** (the user: fill it with player panes, no Spotify widget on the iPad). With the iPad view on and no Spotify bar, 2-player Classic is two full seats (rows `1fr 1fr`, no `.btn-box`); `placeTurn()` puts the turn button on their seam (19% of the height, up to 30% of the width) with the menu button beside it. With the bar it is unchanged.
 - v1.73: **wheel names up against the button, totals bigger** (the user: Rand's and Trent's names closer to the middle; totals back up a bit). `wheel()` stretches each name's room toward the face's top (toward the button on a Center phone) as far as the wedge allows (up to 260 px) and puts the name at its far end; the total stays centered (`ext` in `wheelRes`). While a change shows, the seat gets `.chg` (`showDelta()`), which slides its total left by .33em so the pair stays centered (`.board.n3.hub .seat.chg .life`); `keepIn()` measures with `.chg` on, so the reserve for the change is far smaller and totals are about 20% bigger again. The user dropped the iPad Spotify widget idea (the iPad can't sign in), so no relay was built. The matrix test adds `.chg` too (0 problems in 246).
