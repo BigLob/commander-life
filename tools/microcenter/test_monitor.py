@@ -6,6 +6,7 @@ import os
 import unittest
 
 import monitor as m
+import secretlair as sl
 
 FIX = os.path.join(os.path.dirname(__file__), 'fixtures')
 CFG = json.load(open(os.path.join(os.path.dirname(__file__), 'config.example.json')))
@@ -134,11 +135,97 @@ class Schedule(unittest.TestCase):
     def test_waits(self):
         # Nov 19 2026 is a Thursday, Nov 20 a Friday.
         for t in [(19, 12, 0), (19, 23, 30), (20, 3, 0), (20, 10, 0), (20, 10, 59)]:
-            self.assertLess(m.next_wait(dt.datetime(2026, 11, *t), 0), 400, t)
+            self.assertLess(m.next_wait(dt.datetime(2026, 11, *t)), 400, t)
         for t in [(18, 10, 0), (20, 11, 0), (21, 15, 0), (16, 9, 0)]:
-            self.assertGreaterEqual(m.next_wait(dt.datetime(2026, 11, *t), 0), 1800, t)
-        self.assertLess(m.next_wait(dt.datetime(2026, 11, 19, 11, 50), 0), 700)  # wakes for the window
-        self.assertGreaterEqual(m.next_wait(dt.datetime(2026, 11, 20, 10, 0), 3), 7200)
+            self.assertGreaterEqual(m.next_wait(dt.datetime(2026, 11, *t)), 1800, t)
+        self.assertLess(m.next_wait(dt.datetime(2026, 11, 19, 11, 50)), 700)  # wakes for the window
+
+    def test_wakes_for_secret_lair_sale(self):
+        now = dt.datetime(2026, 11, 16, 10, 50)  # Monday, outside the window
+        self.assertLess(m.next_wait(now, wake_at=now.timestamp() + 600), 700)
+        self.assertGreaterEqual(m.next_wait(now, wake_at=now.timestamp() + 86400), 1800)
+
+    def test_backoff(self):
+        self.assertEqual([m.backoff(n) for n in range(5)], [0, 1800, 3600, 7200, 7200])
+
+
+def sl_getter(url):
+    if url == sl.HOME:
+        return page('secretlair-home.html')
+    return page('secretlair-feed.json')
+
+
+class SecretLair(unittest.TestCase):
+    NOW = dt.datetime(2026, 11, 14, 21, 0, tzinfo=dt.timezone.utc)
+
+    def test_feeds(self):
+        self.assertEqual(sl.feed_ids(page('secretlair-home.html')), ['73866', '72135'])
+
+    def test_status(self):
+        st = {}
+        ps, feeds = sl.fetch_products(st, now=self.NOW, getter=sl_getter)
+        by = {p['id']: p for p in ps}
+        self.assertEqual(feeds, ['73866', '72135'])
+        self.assertEqual(by['1255840']['status'], 'on_sale')
+        self.assertEqual(by['1255840']['name'], 'Secret Lair x Star Trek: Assimilation Foil Edition')
+        self.assertEqual(by['1255840']['price'], '39.99')
+        self.assertEqual(by['1255840']['url'], 'https://secretlair.wizards.com/us/product/1255840')
+        self.assertEqual(by['1260001']['status'], 'coming')
+        self.assertEqual(by['1260002']['status'], 'sold_out')
+        self.assertEqual(by['1260002']['name'], 'Secret Lair: Sold Out Drop')  # <br> stripped
+        self.assertEqual(by['1200000']['status'], 'ended')
+        # 18:00 Paris on Nov 23 is 17:00 UTC.
+        self.assertEqual(by['1260001']['start'], dt.datetime(2026, 11, 23, 17, 0, tzinfo=dt.timezone.utc).timestamp())
+
+    def test_home_page_down_uses_last_feeds(self):
+        st = {'sl': {'feeds': ['73866']}}
+        def getter(url):
+            if url == sl.HOME:
+                raise OSError('queue')
+            return page('secretlair-feed.json')
+        ps, feeds = sl.fetch_products(st, now=self.NOW, getter=getter)
+        self.assertEqual(feeds, ['73866'])
+        self.assertEqual(len(ps), 4)
+
+    def test_diff(self):
+        st = {}
+        ps, _ = sl.fetch_products(st, now=self.NOW, getter=sl_getter)
+        alerts, base = sl.diff(st, ps)
+        self.assertTrue(base)
+        self.assertEqual(alerts, [])
+        self.assertEqual(sl.next_start(st, self.NOW.timestamp()), ps[1]['start'])
+        # A week later: the coming drop is on sale, the sold-out one restocked, a new one announced.
+        later = dt.datetime(2026, 11, 23, 17, 5, tzinfo=dt.timezone.utc)
+        ps, _ = sl.fetch_products(st, now=later, getter=sl_getter)
+        next(p for p in ps if p['id'] == '1260002')['status'] = 'on_sale'
+        new = dict(ps[0], key='sl-1270000', id='1270000', name='Secret Lair x New Thing', status='coming')
+        kinds = {p['id']: k for k, p in sl.diff(st, ps + [new])[0]}
+        self.assertEqual(kinds, {'1260001': 'on_sale', '1260002': 'on_sale', '1270000': 'announced'})
+        self.assertEqual(sl.diff(st, ps + [new])[0], [])
+
+    def test_poll_pushes(self):
+        sent = []
+        orig, orig_save = m.push, m.save_state
+        m.push = lambda cfg, title, msg, **k: sent.append(title)
+        m.save_state = lambda s: None
+        try:
+            st = {'sl': {'last_full': 9e12}}
+            m.poll_secret_lair(CFG, st, getter=sl_getter)
+            self.assertEqual(sent, ['Secret Lair monitor started'])
+            st['sl']['products']['sl-1255840']['status'] = 'sold_out'  # restocked by next poll
+            sent.clear()
+            m.poll_secret_lair(CFG, st, getter=sl_getter)
+        finally:
+            m.push, m.save_state = orig, orig_save
+        self.assertEqual(sent, ['Secret Lair on sale now'])
+
+    def test_announce_text(self):
+        p = {'name': 'Secret Lair x Unfinity Thing', 'price': '29.99', 'start': 1795453200.0,
+             'url': 'u', 'status': 'coming'}
+        title, msg = sl.alert_text('announced', p)
+        self.assertEqual(title, 'Secret Lair announced')
+        self.assertIn('On sale', msg)
+        self.assertIn('not Commander-legal', m.legality_note(p['name']))
 
 if __name__ == '__main__':
     unittest.main()

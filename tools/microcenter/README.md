@@ -1,4 +1,4 @@
-# Micro Center MTG restock monitor
+# Micro Center MTG restock monitor (and Secret Lair drops)
 
 Pushes to your phone when Magic: The Gathering products come into stock (or first get listed)
 at your Micro Center. Runs on your **home PC**, not in the cloud: microcenter.com's Cloudflare
@@ -8,6 +8,9 @@ Micro Center says trading card restocks go live in stores **Fridays at 10 AM** (
 ships), new launches are posted on the website as soon as they know, and the stores use the same
 inventory as the site. The monitor checks every 5 minutes from **Thursday noon through Friday 11 AM** and every
 30 to 60 minutes the rest of the week.
+
+It also watches **Secret Lair** drops on Wizards' official store (secretlair.wizards.com): new
+drops announced, and the moment a drop goes on sale or a sold-out one comes back.
 
 Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, minus accessories
 (sleeves, deck boxes, playmats, binders, dice) and other card games.
@@ -20,10 +23,10 @@ Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, min
    `tools\microcenter` in a terminal (in Explorer: click the address bar, type `cmd`, Enter).
 3. Install Playwright:
    ```
-   pip install playwright
+   pip install playwright tzdata
    playwright install chromium
    ```
-   It uses your installed Google Chrome if you have it (best for Cloudflare), else Playwright's Chromium.
+   (`tzdata` gives Windows the time zones for Secret Lair's sale times.) It uses your installed Google Chrome if you have it (best for Cloudflare), else Playwright's Chromium.
 4. On your Android phone, install **ntfy** from the Play Store.
 5. Send a test push:
    ```
@@ -37,7 +40,7 @@ Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, min
    python monitor.py --once --debug
    ```
    It should print something like `57 products, 12 in stock: https://...` and push
-   "Baseline recorded". The first run only records what's there; alerts start on the next run.
+   "Baseline recorded", once for Micro Center and once for Secret Lair. The first run only records what's there; alerts start on the next run.
    If it says **0 products parsed** or **blocked**, send the newest files from `debug\`
    (an `.html` and a `.png`) to Claude so the parser can be fixed.
 
@@ -57,6 +60,8 @@ Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, min
 
 ## What you'll get
 
+From Micro Center:
+
 - **Back in stock**: something that was sold out is in stock (name, price, stock count, store; tap to open).
 - **New and in stock**: a product that wasn't on the page before, in stock.
 - **New listing (not in stock yet)**: a new product posted, e.g. a launch or preorder. Turn these off
@@ -67,8 +72,25 @@ Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, min
   check in the window that opens. The cookie is kept in `profile\`, so later runs can go back to
   headless.
 
+From Secret Lair:
+
+- **Secret Lair announced**: a new drop is listed but not on sale yet, with when it goes on sale (your time).
+- **Secret Lair on sale now**: a drop's sale started, or a sold-out one came back. The monitor
+  wakes up for each announced drop's start time, so this comes within a minute or so of the sale opening.
+
 Alerts say when a product isn't Commander-legal (Un-sets like Unfinity, playtest cards) or isn't
 released yet (preorders). Regular sealed product, Secret Lair and Universes Beyond are legal.
+
+## How the Secret Lair check works
+
+No browser: the store's pages fill themselves from a public JSON search API
+(`storesearch.eu.scalefast.com/StoreSearch`), and the monitor reads the same thing. Each check
+reads the home page for the rows it shows (the current drop, its bundles, anything coming soon)
+and asks the API for those, a few small requests. Once a day it reads the whole catalog (about
+1,100 products, 22 requests, under a minute) to catch anything not on the home page. A product's
+status comes from its sale window and stock, the way the store's page works it out. If the home
+page doesn't load (Wizards' queue page can stand in front of it on drop days), it uses the rows
+from the last check.
 
 ## config.json
 
@@ -79,6 +101,10 @@ released yet (preorders). Regular sealed product, Secret Lair and Universes Beyo
 | `watch_urls` | Pages to check (search or category pages). `{storeid}` is filled in. To watch something narrower, search on the site, set filters, and paste the address. |
 | `include` / `exclude` | Product name must contain one `include` word and no `exclude` word (lowercase match). |
 | `alert_new_listings` | Push for new products that aren't in stock yet. |
+| `microcenter_enabled` | `false` to watch only Secret Lair (then Playwright isn't needed). |
+| `secret_lair.enabled` | `false` to stop watching Secret Lair. |
+| `secret_lair.full_scan_hours` | How often to read the whole Secret Lair catalog (default 24). |
+| `secret_lair.exclude` | Skip Secret Lair products whose name has one of these (D&D dice, Transformers). |
 | `ntfy_topic`, `ntfy_server` | Where pushes go. |
 | `headless`, `channel` | Browser settings (see "Monitor blocked"). |
 
@@ -91,9 +117,16 @@ cookies), `debug\`.
 in Micro Center's result layout), the Cloudflare check against `fixtures\challenge.html`, the
 filters, baseline, restock and dedupe logic, the blocked-push limit and the schedule.
 
+Secret Lair's tests use `fixtures/secretlair-home.html` and `fixtures/secretlair-feed.json`
+(shaped like the real API's answers).
+
 ## Not checked live
 
 microcenter.com couldn't be reached from where this was built (Cloudflare blocks it), so the real
 page layout, the Dallas store id and the `rpp=96` page size haven't been confirmed. The parser reads
 each `li.product_wrapper` result's `data-name`/`data-price` attributes and its `SKU:` and stock text,
 with fallbacks; if the real page differs, `--debug` files show what to fix.
+
+Secret Lair **was** checked live (Nov 14, 2026): 1,018 products read, the Star Trek superdrop on
+sale. No drop was "coming soon" that day, so the announced alert and the wake-up at a sale's start
+are tested only against the fixture.

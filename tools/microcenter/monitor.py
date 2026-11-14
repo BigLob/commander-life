@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Micro Center MTG restock monitor. Runs on a home PC, pushes to a phone through ntfy.sh.
+"""Micro Center MTG restock monitor, plus Secret Lair drops from Wizards' store (secretlair.py).
+Runs on a home PC, pushes to a phone through ntfy.sh.
 
 Why a home PC: microcenter.com sits behind a Cloudflare bot check that blocks cloud IPs.
 A home connection in a real Chrome profile usually passes. We never try to beat the check:
@@ -22,6 +23,8 @@ import secrets
 import sys
 import time
 import urllib.request
+
+import secretlair
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONFIG = os.path.join(HERE, 'config.json')
@@ -347,15 +350,74 @@ def window_start(now):
     return start if start >= now else start + dt.timedelta(days=7)
 
 
-def next_wait(now, blocked_streak):
-    """5 min from Thursday noon to Friday 11 AM, 30-60 min otherwise. While blocked,
-    wait longer each time (up to 2 h) instead of knocking harder."""
-    if blocked_streak:
-        return min(7200, 1800 * 2 ** (blocked_streak - 1)) + random.uniform(0, 300)
+def next_wait(now, wake_at=None):
+    """5 min from Thursday noon to Friday 11 AM, 30-60 min otherwise. Never sleeps through
+    the window's start, or through wake_at (a Secret Lair sale start, as a timestamp)."""
     if in_window(now):
         return 300 + random.uniform(-20, 40)
-    # Don't sleep through the start of the window.
-    return min(random.uniform(1800, 3600), (window_start(now) - now).total_seconds() + random.uniform(0, 30))
+    wait = min(random.uniform(1800, 3600), (window_start(now) - now).total_seconds() + random.uniform(0, 30))
+    if wake_at:
+        wait = min(wait, max(60, wake_at - now.timestamp() + random.uniform(20, 60)))
+    return wait
+
+
+def backoff(streak):
+    """While Cloudflare blocks Micro Center, skip it for longer each time (30 min, 1 h, then 2 h)
+    instead of knocking harder. Secret Lair keeps its own schedule meanwhile."""
+    return min(7200, 1800 * 2 ** (streak - 1)) if streak else 0
+
+
+def poll_micro_center(cfg, state, debug=False):
+    if not cfg.get('microcenter_enabled', True):
+        return
+    if time.time() < state.get('mc_skip_until', 0):
+        print(f'  Micro Center: backing off after a block, next try {dt.datetime.fromtimestamp(state["mc_skip_until"]):%H:%M}')
+        return
+    try:
+        poll(cfg, state, debug=debug)
+    except ImportError:
+        print('  Micro Center skipped: Playwright isn\'t installed (pip install playwright, then playwright install chromium)')
+        return
+    except Exception as e:
+        print(f'  Micro Center check failed: {e}')
+        return
+    state['mc_skip_until'] = time.time() + backoff(state.get('blocked_streak', 0))
+
+
+def poll_secret_lair(cfg, state, getter=secretlair.get):
+    sc = cfg.get('secret_lair', {})
+    if not sc.get('enabled', True):
+        return
+    sl = state.setdefault('sl', {})
+    full = time.time() - sl.get('last_full', 0) > sc.get('full_scan_hours', 24) * 3600
+    try:
+        products, feeds = secretlair.fetch_products(state, full=full, getter=getter)
+    except Exception as e:
+        print(f'  Secret Lair check failed: {e}')
+        if time.time() - sl.get('last_fail_alert', 0) > 6 * 3600 and sl.get('fails', 0) >= 2:
+            sl['last_fail_alert'] = time.time()
+            push(cfg, 'Secret Lair check failing', f'Couldn\'t read the Secret Lair store: {e}', priority=2)
+        sl['fails'] = sl.get('fails', 0) + 1
+        save_state(state)
+        return
+    sl['fails'] = 0
+    if full:
+        sl['last_full'] = time.time()
+    exc = [k.lower() for k in sc.get('exclude', [])]
+    products = [p for p in products if not any(k in p['name'].lower() for k in exc)]
+    alerts, baseline = secretlair.diff(state, products)
+    counts = {k: sum(p['status'] == k for p in products) for k in ('on_sale', 'coming', 'sold_out')}
+    print(f'  Secret Lair: {len(products)} products from {len(feeds)} home-page rows{" + full catalog" if full else ""}: '
+          f'{counts["on_sale"]} on sale, {counts["coming"]} coming, {counts["sold_out"]} sold out')
+    if baseline:
+        push(cfg, 'Secret Lair monitor started', f'Baseline recorded: {len(products)} products. You\'ll hear about '
+             'new drops and sales starting from now on.', priority=2)
+    for kind, p in alerts:
+        title, msg = secretlair.alert_text(kind, p)
+        note = legality_note(p['name'])
+        push(cfg, title, msg + (f'\n{note}' if note else ''), click=p['url'],
+             priority=3 if kind == 'announced' else 4, tags=['crystal_ball'])
+    save_state(state)
 
 
 def main(argv=None):
@@ -367,15 +429,16 @@ def main(argv=None):
     cfg = load_config()
     if a.test:
         push(cfg, 'Micro Center monitor test', f'Pushes work. Watching {cfg.get("store_name")} '
-             f'(storeid {cfg["store_id"]}).', click=watch_urls(cfg)[0], tags=['white_check_mark'])
+             f'(storeid {cfg["store_id"]}) and Secret Lair.', click=watch_urls(cfg)[0], tags=['white_check_mark'])
         return
     while True:
         state = load_state()
-        print(f'[{dt.datetime.now():%a %Y-%m-%d %H:%M}] polling {len(cfg["watch_urls"])} page(s)')
-        poll(cfg, state, debug=a.debug)
+        print(f'[{dt.datetime.now():%a %Y-%m-%d %H:%M}] checking')
+        poll_micro_center(cfg, state, debug=a.debug)
+        poll_secret_lair(cfg, state)
         if a.once:
             return
-        wait = next_wait(dt.datetime.now(), state.get('blocked_streak', 0))
+        wait = next_wait(dt.datetime.now(), secretlair.next_start(state, time.time()))
         print(f'  next poll in {wait / 60:.0f} min')
         time.sleep(wait)
 

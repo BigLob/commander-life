@@ -1,4 +1,5 @@
 {
+  "microcenter_enabled": true,
   "store_id": 131,
   "store_name": "Micro Center Dallas",
   "timezone": "America/Chicago",
@@ -6,12 +7,40 @@
     "https://www.microcenter.com/search/search_results.aspx?Ntt=magic+the+gathering&storeid={storeid}&myStore=false&rpp=96",
     "https://www.microcenter.com/search/search_results.aspx?Ntt=magic+the+gathering+commander&storeid={storeid}&myStore=false&rpp=96"
   ],
-  "include": ["magic", "mtg"],
-  "exclude": ["sleeve", "deck box", "deckbox", "playmat", "binder", "portfolio", "dice", "toploader",
-              "card protector", "storage box", "pokemon", "lorcana", "yu-gi-oh", "one piece", "flesh and blood"],
+  "include": [
+    "magic",
+    "mtg"
+  ],
+  "exclude": [
+    "sleeve",
+    "deck box",
+    "deckbox",
+    "playmat",
+    "binder",
+    "portfolio",
+    "dice",
+    "toploader",
+    "card protector",
+    "storage box",
+    "pokemon",
+    "lorcana",
+    "yu-gi-oh",
+    "one piece",
+    "flesh and blood"
+  ],
   "alert_new_listings": true,
   "ntfy_server": "https://ntfy.sh",
   "ntfy_topic": "",
   "headless": true,
-  "channel": "chrome"
+  "channel": "chrome",
+  "secret_lair": {
+    "enabled": true,
+    "full_scan_hours": 24,
+    "exclude": [
+      "d&d",
+      "dungeons & dragons",
+      "dice",
+      "transformers"
+    ]
+  }
 }
