@@ -60,6 +60,18 @@ show "Offline, this phone only". The Commander Life artifact (claude.ai/artifact
 and the old Archenemy Table artifact (claude.ai/artifact/RuiCBfVWbVowusRFS4D5zc) are previews only.
 Never send the group an artifact link to play on.
 
+## Printing card sheets (always)
+
+The user prints these sheets double-sided (flip on the long edge) even when a page says single-sided, so every
+multi-page print layout must line up front to back:
+
+- A page that has a column or block on one side (say a tall fold-over column on the right of page 1) needs its
+  back page **mirrored left to right** (that column on the left of page 2), so the cut outlines sit behind each
+  other. Page 1 and 2 are one sheet, 3 and 4 the next. `tokens_bw.py` does it with a `.pg.m` class on even pages
+  (v1.76; before that the b/w token pages put the column on the right of every page and the backs missed).
+- Check it before sending: render the PDF's pages 1 and 2 side by side and confirm the outlines mirror.
+- Keep every cut outline and margin inside 0.25 in of the paper's edge (home printers can't print closer).
+
 ## Deploying
 
 **Always deploy, never ask.** Once a change is tested, commit it, push it to the session's branch
