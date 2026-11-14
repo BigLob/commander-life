@@ -1,7 +1,7 @@
 """Build xenagos-tokens-bw.html: the Xenagos tokens as black-and-white, ink-light fold-over cards (no art, one
 simple line icon each) for a b/w printer. Each token is one 3.5 x 5 in strip: the back panel on top (turned
 upside down), a dashed fold line, the front panel below. Cut round the grey outline, fold on the dashes, put
-in a sleeve. 4 per US Letter page, printed single-sided, so no duplex alignment. Print at 100%.
+in a sleeve. 4 per US Letter page, printed single-sided, so no duplex alignment needed. If printed double-sided anyway (flip on the long edge), even pages are mirrored so the columns line up. Print at 100%.
 Counts (the user's, Nov 2026): Eldrazi Spawn 5 (backed by Plant), Elephant 3, Lightning Rager 2, Wurm (deathtouch),
 Wurm (lifelink), Beast and Garruk emblem 1 each, all backed by Copy: 14 cards, 4 pages.
 Page 4 also carries 10 round Station counters (a bolt in a ring, quarter size) for the Star Trek precons' Spacecraft.
@@ -54,7 +54,7 @@ CARDS = [('spawn', 'plant', i * 120) for i in range(5)] + [('elephant', 'copy', 
         [(k, 'copy', 0) for k in ('wurmd', 'wurml', 'beast', 'emblem')]
 body = ''
 for n, i in enumerate(range(0, len(CARDS), 4), 1):
-    body += f'<section class="pg"><b>Page {n}: cut on the grey outline, fold on the dashes</b>'
+    body += f'<section class="pg{" m" if n % 2 == 0 else ""}"><b>Page {n}: cut on the grey outline, fold on the dashes</b>'
     for j, (f, b, rot) in enumerate(CARDS[i:i + 4]):
         front = panel(f).replace('rotate(0 ', f'rotate({rot} ') if f == 'spawn' else panel(f)
         # Three flat strips (back left, front right: folds with no turning) and one tall strip (back on top, turned
@@ -98,6 +98,8 @@ h2{{margin:.08in 0 0;font:700 19pt/1 Georgia,serif;text-align:center}}
 .ru{{margin:.03in 0 0;font:10pt/1.3 Georgia,serif;text-align:center}}
 .pt{{position:absolute;right:.12in;bottom:.12in;border:2.5px solid #000;border-radius:7px;padding:0 .1in;font:700 20pt/1.2 Georgia,serif;background:#fff}}
 .lines{{margin-top:.05in}}.lines i{{display:block;border-bottom:1px solid #000;height:.24in}}
+/* even pages mirror left to right, so printed on the back of the page before (flip on the long edge) the columns line up */
+.pg.m{{grid-template-columns:2.5in 5in}}.pg.m .cd.h,.pg.m .stn{{grid-column:2}}.pg.m .cd.v{{grid-column:1}}
 @media print{{html{{background:#fff}}.pg{{margin:0}}.pg:last-child{{break-after:auto}}a[href="/commander-life/"]{{display:none!important}}}}
 </style></head><body>{body}</body></html>
 '''
