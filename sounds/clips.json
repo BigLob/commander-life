@@ -2591,6 +2591,19 @@
 "pool": "short"
 },
 {
+"f": "durant-know-who-i-am",
+"src": "myinstants: You know who I am - Kevin Durant",
+"url": "https://www.myinstants.com/media/sounds/you-know-who-i-am-kevin-durant.mp3",
+"grp": "NBA interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "You know who I am. Y'all know who I am.",
+"who": "Kevin Durant (NBA)",
+"note": "Kevin Durant (NBA)",
+"d": 3.0,
+"pool": "short"
+},
+{
 "f": "dynamite",
 "pool": "long",
 "d": 3.6,
@@ -3082,6 +3095,20 @@
 "kind": "sound"
 },
 {
+"f": "garnett-anything-possible",
+"src": "myinstants: ANYTHING IS POSSIBLE",
+"url": "https://www.myinstants.com/media/sounds/anything-is-possible.mp3",
+"grp": "NBA interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "Anything is possible!",
+"who": "Kevin Garnett (NBA)",
+"note": "Kevin Garnett (NBA)",
+"d": 2.1,
+"pool": "short",
+"from": "2008 on winning the title, Boston Celtics"
+},
+{
 "f": "genuine-sneeze-sound",
 "pool": "short",
 "d": 1.8,
@@ -3313,6 +3340,20 @@
 "kind": "sound",
 "d": 1.4,
 "pool": "short"
+},
+{
+"f": "green-who-we-thought",
+"src": "myinstants: They Are who we Thought They Were",
+"url": "https://www.myinstants.com/media/sounds/they-are-who-we-thought-they-were.mp3",
+"grp": "NFL interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "They are who we thought they were, and we let them off the hook!",
+"who": "Dennis Green (NFL coach)",
+"note": "Dennis Green (NFL coach)",
+"d": 3.0,
+"pool": "short",
+"from": "2006 postgame press conference, Arizona Cardinals head coach"
 },
 {
 "f": "gross-crachat",
@@ -3563,6 +3604,20 @@
 "quote": "He will decide your fate.",
 "who": "Game voice actor",
 "from": "A free (CC0) game voice pack on OpenGameArt"
+},
+{
+"f": "herm-play-to-win",
+"src": "myinstants: YOU PLAY TO WIN THE GAME !",
+"url": "https://www.myinstants.com/media/sounds/herm-edwards-you-play-to-win.mp3",
+"grp": "NFL interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "You play to win the game!",
+"who": "Herm Edwards (NFL coach)",
+"note": "Herm Edwards (NFL coach)",
+"d": 2.9,
+"pool": "short",
+"from": "2002 press conference, then Jets head coach"
 },
 {
 "f": "horn-1",
@@ -3915,6 +3970,33 @@
 "kind": "sound"
 },
 {
+"f": "kawhi-fun-guy",
+"src": "myinstants: Kawhi Fun Guy",
+"url": "https://www.myinstants.com/media/sounds/kawhi-fun-guy-drop.mp3",
+"grp": "NBA interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "I'm a fun guy.",
+"who": "Kawhi Leonard (NBA)",
+"note": "Kawhi Leonard (NBA)",
+"d": 3.0,
+"pool": "short",
+"from": "2019 media day, Toronto Raptors"
+},
+{
+"f": "kawhi-hey",
+"src": "myinstants: Kawhi Hey Hey Hey",
+"url": "https://www.myinstants.com/media/sounds/kawhi-leonard-hey-hey-hey.mp3",
+"grp": "NBA interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "Hey, hey, hey!",
+"who": "Kawhi Leonard (NBA)",
+"note": "Kawhi Leonard (NBA)",
+"d": 2.1,
+"pool": "short"
+},
+{
 "f": "law-and-order",
 "src": "myinstants: Law and Order DUN DUN",
 "url": "https://www.myinstants.com/media/sounds/dun_dun_1.mp3",
@@ -4224,6 +4306,20 @@
 "pool": "short",
 "quote": "Come on, I ain't got all day!",
 "who": "Tweety"
+},
+{
+"f": "manning-omaha",
+"src": "myinstants: Omaha",
+"url": "https://www.myinstants.com/media/sounds/omaha.mp3",
+"grp": "NFL interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "Omaha! Omaha! Omaha!",
+"who": "Peyton Manning (NFL quarterback)",
+"note": "Peyton Manning (NFL quarterback)",
+"d": 2.9,
+"pool": "short",
+"from": "at the line of scrimmage"
 },
 {
 "f": "mario-1up",
@@ -8811,6 +8907,20 @@
 "kind": "sound"
 },
 {
+"f": "uecker-missed-the-tag",
+"src": "myinstants: Bob Uecker's \"He Missed the Tag\"",
+"url": "https://www.myinstants.com/media/sounds/bob-ueckers-he-missed-the-tag.mp3",
+"grp": "MLB interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "He missed the tag! He missed the tag!",
+"who": "Bob Uecker (MLB broadcaster and former catcher)",
+"note": "Bob Uecker (MLB broadcaster and former catcher)",
+"d": 2.7,
+"pool": "short",
+"from": "radio call"
+},
+{
 "f": "undead-1",
 "pool": "short",
 "d": 2.3,
@@ -9435,6 +9545,19 @@
 "kind": "sound"
 },
 {
+"f": "westbrook-what",
+"src": "myinstants: Russell Westbrook's \"What\"",
+"url": "https://www.myinstants.com/media/sounds/what_CRbm9CB.mp3",
+"grp": "NBA interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "What?",
+"who": "Russell Westbrook (NBA)",
+"note": "Russell Westbrook (NBA)",
+"d": 1.0,
+"pool": "short"
+},
+{
 "f": "win-bandoneon",
 "pool": "long",
 "d": 3.8,
@@ -9982,6 +10105,20 @@
 "who": "Bill Clinton"
 },
 {
+"f": "long/cousins-you-like-that",
+"src": "myinstants: You like that? Kirk Cousins",
+"url": "https://www.myinstants.com/media/sounds/kirk-cousins-washington-redskins-quarterback-yells-you-like-that-to-reporters-after-win.mp3",
+"grp": "NFL interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "You like that! You like that!",
+"who": "Kirk Cousins (NFL quarterback)",
+"note": "Kirk Cousins (NFL quarterback)",
+"d": 4.7,
+"pool": "long",
+"from": "2016, after a Washington win"
+},
+{
 "f": "long/cozy-clear",
 "pool": "long",
 "d": 12.0,
@@ -10317,6 +10454,20 @@
 "grp": "OpenGameArt",
 "lic": "CC0",
 "kind": "sound"
+},
+{
+"f": "long/iverson-practice",
+"src": "myinstants: Allen Iverson Practice",
+"url": "https://www.myinstants.com/media/sounds/practice.mp3",
+"grp": "NBA interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "Listen, we talking about practice, not a game, not a game.",
+"who": "Allen Iverson (NBA)",
+"note": "Allen Iverson (NBA)",
+"d": 4.0,
+"pool": "long",
+"from": "2002 press conference, Philadelphia 76ers"
 },
 {
 "f": "long/jeopardy-think",
@@ -10797,6 +10948,20 @@
 "lic": "CC0",
 "note": "full-length cut",
 "kind": "sound"
+},
+{
+"f": "long/mora-playoffs",
+"src": "myinstants: Jim Mora Playoffs?",
+"url": "https://www.myinstants.com/media/sounds/playoffs-drop.mp3",
+"grp": "NFL interviews",
+"kind": "talk",
+"lic": "Sports broadcast audio",
+"quote": "Playoffs?! Don't talk about playoffs. You kidding me? Playoffs?",
+"who": "Jim Mora (NFL coach)",
+"note": "Jim Mora (NFL coach)",
+"d": 4.9,
+"pool": "long",
+"from": "2001 press conference, Indianapolis Colts head coach"
 },
 {
 "f": "long/mp-holy-hand-grenade",

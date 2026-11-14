@@ -949,3 +949,22 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 | `long/jones-medical-science` | “First place, I don't tell anyone that they are healed. I tell them to go and see… We do not in any way oppose medical science.” |
 | `long/jones-two-oclock` | “I just simply could not let them do it. I held them till two o'clock in the morning.” |
 | `long/jones-wait-one-day` | “We don't ask them to wait one minute. We ask them to wait one day. We tell them to go immediately to their doctor.” |
+
+## Athlete interview clips: NFL, NBA, MLB (v1.79)
+
+12 clips, all under 5 seconds, of famous press-conference and interview lines, from myinstants uploads (checked by faster-whisper transcript). Broadcast audio, copyrighted, not CC0. No NHL clip turned up on myinstants. Left out: college coaches (Mike Gundy), pundits (Stephen A. Smith), boxing and clips whose speaker or words I couldn't confirm.
+
+| File | Words | Speaker | Source |
+| --- | --- | --- | --- |
+| `durant-know-who-i-am` | “You know who I am. Y'all know who I am.” | Kevin Durant (NBA) | [myinstants: You know who I am - Kevin Durant](https://www.myinstants.com/media/sounds/you-know-who-i-am-kevin-durant.mp3) |
+| `garnett-anything-possible` | “Anything is possible!” | Kevin Garnett (NBA) | [myinstants: ANYTHING IS POSSIBLE](https://www.myinstants.com/media/sounds/anything-is-possible.mp3) |
+| `green-who-we-thought` | “They are who we thought they were, and we let them off the hook!” | Dennis Green (NFL coach) | [myinstants: They Are who we Thought They Were](https://www.myinstants.com/media/sounds/they-are-who-we-thought-they-were.mp3) |
+| `herm-play-to-win` | “You play to win the game!” | Herm Edwards (NFL coach) | [myinstants: YOU PLAY TO WIN THE GAME !](https://www.myinstants.com/media/sounds/herm-edwards-you-play-to-win.mp3) |
+| `kawhi-fun-guy` | “I'm a fun guy.” | Kawhi Leonard (NBA) | [myinstants: Kawhi Fun Guy](https://www.myinstants.com/media/sounds/kawhi-fun-guy-drop.mp3) |
+| `kawhi-hey` | “Hey, hey, hey!” | Kawhi Leonard (NBA) | [myinstants: Kawhi Hey Hey Hey](https://www.myinstants.com/media/sounds/kawhi-leonard-hey-hey-hey.mp3) |
+| `manning-omaha` | “Omaha! Omaha! Omaha!” | Peyton Manning (NFL quarterback) | [myinstants: Omaha](https://www.myinstants.com/media/sounds/omaha.mp3) |
+| `uecker-missed-the-tag` | “He missed the tag! He missed the tag!” | Bob Uecker (MLB broadcaster and former catcher) | [myinstants: Bob Uecker's "He Missed the Tag"](https://www.myinstants.com/media/sounds/bob-ueckers-he-missed-the-tag.mp3) |
+| `westbrook-what` | “What?” | Russell Westbrook (NBA) | [myinstants: Russell Westbrook's "What"](https://www.myinstants.com/media/sounds/what_CRbm9CB.mp3) |
+| `long/cousins-you-like-that` | “You like that! You like that!” | Kirk Cousins (NFL quarterback) | [myinstants: You like that? Kirk Cousins](https://www.myinstants.com/media/sounds/kirk-cousins-washington-redskins-quarterback-yells-you-like-that-to-reporters-after-win.mp3) |
+| `long/iverson-practice` | “Listen, we talking about practice, not a game, not a game.” | Allen Iverson (NBA) | [myinstants: Allen Iverson Practice](https://www.myinstants.com/media/sounds/practice.mp3) |
+| `long/mora-playoffs` | “Playoffs?! Don't talk about playoffs. You kidding me? Playoffs?” | Jim Mora (NFL coach) | [myinstants: Jim Mora Playoffs?](https://www.myinstants.com/media/sounds/playoffs-drop.mp3) |
