@@ -132,13 +132,13 @@ class Poll(unittest.TestCase):
 
 class Schedule(unittest.TestCase):
     def test_waits(self):
-        fri = dt.datetime(2026, 11, 20, 10, 0)  # a Friday
-        self.assertLess(m.next_wait(fri, 0), 400)
-        self.assertGreaterEqual(m.next_wait(dt.datetime(2026, 11, 18, 10, 0), 0), 1800)
-        before = dt.datetime(2026, 11, 20, 9, 40)
-        self.assertLess(m.next_wait(before, 0), 400)  # wakes for the window
-        self.assertGreaterEqual(m.next_wait(fri, 3), 7200)
-
+        # Nov 19 2026 is a Thursday, Nov 20 a Friday.
+        for t in [(19, 12, 0), (19, 23, 30), (20, 3, 0), (20, 10, 0), (20, 10, 59)]:
+            self.assertLess(m.next_wait(dt.datetime(2026, 11, *t), 0), 400, t)
+        for t in [(18, 10, 0), (20, 11, 0), (21, 15, 0), (16, 9, 0)]:
+            self.assertGreaterEqual(m.next_wait(dt.datetime(2026, 11, *t), 0), 1800, t)
+        self.assertLess(m.next_wait(dt.datetime(2026, 11, 19, 11, 50), 0), 700)  # wakes for the window
+        self.assertGreaterEqual(m.next_wait(dt.datetime(2026, 11, 20, 10, 0), 3), 7200)
 
 if __name__ == '__main__':
     unittest.main()

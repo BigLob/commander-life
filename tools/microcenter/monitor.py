@@ -6,7 +6,7 @@ A home connection in a real Chrome profile usually passes. We never try to beat 
 if it shows, we back off and say so (one push per hour at most).
 
 Usage:
-  python monitor.py            loop forever (5 min on Fridays 9:45-11:00, 30-60 min otherwise)
+  python monitor.py            loop forever (5 min Thursday noon to Friday 11 AM, 30-60 min otherwise)
   python monitor.py --once     one poll, then exit (for Task Scheduler)
   python monitor.py --test     send a test push and exit
   python monitor.py --debug    also save each page's HTML and a screenshot to debug/
@@ -333,20 +333,29 @@ def poll(cfg, state, debug=False, fetch=fetch_pages):
     return blocked
 
 
+def in_window(now):
+    """The closely watched stretch: Thursday noon through Friday 11 AM (the user's pick;
+    Micro Center says restocks go live Fridays at 10 AM, and the site can update earlier)."""
+    wd, t = now.weekday(), now.hour * 60 + now.minute
+    return (wd == 3 and t >= 12 * 60) or (wd == 4 and t < 11 * 60)
+
+
+def window_start(now):
+    """The next Thursday noon at or after now."""
+    days = (3 - now.weekday()) % 7
+    start = (now + dt.timedelta(days=days)).replace(hour=12, minute=0, second=0, microsecond=0)
+    return start if start >= now else start + dt.timedelta(days=7)
+
+
 def next_wait(now, blocked_streak):
-    """5 min in the Friday 9:45-11:00 restock window, 30-60 min otherwise. While blocked,
+    """5 min from Thursday noon to Friday 11 AM, 30-60 min otherwise. While blocked,
     wait longer each time (up to 2 h) instead of knocking harder."""
     if blocked_streak:
         return min(7200, 1800 * 2 ** (blocked_streak - 1)) + random.uniform(0, 300)
-    start = now.replace(hour=9, minute=45, second=0, microsecond=0)
-    end = now.replace(hour=11, minute=0, second=0, microsecond=0)
-    if now.weekday() == 4 and start <= now < end:
+    if in_window(now):
         return 300 + random.uniform(-20, 40)
-    wait = random.uniform(1800, 3600)
-    # Don't sleep through the start of Friday's window.
-    if now.weekday() == 4 and now < start:
-        wait = min(wait, (start - now).total_seconds() + random.uniform(0, 30))
-    return wait
+    # Don't sleep through the start of the window.
+    return min(random.uniform(1800, 3600), (window_start(now) - now).total_seconds() + random.uniform(0, 30))
 
 
 def main(argv=None):

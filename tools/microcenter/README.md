@@ -6,7 +6,7 @@ check blocks cloud servers, but a home connection in a normal Chrome usually pas
 
 Micro Center says trading card restocks go live in stores **Fridays at 10 AM** (when the vendor
 ships), new launches are posted on the website as soon as they know, and the stores use the same
-inventory as the site. So the monitor checks every 5 minutes on Fridays 9:45 to 11:00 AM and every
+inventory as the site. The monitor checks every 5 minutes from **Thursday noon through Friday 11 AM** and every
 30 to 60 minutes the rest of the week.
 
 Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, minus accessories
