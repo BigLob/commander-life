@@ -792,3 +792,65 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 | `cope-the-carpenter-s-son` | Kenneth Cope, "The Carpenter's Son" (EFY: The Best of Especially for Youth, Vol. 2) | Sung: "That's why they called him the carpenter's son" | 5.6 s |
 | `cope-we-believe` | Kenneth Cope, "We Believe" (EFY 2002 - We Believe) | Sung: "We believe in one name under heaven" | 6.7 s |
 | `cope-what-have-i-done-with-his-name` | Kenneth Cope, "What Have I Done With His Name?" (EFY: The Best of Especially for Youth, Vol. 2) | Sung: "What have I done with his name?" | 5.3 s |
+
+
+## Final Fantasy and more Star Trek (v1.76)
+
+31 Final Fantasy clips and 23 more Star Trek clips from meme uploads on myinstants.com. Square Enix, Paramount and others' audio, not CC0.
+
+| Clip | What | Source |
+| --- | --- | --- |
+| `ff-chocobo-theme` | Chocobo theme | [myinstants: chocobo theme](https://www.myinstants.com/media/sounds/chocobo-theme.mp3) |
+| `ff-chocobo-wark` | Chocobo "wark" | [myinstants: chocobo wark](https://www.myinstants.com/media/sounds/chocobo_wark.mp3) |
+| `ff-fanfare` | Fanfare | [myinstants: FF Fanfare](https://www.myinstants.com/media/sounds/ff-fanfare.mp3) |
+| `ff-moogle-kupo` | Moogle "kupo" | [myinstants: Moogle Kupo](https://www.myinstants.com/media/sounds/moogle-kupo.mp3) |
+| `ff-victory-orchestral` | Victory theme, orchestral | [myinstants: Final Fantasy Victory (Orchestral)](https://www.myinstants.com/media/sounds/ff-victory-theme-orchestral.mp3) |
+| `ff1-victory-fanfare` | Victory fanfare, first 6 s | [myinstants: Victory's Fanfare (FFV)](https://www.myinstants.com/media/sounds/ff1_victory_fanfare.mp3) |
+| `ff11-victory-fanfare` | Victory fanfare (FFXI) | [myinstants: Final Fantasy XI Victory](https://www.myinstants.com/media/sounds/final-fantasy-xi-victory.mp3) |
+| `ff14-chocobo-kweh` | Chocobo "kweh" (FFXIV) | [myinstants: Kweh](https://www.myinstants.com/media/sounds/ffxiv-chocobo-kweh.mp3) |
+| `ff14-duty-pop` | Duty finder pop (FFXIV) | [myinstants: Final Fantasy XIV Duty Pop finder + Tick](https://www.myinstants.com/media/sounds/final-fantasy-xiv-duty-pop-finder-tick_MzQQxWW.mp3) |
+| `ff15-ride-my-chocobo` | I want to ride my chocobo all day. Can't get it out of my head! | [myinstants: ffxv - i want to ride my chocobo all day](https://www.myinstants.com/media/sounds/ffxv-i-want-to-ride-my-chocobo-all-day.mp3) |
+| `ff15-totally-into-chocobos` | I'm totally into chocobos. Don't take that the wrong way. | [myinstants: ffxv - totally into chocobos](https://www.myinstants.com/media/sounds/ffxv-totally-into-chocobos.mp3) |
+| `ff4-victory-fanfare` | Victory fanfare (FFIV) | [myinstants: Final fantasy IV Fanfare of Victory](https://www.myinstants.com/media/sounds/final-fantasy-iv-fanfare-of-victory.mp3) |
+| `ff6-terra-theme` | Terra's Theme (FFVI), first 12 s | [myinstants: Terra's Theme](https://www.myinstants.com/media/sounds/sem-titulo_00012.mp3) |
+| `ff7-battle-start` | Battle start (FFVII) | [myinstants: Battle Start FFVII](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-transition-enter-battle.mp3) |
+| `ff7-battle-theme` | Fighting theme (FFVII), first 11 s | [myinstants: FINAL FANTASY 7 Battle](https://www.myinstants.com/media/sounds/final-fantasy-vii-fighting-1.mp3) |
+| `ff7-be-nice` | Be nice. | [myinstants: Be Nice Tifa](https://www.myinstants.com/media/sounds/be-nice.mp3) |
+| `ff7-chocobo-wark` | Chocobo "wark" (FFVII) | [myinstants: FFVII Chokobo Wark](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-chocobo-wark.mp3) |
+| `ff7-limit-break` | Limit Break (FFVII) | [myinstants: FF7 Limit Break](https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-limit-break.mp3) |
+| `ff7-me-gongaga` | "Me? Gongaga!" | [myinstants: Me? Gongaga](https://www.myinstants.com/media/sounds/me-gongaga.mp3) |
+| `ff7-one-winged-angel-edit` | Sephiroth's theme | [myinstants: sephiroth one wing](https://www.myinstants.com/media/sounds/one-winged-angel-edit.mp3) |
+| `ff7-one-winged-angel` | Sephiroth's theme | [myinstants: Final Fantasy VII - One Winged Angel](https://www.myinstants.com/media/sounds/final-fantasy-vii-one-winged-angel.mp3) |
+| `ff7-sephiroth` | FFVII | [myinstants: SEPHIROTH](https://www.myinstants.com/media/sounds/se-phi-roth.mp3) |
+| `ff7-still-out-here` | I'm still out here. | [myinstants: (FFVII-AC) I'm still out here!](https://www.myinstants.com/media/sounds/ffvii-ac-im-still-out-here.mp3) |
+| `ff7-victory-fanfare` | Victory fanfare (FFVII) | [myinstants: Victory Fanfare FFVII](https://www.myinstants.com/media/sounds/victory-fanfare-ffvii.mp3) |
+| `ff7-victory-recorder` | Victory fanfare on recorder (FFVII) | [myinstants: Victory Recorder FFVII](https://www.myinstants.com/media/sounds/victory-recorder-ffvii.mp3) |
+| `ff7r-barret-fanfare` | Barret fanfare (FFVII Remake) | [myinstants: FF7R Barret Fanfare](https://www.myinstants.com/media/sounds/ff7r-barret-fanfare.mp3) |
+| `ff8-limit-break` | Limit Break (FFVIII) | [myinstants: FF8 Limit Break](https://www.myinstants.com/media/sounds/final-fantasy-viii-sound-effects-limit-break.mp3) |
+| `ff8-menu-cursor` | Menu cursor (FFVIII) | [myinstants: final fantasy 8 menu cursor](https://www.myinstants.com/media/sounds/final-fantasy-8-menu-cursor.mp3) |
+| `ff8-save` | Save (FFVIII) | [myinstants: final fantasy 8 save sound](https://www.myinstants.com/media/sounds/final-fantasy-8-save-sound.mp3) |
+| `ff9-moogle-mognet` | Moogle mognet (FFIX) | [myinstants: FF9 Moogle](https://www.myinstants.com/media/sounds/final-fantasy-moogle-mognet-text-alert-whatsapp-tone-ringtone.mp3) |
+| `ff9-victory-fanfare` | Victory fanfare (FFIX) | [myinstants: FINAL FANTASY WIN SOUND](https://www.myinstants.com/media/sounds/final-fantasy-ix-victory-fanfare-24139-mp3cut.mp3) |
+| `trek-borg-surrender` | We are the Borg. Lower your shields and surrender your ships. We will add your biological and technological distinctiveness to our own. | [myinstants: Borg](https://www.myinstants.com/media/sounds/we-are-the-borg.mp3) |
+| `trek-can-you-read-me` | Spock, can you read me? | [myinstants: spock can you read me](https://www.myinstants.com/media/sounds/spock-can-you-read-me.mp3) |
+| `trek-chirp` | TNG communicator chirp | [myinstants: X-Chirp TNG](https://www.myinstants.com/media/sounds/x-chirp-tng.mp3) |
+| `trek-cloak` | Klingon cloak | [myinstants: X-Cloack Klingon](https://www.myinstants.com/media/sounds/x-cloack-klingon.mp3) |
+| `trek-data-oh-shit` | Oh, shit. | [myinstants: data ooh shit](https://www.myinstants.com/media/sounds/data-oh-shit-star-trek-generations-hd.mp3) |
+| `trek-data-received` | Library computer, data being received. | [myinstants: Data received TOS](https://www.myinstants.com/media/sounds/data-received-tos.mp3) |
+| `trek-direction-unclear` | Direction unclear. Please repeat request. | [myinstants: tng computer unclear](https://www.myinstants.com/media/sounds/unclear.mp3) |
+| `trek-disruptor` | Disruptor cannon | [myinstants: Star Trek ship disruptor cannon](https://www.myinstants.com/media/sounds/star-trek-ship-disruptor-cannon.mp3) |
+| `trek-help-me-spock` | Help me, Spock! | [myinstants: help me spock](https://www.myinstants.com/media/sounds/help-me-spock.mp3) |
+| `trek-insufficient-data` | Insufficient data. | [myinstants: Insuficient Data](https://www.myinstants.com/media/sounds/insuficientdata.mp3) |
+| `trek-on-screen` | Put them on screen. | [myinstants: star trek on screen](https://www.myinstants.com/media/sounds/star-trek-on-screen.mp3) |
+| `trek-opening-chime` | Opening chime | [myinstants: Star Trek opening chime](https://www.myinstants.com/media/sounds/star-trek-opening_8Ffzmjq.mp3) |
+| `trek-phaser-strike` | TNG phaser strike | [myinstants: X-Phaser Strike TNG](https://www.myinstants.com/media/sounds/x-phaser-strike-tng.mp3) |
+| `trek-pulse-fire` | Pulse fire | [myinstants: Unknown pulse fire sound star trek 1](https://www.myinstants.com/media/sounds/unknown-pulse-fire-sound-star-trek-1_BrkM4VS.mp3) |
+| `trek-raktajino` | Computer, one raktajino. | [myinstants: Computer, One Raktajino. SISKO](https://www.myinstants.com/media/sounds/computer-one-raktajino-sisko.mp3) |
+| `trek-sonar` | Sonar ping | [myinstants: Star Trek Sonar](https://www.myinstants.com/media/sounds/star-trek-sonar.mp3) |
+| `trek-tng-transporter-short` | TNG transporter | [myinstants: X-Transporter 1 TNG](https://www.myinstants.com/media/sounds/x-transporter-1-tng.mp3) |
+| `trek-torpedo` | TNG photon torpedo | [myinstants: Z-Torpedo 3 TNG](https://www.myinstants.com/media/sounds/z-torpedo-3-tng.mp3) |
+| `trek-transporter-room` | Spock to the transporter room! | [myinstants: spock to the transporter room](https://www.myinstants.com/media/sounds/spock-to-the-transporter-room.mp3) |
+| `trek-warp-7` | TNG warp 7 | [myinstants: X-Warp 7 TNG](https://www.myinstants.com/media/sounds/x-warp-7-tng.mp3) |
+| `trek-warp-drive-active` | Warp drive active. | [myinstants: Warp Drive Activated](https://www.myinstants.com/media/sounds/warpdriveactive.mp3) |
+| `trek-warp-out` | TNG warp out | [myinstants: X-Warp Out 2 TNG](https://www.myinstants.com/media/sounds/x-warp-out-2-tng.mp3) |
+| `trek-weapons` | TNG weapons fire | [myinstants: Z-Weapons TNG](https://www.myinstants.com/media/sounds/z-weapons-tng.mp3) |

@@ -2504,6 +2504,357 @@
 "kind": "sound"
 },
 {
+"f": "ff-chocobo-theme",
+"src": "myinstants: chocobo theme",
+"url": "https://www.myinstants.com/media/sounds/chocobo-theme.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Chocobo theme",
+"d": 11.9,
+"pool": "long"
+},
+{
+"f": "ff-chocobo-wark",
+"src": "myinstants: chocobo wark",
+"url": "https://www.myinstants.com/media/sounds/chocobo_wark.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Chocobo \"wark\"",
+"d": 1.0,
+"pool": "short"
+},
+{
+"f": "ff-fanfare",
+"src": "myinstants: FF Fanfare",
+"url": "https://www.myinstants.com/media/sounds/ff-fanfare.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Fanfare",
+"d": 3.6,
+"pool": "long"
+},
+{
+"f": "ff-moogle-kupo",
+"src": "myinstants: Moogle Kupo",
+"url": "https://www.myinstants.com/media/sounds/moogle-kupo.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Moogle \"kupo\"",
+"d": 2.1,
+"pool": "short"
+},
+{
+"f": "ff-victory-orchestral",
+"src": "myinstants: Final Fantasy Victory (Orchestral)",
+"url": "https://www.myinstants.com/media/sounds/ff-victory-theme-orchestral.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory theme, orchestral",
+"d": 8.0,
+"pool": "long"
+},
+{
+"f": "ff1-victory-fanfare",
+"src": "myinstants: Victory's Fanfare (FFV)",
+"url": "https://www.myinstants.com/media/sounds/ff1_victory_fanfare.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory fanfare, first 6 s",
+"d": 6.0,
+"pool": "long"
+},
+{
+"f": "ff11-victory-fanfare",
+"src": "myinstants: Final Fantasy XI Victory",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-xi-victory.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory fanfare (FFXI)",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "ff14-chocobo-kweh",
+"src": "myinstants: Kweh",
+"url": "https://www.myinstants.com/media/sounds/ffxiv-chocobo-kweh.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Chocobo \"kweh\" (FFXIV)",
+"d": 1.1,
+"pool": "short"
+},
+{
+"f": "ff14-duty-pop",
+"src": "myinstants: Final Fantasy XIV Duty Pop finder + Tick",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-xiv-duty-pop-finder-tick_MzQQxWW.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Duty finder pop (FFXIV)",
+"d": 5.4,
+"pool": "long"
+},
+{
+"f": "ff15-ride-my-chocobo",
+"src": "myinstants: ffxv - i want to ride my chocobo all day",
+"url": "https://www.myinstants.com/media/sounds/ffxv-i-want-to-ride-my-chocobo-all-day.mp3",
+"grp": "Final Fantasy",
+"kind": "talk",
+"lic": "Square Enix game audio",
+"quote": "I want to ride my chocobo all day. Can't get it out of my head!",
+"who": "Prompto",
+"note": "FFXV",
+"d": 4.4,
+"pool": "long"
+},
+{
+"f": "ff15-totally-into-chocobos",
+"src": "myinstants: ffxv - totally into chocobos",
+"url": "https://www.myinstants.com/media/sounds/ffxv-totally-into-chocobos.mp3",
+"grp": "Final Fantasy",
+"kind": "talk",
+"lic": "Square Enix game audio",
+"quote": "I'm totally into chocobos. Don't take that the wrong way.",
+"who": "Prompto",
+"note": "FFXV",
+"d": 4.4,
+"pool": "long"
+},
+{
+"f": "ff4-victory-fanfare",
+"src": "myinstants: Final fantasy IV Fanfare of Victory",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-iv-fanfare-of-victory.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory fanfare (FFIV)",
+"d": 4.4,
+"pool": "long"
+},
+{
+"f": "ff6-terra-theme",
+"src": "myinstants: Terra's Theme",
+"url": "https://www.myinstants.com/media/sounds/sem-titulo_00012.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Terra's Theme (FFVI), first 12 s",
+"d": 12.0,
+"pool": "long"
+},
+{
+"f": "ff7-battle-start",
+"src": "myinstants: Battle Start FFVII",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-transition-enter-battle.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Battle start (FFVII)",
+"d": 3.3,
+"pool": "long"
+},
+{
+"f": "ff7-battle-theme",
+"src": "myinstants: FINAL FANTASY 7 Battle",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-fighting-1.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Fighting theme (FFVII), first 11 s",
+"d": 11.0,
+"pool": "long"
+},
+{
+"f": "ff7-be-nice",
+"src": "myinstants: Be Nice Tifa",
+"url": "https://www.myinstants.com/media/sounds/be-nice.mp3",
+"grp": "Final Fantasy",
+"kind": "talk",
+"lic": "Square Enix game audio",
+"quote": "Be nice.",
+"who": "Tifa",
+"note": "FFVII",
+"d": 1.0,
+"pool": "short"
+},
+{
+"f": "ff7-chocobo-wark",
+"src": "myinstants: FFVII Chokobo Wark",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-chocobo-wark.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Chocobo \"wark\" (FFVII)",
+"d": 2.0,
+"pool": "short"
+},
+{
+"f": "ff7-limit-break",
+"src": "myinstants: FF7 Limit Break",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-sound-effects-limit-break.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Limit Break (FFVII)",
+"d": 3.0,
+"pool": "short"
+},
+{
+"f": "ff7-me-gongaga",
+"src": "myinstants: Me? Gongaga",
+"url": "https://www.myinstants.com/media/sounds/me-gongaga.mp3",
+"grp": "Final Fantasy",
+"kind": "talk",
+"lic": "Square Enix game audio",
+"quote": "\"Me? Gongaga!\"",
+"who": "Cloud",
+"note": "FFVII",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "ff7-one-winged-angel-edit",
+"src": "myinstants: sephiroth one wing",
+"url": "https://www.myinstants.com/media/sounds/one-winged-angel-edit.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Sephiroth's theme",
+"d": 5.5,
+"pool": "long"
+},
+{
+"f": "ff7-one-winged-angel",
+"src": "myinstants: Final Fantasy VII - One Winged Angel",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-vii-one-winged-angel.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Sephiroth's theme",
+"d": 11.5,
+"pool": "long"
+},
+{
+"f": "ff7-sephiroth",
+"src": "myinstants: SEPHIROTH",
+"url": "https://www.myinstants.com/media/sounds/se-phi-roth.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "FFVII",
+"d": 1.2,
+"pool": "short"
+},
+{
+"f": "ff7-still-out-here",
+"src": "myinstants: (FFVII-AC) I'm still out here!",
+"url": "https://www.myinstants.com/media/sounds/ffvii-ac-im-still-out-here.mp3",
+"grp": "Final Fantasy",
+"kind": "talk",
+"lic": "Square Enix game audio",
+"quote": "I'm still out here.",
+"who": "Cloud",
+"note": "Advent Children",
+"d": 3.1,
+"pool": "long"
+},
+{
+"f": "ff7-victory-fanfare",
+"src": "myinstants: Victory Fanfare FFVII",
+"url": "https://www.myinstants.com/media/sounds/victory-fanfare-ffvii.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory fanfare (FFVII)",
+"d": 4.1,
+"pool": "long"
+},
+{
+"f": "ff7-victory-recorder",
+"src": "myinstants: Victory Recorder FFVII",
+"url": "https://www.myinstants.com/media/sounds/victory-recorder-ffvii.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory fanfare on recorder (FFVII)",
+"d": 3.3,
+"pool": "long"
+},
+{
+"f": "ff7r-barret-fanfare",
+"src": "myinstants: FF7R Barret Fanfare",
+"url": "https://www.myinstants.com/media/sounds/ff7r-barret-fanfare.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Barret fanfare (FFVII Remake)",
+"d": 7.3,
+"pool": "long"
+},
+{
+"f": "ff8-limit-break",
+"src": "myinstants: FF8 Limit Break",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-viii-sound-effects-limit-break.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Limit Break (FFVIII)",
+"d": 2.4,
+"pool": "short"
+},
+{
+"f": "ff8-menu-cursor",
+"src": "myinstants: final fantasy 8 menu cursor",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-8-menu-cursor.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Menu cursor (FFVIII)",
+"d": 1.4,
+"pool": "short"
+},
+{
+"f": "ff8-save",
+"src": "myinstants: final fantasy 8 save sound",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-8-save-sound.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Save (FFVIII)",
+"d": 2.3,
+"pool": "short"
+},
+{
+"f": "ff9-moogle-mognet",
+"src": "myinstants: FF9 Moogle",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-moogle-mognet-text-alert-whatsapp-tone-ringtone.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Moogle mognet (FFIX)",
+"d": 2.1,
+"pool": "short"
+},
+{
+"f": "ff9-victory-fanfare",
+"src": "myinstants: FINAL FANTASY WIN SOUND",
+"url": "https://www.myinstants.com/media/sounds/final-fantasy-ix-victory-fanfare-24139-mp3cut.mp3",
+"grp": "Final Fantasy",
+"kind": "sound",
+"lic": "Square Enix game audio",
+"note": "Victory fanfare (FFIX)",
+"d": 4.8,
+"pool": "long"
+},
+{
 "f": "final-lap",
 "pool": "long",
 "d": 5.0,
@@ -6021,6 +6372,19 @@
 "pool": "short"
 },
 {
+"f": "trek-borg-surrender",
+"src": "myinstants: Borg",
+"url": "https://www.myinstants.com/media/sounds/we-are-the-borg.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "We are the Borg. Lower your shields and surrender your ships. We will add your biological and technological distinctiveness to our own.",
+"who": "The Borg",
+"note": "Borg, first 9.6 s",
+"d": 9.6,
+"pool": "long"
+},
+{
 "f": "trek-borg-transporter",
 "src": "TrekCore: Borg transporter",
 "url": "https://www.trekcore.com/audio/aliensounds/borg_transporter.mp3",
@@ -6040,6 +6404,19 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS bosun whistle",
 "d": 1.6,
+"pool": "short"
+},
+{
+"f": "trek-can-you-read-me",
+"src": "myinstants: spock can you read me",
+"url": "https://www.myinstants.com/media/sounds/spock-can-you-read-me.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Spock, can you read me?",
+"who": "Kirk",
+"note": "Star Trek",
+"d": 1.2,
 "pool": "short"
 },
 {
@@ -6069,6 +6446,28 @@
 "pool": "short"
 },
 {
+"f": "trek-chirp",
+"src": "myinstants: X-Chirp TNG",
+"url": "https://www.myinstants.com/media/sounds/x-chirp-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG communicator chirp",
+"d": 0.5,
+"pool": "short"
+},
+{
+"f": "trek-cloak",
+"src": "myinstants: X-Cloack Klingon",
+"url": "https://www.myinstants.com/media/sounds/x-cloack-klingon.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Klingon cloak",
+"d": 3.1,
+"pool": "long"
+},
+{
 "f": "trek-communicator",
 "src": "myinstants: Classic Star Trek Communicator",
 "url": "https://www.myinstants.com/media/sounds/communicator.mp3",
@@ -6078,6 +6477,32 @@
 "note": "Communicator chirp",
 "d": 0.6,
 "pool": "short"
+},
+{
+"f": "trek-data-oh-shit",
+"src": "myinstants: data ooh shit",
+"url": "https://www.myinstants.com/media/sounds/data-oh-shit-star-trek-generations-hd.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Oh, shit.",
+"who": "Data",
+"note": "Generations",
+"d": 6.1,
+"pool": "long"
+},
+{
+"f": "trek-data-received",
+"src": "myinstants: Data received TOS",
+"url": "https://www.myinstants.com/media/sounds/data-received-tos.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Library computer, data being received.",
+"who": "Computer",
+"note": "TOS computer",
+"d": 4.1,
+"pool": "long"
 },
 {
 "f": "trek-dead-jim",
@@ -6090,6 +6515,30 @@
 "who": "McCoy",
 "note": "Star Trek (TOS)",
 "d": 1.1,
+"pool": "short"
+},
+{
+"f": "trek-direction-unclear",
+"src": "myinstants: tng computer unclear",
+"url": "https://www.myinstants.com/media/sounds/unclear.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Direction unclear. Please repeat request.",
+"who": "Computer",
+"note": "TNG computer",
+"d": 3.2,
+"pool": "long"
+},
+{
+"f": "trek-disruptor",
+"src": "myinstants: Star Trek ship disruptor cannon",
+"url": "https://www.myinstants.com/media/sounds/star-trek-ship-disruptor-cannon.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Disruptor cannon",
+"d": 0.9,
 "pool": "short"
 },
 {
@@ -6119,6 +6568,19 @@
 "pool": "short"
 },
 {
+"f": "trek-help-me-spock",
+"src": "myinstants: help me spock",
+"url": "https://www.myinstants.com/media/sounds/help-me-spock.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Help me, Spock!",
+"who": "Kirk",
+"note": "Star Trek",
+"d": 1.1,
+"pool": "short"
+},
+{
 "f": "trek-incoming",
 "src": "myinstants: tng incoming transmission",
 "url": "https://www.myinstants.com/media/sounds/incoming_R5FCCOC.mp3",
@@ -6129,6 +6591,19 @@
 "who": "Ship computer",
 "note": "Star Trek: The Next Generation",
 "d": 1.6,
+"pool": "short"
+},
+{
+"f": "trek-insufficient-data",
+"src": "myinstants: Insuficient Data",
+"url": "https://www.myinstants.com/media/sounds/insuficientdata.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Insufficient data.",
+"who": "Computer",
+"note": "Computer",
+"d": 2.4,
 "pool": "short"
 },
 {
@@ -6247,6 +6722,30 @@
 "pool": "short"
 },
 {
+"f": "trek-on-screen",
+"src": "myinstants: star trek on screen",
+"url": "https://www.myinstants.com/media/sounds/star-trek-on-screen.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Put them on screen.",
+"who": "Captain",
+"note": "Star Trek",
+"d": 2.7,
+"pool": "short"
+},
+{
+"f": "trek-opening-chime",
+"src": "myinstants: Star Trek opening chime",
+"url": "https://www.myinstants.com/media/sounds/star-trek-opening_8Ffzmjq.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Opening chime",
+"d": 6.7,
+"pool": "long"
+},
+{
 "f": "trek-out-of-your-mind",
 "src": "myinstants: You Are Out of Your Mind",
 "url": "https://www.myinstants.com/media/sounds/you-are-out-of-your-mind.mp3",
@@ -6257,6 +6756,17 @@
 "note": "Star Trek",
 "d": 3.0,
 "pool": "short"
+},
+{
+"f": "trek-phaser-strike",
+"src": "myinstants: X-Phaser Strike TNG",
+"url": "https://www.myinstants.com/media/sounds/x-phaser-strike-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG phaser strike",
+"d": 3.5,
+"pool": "long"
 },
 {
 "f": "trek-photon-torpedo",
@@ -6283,6 +6793,17 @@
 "pool": "short"
 },
 {
+"f": "trek-pulse-fire",
+"src": "myinstants: Unknown pulse fire sound star trek 1",
+"url": "https://www.myinstants.com/media/sounds/unknown-pulse-fire-sound-star-trek-1_BrkM4VS.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Pulse fire",
+"d": 2.7,
+"pool": "short"
+},
+{
 "f": "trek-qapla",
 "src": "myinstants: Klingon Qapla",
 "url": "https://www.myinstants.com/media/sounds/klingon-success-qapla.mp3",
@@ -6293,6 +6814,19 @@
 "who": "Klingon",
 "note": "Star Trek",
 "d": 1.0,
+"pool": "short"
+},
+{
+"f": "trek-raktajino",
+"src": "myinstants: Computer, One Raktajino. SISKO",
+"url": "https://www.myinstants.com/media/sounds/computer-one-raktajino-sisko.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Computer, one raktajino.",
+"who": "Sisko",
+"note": "Deep Space Nine",
+"d": 2.7,
 "pool": "short"
 },
 {
@@ -6346,6 +6880,17 @@
 "pool": "short"
 },
 {
+"f": "trek-sonar",
+"src": "myinstants: Star Trek Sonar",
+"url": "https://www.myinstants.com/media/sounds/star-trek-sonar.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Sonar ping",
+"d": 3.0,
+"pool": "short"
+},
+{
 "f": "trek-tng-door",
 "src": "TrekCore: TNG doors",
 "url": "https://www.trekcore.com/audio/doors/tng_doors.mp3",
@@ -6368,6 +6913,17 @@
 "pool": "long"
 },
 {
+"f": "trek-tng-transporter-short",
+"src": "myinstants: X-Transporter 1 TNG",
+"url": "https://www.myinstants.com/media/sounds/x-transporter-1-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG transporter",
+"d": 3.7,
+"pool": "long"
+},
+{
 "f": "trek-tng-transporter",
 "src": "myinstants: Star trek TNG transporter",
 "url": "https://www.myinstants.com/media/sounds/tng_transporter9.mp3",
@@ -6377,6 +6933,17 @@
 "note": "TNG transporter",
 "d": 4.1,
 "pool": "long"
+},
+{
+"f": "trek-torpedo",
+"src": "myinstants: Z-Torpedo 3 TNG",
+"url": "https://www.myinstants.com/media/sounds/z-torpedo-3-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG photon torpedo",
+"d": 1.4,
+"pool": "short"
 },
 {
 "f": "trek-tos-door",
@@ -6410,6 +6977,19 @@
 "note": "TOS transporter",
 "d": 5.0,
 "pool": "long"
+},
+{
+"f": "trek-transporter-room",
+"src": "myinstants: spock to the transporter room",
+"url": "https://www.myinstants.com/media/sounds/spock-to-the-transporter-room.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Spock to the transporter room!",
+"who": "Kirk",
+"note": "Star Trek",
+"d": 1.4,
+"pool": "short"
 },
 {
 "f": "trek-tribble-angry",
@@ -6446,6 +7026,52 @@
 "who": "Spock",
 "note": "Star Trek (TOS)",
 "d": 1.8,
+"pool": "short"
+},
+{
+"f": "trek-warp-7",
+"src": "myinstants: X-Warp 7 TNG",
+"url": "https://www.myinstants.com/media/sounds/x-warp-7-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG warp 7",
+"d": 5.1,
+"pool": "long"
+},
+{
+"f": "trek-warp-drive-active",
+"src": "myinstants: Warp Drive Activated",
+"url": "https://www.myinstants.com/media/sounds/warpdriveactive.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Warp drive active.",
+"who": "Computer",
+"note": "Computer",
+"d": 3.0,
+"pool": "short"
+},
+{
+"f": "trek-warp-out",
+"src": "myinstants: X-Warp Out 2 TNG",
+"url": "https://www.myinstants.com/media/sounds/x-warp-out-2-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG warp out",
+"d": 4.2,
+"pool": "long"
+},
+{
+"f": "trek-weapons",
+"src": "myinstants: Z-Weapons TNG",
+"url": "https://www.myinstants.com/media/sounds/z-weapons-tng.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "TNG weapons fire",
+"d": 2.9,
 "pool": "short"
 },
 {
