@@ -45,6 +45,9 @@ then CC0 jingle and fanfare packs from OpenGameArt. Composer credits are from ge
 | `megaman2-game-over` | Mega Man 2 game over | Capcom | 2.8 s | [myinstants](https://www.myinstants.com/media/sounds/mega-man-2-game-over.mp3) |
 | `zelda-item-get` | Item get jingle | Nintendo, Zelda | 2.6 s | [myinstants](https://www.myinstants.com/media/sounds/139-item-catch.mp3) |
 | `mario-death` | Mario death jingle | Nintendo | 2.8 s | [myinstants](https://www.myinstants.com/media/sounds/super-mario-death-sound-sound-effect.mp3) |
+| `long/lt-theme-classic` | Looney Tunes theme (The Merry-Go-Round Broke Down) | Cliff Friend and Dave Franklin, Looney Tunes | 8.0 s | [myinstants](https://www.myinstants.com/media/sounds/looney-tunes-classic-theme.mp3) |
+| `long/lt-bugs-theme` | Bugs Bunny theme | Looney Tunes | 8.0 s | [myinstants](https://www.myinstants.com/media/sounds/bugs-bunny-theme-short.mp3) |
+| `long/wb-scooby-intro` | Scooby-Doo, Where Are You? theme | David Mook and Ben Raleigh, Scooby-Doo | 8.0 s | [myinstants](https://www.myinstants.com/media/sounds/scooby-doo-intro.mp3) |
 | `trek-opening-chime` | Star Trek opening chime | Star Trek | 6.7 s | [myinstants](https://www.myinstants.com/media/sounds/star-trek-opening_8Ffzmjq.mp3) |
 | `long/trek-tos-chime` | TOS opening chime | Star Trek | 6.0 s | [myinstants](https://www.myinstants.com/media/sounds/star-trek-opening.mp3) |
 

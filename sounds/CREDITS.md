@@ -854,3 +854,86 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 | `trek-warp-drive-active` | Warp drive active. | [myinstants: Warp Drive Activated](https://www.myinstants.com/media/sounds/warpdriveactive.mp3) |
 | `trek-warp-out` | TNG warp out | [myinstants: X-Warp Out 2 TNG](https://www.myinstants.com/media/sounds/x-warp-out-2-tng.mp3) |
 | `trek-weapons` | TNG weapons fire | [myinstants: Z-Weapons TNG](https://www.myinstants.com/media/sounds/z-weapons-tng.mp3) |
+
+## Looney Tunes and WB cartoons (v1.77)
+
+76 clips from myinstants uploads of Warner Bros. cartoon audio (Looney Tunes, Animaniacs, Pinky and the Brain, Tom and Jerry, Scooby-Doo, Flintstones) plus generic cartoon effects (boings, slide whistles, slips, springs, bonks). Transcribed with faster-whisper to check each line. Copyrighted, not CC0. Hanna-Barbera effects are WB-owned. Left out: laughs, impressions, remixes, foreign-language and meme uploads.
+
+| File | What | Source |
+| --- | --- | --- |
+| `cartoon-anvil` | Anvil hit | [myinstants: Big Anvil Hit](https://www.myinstants.com/media/sounds/big-anvil-hit.mp3) |
+| `cartoon-boing-1` | Boing | [myinstants: Cartoon Boing](https://www.myinstants.com/media/sounds/cartoon-boing.mp3) |
+| `cartoon-boing-2` | Boing | [myinstants: Boing Cartoon Effect](https://www.myinstants.com/media/sounds/boing-cartoon-effect.mp3) |
+| `cartoon-boing-3` | Twangy boing | [myinstants: Twangy Boing](https://www.myinstants.com/media/sounds/twangy-boing.mp3) |
+| `cartoon-bonk` | Bonk | [myinstants: improved bonk sound](https://www.myinstants.com/media/sounds/improved-bonk-sound.mp3) |
+| `cartoon-buzzard-squawk` | Buzzard squawk | [myinstants: Buzzard Squawk](https://www.myinstants.com/media/sounds/buzzard-squawk.mp3) |
+| `cartoon-flat-tube-take` | Flat tube take | [myinstants: Flat Tube Take](https://www.myinstants.com/media/sounds/flat-tube-take.mp3) |
+| `cartoon-hb-boink` | Hanna-Barbera boink | [myinstants: Boink_HannaBarbera](https://www.myinstants.com/media/sounds/boink-hannabarbera.mp3) |
+| `cartoon-hb-slam` | Hanna-Barbera slam | [myinstants: Hanna barbera SLAM](https://www.myinstants.com/media/sounds/hanna-barbera-slam.mp3) |
+| `cartoon-quick-spring` | Quick spring | [myinstants: Quick Spring](https://www.myinstants.com/media/sounds/quick-spring.mp3) |
+| `cartoon-skid` | Skid | [myinstants: Skid](https://www.myinstants.com/media/sounds/skid.mp3) |
+| `cartoon-slide-whistle` | Slide whistle | [myinstants: Cartoon slide whistle](https://www.myinstants.com/media/sounds/cartoon-slide.mp3) |
+| `cartoon-slip-fall` | Slip and fall | [myinstants: Cartoon Slip and Fall](https://www.myinstants.com/media/sounds/slipandfall.mp3) |
+| `cartoon-slip-up` | Slip up | [myinstants: cartoon slip up](https://www.myinstants.com/media/sounds/cartoon-slip-up.mp3) |
+| `cartoon-springy-bounce` | Springy bounce | [myinstants: Silly Springy Bounce](https://www.myinstants.com/media/sounds/silly-springy-bounce.mp3) |
+| `cartoon-springy-spring` | Springy spring | [myinstants: Springy Spring](https://www.myinstants.com/media/sounds/springy-spring.mp3) |
+| `cartoon-toing` | Toing | [myinstants: TOING!](https://www.myinstants.com/media/sounds/toing.mp3) |
+| `lt-bugs-carrot` | Bugs Bunny crunching a carrot | [myinstants: Bugs Bunny Eating Carrot](https://www.myinstants.com/media/sounds/bugs-bunny-eating-carrot.mp3) |
+| `lt-bugs-whats-up-doc-2` | Bugs Bunny: “Eh, what's up, Doc?” | [myinstants: whats up doc](https://www.myinstants.com/media/sounds/whats-up-doc.mp3) |
+| `lt-bugs-whats-up-doc` | Bugs Bunny: “What's up, Doc?” | [myinstants: what's up doc - bugs bunny](https://www.myinstants.com/media/sounds/whatsup.mp3) |
+| `lt-daffy-despicable` | Daffy Duck: “You're despicable!” | [myinstants: you're despicable](https://www.myinstants.com/media/sounds/youre-despicable_7UReTnU.mp3) |
+| `lt-daffy-scream` | Daffy Duck scream | [myinstants: Daffy Duck Scream](https://www.myinstants.com/media/sounds/daffy-duck-scream.mp3) |
+| `lt-daffy-touchy` | Daffy Duck: “Why aren't we touchy today?” | [myinstants: Daffy Duck - Touchy](https://www.myinstants.com/media/sounds/daffy-touchytoday.mp3) |
+| `lt-flattery` | Looney Tunes: “Flattery will get you nowhere.” | [myinstants: Flattery will get you nowhere](https://www.myinstants.com/media/sounds/flattery-will-get-you-nowhere.mp3) |
+| `lt-foghorn-all-wrong` | Foghorn Leghorn: “No, no, no, you're doing it all wrong!” | [myinstants: doing it all wrong](https://www.myinstants.com/media/sounds/doing-it-all-wrong.mp3) |
+| `lt-foghorn-bowling-ball` | Foghorn Leghorn: “That boy's about as sharp as a bowling ball.” | [myinstants: Foghorn Leghorn- Sharp as a bolwing ball](https://www.myinstants.com/media/sounds/foghorn-leghorn-sharp-as-a-bolwing-ball.mp3) |
+| `lt-marvin-scream` | Marvin the Martian screaming | [myinstants: Marvin the Martian screaming](https://www.myinstants.com/media/sounds/marvin-the-martian-screaming.mp3) |
+| `lt-meep-meep` | Road Runner, Meep Meep | [myinstants: Meep Meep](https://www.myinstants.com/media/sounds/meep11.mp3) |
+| `lt-roadrunner-beep` | Road Runner, Beep beep | [myinstants: Road Runner](https://www.myinstants.com/media/sounds/beepbeep.mp3) |
+| `lt-roadrunner-meep-2` | Road Runner, Meep meep | [myinstants: Road Runner - Meep Meep](https://www.myinstants.com/media/sounds/road-runner-meep-meep.mp3) |
+| `lt-roadrunner-meep` | Road Runner, Meep meep | [myinstants: roadrunner](https://www.myinstants.com/media/sounds/roadrunner.mp3) |
+| `lt-sam-prayers` | Yosemite Sam: “Say your prayers, varmint!” | [myinstants: say your prayers varmint](https://www.myinstants.com/media/sounds/say-your-prayers-varmint.mp3) |
+| `lt-sam-stallin` | Yosemite Sam: “Come on, quit stallin'!” | [myinstants: Yosemite Sam- Quit Stallin'](https://www.myinstants.com/media/sounds/yosemite-sam-quit-stallin.mp3) |
+| `lt-spring` | Cartoon spring | [myinstants: Cartoon Spring](https://www.myinstants.com/media/sounds/cartoon-spring.mp3) |
+| `lt-sylvester-shaddap` | Sylvester: “Ahh, shaddap!” | [myinstants: Sylvester Ah Shaddap](https://www.myinstants.com/media/sounds/sylv02.mp3) |
+| `lt-sylvester-succotash` | Sylvester: “Sufferin' succotash!” | [myinstants: Sylvester - Suffering Succotash](https://www.myinstants.com/media/sounds/sylvester-suffering-succotash.mp3) |
+| `lt-tweety-all-day` | Tweety: “Come on, I ain't got all day!” | [myinstants: Tweety- C'mon, I Ain't Got All Day!](https://www.myinstants.com/media/sounds/tweety-cmon-i-aint-got-all-day.mp3) |
+| `wb-animaniacs-42-pizzas` | Animaniacs: “I'd like 42 pizzas.” | [myinstants: 42 Pizzas](https://www.myinstants.com/media/sounds/id-like-42-pizzas.mp3) |
+| `wb-animaniacs-bad-idea` | Animaniacs: “Bad idea.” | [myinstants: bad idea animaniacs](https://www.myinstants.com/media/sounds/bad-idea-animaniacs.mp3) |
+| `wb-animaniacs-boingy` | Boingy, boingy, boingy | [myinstants: Animaniacs - boingy](https://www.myinstants.com/media/sounds/animaniacs-boingy.mp3) |
+| `wb-animaniacs-good-idea` | Animaniacs: “Good idea.” | [myinstants: good idea animaniacs](https://www.myinstants.com/media/sounds/good-idea-animaniacs.mp3) |
+| `wb-tom-and-jerry-hit` | Hit | [myinstants: tom and jerry hit sound effect](https://www.myinstants.com/media/sounds/tom-and-jerry-hit-sound-effect.mp3) |
+| `wb-tom-scream-2` | Tom screaming | [myinstants: Tom Scream #01](https://www.myinstants.com/media/sounds/tom-scream-01.mp3) |
+| `wb-tom-scream` | Tom screaming | [myinstants: Tom AAAAAAAAA scream](https://www.myinstants.com/media/sounds/tom-scream.mp3) |
+| `long/cartoon-hb-elephant` | Elephant trumpets | [myinstants: Hanna-Barbera Elephant Trumpets](https://www.myinstants.com/media/sounds/hanna-barbera-elephant-trumpets.mp3) |
+| `long/cartoon-slide-whistle-down` | Descending slide whistle | [myinstants: Descending Slide Whistle](https://www.myinstants.com/media/sounds/descending-slide-whistle.mp3) |
+| `long/cartoon-slide-whistle-rise-fall` | Slide whistle up and down | [myinstants: Slide Whistle Rise and Fall 1](https://www.myinstants.com/media/sounds/slide-whistle-rise-and-fall-1.mp3) |
+| `long/cartoon-spring-crash` | Spring stretch and crash | [myinstants: Spring Stretch and Crash](https://www.myinstants.com/media/sounds/spring-stretch-and-crash.mp3) |
+| `long/lt-beaky-no` | Beaky Buzzard: “No! No! No! No! No!” | [myinstants: beaky buzzard no no no](https://www.myinstants.com/media/sounds/beaky-buzzard-no-no-no.mp3) |
+| `long/lt-bomb-whistle` | Falling bomb and explosion | [myinstants: Bomb Explosion With Whistle](https://www.myinstants.com/media/sounds/bomb-explosion-with-whistle.mp3) |
+| `long/lt-bugs-so-long-screwy` | Bugs Bunny: “So long, Screwy! See ya in St. Louis!” | [myinstants: So long, Screwy (Bugs Bunny)](https://www.myinstants.com/media/sounds/bugs153.mp3) |
+| `long/lt-bugs-theme` | Bugs Bunny theme | [myinstants: Bugs Bunny Theme Short](https://www.myinstants.com/media/sounds/bugs-bunny-theme-short.mp3) |
+| `long/lt-bugs-this-means-war` | Bugs Bunny: “Of course you realize, this means war.” | [myinstants: (Bugs Bunny) This Means War](https://www.myinstants.com/media/sounds/bugs11_4WXS7f0.mp3) |
+| `long/lt-drop` | Loony Tunes drop and crash | [myinstants: loony toon drop](https://www.myinstants.com/media/sounds/cartoon_drop.mp3) |
+| `long/lt-duck-dodgers` | Daffy Duck (Duck Dodgers): “Then make way for Duck Dodgers in the 24th and a half century!” | [myinstants: duck dodgers](https://www.myinstants.com/media/sounds/duck-dodgers.mp3) |
+| `long/lt-foghorn-grenade` | Foghorn Leghorn: “That dog's about as subtle as a hand grenade in a barrel of oatmeal.” | [myinstants: subtle as a hand grenade](https://www.myinstants.com/media/sounds/subtle-as-a-hand-grenade.mp3) |
+| `long/lt-marvin-angry` | Marvin the Martian: “You have made me very angry! Very angry indeed!” | [myinstants: Marvin Very Angry](https://www.myinstants.com/media/sounds/marvinveryangry.mp3) |
+| `long/lt-marvin-computers` | Marvin the Martian: “Oh drat these computers, they're so naughty and so complex, I could pinch them.” | [myinstants: Marvin the Martian](https://www.myinstants.com/media/sounds/marvin-the-martian.mp3) |
+| `long/lt-marvin-pinch` | Marvin the Martian: “Oh drat these computers, they're so naughty and so complex, I could pinch them!” | [myinstants: such a pinch](https://www.myinstants.com/media/sounds/such-a-pinch.mp3) |
+| `long/lt-pepe-love` | Pepé Le Pew: “Ah, my little darling, it is love at first sight, is it not?” | [myinstants: Pepe Le Pew](https://www.myinstants.com/media/sounds/love-at-first-site.mp3) |
+| `long/lt-sylvester-anvil` | Sylvester and the anvil | [myinstants: Sylvester Anvil](https://www.myinstants.com/media/sounds/sylvester-anvil.mp3) |
+| `long/lt-taz-windup` | Tasmanian Devil spinning up | [myinstants: taz windup](https://www.myinstants.com/media/sounds/taz-windup.mp3) |
+| `long/lt-thats-all-folks-bugs` | Porky Pig: “And that's all, folks!” | [myinstants: That's all Folks Bugs](https://www.myinstants.com/media/sounds/thats-all-folks-bugs.mp3) |
+| `long/lt-thats-all-folks-porky` | Porky Pig: “That's all, folks!” | [myinstants: thats all folks porky](https://www.myinstants.com/media/sounds/thats-all-folks-porky.mp3) |
+| `long/lt-thats-all-folks` | Porky Pig: “That's all, folks!” | [myinstants: all folks looney tunes](https://www.myinstants.com/media/sounds/looney_tunes_thats_all_folks_xD6xFD4.mp3) |
+| `long/lt-theme-classic` | Looney Tunes classic theme | [myinstants: Looney Tunes Classic Theme](https://www.myinstants.com/media/sounds/looney-tunes-classic-theme.mp3) |
+| `long/lt-theme-short` | Looney Tunes theme (short) | [myinstants: Looney Tunes (short)](https://www.myinstants.com/media/sounds/looney-tunes-short.mp3) |
+| `long/lt-theme` | Looney Tunes theme | [myinstants: Looney Tunes](https://www.myinstants.com/media/sounds/looney-tunes.mp3) |
+| `long/lt-whirl` | Whirl (Taz-style spin) | [myinstants: Looney Tunes - whirl](https://www.myinstants.com/media/sounds/looney-tunes-whirl-sound-effect.mp3) |
+| `long/lt-wrong-answer` | Wrong answer buzz | [myinstants: looney tunes wrong answer sound](https://www.myinstants.com/media/sounds/looney-tunes-wrong-answer-sound.mp3) |
+| `long/wb-animaniacs-wheel-morality` | Animaniacs: “Wheel of morality, turn, turn, turn. Tell us the lesson that we should learn.” | [myinstants: wheel of morality](https://www.myinstants.com/media/sounds/wheel_of_morality.mp3) |
+| `long/wb-flintstone-paper` | Flintstones: “Here's your paper, Mr. Flintstone.” | [myinstants: Here's Your Paper Mr. Flintstone](https://www.myinstants.com/media/sounds/heres-your-paper-mr-flintstone.mp3) |
+| `long/wb-pinky-brain-tonight` | Pinky and the Brain: “What do you want to do tonight, Brain? The same thing we do every night, Pinky: try to take over the world.” | [myinstants: What do you what to do tonight](https://www.myinstants.com/media/sounds/pinky-the-brain-what-do-you-want-to-do-today.mp3) |
+| `long/wb-scooby-intro` | Scooby-Doo, Where Are You? theme | [myinstants: Scooby doo intro](https://www.myinstants.com/media/sounds/scooby-doo-intro.mp3) |
+| `long/wb-scooby-zoinks` | Shaggy: “Zoinks, zoinks, zoinks!” | [myinstants: yeeeeaaaa zoinks](https://www.myinstants.com/media/sounds/yeeeeaaaa-zoinks.mp3) |
+| `long/wb-tom-dont-believe` | Tom and Jerry: “Don't you believe it!” | [myinstants: Tom and Jerry Don't you believe it](https://www.myinstants.com/media/sounds/tom-and-jerry-dont-you-believe-it.mp3) |

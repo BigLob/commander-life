@@ -28,6 +28,7 @@ real = [('ff-chocobo-theme','Chocobo theme','Nobuo Uematsu, Final Fantasy'),('ff
  ('megaman3-stage-clear','Mega Man 3 stage clear','Capcom'),('long/megaman3-proto-man-whistle','Proto Man\'s Whistle','Capcom, Mega Man 3'),
  ('megaman-game-over','Mega Man game over','Capcom'),('megaman2-game-over','Mega Man 2 game over','Capcom'),
  ('zelda-item-get','Item get jingle','Nintendo, Zelda'),('mario-death','Mario death jingle','Nintendo'),
+ ('long/lt-theme-classic','Looney Tunes theme (The Merry-Go-Round Broke Down)','Cliff Friend and Dave Franklin, Looney Tunes'),('long/lt-bugs-theme','Bugs Bunny theme','Looney Tunes'),('long/wb-scooby-intro','Scooby-Doo, Where Are You? theme','David Mook and Ben Raleigh, Scooby-Doo'),
  ('trek-opening-chime','Star Trek opening chime','Star Trek'),('long/trek-tos-chime','TOS opening chime','Star Trek')]
 for f, t, w in real:
     if f in by: out.append(row(f, t, w))
