@@ -317,6 +317,9 @@ them and `.gitignore` now ignores PNGs at the root).
   in `ICON_MENU`.
 - Version shows in the menu footer (since v1.53 without the sync status, except "offline"). Bump `VERSION` on every release.
 
+### `sounds/tonight.json`: sounds for the decks on the table (v1.75)
+- The user tells Claude which decks are being played ("Borg and Revival Trance tonight"); Claude runs `python3 tools/sounds/tonight.py [--share 0.3] [--mute TERM ...] TERM ...` (a TERM is a deck in `DECKS` there, a clip group, or a word in a clip's name or quote; `--clear` resets), commits and deploys to `main`. Phones read the file (never cached) on load and whenever they come back to the app, so they pick it up without a reload once Pages republishes. Boosted clips take `share` of turn-button taps (the `tonight` pools in `buildPools()`); muted clips are removed. The script prints a term with no clips: **Final Fantasy has none yet** (Star Trek has 43); say so and offer to source some from myinstants. Add new decks' groups to `DECKS` in the script. Knockout and win sounds are not affected.
+
 ### `xenagos.html`: Xenagos, the Party Hugger card carousel
 - Live at https://biglob.github.io/commander-life/xenagos.html (since it landed on `main`). A standalone copy of the claude.ai artifact; republish both when it changes. Not a game page; nothing here syncs.
 - Card images are embedded as WebP data URIs (about 11 MB), so the page works offline. Bench, Trash and Fav marks are kept in that browser's localStorage only.
