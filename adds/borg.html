@@ -6,7 +6,7 @@
 <title>We Are the Borg: most added</title>
 <!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
 <link rel="manifest" href="/commander-life/app/manifest.json">
-<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -20,7 +20,7 @@ body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;
 header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
 .total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
-.back{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);text-decoration:none;order:-1;flex-basis:100%}
+.back{flex:none;font-family:var(--f-mono);font-size:.85rem;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:9px 14px;touch-action:manipulation}
 .total b{color:var(--accent);font-weight:500}
 .seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
 .seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
@@ -62,6 +62,7 @@ figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font
 .nav.l{left:-6px}.nav.r{right:-6px}
 .nav:focus-visible{outline:2px solid var(--accent)}
 @media (max-width:600px){.nav{display:none}}
+/* the user is left-handed, so Back sits in the bottom-left corner, in the footer row under the cards */
 footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
 footer input{flex:1;accent-color:var(--accent);min-width:0}
 /* zoom viewer */
@@ -86,7 +87,7 @@ footer input{flex:1;accent-color:var(--accent);min-width:0}
 .srcs p{margin:4px 0}
 figure{gap:7px}
 </style>
-<header><h1 id="h1"></h1><a class="back" id="back" href="./">‹ All decks</a><span class="total" id="sub"></span></header>
+<header><h1 id="h1"></h1><span class="total" id="sub"></span></header>
 <details class="srcs"><summary>Sources and how this list was made</summary><div id="srcs"></div></details>
 <div class="seg" id="seg"><button data-v="deck" aria-pressed="true">Deck</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
 <div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count, their cost / whole deck cost"></span></div>
@@ -101,7 +102,7 @@ figure{gap:7px}
 </div>
 
 <div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
-<footer><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
+<footer><a class="back" id="back" href="./">‹ Back</a><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card"></footer>
 <div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
 <script>
 /* A precon's 15 most-cut cards, built by tools/carousel/cuts.py from EDHREC's precon page (Cards to Cut plus Lands to Cut) and the card data on decks/<slug>.html.
