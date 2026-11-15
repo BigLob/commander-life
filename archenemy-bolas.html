@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Archenemy Bolas Guide</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column. Quick rules, turn flow, then the 20 schemes as filterable cards with play notes and how heroes beat each one. Same tokens as the other guides. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--warn:#a3341f;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--warn:#e98a73;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--warn:#e98a73;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:680px;background:var(--bg);color:var(--fg);font-family:var(--f-display);line-height:1.45;padding-block:14px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:1.5rem;margin:0 0 4px}
+h2{font-family:var(--f-mono);font-size:.74rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:26px 0 8px}
+p{margin:0 0 8px}.sub{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+ul.r{margin:0 0 8px;padding-left:1.1em}ul.r li{margin:3px 0}
+.box{background:var(--surface);border-radius:10px;padding:10px 12px;margin:8px 0}
+.flow{counter-reset:s;list-style:none;margin:0;padding:0}
+.flow li{counter-increment:s;display:grid;grid-template-columns:1.8em 1fr;gap:6px;padding:6px 0;border-bottom:1px solid var(--line)}
+.flow li::before{content:counter(s);font-family:var(--f-mono);color:var(--accent);font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chips button{font:500 .78rem var(--f-mono);padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+input[type=search]{width:100%;box-sizing:border-box;font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.card h3{margin:0 0 2px;font-size:1.08rem}
+.tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.tag b{color:var(--accent);font-weight:500}
+.txt{font-size:.92rem;margin:8px 0;padding:8px 10px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0;white-space:pre-line}
+.k{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);display:block;margin-top:8px}
+.card p{font-size:.92rem;margin:2px 0}
+.heroes{color:var(--fg)}.heroes::before{content:"Heroes: ";color:var(--warn);font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500}
+.wrap{overflow-x:auto}
+.none{color:var(--muted);text-align:center;padding:16px}
+</style></head><body>
+<h1>Archenemy: Nicol Bolas, play guide</h1>
+<p class="sub">For our 20 oversized scheme cards (Archenemy: Nicol Bolas, 2017). Card text is the same as in Commander Life's scheme deck. Schemes are an Archenemy-only card type, so Commander legality doesn't apply to them.</p>
+
+<h2>The bottom line</h2>
+<div class="box">
+<p><b>Archenemy:</b> one player takes 20 schemes and 40 life against everyone else (20 life each). Every turn you flip the top scheme and it fires. You win by knocking out all the heroes; they win together by knocking you out.</p>
+<p><b>Heroes:</b> you can't remove a scheme, so beat the person. Save removal and burst for the archenemy, and plan around the three scheme clocks (below) instead of fighting each one.</p>
+</div>
+
+<h2>Setup</h2>
+<ul class="r">
+<li>The archenemy shuffles the 20 schemes face down in the command zone. Nobody looks at them.</li>
+<li>Archenemy starts at 40 life, heroes at 20 each (our Commander Life app does this itself under Players → AE).</li>
+<li>The archenemy goes first and skips their first draw like anyone going first.</li>
+<li>Commander damage (our house version): heroes take it only from the archenemy's commander; the archenemy takes it from each hero's. 21 from one commander is lethal.</li>
+<li>Heroes are one team: they win and lose together and don't attack each other.</li>
+</ul>
+
+<h2>The archenemy's turn</h2>
+<ol class="flow">
+<li><span>Untap, upkeep, draw as normal.</span></li>
+<li><span><b>Precombat main phase, first thing:</b> turn the top scheme face up. That is "setting it in motion". This happens before you play a land or cast anything.</span></li>
+<li><span>Its "when you set this scheme in motion" text resolves. An <b>ongoing</b> scheme stays face up and keeps working. Any other scheme goes to the <b>bottom</b> of the deck when it's done.</span></li>
+<li><span>Then the turn goes on: land, spells, combat. You set <b>one</b> scheme per turn, even with ongoing ones already out.</span></li>
+<li><span>Ongoing schemes end when they say so (see the heroes' outs) or when you abandon them. An abandoned scheme goes to the bottom.</span></li>
+</ol>
+<p class="sub" style="margin-top:8px">The deck runs through all 20 before any scheme comes round again, so on turn 21 you meet the first one again unless an ongoing scheme held up the cycle. Heroes can keep track of what's already been seen.</p>
+
+<h2>Rules that trip people up</h2>
+<ul class="r">
+<li><b>Schemes aren't permanents or spells.</b> You can't counter, destroy or exile one. You can only deal with the effect that already happened (a token, a stolen creature).</li>
+<li><b>The archenemy makes every choice</b> in "choose an opponent" or "choose a target". Where it says <i>each opponent</i>, each hero decides their own part (which creature to keep, which card to discard, which pile).</li>
+<li><b>"Six or more lands"</b> is checked as the scheme resolves, after any land you played earlier. This scheme turns on at land six: Power Without Equal, Pay Tribute to Me, Behold My Grandeur.</li>
+<li><b>Free spells</b> (When Will You Learn?, Power Without Equal) are cast while the scheme resolves. Pay no mana cost but follow the rest of the rules (targets, additional costs). Lands can't be cast, so an exiled land stays exiled.</li>
+<li><b>Horror tokens</b> are 3/3 black Horror creatures. They're ordinary creatures, so they're summoning sick unless a card says otherwise.</li>
+<li><b>If the deck runs dry</b>, shuffle all abandoned schemes and start again (not an issue with 20 cards unless several ongoing schemes are stuck face up).</li>
+<li><b>Tie on highest life</b> (The Mighty Will Fall): the archenemy picks.</li>
+</ul>
+
+<h2>Three clocks for the heroes</h2>
+<p>Every ongoing scheme ends at an opponent's end step if that hero pays a price. All the checks run on <i>that hero's own</i> end step, so each hero decides for themselves.</p>
+<div class="wrap"><table>
+<tr><th>Ongoing scheme</th><th>The price to end it</th></tr>
+<tr><td>Bow to My Command</td><td>Tap untapped creatures with <b>total power 8 or more</b></td></tr>
+<tr><td>Because I Have Willed It</td><td>Cast <b>4 or more spells</b> in one turn</td></tr>
+<tr><td>My Forces Are Innumerable</td><td><b>Sacrifice two creatures</b></td></tr>
+<tr><td>My Laughter Echoes</td><td>No price: only the archenemy can abandon it</td></tr>
+</table></div>
+<p class="sub" style="margin-top:8px">Heroes can plan these ahead. If Bow to My Command is out, leave 8 power untapped at the end of your turn. If Innumerable is out, keep two cheap creatures around to feed it (a token or a chump).</p>
+
+<h2>All 20 schemes</h2>
+<input type="search" id="q" placeholder="Search a scheme or an effect" aria-label="Search schemes">
+<div class="chips" id="chips" role="group" aria-label="Filter"></div>
+<div id="list"></div>
+
+<h2>Plan by turn count</h2>
+<ul class="r">
+<li><b>Turns 1 to 5, no six lands.</b> Aim to set up. Behold My Grandeur and Pay Tribute to Me are weaker here, so the early threats are single removal (Make Yourself Useful, There Is No Refuge) and the tokens.</li>
+<li><b>Land six and up.</b> Three schemes turn on. Heroes who can hit the archenemy's lands should.</li>
+<li><b>Life.</b> 40 sounds like a lot but The Mighty Will Fall plus a 3/3 token every turn adds up. Heroes who hold their burst for one turn win; heroes who poke early just get sacrificed for.</li>
+</ul>
+
+<h2>For the archenemy: how to pick a line</h2>
+<ul class="r">
+<li><b>Save the free spells.</b> Power Without Equal and When Will You Learn? are worth the most when your hand and the exiled cards are full of expensive spells.</li>
+<li><b>Edicts want an empty board.</b> No One Will Hear Your Cries, Pay Tribute to Me and The Mighty Will Fall hit hardest on heroes with one big creature or one big life total.</li>
+<li><b>Keep a creature for Bow.</b> You need the chosen hero's creatures to be a real threat; pick the hero with the biggest board.</li>
+<li><b>Know when your ongoing schemes will fall.</b> If the heroes can't pay, they stay forever. Count their power, spells cast and creatures before each end step.</li>
+<li><b>My Laughter Echoes</b> is a 2-for-1 on your next non-ongoing scheme, so keep it up as long as you can and never abandon it early.</li>
+</ul>
+
+<h2>Our two modes in Commander Life</h2>
+<ul class="r">
+<li><b>App's deck:</b> Menu → Players → AE, then Schemes → App's deck. A scheme button appears on the archenemy's seat. Open the deck builder, tap <b>The cards we own</b> to load all 20, then Deal. Set in motion, Done, Keep it in play, Abandon, Undo and History are all there.</li>
+<li><b>Our cards:</b> Schemes → Our cards. The app only keeps life and commander damage; you flip the real cards.</li>
+<li>New game shuffles all 20 back in. Changing the archenemy starts the game over.</li>
+</ul>
+
+<script>
+/* The 20 Bolas schemes. g: groups (a card can have several); o: ongoing; out: heroes' answer to the effect;
+   tip: how the archenemy gets the most from it. Text is the card's, as in archenemy.html. */
+const S=[
+{n:"The Mighty Will Fall",g:["Removal"],t:"When you set this scheme in motion, choose an opponent with the highest life total among your opponents. That player loses 7 life.",tip:"Best when one hero has pulled ahead on life. Ties are yours to pick.",out:"Whoever is highest eats the 7. Heroes can keep their life even, or let the leader take the hit."},
+{n:"Bow to My Command",o:1,g:["Control","Ongoing"],t:"(An ongoing scheme remains face up until it's abandoned.)\nAs you set this scheme in motion, choose an opponent.\nCreatures the chosen player controls can't attack you or planeswalkers you control.\nAt the beginning of your opponents' end step, they may tap any number of untapped creatures they control with total power 8 or greater. If they do, abandon this scheme.",tip:"Pick the hero with the most power. It lasts until someone pays 8 power, so it's a tempo trade, not a lock.",out:"At your own end step, tap creatures totaling 8 power. Any hero can do it, not just the chosen one."},
+{n:"Know Evil",g:["Control"],t:"When you set this scheme in motion, until your next turn, up to one target opponent can't attack with creatures, up to one target opponent can't cast creature spells, and up to one target opponent can't cast noncreature spells. You can't choose any player as a target more than once.",tip:"With three heroes, each gets one lock. Use it on the right turn to protect a big attack or your own combo.",out:"Plan around the lock: the one who can't attack should hold back, the one who can't cast should use mana on abilities."},
+{n:"When Will You Learn?",g:["Cards"],t:"When you set this scheme in motion, each opponent exiles the top card of their library. You may cast any number of spells from among cards exiled this way without paying their mana costs.",tip:"One card from each hero, cast free. A land is a whiff, and some spells need targets, so it's best with things on the board to hit.",out:"Nothing stops it. Answer the spells it casts."},
+{n:"Choose Your Demise",g:["Cards"],t:"When you set this scheme in motion, look at the top four cards of your library and separate them into a face-down pile and a face-up pile. An opponent chooses one of those piles. Put the cards in that pile into your hand and the rest on the bottom of your library in any order.",tip:"Put the best card face-down alone and the other three face up, or the reverse. Make the choice hard.",out:"The opponent picks, so choose the pile you want them to have the least. Usually it's the face-down one with the most cards."},
+{n:"Delight in the Hunt",g:["Tokens"],t:"When you set this scheme in motion, create a 3/3 black Horror creature token and prevent all damage that would be dealt to creatures you control this turn.",tip:"Attack with everything: your creatures take no damage this turn, so blocks mean nothing.",out:"Don't block into it. Kill the Horror with exile, edict or -X/-X, or ignore and go face."},
+{n:"Because I Have Willed It",o:1,g:["Ramp","Ongoing"],t:"(An ongoing scheme remains face up until it's abandoned.)\nSpells you cast cost {1} less to cast.\nAt the beginning of your opponents' end step, if they cast four or more spells this turn, abandon this scheme.",tip:"A permanent {1} discount for every spell. Flood the board while it's up.",out:"Cast four spells in one turn on your own turn. Cheap spells or free ones count."},
+{n:"Power Without Equal",g:["Cards","Ramp"],t:"When you set this scheme in motion, draw three cards. You have no maximum hand size until your next turn. If you control six or more lands, you may cast up to three spells from your hand without paying their mana costs.",tip:"The jackpot at six lands: hold your biggest spells in hand, then cast up to three free.",out:"Keep the archenemy off six lands, or hold a counterspell for the biggest free spell."},
+{n:"There Is No Refuge",g:["Removal","Tokens"],t:"When you set this scheme in motion, it deals 3 damage to up to one target creature. Create a 3/3 black Horror creature token.",tip:"A 2-for-1: removal for a small creature and a 3/3. 'Up to one' means you can just take the token.",out:"Protect small creatures with a cheap counter or sacrifice in response."},
+{n:"My Forces Are Innumerable",o:1,g:["Tokens","Ongoing"],t:"(An ongoing scheme remains face up until it's abandoned.)\nAt the beginning of your end step, create a 3/3 black Horror creature token.\nAt the beginning of your opponents' end step, they may sacrifice two creatures. If they do, abandon this scheme.",tip:"A 3/3 every turn. Don't let a hero get lazy about paying: they need two creatures to end it.",out:"Sacrifice two creatures at your own end step. Tokens, chump blockers or creatures about to die anyway are ideal."},
+{n:"Make Yourself Useful",g:["Removal"],t:"When you set this scheme in motion, destroy target creature an opponent controls. If a creature is destroyed this way, you gain life equal to its toughness.",tip:"Hit the biggest toughness for the most life. It's destroy, so indestructible or regeneration stops it.",out:"Respond with a sac, bounce or protection spell. You lose the creature either way, but the archenemy gains no life if it isn't destroyed."},
+{n:"Pay Tribute to Me",g:["Removal"],t:"When you set this scheme in motion, each opponent sacrifices a creature. If you control six or more lands, each opponent sacrifices another creature.",tip:"Two edicts per hero at six lands. Play land six before it comes up.",out:"Keep a cheap creature or token around as an edict shield. Each hero picks their own."},
+{n:"This World Belongs to Me",g:["Cards","Ramp"],t:"When you set this scheme in motion, draw two cards. You may play an additional land this turn.",tip:"The land drop opens up the six-land schemes next turn. Play a land first if you can, then the extra one.",out:"Nothing to answer. Punish the draw with a hand-size effect or discard."},
+{n:"For Each of You, a Gift",g:["Tokens"],t:"When you set this scheme in motion, for each opponent, create a 3/3 black Horror creature token that attacks that player each combat if able.",tip:"One Horror per hero, each forced to attack its own hero every combat.",out:"Each hero only faces their own Horror: block it with a 3/3 or bigger, or chump it."},
+{n:"Behold My Grandeur",g:["Ramp","Cards"],t:"When you set this scheme in motion, add {U}{B}{R}.\nWhen you set this scheme in motion, if you control six or more lands, you may search your library for a card with mana value 6 or greater, reveal it, put it into your hand, then shuffle.",tip:"The mana empties at end of phase, so spend it right away. With six lands, tutor a bomb.",out:"Nothing stops it. Hold a counter for the bomb it fetches."},
+{n:"What's Yours Is Now Mine",g:["Removal"],t:"When you set this scheme in motion, gain control of target creature an opponent controls and untap it.",tip:"Permanent control. The creature is new to you, so it can't attack this turn unless it has haste, but it can block. Take the hero's best creature.",out:"Respond with a sacrifice or bounce. Once it's stolen, kill it or take it back."},
+{n:"Every Dream a Nightmare",g:["Cards"],t:"When you set this scheme in motion, each opponent discards a card. You draw a card for each land card discarded this way.",tip:"The heroes choose what to discard, so they'll pick a spell. Great against hands full of lands.",out:"Discard a spell rather than a land when you can afford it: each land you discard draws the archenemy a card."},
+{n:"No One Will Hear Your Cries",g:["Removal"],t:"When you set this scheme in motion, each opponent chooses a creature they control, then sacrifices the rest.",tip:"A one-sided wrath. Set it up by letting the heroes overextend first.",out:"Keep creatures few and strong, or keep sacrifice outlets and death triggers ready. Each hero keeps one."},
+{n:"My Laughter Echoes",o:1,g:["Ongoing"],t:"(An ongoing scheme remains face up until it's abandoned.)\nWhenever you set a non-ongoing scheme in motion, you may abandon this scheme. If you do, set that scheme in motion again.",tip:"Pays off the next non-ongoing scheme. Wait for a strong one, which is most of the rest of the deck. It has no end condition, so the heroes can't remove it.",out:"Only the archenemy can end it. Expect the next big scheme to hit twice."},
+{n:"A Reckoning Approaches",g:["Cards","Tokens"],t:"When you set this scheme in motion, look at the top six cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in any order.",tip:"A free creature, so build the archenemy's deck with plenty of creatures. 'You may' lets you take the best one.",out:"Kill the creature. Enters-the-battlefield triggers work."}
+];
+const F=["All","Removal","Cards","Tokens","Ramp","Control","Ongoing"];let cur="All",q="";
+const $=id=>document.getElementById(id);
+function chips(){$("chips").innerHTML=F.map(f=>`<button type="button" aria-pressed="${f===cur}" data-f="${f}">${f}${f==="All"?" "+S.length:" "+S.filter(c=>c.g.includes(f)).length}</button>`).join("")}
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function draw(){
+  const w=q.toLowerCase();
+  const r=S.filter(c=>(cur==="All"||c.g.includes(cur))&&(!w||(c.n+" "+c.t).toLowerCase().includes(w)));
+  $("list").innerHTML=r.length?r.map(c=>`<div class="card"><h3>${esc(c.n)}</h3><div class="tag">${c.o?"<b>Ongoing</b> · ":""}${c.g.filter(x=>x!=="Ongoing").join(" · ")}</div><div class="txt">${esc(c.t)}</div><span class="k">Archenemy</span><p>${esc(c.tip)}</p><span class="k">How to answer it</span><p class="heroes">${esc(c.out)}</p></div>`).join(""):'<p class="none">No scheme matches.</p>';
+}
+$("chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;cur=b.dataset.f;chips();draw()};
+$("q").oninput=e=>{q=e.target.value;draw()};
+chips();draw();
+</script>
+</body></html>
