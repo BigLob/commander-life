@@ -920,3 +920,30 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 | `long/cousins-you-like-that` | “You like that! You like that!” | Kirk Cousins (NFL quarterback) | [myinstants: You like that? Kirk Cousins](https://www.myinstants.com/media/sounds/kirk-cousins-washington-redskins-quarterback-yells-you-like-that-to-reporters-after-win.mp3) |
 | `long/iverson-practice` | “Listen, we talking about practice, not a game, not a game.” | Allen Iverson (NBA) | [myinstants: Allen Iverson Practice](https://www.myinstants.com/media/sounds/practice.mp3) |
 | `long/mora-playoffs` | “Playoffs?! Don't talk about playoffs. You kidding me? Playoffs?” | Jim Mora (NFL coach) | [myinstants: Jim Mora Playoffs?](https://www.myinstants.com/media/sounds/playoffs-drop.mp3) |
+
+## Chainsaws and grotesque squelching (v1.83)
+
+20 clips (10 each) from myinstants uploads: chainsaw revs and cuts, and wet gore, flesh and slime squelches (one is Gears of War's Lancer splat). Copyright of the uploaders and games, not CC0. Not auditioned here; a speech check by faster-whisper found no words in the kept clips.
+
+| File | Source |
+| --- | --- |
+| `chainsaw-bear` | [myinstants: Chainsaw Bear](https://www.myinstants.com/media/sounds/chainsaw-bear.mp3) |
+| `chainsaw-massacre-fx` | [myinstants: 8. Chainsaw Massacre FX](https://www.myinstants.com/media/sounds/8-chainsaw-massacre-fx.mp3) |
+| `squelch-gore-explode` | [myinstants: Gore Explode](https://www.myinstants.com/media/sounds/gore-explode.mp3) |
+| `squelch-gore-gush` | [myinstants: GORE GUSH](https://www.myinstants.com/media/sounds/gore-gush.mp3) |
+| `squelch-lancer-splat` | [myinstants: Lancer splat](https://www.myinstants.com/media/sounds/lancer-splat.mp3) |
+| `long/chainsaw-2` | [myinstants: 2. chainsaw](https://www.myinstants.com/media/sounds/2-chainsaw.mp3) |
+| `long/chainsaw-3` | [myinstants: chainsaw (yanex)](https://www.myinstants.com/media/sounds/chainsaw-yanex.mp3) |
+| `long/chainsaw-4` | [myinstants: Dipsy Chainsaw Sound Effect](https://www.myinstants.com/media/sounds/dipsy-chainsaw-sound-effect.mp3) |
+| `long/chainsaw-alert` | [myinstants: Chainsawalert](https://www.myinstants.com/media/sounds/chain-saw-soundbible.mp3) |
+| `long/chainsaw-loud` | [myinstants: chainsaw LOUD](https://www.myinstants.com/media/sounds/chainsaw-loud.mp3) |
+| `long/chainsaw-run` | [myinstants: Chainsaw](https://www.myinstants.com/media/sounds/chainsaw-sound-effects.mp3) |
+| `long/chainsaw-start` | [myinstants: Chainsaw On](https://www.myinstants.com/media/sounds/chainsaw-on.mp3) |
+| `long/chainsaw-tree` | [myinstants: saw dow tree](https://www.myinstants.com/media/sounds/chiansaw-tree.mp3) |
+| `long/squelch-chewing-flesh` | [myinstants: Chewing flesh](https://www.myinstants.com/media/sounds/chewing-flesh.mp3) |
+| `long/squelch-crunchy` | [myinstants: Squishy crunchy](https://www.myinstants.com/media/sounds/squishy-crunchy.mp3) |
+| `long/squelch-flesh-growth` | [myinstants: Flesh Growth](https://www.myinstants.com/media/sounds/flesh-growth.mp3) |
+| `long/squelch-flesh-shift` | [myinstants: Horror Flesh Growth/Shift](https://www.myinstants.com/media/sounds/horror-flesh-growth-shift.mp3) |
+| `long/squelch-juicy` | [myinstants: Juicy squishy sounds](https://www.myinstants.com/media/sounds/juicy-squishy-sounds.mp3) |
+| `long/squelch-meat` | [myinstants: meat squelch](https://www.myinstants.com/media/sounds/meat-squelch.mp3) |
+| `long/squelch-noises` | [myinstants: squishy noises](https://www.myinstants.com/media/sounds/squishy-noises.mp3) |

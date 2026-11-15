@@ -874,6 +874,28 @@
 "kind": "sound"
 },
 {
+"f": "chainsaw-bear",
+"src": "myinstants: Chainsaw Bear",
+"url": "https://www.myinstants.com/media/sounds/chainsaw-bear.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 1.7,
+"pool": "short"
+},
+{
+"f": "chainsaw-massacre-fx",
+"src": "myinstants: 8. Chainsaw Massacre FX",
+"url": "https://www.myinstants.com/media/sounds/8-chainsaw-massacre-fx.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 1.4,
+"pool": "short"
+},
+{
 "f": "chant-16",
 "pool": "long",
 "d": 4.8,
@@ -5621,6 +5643,39 @@
 "kind": "sound"
 },
 {
+"f": "squelch-gore-explode",
+"src": "myinstants: Gore Explode",
+"url": "https://www.myinstants.com/media/sounds/gore-explode.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "squelch-gore-gush",
+"src": "myinstants: GORE GUSH",
+"url": "https://www.myinstants.com/media/sounds/gore-gush.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 1.1,
+"pool": "short"
+},
+{
+"f": "squelch-lancer-splat",
+"src": "myinstants: Lancer splat",
+"url": "https://www.myinstants.com/media/sounds/lancer-splat.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 0.7,
+"pool": "short"
+},
+{
 "f": "squelch",
 "pool": "short",
 "d": 1.4,
@@ -9573,6 +9628,94 @@
 "pool": "long"
 },
 {
+"f": "long/chainsaw-2",
+"src": "myinstants: 2. chainsaw",
+"url": "https://www.myinstants.com/media/sounds/2-chainsaw.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 6.2,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-3",
+"src": "myinstants: chainsaw (yanex)",
+"url": "https://www.myinstants.com/media/sounds/chainsaw-yanex.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 7.8,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-4",
+"src": "myinstants: Dipsy Chainsaw Sound Effect",
+"url": "https://www.myinstants.com/media/sounds/dipsy-chainsaw-sound-effect.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 6.1,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-alert",
+"src": "myinstants: Chainsawalert",
+"url": "https://www.myinstants.com/media/sounds/chain-saw-soundbible.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 5.8,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-loud",
+"src": "myinstants: chainsaw LOUD",
+"url": "https://www.myinstants.com/media/sounds/chainsaw-loud.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 7.7,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-run",
+"src": "myinstants: Chainsaw",
+"url": "https://www.myinstants.com/media/sounds/chainsaw-sound-effects.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 7.8,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-start",
+"src": "myinstants: Chainsaw On",
+"url": "https://www.myinstants.com/media/sounds/chainsaw-on.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 4.6,
+"pool": "long"
+},
+{
+"f": "long/chainsaw-tree",
+"src": "myinstants: saw dow tree",
+"url": "https://www.myinstants.com/media/sounds/chiansaw-tree.mp3",
+"grp": "Chainsaws",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Chainsaw",
+"d": 7.8,
+"pool": "long"
+},
+{
 "f": "long/clinton-sexual-relations",
 "src": "myinstants: I did not have sexual relations with that woman",
 "url": "https://www.myinstants.com/media/sounds/i-did-not-have-sexual-relations-with-that-woman.mp3",
@@ -11032,6 +11175,83 @@
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
 "grp": "NASA",
 "kind": "sound"
+},
+{
+"f": "long/squelch-chewing-flesh",
+"src": "myinstants: Chewing flesh",
+"url": "https://www.myinstants.com/media/sounds/chewing-flesh.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 3.4,
+"pool": "long"
+},
+{
+"f": "long/squelch-crunchy",
+"src": "myinstants: Squishy crunchy",
+"url": "https://www.myinstants.com/media/sounds/squishy-crunchy.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 8.0,
+"pool": "long"
+},
+{
+"f": "long/squelch-flesh-growth",
+"src": "myinstants: Flesh Growth",
+"url": "https://www.myinstants.com/media/sounds/flesh-growth.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 7.9,
+"pool": "long"
+},
+{
+"f": "long/squelch-flesh-shift",
+"src": "myinstants: Horror Flesh Growth/Shift",
+"url": "https://www.myinstants.com/media/sounds/horror-flesh-growth-shift.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 3.2,
+"pool": "long"
+},
+{
+"f": "long/squelch-juicy",
+"src": "myinstants: Juicy squishy sounds",
+"url": "https://www.myinstants.com/media/sounds/juicy-squishy-sounds.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 5.5,
+"pool": "long"
+},
+{
+"f": "long/squelch-meat",
+"src": "myinstants: meat squelch",
+"url": "https://www.myinstants.com/media/sounds/meat-squelch.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 7.4,
+"pool": "long"
+},
+{
+"f": "long/squelch-noises",
+"src": "myinstants: squishy noises",
+"url": "https://www.myinstants.com/media/sounds/squishy-noises.mp3",
+"grp": "Squelching",
+"kind": "sound",
+"lic": "Game, film and sound-effect uploads (myinstants)",
+"note": "Grotesque squelch",
+"d": 7.0,
+"pool": "long"
 },
 {
 "f": "long/sw-cantina",
