@@ -34,12 +34,15 @@ def main():
     ap.add_argument('--share', type=float, default=0.3)
     ap.add_argument('--mute', nargs='*', default=[])
     ap.add_argument('--clear', action='store_true')
+    ap.add_argument('--announce-every', type=int, default=0, help='v1.85: every Nth turn-button tap plays an announcer line')
+    ap.add_argument('--until', default='', help='ISO UTC time the announcer rule ends, e.g. 2026-11-15T13:00:00Z')
     a = ap.parse_args()
     clips = json.load(open(os.path.join(ROOT, 'sounds/clips.json')))
     # pool file names: root clips are 'name', long/ ones 'long/name' (as in TURN_POOLS)
     name = lambda c: ('long/' if c.get('pool') == 'long' and os.path.exists(os.path.join(ROOT, 'sounds/long', c['f'] + '.mp3')) else '') + c['f']
     byf = {c['f']: name(c) for c in clips}
-    out = {'updated': datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'), 'decks': [], 'share': 0, 'boost': [], 'mute': []}
+    out = {'updated': datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'), 'decks': [], 'share': 0, 'boost': [], 'mute': [], 'every': 0, 'until': ''}
+    if not a.clear: out['every'], out['until'] = a.announce_every, a.until
     if not a.clear:
         out['decks'], out['share'] = a.terms, a.share
         for t in a.terms:

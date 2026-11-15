@@ -98,7 +98,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.84; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.85; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.85: **announcer lines at 10/10 sass, one every 10th tap tonight** (the user's ask). All 57 `tts-*` lines rewritten harder (still: start with the player's name, no commander names, nothing hinting at Lenn's gift deck, nothing about real life); `tts-trent-top-of-library` (restraining order) kept as it was at the user's request. Remade with Kokoro (model files fetched from the kokoro-onnx release into the scratchpad, `KOKORO_DIR`). `sounds/tonight.json` gained `every` (N) and `until` (ISO UTC): every Nth turn-button tap on the playing phone plays a random `tts-*` line (own shuffled bag) until `until`; `python3 tools/sounds/tonight.py --announce-every 10 --until 2026-11-15T13:00:00Z` writes it (and resets it on the next run without those flags). The count is per page load. Tested in Playwright (every 3rd tap loads a tts clip).
 - v1.84: **`tts-trent-mana` ("your mana base called. It wants a divorce") removed**: the user objected to a divorce joke aimed at Trent. Announcer-line rule: no jokes about divorce, relationships, family, health or other real-life matters; keep the sass to the game.
 - v1.83: **10 chainsaw clips (`chainsaw-*`, group Chainsaws) and 10 grotesque squelches (`squelch-*`, group Squelching)**, myinstants uploads, 1,073 clips in all. Each 8 s at most.
 - v1.82: **damage and life change numbers linger 10 s** (v1.81 6.4 s, v1.67 3.2 s; the user's ask, `showDelta()`).

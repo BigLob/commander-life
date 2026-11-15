@@ -7721,10 +7721,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, you have been assimilated. Resistance is futile.",
+"quote": "Andrew, resistance is futile. Not because we're strong. Because you keep helping.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 3.7,
+"d": 5.4,
 "pool": "long"
 },
 {
@@ -7733,11 +7733,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, warning. Board wipe incoming.",
+"quote": "Andrew, board wipe incoming. Say goodbye to the only things keeping you alive.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 3.0,
-"pool": "short"
+"d": 6.0,
+"pool": "long"
 },
 {
 "f": "tts-andrew-bold",
@@ -7745,10 +7745,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, that was a bold play. Bold isn't the same as good.",
+"quote": "Andrew, that was a bold play. Bold like a fire in a library that you started.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 4.0,
+"d": 5.4,
 "pool": "long"
 },
 {
@@ -7757,11 +7757,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, wait. Is that a combo?",
+"quote": "Andrew, is that a combo? No. It's a coincidence you're about to ruin.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 2.5,
-"pool": "short"
+"d": 5.3,
+"pool": "long"
 },
 {
 "f": "tts-andrew-commander-tax",
@@ -7769,11 +7769,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, commander tax. Pay up.",
+"quote": "Andrew, commander tax. Pay up. Again. You keep dying for it.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 2.4,
-"pool": "short"
+"d": 4.7,
+"pool": "long"
 },
 {
 "f": "tts-andrew-cyclonic-rift",
@@ -7781,10 +7781,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, Cyclonic Rift. Overloaded. Say goodbye to everything you love.",
+"quote": "Andrew, Cyclonic Rift, overloaded. Everything you built, gone. It wasn't much, but it was yours.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 5.9,
+"d": 7.6,
 "pool": "long"
 },
 {
@@ -7793,10 +7793,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, hold priority. The stack is getting tall.",
+"quote": "Andrew, hold priority. The stack is tall, and still smarter than your last three plays.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 3.5,
+"d": 5.9,
 "pool": "long"
 },
 {
@@ -7805,11 +7805,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, kingmaker. Kingmaker!",
+"quote": "Andrew, kingmaker. You couldn't win, so you're picking the winner. Truly inspiring.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 2.3,
-"pool": "short"
+"d": 5.5,
+"pool": "long"
 },
 {
 "f": "tts-andrew-politics",
@@ -7817,11 +7817,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew is making a deal. Don't trust the deal.",
+"quote": "Andrew is making a deal. Nobody take it. Nobody has ever won taking his deals.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 3.0,
-"pool": "short"
+"d": 5.7,
+"pool": "long"
 },
 {
 "f": "tts-andrew-screwed",
@@ -7829,10 +7829,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew's stuck on two lands. Mana screw.",
+"quote": "Andrew's stuck on two lands. That's not mana screw. That's the deck telling you something.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 3.1,
+"d": 6.1,
 "pool": "long"
 },
 {
@@ -7841,10 +7841,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew has entered thinking mode. Snacks are recommended.",
+"quote": "Andrew has entered thinking mode. The result will be bad. Snacks are recommended.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 3.8,
+"d": 5.5,
 "pool": "long"
 },
 {
@@ -7853,11 +7853,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, wake up. It's your turn.",
+"quote": "Andrew, wake up. It's your turn. We've been carrying you for an hour.",
 "who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 2.2,
-"pool": "short"
+"d": 4.8,
+"pool": "long"
 },
 {
 "f": "tts-lenn-archenemy",
@@ -7865,10 +7865,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, the archenemy rises. Try not to embarrass yourself.",
+"quote": "Lenn, the archenemy rises. Try not to embarrass yourself. Too late.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 4.3,
+"d": 5.0,
 "pool": "long"
 },
 {
@@ -7877,11 +7877,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, that's a board wipe. Say goodbye.",
+"quote": "Lenn, that's a board wipe. You just ended your own plan in front of everyone.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 2.9,
-"pool": "short"
+"d": 5.1,
+"pool": "long"
 },
 {
 "f": "tts-lenn-commander-damage",
@@ -7889,11 +7889,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, commander damage. Write it down.",
+"quote": "Lenn, commander damage. Write it down. You'll want proof when nobody believes you lost.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 2.9,
-"pool": "short"
+"d": 6.0,
+"pool": "long"
 },
 {
 "f": "tts-lenn-deal-with-that",
@@ -7901,10 +7901,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, somebody deal with that. Probably you.",
+"quote": "Lenn, somebody deal with that. Not you. You couldn't deal with a paper bag.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 3.2,
+"d": 5.3,
 "pool": "long"
 },
 {
@@ -7913,10 +7913,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, extra turn detected. Somebody get snacks.",
+"quote": "Lenn, extra turn detected. Somehow you'll waste both.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 3.7,
+"d": 3.9,
 "pool": "long"
 },
 {
@@ -7925,10 +7925,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn looks innocent. Lenn is never innocent.",
+"quote": "Lenn looks innocent. Lenn is never innocent. Lenn is guilty and smug.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 3.2,
+"d": 5.3,
 "pool": "long"
 },
 {
@@ -7937,11 +7937,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, nobody blocks? Bold strategy.",
+"quote": "Lenn, nobody blocks? Bold strategy. Let's watch it fail in real time.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 2.9,
-"pool": "short"
+"d": 5.3,
+"pool": "long"
 },
 {
 "f": "tts-lenn-pass-the-turn",
@@ -7949,11 +7949,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, pass the turn already.",
+"quote": "Lenn, pass the turn. Whatever you're calculating, the answer is still bad.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 2.0,
-"pool": "short"
+"d": 5.1,
+"pool": "long"
 },
 {
 "f": "tts-lenn-read-the-card",
@@ -7961,11 +7961,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, can I read that card?",
+"quote": "Lenn, can I read that card? I want to see how it's possible to misplay it.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 2.0,
-"pool": "short"
+"d": 4.9,
+"pool": "long"
 },
 {
 "f": "tts-lenn-response",
@@ -7973,11 +7973,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn, you have a response? Of course you do.",
+"quote": "Lenn, you have a response? Of course you do. It'll be wrong, but you have one.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 3.0,
-"pool": "short"
+"d": 5.2,
+"pool": "long"
 },
 {
 "f": "tts-lenn-topdeck",
@@ -7985,10 +7985,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn is in top deck mode. Activated.",
+"quote": "Lenn is in topdeck mode. Pray, Lenn. Nobody's listening.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 3.2,
+"d": 4.1,
 "pool": "long"
 },
 {
@@ -7997,11 +7997,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Lenn's thinking. Please stand by.",
+"quote": "Lenn's thinking. Please stand by. Do not expect anything.",
 "who": "Announcer (at Lenn)",
 "lic": "Made for this app",
-"d": 2.6,
-"pool": "short"
+"d": 4.2,
+"pool": "long"
 },
 {
 "f": "tts-rand-calculating",
@@ -8009,11 +8009,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand's calculating. Please hold.",
+"quote": "Rand's calculating. Please hold. The answer will be wrong, but it'll take forever.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 2.5,
-"pool": "short"
+"d": 5.6,
+"pool": "long"
 },
 {
 "f": "tts-rand-counterspell",
@@ -8021,10 +8021,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, counterspell. Everyone act surprised.",
+"quote": "Rand, counterspell. Everyone act surprised. Rand needs this.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 3.5,
+"d": 4.8,
 "pool": "long"
 },
 {
@@ -8033,11 +8033,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand's mana flooded. Send help.",
+"quote": "Rand's mana flooded. Eleven lands, zero ideas.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 2.5,
-"pool": "short"
+"d": 4.1,
+"pool": "long"
 },
 {
 "f": "tts-rand-lethal",
@@ -8045,11 +8045,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, that's lethal.",
+"quote": "Rand, that's lethal. On you. Specifically you.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 1.5,
-"pool": "short"
+"d": 3.5,
+"pool": "long"
 },
 {
 "f": "tts-rand-mulligan",
@@ -8057,11 +8057,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, mulligan to five. Bold.",
+"quote": "Rand, mulligan to five. Honestly, the five are probably better than the seven were.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 2.5,
-"pool": "short"
+"d": 5.9,
+"pool": "long"
 },
 {
 "f": "tts-rand-not-a-strategy",
@@ -8069,11 +8069,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, the turn button isn't a strategy.",
+"quote": "Rand, the turn button isn't a strategy. Stop pressing it like it is.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 3.0,
-"pool": "short"
+"d": 5.3,
+"pool": "long"
 },
 {
 "f": "tts-rand-not-the-threat",
@@ -8081,10 +8081,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand says Rand isn't the threat. Rand is the threat.",
+"quote": "Rand says Rand isn't the threat. Rand is lying, and not even well.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 3.6,
+"d": 4.7,
 "pool": "long"
 },
 {
@@ -8093,11 +8093,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, do you pay the one?",
+"quote": "Rand, do you pay the one? Of course not. You never pay for anything.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 1.7,
-"pool": "short"
+"d": 4.8,
+"pool": "long"
 },
 {
 "f": "tts-rand-shuffle-up",
@@ -8105,11 +8105,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, shuffle up and deal.",
+"quote": "Rand, shuffle up and deal. Then lose, with your usual confidence.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 1.8,
-"pool": "short"
+"d": 4.5,
+"pool": "long"
 },
 {
 "f": "tts-rand-sol-ring",
@@ -8117,10 +8117,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand, another Sol Ring? Shocking. Truly shocking.",
+"quote": "Rand, another Sol Ring? Shocking. Truly shocking. Rand has never won without one.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 4.1,
+"d": 6.8,
 "pool": "long"
 },
 {
@@ -8129,10 +8129,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand looks suspiciously calm. Check the graveyard.",
+"quote": "Rand looks suspiciously calm. Check the graveyard. Check everything.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 3.4,
+"d": 4.7,
 "pool": "long"
 },
 {
@@ -8141,11 +8141,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Rand. Rand. It's your turn.",
+"quote": "Rand. Rand. It's your turn. Try not to be the problem. Again.",
 "who": "Announcer (at Rand)",
 "lic": "Made for this app",
-"d": 2.3,
-"pool": "short"
+"d": 4.5,
+"pool": "long"
 },
 {
 "f": "tts-trent-blockers",
@@ -8153,10 +8153,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, bold of you to attack the player with the most blockers.",
+"quote": "Trent, bold of you to attack the player with the most blockers. Also the most patience, which you're burning.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.9,
+"d": 6.9,
 "pool": "long"
 },
 {
@@ -8165,10 +8165,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent has made a mistake. Breaking news. More at eleven.",
+"quote": "Trent has made a mistake. Breaking news. In other news, water is wet.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 4.3,
+"d": 5.3,
 "pool": "long"
 },
 {
@@ -8177,11 +8177,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, that card doesn't do what you think it does.",
+"quote": "Trent, that card does not do what you think it does. It never has.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 2.9,
-"pool": "short"
+"d": 4.2,
+"pool": "long"
 },
 {
 "f": "tts-trent-combo",
@@ -8189,10 +8189,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent is about to explain a combo. Get comfortable.",
+"quote": "Trent is about to explain a combo. Pour a drink. This is going to hurt.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.7,
+"d": 5.3,
 "pool": "long"
 },
 {
@@ -8201,10 +8201,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, if you're going to scoop, at least make it dramatic.",
+"quote": "Trent, if you're going to scoop, at least make it dramatic. Your plays have been boring.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.6,
+"d": 5.5,
 "pool": "long"
 },
 {
@@ -8213,10 +8213,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent drew a card. Congratulations. The bar was on the floor.",
+"quote": "Trent drew a card. Congratulations. The bar was in hell and you still missed it.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 4.8,
+"d": 5.9,
 "pool": "long"
 },
 {
@@ -8240,7 +8240,7 @@
 "quote": "Trent, your deck isn't mid. Mid would be an upgrade.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.4,
+"d": 3.6,
 "pool": "long"
 },
 {
@@ -8249,10 +8249,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent's been eliminated. Nobody is surprised.",
+"quote": "Trent's been eliminated. Nobody is surprised. Nobody is sad.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.4,
+"d": 4.6,
 "pool": "long"
 },
 {
@@ -8261,10 +8261,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, every time you say one more thing, a planeswalker loses a loyalty counter.",
+"quote": "Trent, every time you say one more thing, a planeswalker loses a loyalty counter and a friend loses hope.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 5.9,
+"d": 8.1,
 "pool": "long"
 },
 {
@@ -8273,10 +8273,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, that was a board wipe. It was also your board.",
+"quote": "Trent, that was a board wipe. It was also your board. Congratulations on the double.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.7,
+"d": 5.7,
 "pool": "long"
 },
 {
@@ -8285,10 +8285,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, please read your card. Out loud. Slowly. Like we have time.",
+"quote": "Trent, please read your card. Out loud. Slowly. The table lost hope an hour ago.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 4.8,
+"d": 6.7,
 "pool": "long"
 },
 {
@@ -8297,10 +8297,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, the rules text is on the card. You're allowed to read it.",
+"quote": "Trent, the rules text is on the card. You're allowed to read it. We're begging you.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 4.2,
+"d": 5.1,
 "pool": "long"
 },
 {
@@ -8309,11 +8309,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, shuffling harder doesn't make the deck better.",
+"quote": "Trent, shuffling harder doesn't make the deck better. Nothing does.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.0,
-"pool": "short"
+"d": 4.4,
+"pool": "long"
 },
 {
 "f": "tts-trent-snack",
@@ -8324,8 +8324,8 @@
 "quote": "Trent isn't the threat. Trent is the snack.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.1,
-"pool": "long"
+"d": 3.0,
+"pool": "short"
 },
 {
 "f": "tts-trent-sorry",
@@ -8333,10 +8333,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, on behalf of the table, we apologize. Just kidding.",
+"quote": "Trent, on behalf of the table, we apologize. Just kidding. We're not sorry.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 4.1,
+"d": 5.4,
 "pool": "long"
 },
 {
@@ -8345,11 +8345,11 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, are you mulliganing, or just stalling?",
+"quote": "Trent, are you mulliganing, or just stalling? Either way, it's not working.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 2.8,
-"pool": "short"
+"d": 4.9,
+"pool": "long"
 },
 {
 "f": "tts-trent-top-of-library",
@@ -8369,10 +8369,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, that wasn't a combo. That was two cards next to each other.",
+"quote": "Trent, that wasn't a combo. That was two cards next to each other, crying.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 4.6,
+"d": 5.0,
 "pool": "long"
 },
 {
@@ -8381,10 +8381,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, the table has voted. You're the target.",
+"quote": "Trent, the table has voted. You're the target. It was unanimous. It wasn't close.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.1,
+"d": 5.8,
 "pool": "long"
 },
 {
@@ -8393,10 +8393,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent. Hey, Trent. Are you even paying attention?",
+"quote": "Trent. Hey, Trent. Are you even paying attention? Of course not.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 3.7,
+"d": 4.5,
 "pool": "long"
 },
 {
@@ -11759,10 +11759,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent. Trent. It's still your turn. It's been your turn for a geological era.",
+"quote": "Trent. It's still your turn. Glaciers moved faster. Civilizations rose and fell. Still your turn.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 5.7,
+"d": 7.4,
 "pool": "long"
 },
 {
@@ -11771,10 +11771,10 @@
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
 "kind": "talk",
-"quote": "Trent, don't target me. Target anyone else. Actually, target yourself.",
+"quote": "Trent, don't target me. Target anyone else. Honestly, target yourself. You'd do the most damage.",
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
-"d": 5.3,
+"d": 7.1,
 "pool": "long"
 },
 {
