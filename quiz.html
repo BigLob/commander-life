@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>Quiz Night</title>
+<title>Gowpardy</title>
 <!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
 <link rel="manifest" href="/commander-life/app/manifest.json">
 <script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
 <style>
-/* Quiz Night: a trivia board for the TV, a host phone that runs it, and every other phone as a
+/* Gowpardy: a trivia board for the TV, a host phone that runs it, and every other phone as a
    buzzer, all kept in sync through the same Firebase database as Commander Life.
    One page, three roles picked by the address: #board (the TV), #host, #buzz. */
 @font-face { font-family: "Matrix"; src: url(fonts/Matrix-Bold.woff) format("woff"); font-weight: 100 900; font-display: swap; unicode-range: U+20-7E, U+2212; }
@@ -162,7 +162,7 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
 <script>
 (() => {
   'use strict';
-  const VERSION = '1.0';
+  const VERSION = '1.1';
   const $ = s => document.querySelector(s);
   const app = $('#app');
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -243,7 +243,7 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
       cats: arr(r.cats).map(c => ({ name: String(c.name || ''), clues: arr(c.clues).map(q => ({ v: +q.v || 0, q: String(q.q || ''), a: String(q.a || ''), w: !!q.w })) })),
     })).filter(r => r.cats.length);
     const f = g.final && g.final.q ? { cat: String(g.final.cat || 'Final'), q: String(g.final.q), a: String(g.final.a || '') } : null;
-    return rounds.length || f ? { title: String(g.title || 'Quiz Night'), rounds, final: f } : null;
+    return rounds.length || f ? { title: String(g.title || 'Gowpardy'), rounds, final: f } : null;
   }
   const players = () => Object.entries(S.players || {})
     .filter(([, p]) => p && typeof p === 'object' && p.name)
@@ -292,7 +292,7 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
       if (!g || !Array.isArray(g.rounds)) throw new Error('JSON needs a "rounds" list.');
       return g;
     }
-    const out = { title: 'Quiz Night', rounds: [], final: null };
+    const out = { title: 'Gowpardy', rounds: [], final: null };
     let rd = null, inFinal = false, line = 0;
     const errs = [];
     for (const raw of text.split(/\r?\n/)) {
@@ -410,7 +410,7 @@ Inventions | | He was granted a patent for the telephone in 1876 | Alexander Gra
   }
 
   function renderPick() {
-    app.innerHTML = `<div class="pick"><h1>Quiz Night</h1><p>Open this page on the TV, the host's phone, and everyone else's phone.</p>
+    app.innerHTML = `<div class="pick"><h1>Gowpardy</h1><p>Open this page on the TV, the host's phone, and everyone else's phone.</p>
       <a href="#board"><b>TV board</b>The big screen everyone watches</a>
       <a href="#host"><b>Host</b>Load the clues, pick them, judge answers</a>
       <a href="#buzz"><b>Buzzer</b>For each player's phone</a>
@@ -450,7 +450,7 @@ Inventions | | He was granted a patent for the telephone in 1876 | Alexander Gra
     else if (fxInit && f && f !== fxSeen) { fxSeen = f; if (FX[S.fx.k]) FX[S.fx.k](); }
 
     const g = game(), c = cur(), F = fin(), ps = players();
-    $('#bTitle').textContent = g ? g.title : 'Quiz Night';
+    $('#bTitle').textContent = g ? g.title : 'Gowpardy';
     $('#bRound').textContent = !g ? '' : F ? 'Final round' : (g.rounds[round()] ? g.rounds[round()].name : '');
 
     // Scores along the bottom.
@@ -464,7 +464,7 @@ Inventions | | He was granted a patent for the telephone in 1876 | Alexander Gra
     let sig, html, after;
     if (!g) {
       sig = 'wait';
-      html = `<div class="b-wait"><h1>Quiz Night</h1><p>Players: open <code>${esc(location.host + location.pathname)}#buzz</code> on your phone.</p>
+      html = `<div class="b-wait"><h1>Gowpardy</h1><p>Players: open <code>${esc(location.host + location.pathname)}#buzz</code> on your phone.</p>
         <p>Host: open it with <code>#host</code> and load the clues.</p></div>`;
     } else if (S.show === 'scores' || (F && F.step === 'done')) {
       const sorted = ps.slice().sort((a, b) => b.score - a.score);
@@ -730,7 +730,7 @@ Inventions | | He was granted a patent for the telephone in 1876 | Alexander Gra
     try {
       parsed = parseGame(t.value);
       const rs = arr(parsed.rounds);
-      out.innerHTML = `<b>${esc(parsed.title || 'Quiz Night')}</b>: ` + rs.map(r => `${esc(r.name)}, ${arr(r.cats).length} categories, ${arr(r.cats).reduce((n, c) => n + arr(c.clues).length, 0)} clues (${arr(r.cats).reduce((n, c) => n + arr(c.clues).filter(q => q.w).length, 0)} wager)`).join('; ') + (parsed.final ? '; final round' : '; no final round');
+      out.innerHTML = `<b>${esc(parsed.title || 'Gowpardy')}</b>: ` + rs.map(r => `${esc(r.name)}, ${arr(r.cats).length} categories, ${arr(r.cats).reduce((n, c) => n + arr(c.clues).length, 0)} clues (${arr(r.cats).reduce((n, c) => n + arr(c.clues).filter(q => q.w).length, 0)} wager)`).join('; ') + (parsed.final ? '; final round' : '; no final round');
     } catch (e) { out.innerHTML = `<span style="color:var(--bad);white-space:pre-line">${esc(e.message)}</span>`; }
   }
 
@@ -848,7 +848,7 @@ Inventions | | He was granted a patent for the telephone in 1876 | Alexander Gra
     if (!mine && loaded) {
       if ($('#zJoin')) return;
       const last = store.get('quiz-name') || '';
-      app.innerHTML = `<div class="phone"><div class="join" id="zJoin"><h1>Quiz Night</h1><p class="note" style="text-align:center">Who's playing on this phone?</p>
+      app.innerHTML = `<div class="phone"><div class="join" id="zJoin"><h1>Gowpardy</h1><p class="note" style="text-align:center">Who's playing on this phone?</p>
         <div class="chips" style="justify-content:center">${NAMES.map(n => `<button class="chip" data-n="${n}" style="font-size:20px;padding:12px 18px">${n}</button>`).join('')}</div>
         <input type="text" id="zName" maxlength="24" placeholder="Or type a name" value="${esc(NAMES.includes(last) ? '' : last)}">
         <button class="btn gold" id="zGo">Join</button></div></div>`;
@@ -974,7 +974,7 @@ Inventions | | He was granted a patent for the telephone in 1876 | Alexander Gra
   setInterval(() => { if (ROLE === 'buzz' && live && S.players && S.players[me] && document.visibilityState === 'visible') fetch(Q + '.json', { method: 'PATCH', body: JSON.stringify({ [`players/${me}/seen`]: NOW }) }).catch(() => {}); }, 45000);
 
   if (!['board', 'host', 'buzz'].includes(ROLE)) { renderPick(); return; }
-  document.title = 'Quiz Night · ' + { board: 'TV', host: 'Host', buzz: 'Buzzer' }[ROLE];
+  document.title = 'Gowpardy · ' + { board: 'TV', host: 'Host', buzz: 'Buzzer' }[ROLE];
   // A screen that sleeps mid-question is no use; ask to keep it on (where the browser allows).
   const wake = () => { try { navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); } catch (e) {} };
   wake();
