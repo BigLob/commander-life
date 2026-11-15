@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Quiz Night</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<style>
+/* Quiz Night: a trivia board for the TV, a host phone that runs it, and every other phone as a
+   buzzer, all kept in sync through the same Firebase database as Commander Life.
+   One page, three roles picked by the address: #board (the TV), #host, #buzz. */
+@font-face { font-family: "Matrix"; src: url(fonts/Matrix-Bold.woff) format("woff"); font-weight: 100 900; font-display: swap; unicode-range: U+20-7E, U+2212; }
+/* Beleren is cut to digits, + and minus, all a score needs. */
+@font-face { font-family: "Beleren"; src: url(fonts/Beleren-Bold-digits.woff) format("woff"); font-weight: 100 900; font-display: block; unicode-range: U+20, U+2B, U+2D, U+30-39, U+B1, U+2212; }
+@font-face { font-family: "MPlantin"; src: url(fonts/Mplantin-text.woff) format("woff"); font-weight: 100 900; font-display: swap; unicode-range: U+20-7E, U+A1-A3, U+A5, U+A7-AB, U+AE, U+B1, U+B4-B6, U+B8, U+BA-BB, U+BF-CF, U+D1, U+D3-D6, U+D8-DC, U+DF-EF, U+F1-F6, U+F8-FC, U+FF, U+131, U+152-153, U+178, U+192, U+2013-2014, U+2018-2019, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2122; }
+:root {
+  --bg: #0c0e11; --cell: #18202c; --cell-hi: #223044; --line: #2c3a4e;
+  --gold: #e8b44a; --gold-hi: #ffd77a; --cream: #f3e3b0; --text: #ece8dd; --muted: #8f9aa8;
+  --good: #3fb37f; --bad: #d9534f;
+  --f-name: "Matrix", Georgia, serif; --f-num: "Beleren", "MPlantin", Georgia, serif; --f-text: "MPlantin", Georgia, serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--f-text); }
+body { -webkit-tap-highlight-color: transparent; overscroll-behavior: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.hidden { display: none !important; }
+.num { font-family: var(--f-num); }
+
+/* ---------- role picker ---------- */
+.pick { min-height: 100%; display: grid; place-content: center; gap: 14px; padding: 24px 16px; text-align: center; }
+.pick h1 { font-family: var(--f-name); font-size: 44px; margin: 0 0 4px; color: var(--cream); }
+.pick p { color: var(--muted); margin: 0 0 10px; }
+.pick a { display: block; padding: 18px 22px; border-radius: 14px; background: var(--cell); border: 1px solid var(--line); color: var(--text); text-decoration: none; font-size: 19px; min-width: min(340px, 86vw); }
+.pick a b { display: block; font-family: var(--f-name); font-size: 24px; color: var(--gold); margin-bottom: 2px; }
+
+/* ---------- TV board ---------- */
+#board { position: fixed; inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 1.2vh; padding: 1.6vh 1.6vw; }
+.b-top { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--f-name); color: var(--cream); font-size: 3vh; padding: 0 4vw 0 .4vw; }
+.b-top .rd { color: var(--muted); font-size: 2.4vh; }
+.b-main { position: relative; min-height: 0; }
+.grid { position: absolute; inset: 0; display: grid; gap: .8vh .6vw; }
+.cat, .val { border-radius: 1vh; display: grid; place-items: center; text-align: center; overflow: hidden; }
+.cat { background: #10161f; border: 2px solid var(--line); font-family: var(--f-name); color: var(--cream); padding: .6vh .6vw; line-height: 1.05; text-transform: uppercase; letter-spacing: .02em; }
+.val { background: linear-gradient(180deg, var(--cell-hi), var(--cell)); border: 2px solid var(--line); font-family: var(--f-num); color: var(--gold); text-shadow: 0 .3vh 0 #000, 0 0 2vh rgba(232,180,74,.25); }
+.val.used { background: #0f1319; border-color: #1a222d; color: transparent; text-shadow: none; }
+.val.now { border-color: var(--gold); box-shadow: 0 0 3vh rgba(232,180,74,.5) inset; }
+
+.panel { position: absolute; inset: 0; border-radius: 1.4vh; background: radial-gradient(ellipse at 50% 30%, #1d2a3c, #0f151e 75%); border: 3px solid var(--line); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: 3vh 4vw; text-align: center; }
+.p-head { font-family: var(--f-name); color: var(--muted); font-size: 3.2vh; text-transform: uppercase; letter-spacing: .04em; }
+.p-head b { color: var(--gold); font-family: var(--f-num); font-weight: 700; margin-left: 1vw; }
+.p-body { display: grid; place-items: center; min-height: 0; overflow: hidden; }
+.p-q { color: var(--text); line-height: 1.22; max-width: 88vw; width: 100%; max-height: 100%; overflow: hidden; text-shadow: 0 .3vh 0 #000; }
+.p-a { font-family: var(--f-name); color: var(--gold-hi); font-size: 6vh; margin-top: 1vh; min-height: 7vh; text-shadow: 0 .3vh 0 #000; }
+.p-foot { min-height: 9vh; display: grid; place-items: center; }
+.p-foot > div { display: grid; justify-items: center; }
+.splash { font-family: var(--f-name); color: var(--gold); font-size: 16vh; text-shadow: 0 .6vh 0 #000, 0 0 6vh rgba(232,180,74,.6); animation: pop .5s ease-out; }
+.splash-sub { font-family: var(--f-name); color: var(--cream); font-size: 5vh; margin-top: 2vh; }
+@keyframes pop { from { transform: scale(.3); opacity: 0; } 70% { transform: scale(1.08); } to { transform: scale(1); opacity: 1; } }
+.who { font-family: var(--f-name); font-size: 6vh; color: #000; background: var(--gold); padding: .6vh 3vw; border-radius: 99px; box-shadow: 0 0 4vh rgba(232,180,74,.7); animation: pop .35s ease-out; }
+.state { font-family: var(--f-name); font-size: 4vh; color: var(--muted); }
+.state.go { color: var(--good); }
+.bar { width: 60vw; height: 1.4vh; border-radius: 99px; background: #0a0d12; overflow: hidden; border: 1px solid var(--line); margin-top: 1.2vh; }
+.bar i { display: block; height: 100%; background: var(--gold); transform-origin: left; animation: drain var(--t, 6s) linear forwards; }
+@keyframes drain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+.scores { display: flex; gap: .8vw; justify-content: center; min-height: 12vh; }
+.sc { flex: 1 1 0; max-width: 22vw; border-radius: 1.2vh; background: var(--cell); border: 2px solid var(--line); padding: .8vh 1vw; text-align: center; transition: transform .2s, border-color .2s, box-shadow .2s; position: relative; }
+.sc .n { font-family: var(--f-name); font-size: 3.4vh; color: var(--cream); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sc .s { font-family: var(--f-num); font-size: 6vh; line-height: 1; color: var(--text); }
+.sc .s.neg { color: var(--bad); }
+.sc.ctl::after { content: ""; position: absolute; top: 1vh; right: 1vh; width: 1.4vh; height: 1.4vh; border-radius: 50%; background: var(--gold); box-shadow: 0 0 1vh var(--gold); }
+.sc.in { border-color: var(--gold); box-shadow: 0 0 3vh rgba(232,180,74,.7); transform: translateY(-.8vh); }
+.sc.out { opacity: .45; }
+.sc.gone { opacity: .5; } /* phone hasn't checked in for a while */
+.b-wait { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 2vh; }
+.b-wait h1 { font-family: var(--f-name); font-size: 12vh; margin: 0; color: var(--cream); }
+.b-wait p { font-size: 3.4vh; color: var(--muted); margin: 0; }
+.b-wait code { color: var(--gold); font-family: var(--f-text); }
+.stand { display: grid; gap: 1.4vh; width: min(70vw, 1100px); margin: auto; }
+.stand .row { display: grid; grid-template-columns: 6vh 1fr auto; align-items: center; gap: 2vw; background: var(--cell); border: 2px solid var(--line); border-radius: 1.4vh; padding: 1.2vh 2vw; font-size: 5vh; }
+.stand .row .r { font-family: var(--f-num); color: var(--muted); }
+.stand .row .n { font-family: var(--f-name); color: var(--cream); text-align: left; }
+.stand .row .s { font-family: var(--f-num); color: var(--gold); }
+.stand .row.top { border-color: var(--gold); box-shadow: 0 0 4vh rgba(232,180,74,.5); }
+.b-sound { position: fixed; top: 1vh; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; border: 0; border-radius: 99px; padding: 1vh 2.4vw; font-size: 2.4vh; font-weight: 700; z-index: 5; }
+.b-full { position: fixed; right: 1vw; top: 1vh; background: none; border: 1px solid var(--line); border-radius: 1vh; color: var(--muted); font-size: 2.4vh; padding: .4vh .8vw; opacity: .5; z-index: 5; }
+.b-off { position: fixed; left: 1vw; top: 1vh; color: var(--bad); font-size: 2vh; z-index: 5; }
+
+/* ---------- phones (host and buzzer) ---------- */
+.phone { min-height: 100%; max-width: 560px; margin: 0 auto; padding: max(12px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom)); }
+.phone h2 { font-family: var(--f-name); color: var(--cream); font-size: 22px; margin: 18px 0 8px; }
+.bar-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: var(--f-name); color: var(--cream); font-size: 20px; }
+.bar-top small { font-family: var(--f-text); color: var(--muted); font-size: 13px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; padding: 8px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--cell); font-size: 16px; touch-action: manipulation; }
+.btn.gold { background: var(--gold); color: #111; border-color: var(--gold); font-weight: 700; }
+.btn.good { background: var(--good); color: #04140c; border-color: var(--good); font-weight: 700; }
+.btn.bad { background: var(--bad); color: #1c0505; border-color: var(--bad); font-weight: 700; }
+.btn.sm { min-height: 36px; padding: 4px 10px; font-size: 14px; }
+.btn.arm { background: #5a1d1b; border-color: var(--bad); }
+.btn:disabled { opacity: .4; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.row-btns .btn { flex: 1 1 auto; }
+input[type=text], input[type=number], textarea { width: 100%; font: inherit; font-size: 16px; color: var(--text); background: #0a0d12; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+textarea { min-height: 220px; font-family: ui-monospace, Menlo, monospace; font-size: 13px; white-space: pre; }
+.note { color: var(--muted); font-size: 14px; line-height: 1.4; margin: 6px 0; }
+.note b { color: var(--text); }
+details { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 6px; }
+summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padding: 8px 0; cursor: pointer; }
+
+/* host grid of clues */
+.hgrid { display: grid; gap: 4px; margin-top: 10px; }
+.hgrid .hc { font-family: var(--f-name); font-size: 11px; line-height: 1.1; color: var(--cream); text-align: center; padding: 4px 2px; background: #10161f; border-radius: 6px; display: grid; place-items: center; min-height: 40px; overflow-wrap: anywhere; }
+.hgrid button { min-height: 44px; border-radius: 8px; border: 1px solid var(--line); background: var(--cell); font-family: var(--f-num); color: var(--gold); font-size: 17px; padding: 0; position: relative; touch-action: manipulation; }
+.hgrid button.used { color: #3a4656; background: #0f1319; }
+.hgrid button.w::after { content: ""; position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; border-radius: 50%; background: var(--bad); }
+.hclue { margin-top: 12px; padding: 14px; border-radius: 14px; background: var(--cell); border: 1px solid var(--line); }
+.hclue .k { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+.hclue .q { font-size: 21px; line-height: 1.3; margin: 8px 0; }
+.hclue .a { font-family: var(--f-name); color: var(--gold); font-size: 22px; }
+.hclue .st { margin-top: 10px; font-size: 17px; }
+.hclue .st b { color: var(--gold); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: #0a0d12; font-size: 15px; }
+.chip.on { background: var(--gold); color: #111; border-color: var(--gold); font-weight: 700; }
+.plist { display: grid; gap: 6px; }
+.prow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 6px; align-items: center; background: var(--cell); border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px 6px 12px; }
+.prow .n { font-family: var(--f-name); font-size: 18px; color: var(--cream); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prow .n small { font-family: var(--f-text); color: var(--muted); font-size: 12px; margin-left: 4px; }
+.prow .s { font-family: var(--f-num); font-size: 22px; min-width: 64px; text-align: right; }
+.prow.ctl .n::before { content: "● "; color: var(--gold); font-size: 12px; vertical-align: middle; }
+.frow { background: var(--cell); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-top: 8px; }
+.frow .top { display: flex; justify-content: space-between; font-family: var(--f-name); color: var(--cream); font-size: 18px; }
+.frow .ans { font-size: 18px; margin: 6px 0; color: var(--gold); }
+.frow.done { opacity: .6; }
+
+/* buzzer */
+#buzz { position: fixed; inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: max(12px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); touch-action: manipulation; }
+.bz-top { display: flex; justify-content: space-between; align-items: center; }
+.bz-top .n { font-family: var(--f-name); font-size: 26px; color: var(--cream); background: none; border: 0; padding: 0; }
+.bz-top .s { font-family: var(--f-num); font-size: 34px; color: var(--gold); }
+.bz-mid { display: grid; place-items: center; min-height: 0; }
+.bz-btn { width: min(78vw, 58vh, 420px); aspect-ratio: 1; border-radius: 50%; border: 0; display: grid; place-items: center; text-align: center; font-family: var(--f-name); font-size: clamp(30px, 10vw, 56px); line-height: 1.05; padding: 12%; color: #6b7684; background: radial-gradient(circle at 50% 35%, #2a3443, #141a23 70%); box-shadow: 0 1.2vh 0 #05070a, 0 0 0 6px #1f2834 inset; user-select: none; -webkit-user-select: none; transition: transform .05s; }
+.bz-btn small { display: block; font-family: var(--f-text); font-size: 17px; margin-top: 8px; opacity: .85; }
+.bz-btn.live { color: #2a1800; background: radial-gradient(circle at 50% 35%, #ffe08a, #e8b44a 55%, #b07d1c); box-shadow: 0 1.2vh 0 #6a4a10, 0 0 6vh rgba(232,180,74,.7); animation: breathe 1.1s ease-in-out infinite; }
+.bz-btn.live:active { transform: translateY(.8vh); box-shadow: 0 .4vh 0 #6a4a10; }
+.bz-btn.in { color: #03170d; background: radial-gradient(circle at 50% 35%, #8ff0c1, #3fb37f 60%, #1f7a51); box-shadow: 0 1.2vh 0 #0c3a26, 0 0 6vh rgba(63,179,127,.7); }
+.bz-btn.out { color: #ffd2d0; background: radial-gradient(circle at 50% 35%, #7a2a28, #4a1514 70%); }
+.bz-btn.soon { color: #ffd2d0; background: radial-gradient(circle at 50% 35%, #a33a36, #5a1a18 70%); }
+@keyframes breathe { 50% { box-shadow: 0 1.2vh 0 #6a4a10, 0 0 10vh rgba(232,180,74,.95); } }
+.bz-foot { text-align: center; color: var(--muted); font-size: 14px; min-height: 20px; }
+.bz-fin { width: 100%; max-width: 480px; display: grid; gap: 12px; text-align: center; }
+.bz-fin .k { color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-size: 14px; }
+.bz-fin .c { font-family: var(--f-name); color: var(--cream); font-size: 28px; }
+.bz-fin input { font-size: 22px; text-align: center; }
+.bz-fin .big { font-family: var(--f-num); color: var(--gold); font-size: 44px; }
+.join { display: grid; gap: 12px; align-content: center; min-height: 100%; }
+.join h1 { font-family: var(--f-name); color: var(--cream); font-size: 34px; margin: 0; text-align: center; }
+</style></head>
+<body>
+<div id="app"></div>
+<script>
+(() => {
+  'use strict';
+  const VERSION = '1.0';
+  const $ = s => document.querySelector(s);
+  const app = $('#app');
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  // Scores use a real minus sign: Beleren has one, and the hyphen looks like a dash next to digits.
+  const fmt = n => (n < 0 ? '−' : '') + Math.abs(n || 0);
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+  };
+  const rid = () => Math.random().toString(36).slice(2, 10);
+  const NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
+
+  // ---- the shared quiz, in the Commander Life database ----
+  // Kept under tables/, the only part of the database its rules open to the pages.
+  // Layout: game (the clues), round, used/<r_c_i>, cur (the clue in play), buzz/<open id>/<phone>
+  // (server timestamps), players/<phone> {name, score, at}, ctl (who picks next), fin (final round),
+  // show ('scores' puts the standings on the TV), cfg (timers), fx (sound cue for the TV).
+  const DB = 'https://commander-life-39708-default-rtdb.firebaseio.com';
+  const Q = DB + '/tables/t7q2xm4k-quiz';
+  const inc = d => ({ '.sv': { increment: d } });
+  const NOW = { '.sv': 'timestamp' };
+  let S = {}, live = false, loaded = false;
+
+  function setPath(root, path, v) {
+    const ks = path.split('/').filter(Boolean);
+    if (!ks.length) return v && typeof v === 'object' ? v : {};
+    let o = root;
+    for (const k of ks.slice(0, -1)) { if (o[k] == null || typeof o[k] !== 'object') o[k] = {}; o = o[k]; }
+    const last = ks[ks.length - 1];
+    if (v === null) delete o[last]; else o[last] = v;
+    return root;
+  }
+  const getPath = (root, path) => path.split('/').filter(Boolean).reduce((o, k) => o == null ? undefined : o[k], root);
+
+  // Writes go up as one multi-path PATCH (so a clue's whole change lands at once) and are applied
+  // here straight away, so the host's screen doesn't wait for the round trip. The stream's echo
+  // then overwrites them with the table's value (server timestamps and increments included).
+  function patch(obj) {
+    Object.keys(obj).forEach(k => {
+      const v = obj[k];
+      if (v && v['.sv']) {
+        if (v['.sv'].increment != null) S = setPath(S, k, (+getPath(S, k) || 0) + v['.sv'].increment);
+        else S = setPath(S, k, Date.now());
+      } else S = setPath(S, k, v == null ? null : JSON.parse(JSON.stringify(v)));
+    });
+    render();
+    fetch(Q + '.json', { method: 'PATCH', body: JSON.stringify(obj) }).catch(() => {});
+  }
+
+  let stream = null;
+  function connect() {
+    if (stream) stream.close();
+    stream = new EventSource(Q + '.json');
+    stream.onopen = () => { live = true; render(); };
+    stream.onerror = () => { live = stream.readyState === EventSource.OPEN; render(); };
+    stream.addEventListener('put', e => {
+      const { path, data } = JSON.parse(e.data);
+      S = path === '/' ? (data && typeof data === 'object' ? data : {}) : setPath(S, path, data);
+      loaded = true; live = true; render();
+    });
+    stream.addEventListener('patch', e => {
+      const { path, data } = JSON.parse(e.data);
+      Object.keys(data).forEach(k => { S = setPath(S, path.replace(/\/$/, '') + '/' + k, data[k]); });
+      render();
+    });
+    stream.addEventListener('cancel', () => { stream.close(); live = false; render(); });
+  }
+
+  // ---- reading the shared state ----
+  // Firebase hands arrays back as objects when it likes; game data is normalized every read.
+  const arr = x => Array.isArray(x) ? x.filter(v => v != null) : x && typeof x === 'object'
+    ? Object.keys(x).sort((a, b) => a - b).map(k => x[k]).filter(v => v != null) : [];
+  function game() {
+    const g = S.game;
+    if (!g || typeof g !== 'object') return null;
+    const rounds = arr(g.rounds).map(r => ({
+      name: String(r.name || ''),
+      cats: arr(r.cats).map(c => ({ name: String(c.name || ''), clues: arr(c.clues).map(q => ({ v: +q.v || 0, q: String(q.q || ''), a: String(q.a || ''), w: !!q.w })) })),
+    })).filter(r => r.cats.length);
+    const f = g.final && g.final.q ? { cat: String(g.final.cat || 'Final'), q: String(g.final.q), a: String(g.final.a || '') } : null;
+    return rounds.length || f ? { title: String(g.title || 'Quiz Night'), rounds, final: f } : null;
+  }
+  const players = () => Object.entries(S.players || {})
+    .filter(([, p]) => p && typeof p === 'object' && p.name)
+    .map(([id, p]) => ({ id, name: String(p.name).slice(0, 24), score: +p.score || 0, at: +p.at || 0, seen: +p.seen || 0 }))
+    .sort((a, b) => a.at - b.at || (a.id < b.id ? -1 : 1));
+  const nameOf = id => (players().find(p => p.id === id) || {}).name || '?';
+  const round = () => +S.round || 0;
+  const key = (r, c, i) => `${r}_${c}_${i}`;
+  const used = k => !!(S.used && S.used[k]);
+  const cfg = () => ({ buzz: +getPath(S, 'cfg/buzz') || 6, answer: +getPath(S, 'cfg/answer') || 6, final: +getPath(S, 'cfg/final') || 30 });
+  const cur = () => (S.cur && typeof S.cur === 'object' && S.cur.step) ? S.cur : null;
+  function clueOf(c) {
+    const g = game(); if (!g || !c) return null;
+    const r = g.rounds[c.r], cat = r && r.cats[c.c], q = cat && cat.clues[c.i];
+    return q ? Object.assign({ cat: cat.name }, q) : null;
+  }
+  const outOf = c => (c && c.out) || {};
+  // The first phone to reach the database is the earliest timestamp: the server stamps writes in
+  // the order it takes them, so every screen agrees on who won without the host deciding.
+  function winner(c) {
+    if (!c || !c.open) return null;
+    const b = getPath(S, 'buzz/' + c.open) || {}, out = outOf(c);
+    let best = null;
+    Object.keys(b).forEach(id => { const t = b[id]; if (typeof t === 'number' && !out[id] && (!best || t < best.t)) best = { id, t }; });
+    return best && best.id;
+  }
+  const buzzOrder = c => {
+    const b = (c && c.open && getPath(S, 'buzz/' + c.open)) || {};
+    return Object.keys(b).filter(id => typeof b[id] === 'number').sort((x, y) => b[x] - b[y]);
+  };
+  const fin = () => (S.fin && S.fin.step) ? S.fin : null;
+  const cluesLeft = r => { const g = game(); if (!g || !g.rounds[r]) return 0; let n = 0; g.rounds[r].cats.forEach((c, ci) => c.clues.forEach((q, i) => { if (!used(key(r, ci, i))) n++; })); return n; };
+  const value = (c, q) => c.solo ? (+c.wager || 0) : q.v;
+
+  // ---- clue file format ----
+  // One clue per line: Category | Value | Clue | Answer (tabs work too, so rows pasted from a
+  // spreadsheet go straight in). "# Round name" starts a round, "# Final" the final round
+  // (one line: Category | | Clue | Answer). A * before a value makes it a wager clue. A blank value
+  // is filled in by its place in the category. "Title: ..." names the game. JSON in the same shape
+  // as the stored game works too.
+  function parseGame(text) {
+    text = String(text || '').replace(/^﻿/, '').trim();
+    if (!text) throw new Error('Nothing to load.');
+    if (text[0] === '{') {
+      const g = JSON.parse(text);
+      if (!g || !Array.isArray(g.rounds)) throw new Error('JSON needs a "rounds" list.');
+      return g;
+    }
+    const out = { title: 'Quiz Night', rounds: [], final: null };
+    let rd = null, inFinal = false, line = 0;
+    const errs = [];
+    for (const raw of text.split(/\r?\n/)) {
+      line++;
+      const s = raw.trim();
+      if (!s || s.startsWith('//')) continue;
+      const t = s.match(/^title\s*:\s*(.+)$/i);
+      if (t) { out.title = t[1].trim(); continue; }
+      if (s[0] === '#') {
+        const name = s.replace(/^#+\s*/, '');
+        inFinal = /^final/i.test(name);
+        if (!inFinal) { rd = { name: name || 'Round ' + (out.rounds.length + 1), cats: [] }; out.rounds.push(rd); }
+        continue;
+      }
+      const cols = (raw.includes('\t') ? raw.split('\t') : raw.split('|')).map(x => x.trim());
+      if (cols.length < 4) { errs.push(`Line ${line}: needs 4 parts (Category | Value | Clue | Answer).`); continue; }
+      const [cat, vRaw, q] = cols, a = cols.slice(3).join(raw.includes('\t') ? ' ' : ' | ');
+      if (/^category$/i.test(cat) && /^value$/i.test(vRaw)) continue; // a spreadsheet's header row
+      if (inFinal) { out.final = { cat, q, a }; continue; }
+      if (!rd) { rd = { name: 'Round 1', cats: [] }; out.rounds.push(rd); }
+      let c = rd.cats.find(x => x.name.toLowerCase() === cat.toLowerCase());
+      if (!c) { c = { name: cat, clues: [] }; rd.cats.push(c); }
+      const w = vRaw.startsWith('*'), v = parseInt(vRaw.replace(/[^\d]/g, ''), 10);
+      c.clues.push({ v: isNaN(v) ? 0 : v, q, a, w });
+    }
+    if (errs.length) throw new Error(errs.slice(0, 4).join('\n') + (errs.length > 4 ? `\n…and ${errs.length - 4} more.` : ''));
+    out.rounds = out.rounds.filter(r => r.cats.length);
+    out.rounds.forEach((r, ri) => r.cats.forEach(c => {
+      c.clues.forEach((q, i) => { if (!q.v) q.v = (i + 1) * 200 * (ri + 1); });
+      c.clues.sort((x, y) => x.v - y.v);
+    }));
+    if (!out.rounds.length && !out.final) throw new Error('No clues found.');
+    return out;
+  }
+
+  const SAMPLE = `Title: Sample Quiz
+# Round 1
+Planets | 200 | The planet closest to the Sun | Mercury
+Planets | 400 | The Great Red Spot is a storm on this planet | Jupiter
+Planets | 600 | This planet's day is longer than its year | Venus
+Planets | 800 | Its moon Titan has a thick atmosphere | Saturn
+Planets | 1000 | This planet spins on its side, tilted about 98 degrees | Uranus
+Animals | 200 | The largest animal known to have lived | The blue whale
+Animals | 400 | A group of crows is called this | A murder
+Animals | 600 | The only bird that can fly backwards | The hummingbird
+Animals | 800 | An octopus has this many hearts | Three
+Animals | 1000 | The only mammals capable of true flight | Bats
+Food | 200 | Guacamole's main ingredient | Avocado
+Food | 400 | This Italian cheese is traditionally made from water buffalo milk | Mozzarella
+Food | 600 | The spice that makes curry powder yellow | Turmeric
+Food | *800 | Saffron comes from this flower | The crocus
+Food | 1000 | Sushi rice is seasoned with this | Rice vinegar
+Geography | 200 | The capital of Australia | Canberra
+Geography | 400 | The longest river in South America | The Amazon
+Geography | 600 | The smallest country in the world by area | Vatican City
+Geography | 800 | Lake Titicaca sits on the border of Peru and this country | Bolivia
+Geography | 1000 | The country with the most people | India
+Music | 200 | An instrument with 88 keys | The piano
+Music | 400 | A musical staff has this many lines | Five
+Music | 600 | A standard violin has this many strings | Four
+Music | 800 | Italian for gradually getting louder | Crescendo
+Music | 1000 | This composer kept writing music after going deaf | Beethoven
+Words | 200 | A word that reads the same backward and forward | Palindrome
+Words | 400 | The opposite of a synonym | Antonym
+Words | 600 | A word made from first letters, like NASA | Acronym
+Words | 800 | The dot over a lowercase i | A tittle
+Words | 1000 | The punctuation mark that combines ? and ! | The interrobang
+# Final
+Inventions | | He was granted a patent for the telephone in 1876 | Alexander Graham Bell`;
+
+  // ---- sound (the TV only, plus a click on the buzzer phones) ----
+  // Synthesized, no files: a bright chime when someone buzzes in, rising and falling tones for
+  // right and wrong, a low buzz when time runs out, a fanfare for a wager clue.
+  let ac = null;
+  function audio() {
+    if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; } }
+    if (ac.state === 'suspended') ac.resume();
+    return ac;
+  }
+  function tone(f, t0, dur, type = 'sine', vol = .3, f2) {
+    const a = audio(); if (!a) return;
+    const o = a.createOscillator(), g = a.createGain(), t = a.currentTime + t0;
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .01); g.gain.exponentialRampToValueAtTime(.001, t + dur);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  const FX = {
+    buzz() { tone(988, 0, .18, 'triangle', .4); tone(1319, .09, .35, 'triangle', .4); },
+    right() { [523, 659, 784, 1047].forEach((f, i) => tone(f, i * .08, .3, 'triangle', .3)); },
+    wrong() { tone(330, 0, .25, 'sawtooth', .18, 260); tone(247, .22, .45, 'sawtooth', .18, 180); },
+    time() { tone(110, 0, .7, 'square', .15); tone(116, 0, .7, 'square', .15); },
+    wager() { [392, 523, 659, 784, 1047, 784, 1047].forEach((f, i) => tone(f, i * .1, .28, 'triangle', .28)); },
+    reveal() { tone(660, 0, .5, 'sine', .25); tone(880, .12, .6, 'sine', .2); },
+    click() { tone(1200, 0, .05, 'square', .15); },
+  };
+  const fx = k => ({ fx: { k, id: rid() } });
+
+  // ---- roles ----
+  const ROLE = (location.hash.slice(1) || '').toLowerCase();
+  addEventListener('hashchange', () => location.reload());
+  let me = store.get('quiz-pid');
+  if (!me) { me = rid(); store.set('quiz-pid', me); }
+
+  let queued = false;
+  function render() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      if (ROLE === 'board') renderBoard();
+      else if (ROLE === 'host') hostTick();
+      else if (ROLE === 'buzz') renderBuzz();
+    });
+  }
+
+  function renderPick() {
+    app.innerHTML = `<div class="pick"><h1>Quiz Night</h1><p>Open this page on the TV, the host's phone, and everyone else's phone.</p>
+      <a href="#board"><b>TV board</b>The big screen everyone watches</a>
+      <a href="#host"><b>Host</b>Load the clues, pick them, judge answers</a>
+      <a href="#buzz"><b>Buzzer</b>For each player's phone</a>
+      <p style="margin-top:10px">v${VERSION}</p></div>`;
+  }
+
+  // Fit text to its box: the largest size (in px) at which it doesn't overflow.
+  function fit(el, max, min) {
+    let lo = min, hi = max;
+    el.style.fontSize = hi + 'px';
+    if (el.scrollHeight <= el.clientHeight + 1 && el.scrollWidth <= el.clientWidth + 1) return;
+    while (hi - lo > 1) {
+      const mid = (lo + hi) / 2;
+      el.style.fontSize = mid + 'px';
+      if (el.scrollHeight <= el.clientHeight + 1 && el.scrollWidth <= el.clientWidth + 1) lo = mid; else hi = mid;
+    }
+    el.style.fontSize = lo + 'px';
+  }
+
+  // ================= TV board =================
+  let bSig = '', fxSeen, fxInit = false, bWho = null, bOpen = null, bTimer = 0, bTimeUp = '', soundOn = false, bStep = '';
+  function renderBoard() {
+    if (!$('#board')) {
+      app.innerHTML = `<div id="board"><div class="b-top"><span id="bTitle"></span><span class="rd" id="bRound"></span></div>
+        <div class="b-main" id="bMain"></div><div class="scores" id="bScores"></div></div>
+        <button class="b-sound" id="bSound">Click for sound</button>
+        <button class="b-full" id="bFull" title="Full screen">&#x26F6;</button><div class="b-off hidden" id="bOff">offline</div>`;
+      $('#bSound').onclick = () => { audio(); soundOn = true; $('#bSound').remove(); FX.click(); };
+      document.addEventListener('pointerdown', () => { if (!soundOn) { audio(); soundOn = true; const b = $('#bSound'); if (b) b.remove(); } }, { once: true });
+      $('#bFull').onclick = () => { const d = document.documentElement; (document.fullscreenElement ? document.exitFullscreen() : (d.requestFullscreen || d.webkitRequestFullscreen).call(d)); };
+      addEventListener('resize', () => { bSig = ''; render(); });
+    }
+    $('#bOff').classList.toggle('hidden', live || !loaded);
+    // Sound cues the host sends (right, wrong, wager); the first look only notes the last one.
+    const f = S.fx && S.fx.id;
+    if (loaded && !fxInit) { fxInit = true; fxSeen = f; }
+    else if (fxInit && f && f !== fxSeen) { fxSeen = f; if (FX[S.fx.k]) FX[S.fx.k](); }
+
+    const g = game(), c = cur(), F = fin(), ps = players();
+    $('#bTitle').textContent = g ? g.title : 'Quiz Night';
+    $('#bRound').textContent = !g ? '' : F ? 'Final round' : (g.rounds[round()] ? g.rounds[round()].name : '');
+
+    // Scores along the bottom.
+    const w = c && (c.step === 'buzzed' ? c.who : c.step === 'open' ? winner(c) : null);
+    const out = outOf(c);
+    const scHtml = ps.map(p => `<div class="sc${p.id === S.ctl ? ' ctl' : ''}${p.id === w || (c && c.solo === p.id) || (F && F.cur === p.id) ? ' in' : ''}${out[p.id] ? ' out' : ''}">
+      <div class="n">${esc(p.name)}</div><div class="s${p.score < 0 ? ' neg' : ''}">${fmt(p.score)}</div></div>`).join('');
+    if ($('#bScores').innerHTML !== scHtml) $('#bScores').innerHTML = scHtml;
+
+    const main = $('#bMain');
+    let sig, html, after;
+    if (!g) {
+      sig = 'wait';
+      html = `<div class="b-wait"><h1>Quiz Night</h1><p>Players: open <code>${esc(location.host + location.pathname)}#buzz</code> on your phone.</p>
+        <p>Host: open it with <code>#host</code> and load the clues.</p></div>`;
+    } else if (S.show === 'scores' || (F && F.step === 'done')) {
+      const sorted = ps.slice().sort((a, b) => b.score - a.score);
+      sig = 'stand' + JSON.stringify(sorted) + (F && F.step);
+      html = `<div class="panel"><div class="p-head">${F && F.step === 'done' ? 'Final scores' : 'Scores'}</div><div class="p-body"><div class="stand">${
+        sorted.map((p, i) => `<div class="row${i === 0 && p.score > 0 ? ' top' : ''}"><span class="r">${i + 1}</span><span class="n">${esc(p.name)}</span><span class="s">${fmt(p.score)}</span></div>`).join('')
+      }</div></div><div class="p-foot">${F && F.step === 'done' && sorted[0] ? `<div class="who">${esc(sorted[0].name)} wins!</div>` : ''}</div></div>`;
+    } else if (F) {
+      html = finalBoard(g, F);
+      sig = 'fin' + html;
+      after = el => { const q = el.querySelector('.p-q'); if (q) fit(q, innerHeight * .1, 18); };
+    } else if (c) {
+      const q = clueOf(c);
+      if (!q) { sig = 'bad'; html = ''; }
+      else {
+        const wv = c.solo ? `Wager <b>${fmt(c.wager)}</b>` : `<b>${fmt(q.v)}</b>`;
+        if (c.step === 'wager') {
+          sig = 'wager' + key(c.r, c.c, c.i) + c.solo;
+          html = `<div class="panel"><div class="p-head">${esc(q.cat)}</div><div class="p-body"><div><div class="splash">Wager!</div>
+            <div class="splash-sub">${esc(nameOf(c.solo))} picks a wager</div></div></div><div class="p-foot"></div></div>`;
+        } else {
+          let foot = '';
+          if (c.step === 'reveal') foot = '';
+          else if (c.solo) foot = `<div class="who">${esc(nameOf(c.solo))}</div>`;
+          else if (c.step === 'show') foot = `<div class="state">Get ready…</div>`;
+          else if (c.step === 'open' && w) foot = `<div class="who">${esc(nameOf(w))}</div>`;
+          else if (c.step === 'open') foot = bTimeUp === c.open ? `<div class="state">Time</div>` : `<div><div class="state go">Buzz in!</div><div class="bar"><i style="--t:${cfg().buzz}s"></i></div></div>`;
+          else if (c.step === 'buzzed') foot = `<div><div class="who">${esc(nameOf(c.who))}</div><div class="bar"><i style="--t:${cfg().answer}s"></i></div></div>`;
+          const ans = c.step === 'reveal' ? `<div class="p-a">${esc(q.a)}</div>` : '<div class="p-a"></div>';
+          sig = 'clue' + key(c.r, c.c, c.i) + c.step + c.open + (w || '') + (c.who || '') + bTimeUp + c.wager + (c.step === 'reveal');
+          html = `<div class="panel"><div class="p-head">${esc(q.cat)} ${wv}</div><div class="p-body"><div style="width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:center">
+            <div class="p-q" style="height:100%;display:grid;place-items:center"><span>${esc(q.q)}</span></div>${ans}</div></div><div class="p-foot">${foot}</div></div>`;
+          after = el => { const p = el.querySelector('.p-q'); if (p) fit(p, innerHeight * .11, 18); };
+        }
+      }
+    } else {
+      const r = g.rounds[round()];
+      if (!r) { sig = 'nor'; html = `<div class="b-wait"><h1>${esc(g.title)}</h1><p>Waiting for the host…</p></div>`; }
+      else {
+        const rows = Math.max(...r.cats.map(x => x.clues.length));
+        sig = 'grid' + round() + JSON.stringify(S.used || {}) + JSON.stringify(r) + innerWidth + 'x' + innerHeight;
+        let cells = r.cats.map(x => `<div class="cat"><span>${esc(x.name)}</span></div>`).join('');
+        for (let i = 0; i < rows; i++) r.cats.forEach((x, ci) => {
+          const q = x.clues[i];
+          cells += q ? `<div class="val${used(key(round(), ci, i)) ? ' used' : ''}">${fmt(q.v)}</div>` : '<div></div>';
+        });
+        html = `<div class="grid" style="grid-template-columns:repeat(${r.cats.length},minmax(0,1fr));grid-template-rows:1.25fr repeat(${rows},1fr)">${cells}</div>`;
+        after = el => {
+          const vals = el.querySelectorAll('.val'), cats = el.querySelectorAll('.cat');
+          if (vals[0]) { const h = vals[0].clientHeight, wd = vals[0].clientWidth; vals.forEach(v => v.style.fontSize = Math.min(h * .55, wd / 3.2) + 'px'); }
+          // One size for every category name: the largest at which all of them fit.
+          let size = innerHeight * .045;
+          cats.forEach(cEl => { fit(cEl, size, 10); size = Math.min(size, parseFloat(cEl.style.fontSize)); });
+          cats.forEach(cEl => cEl.style.fontSize = size + 'px');
+        };
+      }
+    }
+    if (sig !== bSig) { bSig = sig; main.innerHTML = html; if (after) after(main); }
+
+    // Sounds and timers that follow the state.
+    // The chime plays the moment the TV sees who was first, without waiting for the host's phone.
+    const ansr = c && (c.step === 'open' ? w : c.step === 'buzzed' ? c.who : null);
+    if (ansr && bWho !== c.open + ansr) { if (bWho !== null) FX.buzz(); bWho = c.open + ansr; }
+    else if (bWho === null && loaded) bWho = '';
+    const step = c ? c.step + (c.open || '') : '';
+    if (c && c.step === 'open' && c.open !== bOpen) {
+      bOpen = c.open; clearTimeout(bTimer);
+      const open = c.open;
+      bTimer = setTimeout(() => { const cc = cur(); if (cc && cc.open === open && cc.step === 'open' && !winner(cc)) { bTimeUp = open; FX.time(); render(); } }, cfg().buzz * 1000);
+    }
+    if (c && c.step === 'wager' && bStep !== step) FX.wager();
+    bStep = step;
+  }
+
+  function finalBoard(g, F) {
+    const f = g.final;
+    if (!f) return '';
+    if (F.step === 'cat') return `<div class="panel"><div class="p-head">Final round</div><div class="p-body"><div><div class="splash" style="font-size:12vh">${esc(f.cat)}</div>
+      <div class="splash-sub">Make your wager on your phone</div></div></div><div class="p-foot"><div class="state">${Object.keys(F.wagers || {}).length} of ${players().length} wagers in</div></div></div>`;
+    const qHtml = `<div class="p-q" style="height:100%;display:grid;place-items:center"><span>${esc(f.q)}</span></div>`;
+    if (F.step === 'clue') return `<div class="panel"><div class="p-head">${esc(f.cat)}</div><div class="p-body" style="grid-template-rows:minmax(0,1fr)">${qHtml}</div>
+      <div class="p-foot"><div><div class="state go">Write your answer on your phone</div><div class="bar"><i style="--t:${cfg().final}s"></i></div></div></div></div>`;
+    // Judging: one player at a time, as the host reveals them.
+    const id = F.cur;
+    let foot = '';
+    if (id) {
+      const ans = getPath(F, 'answers/' + id), j = getPath(F, 'judged/' + id);
+      foot = `<div style="display:grid;gap:1.2vh;justify-items:center"><div class="who">${esc(nameOf(id))}</div>
+        <div class="p-a" style="color:var(--text);min-height:0">${ans ? esc(ans) : '<span style="color:var(--muted)">No answer</span>'}</div>
+        ${j ? `<div class="state" style="color:${j === 'r' ? 'var(--good)' : 'var(--bad)'}">${j === 'r' ? 'Right' : 'Wrong'}: wagered ${fmt(+getPath(F, 'wagers/' + id) || 0)}</div>` : ''}</div>`;
+    }
+    // The clue stays up; the correct answer joins it once the first player has been judged.
+    const shownA = Object.keys(F.judged || {}).length ? `<div class="p-a">${esc(f.a)}</div>` : '';
+    return `<div class="panel"><div class="p-head">${esc(f.cat)}</div><div class="p-body"><div style="width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:center">${qHtml}${shownA}</div></div>
+      <div class="p-foot" style="min-height:24vh">${foot}</div></div>`;
+  }
+
+  // ================= host =================
+  let hArm = '', hArmT = 0, hDraft = null;
+  // Two-tap confirm for anything that throws state away (same rule as Commander Life).
+  function armed(id) {
+    if (hArm === id) { hArm = ''; clearTimeout(hArmT); return true; }
+    hArm = id; clearTimeout(hArmT); hArmT = setTimeout(() => { hArm = ''; render(); }, 3000); render(); return false;
+  }
+  const armBtn = (id, label, cls = '') => `<button class="btn ${cls}${hArm === id ? ' arm' : ''}" data-act="${id}">${hArm === id ? 'Tap again: ' + label : label}</button>`;
+
+  // The host's phone moves a clue to "buzzed" once someone is first, so every screen keeps the
+  // same answerer even if a later buzz shows up. While the host is typing in a box, the screen
+  // isn't rebuilt (that would drop the keyboard); it catches up when the box loses focus.
+  let hSent = '', hWait = false;
+  function hostTick() {
+    const c = cur(), w = winner(c);
+    if (c && c.step === 'open' && w && hSent !== c.open) { hSent = c.open; patch({ 'cur/step': 'buzzed', 'cur/who': w }); }
+    const a = document.activeElement;
+    if (a && app.contains(a) && /^(INPUT|TEXTAREA)$/.test(a.tagName) && a.type !== 'file') {
+      if (!hWait) { hWait = true; a.addEventListener('blur', () => { hWait = false; setTimeout(render, 0); }, { once: true }); }
+      return;
+    }
+    renderHost();
+  }
+  function renderHost() {
+    // Keep the clue file being typed: rebuild everything else around it.
+    const ta = $('#hText'), keepText = ta ? ta.value : null, open = $('#hLoad') ? $('#hLoad').open : null;
+    const pOpen = $('#hPlayers') ? $('#hPlayers').open : null, sOpen = $('#hSet') ? $('#hSet').open : null;
+    const g = game(), c = cur(), F = fin(), ps = players();
+    let h = `<div class="phone"><div class="bar-top"><span>Host${g ? ' · ' + esc(g.title) : ''}</span><small>${live ? 'live' : 'offline'} · v${VERSION}</small></div>`;
+    if (!g) h += `<p class="note">No game loaded yet. Paste your clues under <b>Load clues</b> below (or tap <b>Sample</b> to try it out), then open this page with <b>#board</b> on the TV and <b>#buzz</b> on each player's phone.</p>`;
+    else if (F) h += hostFinal(g, F, ps);
+    else if (c) h += hostClue(c, ps);
+    else h += hostGrid(g);
+    if (g) {
+      h += `<div class="row-btns"><button class="btn sm${S.show === 'scores' ? ' gold' : ''}" data-act="scores">${S.show === 'scores' ? 'Hide scores on TV' : 'Show scores on TV'}</button></div>`;
+    }
+    h += `<details id="hPlayers"${pOpen === false ? '' : ' open'}><summary>Players (${ps.length})</summary>${hostPlayers(ps)}</details>`;
+    h += `<details id="hLoad"${open || !g ? ' open' : ''}><summary>Load clues</summary>
+      <p class="note">One clue per line: <b>Category | Value | Clue | Answer</b>. Rows pasted from a spreadsheet (those four columns) work too.
+      <b># Round 2</b> starts a new round; <b># Final</b> then one line for the final clue (leave its value empty).
+      Put <b>*</b> before a value for a wager clue (<b>*800</b>). Values left empty count up 200, 400… <b>Title: …</b> names the game.</p>
+      <textarea id="hText" spellcheck="false" placeholder="Planets | 200 | The planet closest to the Sun | Mercury"></textarea>
+      <div class="row-btns"><label class="btn sm">Open file<input type="file" id="hFile" accept=".txt,.tsv,.csv,.json,text/*" hidden></label>
+      <button class="btn sm" data-act="sample">Sample</button></div>
+      <div id="hParse" class="note"></div>
+      <div class="row-btns">${armBtn('load', 'Start this game (scores to 0)', 'gold')}</div></details>`;
+    h += `<details id="hSet"${sOpen ? ' open' : ''}><summary>Settings</summary>
+      <p class="note">Seconds on the TV's timer bar (it only shows; you still end each clue).</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <label class="note">Buzz<input type="number" min="2" max="60" data-cfg="buzz" value="${cfg().buzz}"></label>
+      <label class="note">Answer<input type="number" min="2" max="60" data-cfg="answer" value="${cfg().answer}"></label>
+      <label class="note">Final<input type="number" min="5" max="180" data-cfg="final" value="${cfg().final}"></label></div>
+      <div class="row-btns">${armBtn('resetScores', 'Scores to 0')}${armBtn('kickAll', 'Remove all players')}${g ? armBtn('unload', 'Clear the game') : ''}</div></details>`;
+    h += '</div>';
+    app.innerHTML = h;
+    const t = $('#hText');
+    if (keepText !== null) t.value = keepText;
+    showParse();
+    bindHost();
+  }
+
+  function hostGrid(g) {
+    const r = round(), rd = g.rounds[r];
+    let h = '';
+    if (rd) {
+      const rows = Math.max(...rd.cats.map(x => x.clues.length));
+      h += `<div class="note"><b>${esc(rd.name)}</b> (${r + 1} of ${g.rounds.length}) · ${cluesLeft(r)} left${S.ctl ? ` · ${esc(nameOf(S.ctl))} picks` : ''}. Tap a clue to put it on the TV. Red dot: wager clue.</div>`;
+      h += `<div class="hgrid" style="grid-template-columns:repeat(${rd.cats.length},minmax(0,1fr))">`;
+      h += rd.cats.map(x => `<div class="hc">${esc(x.name)}</div>`).join('');
+      for (let i = 0; i < rows; i++) rd.cats.forEach((x, ci) => {
+        const q = x.clues[i];
+        h += q ? `<button class="${used(key(r, ci, i)) ? 'used' : ''}${q.w ? ' w' : ''}" data-clue="${ci}_${i}">${fmt(q.v)}</button>` : '<span></span>';
+      });
+      h += '</div>';
+    }
+    const last = r >= g.rounds.length - 1;
+    const label = !last ? 'Next round: ' + esc(g.rounds[r + 1].name) : g.final ? 'Start the final round' : 'End the game';
+    h += `<div class="row-btns">${cluesLeft(r) ? armBtn('next', label) : `<button class="btn gold" data-act="next">${label}</button>`}${r > 0 ? armBtn('prev', 'Back a round', 'sm') : ''}</div>`;
+    return h;
+  }
+
+  function hostClue(c, ps) {
+    const q = clueOf(c);
+    if (!q) return `<p class="note">That clue is gone.</p><button class="btn" data-act="toBoard">Back to the board</button>`;
+    const out = outOf(c), w = winner(c);
+    let h = `<div class="hclue"><div class="k">${esc(q.cat)} · ${c.solo ? 'Wager clue' : fmt(q.v)}</div><div class="q">${esc(q.q)}</div><div class="a">${esc(q.a)}</div>`;
+    if (c.step === 'wager') {
+      const pick = c.solo, p = ps.find(x => x.id === pick);
+      const g = game(), maxV = Math.max(...g.rounds[c.r].cats.map(x => Math.max(...x.clues.map(y => y.v))));
+      const cap = Math.max(p ? p.score : 0, maxV);
+      h += `<div class="st">Who has it? (they get the wager clue, no buzzers)</div><div class="chips">${ps.map(x => `<button class="chip${x.id === pick ? ' on' : ''}" data-solo="${x.id}">${esc(x.name)} ${fmt(x.score)}</button>`).join('')}</div>
+        <div class="st">Wager (up to ${fmt(cap)})</div><input type="number" id="hWager" min="0" max="${cap}" inputmode="numeric" value="${hDraft != null ? hDraft : (+c.wager || q.v)}">
+        <div class="chips"><button class="chip" data-wv="${q.v}">${fmt(q.v)}</button><button class="chip" data-wv="${cap}">All in: ${fmt(cap)}</button></div>
+        <div class="row-btns"><button class="btn gold" data-act="soloGo"${pick ? '' : ' disabled'}>Show the clue</button><button class="btn sm" data-act="unpick">Put it back</button></div>`;
+    } else if (c.step === 'reveal') {
+      h += `<div class="st">The answer is on the TV.</div><div class="row-btns"><button class="btn gold" data-act="toBoard">Back to the board</button></div>`;
+    } else if (c.solo) {
+      const v = +c.wager || 0;
+      h += `<div class="st"><b>${esc(nameOf(c.solo))}</b> answers for ${fmt(v)}.</div>
+        <div class="row-btns"><button class="btn good" data-act="right">Right +${v}</button><button class="btn bad" data-act="wrong">Wrong −${v}</button></div>`;
+    } else if (c.step === 'show') {
+      h += `<div class="st">Read it out, then open the buzzers. Anyone who buzzes before that is locked out for half a second.</div>
+        <div class="row-btns"><button class="btn gold" data-act="open">Open buzzers</button></div>
+        <div class="row-btns"><button class="btn sm" data-act="reveal">Show the answer</button><button class="btn sm" data-act="unpick">Put it back</button></div>`;
+    } else if (c.step === 'open') {
+      const order = buzzOrder(c).filter(id => !out[id]);
+      h += `<div class="st">${w ? `<b>${esc(nameOf(w))}</b> buzzed first…` : 'Buzzers are open.'}</div>
+        ${order.length > 1 ? `<div class="note">Order: ${order.map(nameOf).map(esc).join(', ')}</div>` : ''}
+        <div class="row-btns"><button class="btn" data-act="reveal">No one: show the answer</button></div>`;
+    } else if (c.step === 'buzzed') {
+      const v = q.v, order = buzzOrder(c).filter(id => !out[id]);
+      h += `<div class="st"><b>${esc(nameOf(c.who))}</b> is answering.</div>
+        ${order.length > 1 ? `<div class="note">Then: ${order.filter(id => id !== c.who).map(nameOf).map(esc).join(', ')}</div>` : ''}
+        <div class="row-btns"><button class="btn good" data-act="right">Right +${v}</button><button class="btn bad" data-act="wrong">Wrong −${v}</button></div>
+        <div class="row-btns"><button class="btn sm" data-act="reveal">Show the answer</button></div>`;
+    }
+    const outs = Object.keys(out).filter(id => out[id]);
+    if (outs.length) h += `<div class="note">Locked out: ${outs.map(nameOf).map(esc).join(', ')}</div>`;
+    return h + '</div>';
+  }
+
+  function hostFinal(g, F, ps) {
+    const f = g.final;
+    let h = `<div class="hclue"><div class="k">Final round · ${esc(f.cat)}</div>`;
+    const wagers = F.wagers || {}, answers = F.answers || {}, judged = F.judged || {};
+    if (F.step === 'cat') {
+      h += `<div class="st">The category is on the TV. Players wager on their phones (up to their score).</div>
+        ${ps.map(p => `<div class="note">${esc(p.name)}: ${wagers[p.id] != null ? '<b>wager in</b>' : 'waiting'}</div>`).join('')}
+        <div class="row-btns">${ps.every(p => wagers[p.id] != null) ? '<button class="btn gold" data-act="finClue">Show the clue</button>' : armBtn('finClue', 'Show the clue', 'gold')}</div>`;
+    } else if (F.step === 'clue') {
+      h += `<div class="q">${esc(f.q)}</div><div class="a">${esc(f.a)}</div><div class="st">Players are writing their answers.</div>
+        ${ps.map(p => `<div class="note">${esc(p.name)}: ${answers[p.id] ? esc(answers[p.id]) : '…'}</div>`).join('')}
+        <div class="row-btns"><button class="btn gold" data-act="finLock">Time's up: lock answers</button></div>`;
+    } else if (F.step === 'judge') {
+      h += `<div class="q">${esc(f.q)}</div><div class="a">${esc(f.a)}</div><div class="st">Reveal each player, lowest score first.</div>`;
+      ps.slice().sort((a, b) => a.score - b.score).forEach(p => {
+        const wv = +wagers[p.id] || 0, j = judged[p.id];
+        h += `<div class="frow${j ? ' done' : ''}"><div class="top"><span>${esc(p.name)}</span><span class="num">${fmt(p.score)} · wager ${wv}</span></div>
+          <div class="ans">${answers[p.id] ? esc(answers[p.id]) : '<span class="note">no answer</span>'}</div>
+          <div class="row-btns"><button class="btn sm${F.cur === p.id ? ' gold' : ''}" data-fshow="${p.id}">Show on TV</button>
+          ${j ? `<span class="note">${j === 'r' ? 'Right' : 'Wrong'}</span>` : `<button class="btn sm good" data-fj="r_${p.id}">Right +${wv}</button><button class="btn sm bad" data-fj="w_${p.id}">Wrong −${wv}</button>`}</div></div>`;
+      });
+      h += `<div class="row-btns"><button class="btn gold" data-act="finDone">Final scores on TV</button></div>`;
+    } else if (F.step === 'done') {
+      h += `<div class="st">Final scores are on the TV.</div>`;
+    }
+    h += `<div class="row-btns">${armBtn('finBack', 'Leave the final round', 'sm')}</div>`;
+    return h + '</div>';
+  }
+
+  function hostPlayers(ps) {
+    if (!ps.length) return `<p class="note">Nobody yet. Players open this page with <b>#buzz</b> and pick their name.</p>`;
+    return `<p class="note">Tap a name to give them control (they pick next). − and + change a score by 100.</p><div class="plist">${ps.map(p => `<div class="prow${p.id === S.ctl ? ' ctl' : ''}">
+      <span class="n" data-ctl="${p.id}">${esc(p.name)}${p.seen && Date.now() - p.seen > 120000 ? '<small>away</small>' : ''}</span>
+      <button class="btn sm" data-adj="-100_${p.id}">−</button><button class="btn sm" data-adj="100_${p.id}">+</button>
+      <span class="s">${fmt(p.score)}</span></div>`).join('')}</div>
+      <div class="row-btns">${ps.map(p => armBtn('kick_' + p.id, 'Remove ' + esc(p.name), 'sm')).join('')}</div>`;
+  }
+
+  let parsed = null;
+  function showParse() {
+    const t = $('#hText'), out = $('#hParse');
+    if (!t || !out) return;
+    parsed = null;
+    if (!t.value.trim()) { out.textContent = ''; return; }
+    try {
+      parsed = parseGame(t.value);
+      const rs = arr(parsed.rounds);
+      out.innerHTML = `<b>${esc(parsed.title || 'Quiz Night')}</b>: ` + rs.map(r => `${esc(r.name)}, ${arr(r.cats).length} categories, ${arr(r.cats).reduce((n, c) => n + arr(c.clues).length, 0)} clues (${arr(r.cats).reduce((n, c) => n + arr(c.clues).filter(q => q.w).length, 0)} wager)`).join('; ') + (parsed.final ? '; final round' : '; no final round');
+    } catch (e) { out.innerHTML = `<span style="color:var(--bad);white-space:pre-line">${esc(e.message)}</span>`; }
+  }
+
+  function bindHost() {
+    const t = $('#hText');
+    t.oninput = showParse;
+    $('#hFile').onchange = e => {
+      const file = e.target.files[0]; if (!file) return;
+      file.text().then(s => { t.value = s; showParse(); });
+    };
+    app.querySelectorAll('[data-cfg]').forEach(i => i.onchange = () => {
+      const v = Math.round(+i.value); if (v > 0 && v <= 180) patch({ ['cfg/' + i.dataset.cfg]: v });
+    });
+    const wi = $('#hWager');
+    if (wi) wi.oninput = () => { hDraft = wi.value; };
+    app.onclick = e => {
+      const b = e.target.closest('button,[data-ctl]');
+      if (!b) return;
+      const d = b.dataset, c = cur(), g = game();
+      if (d.clue) return pickClue(...d.clue.split('_').map(Number));
+      if (d.solo) return patch({ 'cur/solo': d.solo });
+      if (d.wv) { hDraft = d.wv; return render(); }
+      if (d.ctl) return patch({ ctl: S.ctl === d.ctl ? null : d.ctl });
+      if (d.adj) { const [n, id] = d.adj.split('_'); return patch({ [`players/${id}/score`]: inc(+n) }); }
+      if (d.fshow) return patch({ 'fin/cur': d.fshow, ...fx('reveal') });
+      if (d.fj) {
+        const [j, id] = d.fj.split('_'), wv = +getPath(S, 'fin/wagers/' + id) || 0;
+        return patch({ [`players/${id}/score`]: inc(j === 'r' ? wv : -wv), ['fin/judged/' + id]: j, 'fin/cur': id, ...fx(j === 'r' ? 'right' : 'wrong') });
+      }
+      const act = d.act;
+      if (!act) return;
+      if (act.startsWith('kick_')) { if (armed(act)) patch({ ['players/' + act.slice(5)]: null }); return; }
+      switch (act) {
+        case 'sample': t.value = SAMPLE; showParse(); break;
+        case 'load':
+          if (!parsed) { $('#hParse').innerHTML = '<span style="color:var(--bad)">Paste some clues first.</span>'; return; }
+          if (!armed('load')) return;
+          startGame(parsed); $('#hLoad').open = false; break;
+        case 'unload': if (armed('unload')) patch({ game: null, cur: null, buzz: null, used: null, fin: null, show: null, round: 0 }); break;
+        case 'resetScores': if (armed('resetScores')) { const o = {}; players().forEach(p => o[`players/${p.id}/score`] = 0); patch(o); } break;
+        case 'kickAll': if (armed('kickAll')) patch({ players: null, ctl: null }); break;
+        case 'scores': patch({ show: S.show === 'scores' ? null : 'scores' }); break;
+        case 'next': if (cluesLeft(round()) && !armed('next')) return; nextRound(g); break;
+        case 'prev': if (armed('prev')) patch({ round: Math.max(0, round() - 1), cur: null, buzz: null }); break;
+        case 'unpick': patch({ cur: null, buzz: null, ['used/' + key(c.r, c.c, c.i)]: null }); hDraft = null; break;
+        case 'open': patch({ 'cur/step': 'open', 'cur/open': rid(), 'cur/who': null }); break;
+        case 'reveal': patch({ 'cur/step': 'reveal', 'cur/who': null, ...fx('reveal') }); break;
+        case 'toBoard': patch({ cur: null, buzz: null }); break;
+        case 'soloGo': {
+          const p = players().find(x => x.id === c.solo), q = clueOf(c);
+          const maxV = Math.max(...g.rounds[c.r].cats.map(x => Math.max(...x.clues.map(y => y.v))));
+          const cap = Math.max(p ? p.score : 0, maxV);
+          const v = Math.max(0, Math.min(cap, Math.round(+(hDraft != null ? hDraft : (c.wager || q.v)) || 0)));
+          hDraft = null;
+          patch({ 'cur/wager': v, 'cur/step': 'show' });
+          break;
+        }
+        case 'right': {
+          const q = clueOf(c), who = c.solo || c.who, v = value(c, q);
+          if (!who) return;
+          patch({ [`players/${who}/score`]: inc(v), ctl: who, 'cur/step': 'reveal', ...fx('right') });
+          break;
+        }
+        case 'wrong': {
+          const q = clueOf(c), who = c.solo || c.who, v = value(c, q);
+          if (!who) return;
+          const o = { [`players/${who}/score`]: inc(-v), ...fx('wrong') };
+          if (c.solo) o['cur/step'] = 'reveal';
+          else {
+            o['cur/out/' + who] = true;
+            const out = Object.assign({}, outOf(c), { [who]: true });
+            // Anyone left who hasn't had a go gets the buzzers again; if no one, show the answer.
+            if (players().some(p => !out[p.id])) Object.assign(o, { 'cur/step': 'open', 'cur/open': rid(), 'cur/who': null });
+            else o['cur/step'] = 'reveal';
+          }
+          patch(o);
+          break;
+        }
+        case 'finClue':
+          // Two taps while someone still hasn't wagered (they'd play for 0).
+          if (!players().every(p => getPath(S, 'fin/wagers/' + p.id) != null) && !armed('finClue')) return;
+          patch({ 'fin/step': 'clue', 'fin/at': NOW }); break;
+        case 'finLock': patch({ 'fin/step': 'judge', ...fx('time') }); break;
+        case 'finDone': patch({ 'fin/step': 'done', 'fin/cur': null, ...fx('right') }); break;
+        case 'finBack': if (armed('finBack')) patch({ fin: null }); break;
+      }
+    };
+  }
+
+  function startGame(g) {
+    const o = { game: g, round: 0, used: null, cur: null, buzz: null, fin: null, show: null, ctl: null };
+    players().forEach(p => o[`players/${p.id}/score`] = 0);
+    patch(o);
+  }
+  function pickClue(ci, i) {
+    const r = round(), g = game(), q = g.rounds[r].cats[ci].clues[i];
+    if (used(key(r, ci, i))) return;
+    hDraft = null;
+    const c = { r, c: ci, i, step: q.w ? 'wager' : 'show' };
+    if (q.w) { c.solo = S.ctl || (players()[0] || {}).id || null; c.wager = q.v; }
+    patch({ cur: c, buzz: null, show: null, ['used/' + key(r, ci, i)]: true });
+  }
+  function nextRound(g) {
+    const r = round();
+    if (r < g.rounds.length - 1) return patch({ round: r + 1, cur: null, buzz: null, show: null });
+    if (g.final) return patch({ fin: { step: 'cat' }, cur: null, buzz: null, show: null });
+    patch({ fin: { step: 'done' }, cur: null, buzz: null, show: null });
+  }
+
+  // ================= buzzer =================
+  let zSoon = 0, zSoonT = 0, zMine = {}, zWas = '', zAnsT = 0;
+  function renderBuzz() {
+    const ps = players(), mine = ps.find(p => p.id === me);
+    // Nobody here yet (or removed by the host): pick a name.
+    if (!mine && loaded) {
+      if ($('#zJoin')) return;
+      const last = store.get('quiz-name') || '';
+      app.innerHTML = `<div class="phone"><div class="join" id="zJoin"><h1>Quiz Night</h1><p class="note" style="text-align:center">Who's playing on this phone?</p>
+        <div class="chips" style="justify-content:center">${NAMES.map(n => `<button class="chip" data-n="${n}" style="font-size:20px;padding:12px 18px">${n}</button>`).join('')}</div>
+        <input type="text" id="zName" maxlength="24" placeholder="Or type a name" value="${esc(NAMES.includes(last) ? '' : last)}">
+        <button class="btn gold" id="zGo">Join</button></div></div>`;
+      const join = n => {
+        n = String(n || '').trim().slice(0, 24); if (!n) return;
+        store.set('quiz-name', n); audio();
+        patch({ [`players/${me}`]: { name: n, score: 0, at: NOW, seen: NOW } });
+      };
+      app.querySelectorAll('[data-n]').forEach(b => b.onclick = () => join(b.dataset.n));
+      $('#zGo').onclick = () => join($('#zName').value);
+      $('#zName').onkeydown = e => { if (e.key === 'Enter') join(e.target.value); };
+      return;
+    }
+    if (!mine) { app.innerHTML = '<div class="phone"><p class="note">Connecting…</p></div>'; return; }
+
+    const F = fin(), g = game();
+    if (F && g && g.final && F.step !== 'done') return buzzFinal(g, F, mine);
+
+    if (!$('#buzz') || !$('#zBtn')) {
+      app.innerHTML = `<div id="buzz"><div class="bz-top"><button class="n" id="zMe"></button><span class="s" id="zScore"></span></div>
+        <div class="bz-mid"><button class="bz-btn" id="zBtn"></button></div><div class="bz-foot" id="zFoot"></div></div>`;
+      // pointerdown, not click: a buzzer has to fire the moment the finger lands.
+      $('#zBtn').addEventListener('pointerdown', e => { e.preventDefault(); press(); });
+      $('#zMe').onclick = () => { const n = prompt('Your name', mine.name); if (n && n.trim()) { store.set('quiz-name', n.trim().slice(0, 24)); patch({ [`players/${me}/name`]: n.trim().slice(0, 24) }); } };
+    }
+    $('#zMe').textContent = mine.name;
+    $('#zScore').textContent = fmt(mine.score);
+    const st = buzzState(mine);
+    const btn = $('#zBtn');
+    btn.className = 'bz-btn ' + st.cls;
+    btn.innerHTML = st.html;
+    $('#zFoot').textContent = live ? (st.foot || '') : 'Offline: reconnecting…';
+    if (st.key !== zWas) {
+      if (st.key.startsWith('in') && navigator.vibrate) navigator.vibrate([60, 40, 120]);
+      if (st.key === 'live' && navigator.vibrate) navigator.vibrate(30);
+      zWas = st.key;
+    }
+  }
+
+  function buzzState(mine) {
+    const c = cur(), g = game(), F = fin();
+    if (Date.now() < zSoon) return { cls: 'soon', html: 'Too soon!<small>Wait for the host</small>', key: 'soon' };
+    if (!g) return { cls: '', html: 'Waiting<small>for the host to load a game</small>', key: 'nogame' };
+    if (F && F.step === 'done') return { cls: '', html: 'Game over', key: 'done', foot: 'Final scores are on the TV.' };
+    if (S.show === 'scores') return { cls: '', html: 'Scores<small>on the TV</small>', key: 'scores' };
+    if (!c) return { cls: '', html: 'Wait', key: 'board', foot: S.ctl === me ? 'You pick the next clue.' : S.ctl ? nameOf(S.ctl) + ' picks the next clue.' : '' };
+    if (c.solo) return c.solo === me
+      ? { cls: 'in', html: c.step === 'wager' ? 'Wager!<small>Tell the host your wager</small>' : 'Your clue<small>Answer out loud</small>', key: 'in-solo' + c.step }
+      : { cls: '', html: 'Wait<small>' + esc(nameOf(c.solo)) + "'s wager clue</small>", key: 'solo' };
+    const out = outOf(c);
+    if (c.step === 'reveal') return { cls: '', html: 'Wait', key: 'reveal', foot: 'The answer is on the TV.' };
+    if (out[me]) return { cls: 'out', html: 'Locked out<small>for this clue</small>', key: 'out' };
+    if (c.step === 'show') return { cls: '', html: 'Get ready', key: 'show', foot: "Don't buzz until the host opens the buzzers." };
+    if (c.step === 'open') {
+      const w = winner(c), mineIn = zMine[c.open] || getPath(S, `buzz/${c.open}/${me}`);
+      if (w === me) return { cls: 'in', html: "You're in!<small>Answer out loud</small>", key: 'in' + c.open };
+      if (w) return { cls: '', html: esc(nameOf(w)) + '<small>was first</small>', key: 'lost' + c.open };
+      if (mineIn) return { cls: 'live', html: 'Buzzed…', key: 'sent' + c.open };
+      return { cls: 'live', html: 'Buzz!', key: 'live' };
+    }
+    if (c.step === 'buzzed') return c.who === me
+      ? { cls: 'in', html: "You're in!<small>Answer out loud</small>", key: 'in' + c.open }
+      : { cls: '', html: esc(nameOf(c.who)) + '<small>is answering</small>', key: 'lost' + c.open };
+    return { cls: '', html: 'Wait', key: 'other' };
+  }
+
+  function press() {
+    const c = cur();
+    if (Date.now() < zSoon) return;
+    if (c && !c.solo && c.step === 'show' && !outOf(c)[me]) {
+      // Buzzing before the host opens the buzzers locks this phone for half a second.
+      zSoon = Date.now() + 500; clearTimeout(zSoonT); zSoonT = setTimeout(render, 520);
+      if (navigator.vibrate) navigator.vibrate(200);
+      return render();
+    }
+    if (!c || c.solo || c.step !== 'open' || outOf(c)[me] || zMine[c.open] || winner(c)) return;
+    zMine[c.open] = true;
+    FX.click();
+    fetch(Q + '.json', { method: 'PATCH', body: JSON.stringify({ [`buzz/${c.open}/${me}`]: NOW }) }).catch(() => {});
+    render();
+  }
+
+  function buzzFinal(g, F, mine) {
+    const f = g.final, cap = Math.max(0, mine.score);
+    const w = getPath(F, 'wagers/' + me), a = getPath(F, 'answers/' + me);
+    const sig = F.step + '|' + (w != null) + '|' + mine.score;
+    let box = $('#zFin');
+    if (box && box.dataset.sig === sig) return;
+    let h = `<div class="bz-fin" id="zFin" data-sig="${esc(sig)}"><div class="k">Final round</div><div class="c">${esc(f.cat)}</div>`;
+    if (F.step === 'cat') {
+      h += w != null
+        ? `<div class="k">Your wager</div><div class="big">${fmt(w)}</div><div class="note">Locked in. The clue comes up on the TV next.</div>`
+        : `<div class="note">You have ${fmt(mine.score)}. Wager anything from 0 to ${cap}.</div>
+           <input type="number" id="zWager" inputmode="numeric" min="0" max="${cap}" placeholder="0 to ${cap}">
+           <button class="btn gold" id="zLockW">Lock in wager</button><div class="note" id="zErr"></div>`;
+    } else if (F.step === 'clue') {
+      h += `<div class="note">Wager ${fmt(+w || 0)}. Read the clue on the TV.</div>
+        <input type="text" id="zAns" maxlength="80" placeholder="Your answer" autocomplete="off" autocapitalize="sentences">
+        <button class="btn gold" id="zLockA">Send answer</button><div class="note" id="zErr">You can change it until the host locks answers.</div>`;
+    } else {
+      h += `<div class="note">Answers are locked.</div><div class="k">You wrote</div><div class="c" style="color:var(--gold)">${a ? esc(a) : 'nothing'}</div><div class="note">Wager ${fmt(+w || 0)}</div>`;
+    }
+    h += '</div>';
+    const keepAns = $('#zAns') ? $('#zAns').value : null;
+    app.innerHTML = `<div id="buzz"><div class="bz-top"><span class="n">${esc(mine.name)}</span><span class="s">${fmt(mine.score)}</span></div><div class="bz-mid">${h}</div><div class="bz-foot"></div></div>`;
+    const lw = $('#zLockW');
+    if (lw) lw.onclick = () => {
+      const v = Math.round(+$('#zWager').value);
+      if (!($('#zWager').value !== '' && v >= 0 && v <= cap)) { $('#zErr').textContent = `Enter 0 to ${cap}.`; return; }
+      patch({ ['fin/wagers/' + me]: v });
+    };
+    const ai = $('#zAns');
+    if (ai) {
+      ai.value = keepAns != null ? keepAns : (a || '');
+      const send = () => patch({ ['fin/answers/' + me]: ai.value.trim().slice(0, 80) });
+      // Saved as it's typed too, so an answer half-written when time runs out still counts.
+      ai.oninput = () => { clearTimeout(zAnsT); zAnsT = setTimeout(send, 600); };
+      $('#zLockA').onclick = () => { clearTimeout(zAnsT); send(); $('#zErr').textContent = 'Sent. You can still change it.'; };
+    }
+  }
+
+  // Buzzer phones check in now and then so the host can see who's still connected.
+  setInterval(() => { if (ROLE === 'buzz' && live && S.players && S.players[me] && document.visibilityState === 'visible') fetch(Q + '.json', { method: 'PATCH', body: JSON.stringify({ [`players/${me}/seen`]: NOW }) }).catch(() => {}); }, 45000);
+
+  if (!['board', 'host', 'buzz'].includes(ROLE)) { renderPick(); return; }
+  document.title = 'Quiz Night · ' + { board: 'TV', host: 'Host', buzz: 'Buzzer' }[ROLE];
+  // A screen that sleeps mid-question is no use; ask to keep it on (where the browser allows).
+  const wake = () => { try { navigator.wakeLock && navigator.wakeLock.request('screen').catch(() => {}); } catch (e) {} };
+  wake();
+  connect();
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { connect(); wake(); } });
+  render();
+})();
+</script>
+</body></html>
