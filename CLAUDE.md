@@ -98,7 +98,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.83; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.84; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.84: **`tts-trent-mana` ("your mana base called. It wants a divorce") removed**: the user objected to a divorce joke aimed at Trent. Announcer-line rule: no jokes about divorce, relationships, family, health or other real-life matters; keep the sass to the game.
 - v1.83: **10 chainsaw clips (`chainsaw-*`, group Chainsaws) and 10 grotesque squelches (`squelch-*`, group Squelching)**, myinstants uploads, 1,073 clips in all. Each 8 s at most.
 - v1.82: **damage and life change numbers linger 10 s** (v1.81 6.4 s, v1.67 3.2 s; the user's ask, `showDelta()`).
 - v1.80: **all 40 Book of Mormon readings cut** (the user: no scripture longer than 3 s; every one ran 3.7 to 9.2 s). Don't add scripture readings over 3 s.

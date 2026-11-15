@@ -8232,18 +8232,6 @@
 "pool": "long"
 },
 {
-"f": "tts-trent-mana",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Trent, your mana base called. It wants a divorce.",
-"who": "Announcer (at Trent)",
-"lic": "Made for this app",
-"d": 3.6,
-"pool": "long"
-},
-{
 "f": "tts-trent-mid",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
