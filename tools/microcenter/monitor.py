@@ -33,6 +33,7 @@ STATE = os.path.join(HERE, 'state.json')
 PROFILE = os.path.join(HERE, 'profile')
 DEBUG_DIR = os.path.join(HERE, 'debug')
 
+PARSER_VERSION = 2              # bump when parsing changes, so the next run re-baselines quietly
 BLOCK_ALERT_EVERY = 3600       # seconds between "blocked by Cloudflare" pushes
 CHALLENGE_MARKS = ('just a moment', 'cf-chl', 'challenge-platform', 'attention required',
                    'checking your browser', 'cf-turnstile')
@@ -146,6 +147,10 @@ def parse_products(page_html, base='https://www.microcenter.com'):
             price = m.group(1).replace(',', '') if m else ''
         stock_html = re.search(r'class="[^"]*(?:stock|inventory)[^"]*"[^>]*>(.*?)</(?:div|span|p)>', block, re.S | re.I)
         in_stock, label, count = parse_stock(_text(stock_html.group(1)) if stock_html else text)
+        if label == 'Unknown':
+            # The real page (Nov 16, 2026) has other elements whose class says "stock", and the
+            # wording sits in the result's text: "16 IN STOCK at Dallas Store - Buy In Store".
+            in_stock, label, count = parse_stock(text)
         if not name:
             continue
         out.append({'key': sku or href or name, 'name': name, 'sku': sku, 'price': price,
@@ -194,7 +199,7 @@ def diff(state, url, products, now=None):
         if not baseline:
             if old is None:
                 alerts.append(('new_in_stock' if p['in_stock'] else 'new_listing', p))
-            elif p['in_stock'] and not old.get('in_stock'):
+            elif p['in_stock'] and not old.get('in_stock') and old.get('stock') != 'Unknown':
                 alerts.append(('restock', p))
         known[p['key']] = rec
     if baseline:
@@ -315,6 +320,11 @@ def fetch_pages(urls, cfg, debug=False):
 
 def poll(cfg, state, debug=False, fetch=fetch_pages):
     urls = watch_urls(cfg)
+    if state.get('parser') != PARSER_VERSION:
+        # What was saved was read by an older parser (v1 read every stock as Unknown), so
+        # comparing against it would push a false alert for everything. Start a new baseline.
+        state['baselined'] = []
+        state['parser'] = PARSER_VERSION
     pages = fetch(urls, cfg, debug)
     alerts, blocked, baselined = [], 0, []
     for url in urls:

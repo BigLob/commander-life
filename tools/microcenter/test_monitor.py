@@ -21,7 +21,9 @@ def page(name):
 class Parse(unittest.TestCase):
     def test_products(self):
         ps = {p['sku']: p for p in m.parse_products(page('search.html'))}
-        self.assertEqual(len(ps), 4)
+        self.assertEqual(len(ps), 5)
+        marvel = ps['050575']  # the real page's layout: an empty "stock" element before the count
+        self.assertEqual((marvel['in_stock'], marvel['stock'], marvel['count']), (True, '16 in stock', 16))
         box = ps['123451']
         self.assertEqual(box['name'], 'Wizards of the Coast Magic: The Gathering Foundations Play Booster Box')
         self.assertEqual(box['price'], '139.99')
@@ -51,7 +53,7 @@ class Filters(unittest.TestCase):
     def test_wanted(self):
         names = [p['name'] for p in m.parse_products(page('search.html')) if m.wanted(p, CFG)]
         self.assertNotIn('Ultra Pro Magic: The Gathering Sleeves 100ct', names)
-        self.assertEqual(len(names), 3)
+        self.assertEqual(len(names), 4)
         self.assertFalse(m.wanted({'name': 'Pokemon Scarlet Booster'}, CFG))
 
     def test_legality(self):
@@ -101,6 +103,20 @@ class Diff(unittest.TestCase):
     def test_dedupe(self):
         p = self.prods()[0]
         self.assertEqual(len(m.dedupe([('restock', p), ('restock', p)])), 1)
+
+
+class Rebaseline(unittest.TestCase):
+    def test_unknown_never_alerts(self):
+        st = {'products': {}, 'baselined': []}
+        ps = [p for p in m.parse_products(page('search.html')) if m.wanted(p, CFG)]
+        m.diff(st, 'u', [dict(p, in_stock=False, stock='Unknown') for p in ps])
+        self.assertEqual(m.diff(st, 'u', ps)[0], [])
+
+    def test_old_parser_state_rebaselines(self):
+        st = {'products': {}, 'baselined': [u for u in m.watch_urls(CFG)], 'last_block_alert': 0}
+        sent = Poll.run_poll(Poll(), [page('search.html')], st)
+        self.assertTrue(sent and all('started' in t for t, _ in sent))
+        self.assertEqual(st['parser'], m.PARSER_VERSION)
 
 
 class Poll(unittest.TestCase):
