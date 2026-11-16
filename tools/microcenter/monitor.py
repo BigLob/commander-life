@@ -248,6 +248,7 @@ def alert_text(kind, p, cfg):
 def fetch_pages(urls, cfg, debug=False):
     """Returns {url: html}. One persistent profile so Cloudflare's cookie survives between runs."""
     from playwright.sync_api import sync_playwright  # imported here so tests run without it
+    print('  Micro Center: starting the browser...', flush=True)
     pages = {}
     with sync_playwright() as pw:
         opts = dict(user_data_dir=PROFILE, headless=cfg.get('headless', True),
@@ -261,12 +262,15 @@ def fetch_pages(urls, cfg, debug=False):
         for i, url in enumerate(urls):
             if i:
                 time.sleep(random.uniform(3, 8))
+            print(f'  Micro Center: loading page {i + 1} of {len(urls)}...', flush=True)
             try:
                 page.goto(url, wait_until='domcontentloaded', timeout=60000)
                 # Cloudflare's check can pass by itself in a real browser after a few seconds.
-                for _ in range(6):
+                for n in range(6):
                     if not is_challenge(page.content()):
                         break
+                    if n == 0:
+                        print('  Cloudflare check showing, waiting up to 30 s for it to pass...', flush=True)
                     time.sleep(5)
                 try:
                     page.wait_for_selector('li.product_wrapper', timeout=10000)
@@ -390,6 +394,7 @@ def poll_secret_lair(cfg, state, getter=secretlair.get):
         return
     sl = state.setdefault('sl', {})
     full = time.time() - sl.get('last_full', 0) > sc.get('full_scan_hours', 24) * 3600
+    print('  Secret Lair: reading the store' + (' and its whole catalog (about a minute)...' if full else '...'), flush=True)
     try:
         products, feeds = secretlair.fetch_products(state, full=full, getter=getter)
     except Exception as e:
