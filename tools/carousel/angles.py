@@ -108,6 +108,8 @@ SOURCES = {
  'gz-rt': ('Grazzet MTG, "Cut-Rate Commander: Revival Trance" (video)', V + '-4RlRqj02Nc', '$30, one-for-one swaps with reasons, read from the transcript. List: https://archidekt.com/decks/13722104'),
  'yf-rt': ('Yawgfather Reborn EDH, "5 Keys to Winning with the Revival Trance Precon" (video)', V + 'XCpI9aERwFQ', 'How to play the stock deck; no swaps.'),
  'ds-rt': ('Draftsim, "Revival Trance Upgrade Guide: 23 Easy Changes", May 20 2025', 'https://draftsim.com/revival-trance-upgrade-guide/', 'Swaps the commander to Celes, Rune Knight.'),
+ 'ub-rt': ('UNIVERSES BEYOND, "A Fun Upgrade for Revival Trance with Celes, Rune Knight: Bracket 3" (video)', V + 'NBMEctPBt2w', '15 in, 15 out with Celes as commander, read from the transcript; played four games with it.'),
+ 'cp-rt': ('The Commander Pod, "A Closer Look at Celes, Rune Knight Plus Budget Upgrades" (video)', V + 'yLvSGoWh81E', 'Played the box in a precon league, first with Terra, then with Celes; $27 of upgrades. Read from the transcript. List: https://moxfield.com/decks/bvf6K2Gre0KUIaa_6z44rQ'),
 }
 
 DECKS = [
@@ -380,9 +382,9 @@ DECKS = [
  },
  {
   'group': 'Our newer precons',
-  'slug': 'revival-trance', 'name': 'Revival Trance', 'cmd': 'Terra, Herald of Hope', 'colors': 'R/W/B',
+  'slug': 'revival-trance', 'name': 'Revival Trance: Terra', 'cmd': 'Terra, Herald of Hope', 'colors': 'R/W/B',
   'gist': 'Terra mills two and flies each combat, and when she hits a player you pay two to return a creature with power 3 or less. '
-          'The box mixes that with big reanimation targets she can\'t return and a thin sacrifice theme. Most upgraders cut the big creatures for small ones with strong enter effects plus ways to sacrifice them; Draftsim goes the other way and swaps Terra for Celes.',
+          'The box mixes that with big reanimation targets she can\'t return and a thin sacrifice theme. Terra builds cut the big creatures for small ones with strong enter effects plus ways to sacrifice them. Decks led by the box\'s other commander, Celes, are built differently; they have their own section below.',
   'themes': ['reanimator', 'graveyard', 'self-mill', 'aggro', 'aristocrats', 'extra-combats'],
   'angles': [
    ('Small creatures with big enter effects',
@@ -405,11 +407,6 @@ DECKS = [
     ['Faithless Looting', 'Thrill of Possibility', 'Buried Alive', 'Ripples of Undeath', 'Stitcher\'s Supplier'],
     ['gz-rt', 'dt-rt', 'ds-rt'],
     'Faithless Looting (33%) and Buried Alive (32%) are top-10 adds.'),
-   ('Swap to Celes and go big (Draftsim\'s take)',
-    'Draftsim thinks Terra is the wrong commander for the box\'s big reanimation cards: Celes, Rune Knight cycles your hand into the graveyard, and the deck adds mass reanimation and big targets.',
-    ['Celes, Rune Knight', 'Animate Dead', 'Breach the Multiverse', 'Living Death', 'Incarnation Technique', 'Too Greedily, Too Deep', 'Will of the Abzan', 'Archon of Cruelty', 'Kroxa and Kunoros', 'Summon: Bahamut', 'Toxic Deluge'],
-    ['ds-rt'],
-    'Celes is the commander in 832 EDHREC decks from this box (Terra 7,436). Draftsim made 23 changes, including cutting Terra.'),
   ],
   'avoid': [
    ('Big creatures Terra can\'t return', ['Ruin Grinder', 'Angel of the Ruins', 'Combustible Gearhulk', 'Sepulchral Primordial', 'Flayer of the Hatebound', 'Archfiend of Depravity', 'Umaro, Raging Yeti', 'Sun Titan'],
@@ -422,11 +419,60 @@ DECKS = [
     'The Command Zone: two-mana ramp is what a three-mana commander wants; Anger needs a Mountain, and the box has six.', ['cz677', 'gz-rt']),
   ],
   'split': [
-   'Keep Terra or not: the Command Zone, Grazzet and DeckTechsForDecks build around her; Draftsim swaps to Celes and keeps the big creatures (Angel of the Ruins, Combustible Gearhulk, Sepulchral Primordial, Archfiend of Depravity) that the others cut.',
-   'The sacrifice theme: Draftsim cuts it ("barely exists": Pitiless Plunderer, Morbid Opportunist, Shadow, Mysterious Assassin); DeckTechsForDecks and Grazzet build it up with self-sacrificing edict creatures.',
+   'Keep Terra or not: the Command Zone, Grazzet and DeckTechsForDecks build around her; Draftsim swaps to Celes and keeps the big creatures (Angel of the Ruins, Combustible Gearhulk, Sepulchral Primordial, Archfiend of Depravity) that the others cut. See the Celes section.',
+   'The sacrifice theme: for Terra, DeckTechsForDecks and Grazzet build it up with self-sacrificing edict creatures; the Celes builds either cut it (Draftsim, UNIVERSES BEYOND) or turn it into persist combos (the Commander Pod).',
    'Graveyard hate is the deck\'s weak spot: Yawgfather says to go after green, white and black players who can exile graveyards.',
   ],
-  'alts': 'Celes, Rune Knight (832 decks) is the box\'s alternate and Draftsim\'s pick; Terra has 7,436.',
+  'alts': 'Celes, Rune Knight (832 decks from this box) is the alternate; Terra has 7,436. On EDHREC, 80% of all Terra decks also play Celes. The Commander Pod ran the box with Terra for its first four league games and won half of them, "super shocked by how resilient the deck is", before switching to Celes.',
+  'also': ['cp-rt'],
+  'videos': [],
+ },
+ {
+  'group': 'Our newer precons',
+  'slug': 'revival-trance-celes', 'precon': 'revival-trance', 'mode': 'commander',
+  'name': 'Revival Trance: Celes', 'cmd': 'Celes, Rune Knight', 'colors': 'R/W/B',
+  'gist': 'Celes wheels as she enters (discard any number, draw that many plus one), and puts a +1/+1 counter on each of your creatures whenever creatures come back from the graveyard. '
+          'Celes decks split three ways: persist loops for combo (her counter cancels persist\'s −1/−1, so a persist creature with a sacrifice outlet loops forever), a "fair" Bracket 3 reanimator that goes tall with counters, and Draftsim\'s big reanimator. All re-trigger her wheel by blinking her.',
+  'themes': ['reanimator', 'combo', 'p1-p1-counters', 'graveyard', 'aristocrats', 'blink'],
+  'angles': [
+   ('Persist loops (the combo build)',
+    'Celes plus a persist creature plus a free sacrifice outlet loops forever; a drain or damage payoff wins. The Commander Pod\'s lines: Murderous Redcap with Saw in Half, or any persist creature with Goblin Bombardment.',
+    ['Murderous Redcap', 'Putrid Goblin', 'Persist', 'Saw in Half', 'Goblin Bombardment', 'Viscera Seer', 'Umbral Collar Zealot', 'Blood Artist', 'Lively Dirge'],
+    ['cp-rt'],
+    'Combo is EDHREC\'s second Celes theme (686 decks), something only 220 Terra decks are tagged with. Murderous Redcap is in 61% of all Celes decks and Putrid Goblin in 52%. The Commander Pod calls Lively Dirge "probably one of the most powerful cards in the deck".',
+    'The Commander Pod\'s precon league: the deck won half its first four games under Terra, then "has not lost a game" in its first weeks under Celes, and her wheel drew the whole deck. Caveat: the persist and sacrifice pieces "do very little" until you switch to Celes.'),
+   ('Re-trigger the wheel',
+    'Blink or flicker Celes to wheel again: each time you discard reanimation targets and dig for the next piece.',
+    ['Ephemerate', 'Cloudshift', 'Conjurer\'s Closet', 'Touch the Spirit Realm', 'Mardu Siegebreaker', 'Sevinne\'s Reclamation'],
+    ['ub-rt', 'cp-rt'],
+    'Ephemerate is in 55% of Celes decks and Cloudshift in 49%; Blink is a Celes theme (228 decks). UNIVERSES BEYOND: Conjurer\'s Closet lets her wheel every turn. The Commander Pod: Mardu Siegebreaker exiling Celes gives three wheels on one attack.'),
+   ('Fair reanimator that goes tall (Bracket 3)',
+    'UNIVERSES BEYOND skips the persist combos ("very boring") and builds to bring back several creatures at once, each return pumping the whole team. Terra stays in the 99 as another engine.',
+    ['Smile at Death', 'Marshal\'s Anthem', 'Ever After', 'Coiling Rebirth', 'Unearth', 'Ratadrabik of Urborg', 'Flowering of the White Tree', 'Merry, Esquire of Rohan', 'Syr Konrad, the Grim', 'Drana and Linvala', 'United Battlefront', 'Mirror of Galadriel', 'Terra, Herald of Hope'],
+    ['ub-rt'],
+    'Terra is in 38% of all Celes decks. UNIVERSES BEYOND calls Ratadrabik "an auto include"; Smile at Death returns two small creatures every upkeep, triggering Celes each time.',
+    'UNIVERSES BEYOND has played this build four times and won two: "incredibly fun".'),
+   ('Big reanimator (Draftsim\'s take)',
+    'Draftsim thinks Celes suits the box\'s big reanimation cards better than Terra does: her wheel dumps big targets in the graveyard and digs for mass reanimation.',
+    ['Reanimate', 'Animate Dead', 'Necromancy', 'Victimize', 'Entomb', 'Buried Alive', 'Breach the Multiverse', 'Living Death', 'Incarnation Technique', 'Too Greedily, Too Deep', 'Will of the Abzan', 'Archon of Cruelty', 'Kroxa and Kunoros', 'Summon: Bahamut', 'Toxic Deluge'],
+    ['ds-rt'],
+    'Reanimate is in 77% of Celes decks, Animate Dead 56%, Victimize 43%, Entomb 42%. Draftsim made 23 changes, including cutting Terra.'),
+  ],
+  'avoid': [
+   ('Sacrifice payoffs in a fair build', ['Pitiless Plunderer', 'Morbid Opportunist', 'Shadow, Mysterious Assassin'],
+    'Draftsim: the sacrifice theme "barely exists"; UNIVERSES BEYOND: "we\'re not going to be doing much sacrificing". The combo build keeps Pitiless Plunderer.', ['ds-rt', 'ub-rt']),
+   ('Big, random or narrow cards', ['Ruin Grinder', 'Umaro, Raging Yeti', 'Meteor Golem', 'Gogo, Mysterious Mime', 'Palace Jailer', 'Angel of the Ruins'],
+    'UNIVERSES BEYOND: Umaro\'s mode is random, Ruin Grinder refills opponents too, Palace Jailer is "the weirdest inclusion ever". Draftsim also cuts Ruin Grinder and Meteor Golem.', ['ub-rt', 'ds-rt']),
+   ('One-shot card draw', ['Laughing Mad', 'Night\'s Whisper', 'Big Score'],
+    'UNIVERSES BEYOND: Celes already gives card selection; spend the slots on reanimation.', ['ub-rt']),
+  ],
+  'split': [
+   'Persist combos: the Commander Pod builds Celes around them; UNIVERSES BEYOND calls them "very boring" and builds the fair version for a Bracket 2-3 table.',
+   'Summon: Esper Valigarmanda and Phoenix Down: UNIVERSES BEYOND cuts Valigarmanda as unreliable; the Commander Pod says it "overperformed" and kept Phoenix Down after playing it.',
+   'Angel of the Ruins: Draftsim keeps it as a big target; UNIVERSES BEYOND doesn\'t know "why this is in this deck".',
+   'Terra in the 99: UNIVERSES BEYOND keeps her as a second engine; Draftsim cuts her.',
+  ],
+  'alts': 'Most EDHREC Celes decks (13,115) weren\'t built from the box; they look like combo decks, with Dark Ritual (46%) and tutors among their staples.',
   'videos': [],
  },
  # Starter Commander Decks (2022). Fewer, older sources: EDHREC's Scrap Trawlers series (Dec 2022), Cardgamebase,
@@ -713,21 +759,32 @@ THEME_NAME = {'auras': 'Auras', 'enchantress': 'Enchantress', 'forced-combat': '
               'artificers': 'Artificers', 'vehicles': 'Vehicles', 'zombies': 'Zombies', 'card-draw': 'Card draw', 'wheels': 'Wheels', 'aristocrats': 'Aristocrats',
               'flying': 'Flying', 'control': 'Control', 'sphinxes': 'Sphinxes', 'mill': 'Mill', 'combo': 'Combo', 'group-slug': 'Group slug', 'chaos': 'Chaos',
               'burn': 'Burn', 'blink': 'Blink', 'dragons': 'Dragons', 'ramp': 'Ramp', 'extra-combats': 'Extra combats', 'tap-untap': 'Tap/untap',
-              'lifegain': 'Lifegain', 'populate': 'Populate', 'convoke': 'Convoke', 'aggro': 'Aggro'}
+              'lifegain': 'Lifegain', 'populate': 'Populate', 'convoke': 'Convoke', 'aggro': 'Aggro', 'p1-p1-counters': '+1/+1 counters'}
 
 def esc(s): return html.escape(s, quote=True)
 
 def edhrec(d):
-    pre = json.loads(get(f'https://json.edhrec.com/pages/precon/{d["slug"]}.json'))
+    """(decks from the box with this commander, add shares, cut shares, theme counts, all decks for this commander).
+    A deck with 'mode': 'commander' (the box's alternate commander, built very differently) gets its card numbers from
+    the commander's own EDHREC page instead: the share of all that commander's decks that play the card, and no cuts,
+    since the precon page's add/cut shares mix both commanders' decks."""
+    pre = json.loads(get(f'https://json.edhrec.com/pages/precon/{d.get("precon", d["slug"])}.json'))
     L = {l['tag']: l['cardviews'] for l in pre['container']['json_dict']['cardlists']}
     adds = {c['name']: c['num_decks'] / c['potential_decks'] for t in ('cardstoadd', 'landstoadd') for c in L.get(t, []) if c.get('potential_decks')}
     cuts = {c['name']: c['unpopularity'] for t in ('cardstocut', 'landstocut') for c in L.get(t, []) if c.get('unpopularity')}
     n = {c['value']: c['count'] for c in pre['precon_commander_counts']}[d['cmd']]
     slug = d['cmd'].lower().replace(',', '').replace("'", '').replace(' ', '-')
     cp = json.loads(get(f'https://json.edhrec.com/pages/commanders/{slug}.json'))
-    tags = {re.sub(r'[^a-z0-9]+', '-', t['value'].lower()).strip('-'): t['count'] for t in cp.get('panels', {}).get('taglinks', [])}
+    # '+1/+1 Counters' -> 'p1-p1-counters', '-1/-1 Counters' -> 'm1-m1-counters' (they'd collide once signs are stripped)
+    tags = {re.sub(r'[^a-z0-9]+', '-', t['value'].lower().replace('+', 'p').replace('-1', 'm1')).strip('-'): t['count']
+            for t in cp.get('panels', {}).get('taglinks', [])}
+    total = cp['container']['json_dict'].get('card', {}).get('num_decks', 0)
+    if d.get('mode') == 'commander':
+        adds = {c['name']: c['num_decks'] / c['potential_decks'] for l in cp['container']['json_dict']['cardlists']
+                for c in l['cardviews'] if c.get('potential_decks')}
+        cuts = {}
     time.sleep(0.5)
-    return n, adds, cuts, tags
+    return n, adds, cuts, tags, total
 
 def main():
     today = datetime.date.today()
@@ -744,10 +801,11 @@ def main():
     bad = [n for n, f in flags.items() if not f[0]]
     if bad: print('Not Commander-legal:', ', '.join(bad))
 
-    def chip(n, adds, cuts, mode):
+    def chip(n, adds, cuts, mode, cmdmode=False):
         legal, gc, url = flags[n]
         pct = adds.get(n) if mode == 'add' else cuts.get(n)
-        num = f'<span class="p">{"+" if mode == "add" else "−"}{round(pct * 100)}%</span>' if pct else ''
+        num = (f'<span class="p pc">{round(pct * 100)}%</span>' if cmdmode else
+               f'<span class="p">{"+" if mode == "add" else "−"}{round(pct * 100)}%</span>') if pct else ''
         tag = ('' if legal else '<span class="bad">Not Commander-legal</span>') + ('<span class="gc" title="Game Changer: counts toward the bracket limit">GC</span>' if gc else '')
         return f'<a class="c" href="{url}" target="_blank" rel="noopener">{esc(n)}{num}{tag}</a>'
 
@@ -762,11 +820,12 @@ def main():
             group = d['group']
             secs.append(f'<h2 class="grp">{esc(group)}</h2>')
             toc.append(f'<b>{esc(group)}:</b>')
-        n, adds, cuts, tags = edhrec(d)
+        n, adds, cuts, tags, total = edhrec(d)
+        cm = d.get('mode') == 'commander'
         th = ' · '.join(f'{THEME_NAME[t]} {tags[t]:,}' for t in d['themes'] if t in tags)
         # An angle is (title, what, cards, source keys, data note) plus an optional "From play" line: how the direction
         # actually played, as reported by a source that played it (a creator's playtest or a reviewed player's deck).
-        ang = ''.join(f'''<div class="ang"><h4>{esc(a[0])}</h4><p>{esc(a[1])}</p><div class="cards">{''.join(chip(c, adds, cuts, 'add') for c in a[2])}</div>
+        ang = ''.join(f'''<div class="ang"><h4>{esc(a[0])}</h4><p>{esc(a[1])}</p><div class="cards">{''.join(chip(c, adds, cuts, 'add', cm) for c in a[2])}</div>
 <p class="data">{esc(a[4])}</p>{f'<p class="play"><b>From play:</b> {esc(a[5])}</p>' if len(a) > 5 else ''}<p class="src">Pushed by: {who(a[3])}</p></div>''' for a in d['angles'])
         av = ''.join(f'''<div class="ang av"><h4>{esc(t)}</h4><div class="cards">{''.join(chip(c, adds, cuts, 'cut') for c in cs)}</div>
 <p>{esc(w)}</p><p class="src">Cut by: {who(ks)}</p></div>''' for t, cs, w, ks in d['avoid'])
@@ -777,9 +836,13 @@ def main():
         sl = ''.join(f'<li id="src-{k}"><a href="{SOURCES[k][1]}" target="_blank" rel="noopener">{esc(SOURCES[k][0])}</a>'
                      + (f'<br><span class="who">{esc(SOURCES[k][2])}</span>' if SOURCES[k][2] else '') + '</li>' for k in srcs)
         toc.append(f'<a href="#{d["slug"]}">{esc(d["name"])}</a>')
+        who1 = esc(d['cmd'].split(',')[0])
+        box = d.get('precon', d['slug'])
+        data = (f'EDHREC: {total:,} {who1} decks in all, {n:,} of them built from this box. The number after a card here is the share of all {who1} decks that play it (no cut shares: EDHREC\'s cut numbers for this box mostly come from the other commander\'s decks). Themes {who1} decks are tagged with: {th}.'
+                if cm else f'EDHREC: {n:,} decks built from this box with {who1}. Themes {who1} decks are tagged with: {th}.')
         secs.append(f'''<section id="{d['slug']}"><h2 class="dk">{esc(d['name'])} <small>{esc(d['cmd'])} · {d['colors']}</small></h2>
 <p>{esc(d['gist'])}</p>
-<p class="data">EDHREC: {n:,} decks built from this box with {esc(d['cmd'].split(',')[0])}. Themes those decks are tagged with: {th}. <a href="../adds/{d['slug']}.html">Most added ›</a> <a href="../cuts/{d['slug']}.html">Most cut ›</a></p>
+<p class="data">{data} <a href="../adds/{box}.html">Most added ›</a> <a href="../cuts/{box}.html">Most cut ›</a></p>
 <h3>Directions people take it</h3>{ang}
 <h3>What people stay away from</h3>{av}
 <h3>Where the sources disagree</h3><ul>{sp}</ul>
