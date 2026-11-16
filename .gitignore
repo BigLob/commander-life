@@ -7,3 +7,4 @@ tools/microcenter/state.json
 tools/microcenter/state.json.tmp
 tools/microcenter/profile/
 tools/microcenter/debug/
+tools/microcenter/monitor.log

@@ -56,7 +56,7 @@ Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, min
    this `tools\microcenter` folder.
 5. Settings: untick "Stop the task if it runs longer than".
 
-`pythonw` hides the console; to see what it's doing, run `python monitor.py --once` by hand.
+`pythonw` hides the console, so it writes what it does to `monitor.log` in this folder (each check, product counts, every push). Open it in Notepad to see the latest checks.
 
 ## What you'll get
 

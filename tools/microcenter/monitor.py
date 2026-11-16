@@ -474,7 +474,23 @@ def check_debug():
         print(' '.join(sorted(set(re.findall(r'class="([^"]+)"', block))))[:600])
 
 
+LOG = os.path.join(HERE, 'monitor.log')
+
+
+def log_to_file_if_hidden():
+    """Under pythonw (the Startup shortcut) there's no console and print() goes nowhere, so
+    write the same lines to monitor.log, so you can see each check. Starts over past 1 MB."""
+    if sys.stdout is not None:
+        return
+    try:
+        mode = 'w' if os.path.exists(LOG) and os.path.getsize(LOG) > 1_000_000 else 'a'
+        sys.stdout = sys.stderr = open(LOG, mode, encoding='utf-8', buffering=1)
+    except OSError:
+        pass
+
+
 def main(argv=None):
+    log_to_file_if_hidden()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--once', action='store_true', help='poll once and exit')
     ap.add_argument('--test', action='store_true', help='send a test push and exit')
