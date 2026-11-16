@@ -21,9 +21,7 @@ Format: 1 Card Name (import-ready). Core 15 = the swap-in set; Alternates = next
 1 Watcher of the Spheres
 
 -- Alternates --
-1 (alternates 16 to 30)
-
-Skycloud Expanse
+1 Skycloud Expanse
 1 Deserted Beach
 1 Adarkar Wastes
 1 Ghostly Prison
@@ -40,9 +38,7 @@ Skycloud Expanse
 1 Unesh, Criosphinx Sovereign
 
 -- Cut --
-1 (least-played precon cards)
-
-Meandering River
+1 Meandering River
 1 Coastal Tower
 1 Moorland Haunt
 1 Sejiri Refuge
@@ -78,9 +74,7 @@ Meandering River
 1 Hordewing Skaab
 
 -- Alternates --
-1 (alternates 16 to 30)
-
-Headless Rider
+1 Headless Rider
 1 Drowned Catacomb
 1 Zul Ashur, Lich Lord
 1 Carrion Feeder
@@ -97,9 +91,7 @@ Headless Rider
 1 Swiftfoot Boots
 
 -- Cut --
-1 (least-played precon cards)
-
-Salt Marsh
+1 Salt Marsh
 1 Cruel Revival
 1 Lotleth Giant
 1 Curse of Disturbance
@@ -130,9 +122,7 @@ Salt Marsh
 1 Vengeful Ancestor
 
 -- Alternates --
-1 (alternates 16 to 30)
-
-Luxury Suite
+1 Luxury Suite
 1 Bojuka Bog
 1 Haunted Ridge
 1 Shadowblood Ridge
@@ -149,9 +139,7 @@ Luxury Suite
 1 Bothersome Quasit
 
 -- Cut --
-1 (least-played precon cards)
-
-Stensia Bloodhall
+1 Stensia Bloodhall
 1 Cinder Barrens
 1 Urborg Volcano
 1 Molten Slagheap
@@ -180,9 +168,7 @@ Stensia Bloodhall
 1 Rootbound Crag
 
 -- Alternates --
-1 (alternates 16 to 30)
-
-Goblin Anarchomancer
+1 Goblin Anarchomancer
 1 Utvara Hellkite
 1 Kodama's Reach
 1 Nature's Lore
@@ -199,9 +185,7 @@ Goblin Anarchomancer
 1 Wrathful Red Dragon
 
 -- Cut --
-1 (least-played precon cards)
-
-Shivan Oasis
+1 Shivan Oasis
 1 Timber Gorge
 1 Provoke the Trolls
 1 Dream Pillager
@@ -235,9 +219,7 @@ Shivan Oasis
 1 Elspeth, Sun's Champion
 
 -- Alternates --
-1 (alternates 16 to 30)
-
-Temple Garden
+1 Temple Garden
 1 Survivors' Encampment
 1 Enduring Vitality
 1 Craterhoof Behemoth
@@ -254,9 +236,7 @@ Temple Garden
 1 Bountiful Promenade
 
 -- Cut --
-1 (least-played precon cards)
-
-Tranquil Expanse
+1 Tranquil Expanse
 1 Valor in Akros
 1 Dawn of Hope
 1 Ajani, Caller of the Pride
