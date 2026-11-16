@@ -264,6 +264,15 @@ def fetch_pages(urls, cfg, debug=False):
         except Exception:
             ctx = pw.chromium.launch_persistent_context(**opts)  # bundled Chromium if Chrome isn't installed
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
+        if not opts['headless'] and cfg.get('offscreen', True):
+            # Chrome can ignore --window-position (it remembers where the profile's window was),
+            # so also minimize the window to the taskbar through the DevTools protocol.
+            try:
+                cdp = ctx.new_cdp_session(page)
+                wid = cdp.send('Browser.getWindowForTarget')['windowId']
+                cdp.send('Browser.setWindowBounds', {'windowId': wid, 'bounds': {'windowState': 'minimized'}})
+            except Exception as e:
+                print(f'  (could not minimize the window: {e})')
         for i, url in enumerate(urls):
             if i:
                 time.sleep(random.uniform(3, 8))
