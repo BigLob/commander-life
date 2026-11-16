@@ -266,11 +266,13 @@ def fetch_pages(urls, cfg, debug=False):
             try:
                 page.goto(url, wait_until='domcontentloaded', timeout=60000)
                 # Cloudflare's check can pass by itself in a real browser after a few seconds.
-                for n in range(6):
+                # With a visible window, give a person time to click Cloudflare's check.
+                for n in range(6 if cfg.get('headless', True) else 24):
                     if not is_challenge(page.content()):
                         break
                     if n == 0:
-                        print('  Cloudflare check showing, waiting up to 30 s for it to pass...', flush=True)
+                        print('  Cloudflare check showing, waiting ' + ('up to 30 s for it to pass...' if cfg.get('headless', True)
+                              else 'up to 2 min: click the check in the Chrome window if it asks...'), flush=True)
                     time.sleep(5)
                 try:
                     page.wait_for_selector('li.product_wrapper', timeout=10000)
@@ -371,10 +373,10 @@ def backoff(streak):
     return min(7200, 1800 * 2 ** (streak - 1)) if streak else 0
 
 
-def poll_micro_center(cfg, state, debug=False):
+def poll_micro_center(cfg, state, debug=False, manual=False):
     if not cfg.get('microcenter_enabled', True):
         return
-    if time.time() < state.get('mc_skip_until', 0):
+    if not manual and time.time() < state.get('mc_skip_until', 0):
         print(f'  Micro Center: backing off after a block, next try {dt.datetime.fromtimestamp(state["mc_skip_until"]):%H:%M}')
         return
     try:
@@ -439,7 +441,7 @@ def main(argv=None):
     while True:
         state = load_state()
         print(f'[{dt.datetime.now():%a %Y-%m-%d %H:%M}] checking')
-        poll_micro_center(cfg, state, debug=a.debug)
+        poll_micro_center(cfg, state, debug=a.debug, manual=a.once)  # a run by hand never waits out the back-off
         poll_secret_lair(cfg, state)
         if a.once:
             return
