@@ -1,0 +1,266 @@
+Starter deck upgrades: card lists (Nov 4, 2026 prices)
+Format: 1 Card Name (import-ready). Core 15 = the swap-in set; Alternates = next 15; Cut = precon cards to take out.
+
+=== First Flight: Isperia, Supreme Judge ===
+
+-- Core 15 --
+1 Rhystic Study
+1 Consecrated Sphinx
+1 Grand Arbiter Augustin IV
+1 Glacial Fortress
+1 Reliquary Tower
+1 Hallowed Fountain
+1 Supreme Verdict
+1 Dovin's Veto
+1 Dream Trawler
+1 Swiftfoot Boots
+1 Azorius Chancery
+1 Path to Exile
+1 Medomai the Ageless
+1 Azor, the Lawbringer
+1 Watcher of the Spheres
+
+-- Alternates --
+1 (alternates 16 to 30)
+
+Skycloud Expanse
+1 Deserted Beach
+1 Adarkar Wastes
+1 Ghostly Prison
+1 Mind Stone
+1 Wizard Class
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Irrigated Farmland
+1 Lightning Greaves
+1 Approach of the Second Sun
+1 Defiler of Dreams
+1 Aetherspouts
+1 Fellwar Stone
+1 Unesh, Criosphinx Sovereign
+
+-- Cut --
+1 (least-played precon cards)
+
+Meandering River
+1 Coastal Tower
+1 Moorland Haunt
+1 Sejiri Refuge
+1 Skyscanner
+1 Angler Turtle
+1 Vow of Duty
+1 Pilgrim's Eye
+1 Aven Gagglemaster
+1 Soul Snare
+1 Sharding Sphinx
+1 Faerie Formation
+1 Migratory Route
+1 Diluvian Primordial
+1 Banishing Light
+
+=== Grave Danger: Gisa and Geralf ===
+
+-- Core 15 --
+1 Field of the Dead
+1 Cyclonic Rift
+1 Demonic Tutor
+1 Rooftop Storm
+1 Gravecrawler
+1 Death Baron
+1 Diregraf Colossus
+1 Necroduality
+1 Wilhelt, the Rotcleaver
+1 Undead Warchief
+1 Dark Ritual
+1 Ashnod's Altar
+1 Warren Soultrader
+1 Cryptbreaker
+1 Hordewing Skaab
+
+-- Alternates --
+1 (alternates 16 to 30)
+
+Headless Rider
+1 Drowned Catacomb
+1 Zul Ashur, Lich Lord
+1 Carrion Feeder
+1 Watery Grave
+1 Stitcher's Supplier
+1 Accursed Marauder
+1 Endless Ranks of the Dead
+1 Counterspell
+1 Bojuka Bog
+1 Tainted Isle
+1 Buried Alive
+1 Zombie Master
+1 Dimir Aqueduct
+1 Swiftfoot Boots
+
+-- Cut --
+1 (least-played precon cards)
+
+Salt Marsh
+1 Cruel Revival
+1 Lotleth Giant
+1 Curse of Disturbance
+1 Syphon Flesh
+1 Geralf's Mindcrusher
+1 Josu Vess, Lich Knight
+1 Gravespawn Sovereign
+1 Loyal Subordinate
+1 Necromantic Selection
+
+=== Chaos Incarnate: Kardur, Doomscourge ===
+
+-- Core 15 --
+1 Jeska's Will
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Conjurer's Closet
+1 Dragonskull Summit
+1 Disrupt Decorum
+1 Morbid Opportunist
+1 Blood Crypt
+1 Karazikar, the Eye Tyrant
+1 Swiftfoot Boots
+1 Sword of Hearth and Home
+1 Sulfurous Springs
+1 Tainted Peak
+1 Blood Artist
+1 Vengeful Ancestor
+
+-- Alternates --
+1 (alternates 16 to 30)
+
+Luxury Suite
+1 Bojuka Bog
+1 Haunted Ridge
+1 Shadowblood Ridge
+1 Curse of Opulence
+1 Shiny Impetus
+1 Xantcha, Sleeper Agent
+1 Fellwar Stone
+1 Bedevil
+1 Bloodthirsty Blade
+1 Supernatural Stamina
+1 Vandalblast
+1 Alexios, Deimos of Kosmos
+1 Agitator Ant
+1 Bothersome Quasit
+
+-- Cut --
+1 (least-played precon cards)
+
+Stensia Bloodhall
+1 Cinder Barrens
+1 Urborg Volcano
+1 Molten Slagheap
+1 Breath of Malfegor
+1 Reign of the Pit
+1 Coveted Jewel
+1 Ambition's Cost
+
+=== Draconic Destruction: Atarka, World Render ===
+
+-- Core 15 --
+1 Worldly Tutor
+1 Jeska's Will
+1 Gamble
+1 Lathliss, Dragon Queen
+1 Rhythm of the Wild
+1 Thrakkus the Butcher
+1 Carnelian Orb of Dragonkind
+1 Terror of the Peaks
+1 Stomping Ground
+1 Return of the Wildspeaker
+1 Dragonborn Champion
+1 Rishkar's Expertise
+1 Heroic Intervention
+1 Up the Beanstalk
+1 Rootbound Crag
+
+-- Alternates --
+1 (alternates 16 to 30)
+
+Goblin Anarchomancer
+1 Utvara Hellkite
+1 Kodama's Reach
+1 Nature's Lore
+1 Goldspan Dragon
+1 Ganax, Astral Hunter
+1 Scourge of the Throne
+1 Twinflame Tyrant
+1 Rockfall Vale
+1 Maelstrom of the Spirit Dragon
+1 Blasphemous Act
+1 Farseek
+1 Dracogenesis
+1 Balefire Dragon
+1 Wrathful Red Dragon
+
+-- Cut --
+1 (least-played precon cards)
+
+Shivan Oasis
+1 Timber Gorge
+1 Provoke the Trolls
+1 Dream Pillager
+1 Sweltering Suns
+1 Runehorn Hellkite
+1 Sarkhan, the Dragonspeaker
+1 Dragonkin Berserker
+1 Primal Might
+1 Dragon Mage
+1 Clan Defiance
+1 Akoum Hellkite
+1 Drumhunter
+
+=== Token Triumph: Emmara, Soul of the Accord ===
+
+-- Core 15 --
+1 Seedborn Muse
+1 Aura Shards
+1 Teferi's Protection
+1 Queen Allenal of Ruadach
+1 Swords to Plowshares
+1 Cryptolith Rite
+1 Skullclamp
+1 Springleaf Drum
+1 Sunpetal Grove
+1 Halo Fountain
+1 Welcoming Vampire
+1 Elspeth, Storm Slayer
+1 Bennie Bracks, Zoologist
+1 Caretaker's Talent
+1 Elspeth, Sun's Champion
+
+-- Alternates --
+1 (alternates 16 to 30)
+
+Temple Garden
+1 Survivors' Encampment
+1 Enduring Vitality
+1 Craterhoof Behemoth
+1 Drumbellower
+1 Overgrown Farmland
+1 Glare of Subdual
+1 Divine Visitation
+1 Heroic Intervention
+1 King Darien XLVIII
+1 Nature's Chosen
+1 Brushland
+1 Beastmaster Ascension
+1 Relic of Legends
+1 Bountiful Promenade
+
+-- Cut --
+1 (least-played precon cards)
+
+Tranquil Expanse
+1 Valor in Akros
+1 Dawn of Hope
+1 Ajani, Caller of the Pride
+1 Scatter the Seeds
+1 Slate of Ancestry
+1 Overwhelming Instinct
+1 Farhaven Elf
