@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Precon Upgrade Paths</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column per deck: what the deck does, the directions upgraders take it (with the cards and who pushes each),
+   what they cut, and where sources disagree. Same tokens as the primer and the deck pages. Card chips wrap, never scroll. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--bad:#b3261e;--ok:#2f7d32;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--bad:#ff8a80;--ok:#7fcf84;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--bad:#ff8a80;--ok:#7fcf84;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:860px;background:var(--bg);color:var(--fg);font-family:var(--f-display);line-height:1.45;padding-block:14px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+.back{font-family:var(--f-mono);font-size:.8rem;text-decoration:none;display:inline-block;margin-bottom:6px}
+h1{font-size:1.5rem;margin:0 0 4px;text-wrap:balance}
+.sub{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin:0 0 14px}
+.toc{font-family:var(--f-mono);font-size:.78rem;line-height:1.9;margin:0 0 10px}.toc b{color:var(--muted);font-weight:500;margin-left:6px}.toc b:first-child{margin-left:0}
+.toc a{margin-right:8px;white-space:nowrap}
+.key{font-size:.85rem;color:var(--muted);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 0 8px}
+.key ul{margin:4px 0 0;padding-left:1.1em}.key li{margin:2px 0}
+h2.grp{font-family:var(--f-mono);font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:34px 0 0;padding-top:10px;border-top:2px solid var(--line)}
+section{margin-top:18px;padding-top:6px}
+h2.dk{font-size:1.25rem;margin:6px 0 6px;text-wrap:balance}h2.dk small{display:block;font-family:var(--f-mono);font-size:.72rem;font-weight:400;color:var(--muted)}
+h3{font-size:.98rem;margin:20px 0 8px}
+.ang{border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:0 0 8px;background:var(--bg)}
+.ang.av{border-style:dashed}
+.ang h4{margin:0 0 2px;font-size:.95rem}
+.ang p{margin:4px 0;font-size:.88rem}
+.cards{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+a.c{display:inline-flex;align-items:center;gap:5px;font-size:.8rem;text-decoration:none;color:var(--fg);background:var(--surface);border-radius:999px;padding:3px 10px;max-width:100%;overflow-wrap:anywhere}
+a.c:hover{color:var(--accent)}
+a.c:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.p{font-family:var(--f-mono);font-size:.68rem;color:var(--ok)}
+.av .p{color:var(--bad)}
+.gc{font-family:var(--f-mono);font-size:.62rem;border:1px solid currentColor;border-radius:4px;padding:0 3px;color:var(--accent)}
+.bad{font-family:var(--f-mono);font-size:.62rem;color:#fff;background:var(--bad);border-radius:4px;padding:0 4px}
+p.data{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+p.src{font-size:.78rem;color:var(--muted)}
+.who{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}.who a{color:var(--accent)}
+section>ul{margin:0;padding-left:1.1em;font-size:.88rem}section>ul li{margin:4px 0}
+details{margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:6px 12px}
+summary{cursor:pointer;font-size:.85rem;font-weight:700}
+ul.srcs{padding-left:1.1em;font-size:.82rem;margin:6px 0}ul.srcs li{margin:5px 0;overflow-wrap:anywhere}
+</style></head><body>
+<a class="back" href="../links.html">‹ All pages</a>
+<h1>Where people take our precons</h1>
+<p class="sub">9 of our decks (all but Star Trek and Final Fantasy) · read <!--DATE--></p>
+<div class="key"><b>How to read it.</b> For each deck: the directions upgraders take it, what they cut, and where they disagree, from EDHREC's numbers plus upgrade videos and articles (sources at the end of each deck).
+<ul>
+<li><span class="p" style="color:var(--ok)">+40%</span> after a card: the share of EDHREC decks built from this box that <b>add</b> it. <span class="p" style="color:var(--bad)">−80%</span>: the share that <b>cut</b> it. No number means it's outside EDHREC's top 50 adds or top 20 cuts.</li>
+<li><span class="gc">GC</span> is a Game Changer (counts toward the bracket limit). Any card that isn't Commander-legal gets a red chip; every card here is legal.</li>
+<li>"Pushed by" and "Cut by" name the sources that do it. Theme counts are how many EDHREC decks for the commander carry that tag.</li>
+<li>Video content comes from the creators' own decklists and companion articles; YouTube transcripts can't be read from here.</li>
+</ul></div>
+<p class="toc"><!--TOC--></p>
+<!--DECKS-->
+</body></html>
