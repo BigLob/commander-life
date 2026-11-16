@@ -68,7 +68,7 @@ From Micro Center:
   with `"alert_new_listings": false`.
 - **Monitor blocked**: Cloudflare showed its check. At most one push an hour; the monitor waits
   longer each time (30 min, 1 h, then 2 h) instead of retrying hard. If it keeps happening, set
-  `"headless": false` in `config.json`, run `python monitor.py --once`, and click through the
+  `"offscreen": false` in `config.json` (and `"headless": false`), run `python monitor.py --once`, and click through the
   check in the window that opens. The cookie is kept in `profile\`, so later runs can go back to
   headless.
 
@@ -106,7 +106,8 @@ from the last check.
 | `secret_lair.full_scan_hours` | How often to read the whole Secret Lair catalog (default 24). |
 | `secret_lair.exclude` | Skip Secret Lair products whose name has one of these (D&D dice, Transformers). |
 | `ntfy_topic`, `ntfy_server` | Where pushes go. |
-| `headless`, `channel` | Browser settings (see "Monitor blocked"). |
+| `headless`, `channel` | Browser settings (see "Monitor blocked"). New setups start with `headless` false: a real Chrome window gets past Cloudflare where hidden mode was blocked (Nov 16, 2026). |
+| `offscreen` | With `headless` false, open the window far off-screen so it never pops up (default). Set `false` to see it, e.g. to click a Cloudflare check by hand. |
 
 Local files (not in git): `config.json`, `state.json` (what's been seen), `profile\` (browser
 cookies), `debug\`.

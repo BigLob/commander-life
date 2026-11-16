@@ -254,6 +254,11 @@ def fetch_pages(urls, cfg, debug=False):
         opts = dict(user_data_dir=PROFILE, headless=cfg.get('headless', True),
                     viewport={'width': 1366, 'height': 900}, locale='en-US',
                     timezone_id=cfg.get('timezone', 'America/Chicago'))
+        if not opts['headless'] and cfg.get('offscreen', True):
+            # A real window passes Cloudflare more often than headless, but nobody wants it
+            # popping up every 5 minutes: open it far off-screen. "offscreen": false shows it
+            # (to click a check by hand).
+            opts['args'] = ['--window-position=-32000,-32000']
         try:
             ctx = pw.chromium.launch_persistent_context(channel=cfg.get('channel', 'chrome'), **opts)
         except Exception:

@@ -31,7 +31,7 @@
   "alert_new_listings": true,
   "ntfy_server": "https://ntfy.sh",
   "ntfy_topic": "",
-  "headless": true,
+  "headless": false,
   "channel": "chrome",
   "secret_lair": {
     "enabled": true,
@@ -42,5 +42,6 @@
       "dice",
       "transformers"
     ]
-  }
+  },
+  "offscreen": true
 }
