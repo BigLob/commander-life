@@ -110,6 +110,8 @@ wins 25%. Only the rows found through search are here.
 
 All precons are Commander Bracket 2. First Flight is our weakest deck, so upgrade it first.
 
+**Upgrade costs (Nov 4, 2026 prices):** taking the five Starter decks to Bracket 3 with each deck's "Core 15" swap costs about $171 First Flight, $236 Grave Danger, $214 Chaos Incarnate, $159 Draconic Destruction and $204 Token Triumph, about $984 for all five. Every card, price, cut and alternate is in `upgrades.md`.
+
 ## Sources
 
 - Reality Fracture prices: Wizards' Reality Fracture buyer's guide, tabletopmeta.com, tcgsealedalerts.com
