@@ -243,5 +243,50 @@ class SecretLair(unittest.TestCase):
         self.assertIn('On sale', msg)
         self.assertIn('not Commander-legal', m.legality_note(p['name']))
 
+
+class Watchdog(unittest.TestCase):
+    def test_due(self):
+        d = dt.datetime
+        # Thursday 13:00, in the window: 20 minutes.
+        self.assertEqual(m.watchdog_due(d(2026, 11, 19, 13, 0)), (d(2026, 11, 19, 13, 20), True))
+        # Friday 10:50: 20 minutes ahead is past 11 AM, so next week's window, more than 3 days off.
+        due, win = m.watchdog_due(d(2026, 11, 20, 10, 50))
+        self.assertFalse(win)
+        self.assertEqual(due, d(2026, 11, 20, 10, 50) + dt.timedelta(seconds=m.NTFY_MAX_DELAY))
+        # Tuesday 15:00: Thursday 12:20 is under 3 days away.
+        self.assertEqual(m.watchdog_due(d(2026, 11, 17, 15, 0)), (d(2026, 11, 19, 12, 20), True))
+        # Monday 9:00: Thursday is more than 3 days off.
+        self.assertFalse(m.watchdog_due(d(2026, 11, 16, 9, 0))[1])
+        # Thursday 11:50, before the window: 12:10.
+        self.assertEqual(m.watchdog_due(d(2026, 11, 19, 11, 50)), (d(2026, 11, 19, 12, 10), True))
+
+    def test_arm_sends_a_held_replaceable_message(self):
+        sent = []
+        orig = m.push
+        m.push = lambda cfg, title, msg, **k: sent.append((title, k))
+        try:
+            m.arm_watchdog(CFG, now=dt.datetime(2026, 11, 19, 13, 0))
+        finally:
+            m.push = orig
+        title, k = sent[0]
+        self.assertEqual(k['sequence_id'], m.WATCHDOG_ID)
+        base = int(dt.datetime(2026, 11, 19, 13, 20).timestamp())
+        self.assertTrue(base <= int(k['delay']) <= base + 240)
+        self.assertIn('checking', title)
+
+    def test_sleep_wakes_early_after_pc_sleep(self):
+        clock = [1000.0]
+        orig_time, orig_sleep = m.time.time, m.time.sleep
+        def fake_sleep(sec):
+            clock[0] += sec + (3600 if clock[0] == 1000.0 else 0)  # the first nap spans an hour asleep
+        m.time.time, m.time.sleep = (lambda: clock[0]), fake_sleep
+        try:
+            self.assertEqual(m.sleep_until(1000 + 1800), 'woke')
+            clock[0] = 5000.0 + 1
+            self.assertEqual(m.sleep_until(5000 + 100), 'due')
+        finally:
+            m.time.time, m.time.sleep = orig_time, orig_sleep
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -43,5 +43,6 @@
       "transformers"
     ]
   },
-  "offscreen": true
+  "offscreen": true,
+  "watchdog": true
 }

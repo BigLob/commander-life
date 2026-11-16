@@ -81,6 +81,28 @@ From Secret Lair:
 Alerts say when a product isn't Commander-legal (Un-sets like Unfinity, playtest cards) or isn't
 released yet (preorders). Regular sealed product, Secret Lair and Universes Beyond are legal.
 
+## If the PC sleeps, turns off or signs out
+
+The monitor only checks while Windows is on and you're signed in (a locked screen is fine).
+Two things cover the gaps:
+
+- **Checks on wake.** It naps in 30-second steps, so when the PC wakes from sleep it checks
+  right away instead of finishing an hour-long wait.
+- **Watchdog push.** After every check it hands ntfy's server a warning to deliver later,
+  replacing the one before. While checks keep coming the warning never arrives. If they stop,
+  ntfy delivers it, even though your PC is asleep:
+  - **Restock monitor isn't checking**: no check for about 20 minutes between Thursday noon and
+    Friday 11 AM, or the PC wasn't checking when that window opened.
+  - **Restock monitor quiet for 3 days**: outside the window when Thursday is more than 3 days
+    off (ntfy holds a message 3 days at most).
+
+  Turn it off with `"watchdog": false`. Running `--once` by hand doesn't set it.
+
+When the monitor comes back it compares against what it saw last, so anything that came into
+stock while it was away and is still in stock gets an alert; something that sold out again in
+between is missed. For the Thursday-Friday window, set Windows to never sleep while plugged in
+(Settings, System, Power, Screen and sleep); the screen can still turn off.
+
 ## How the Secret Lair check works
 
 No browser: the store's pages fill themselves from a public JSON search API
@@ -105,6 +127,7 @@ from the last check.
 | `secret_lair.enabled` | `false` to stop watching Secret Lair. |
 | `secret_lair.full_scan_hours` | How often to read the whole Secret Lair catalog (default 24). |
 | `secret_lair.exclude` | Skip Secret Lair products whose name has one of these (D&D dice, Transformers). |
+| `watchdog` | Push a warning when the monitor stops checking (see above). |
 | `ntfy_topic`, `ntfy_server` | Where pushes go. |
 | `headless`, `channel` | Browser settings (see "Monitor blocked"). New setups start with `headless` false: a real Chrome window gets past Cloudflare where hidden mode was blocked (Nov 16, 2026). |
 | `offscreen` | With `headless` false, open the window far off-screen so it never pops up (default). Set `false` to see it, e.g. to click a Cloudflare check by hand. |

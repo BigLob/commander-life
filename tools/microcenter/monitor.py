@@ -218,12 +218,17 @@ def dedupe(alerts):
 
 # ---------- notifications ----------
 
-def push(cfg, title, message, click=None, priority=3, tags=None):
-    print(f'[{dt.datetime.now():%a %H:%M}] {title}: {message}')
+def push(cfg, title, message, click=None, priority=3, tags=None, delay=None, sequence_id=None, quiet=False):
+    if not quiet:
+        print(f'[{dt.datetime.now():%a %H:%M}] {title}: {message}')
     topic = cfg.get('ntfy_topic')
     if not topic:
         return
     body = {'topic': topic, 'title': title, 'message': message, 'priority': priority}
+    if delay:
+        body['delay'] = delay            # ntfy holds it and delivers it then (10 s to 3 days)
+    if sequence_id:
+        body['sequence_id'] = sequence_id  # a later message with the same id replaces a held one
     if click:
         body['click'] = click
     if tags:
@@ -489,6 +494,64 @@ def log_to_file_if_hidden():
         pass
 
 
+WATCHDOG_ID = 'monitor-watchdog'
+WATCHDOG_GAP = 20 * 60         # in the window, warn after 20 min without a check (4 missed)
+NTFY_MAX_DELAY = 3 * 86400 - 600
+
+
+def watchdog_due(now):
+    """When the "monitor went quiet" warning should go off if no check replaces it first.
+    In the Thursday-Friday window: 20 minutes from now. Outside it: 20 minutes into the next
+    window, so a PC that's asleep when the window starts gets noticed; but ntfy holds messages
+    3 days at most, so a window further off than that gets a 3-days-quiet warning instead."""
+    if in_window(now + dt.timedelta(seconds=WATCHDOG_GAP)):
+        return now + dt.timedelta(seconds=WATCHDOG_GAP), True
+    nxt = window_start(now) + dt.timedelta(seconds=WATCHDOG_GAP)
+    if (nxt - now).total_seconds() <= NTFY_MAX_DELAY:
+        return nxt, True
+    return now + dt.timedelta(seconds=NTFY_MAX_DELAY), False
+
+
+def arm_watchdog(cfg, now=None):
+    """A dead man's switch on ntfy's server: after every check, hand ntfy a warning to deliver
+    later, replacing the one before (same sequence id). While checks keep coming it never
+    arrives; if the PC is off, asleep or signed out, ntfy delivers it, which a sleeping PC
+    couldn't do itself. (ntfy.sh's cancel didn't stop a held message in a test on Nov 16,
+    2026, so it's always replaced, never cancelled.)"""
+    if not cfg.get('watchdog', True):
+        return
+    now = now or dt.datetime.now()
+    due, window = watchdog_due(now)
+    # Each warning gets its own delivery second: in a test, two held messages with the same
+    # sequence id sent close together were both delivered instead of one replacing the other.
+    due += dt.timedelta(seconds=random.randint(0, 240))
+    last = now.strftime('%a %I:%M %p').replace(' 0', ' ')
+    if window:
+        title, msg, pri = ('Restock monitor isn\'t checking',
+                           f'No check since {last}, during the Thursday noon to Friday 11 AM window. '
+                           'Is the PC asleep, off or signed out?', 4)
+    else:
+        title, msg, pri = ('Restock monitor quiet for 3 days', f'No check since {last}. '
+                           'Is the PC off, asleep or signed out?', 3)
+    push(cfg, title, msg, priority=pri, tags=['warning'], delay=str(int(due.timestamp())),
+         sequence_id=WATCHDOG_ID, quiet=True)
+    print(f'  watchdog: warns at {due:%a %H:%M} unless the next check comes first')
+
+
+def sleep_until(target, step=30):
+    """Sleep in short steps so a PC waking from sleep checks right away. Python's sleep
+    doesn't count time the PC spent asleep, so one long sleep could add an hour after waking."""
+    while True:
+        left = target - time.time()
+        if left <= 0:
+            return 'due'
+        before = time.time()
+        time.sleep(min(step, left))
+        if time.time() - before > step + 90:
+            print(f'[{dt.datetime.now():%a %H:%M}] woke from sleep, checking now')
+            return 'woke'
+
+
 def main(argv=None):
     log_to_file_if_hidden()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -511,9 +574,10 @@ def main(argv=None):
         poll_secret_lair(cfg, state)
         if a.once:
             return
+        arm_watchdog(cfg)
         wait = next_wait(dt.datetime.now(), secretlair.next_start(state, time.time()))
         print(f'  next poll in {wait / 60:.0f} min')
-        time.sleep(wait)
+        sleep_until(time.time() + wait)
 
 
 if __name__ == '__main__':
