@@ -441,12 +441,38 @@ def poll_secret_lair(cfg, state, getter=secretlair.get):
     save_state(state)
 
 
+def check_debug():
+    """Prints what the parser read from the newest saved Micro Center page, plus the raw text
+    of its first few results, so a wrong stock or price reading can be fixed from a paste."""
+    import glob
+    files = [f for f in sorted(glob.glob(os.path.join(DEBUG_DIR, '*.html')))
+             if 'product_wrapper' in open(f, encoding='utf-8', errors='replace').read()]
+    if not files:
+        print('No saved Micro Center page with products in debug/. Run: python monitor.py --once --debug')
+        return
+    page_html = open(files[-1], encoding='utf-8', errors='replace').read()
+    ps = parse_products(page_html)
+    print(f'{os.path.basename(files[-1])}: {len(ps)} products, {sum(p["in_stock"] for p in ps)} read as in stock')
+    for p in ps[:6]:
+        print(f'  {p["name"][:60]} | {p["stock"]} | ${p["price"]} | SKU {p["sku"]}')
+    starts = [m.start() for m in re.finditer(r'<li[^>]*class="[^"]*product_wrapper', page_html, re.I)]
+    for i, st in enumerate(starts[:3]):
+        block = page_html[st:starts[i + 1] if i + 1 < len(starts) else st + 20000]
+        print(f'--- raw text of result {i + 1} ---')
+        print(_text(block)[:600])
+        print('--- classes in it ---')
+        print(' '.join(sorted(set(re.findall(r'class="([^"]+)"', block))))[:600])
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--once', action='store_true', help='poll once and exit')
     ap.add_argument('--test', action='store_true', help='send a test push and exit')
     ap.add_argument('--debug', action='store_true', help='save fetched HTML and screenshots to debug/')
+    ap.add_argument('--check', action='store_true', help='show what was read from the newest saved debug page')
     a = ap.parse_args(argv)
+    if a.check:
+        return check_debug()
     cfg = load_config()
     if a.test:
         push(cfg, 'Micro Center monitor test', f'Pushes work. Watching {cfg.get("store_name")} '
