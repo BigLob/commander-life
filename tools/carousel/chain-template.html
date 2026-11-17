@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
+</head><body>
+<title>Silverquill Chain</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--f:system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b}
+body{background:var(--bg);color:var(--fg);font-family:var(--f);margin:0;padding:12px max(16px,env(safe-area-inset-left)) 40px max(16px,env(safe-area-inset-right));max-width:640px;margin-inline:auto}
+h1{font-size:22px;margin:8px 0 4px}p.s{color:var(--muted);margin:0 0 12px;font-size:14px;line-height:1.4}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.ctl button{font:inherit;font-size:14px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.ctl button.on{background:var(--accent);color:#14161a;border-color:var(--accent);font-weight:600}
+.step{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px;margin:0 0 12px}
+.hd{display:flex;gap:10px;align-items:center}
+.hd img{width:92px;border-radius:6px;flex:none;background:var(--line);aspect-ratio:488/680}
+.no{font-size:12px;color:var(--muted)}.nm{font-weight:700;font-size:17px;line-height:1.2}
+.pc{font-size:14px;margin-top:2px}.pc b{color:var(--accent)}
+.gc{display:inline-block;font-size:11px;border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:0 4px;margin-left:6px;vertical-align:middle}
+.alts{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:4px}
+.alt{flex:none;width:84px;text-align:center;font:inherit;background:none;border:1px solid var(--line);border-radius:8px;padding:4px;color:var(--fg)}
+.alt img{width:100%;border-radius:4px;aspect-ratio:488/680;background:var(--line)}
+.alt span{display:block;font-size:11px;line-height:1.2;margin-top:2px}.alt small{color:var(--muted);font-size:11px}
+.lbl{font-size:12px;color:var(--muted);margin-top:8px}
+.end{color:var(--muted);font-size:14px;padding:6px 2px}
+.foot{color:var(--muted);font-size:12px;line-height:1.5;margin-top:18px}
+a{color:var(--accent)}
+</style></head><body>
+<a href="index.html" style="font-size:14px">&larr; Decks</a>
+<h1>Silverquill Chain</h1>
+<p class="s">Start from the Silverquill Influence precon (Killian). Step 1 is the card most Killian decks add that the box lacks. Step 2 is the card most decks with step 1 also add, and so on. Tap a runner-up under any step to branch there.</p>
+<div class="ctl" id="ctl"></div>
+<div id="out"></div>
+<p class="foot" id="foot"></p>
+<script>
+/* Data: Archidekt decks for Killian, Decisive Mentor (built by tools/carousel/chain.py). CARDS: [name, small image, mana value, type, Game Changer]. DECKS: card indexes the precon lacks (nonland, Commander-legal, nonbasic), then the deck's enchantment count last. */
+const CARDS=__CARDS__;
+const DECKS=__DECKS__;
+const MIN=15, MODES=[['ench','Enchantment decks (10+ added)',10],['all','All Killian decks',0]];
+let mode=0, over={};
+try{const s=JSON.parse(localStorage.getItem('chain-mode')||'0');if(s===0||s===1)mode=s}catch(e){}
+const $=id=>document.getElementById(id);
+function start(){return DECKS.map(d=>({c:new Set(d.slice(0,-1)),e:d[d.length-1]})).filter(d=>d.e>=MODES[mode][2])}
+function tally(S,have){const m=new Map();for(const d of S)for(const c of d.c)if(!have.has(c))m.set(c,(m.get(c)||0)+1);return [...m].sort((a,b)=>b[1]-a[1]||a[0]-b[0])}
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const img=i=>CARDS[i][1]?'<img loading="lazy" referrerpolicy="no-referrer" src="'+CARDS[i][1]+'" alt="">':'<img alt="">';
+function render(){
+  $('ctl').innerHTML=MODES.map((m,i)=>'<button class="'+(i==mode?'on':'')+'" data-m="'+i+'">'+m[1]+'</button>').join('');
+  let S=start(),have=new Set(),h='',step=0,total=S.length;
+  h+='<div class="end">'+total+' decks to start with.</div>';
+  while(S.length>=MIN){
+    const t=tally(S,have).filter(x=>x[1]>=Math.min(MIN,S.length));
+    if(!t.length)break;
+    const ov=over[step],pick=t.find(x=>x[0]===ov)||t[0];
+    const c=pick[0],n=S.length;
+    h+='<div class="step"><div class="hd">'+img(c)+'<div><div class="no">Step '+(step+1)+' · '+CARDS[c][3]+' · MV '+CARDS[c][2]+'</div><div class="nm">'+esc(CARDS[c][0])+(CARDS[c][4]?'<span class="gc">Game Changer</span>':'')+'</div><div class="pc"><b>'+Math.round(100*pick[1]/n)+'%</b> of the '+n+' decks with '+(step?'all of the above':'this theme')+' ('+pick[1]+')</div></div></div>';
+    const alts=t.filter(x=>x[0]!==c).slice(0,8);
+    if(alts.length)h+='<div class="lbl">Instead of this:</div><div class="alts">'+alts.map(a=>'<button class="alt" data-s="'+step+'" data-c="'+a[0]+'">'+img(a[0])+'<span>'+esc(CARDS[a[0]][0])+'</span><small>'+Math.round(100*a[1]/n)+'%</small></button>').join('')+'</div>';
+    h+='</div>';
+    have.add(c);S=S.filter(d=>d.c.has(c));step++;
+  }
+  h+='<div class="end">'+(step?'Stops after '+step+' picks: only '+S.length+' decks left with all of them, too few to trust a next pick.':'Too few decks.')+'</div>';
+  $('out').innerHTML=h;
+  $('foot').innerHTML='Source: '+__N__+' distinct Killian, Decisive Mentor decks on Archidekt (Nov 2026), counted in the browser. Cards already in the precon, basics and lands are left out, and only Commander-legal cards are counted. Each percentage is the share of the decks that have every card above it, so it falls as the chain gets more specific. Archidekt decks skew to people who tinker, and the later steps rest on few decks.';
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.m!==undefined){mode=+b.dataset.m;over={};try{localStorage.setItem('chain-mode',mode)}catch(_){}render();return}
+  if(b.dataset.s!==undefined){const s=+b.dataset.s;for(const k of Object.keys(over))if(+k>=s)delete over[k];over[s]=+b.dataset.c;render()}
+});
+render();
+</script>
+</body></html>
