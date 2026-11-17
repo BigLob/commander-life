@@ -11,8 +11,8 @@
 <style>
 /* Approve the theme picks two cards at a time. Front: which deck next. Then the adds (the 15, then the options), the
    cuts (the 15, then more), the land version (10 nonbasics for 10 basics), the maybes in one grid, and a summary to
-   copy back to Claude. Decisions stay on this phone (localStorage) until
-   they're sent; a deck whose list Claude has locked in (theme/<slug>-review.json) starts from that.
+   copy back to Claude. Decisions are saved to the shared table (Firebase tables/t7q2xm4k-theme), so every phone
+   sees them; a deck with no answers anywhere that Claude has locked in (theme/<slug>-review.json) starts from that.
    Controls sit bottom-left (the user is left-handed). Same tokens as the theme pages. */
 :root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--yes:#2e7d32;--no:#b3261e;--maybe:#8a6d00;
 --f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
@@ -73,6 +73,8 @@ h2{font-size:1.02rem;margin:18px 0 6px}
 .rows li span{flex:1;min-width:0;overflow-wrap:anywhere}
 .rows .yn{grid-template-columns:repeat(3,38px);margin:0}
 .rows .yn button{padding:6px 0;font-size:.74rem}
+.sync{font-family:var(--f-mono);font-size:.66rem;color:var(--yes);margin:0 0 8px;min-height:1em}
+.sync.off{color:var(--no)}
 .warn{font-size:.84rem;color:var(--no);margin:6px 0}
 .ok{font-size:.84rem;color:var(--yes);margin:6px 0}
 pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:var(--surface);border-radius:8px;padding:8px;margin:8px 0;max-height:180px;overflow:auto}
@@ -92,12 +94,14 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <main id="front">
   <h1>Approve theme picks</h1>
   <p class="sub">Yes, maybe or no on each card, two at a time: the adds, the cuts, then a land version (10 nonbasics for 10 basics). Which deck next?</p>
+  <p class="sync" data-sync></p>
   <ul class="decks" id="decks"></ul>
 </main>
 <main id="rev" hidden>
   <h1 id="rt"></h1>
   <p class="sub" id="rs"></p>
   <div class="tally" id="tally"></div>
+  <p class="sync" data-sync></p>
   <div class="tabs" id="tabs"><button data-p="adds">Adds</button><button data-p="cuts">Cuts</button><button data-p="lands">Lands</button><button data-p="maybes">Maybes</button><button data-p="sum">Done</button></div>
   <div id="stage"></div>
 </main>
@@ -111,6 +115,37 @@ const PH={adds:{p:'a:',k:'adds',goal:15,word:'add',next:'cuts'},cuts:{p:'c:',k:'
 let decks=[], D=null, S=null, phase='adds', pos={adds:0,cuts:0,lands:0}, snap=[];
 const store={get(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const key=s=>'theme-review-'+s;
+// Answers live on the shared table (Firebase, under tables/ like Commander Life), so they follow the user to any phone
+// and Claude can read them. localStorage is only this phone's cache for when the table can't be reached. Each answer
+// is one PATCH; writes wait in a queue (kept in localStorage) until the table takes them, so an offline tap isn't lost.
+// Card names can hold / or . (split cards), which Firebase keys can't, so keys are %-escaped.
+const DB='https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-theme';
+const enc=k=>k.replace(/[.$#\[\]\/%]/g,c=>'%'+c.charCodeAt(0).toString(16).toUpperCase().padStart(2,'0'));
+const dec=k=>k.replace(/%([0-9A-F]{2})/g,(m,h)=>String.fromCharCode(parseInt(h,16)));
+const decD=o=>{const d={};for(const k in o||{})d[dec(k)]=o[k];return d};
+let remote=null;   // the whole table's answers from the last pull, or null when it couldn't be reached
+function send(path,body){const q=store.get('theme-review-queue')||[];q.push([path,body]);store.set('theme-review-queue',q);flush()}
+let flushing=null;
+// One flush at a time; `finally` clears the flag only after it's set (an empty queue finishes synchronously otherwise).
+function flush(){if(!flushing)flushing=(async()=>{
+  for(;;){const q=store.get('theme-review-queue')||[];if(!q.length)break;const [path,body]=q[0];
+    try{const r=await fetch(DB+'/'+path+'.json',{method:'PATCH',body:JSON.stringify(body)});if(!r.ok)throw 0}catch(e){showSync(false);break}
+    const q2=store.get('theme-review-queue')||[];q2.shift();store.set('theme-review-queue',q2)}
+  const left=(store.get('theme-review-queue')||[]).length;if(!left)showSync(true)})().finally(()=>{flushing=null});return flushing}
+async function pull(){await flush();try{const r=await fetch(DB+'.json',{cache:'no-store'});if(!r.ok)throw 0;remote=(await r.json())||{};showSync(true)}catch(e){remote=null;showSync(false)}return remote}
+function showSync(ok){const n=(store.get('theme-review-queue')||[]).length, good=ok&&!n;
+  for(const el of document.querySelectorAll('[data-sync]')){el.textContent=good?'✓ Saved to the table, on every phone':'Offline: saved on this phone'+(n?`, ${n} to send`:'')+'; it sends when the table is back';el.classList.toggle('off',!good)}}
+// Answers made on a phone before they were shared: send this phone's ones the table doesn't have, once per deck.
+function migrate(slug){
+  if(!remote||store.get('theme-review-up-'+slug))return;
+  const s=store.get(key(slug)), rd=(remote[slug]&&remote[slug].d)||{}, up={};
+  for(const k in (s&&s.d)||{})if(!(enc(k) in rd))up[enc(k)]=s.d[k];
+  if(Object.keys(up).length){send(slug+'/d',up);remote[slug]={...(remote[slug]||{}),d:{...rd,...up}}}
+  store.set('theme-review-up-'+slug,1)}
+// One deck's answers: the table's when it was reached, else this phone's cache. Undo history stays per phone.
+function answers(slug){const s=store.get(key(slug));
+  if(remote){const R=remote[slug]||{};return R.d?{...(s||{h:[]}),d:decD(R.d),h:(s&&s.h)||[],t:R.t||(s&&s.t)}:null}
+  return s}
 const list=p=>D[PH[p].k]||[];
 const item=k=>{for(const p in PH){if(k.startsWith(PH[p].p)){return list(p).find(x=>PH[p].p+x.n===k)}}};
 
@@ -118,8 +153,9 @@ const item=k=>{for(const p in PH){if(k.startsWith(PH[p].p)){return list(p).find(
 async function front(){
   $('rev').hidden=true;$('foot').hidden=true;$('front').hidden=false;
   if(!decks.length){try{decks=await (await fetch('index.json',{cache:'no-store'})).json()}catch(e){$('decks').innerHTML='<li class="empty">Couldn\'t load the deck list.</li>';return}}
+  await pull();for(const d of decks)if(d.ready)migrate(d.slug);
   $('decks').innerHTML=decks.map((d,i)=>{
-    const s=store.get(key(d.slug)), c=s?count(s):null;
+    const s=answers(d.slug), c=s?count(s):null;
     const st=d.ready?(c&&c.total?`In ${c.a.y}/15 · out ${c.c.y}/15 · lands ${c.l.y}/10 · ${c.left} to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet: tap to ask Claude';
     return `<li><button class="deck${d.ready?'':' off'}" data-i="${i}"><img src="${E(d.img.replace('/normal/','/small/'))}" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="t"><b>${E(d.name)}</b><span class="d">${E(d.cmd)}${d.direction?' · '+E(d.direction):''}</span><span class="st">${st}</span></span></button><div class="ask" id="ask${i}" hidden></div></li>`}).join('');
   scrollTo(0,0);
@@ -137,12 +173,16 @@ async function copy(t,btn){try{await navigator.clipboard.writeText(t);btn.textCo
 // Review: one deck.
 async function open(d){
   try{D=await (await fetch(d.slug+'.json',{cache:'no-store'})).json()}catch(e){alert('Couldn\'t load '+d.name);return}
-  S=store.get(key(d.slug));
-  if(!S){S={d:{},h:[]};   // first time on this phone: start from the list Claude locked in, if there is one
+  await pull();migrate(d.slug);
+  S=answers(d.slug);
+  if(!S){S={d:{},h:[]};   // no answers anywhere yet: start from the list Claude locked in, if there is one
     try{const r=await fetch(d.slug+'-review.json',{cache:'no-store'});if(r.ok){const L=await r.json();
       for(const [k,p,v] of [['in','a:','y'],['out','c:','y'],['lands','l:','y'],['maybe_in','a:','m'],['maybe_out','c:','m'],['maybe_lands','l:','m']])for(const n of L[k]||[])S.d[p+n]=v;
-      for(const p in PH)for(const x of list(p))if(!S.d[PH[p].p+x.n])S.d[PH[p].p+x.n]='n'}}catch(e){}}
-  D.name=d.name;S.t=D.adds.length+D.cuts.length+(D.lands||[]).length;
+      for(const p in PH)for(const x of list(p))if(!S.d[PH[p].p+x.n])S.d[PH[p].p+x.n]='n';
+      const up={};for(const k in S.d)up[enc(k)]=S.d[k];send(d.slug+'/d',up)}}catch(e){}}
+  D.name=d.name;const t=D.adds.length+D.cuts.length+(D.lands||[]).length;
+  if(!remote||!remote[d.slug]||remote[d.slug].t!==t)send(d.slug,{t});   // so a new phone's deck list can say how many are left
+  S.t=t;
   $('rt').textContent=d.name+': '+D.direction;
   $('rs').innerHTML=`${E(D.cmd)} · ${D.nd.toLocaleString()} of ${D.n.toLocaleString()} Archidekt decks built this way · built ${E(D.date)} · <a href="${E(D.slug)}.html">full page and sources</a>`;
   for(const p in PH)pos[p]=openFrom(p,0);
@@ -190,14 +230,14 @@ function tile(x,P){
 const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;
 
 function decide(k,v){
-  S.h.push([k,S.d[k]||null]);S.d[k]=v;save();
+  S.h.push([k,S.d[k]||null]);S.d[k]=v;save();send(D.slug+'/d',{[enc(k)]:v});
   if(!PH[phase]){render();return}
   const P=PH[phase],L=list(phase),i=pos[phase];
   const done=L.slice(i,i+2).every(x=>S.d[P.p+x.n]);
   render();
   if(done){const pr=$('pair');if(pr)pr.classList.add('fade');setTimeout(()=>{pos[phase]=Math.max(pos[phase],openFrom(phase,i+2));render();scrollTo(0,0)},260)}
 }
-$('undo').onclick=()=>{const h=S.h.pop();if(!h)return;const [k,prev]=h;if(prev)S.d[k]=prev;else delete S.d[k];
+$('undo').onclick=()=>{const h=S.h.pop();if(!h)return;const [k,prev]=h;if(prev)S.d[k]=prev;else delete S.d[k];send(D.slug+'/d',{[enc(k)]:prev||null});
   const p=Object.keys(PH).find(p=>k.startsWith(PH[p].p)),ix=list(p).findIndex(x=>PH[p].p+x.n===k);
   if(PH[phase]){phase=p;pos[p]=ix-ix%2}save();render()};
 $('back').onclick=()=>{if(D)save();D=null;front()};
@@ -215,7 +255,7 @@ function summary(c){
   const text=`Theme picks reviewed: ${D.name} (${D.direction})\nIN (${ai.length}): ${L(ai)||'none'}\nOUT (${co.length}): ${L(co)||'none'}\nLANDS (${li.length}, each for a basic): ${L(li)||'none'}`
     +(am.length?`\nMAYBE IN (${am.length}): ${L(am)}`:'')+(cm.length?`\nMAYBE OUT (${cm.length}): ${L(cm)}`:'')+(lm.length?`\nMAYBE LANDS (${lm.length}): ${L(lm)}`:'');
   $('stage').innerHTML=(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.a.y} in, ${c.c.y} out, ${c.l.y} lands. All settled.</p>`)
-    +`<p class="where">Send this to Claude to lock it in:</p><pre id="out">${E(text)}</pre><p><button class="pill" data-copy-out>Copy for Claude</button></p>`
+    +`<p class="where">Claude can read these answers from the table: just say "lock in ${E(D.name)}". Or copy them:</p><pre id="out">${E(text)}</pre><p><button class="pill" data-copy-out>Copy for Claude</button></p>`
     +[['In',ai,'a:'],['Out',co,'c:'],['Lands (for basics)',li,'l:'],['Maybe in',am,'a:'],['Maybe out',cm,'c:'],['Maybe lands',lm,'l:']].filter(g=>g[1].length||!g[0].startsWith('Maybe'))
       .map(([h,Ls,P])=>`<h2>${h} (${Ls.length})</h2><ul class="rows">${Ls.map(x=>row(x,P)).join('')||'<li><span class="st">none yet</span></li>'}</ul>`).join('')
     +`<h2>Start over</h2><p><button class="pill ghost" id="reset">Clear this deck's answers</button></p>`;
@@ -227,7 +267,7 @@ document.addEventListener('click',e=>{
   const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);return}
   const t=e.target.closest('#tabs button');if(t){go(t.dataset.p);return}
   if(e.target.closest('[data-copy-out]')){copy($('out').textContent,e.target);return}
-  const r=e.target.closest('#reset');if(r){if(r.dataset.sure){S={d:{},h:[],t:S.t};for(const p in PH)pos[p]=0;go('adds')}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
+  const r=e.target.closest('#reset');if(r){if(r.dataset.sure){S={d:{},h:[],t:S.t};send(D.slug,{d:null});for(const p in PH)pos[p]=0;go('adds')}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
 });
 function zoom(x){const Z=$('zoom');Z.querySelector('img').src=x.img;Z.querySelector('img').alt=x.n;
   const add='a' in x;
