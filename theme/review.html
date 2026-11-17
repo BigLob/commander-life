@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Approve the theme picks two cards at a time. Front: which deck next. Then the adds (the 15, then the options), the
-   cuts (the 15, then more), and a summary to copy back to Claude. Decisions stay on this phone (localStorage) until
+   cuts (the 15, then more), the land version (10 nonbasics for 10 basics), the maybes in one grid, and a summary to
+   copy back to Claude. Decisions stay on this phone (localStorage) until
    they're sent; a deck whose list Claude has locked in (theme/<slug>-review.json) starts from that.
    Controls sit bottom-left (the user is left-handed). Same tokens as the theme pages. */
 :root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--yes:#2e7d32;--no:#b3261e;--maybe:#8a6d00;
@@ -39,11 +40,11 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
 .pill{background:var(--accent);color:var(--bg);border:0;border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem}
 .pill.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
 /* Review */
-.tally{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px}
-.tally span{font-family:var(--f-mono);font-size:.74rem;border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.tally{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 8px}
+.tally span{font-family:var(--f-mono);font-size:.66rem;border:1px solid var(--line);border-radius:999px;padding:3px 6px}
 .tally .full{border-color:var(--yes);color:var(--yes)}
-.tabs{display:flex;gap:6px;margin:0 0 10px}
-.tabs button{flex:1;background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 4px;font-size:.82rem}
+.tabs{display:flex;gap:5px;margin:0 0 10px}
+.tabs button{flex:1;min-width:0;background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 2px;font-size:.78rem}
 .tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}
 .where{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin:0 0 8px}
 .note{font-size:.84rem;border:1px solid var(--yes);border-radius:10px;padding:8px 10px;margin:0 0 10px;display:flex;gap:10px;align-items:center;justify-content:space-between}
@@ -90,14 +91,14 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <body>
 <main id="front">
   <h1>Approve theme picks</h1>
-  <p class="sub">Yes, maybe or no on each card, two at a time: the adds, then the cuts. Which deck next?</p>
+  <p class="sub">Yes, maybe or no on each card, two at a time: the adds, the cuts, then a land version (10 nonbasics for 10 basics). Which deck next?</p>
   <ul class="decks" id="decks"></ul>
 </main>
 <main id="rev" hidden>
   <h1 id="rt"></h1>
   <p class="sub" id="rs"></p>
   <div class="tally" id="tally"></div>
-  <div class="tabs" id="tabs"><button data-p="adds">Adds</button><button data-p="cuts">Cuts</button><button data-p="sum">Summary</button></div>
+  <div class="tabs" id="tabs"><button data-p="adds">Adds</button><button data-p="cuts">Cuts</button><button data-p="lands">Lands</button><button data-p="maybes">Maybes</button><button data-p="sum">Done</button></div>
   <div id="stage"></div>
 </main>
 <div class="foot" id="foot" hidden><button id="back" type="button">‹ Decks</button><button id="undo" type="button">Undo</button></div>
@@ -105,21 +106,25 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <script>
 const $=id=>document.getElementById(id), E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=v=>Math.round(v*100)+'%';
-let decks=[], D=null, S=null, phase='adds', pos={adds:0,cuts:0};
+// Phases: adds (15), cuts (15), lands (10 nonbasics for 10 basics), maybes (everything marked maybe), summary.
+const PH={adds:{p:'a:',k:'adds',goal:15,word:'add',next:'cuts'},cuts:{p:'c:',k:'cuts',goal:15,word:'cut',next:'lands'},lands:{p:'l:',k:'lands',goal:10,word:'land',next:'maybes'}};
+let decks=[], D=null, S=null, phase='adds', pos={adds:0,cuts:0,lands:0}, snap=[];
 const store={get(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const key=s=>'theme-review-'+s;
+const list=p=>D[PH[p].k]||[];
+const item=k=>{for(const p in PH){if(k.startsWith(PH[p].p)){return list(p).find(x=>PH[p].p+x.n===k)}}};
 
-// Front: every deck, ready ones first. A deck not built yet gives a line to send Claude, so the next run is one paste.
+// Front: every deck in the user's order. A deck not built yet gives a line to send Claude, so the next run is one paste.
 async function front(){
   $('rev').hidden=true;$('foot').hidden=true;$('front').hidden=false;
   if(!decks.length){try{decks=await (await fetch('index.json',{cache:'no-store'})).json()}catch(e){$('decks').innerHTML='<li class="empty">Couldn\'t load the deck list.</li>';return}}
   $('decks').innerHTML=decks.map((d,i)=>{
     const s=store.get(key(d.slug)), c=s?count(s):null;
-    const st=d.ready?(c&&c.total?`In ${c.ay} of 15 · out ${c.cy} of 15 · ${c.left} still to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet';
+    const st=d.ready?(c&&c.total?`In ${c.a.y}/15 · out ${c.c.y}/15 · lands ${c.l.y}/10 · ${c.left} to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet: tap to ask Claude';
     return `<li><button class="deck${d.ready?'':' off'}" data-i="${i}"><img src="${E(d.img.replace('/normal/','/small/'))}" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="t"><b>${E(d.name)}</b><span class="d">${E(d.cmd)}${d.direction?' · '+E(d.direction):''}</span><span class="st">${st}</span></span></button><div class="ask" id="ask${i}" hidden></div></li>`}).join('');
   scrollTo(0,0);
 }
-$('decks').addEventListener('click',async e=>{
+$('decks').addEventListener('click',e=>{
   const cp=e.target.closest('[data-copy]');if(cp){copy(cp.dataset.copy,cp);return}
   const b=e.target.closest('.deck');if(!b)return;const d=decks[+b.dataset.i];
   if(d.ready){open(d);return}
@@ -129,45 +134,56 @@ $('decks').addEventListener('click',async e=>{
 });
 async function copy(t,btn){try{await navigator.clipboard.writeText(t);btn.textContent='Copied'}catch(e){const r=document.createRange();const el=btn.previousElementSibling;r.selectNodeContents(el);getSelection().removeAllRanges();getSelection().addRange(r);btn.textContent='Selected: copy it'}}
 
-// Review: one deck's adds and cuts.
+// Review: one deck.
 async function open(d){
   try{D=await (await fetch(d.slug+'.json',{cache:'no-store'})).json()}catch(e){alert('Couldn\'t load '+d.name);return}
   S=store.get(key(d.slug));
   if(!S){S={d:{},h:[]};   // first time on this phone: start from the list Claude locked in, if there is one
-    try{const r=await fetch(d.slug+'-review.json',{cache:'no-store'});if(r.ok){const L=await r.json();for(const [k,p] of [['in','a'],['out','c'],['maybe_in','a'],['maybe_out','c']])for(const n of L[k]||[])S.d[p+':'+n]=k.startsWith('maybe')?'m':'y';
-      for(const x of D.adds)if(!S.d['a:'+x.n])S.d['a:'+x.n]='n';for(const x of D.cuts)if(!S.d['c:'+x.n])S.d['c:'+x.n]='n'}}catch(e){}}
-  D.name=d.name;S.t=D.adds.length+D.cuts.length;$('rt').textContent=d.name+': '+D.direction;
+    try{const r=await fetch(d.slug+'-review.json',{cache:'no-store'});if(r.ok){const L=await r.json();
+      for(const [k,p,v] of [['in','a:','y'],['out','c:','y'],['lands','l:','y'],['maybe_in','a:','m'],['maybe_out','c:','m'],['maybe_lands','l:','m']])for(const n of L[k]||[])S.d[p+n]=v;
+      for(const p in PH)for(const x of list(p))if(!S.d[PH[p].p+x.n])S.d[PH[p].p+x.n]='n'}}catch(e){}}
+  D.name=d.name;S.t=D.adds.length+D.cuts.length+(D.lands||[]).length;
+  $('rt').textContent=d.name+': '+D.direction;
   $('rs').innerHTML=`${E(D.cmd)} · ${D.nd.toLocaleString()} of ${D.n.toLocaleString()} Archidekt decks built this way · built ${E(D.date)} · <a href="${E(D.slug)}.html">full page and sources</a>`;
-  phase=S.p||'adds';pos={adds:firstOpen('adds'),cuts:firstOpen('cuts')};
-  $('front').hidden=true;$('rev').hidden=false;$('foot').hidden=false;render();
+  for(const p in PH)pos[p]=openFrom(p,0);
+  go(S.p||'adds');
+  $('front').hidden=true;$('rev').hidden=false;$('foot').hidden=false;
 }
-const list=p=>p==='adds'?D.adds:D.cuts, pre=p=>p==='adds'?'a:':'c:';
-function firstOpen(p){const L=list(p);for(let i=0;i<L.length;i++)if(!S.d[pre(p)+L[i].n])return i-i%2;return L.length}
-function count(s){const d=s.d,c={ay:0,cy:0,am:0,cm:0,al:0,cl:0,total:0};for(const k in d){c.total++;const a=k[0]==='a';if(d[k]==='y'){a?c.ay++:c.cy++}if(d[k]==='m'){a?c.am++:c.cm++}}
-  if(D&&s===S){for(const x of D.adds)if(x.land&&d['a:'+x.n]==='y')c.al++;for(const x of D.cuts)if(x.land&&d['c:'+x.n]==='y')c.cl++}
-  c.left=Math.max(0,(s.t||0)-c.total);return c}
+function openFrom(p,from){const L=list(p);for(let i=from;i<L.length;i++)if(!S.d[PH[p].p+L[i].n])return i-i%2;return L.length}
+function count(s){const c={a:{y:0,m:0},c:{y:0,m:0},l:{y:0,m:0},total:0};for(const k in s.d){c.total++;const g=c[k[0]];if(g&&g[s.d[k]]!=null)g[s.d[k]]++}
+  c.m=c.a.m+c.c.m+c.l.m;c.left=Math.max(0,(s.t||0)-c.total);return c}
 function save(){S.p=phase;store.set(key(D.slug),S)}
+function go(p){phase=p;if(p==='maybes')snap=Object.keys(S.d).filter(k=>S.d[k]==='m'&&item(k));save();render();scrollTo(0,0)}
 
 function render(){
   const c=count(S);
-  $('tally').innerHTML=`<span class="${c.ay>=15?'full':''}">In ✓ ${c.ay}/15</span><span class="${c.cy>=15?'full':''}">Out ✓ ${c.cy}/15</span><span>Maybe ${c.am+c.cm}</span>`;
+  $('tally').innerHTML=`<span class="${c.a.y>=15?'full':''}">In ✓ ${c.a.y}/15</span><span class="${c.c.y>=15?'full':''}">Out ✓ ${c.c.y}/15</span><span class="${c.l.y>=10?'full':''}">Lands ✓ ${c.l.y}/10</span><span>Maybe ${c.m}</span>`;
   for(const b of $('tabs').children)b.setAttribute('aria-pressed',b.dataset.p===phase);
   $('undo').disabled=!S.h.length;
   if(phase==='sum')return summary(c);
-  const L=list(phase), i=pos[phase], P=pre(phase);
-  if(i>=L.length){$('stage').innerHTML=`<p class="empty">That's every ${phase==='adds'?'add':'cut'}. </p><p style="text-align:center"><button class="pill" data-go="${phase==='adds'?'cuts':'sum'}">${phase==='adds'?'On to the cuts':'See the summary'}</button></p>`;return}
-  const full=phase==='adds'?c.ay>=15:c.cy>=15;
-  const topLeft=L.filter(x=>x.top).length;
-  $('stage').innerHTML=(full?`<div class="note"><span>15 ${phase==='adds'?'in':'out'}. Keep going, or move on.</span><button class="pill" data-go="${phase==='adds'?'cuts':'sum'}">${phase==='adds'?'Cuts':'Summary'} ›</button></div>`:'')
-    +`<p class="where">${phase==='adds'?'Adds':'Cuts'} ${i+1}${L[i+1]?'–'+(i+2):''} of ${L.length} · ${i<topLeft?'the 15 picked':'more options, best first'}</p>`
-    +`<div class="pair" id="pair">${L.slice(i,i+2).map((x,j)=>tile(x,P,i+j)).join('')}</div>`;
+  if(phase==='maybes')return maybes();
+  const P=PH[phase], L=list(phase), i=pos[phase];
+  const nextLabel={cuts:'On to the cuts',lands:'On to the lands',maybes:'Go over the maybes'}[P.next];
+  if(i>=L.length){$('stage').innerHTML=`<p class="empty">That's every ${P.word}.</p><p style="text-align:center"><button class="pill" data-go="${P.next}">${nextLabel}</button></p>`;return}
+  const full=c[P.p[0]].y>=P.goal, topN=L.filter(x=>x.top).length;
+  $('stage').innerHTML=(phase==='lands'?`<p class="where">Land version: each nonbasic land you take replaces a basic (${E(D.basics||'')} for all 10). On-theme lands come first.</p>`:'')
+    +(full?`<div class="note"><span>${P.goal} ${phase==='adds'?'in':phase==='cuts'?'out':'lands'}. Keep going, or move on.</span><button class="pill" data-go="${P.next}">Next ›</button></div>`:'')
+    +`<p class="where">${phase[0].toUpperCase()+phase.slice(1)} ${i+1}${L[i+1]?'–'+(i+2):''} of ${L.length} · ${i<topN?'the '+P.goal+' picked':'more options, best first'}</p>`
+    +`<div class="pair" id="pair">${L.slice(i,i+2).map(x=>tile(x,P.p)).join('')}</div>`;
 }
-function tile(x,P,idx){
-  const v=S.d[P+x.n]||'', add=P==='a:';
+// Maybes: every card marked maybe when the tab opened, two to a row, so they can be settled in one place.
+function maybes(){
+  if(!snap.length){$('stage').innerHTML=`<p class="empty">No maybes.</p><p style="text-align:center"><button class="pill" data-go="sum">See the summary</button></p>`;return}
+  const grp=[['Maybe in','a:'],['Maybe out','c:'],['Maybe lands','l:']];
+  $('stage').innerHTML=grp.map(([h,p])=>{const ks=snap.filter(k=>k.startsWith(p));return ks.length?`<h2>${h} (${ks.length})</h2><div class="pair">${ks.map(k=>tile(item(k),p)).join('')}</div>`:''}).join('')
+    +`<p style="text-align:center;margin-top:16px"><button class="pill" data-go="sum">See the summary</button></p>`;
+}
+function tile(x,P){
+  const v=S.d[P+x.n]||'', add=P!=='c:';
   const info=add?`<span class="job">${E(x.job)}</span><span class="num">Built this way ${pct(x.a)} · EDHREC ${pct(x.b)}${x.src.length?' · '+x.src.length+' source'+(x.src.length>1?'s':''):''}${x.usd?' · $'+x.usd.toFixed(2):''}</span>`
     :`<span class="job">Left out of ${pct(x.out)} of decks built this way</span><span class="num">EDHREC cut ${pct(x.ed)}</span>`;
-  const chips=[x.top?`<i class="top">In the 15</i>`:'',x.land?'<i>Land</i>':'',x.gc?'<i class="gc">Game Changer</i>':''].join('');
-  return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" data-idx="${idx}" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"></button>
+  const chips=[x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',P==='l:'&&x.theme?'<i class="top">On theme</i>':'',x.gc?'<i class="gc">Game Changer</i>':''].join('');
+  return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"></button>
     <span class="nm">${E(x.n)}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
 }
@@ -175,43 +191,43 @@ const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">$
 
 function decide(k,v){
   S.h.push([k,S.d[k]||null]);S.d[k]=v;save();
-  if(phase==='sum'){render();return}
-  const L=list(phase),i=pos[phase],P=pre(phase);
-  const done=L.slice(i,i+2).every(x=>S.d[P+x.n]);
+  if(!PH[phase]){render();return}
+  const P=PH[phase],L=list(phase),i=pos[phase];
+  const done=L.slice(i,i+2).every(x=>S.d[P.p+x.n]);
   render();
-  if(done){const pr=$('pair');if(pr)pr.classList.add('fade');setTimeout(()=>{pos[phase]=Math.max(pos[phase],firstOpenFrom(phase,i+2));render();scrollTo(0,0)},260)}
+  if(done){const pr=$('pair');if(pr)pr.classList.add('fade');setTimeout(()=>{pos[phase]=Math.max(pos[phase],openFrom(phase,i+2));render();scrollTo(0,0)},260)}
 }
-function firstOpenFrom(p,from){const L=list(p);for(let i=from;i<L.length;i++)if(!S.d[pre(p)+L[i].n])return i-i%2;return L.length}
 $('undo').onclick=()=>{const h=S.h.pop();if(!h)return;const [k,prev]=h;if(prev)S.d[k]=prev;else delete S.d[k];
-  const p=k[0]==='a'?'adds':'cuts',ix=list(p).findIndex(x=>pre(p)+x.n===k);
-  if(phase!=='sum'){phase=p;pos[p]=ix-ix%2}save();render()};
+  const p=Object.keys(PH).find(p=>k.startsWith(PH[p].p)),ix=list(p).findIndex(x=>PH[p].p+x.n===k);
+  if(PH[phase]){phase=p;pos[p]=ix-ix%2}save();render()};
 $('back').onclick=()=>{if(D)save();D=null;front()};
 
 function summary(c){
-  const row=(x,P)=>`<li data-k="${E(P+x.n)}"><span>${E(x.n)}${x.land?' <small class="st">land</small>':''}</span><div class="yn">${btn('y','Y',S.d[P+x.n])}${btn('m','?',S.d[P+x.n])}${btn('n','N',S.d[P+x.n])}</div></li>`;
-  const grp=(L,P,v)=>L.filter(x=>S.d[P+x.n]===v);
-  const ai=grp(D.adds,'a:','y'),co=grp(D.cuts,'c:','y'),am=grp(D.adds,'a:','m'),cm=grp(D.cuts,'c:','m');
-  const unseenA=D.adds.filter(x=>x.top&&!S.d['a:'+x.n]).length, unseenC=D.cuts.filter(x=>x.top&&!S.d['c:'+x.n]).length;
+  const row=(x,P)=>`<li data-k="${E(P+x.n)}"><span>${E(x.n)}</span><div class="yn">${btn('y','Y',S.d[P+x.n])}${btn('m','?',S.d[P+x.n])}${btn('n','N',S.d[P+x.n])}</div></li>`;
+  const grp=(p,v)=>list(p).filter(x=>S.d[PH[p].p+x.n]===v);
+  const ai=grp('adds','y'),co=grp('cuts','y'),li=grp('lands','y'),am=grp('adds','m'),cm=grp('cuts','m'),lm=grp('lands','m');
+  const unseen=p=>list(p).filter(x=>x.top&&!S.d[PH[p].p+x.n]).length;
   const msgs=[];
-  if(c.ay!==c.cy)msgs.push(`${c.ay} in and ${c.cy} out: the deck has to stay at 100, so they should match.`);
-  if(c.al!==c.cl)msgs.push(`${c.al} land${c.al===1?'':'s'} in and ${c.cl} out: lands usually go land for land.`);
-  if(unseenA||unseenC)msgs.push(`Not seen yet: ${unseenA} of the 15 adds, ${unseenC} of the 15 cuts.`);
-  const text=`Theme picks reviewed: ${D.name} (${D.direction})\nIN (${ai.length}): ${ai.map(x=>x.n).join('; ')||'none'}\nOUT (${co.length}): ${co.map(x=>x.n).join('; ')||'none'}`
-    +(am.length?`\nMAYBE IN (${am.length}): ${am.map(x=>x.n).join('; ')}`:'')+(cm.length?`\nMAYBE OUT (${cm.length}): ${cm.map(x=>x.n).join('; ')}`:'');
-  $('stage').innerHTML=(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.ay} in, ${c.cy} out, lands balanced.</p>`)
+  if(c.a.y!==c.c.y)msgs.push(`${c.a.y} in and ${c.c.y} out: the deck has to stay at 100, so they should match.`);
+  if(unseen('adds')||unseen('cuts')||unseen('lands'))msgs.push(`Not seen yet: ${unseen('adds')} of the 15 adds, ${unseen('cuts')} of the 15 cuts, ${unseen('lands')} of the 10 lands.`);
+  if(c.m)msgs.push(`${c.m} maybe${c.m>1?'s':''} still open (Maybes tab).`);
+  const L=a=>a.map(x=>x.n).join('; ');
+  const text=`Theme picks reviewed: ${D.name} (${D.direction})\nIN (${ai.length}): ${L(ai)||'none'}\nOUT (${co.length}): ${L(co)||'none'}\nLANDS (${li.length}, each for a basic): ${L(li)||'none'}`
+    +(am.length?`\nMAYBE IN (${am.length}): ${L(am)}`:'')+(cm.length?`\nMAYBE OUT (${cm.length}): ${L(cm)}`:'')+(lm.length?`\nMAYBE LANDS (${lm.length}): ${L(lm)}`:'');
+  $('stage').innerHTML=(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.a.y} in, ${c.c.y} out, ${c.l.y} lands. All settled.</p>`)
     +`<p class="where">Send this to Claude to lock it in:</p><pre id="out">${E(text)}</pre><p><button class="pill" data-copy-out>Copy for Claude</button></p>`
-    +[['In',ai,'a:'],['Out',co,'c:'],['Maybe in',am,'a:'],['Maybe out',cm,'c:']].filter(g=>g[1].length||g[0].length<4)
-      .map(([h,L,P])=>`<h2>${h} (${L.length})</h2><ul class="rows">${L.map(x=>row(x,P)).join('')||'<li><span class="st">none yet</span></li>'}</ul>`).join('')
+    +[['In',ai,'a:'],['Out',co,'c:'],['Lands (for basics)',li,'l:'],['Maybe in',am,'a:'],['Maybe out',cm,'c:'],['Maybe lands',lm,'l:']].filter(g=>g[1].length||!g[0].startsWith('Maybe'))
+      .map(([h,Ls,P])=>`<h2>${h} (${Ls.length})</h2><ul class="rows">${Ls.map(x=>row(x,P)).join('')||'<li><span class="st">none yet</span></li>'}</ul>`).join('')
     +`<h2>Start over</h2><p><button class="pill ghost" id="reset">Clear this deck's answers</button></p>`;
 }
 document.addEventListener('click',e=>{
   if($('rev').hidden)return;
-  const z=e.target.closest('.zb');if(z){const x=list(phase)[+z.dataset.idx];zoom(x);return}
-  const v=e.target.closest('[data-v]');if(v){const k=v.closest('[data-k]').dataset.k;decide(k,v.dataset.v);return}
-  const g=e.target.closest('[data-go]');if(g){phase=g.dataset.go;save();render();scrollTo(0,0);return}
-  const t=e.target.closest('#tabs button');if(t){phase=t.dataset.p;save();render();return}
+  const z=e.target.closest('.zb');if(z){zoom(item(z.closest('[data-k]').dataset.k));return}
+  const v=e.target.closest('[data-v]');if(v){decide(v.closest('[data-k]').dataset.k,v.dataset.v);return}
+  const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);return}
+  const t=e.target.closest('#tabs button');if(t){go(t.dataset.p);return}
   if(e.target.closest('[data-copy-out]')){copy($('out').textContent,e.target);return}
-  const r=e.target.closest('#reset');if(r){if(r.dataset.sure){S={d:{},h:[],t:S.t};phase='adds';pos={adds:0,cuts:0};save();render()}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
+  const r=e.target.closest('#reset');if(r){if(r.dataset.sure){S={d:{},h:[],t:S.t};for(const p in PH)pos[p]=0;go('adds')}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
 });
 function zoom(x){const Z=$('zoom');Z.querySelector('img').src=x.img;Z.querySelector('img').alt=x.n;
   const add='a' in x;

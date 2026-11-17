@@ -48,13 +48,16 @@ with shares on different scales and then tuned it against our own picks.
    - Commander Spellbook (`find-my-combos`, `estimate-bracket`) runs on the finished 100. An add that completes a
      two-card infinite, or brings mass land denial or extra turns, is dropped and the list rebuilt. Longer combos are
      allowed (Bracket 3).
-7. **Cuts**: box cards that aren't engine or piece cards (and never the commander), ranked by the mean of (share of
-   decks built this way that leave the card out) and EDHREC's cut share. For each land added, a land is cut instead of
-   a spell, so the land count holds.
+7. **Cuts**: box spells that aren't engine or piece cards (and never the commander), ranked by the mean of (share of
+   decks built this way that leave the card out) and EDHREC's cut share. Lands are never in the 15 for 15 (the
+   user's call, Nov 17, 2026).
+7b. **Land version**: 10 nonbasic lands in for 10 basics (split by the box's basic counts). On-theme lands (passing a
+   theme test, and played by 3%+ of decks built this way or added by a source) come first by score, then the rest by
+   score; 10 more are shown. Game Changers still count toward the 3, and the bracket check runs with them in.
 8. **More options**: the next 12 cards for each role and 10 more cuts are shown under the 15, in the same order, so
    the user can swap any pick by hand.
-9. **Approval**: `theme/review.html` shows the adds and cuts two at a time for a yes, maybe or no, and copies the
-   result for Claude, who saves it as `theme/<slug>-review.json`.
+9. **Approval**: `theme/review.html` shows the adds, cuts and lands two at a time for a yes, maybe or no, gathers the
+   maybes on one tab, and copies the result for Claude, who saves it as `theme/<slug>-review.json`.
 
 ## Caveats
 

@@ -325,6 +325,9 @@ def main():
                      'img': iu['small'], 'big': iu['normal'], 'url': c['scryfall_uri'].split('?')[0], 'type': typeline(c)})
     # 'land' reads the front face only: a spell with a land back (Glasswing Grace) counts as a spell.
     rows.sort(key=lambda x: (-x['score'], x['mv']))
+    # Lands stay out of the 15 for 15 (the user's call, Nov 17): they get their own version, 10 nonbasic lands in for
+    # 10 basics, on-theme lands first (Hall of Heliod's Generosity, Field of the Dead), then the most played.
+    lrows = [x for x in rows if x['land']]; rows = [x for x in rows if not x['land']]
 
     box_gc = sum(bool(cards.get(front(c['n']), {}).get('game_changer')) for c in box)
     on = [x for x in rows if x['role'] != 'off']
@@ -340,29 +343,51 @@ def main():
             if len(pick) == 15: break
         return pick
 
-    # Cuts: box cards (not the commander, not on-theme engine or piece cards) that direction decks most often leave out.
+    def lands_for(banned, gc):
+        """10 nonbasic lands for 10 basics: on-theme lands that direction decks or sources use (3%+ or a source), by
+        score, then the rest by score. Game Changers still stop at 3. Returns the 10 and the next 10."""
+        ok = [x for x in lrows if x['n'] not in banned]
+        th = [x for x in ok if x['role'] != 'off' and (x['a'] >= 0.03 or x['src'])]
+        order = th + [x for x in ok if x not in th]
+        pick = []
+        for x in order:
+            if x['gc'] and gc >= 3: continue
+            if len(pick) < 10: pick.append(x); gc += x['gc']
+        rest = [x for x in order if x not in pick][:10]
+        return pick, rest
+
+    # The basics the 10 lands replace, split by the box's own basic counts.
+    basics = [(front(c['n']), c.get('q', 1)) for c in box if 'Basic' in c['t']]
+    nb = sum(q for _, q in basics)
+    share_b = sorted(((n, 10 * q / nb) for n, q in basics), key=lambda t: -(t[1] % 1))
+    bcut = {n: int(v) for n, v in share_b}
+    for n, v in share_b[:10 - sum(bcut.values())]: bcut[n] += 1
+    bcut = {n: k for n, k in bcut.items() if k}
+
+    # Cuts: box spells (not the commander, not on-theme engine or piece cards) that direction decks most often leave out.
     def cuts_for(pick):
-        nl = sum(x['land'] for x in pick)
         cand = []
         for c in box:
             n = front(c['n'])
             if n == T['cmd'] or 'Basic' in c['t']: continue
             r = role(cards[n])[0] if n in cards else 'off'
             if r in ('engine', 'piece'): continue
+            if 'Land' in c['t'].split(' // ')[0]: continue   # lands are only swapped in the land version
             cand.append({'n': n, 'role': r, 'out': 1 - share(n, dirn), 'ed': edcut.get(n, 0), 'land': 'Land' in c['t'],
                          'img': c['i'].replace('/normal/', '/small/'), 'big': c['i'], 't': c['t'],
                          'url': 'https://scryfall.com/search?q=' + urllib.parse.quote(f'!"{n}"')})
         cand.sort(key=lambda x: (-(x['out'] + x['ed']) / 2))
-        spells = [x for x in cand if not x['land']]; lands = [x for x in cand if x['land']]
-        return spells[:15 - nl] + lands[:nl], spells[15 - nl:25 - nl] + lands[nl:nl + 4]
+        return cand[:15], cand[15:25]
 
     # Bracket check on the finished 100; drop what breaks Bracket 3 and rebuild.
     banned, notes = set(), []
     while True:
         pick = build(banned); cuts, morecuts = cuts_for(pick)
+        lpick, lmore = lands_for(banned, box_gc + sum(x['gc'] for x in pick))
         out = {x['n'] for x in cuts}
-        main = [{'card': c['n'], 'quantity': c.get('q', 1)} for c in box if front(c['n']) not in out and front(c['n']) != T['cmd']]
-        main += [{'card': x['n'], 'quantity': 1} for x in pick]
+        main = [{'card': c['n'], 'quantity': c.get('q', 1) - bcut.get(front(c['n']), 0)} for c in box
+                if front(c['n']) not in out and front(c['n']) != T['cmd'] and c.get('q', 1) > bcut.get(front(c['n']), 0)]
+        main += [{'card': x['n'], 'quantity': 1} for x in pick + lpick]
         body = {'main': main, 'commanders': [{'card': T['cmd'], 'quantity': 1}]}
         combos = get('https://backend.commanderspellbook.com/find-my-combos', body)['results']['included']
         est = get('https://backend.commanderspellbook.com/estimate-bracket/', body)
@@ -371,14 +396,15 @@ def main():
             ns = [u['card']['name'] for u in cb['uses']]
             prods = ' '.join(p['feature']['name'] for p in cb.get('produces', []))
             if len(ns) <= 2 and 'Infinite' in prods:
-                bad += [front(n) for n in ns if front(n) in {x['n'] for x in pick}]
+                bad += [front(n) for n in ns if front(n) in {x['n'] for x in pick + lpick}]
         for c in est.get('cards', []):
-            if (c.get('massLandDenial') or c.get('extraTurn')) and front(c['card']['name']) in {x['n'] for x in pick}:
+            if (c.get('massLandDenial') or c.get('extraTurn')) and front(c['card']['name']) in {x['n'] for x in pick + lpick}:
                 bad.append(front(c['card']['name']))
         if not bad: break
         for b in bad:
             banned.add(b); notes.append(f'{b} left out: it breaks Bracket 3 with this deck.')
-    gcs = box_gc + sum(x['gc'] for x in pick)
+    gcs = box_gc + sum(x['gc'] for x in pick + lpick)
+    btxt = ', '.join(f'{k} {n}' for n, k in bcut.items())
     picked = {x['n'] for x in pick}
     more = {r: [x for x in rows if x['role'] == r and x['n'] not in picked and x['n'] not in banned][:12] for r in RN}
 
@@ -416,6 +442,7 @@ def main():
                       f'{gcs} Game Changer{"s" if gcs != 1 else ""} in the finished deck.'),
      '__PICKS__': secs, '__MORE__': moresec,
      '__CUTS__': grid(cuts, 'cut'), '__MORECUTS__': grid(morecuts, 'cut'),
+     '__LANDS__': grid(lpick), '__MORELANDS__': grid(lmore), '__BASICS__': E(btxt),
      '__CHECK__': E(f'{gcs} Game Changer{"s" if gcs != 1 else ""} (Bracket 3 allows 3). Commander Spellbook\'s combo-based tag for the finished 100: '
                     f'{TAG.get(est.get("bracketTag"), est.get("bracketTag", "?"))}. Combos it finds: {combos_txt}. ' + ' '.join(notes)),
      '__SOURCES__': srcs, '__N__': str(len(decks)), '__ND__': str(len(dirn)), '__EDN__': f'{edn:,}',
@@ -428,7 +455,7 @@ def main():
     def add_j(x, top):
         return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'job': x['label'], 'role': RN[x['role']], 'a': round(x['a'], 3),
                 'b': round(x['b'], 3), 'src': [T['sources'][k][0] for k in x['src']], 'gc': x['gc'], 'usd': x['usd'],
-                'land': x['land'], 'top': top}
+                'land': x['land'], 'top': top, 'theme': x['role'] != 'off'}
     def cut_j(x, top):
         return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'out': round(x['out'], 3), 'ed': round(x['ed'], 3),
                 'land': x['land'], 'top': top}
@@ -436,12 +463,15 @@ def main():
     rev = {'slug': slug, 'cmd': T['cmd'], 'direction': T['direction'], 'why': T['why'], 'date': time.strftime('%b %-d, %Y'),
            'n': len(decks), 'nd': len(dirn), 'edn': edn, 'gcs': gcs, 'bracket': TAG.get(est.get('bracketTag'), est.get('bracketTag')),
            'adds': [add_j(x, True) for x in pick] + [add_j(x, False) for x in opts],
-           'cuts': [cut_j(x, True) for x in cuts] + [cut_j(x, False) for x in morecuts]}
+           'cuts': [cut_j(x, True) for x in cuts] + [cut_j(x, False) for x in morecuts],
+           'lands': [add_j(x, True) for x in lpick] + [add_j(x, False) for x in lmore], 'basics': btxt}
     json.dump(rev, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
     write_index()
     print(f'{len(decks)} decks, {len(dirn)} built this way (>= {cut_at} on-theme); box GCs {box_gc}, final {gcs}; bracket {est.get("bracketTag")}')
     for x in pick: print(f'  + {x["n"]:<38} {x["role"]:<8} a={pct(x["a"]):>4} b={pct(x["b"]):>4} src={len(x["src"])} lift={x["lift"]:.1f}{" GC" if x["gc"] else ""}')
     for x in cuts: print(f'  - {x["n"]:<38} out={pct(x["out"]):>4} ed={pct(x["ed"]):>4}')
+    print('  lands for', btxt)
+    for x in lpick: print(f'  L {x["n"]:<38} {x["role"]:<8} a={pct(x["a"]):>4} b={pct(x["b"]):>4} src={len(x["src"])}')
     for n in notes: print(' ', n)
     print('  combos:', combos_txt)
 

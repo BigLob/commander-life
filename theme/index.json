@@ -29,7 +29,7 @@
 "cmd": "Kardur, Doomscourge",
 "img": "https://cards.scryfall.io/normal/front/1/9/19e4d494-e8b3-4ae2-93e3-70c65ab90f15.jpg?1783918741",
 "direction": "Goad everything",
-"ready": false
+"ready": true
 },
 {
 "slug": "draconic-destruction",
