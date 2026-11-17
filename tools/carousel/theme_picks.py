@@ -141,7 +141,7 @@ THEMES = {
   'tests': [
    ('engine', 'Doubles tokens', r'twice that many[^.]{0,20}tokens|tokens? would be created[^.]*instead|those tokens plus|double the number of[^.]{0,20}tokens|create (?:that many|an additional)[^.]{0,40}token', None),
    ('engine', 'Pays off tokens', r'whenever (?:one or more )?(?:creature )?tokens?[^.]{0,30}(?:enters|you control)|for each (?:creature )?token|creature tokens? you control get \+|\bpopulate\b', None),
-   ('piece', 'Makes creature tokens', r'create[^.]{0,90}creature tokens?', None),
+   ('piece', 'Makes creature tokens', r'(?<!controller )(?<!player )(?<!opponent )\bcreate[^.]{0,90}creature tokens?', None),   # not Beast Within's gift
    ('support', 'Taps your creatures or pumps the team', r'\bconvoke\b|tap (?:an|two|three|x) untapped creatures? you control|creatures you control get \+', None),
   ],
   'sources': {

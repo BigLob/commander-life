@@ -45,7 +45,7 @@
 "cmd": "Emmara, Soul of the Accord",
 "img": "https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741",
 "direction": "Token doublers",
-"ready": false
+"ready": true
 },
 {
 "slug": "living-energy",
