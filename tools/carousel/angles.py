@@ -796,18 +796,24 @@ def main():
     for n in names:
         c = found.get(n) or found.get(n.split(' // ')[0])
         if c is None: raise SystemExit('Scryfall has no card named ' + n)
+        iu = c.get('image_uris') or c['card_faces'][0]['image_uris']   # double-faced cards: front face
         flags[n] = (c['legalities'].get('commander') == 'legal', bool(c.get('game_changer')),
-                    'https://scryfall.com/search?q=' + urllib.parse.quote(f'!"{c["name"]}"'))
+                    'https://scryfall.com/search?q=' + urllib.parse.quote(f'!"{c["name"]}"'), iu['small'], iu['normal'])
     bad = [n for n, f in flags.items() if not f[0]]
     if bad: print('Not Commander-legal:', ', '.join(bad))
 
     def chip(n, adds, cuts, mode, cmdmode=False):
-        legal, gc, url = flags[n]
+        """A card tile: Scryfall image (small for the tile, normal for the zoom), then name, share and flags.
+        Tapping the image zooms it on the page (template script); the name links to Scryfall."""
+        legal, gc, url, small, normal = flags[n]
         pct = adds.get(n) if mode == 'add' else cuts.get(n)
         num = (f'<span class="p pc">{round(pct * 100)}%</span>' if cmdmode else
                f'<span class="p">{"+" if mode == "add" else "−"}{round(pct * 100)}%</span>') if pct else ''
         tag = ('' if legal else '<span class="bad">Not Commander-legal</span>') + ('<span class="gc" title="Game Changer: counts toward the bracket limit">GC</span>' if gc else '')
-        return f'<a class="c" href="{url}" target="_blank" rel="noopener">{esc(n)}{num}{tag}</a>'
+        return (f'<figure class="ct"><button class="zb" type="button" data-z="{normal}" data-u="{url}" aria-label="Zoom {esc(n)}">'
+                f'<img src="{small}" srcset="{small} 146w, {normal} 488w" sizes="(max-width: 600px) 30vw, 150px" width="146" height="204" '
+                f'alt="{esc(n)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></button>'
+                f'<figcaption><a class="c" href="{url}" target="_blank" rel="noopener">{esc(n)}</a>{num}{tag}</figcaption></figure>')
 
     def who(keys):
         if not keys: return '<span class="who">no guide; EDHREC\'s theme numbers only</span>'
