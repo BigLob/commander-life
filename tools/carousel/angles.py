@@ -753,6 +753,164 @@ DECKS = [
  },
 ]
 
+# The direction we chose for each deck (Nov 16, 2026) and its 15 picks: (card, source keys that add it). EDHREC's add share is
+# fetched live and shown next to each; a pick with no keys is backed by EDHREC's share alone. Picks are never box cards.
+# Grave Danger gets "Value Zombies on a loop" because Eternal Might's pure-Zombie pick is the go-wide one.
+PICKS = {
+ 'silverquill-influence': ('All-in Auras ("Aura storm")', [
+   ('Ethereal Armor', ['gf-sq', 'edh-sq', 'ds-sq', 'fs-sq', 'gtm-sq', 'sc-sq', 'dt-sq']),
+   ('All That Glitters', ['gf-sq', 'edh-sq', 'ds-sq', 'fs-sq', 'jm-sq', 'dt-sq']),
+   ('Eye of Nidhogg', ['gf-sq', 'edh-sq', 'cz738', 'dt-sq']),
+   ('Mesa Enchantress', ['fs-sq', 'gtm-sq', 'jm-sq', 'dt-sq']),
+   ("Light-Paws, Emperor's Voice", ['ds-sq', 'sc-sq']),
+   ('Ondu Spiritdancer', ['edh-sq', 'ds-sq', 'cz738', 'jm-sq', 'dt-sq']),
+   ('Danitha Capashen, Paragon', ['edh-sq', 'fs-sq', 'gtm-sq', 'sc-sq']),
+   ('Mantle of the Ancients', ['gf-sq', 'ds-sq', 'fs-sq', 'jm-sq', 'dt-sq']),
+   ('Sigil of the Empty Throne', ['gf-sq', 'ds-sq', 'fs-sq', 'jm-sq', 'dt-sq']),
+   ('Retether', ['gf-sq', 'edh-sq', 'ds-sq', 'cz738']),
+   ("Hall of Heliod's Generosity", ['edh-sq', 'ds-sq', 'sc-sq']),
+   ('Tempest Technique', ['fs-sq', 'jm-sq', 'dt-sq']),
+   ('Vampiric Link', ['ds-sq', 'fs-sq', 'gtm-sq', 'jm-sq']),
+   ('Spirit Loop', ['gf-sq', 'edh-sq', 'ds-sq', 'dt-sq']),
+   ('Codsworth, Handy Helper', ['edh-sq', 'ds-sq', 'gtm-sq']),
+ ]),
+ 'living-energy': ('Big energy (more energy, energy finishers)', [
+   ('Izzet Generatorium', ['cz653', 'edh-le', 'ds-le', 'gg-le', 'gtm-le']),
+   ('Aether Refinery', ['cz653', 'edh-le', 'ds-le', 'gg-le']),
+   ('Roil Cartographer', ['cz653', 'edh-le', 'ds-le', 'gg-le']),
+   ("Gonti's Aether Heart", ['edh-le', 'gtm-le', 'pz-le', 'dt-le', 'tmg-le']),
+   ('Electrosiphon', ['cz653', 'edh-le', 'gg-le', 'gtm-le', 'tmg-le']),
+   ('Aether Revolt', ['ck-le', 'ds-le', 'gg-le', 'pz-le']),
+   ('Tune the Narrative', ['gtm-le', 'pz-le']),
+   ('Amped Raptor', ['cz653', 'ck-le']),
+   ('Volatile Stormdrake', ['cz653', 'gg-le', 'gtm-le', 'pz-le', 'tmg-le']),
+   ('Galvanic Discharge', ['pz-le']),
+   ('Blaster Hulk', ['edh-le', 'ds-le', 'gg-le', 'dt-le']),
+   ('The Motherlode, Excavator', ['cz653', 'edh-le', 'ds-le', 'tmg-le']),
+   ('Behemoth of Vault 0', ['cz653', 'edh-le', 'ck-le', 'dt-le']),
+   ('HELIOS One', ['edh-le', 'ds-le', 'gtm-le', 'pz-le']),
+   ('Stone Idol Generator', ['edh-le', 'gg-le']),
+ ]),
+ 'eternal-might': ('Pure Zombie typal', [
+   ('Varina, Lich Queen', ['cz654', 'fw', 'ds-em', 'csi-em', 'dt-em', 'pz-em']),
+   ('Zul Ashur, Lich Lord', ['cz654', 'ck-em', 'ds-em', 'csi-em', 'dt-em', 'pz-em']),
+   ('Necroduality', ['cz654', 'csi-em', 'gtm-em', 'pz-em']),
+   ('Diregraf Colossus', ['cz654', 'csi-em', 'gtm-em', 'pz-em']),
+   ('Death Baron', ['gtm-em', 'pz-em']),
+   ('Diregraf Captain', ['fw', 'cq-em', 'pz-em', 'ss-em']),
+   ('Kindred Discovery', ['cz654', 'csi-em', 'gtm-em', 'dt-em', 'pz-em']),
+   ('Zombie Apocalypse', ['cz654', 'dt-em']),
+   ('Endless Ranks of the Dead', ['br-em', 'dt-em', 'ss-em']),
+   ('Liliana, Dreadhorde General', ['cz654', 'fw']),
+   ('Wilhelt, the Rotcleaver', ['fw', 'ds-em', 'csi-em', 'gtm-em', 'dt-em', 'pz-em']),
+   ('Undead Warchief', ['gtm-em', 'pz-em']),
+   ('Lord of the Undead', ['csi-em', 'pz-em']),
+   ('Living Death', ['fw', 'ck-em', 'gtm-em']),
+   ('Cleaver Skaab', ['br-em', 'pz-em']),
+ ]),
+ 'first-flight': ('Flyers with anthems and cost reducers', [
+   ('Watcher of the Spheres', ['cgb-ff', 'cr-ff', 'tm-ff', 'wit-ff']),
+   ('Ornithopter of Paradise', ['cgb-ff', 'cr-ff', 'tm-ff']),
+   ('Archetype of Imagination', ['scg-ff', 'tm-ff']),
+   ('Unbreakable Formation', ['edh-ff', 'cgb-ff', 'scg-ff']),
+   ('Donal, Herald of Wings', ['cgb-ff', 'cr-ff']),
+   ('Selfless Spirit', ['edh-ff', 'cgb-ff']),
+   ('The Lord of the Eagles', []),
+   ('Air Nomad Legacy', []),
+   ('Loyal Drake', ['edh-ff', 'cgb-ff', 'tm-ff']),
+   ('Dictate of Heliod', ['tm-ff']),
+   ('Windstorm Drake', ['tm-ff']),
+   ('Thraben Watcher', ['edh-ff']),
+   ('Kastral, the Windcrested', ['wit-ff']),
+   ('Wingmate Roc', ['wit-ff']),
+   ('Serra the Benevolent', ['cgb-ff']),
+ ]),
+ 'grave-danger': ('Value Zombies on a loop', [
+   ('Wilhelt, the Rotcleaver', ['cgb-gd', 'scg-gd', 'tm-gd', 'sq-gd']),
+   ('Headless Rider', ['tm-gd', 'sq-gd']),
+   ('Carrion Feeder', ['edh-gd', 'scg-gd', 'tm-gd']),
+   ('Secrets of the Dead', ['edh-gd', 'cgb-gd', 'tm-gd']),
+   ('Geralf, Visionary Stitcher', ['cgb-gd', 'tm-gd']),
+   ('Accursed Marauder', []),
+   ('Gravecrawler', ['cgb-gd']),
+   ("Stitcher's Supplier", []),
+   ('Cleaver Skaab', ['cgb-gd', 'sq-gd']),
+   ('Ravenous Rotbelly', ['edh-gd', 'sq-gd']),
+   ('Undead Butler', ['edh-gd']),
+   ('Overcharged Amalgam', ['edh-gd']),
+   ('Kindred Discovery', ['tm-gd', 'sq-gd']),
+   ("Patriarch's Bidding", ['edh-gd', 'tm-gd']),
+   ('Ghoulcaller Gisa', ['tm-gd']),
+ ]),
+ 'chaos-incarnate': ('Goad everything', [
+   ('Disrupt Decorum', ['edh-ci', 'cr-ci', 'scg-ci', 'tm-ci']),
+   ("Conjurer's Closet", ['edh-ci', 'scg-ci', 'jm-ci', 'dt-ci']),
+   ('Vengeful Ancestor', ['edh-ci', 'scg-ci', 'jm-ci']),
+   ('Shiny Impetus', ['edh-ci', 'cr-ci']),
+   ('Karazikar, the Eye Tyrant', ['edh-ci', 'cr-ci', 'scg-ci', 'jm-ci', 'dt-ci']),
+   ('Agitator Ant', ['cr-ci', 'jm-ci']),
+   ('Bloodthirsty Blade', ['edh-ci']),
+   ('Parasitic Impetus', ['edh-ci', 'cr-ci']),
+   ('Rite of the Raging Storm', ['tm-ci']),
+   ('Alexios, Deimos of Kosmos', []),
+   ('Bothersome Quasit', ['scg-ci', 'jm-ci']),
+   ('Frenzied Saddlebrute', ['cr-ci']),
+   ('Curse of Opulence', ['cr-ci']),
+   ('Life of the Party', ['jm-ci', 'dt-ci']),
+   ('Spectacular Showdown', ['edh-ci']),
+ ]),
+ 'draconic-destruction': ('More and better Dragons', [
+   ('Thrakkus the Butcher', ['edh-dd', 'cgb-dd', 'nw-dd', 'tm-dd']),
+   ('Lathliss, Dragon Queen', ['cgb-dd', 'scg-dd', 'jm-dd']),
+   ('Ganax, Astral Hunter', ['edh-dd', 'cgb-dd', 'nw-dd']),
+   ('Earthquake Dragon', ['nw-dd', 'tm-dd']),
+   ('Scourge of the Throne', ['nw-dd', 'jm-dd']),
+   ('Utvara Hellkite', ['edh-dd', 'cgb-dd', 'jm-dd']),
+   ('Chaos Dragon', ['edh-dd', 'nw-dd', 'tm-dd']),
+   ('Hellkite Charger', ['cgb-dd', 'jm-dd']),
+   ('Ryusei, the Falling Star', ['cgb-dd', 'nw-dd']),
+   ('Terror of the Peaks', ['edh-dd']),
+   ('Old Gnawbone', ['cgb-dd', 'jm-dd']),
+   ('Goblin Anarchomancer', ['nw-dd', 'tm-dd']),
+   ("Kodama's Reach", ['scg-dd', 'nw-dd']),
+   ('Scaled Nurturer', ['edh-dd', 'nw-dd']),
+   ('Carnelian Orb of Dragonkind', ['cgb-dd', 'scg-dd', 'nw-dd', 'tm-dd']),
+ ]),
+ 'token-triumph': ('Token doublers and more-token payoffs', [
+   ('Queen Allenal of Ruadach', ['edh-tt', 'cgb-tt', 'scg-tt', 'wit-tt']),
+   ('Doubling Season', []),
+   ('Parallel Lives', ['cgb-tt']),
+   ('Anointed Procession', ['cgb-tt']),
+   ('Second Harvest', ['cgb-tt']),
+   ('Rhys the Redeemed', ['cgb-tt']),
+   ('Divine Visitation', ['cgb-tt']),
+   ('Cadira, Caller of the Small', ['tm-tt']),
+   ('King Darien XLVIII', ['cgb-tt', 'wit-tt']),
+   ('Intangible Virtue', []),
+   ("Elspeth, Sun's Champion", []),
+   ("Cathars' Crusade", []),
+   ('Harmonious Archon', ['edh-tt']),
+   ('Doomed Artisan', ['scg-tt']),
+   ('Mirror Entity', ['tm-tt']),
+ ]),
+}
+
+# Commander call-out per section: (level, what the sources do). Levels: 'most' (most decks or sources swap), 'many', 'some',
+# 'none'. The EDHREC split by commander is fetched live and printed under it.
+CMDCALL = {
+ 'silverquill-influence': ('none', 'Every source keeps Killian; Guys That Magic says Eriette of the Charmed Apple would also work at the helm.'),
+ 'lorehold-spirit': ('none', 'Every source keeps Quintorius; Card Kingdom and Jurassic Magic call him the better of the box\'s two commanders.'),
+ 'living-energy': ('none', 'All but one source keep Saheeli; Commander Mechanic\'s budget upgrade runs Pia Nalaar, Chief Mechanic.'),
+ 'eternal-might': ('some', 'DeckTechsForDecks thinks Varina, Lich Queen is "probably a better" commander for this deck, and Commander Mechanic rebuilds the box around Hashaton, Scarab\'s Fist. The other guides and videos keep Temmet.'),
+ 'revival-trance': ('many', 'Draftsim and UNIVERSES BEYOND swap Terra for Celes, Rune Knight, and the Commander Pod switched to Celes mid-league. The Command Zone, Grazzet, DeckTechsForDecks and Yawgfather keep Terra.'),
+ 'revival-trance-celes': ('none', 'This is the Celes build: Draftsim, UNIVERSES BEYOND and the Commander Pod pick her over Terra.'),
+ 'first-flight': ('most', 'More decks from this box run Kangee, Sky Warden than Isperia. Cardgamebase and Wizard\'s Institute of Technology swap to Kangee and EDHREC\'s guide to Dragonlord Ojutai; Wizard\'s Institute also suggests Kastral, the Windcrested, or the partners Esior, Wardwing Familiar and Ishai, Ojutai Dragonspeaker. Star City Games, Triple Mango Threat, Cards Realm and Nerds of the West (whose rules barred a swap) keep Isperia.'),
+ 'grave-danger': ('some', 'Star City Games suggests Wilhelt, the Rotcleaver as a commander; the guides keep Gisa and Geralf, but a good share of EDHREC decks swap.'),
+ 'chaos-incarnate': ('some', 'Every source keeps Kardur, but about a third of EDHREC decks from this box lead with someone else, Kaervek the Merciless most often.'),
+ 'draconic-destruction': ('none', 'Every source keeps Atarka.'),
+ 'token-triumph': ('none', 'Every source keeps Emmara.'),
+}
+
 THEME_NAME = {'auras': 'Auras', 'enchantress': 'Enchantress', 'forced-combat': 'Forced combat', 'voltron': 'Voltron', 'pillow-fort': 'Pillow fort',
               'politics': 'Politics', 'reanimator': 'Reanimator', 'tokens': 'Tokens', 'graveyard': 'Graveyard', 'self-mill': 'Self-mill',
               'discard': 'Discard', 'flashback': 'Flashback', 'spirits': 'Spirits', 'energy': 'Energy', 'artifacts': 'Artifacts', 'clones': 'Clones',
@@ -772,7 +930,9 @@ def edhrec(d):
     L = {l['tag']: l['cardviews'] for l in pre['container']['json_dict']['cardlists']}
     adds = {c['name']: c['num_decks'] / c['potential_decks'] for t in ('cardstoadd', 'landstoadd') for c in L.get(t, []) if c.get('potential_decks')}
     cuts = {c['name']: c['unpopularity'] for t in ('cardstocut', 'landstocut') for c in L.get(t, []) if c.get('unpopularity')}
-    n = {c['value']: c['count'] for c in pre['precon_commander_counts']}[d['cmd']]
+    counts = sorted(((c['value'], c['count']) for c in pre['precon_commander_counts']), key=lambda x: -x[1])
+    d['_counts'] = counts   # for the commander call-out
+    n = dict(counts)[d['cmd']]
     slug = d['cmd'].lower().replace(',', '').replace("'", '').replace(' ', '-')
     cp = json.loads(get(f'https://json.edhrec.com/pages/commanders/{slug}.json'))
     # '+1/+1 Counters' -> 'p1-p1-counters', '-1/-1 Counters' -> 'm1-m1-counters' (they'd collide once signs are stripped)
@@ -788,7 +948,8 @@ def edhrec(d):
 
 def main():
     today = datetime.date.today()
-    names = sorted({c for d in DECKS for a in d['angles'] for c in a[2]} | {c for d in DECKS for a in d['avoid'] for c in a[1]})
+    names = sorted({c for d in DECKS for a in d['angles'] for c in a[2]} | {c for d in DECKS for a in d['avoid'] for c in a[1]}
+                   | {c for t, ps in PICKS.values() for c, k in ps})
     found = {}
     for qty, c in scryfall([(1, {'name': n}, n) for n in names]):
         found[c['name']] = c; found[c['name'].split(' // ')[0]] = c
@@ -802,15 +963,21 @@ def main():
     bad = [n for n, f in flags.items() if not f[0]]
     if bad: print('Not Commander-legal:', ', '.join(bad))
 
-    def chip(n, adds, cuts, mode, cmdmode=False):
+    def chip(n, adds, cuts, mode, cmdmode=False, srcs=None):
         """A card tile: Scryfall image (small for the tile, normal for the zoom), then name, share and flags.
-        Tapping the image zooms it on the page (template script); the name links to Scryfall."""
+        Tapping the image zooms it on the page (template script); the name links to Scryfall. srcs (a pick's source
+        keys) adds a source count under the tile and the full list to the zoom view."""
         legal, gc, url, small, normal = flags[n]
         pct = adds.get(n) if mode == 'add' else cuts.get(n)
         num = (f'<span class="p pc">{round(pct * 100)}%</span>' if cmdmode else
                f'<span class="p">{"+" if mode == "add" else "−"}{round(pct * 100)}%</span>') if pct else ''
         tag = ('' if legal else '<span class="bad">Not Commander-legal</span>') + ('<span class="gc" title="Game Changer: counts toward the bracket limit">GC</span>' if gc else '')
-        return (f'<figure class="ct"><button class="zb" type="button" data-z="{normal}" data-u="{url}" aria-label="Zoom {esc(n)}">'
+        ds = ''
+        if srcs is not None:
+            names = [SHORT[k] for k in srcs]
+            tag += f'<span class="ps">{f"{len(srcs)} source" + ("s" if len(srcs) != 1 else "") if srcs else "EDHREC only"}</span>'
+            ds = ' data-s="' + esc('Added by: ' + ', '.join(names) if names else 'Backed by EDHREC\'s add share only') + '"'
+        return (f'<figure class="ct"><button class="zb" type="button" data-z="{normal}" data-u="{url}"{ds} aria-label="Zoom {esc(n)}">'
                 f'<img src="{small}" srcset="{small} 146w, {normal} 488w" sizes="(max-width: 600px) 30vw, 150px" width="146" height="204" '
                 f'alt="{esc(n)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></button>'
                 f'<figcaption><a class="c" href="{url}" target="_blank" rel="noopener">{esc(n)}</a>{num}{tag}</figcaption></figure>')
@@ -831,8 +998,26 @@ def main():
         th = ' · '.join(f'{THEME_NAME[t]} {tags[t]:,}' for t in d['themes'] if t in tags)
         # An angle is (title, what, cards, source keys, data note) plus an optional "From play" line: how the direction
         # actually played, as reported by a source that played it (a creator's playtest or a reviewed player's deck).
-        ang = ''.join(f'''<div class="ang"><h4>{esc(a[0])}</h4><p>{esc(a[1])}</p><div class="cards">{''.join(chip(c, adds, cuts, 'add', cm) for c in a[2])}</div>
-<p class="data">{esc(a[4])}</p>{f'<p class="play"><b>From play:</b> {esc(a[5])}</p>' if len(a) > 5 else ''}<p class="src">Pushed by: {who(a[3])}</p></div>''' for a in d['angles'])
+        def angle(a, picks=None, cls='ang'):
+            cards = ''.join(chip(c, adds, cuts, 'add', cm, k) for c, k in picks) if picks else ''.join(chip(c, adds, cuts, 'add', cm) for c in a[2])
+            head = f'<p class="pk">Our pick for this deck · 15 cards to add, most-backed first</p>' if picks else ''
+            return (f'''<div class="{cls}">{head}<h4>{esc(a[0])}</h4><p>{esc(a[1])}</p><div class="cards">{cards}</div>
+<p class="data">{esc(a[4])}</p>{f'<p class="play"><b>From play:</b> {esc(a[5])}</p>' if len(a) > 5 else ''}<p class="src">Pushed by: {who(a[3])}</p></div>''')
+        if d['slug'] in PICKS:
+            title, picks = PICKS[d['slug']]
+            lead = next(a for a in d['angles'] if a[0] == title)
+            rest = [a for a in d['angles'] if a is not lead]
+            ang = (angle(lead, picks, 'ang pick') + f'<details class="more"><summary>Other directions people take it ({len(rest)})</summary>'
+                   + ''.join(angle(a) for a in rest) + '</details>')
+        else:
+            ang = ''.join(angle(a) for a in d['angles'])
+        lvl, ctext = CMDCALL.get(d['slug'], ('none', ''))
+        face = d['cmd']
+        tot = sum(c for _, c in d['_counts']); other = tot - dict(d['_counts']).get(d['cmd'], 0)
+        split = ' · '.join(f'{esc(nm)} {c:,}' for nm, c in d['_counts'][:5])
+        label = {'most': 'Most change the commander', 'many': 'Many sources change the commander', 'some': 'Some change the commander', 'none': 'Commander'}[lvl]
+        cmdbox = (f'<div class="cmdc {lvl}"><b>{label}.</b> {esc(ctext)}<br><span class="data">EDHREC decks built from this box, by commander: {split}'
+                  f'{f"; {round(100 * other / tot)}% lead with someone other than {esc(face.split(",")[0])}" if not cm else ""}.</span></div>')
         av = ''.join(f'''<div class="ang av"><h4>{esc(t)}</h4><div class="cards">{''.join(chip(c, adds, cuts, 'cut') for c in cs)}</div>
 <p>{esc(w)}</p><p class="src">Cut by: {who(ks)}</p></div>''' for t, cs, w, ks in d['avoid'])
         sp = ''.join(f'<li>{esc(s)}</li>' for s in d['split'])
@@ -848,7 +1033,8 @@ def main():
                 if cm else f'EDHREC: {n:,} decks built from this box with {who1}. Themes {who1} decks are tagged with: {th}.')
         secs.append(f'''<section id="{d['slug']}"><h2 class="dk">{esc(d['name'])} <small>{esc(d['cmd'])} · {d['colors']}</small></h2>
 <p>{esc(d['gist'])}</p>
-<p class="data">{data} <a href="../adds/{box}.html">Most added ›</a> <a href="../cuts/{box}.html">Most cut ›</a></p>
+{cmdbox}
+<p class="data">{data} <a href="../adds/{box}.html">{"Our 15 picks" if d["slug"] in PICKS else "Most added"} ›</a> <a href="../cuts/{box}.html">Most cut ›</a></p>
 <h3>Directions people take it</h3>{ang}
 <h3>What people stay away from</h3>{av}
 <h3>Where the sources disagree</h3><ul>{sp}</ul>

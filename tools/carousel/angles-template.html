@@ -47,6 +47,19 @@ body.noimg .cards{display:flex;flex-wrap:wrap;gap:5px}
 body.noimg .zb{display:none}
 body.noimg .ct figcaption{margin:0;background:var(--surface);border-radius:999px;padding:3px 10px;gap:5px}
 body.noimg a.c{font-size:.8rem}
+.ps{font-family:var(--f-mono);font-size:.64rem;color:var(--muted)}
+.ang.pick{border:2px solid var(--accent)}
+.pk{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin:0 0 2px!important}
+details.more{border-style:dashed;margin:0 0 8px}
+details.more>.ang{margin-top:8px}
+.cmdc{font-size:.86rem;border-radius:10px;padding:8px 12px;margin:8px 0;border:1px solid var(--line)}
+.cmdc .data{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.cmdc.most,.cmdc.many{border:2px solid var(--bad);background:color-mix(in srgb,var(--bad) 8%,var(--bg))}
+.cmdc.most>b,.cmdc.many>b{color:var(--bad)}
+.cmdc.some{border:2px solid var(--accent)}
+.cmdc.some>b{color:var(--accent)}
+.cmdc.none{color:var(--muted)}
+.zoom .zs{font:.8rem var(--f-display);color:#ece8dd;max-width:min(92vw,488px);margin:8px auto 0}
 .imgtog{margin:0 0 8px}
 .imgtog button{font:500 .78rem var(--f-mono);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
 .zoom{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.82)}
@@ -77,6 +90,8 @@ ul.srcs{padding-left:1.1em;font-size:.82rem;margin:6px 0}ul.srcs li{margin:5px 0
 <ul>
 <li><span class="p" style="color:var(--ok)">+40%</span> after a card: the share of EDHREC decks built from this box that <b>add</b> it. <span class="p" style="color:var(--bad)">−80%</span>: the share that <b>cut</b> it. No number means it's outside EDHREC's top 50 adds or top 20 cuts.</li>
 <li>Revival Trance has two sections, one per commander, because Terra and Celes decks are built differently. In the Celes section a card's <span class="p pc">48%</span> is the share of <b>all</b> EDHREC Celes decks that play it, and cut shares are left out (the box's cut numbers come mostly from Terra decks).</li>
+<li><b>Our pick</b> (outlined) is the direction we chose for the deck, with 15 cards to add, most-backed first. Under each card is how many guides and videos add it (tap the image to see which); "EDHREC only" means no guide names it but EDHREC's add share does. The other directions are folded underneath.</li>
+<li>A red box means most decks or many sources change the commander; it lists the commanders they use and EDHREC's split.</li>
 <li>Tap a card image to enlarge it; tap its name to open it on Scryfall. The switch below turns the images off if you want the short list back.</li>
 <li><span class="gc">GC</span> is a Game Changer (counts toward the bracket limit). Any card that isn't Commander-legal gets a red chip; every card here is legal.</li>
 <li>"Pushed by" and "Cut by" name the sources that do it. Theme counts are how many EDHREC decks for the commander carry that tag.</li>
@@ -86,7 +101,7 @@ ul.srcs{padding-left:1.1em;font-size:.82rem;margin:6px 0}ul.srcs li{margin:5px 0
 <p class="imgtog"><button id="imgt" type="button" aria-pressed="true">Card images: on</button></p>
 <p class="toc"><!--TOC--></p>
 <!--DECKS-->
-<div class="zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-label="Card image"><figure><img alt=""><figcaption><a target="_blank" rel="noopener">Open on Scryfall ›</a><button type="button">Close</button></figcaption></figure></div>
+<div class="zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-label="Card image"><figure><img alt=""><p class="zs" hidden></p><figcaption><a target="_blank" rel="noopener">Open on Scryfall ›</a><button type="button">Close</button></figcaption></figure></div>
 <script>
 (function(){
   var b=document.getElementById('imgt'), z=document.getElementById('zoom'), zi=z.querySelector('img'), za=z.querySelector('a'), last=null;
@@ -97,7 +112,7 @@ ul.srcs{padding-left:1.1em;font-size:.82rem;margin:6px 0}ul.srcs li{margin:5px 0
   function close(){z.hidden=true;zi.removeAttribute('src');if(last)last.focus()}
   document.addEventListener('click',function(e){
     var t=e.target.closest('.zb');
-    if(t){last=t;zi.src=t.getAttribute('data-z');zi.alt=t.getAttribute('aria-label').replace(/^Zoom /,'');za.href=t.getAttribute('data-u');z.hidden=false;z.querySelector('button').focus();return}
+    if(t){last=t;var zs=z.querySelector('.zs'),s=t.getAttribute('data-s');zs.textContent=s||'';zs.hidden=!s;zi.src=t.getAttribute('data-z');zi.alt=t.getAttribute('aria-label').replace(/^Zoom /,'');za.href=t.getAttribute('data-u');z.hidden=false;z.querySelector('button').focus();return}
     if(!z.hidden&&(e.target===z||e.target.closest('.zoom button')||e.target===zi))close();
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!z.hidden)close()});
