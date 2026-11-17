@@ -64,6 +64,9 @@ From Micro Center:
 
 - **Back in stock**: something that was sold out is in stock (name, price, stock count, store; tap to open).
 - **New and in stock**: a product that wasn't on the page before, in stock.
+- **Price drop**: a product's price went down since the last check, with the old price and how
+  much off. Only drops, never rises. A restock at a lower price says both in one push. Turn these
+  off with `"alert_price_drops": false`.
 - **New listing (not in stock yet)**: a new product posted, e.g. a launch or preorder. Turn these off
   with `"alert_new_listings": false`.
 - **Monitor blocked**: Cloudflare showed its check. At most one push an hour; the monitor waits
@@ -75,6 +78,7 @@ From Micro Center:
 From Secret Lair:
 
 - **Secret Lair announced**: a new drop is listed but not on sale yet, with when it goes on sale (your time).
+- **Secret Lair price drop**: a drop on sale or coming soon got cheaper.
 - **Secret Lair on sale now**: a drop's sale started, or a sold-out one came back. The monitor
   wakes up for each announced drop's start time, so this comes within a minute or so of the sale opening.
 
@@ -122,6 +126,7 @@ from the last check.
 | `store_name` | Shown in alerts. |
 | `watch_urls` | Pages to check (search or category pages). `{storeid}` is filled in. To watch something narrower, search on the site, set filters, and paste the address. |
 | `include` / `exclude` | Product name must contain one `include` word and no `exclude` word (lowercase match). |
+| `alert_price_drops` | Push when a price goes down (Micro Center and Secret Lair). |
 | `alert_new_listings` | Push for new products that aren't in stock yet. |
 | `microcenter_enabled` | `false` to watch only Secret Lair (then Playwright isn't needed). |
 | `secret_lair.enabled` | `false` to stop watching Secret Lair. |

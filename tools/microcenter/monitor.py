@@ -143,7 +143,8 @@ def parse_products(page_html, base='https://www.microcenter.com'):
         sku = m.group(1) if m else _attr(block, 'data-id')
         price = _attr(block, 'data-price')
         if not price:
-            m = re.search(r'\$\s?([\d,]+\.\d\d)', text)
+            # The real page shows "Original price $159.99 Save $90.00 Our price $ 69.99".
+            m = re.search(r'Our price\s*\$\s?([\d,]+\.\d\d)', text) or re.search(r'\$\s?([\d,]+\.\d\d)', text)
             price = m.group(1).replace(',', '') if m else ''
         stock_html = re.search(r'class="[^"]*(?:stock|inventory)[^"]*"[^>]*>(.*?)</(?:div|span|p)>', block, re.S | re.I)
         in_stock, label, count = parse_stock(_text(stock_html.group(1)) if stock_html else text)
@@ -185,6 +186,19 @@ def legality_note(name):
 
 # ---------- diff ----------
 
+def price_num(s):
+    try:
+        return float(str(s).replace(',', '').replace('$', '').strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def price_drop(old, p):
+    """The old price when this one is lower (only drops, never rises: the user's ask), else None."""
+    was, now = price_num((old or {}).get('price')), price_num(p.get('price'))
+    return was if was and now and now < was - 0.005 else None
+
+
 def diff(state, url, products, now=None):
     """Merges this page's products into the state and returns the alerts. A URL seen for the
     first time only records a baseline, so starting the monitor (or adding a URL) never pushes
@@ -199,8 +213,14 @@ def diff(state, url, products, now=None):
         if not baseline:
             if old is None:
                 alerts.append(('new_in_stock' if p['in_stock'] else 'new_listing', p))
-            elif p['in_stock'] and not old.get('in_stock') and old.get('stock') != 'Unknown':
-                alerts.append(('restock', p))
+            else:
+                was = price_drop(old, p)
+                if was:
+                    p = dict(p, was=was)  # a restock at a lower price says so in one push
+                if p['in_stock'] and not old.get('in_stock') and old.get('stock') != 'Unknown':
+                    alerts.append(('restock', p))
+                elif was:
+                    alerts.append(('price_drop', p))
         known[p['key']] = rec
     if baseline:
         state['baselined'].append(url)
@@ -244,8 +264,10 @@ def push(cfg, title, message, click=None, priority=3, tags=None, delay=None, seq
 
 def alert_text(kind, p, cfg):
     head = {'restock': 'Back in stock', 'new_in_stock': 'New and in stock',
-            'new_listing': 'New listing (not in stock yet)'}[kind]
+            'new_listing': 'New listing (not in stock yet)', 'price_drop': 'Price drop'}[kind]
     price = f'${p["price"]}' if p['price'] else 'no price'
+    if p.get('was'):
+        price += f' (was ${p["was"]:.2f}, {p["was"] - price_num(p["price"]):.2f} off)'
     lines = [p['name'], f'{price} · {p["stock"]} · {cfg.get("store_name", "store " + str(cfg["store_id"]))}']
     note = legality_note(p['name'])
     if note:
@@ -364,9 +386,12 @@ def poll(cfg, state, debug=False, fetch=fetch_pages):
     for kind, p in dedupe(alerts):
         if kind == 'new_listing' and not cfg.get('alert_new_listings', True):
             continue
+        if kind == 'price_drop' and not cfg.get('alert_price_drops', True):
+            continue
         title, msg = alert_text(kind, p, cfg)
         push(cfg, title, msg, click=p['url'] or None,
-             priority=4 if kind != 'new_listing' else 3, tags=['black_joker'])
+             priority=3 if kind in ('new_listing', 'price_drop') else 4,
+             tags=['chart_with_downwards_trend' if kind == 'price_drop' else 'black_joker'])
     save_state(state)
     return blocked
 
@@ -449,10 +474,13 @@ def poll_secret_lair(cfg, state, getter=secretlair.get):
         push(cfg, 'Secret Lair monitor started', f'Baseline recorded: {len(products)} products. You\'ll hear about '
              'new drops and sales starting from now on.', priority=2)
     for kind, p in alerts:
+        if kind == 'price_drop' and not cfg.get('alert_price_drops', True):
+            continue
         title, msg = secretlair.alert_text(kind, p)
         note = legality_note(p['name'])
         push(cfg, title, msg + (f'\n{note}' if note else ''), click=p['url'],
-             priority=3 if kind == 'announced' else 4, tags=['crystal_ball'])
+             priority=3 if kind in ('announced', 'price_drop') else 4,
+             tags=['chart_with_downwards_trend' if kind == 'price_drop' else 'crystal_ball'])
     save_state(state)
 
 

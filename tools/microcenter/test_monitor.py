@@ -244,6 +244,58 @@ class SecretLair(unittest.TestCase):
         self.assertIn('not Commander-legal', m.legality_note(p['name']))
 
 
+class PriceDrops(unittest.TestCase):
+    def prods(self):
+        return [p for p in m.parse_products(page('search.html')) if m.wanted(p, CFG)]
+
+    def test_drops_only(self):
+        st = {'products': {}, 'baselined': []}
+        m.diff(st, 'u', self.prods())
+        ps = self.prods()
+        box = next(p for p in ps if p['sku'] == '123451')
+        box['price'] = '119.99'                              # down $20, in stock
+        next(p for p in ps if p['sku'] == '123452')['price'] = '54.99'   # up: no alert
+        alerts = m.diff(st, 'u', ps)[0]
+        self.assertEqual([(k, p['sku']) for k, p in alerts], [('price_drop', '123451')])
+        title, msg = m.alert_text('price_drop', alerts[0][1], CFG)
+        self.assertIn('Price drop', title)
+        self.assertIn('$119.99 (was $139.99, 20.00 off)', msg)
+        self.assertEqual(m.diff(st, 'u', ps)[0], [])        # same price next time: quiet
+        # Back up, then down to the same price again: a new drop, so a new alert.
+        box['price'] = '139.99'; self.assertEqual(m.diff(st, 'u', ps)[0], [])
+        box['price'] = '119.99'; self.assertEqual(len(m.diff(st, 'u', ps)[0]), 1)
+
+    def test_restock_at_lower_price_is_one_push(self):
+        st = {'products': {}, 'baselined': []}
+        m.diff(st, 'u', self.prods())
+        ps = self.prods()
+        borg = next(p for p in ps if p['sku'] == '123452')
+        borg.update(in_stock=True, stock='3 in stock', price='39.99')
+        alerts = m.diff(st, 'u', ps)[0]
+        self.assertEqual([k for k, _ in alerts], ['restock'])
+        self.assertIn('was $44.99', m.alert_text('restock', alerts[0][1], CFG)[1])
+
+    def test_missing_price_never_alerts(self):
+        st = {'products': {}, 'baselined': []}
+        m.diff(st, 'u', self.prods())
+        ps = self.prods()
+        for p in ps:
+            p['price'] = ''
+        self.assertEqual(m.diff(st, 'u', ps)[0], [])
+
+    def test_secret_lair(self):
+        st = {}
+        now = dt.datetime(2026, 11, 14, 21, 0, tzinfo=dt.timezone.utc)
+        ps, _ = sl.fetch_products(st, now=now, getter=sl_getter)
+        sl.diff(st, ps)
+        ps, _ = sl.fetch_products(st, now=now, getter=sl_getter)
+        on = next(p for p in ps if p['id'] == '1255840'); on['price'] = '34.99'
+        up = next(p for p in ps if p['id'] == '1260001'); up['price'] = '39.99'
+        alerts = sl.diff(st, ps)[0]
+        self.assertEqual([(k, p['id']) for k, p in alerts], [('price_drop', '1255840')])
+        self.assertIn('was $39.99', sl.alert_text('price_drop', alerts[0][1])[1])
+
+
 class Watchdog(unittest.TestCase):
     def test_due(self):
         d = dt.datetime

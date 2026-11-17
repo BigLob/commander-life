@@ -44,5 +44,6 @@
     ]
   },
   "offscreen": true,
-  "watchdog": true
+  "watchdog": true,
+  "alert_price_drops": true
 }

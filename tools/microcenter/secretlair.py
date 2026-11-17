@@ -160,11 +160,25 @@ def diff(state, products):
                     alerts.append(('announced', p))
                 elif p['status'] == 'on_sale':
                     alerts.append(('new_on_sale', p))
-            elif p['status'] == 'on_sale' and old.get('status') != 'on_sale':
-                alerts.append(('on_sale', p))
+            else:
+                was = _was(old, p)
+                if was:
+                    p = dict(p, was=was)
+                if p['status'] == 'on_sale' and old.get('status') != 'on_sale':
+                    alerts.append(('on_sale', p))
+                elif was and p['status'] in ('on_sale', 'coming'):
+                    alerts.append(('price_drop', p))  # drops only, never rises
         known[p['key']] = p
     sl['baselined'] = True
     return alerts, baseline
+
+
+def _was(old, p):
+    try:
+        was, now = float(old.get('price') or 0), float(p.get('price') or 0)
+    except ValueError:
+        return None
+    return was if was and now and now < was - 0.005 else None
 
 
 def next_start(state, now_ts):
@@ -180,7 +194,9 @@ def alert_text(kind, p):
     if p.get('start'):
         when = dt.datetime.fromtimestamp(p['start']).strftime('%a %b %d, %I:%M %p').replace(' 0', ' ')
     head = {'announced': 'Secret Lair announced', 'new_on_sale': 'Secret Lair on sale now',
-            'on_sale': 'Secret Lair on sale now'}[kind]
+            'on_sale': 'Secret Lair on sale now', 'price_drop': 'Secret Lair price drop'}[kind]
+    if p.get('was'):
+        price += f' (was ${p["was"]:.2f})'
     lines = [p['name'], price]
     if kind == 'announced' and when:
         lines.append(f'On sale {when} (your time)')
