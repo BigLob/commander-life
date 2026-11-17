@@ -8,6 +8,22 @@
 "ready": true
 },
 {
+"slug": "first-flight",
+"name": "First Flight",
+"cmd": "Isperia, Supreme Judge",
+"img": "https://cards.scryfall.io/normal/front/d/e/de3278de-a045-4290-b05f-3b19e7055091.jpg?1783918741",
+"direction": "Flyers with anthems and cost reducers",
+"ready": true
+},
+{
+"slug": "grave-danger",
+"name": "Grave Danger",
+"cmd": "Gisa and Geralf",
+"img": "https://cards.scryfall.io/normal/front/4/d/4d8fd87c-caf7-402e-b543-e35ba3007bcb.jpg?1783918740",
+"direction": "Value Zombies on a loop",
+"ready": false
+},
+{
 "slug": "chaos-incarnate",
 "name": "Chaos Incarnate",
 "cmd": "Kardur, Doomscourge",
@@ -24,27 +40,11 @@
 "ready": false
 },
 {
-"slug": "eternal-might",
-"name": "Eternal Might",
-"cmd": "Temmet, Naktamun's Will",
-"img": "https://cards.scryfall.io/normal/front/c/0/c0629894-0b72-4abe-9771-03becfdb241c.jpg?1783907753",
-"direction": "Pure Zombie typal",
-"ready": false
-},
-{
-"slug": "first-flight",
-"name": "First Flight",
-"cmd": "Isperia, Supreme Judge",
-"img": "https://cards.scryfall.io/normal/front/d/e/de3278de-a045-4290-b05f-3b19e7055091.jpg?1783918741",
-"direction": "Flyers with anthems and cost reducers",
-"ready": false
-},
-{
-"slug": "grave-danger",
-"name": "Grave Danger",
-"cmd": "Gisa and Geralf",
-"img": "https://cards.scryfall.io/normal/front/4/d/4d8fd87c-caf7-402e-b543-e35ba3007bcb.jpg?1783918740",
-"direction": "Value Zombies on a loop",
+"slug": "token-triumph",
+"name": "Token Triumph",
+"cmd": "Emmara, Soul of the Accord",
+"img": "https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741",
+"direction": "Token doublers",
 "ready": false
 },
 {
@@ -56,11 +56,27 @@
 "ready": false
 },
 {
-"slug": "token-triumph",
-"name": "Token Triumph",
-"cmd": "Emmara, Soul of the Accord",
-"img": "https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741",
-"direction": "Token doublers",
+"slug": "eternal-might",
+"name": "Eternal Might",
+"cmd": "Temmet, Naktamun's Will",
+"img": "https://cards.scryfall.io/normal/front/c/0/c0629894-0b72-4abe-9771-03becfdb241c.jpg?1783907753",
+"direction": "Pure Zombie typal",
+"ready": false
+},
+{
+"slug": "lorehold-spirit",
+"name": "Lorehold Spirit",
+"cmd": "Quintorius, History Chaser",
+"img": "https://cards.scryfall.io/normal/front/0/7/0742f19d-179c-43c4-ab95-4160c56b4384.jpg?1783903867",
+"direction": null,
+"ready": false
+},
+{
+"slug": "borg",
+"name": "We Are the Borg",
+"cmd": "The Borg Queen",
+"img": "https://cards.scryfall.io/normal/front/8/e/8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab.jpg?1792507909",
+"direction": null,
 "ready": false
 },
 {
@@ -68,14 +84,6 @@
 "name": "Federation Fleet",
 "cmd": "Jean-Luc Picard, Luminary",
 "img": "https://cards.scryfall.io/normal/front/9/0/901eaed9-dbea-4a31-87b0-e17e9bcabfed.jpg?1792507924",
-"direction": null,
-"ready": false
-},
-{
-"slug": "klingon-fury",
-"name": "Klingon Fury",
-"cmd": "Worf, Defiant Commander",
-"img": "https://cards.scryfall.io/normal/front/d/a/da030114-a4ee-46d7-a6fd-6c0d8e779bcf.jpg?1792507927",
 "direction": null,
 "ready": false
 },
@@ -88,26 +96,26 @@
 "ready": false
 },
 {
-"slug": "lorehold-spirit",
-"name": "Lorehold Spirit",
-"cmd": "Quintorius, History Chaser",
-"img": "https://cards.scryfall.io/normal/front/0/7/0742f19d-179c-43c4-ab95-4160c56b4384.jpg?1783903867",
+"slug": "klingon-fury",
+"name": "Klingon Fury",
+"cmd": "Worf, Defiant Commander",
+"img": "https://cards.scryfall.io/normal/front/d/a/da030114-a4ee-46d7-a6fd-6c0d8e779bcf.jpg?1792507927",
 "direction": null,
 "ready": false
 },
 {
 "slug": "revival-trance",
-"name": "Revival Trance",
+"name": "Revival Trance (Terra)",
 "cmd": "Terra, Herald of Hope",
 "img": "https://cards.scryfall.io/normal/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
 "direction": null,
 "ready": false
 },
 {
-"slug": "borg",
-"name": "We Are the Borg",
-"cmd": "The Borg Queen",
-"img": "https://cards.scryfall.io/normal/front/8/e/8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab.jpg?1792507909",
+"slug": "revival-trance-celes",
+"name": "Revival Trance (Celes)",
+"cmd": "Celes, Rune Knight",
+"img": "https://cards.scryfall.io/normal/front/3/0/30584c53-533b-4dc7-b07c-8600164a99b3.jpg?1783906375",
 "direction": null,
 "ready": false
 }

@@ -137,7 +137,7 @@ async function open(d){
     try{const r=await fetch(d.slug+'-review.json',{cache:'no-store'});if(r.ok){const L=await r.json();for(const [k,p] of [['in','a'],['out','c'],['maybe_in','a'],['maybe_out','c']])for(const n of L[k]||[])S.d[p+':'+n]=k.startsWith('maybe')?'m':'y';
       for(const x of D.adds)if(!S.d['a:'+x.n])S.d['a:'+x.n]='n';for(const x of D.cuts)if(!S.d['c:'+x.n])S.d['c:'+x.n]='n'}}catch(e){}}
   D.name=d.name;S.t=D.adds.length+D.cuts.length;$('rt').textContent=d.name+': '+D.direction;
-  $('rs').textContent=`${D.cmd} · ${D.nd.toLocaleString()} of ${D.n.toLocaleString()} Archidekt decks built this way · built ${D.date}`;
+  $('rs').innerHTML=`${E(D.cmd)} · ${D.nd.toLocaleString()} of ${D.n.toLocaleString()} Archidekt decks built this way · built ${E(D.date)} · <a href="${E(D.slug)}.html">full page and sources</a>`;
   phase=S.p||'adds';pos={adds:firstOpen('adds'),cuts:firstOpen('cuts')};
   $('front').hidden=true;$('rev').hidden=false;$('foot').hidden=false;render();
 }

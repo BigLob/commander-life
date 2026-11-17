@@ -39,7 +39,7 @@ UA = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, 
 THEMES = {
  'silverquill-influence': {
   'cmd': 'Killian, Decisive Mentor', 'id': 'wb', 'direction': 'All-in Auras',
-  'edhrec_theme': 'auras',
+  'edhrec_theme': 'auras', 'roles': {'piece': 'Auras and theme pieces'},
   'why': 'Killian goads whenever an enchantment of ours enters and draws when a creature with our Aura attacks, so the '
          'deck wants many cheap Auras, cards that pay off casting them, and ways to get them back.',
   'tests': [
@@ -63,10 +63,136 @@ THEMES = {
    'cz738': ('Command Zone #738 list', 'archidekt:21970344'),
   },
  },
+ 'first-flight': {
+  'cmd': 'Isperia, Supreme Judge', 'id': 'wu', 'direction': 'Flyers with anthems and cost reducers',
+  'edhrec_theme': 'flying', 'roles': {'piece': 'Flyers'},
+  'why': 'Isperia draws when creatures attack us, and the box is a flock of fliers; the direction is more and better '
+         'flyers, cards that pump them all, and cards that make them cheaper.',
+  'tests': [
+   ('engine', 'Pumps flyers or your team', r'creatures? you control (?:with flying |that have flying )?(?:get|gets) \+|creatures? with flying you control get \+|other (?:birds?|angels?|spirits?|sphinx(?:es)?|faeries|drakes?|bats?|thopters?|pegasus|griffins?) you control get \+', None),
+   ('engine', 'Makes creature spells cheaper', r'creature spells? (?:with flying )?you cast cost|spells? with flying you cast cost', None),
+   ('engine', 'Pays off flyers', r'(?:whenever|for each)[^.]{0,40}creatures? (?:you control )?with flying|creatures? you control with flying|(?:creature )?spells? with flying', None),
+   ('engine', 'Gives your team flying', r'creatures you control (?:gain|have) flying', None),
+   ('piece', 'Flyer', r"(?m)^(?:[a-z' -]+, )*flying(?:,| \(|$)", r'Creature'),
+   ('piece', 'Makes flying tokens', r'create[^.]{0,90}with flying', None),
+   ('support', 'Gives a creature flying', r'(?:equipped|enchanted|target) creature (?:gains|has|gets [^.]{0,12}and (?:gains|has)) flying', None),
+  ],
+  'sources': {
+   'edh-ff': ('EDHREC upgrade guide (its Archidekt list)', 'archidekt:4465023'),
+   'cgb-ff': ('Cardgamebase upgrade guide', 'https://cardgamebase.com/?p=32232'),
+   'cr-ff': ('Cards Realm, Upgrading First Flight', 'https://mtg.cardsrealm.com/en-gb/articles/upgrading-precon-commander-first-flight-isperia-supreme-judge'),
+  },
+ },
+ 'grave-danger': {
+  'cmd': 'Gisa and Geralf', 'id': 'ub', 'direction': 'Value Zombies on a loop',
+  'edhrec_theme': 'zombies', 'roles': {'piece': 'Zombies'},
+  'why': 'Gisa and Geralf mill four and let us cast a Zombie from the graveyard each turn, so the deck wants Zombies '
+         'that are worth casting again, ways to fill the graveyard, and payoffs for Zombies dying and coming back.',
+  'tests': [
+   ('engine', 'Brings Zombies back or casts them from the graveyard', r'zombie[^.]{0,60}from (?:your|a) graveyard|from (?:your|a) graveyard[^.]{0,60}zombie', None),
+   ('engine', 'Zombie lord or payoff', r'zombies? (?:you control )?gets? \+|whenever (?:a|an|another|one or more)(?: other)?(?: nontoken)? zombies?|for each zombie|zombie spells? you cast cost', None),
+   ('piece', 'Zombie', None, r'\bZombie\b'),
+   ('piece', 'Makes Zombie tokens', r'create[^.]{0,60}\bzombie\b', None),
+   ('support', 'Fills the graveyard', r'\bmill\b|\bmills\b|\bsurveil\b', None),
+   ('support', 'Returns or casts creatures from the graveyard', r'creature cards? from (?:your|a) graveyard|cast (?:creature )?spells? from your graveyard', None),
+  ],
+  'sources': {
+   'edh-gd': ('EDHREC upgrade guide (its Archidekt list)', 'archidekt:4465276'),
+   'cgb-gd': ('Cardgamebase upgrade guide', 'https://cardgamebase.com/?p=32230'),
+  },
+ },
+ 'chaos-incarnate': {
+  'cmd': 'Kardur, Doomscourge', 'id': 'br', 'direction': 'Goad everything',
+  'edhrec_theme': 'forced-combat', 'roles': {'piece': 'Goad and forced attacks'},
+  'why': 'Kardur makes every opposing creature attack someone else and drains each time an attacker dies, so the deck '
+         'wants more goad, more forced attacks, and payoffs when opponents fight each other.',
+  'tests': [
+   ('engine', 'Goads or forces every creature', r'goad (?:each|all)|creatures your opponents control attack|each creature (?:your opponents control )?attacks each combat|all creatures attack', None),
+   ('engine', 'Pays off creatures attacking or dying', r'whenever (?:an|a) attacking creature dies|whenever a goaded|whenever (?:a|another) (?:creature|player) attacks (?:one of )?your opponents|whenever an opponent attacks (?:another|one of your)|whenever a creature an opponent controls (?:dies|attacks)|attacking creatures? your opponents control', None),
+   ('piece', 'Goad or forced attack', r'\bgoad|attacks? each combat if able|must attack', None),
+   ('support', 'Keeps attackers off us', r"can't attack you|attack you[^.]{0,40}pays|creatures can't attack you", None),
+  ],
+  'sources': {
+   'edh-ci': ('EDHREC upgrade guide (its Archidekt list)', 'archidekt:4467252'),
+   'cr-ci': ('Cards Realm, Upgrading Chaos Incarnate', 'https://mtg.cardsrealm.com/en-ie/articles/upgrading-commander-precon-chaos-incarnate-kardur-doomscourge'),
+  },
+ },
+ 'draconic-destruction': {
+  'cmd': 'Atarka, World Render', 'id': 'rg', 'direction': 'More and better Dragons, some ramp',
+  'edhrec_theme': 'dragons', 'roles': {'piece': 'Dragons', 'support': 'Ramp and support'},
+  'why': 'Atarka gives every attacking Dragon double strike, so the deck wants more and better Dragons, payoffs for '
+         'Dragons, and the ramp to cast them.',
+  'tests': [
+   ('engine', 'Dragon payoff or cost reducer', r'dragons? (?:you control )?gets? \+|whenever (?:a|another|one or more) dragons?|for each dragon|dragon spells? (?:you cast )?cost|spend this mana only to cast (?:a )?dragon', None),
+   ('piece', 'Dragon', None, r'\bDragon\b'),
+   ('piece', 'Makes Dragon tokens', r'create[^.]{0,60}\bdragon\b', None),
+   ('support', 'Ramp', r'\{t\}: add|search your library for (?:a|up to \w+|two) (?:basic )?(?:land|forest|mountain)[^.]*(?:onto the battlefield|put)', r'^(?!.*\bLand\b)'),
+  ],
+  'sources': {
+   'edh-dd': ('EDHREC upgrade guide (its Archidekt list)', 'archidekt:4465326'),
+   'cgb-dd': ('Cardgamebase upgrade guide', 'https://cardgamebase.com/?p=32233'),
+  },
+ },
+ 'token-triumph': {
+  'cmd': 'Emmara, Soul of the Accord', 'id': 'gw', 'direction': 'Token doublers and more-token payoffs',
+  'edhrec_theme': 'tokens', 'roles': {'piece': 'Token makers', 'support': 'Tappers and anthems'},
+  'why': 'Emmara makes a lifelink Soldier whenever she taps, and the box goes wide; the direction is token doublers, '
+         'payoffs for making tokens, and ways to tap Emmara more.',
+  'tests': [
+   ('engine', 'Doubles tokens', r'twice that many[^.]{0,20}tokens|tokens? would be created[^.]*instead|those tokens plus|double the number of[^.]{0,20}tokens|create (?:that many|an additional)[^.]{0,40}token', None),
+   ('engine', 'Pays off tokens', r'whenever (?:one or more )?(?:creature )?tokens?[^.]{0,30}(?:enters|you control)|for each (?:creature )?token|creature tokens? you control get \+|\bpopulate\b', None),
+   ('piece', 'Makes creature tokens', r'create[^.]{0,90}creature tokens?', None),
+   ('support', 'Taps your creatures or pumps the team', r'\bconvoke\b|tap (?:an|two|three|x) untapped creatures? you control|creatures you control get \+', None),
+  ],
+  'sources': {
+   'edh-tt': ('EDHREC upgrade guide (its Archidekt list)', 'archidekt:4469324'),
+   'cgb-tt': ('Cardgamebase upgrade guide', 'https://cardgamebase.com/?p=31874'),
+  },
+ },
+ 'living-energy': {
+  'cmd': 'Saheeli, Radiant Creator', 'id': 'urg', 'direction': 'Big energy',
+  'edhrec_theme': 'energy', 'roles': {'engine': 'Energy payoffs and finishers', 'piece': 'Energy makers', 'support': 'Artifacts and support'},
+  'why': 'Saheeli gets energy from every artifact or Artificer spell and spends three a turn on a 5/5 copy, so the '
+         'direction is more energy coming in and bigger things to spend it on.',
+  'tests': [
+   ('engine', 'Pays off or doubles energy', r'pay (?:\{e\}){4,}|pay (?:x|any amount of|one or more) \{e\}|for each \{e\}|energy counters? you have|amount of \{e\}|whenever you (?:get|pay) (?:one or more )?\{e\}|get twice that much|\{e\} (?:you have|than you)', None),
+   ('piece', 'Makes energy', r'you get (?:\{e\})+|you get (?:x|that much|that many|an amount of|[a-z]+) \{e\}', None),
+   ('support', 'Proliferates (adds energy)', r'\bproliferate\b', None),
+   ('support', 'Artifact or Artificer (Saheeli gets energy)', None, r'^(?!.*\bLand\b).*(?:Artifact|Artificer)'),
+  ],
+  'sources': {
+   'cz653': ('Command Zone #653 list', 'archidekt:11021591'),
+   'edh-le': ('EDHREC upgrade guide', 'https://edhrec.com/articles/living-energy-precon-upgrade-guide-aetherdrift'),
+   'ck-le': ('Card Kingdom $50 upgrade', 'https://blog.cardkingdom.com/aetherdrift-living-energy-precon-upgrade/'),
+   'ds-le': ('Draftsim upgrade guide', 'https://draftsim.com/living-energy-upgrade-guide/'),
+   'gg-le': ('Gathering Games upgrade guide', 'https://gatheringgames.co.uk/community/blog/living-energy-precon-upgrade-guide-mtg-aetherdift-commander-decks'),
+  },
+ },
+ 'eternal-might': {
+  'cmd': "Temmet, Naktamun's Will", 'id': 'wub', 'direction': 'Pure Zombie typal',
+  'edhrec_theme': 'zombies', 'roles': {'piece': 'Zombies', 'support': 'Typal support'},
+  'why': 'Temmet loots on every attack and pumps Zombies on every card drawn, so the direction is all Zombies: more '
+         'Zombies, Zombie lords and payoffs, and typal support.',
+  'tests': [
+   ('engine', 'Zombie lord or payoff', r'zombies? (?:you control )?gets? \+|whenever (?:a|an|another|one or more)(?: other)?(?: nontoken)? zombies?|for each zombie|zombie spells? you cast cost|zombie[^.]{0,60}from (?:your|a) graveyard', None),
+   ('piece', 'Zombie', None, r'\bZombie\b'),
+   ('piece', 'Makes Zombie tokens', r'create[^.]{0,60}\bzombie\b|\bembalm\b|\beternalize\b', None),
+   ('support', 'Typal support (choose a creature type)', r'choose a creature type|chosen type|\bchangeling\b|share a creature type', None),
+  ],
+  'sources': {
+   'cz654': ('Command Zone #654 list', 'archidekt:11039235'),
+   'fw': ('Farwater MTG list', 'archidekt:11257428'),
+   'ss-em': ('Salubrious Snail list', 'archidekt:11251533'),
+   'ck-em': ('Card Kingdom $30 upgrade', 'https://blog.cardkingdom.com/aetherdrift-eternal-might-precon-upgrade-guide/'),
+   'ds-em': ('Draftsim upgrade guide', 'https://draftsim.com/eternal-might-upgrade-guide/'),
+   'csi-em': ('CoolStuffInc $50 upgrade', 'https://www.coolstuffinc.com/a/briansmith-seo-02122025-aetherdrifts-eternal-might-precon-upgrade-guide'),
+   'br-em': ('EDHREC, Bracketeering: Eternal Might', 'https://edhrec.com/articles/bracketeering-eternal-might'),
+  },
+ },
 }
 # Commander Spellbook's estimate-bracket tags. They only read combos, Game Changers, land denial and extra turns.
 TAG = {'E': 'Exhibition (no combos)', 'C': 'Core', 'O': 'Oddball', 'P': 'Powerful', 'S': 'Spicy', 'R': 'Ruthless'}
-ROLE_NAME = {'engine': 'Engines and payoffs', 'piece': 'Auras and theme pieces', 'support': 'Support', 'off': 'Off-theme'}
+ROLE_NAME = {'engine': 'Engines and payoffs', 'piece': 'Theme pieces', 'support': 'Support', 'off': 'Off-theme'}
 
 def get(url, data=None, raw=False):
     for i in range(4):
@@ -103,11 +229,12 @@ def article_text(page):
 def main():
     slug, cache = sys.argv[1], sys.argv[2]
     T = THEMES[slug]; os.makedirs(cache, exist_ok=True)
+    RN = {**ROLE_NAME, **T.get('roles', {})}   # a deck can name its own roles ("Flyers" for First Flight)
     P = lambda f: os.path.join(cache, f)
     cslug = re.sub(r'[^a-z0-9]+', '-', T['cmd'].lower().replace("'", '')).strip('-')
 
     # The box: from the deck carousel make.py built.
-    h = open(os.path.join(ROOT, 'decks', slug + '.html')).read()
+    h = open(os.path.join(ROOT, 'decks', T.get('precon', slug) + '.html')).read()
     box = json.loads(re.search(r'const ALL=(\[.*?\]);\n', h, re.S).group(1))
     boxnames = {front(c['n']) for c in box}
 
@@ -129,7 +256,7 @@ def main():
 
     # EDHREC: the commander's theme page (share of theme decks) and the precon page (cut shares).
     th = cached(P('edhrec-theme.json'), lambda: get(f'https://json.edhrec.com/pages/commanders/{cslug}/{T["edhrec_theme"]}.json'))
-    pre = cached(P('edhrec-precon.json'), lambda: get(f'https://json.edhrec.com/pages/precon/{slug}.json'))
+    pre = cached(P('edhrec-precon.json'), lambda: get(f'https://json.edhrec.com/pages/precon/{T.get("precon", slug)}.json'))
     ed = {}
     for l in th['container']['json_dict']['cardlists']:
         for c in l['cardviews']:
@@ -162,7 +289,12 @@ def main():
         def fetch():
             if url.startswith('archidekt:'):
                 d = get('https://archidekt.com/api/decks/' + url.split(':')[1] + '/')
-                return [c['card']['oracleCard']['name'] for c in d['cards'] if 'Adds' in (c.get('categories') or [])]
+                # A list with an "Adds" pile (the Command Zone's) counts that pile; any other list counts every card
+                # in the deck proper, and the box's own cards fall away below.
+                if any('Adds' in (c.get('categories') or []) for c in d['cards']):
+                    return [c['card']['oracleCard']['name'] for c in d['cards'] if 'Adds' in (c.get('categories') or [])]
+                live = {c['name'] for c in d.get('categories', []) if c.get('includedInDeck')}
+                return [c['card']['oracleCard']['name'] for c in d['cards'] if not c.get('categories') or any(x in live for x in c['categories'])]
             return article_text(get(url, raw=True))
         v = cached(P(f'src-{key}.json'), fetch)
         if isinstance(v, list): src[key] = {front(n) for n in v}
@@ -248,7 +380,7 @@ def main():
             banned.add(b); notes.append(f'{b} left out: it breaks Bracket 3 with this deck.')
     gcs = box_gc + sum(x['gc'] for x in pick)
     picked = {x['n'] for x in pick}
-    more = {r: [x for x in rows if x['role'] == r and x['n'] not in picked and x['n'] not in banned][:12] for r in ROLE_NAME}
+    more = {r: [x for x in rows if x['role'] == r and x['n'] not in picked and x['n'] not in banned][:12] for r in RN}
 
     # Page.
     E = lambda s: html.escape(str(s), quote=True)
@@ -267,8 +399,8 @@ def main():
                 f'<figcaption><a class="c" href="{E(x["url"])}" target="_blank" rel="noopener">{E(x["n"])}</a>{cap}</figcaption></figure>')
     grid = lambda xs, k='add': '<div class="cards">' + ''.join(tile(x, k) for x in xs) + '</div>'
     by = lambda r: [x for x in pick if x['role'] == r]
-    secs = ''.join(f'<h3>{ROLE_NAME[r]} ({len(by(r))})</h3>' + grid(by(r)) for r in ROLE_NAME if by(r))
-    moresec = ''.join(f'<details><summary>{ROLE_NAME[r]}: next {len(more[r])}</summary>{grid(more[r])}</details>' for r in ROLE_NAME if more[r])
+    secs = ''.join(f'<h3>{RN[r]} ({len(by(r))})</h3>' + grid(by(r)) for r in RN if by(r))
+    moresec = ''.join(f'<details><summary>{RN[r]}: next {len(more[r])}</summary>{grid(more[r])}</details>' for r in RN if more[r])
     combos_txt = ('; '.join(' + '.join(u['card']['name'] for u in cb['uses']) + ' (' + ', '.join(p['feature']['name'] for p in cb.get('produces', [])[:3]) + ')'
                             for cb in combos[:8]) or 'none')
     srcs = ''.join(f'<li><a href="{E(u if not u.startswith("archidekt:") else "https://archidekt.com/decks/" + u.split(":")[1])}">{E(l)}</a>: {len(src[k] - boxnames)} cards named that aren\'t in the box</li>'
@@ -294,13 +426,13 @@ def main():
     open(os.path.join(ROOT, 'theme', slug + '.html'), 'w').write(tpl)
     # Review data for theme/review.html: the 15 in rank order then the options by score, the 15 cuts then the rest.
     def add_j(x, top):
-        return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'job': x['label'], 'role': ROLE_NAME[x['role']], 'a': round(x['a'], 3),
+        return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'job': x['label'], 'role': RN[x['role']], 'a': round(x['a'], 3),
                 'b': round(x['b'], 3), 'src': [T['sources'][k][0] for k in x['src']], 'gc': x['gc'], 'usd': x['usd'],
                 'land': x['land'], 'top': top}
     def cut_j(x, top):
         return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'out': round(x['out'], 3), 'ed': round(x['ed'], 3),
                 'land': x['land'], 'top': top}
-    opts = sorted((x for r in ROLE_NAME for x in more[r]), key=lambda x: (-x['score'], x['mv']))
+    opts = sorted((x for r in RN for x in more[r]), key=lambda x: (-x['score'], x['mv']))
     rev = {'slug': slug, 'cmd': T['cmd'], 'direction': T['direction'], 'why': T['why'], 'date': time.strftime('%b %-d, %Y'),
            'n': len(decks), 'nd': len(dirn), 'edn': edn, 'gcs': gcs, 'bracket': TAG.get(est.get('bracketTag'), est.get('bracketTag')),
            'adds': [add_j(x, True) for x in pick] + [add_j(x, False) for x in opts],
@@ -322,15 +454,23 @@ DIRECTIONS = {
  'token-triumph': 'Token doublers',
 }
 
+# The user's queue (Nov 17, 2026): Silverquill, the five Starters, the rest, Revival Trance (Terra and Celes) last.
+ORDER = ['silverquill-influence', 'first-flight', 'grave-danger', 'chaos-incarnate', 'draconic-destruction', 'token-triumph',
+         'living-energy', 'eternal-might', 'lorehold-spirit', 'borg', 'federation-fleet', 'landing-party', 'klingon-fury',
+         'revival-trance', 'revival-trance-celes']
+
 def write_index():
     """theme/index.json: one row per deck in decks/decks.json, ready decks first."""
     decks = json.load(open(os.path.join(ROOT, 'decks', 'decks.json')))
     rows = []
+    decks['revival-trance-celes'] = {**decks['revival-trance'], 'name': 'Revival Trance (Celes)', 'cmd': 'Celes, Rune Knight',
+                                     'img': 'https://cards.scryfall.io/normal/front/3/0/30584c53-533b-4dc7-b07c-8600164a99b3.jpg?1783906375'}
+    decks['revival-trance'] = {**decks['revival-trance'], 'name': 'Revival Trance (Terra)'}
     for slug, d in decks.items():
         ready = os.path.exists(os.path.join(ROOT, 'theme', slug + '.json'))
         rows.append({'slug': slug, 'name': d['name'], 'cmd': d['cmd'], 'img': d['img'], 'direction': DIRECTIONS.get(slug),
                      'ready': ready})
-    rows.sort(key=lambda r: (not r['ready'], r['direction'] is None, r['name']))
+    rows.sort(key=lambda r: ORDER.index(r['slug']) if r['slug'] in ORDER else len(ORDER))
     json.dump(rows, open(os.path.join(ROOT, 'theme', 'index.json'), 'w'), indent=0)
 
 if __name__ == '__main__':
