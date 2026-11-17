@@ -53,7 +53,7 @@
 "cmd": "Saheeli, Radiant Creator",
 "img": "https://cards.scryfall.io/normal/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.jpg?1783907753",
 "direction": "Big energy",
-"ready": false
+"ready": true
 },
 {
 "slug": "eternal-might",
