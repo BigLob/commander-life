@@ -3,6 +3,10 @@
 next-best options for each, for the user to pick from. The rules are in theme/method.md; this script is them.
 
     python3 tools/carousel/theme_picks.py <slug> <cache dir>
+    python3 tools/carousel/theme_picks.py --index      (only rewrites theme/index.json)
+
+It writes theme/<slug>.html (the full page), theme/<slug>.json (what theme/review.html shows two at a time) and
+theme/index.json (the review page's deck list).
 
 The cache dir holds (fetched once, then reused; delete a file to fetch it again):
   decks.json   Archidekt decks for the commander, from tools/carousel/archidekt.py
@@ -288,11 +292,47 @@ def main():
     for k, v in rep.items(): tpl = tpl.replace(k, v)
     os.makedirs(os.path.join(ROOT, 'theme'), exist_ok=True)
     open(os.path.join(ROOT, 'theme', slug + '.html'), 'w').write(tpl)
+    # Review data for theme/review.html: the 15 in rank order then the options by score, the 15 cuts then the rest.
+    def add_j(x, top):
+        return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'job': x['label'], 'role': ROLE_NAME[x['role']], 'a': round(x['a'], 3),
+                'b': round(x['b'], 3), 'src': [T['sources'][k][0] for k in x['src']], 'gc': x['gc'], 'usd': x['usd'],
+                'land': x['land'], 'top': top}
+    def cut_j(x, top):
+        return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'out': round(x['out'], 3), 'ed': round(x['ed'], 3),
+                'land': x['land'], 'top': top}
+    opts = sorted((x for r in ROLE_NAME for x in more[r]), key=lambda x: (-x['score'], x['mv']))
+    rev = {'slug': slug, 'cmd': T['cmd'], 'direction': T['direction'], 'why': T['why'], 'date': time.strftime('%b %-d, %Y'),
+           'n': len(decks), 'nd': len(dirn), 'edn': edn, 'gcs': gcs, 'bracket': TAG.get(est.get('bracketTag'), est.get('bracketTag')),
+           'adds': [add_j(x, True) for x in pick] + [add_j(x, False) for x in opts],
+           'cuts': [cut_j(x, True) for x in cuts] + [cut_j(x, False) for x in morecuts]}
+    json.dump(rev, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
+    write_index()
     print(f'{len(decks)} decks, {len(dirn)} built this way (>= {cut_at} on-theme); box GCs {box_gc}, final {gcs}; bracket {est.get("bracketTag")}')
     for x in pick: print(f'  + {x["n"]:<38} {x["role"]:<8} a={pct(x["a"]):>4} b={pct(x["b"]):>4} src={len(x["src"])} lift={x["lift"]:.1f}{" GC" if x["gc"] else ""}')
     for x in cuts: print(f'  - {x["n"]:<38} out={pct(x["out"]):>4} ed={pct(x["ed"]):>4}')
     for n in notes: print(' ', n)
     print('  combos:', combos_txt)
 
+# The review page's front screen: every deck we own with the direction the user chose (decks/angles.html, Nov 16,
+# 2026), and whether its theme picks are built. A deck with no direction yet says so.
+DIRECTIONS = {
+ 'silverquill-influence': 'All-in Auras', 'living-energy': 'Big energy', 'eternal-might': 'Pure Zombie typal',
+ 'first-flight': 'Flyers with anthems and cost reducers', 'grave-danger': 'Value Zombies on a loop',
+ 'chaos-incarnate': 'Goad everything', 'draconic-destruction': 'More and better Dragons, some ramp',
+ 'token-triumph': 'Token doublers',
+}
+
+def write_index():
+    """theme/index.json: one row per deck in decks/decks.json, ready decks first."""
+    decks = json.load(open(os.path.join(ROOT, 'decks', 'decks.json')))
+    rows = []
+    for slug, d in decks.items():
+        ready = os.path.exists(os.path.join(ROOT, 'theme', slug + '.json'))
+        rows.append({'slug': slug, 'name': d['name'], 'cmd': d['cmd'], 'img': d['img'], 'direction': DIRECTIONS.get(slug),
+                     'ready': ready})
+    rows.sort(key=lambda r: (not r['ready'], r['direction'] is None, r['name']))
+    json.dump(rows, open(os.path.join(ROOT, 'theme', 'index.json'), 'w'), indent=0)
+
 if __name__ == '__main__':
-    main()
+    if sys.argv[1:] == ['--index']: write_index()   # just the front screen's list
+    else: main()

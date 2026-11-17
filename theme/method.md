@@ -53,6 +53,8 @@ with shares on different scales and then tuned it against our own picks.
    a spell, so the land count holds.
 8. **More options**: the next 12 cards for each role and 10 more cuts are shown under the 15, in the same order, so
    the user can swap any pick by hand.
+9. **Approval**: `theme/review.html` shows the adds and cuts two at a time for a yes, maybe or no, and copies the
+   result for Claude, who saves it as `theme/<slug>-review.json`.
 
 ## Caveats
 
