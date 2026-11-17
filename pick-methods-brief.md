@@ -1,5 +1,7 @@
 # Brief: writing the rules for "top 15 adds" (for Opus)
 
+> Superseded by `theme/method.md` (Nov 17, 2026), which is what `tools/carousel/theme_picks.py` runs. Kept for history.
+
 Goal: turn the two methods we have used into written rules anyone can rerun, then add a weight that favours **on-theme** cards over meta staples. The user's priority is theme, not popularity. Silverquill picks are paused; Silverquill (Killian, Decisive Mentor, "all-in Auras") is only the worked example.
 
 ## Method A: the original (sources first), how the 15 in `tools/carousel/angles.py` `PICKS` were chosen
