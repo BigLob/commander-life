@@ -1,4 +1,3 @@
 BUYLIST: running log of cards to get, by proxy or real. Newest at the bottom.
 Format: date | card | version wanted | how (proxy/real) | for deck | status
 
-2026-11-17 | Scriv, the Obligator (Silverquill Influence's alternate commander; "the apple woman", confirm) | foil / alt art (SOC #9 has the inverted frame and a foil; look for other alt art) | proxy or real | Silverquill Influence | to get
