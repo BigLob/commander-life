@@ -67,6 +67,9 @@
 .k-pi, .k-ja { --seat: #7a1c1c; --seat-hi: #a83232; --accent: #d9b24a; }  /* Federation Fleet: Picard, Janeway */
 .k-sp, .k-ki { --seat: #1d4f6e; --seat-hi: #2f7aa0; --accent: #3f8a50; }  /* Landing Party: Spock, Kirk */
 .k-wo, .k-ko { --seat: #5a1a14; --seat-hi: #8e2a1f; --accent: #c9a440; }  /* Klingon Fury: Worf, Kor */
+/* v1.87: the Secrets of Strixhaven decks, so every deck we own can be picked. */
+.k-sq, .k-sq2 { --seat: #24222a; --seat-hi: #47434f; --accent: #d9ccab; }  /* Silverquill Influence: Killian, Scriv */
+.k-lh, .k-lh2 { --seat: #7a2a1c; --seat-hi: #a8442c; --accent: #e8d6a8; }  /* Lorehold Spirit: Quintorius, Excava */
 
 [hidden] { display: none !important; }
 html { box-sizing: border-box; height: 100%; background: var(--table); }
@@ -581,6 +584,32 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 .couch ~ .turn-big, .couch + .menu-btn { top: 74%; }
 .n1 + .menu-btn { top: 16px; right: max(16px, calc(env(safe-area-inset-right, 0px) + 10px)); width: 46px; height: 46px; background: rgba(0, 0, 0, .3); }
 
+/* The deck picker (v1.87): over a player's own seat at the start of a game. Tapping a deck sets the
+   seat's background to one of that deck's commanders, at random. The seat is lifted over the turn and
+   menu buttons while it shows, since nobody needs them before the game starts. */
+.seat.picking { z-index: 12; }
+.dk {
+  position: absolute; inset: 0; z-index: 8; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 6px; padding: 8px; overflow: auto; background: rgba(8, 8, 12, .9);
+  border-radius: 18px;
+}
+.dk-head { display: flex; align-items: center; justify-content: center; gap: 10px; flex: none; max-width: 100%; }
+.dk-head b {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--f-name); font-weight: 600; font-size: var(--dkh, 18px); color: #fff;
+}
+.dk-x {
+  flex: none; padding: 4px 12px; border-radius: 999px; border: 2px solid var(--line); background: transparent;
+  font-family: var(--f-name); font-size: 14px; color: #fff;
+}
+.dk-grid { display: grid; grid-template-columns: repeat(var(--dkc, 5), var(--dkw, 64px)); gap: 6px; justify-content: center; flex: none; }
+.dk-b {
+  display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 0; border: 0; background: none;
+  color: #fff; font-family: var(--f-name); font-size: var(--dkf, 12px); line-height: 1.05; text-align: center;
+}
+.dk-b .sw { width: var(--dkd, 48px); height: var(--dkd, 48px); box-shadow: 0 0 0 2px rgba(255, 255, 255, .55); }
+.dk-b span { height: 2.1em; max-width: 100%; overflow: hidden; text-wrap: balance; }
+.dk-b:disabled { opacity: .25; }
 /* Menu */
 /* The "Pick who goes first" popup after New game (v1.48). It leaves the seats tappable: any change
    to a total sends it away too. */
@@ -955,7 +984,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.86';
+  const VERSION = '1.87';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -993,7 +1022,23 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // (fic/1), and the Star Trek decks: The Borg Queen (trc/1) and Locutus of Borg (trc/97), Jean-Luc
   // Picard (trc/3) and Captain Janeway (trc/84), Commander Spock (trc/2) and Captain Kirk (trc/85),
   // Worf (trc/4) and Kor (trc/96). Phones older than v1.10 reject the new keys until reloaded.
-  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le', 'le2', 'em', 'em2', 'rt', 'rt2', 'bq', 'lo', 'pi', 'ja', 'sp', 'ki', 'wo', 'ko'];
+  // v1.87 adds the two Secrets of Strixhaven decks: Killian (soc, Silverquill Influence) and Scriv,
+  // Quintorius (Lorehold Spirit; a planeswalker, so its wider art was cropped to 626 × 457) and Excava.
+  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le', 'le2', 'em', 'em2', 'rt', 'rt2', 'bq', 'lo', 'pi', 'ja', 'sp', 'ki', 'wo', 'ko', 'sq', 'sq2', 'lh', 'lh2'];
+  // The deck picker (v1.87, the user's ask): each deck we own and its commanders' art. A player picks
+  // the deck; the background is one of its commanders at random (the alternate commander is in the
+  // deck too, so either is right). The art doubles as the deck's id: whoever picked has `picked/<edge>`
+  // set, and their background says which deck. Short names fit the picker's buttons.
+  const PICK_DECKS = [
+    ['First Flight', 'First Flight', ['uw']], ['Grave Danger', 'Grave Danger', ['bu']],
+    ['Chaos Incarnate', 'Chaos Incarnate', ['rb']], ['Draconic Destruction', 'Draconic Destruction', ['gr']],
+    ['Token Triumph', 'Token Triumph', ['gw']], ['Living Energy', 'Living Energy', ['le', 'le2']],
+    ['Eternal Might', 'Eternal Might', ['em', 'em2']], ['Silverquill Influence', 'Silverquill', ['sq', 'sq2']],
+    ['Lorehold Spirit', 'Lorehold', ['lh', 'lh2']], ['Revival Trance', 'Revival Trance', ['rt', 'rt2']],
+    ['We Are the Borg', 'Borg', ['bq', 'lo']], ['Federation Fleet', 'Federation Fleet', ['pi', 'ja']],
+    ['Landing Party', 'Landing Party', ['sp', 'ki']], ['Klingon Fury', 'Klingon Fury', ['wo', 'ko']],
+  ].map(([name, short, arts]) => ({ name, short, arts }));
+  const deckOfArt = a => PICK_DECKS.find(d => d.arts.includes(a));
   // Random backgrounds for `edges`, none the same as each other or as those `keep` (other players').
   function dealBgs(edges, keep) {
     const pool = ARTS.filter(a => !keep.includes(a));
@@ -1236,6 +1281,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   if (![1, 2, 3].includes(state.pairs) || !state.pairs320) { state.pairs = 3; state.pairs320 = true; }
   // Each player's background, by edge (v1.6). Dealt at random until the table says otherwise.
   if (!Array.isArray(state.bgs) || state.bgs.length !== 4 || !state.bgs.every(b => ARTS.includes(b))) state.bgs = dealBgs([0, 1, 2, 3], []);
+  // Who has picked their deck this game (v1.87), by edge. Synced as picked/<edge>; New game clears it.
+  if (!Array.isArray(state.picked) || state.picked.length !== 4) state.picked = [null, null, null, null];
   // Who sits out a three-player game (v1.5; before, it was always Lenn). Synced.
   if (![0, 1, 2, 3].includes(state.sitout)) state.sitout = 3;
   delete state.clock; // left over from v1.2's sync
@@ -1306,7 +1353,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   function reroll() {
     const edges = players.map(p => p.e), keep = [0, 1, 2, 3].filter(e => !edges.includes(e)).map(e => state.bgs[e]);
     const dealt = dealBgs(edges, keep), patch = {};
-    edges.forEach((e, n) => { state.bgs[e] = dealt[n]; patch['bgs/' + e] = dealt[n]; });
+    edges.forEach((e, n) => { state.bgs[e] = dealt[n]; patch['bgs/' + e] = dealt[n]; state.picked[e] = patch['picked/' + e] = null; });
+    dkSkip.clear();
     return patch;
   }
   // Where player i sits on this phone: the table turns so this phone's player is at the bottom, and
@@ -1335,6 +1383,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   const deltas = [];
   // The games the "Pick who goes first" popup is asking about while it shows (v1.48, askFirst()).
   let askKeys = null;
+  // Seats (by edge) whose deck picker was skipped on this phone; cleared once their game is under way.
+  const dkSkip = new Set();
   // Per seat, the opponent slot whose commander damage is being marked (null when off).
   let marking = [];
 
@@ -1742,6 +1792,84 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     measure();
   }
 
+  // ---- deck picker (v1.87) ----
+  // Over a seat at the start of a game, until its player picks a deck, taps Skip, or the game gets
+  // under way (any change to a total). It shows where that player is looking: on a Center phone every
+  // seat (each faces its owner), in Couch both seats, in Side by side each player's own box in their
+  // half, and otherwise only this phone's own seat (everyone else picks on their own phone). Not on
+  // the archenemy's seat (the Nicol Bolas deck has no commander).
+  const decksTaken = e => {
+    const live = state.mode === SPLIT ? [0, 1, 2, 3] : PEOPLE[state.mode];
+    return live.filter(o => o !== e && state.picked[o]).map(o => deckOfArt(state.bgs[o])).filter(Boolean);
+  };
+  function wantsPicker(i, spot) {
+    const e = edgeOf(i);
+    if (state.picked[e] || dkSkip.has(e) || isAe(i) || !untouched(players[i].k)) return false;
+    if (spot === 'd-cl' || spot === 'd-cr') return true;
+    // Side by side: d-bl is this phone's player's own box and d-tr the opponent's (in the half turned
+    // to them); the other two boxes are each player's view of the other. In the four-seat version
+    // the top half is the other pair, who have their own phones.
+    if (spot === 'd-tl' || spot === 'd-br') return false;
+    if (spot === 'd-tr') return !sideBySide4();
+    return state.me === CENTER || e === state.me;
+  }
+  function addPicker(seat, i) {
+    const e = edgeOf(i), taken = decksTaken(e);
+    const dk = document.createElement('div');
+    dk.className = 'dk';
+    dk.innerHTML = `<div class="dk-head"><b>${state.mode === 1 ? 'Pick your deck' : esc(nameOf(e)) + ', pick your deck'}</b><button type="button" class="dk-x">Skip</button></div>
+      <div class="dk-grid">${PICK_DECKS.map((d, n) => `<button type="button" class="dk-b k-${d.arts[0]}" data-n="${n}"${taken.includes(d) ? ' disabled' : ''} aria-label="${esc(d.name)}">${swatch(d.arts[0])}<span>${esc(d.short)}</span></button>`).join('')}</div>`;
+    // Taps here never reach the seat's life zones underneath.
+    ['pointerdown', 'pointerup', 'touchstart', 'touchend'].forEach(t => dk.addEventListener(t, ev => ev.stopPropagation()));
+    dk.querySelector('.dk-x').addEventListener('click', () => { dkSkip.add(e); buzz(); build(); askAfterPick(); });
+    dk.querySelectorAll('.dk-b').forEach(b => b.addEventListener('click', () => pickDeck(e, PICK_DECKS[+b.dataset.n])));
+    seat.querySelector('.face').appendChild(dk);
+    seat.classList.add('picking');
+  }
+  // A commander of the deck at random, one nobody else shows if it can be. Anyone not yet picked who
+  // shows that art is dealt another, so no two seats match.
+  function pickDeck(e, d) {
+    const others = [0, 1, 2, 3].filter(o => o !== e);
+    const free = d.arts.filter(a => !others.some(o => state.bgs[o] === a));
+    const pool = free.length ? free : d.arts, art = pool[Math.floor(Math.random() * pool.length)];
+    const patch = { ['bgs/' + e]: art, ['picked/' + e]: true };
+    state.bgs[e] = art; state.picked[e] = true;
+    others.forEach(o => {
+      if (state.bgs[o] !== art || state.picked[o]) return;
+      const nb = dealBgs([o], [0, 1, 2, 3].filter(x => x !== o).map(x => state.bgs[x]))[0];
+      state.bgs[o] = patch['bgs/' + o] = nb;
+    });
+    buzz(); send(patch); save(); build(); askAfterPick();
+  }
+  // Size each picker's buttons to fill its seat: the column count that gives the biggest art circles.
+  function fitPickers() {
+    app.querySelectorAll('.dk').forEach(dk => {
+      const seat = dk.closest('.seat'), ro = seat.querySelector('.readout');
+      // On the 3-player iPad wheel the seat is clipped to a wedge; the picker takes the wedge's safe box.
+      dk.style.inset = seat._wheel ? 'auto' : '';
+      ['left', 'top', 'width', 'height'].forEach(k => { dk.style[k] = seat._wheel ? ro.style[k] : ''; });
+      const W = dk.clientWidth - 16, head = dk.querySelector('.dk-head'), hb = head.querySelector('b');
+      // The heading as big as fits on one line beside Skip (11 to 24 px).
+      let hs = Math.min(24, Math.max(14, W / 14));
+      dk.style.setProperty('--dkh', hs + 'px');
+      if (hb.scrollWidth > hb.clientWidth) { hs = Math.max(11, hs * hb.clientWidth / hb.scrollWidth - .5); dk.style.setProperty('--dkh', hs + 'px'); }
+      const H = dk.clientHeight - 16 - head.offsetHeight - 6, n = PICK_DECKS.length, gap = 6;
+      let best = null;
+      for (let c = 1; c <= n; c++) {
+        const r = Math.ceil(n / c), cw = (W - (c - 1) * gap) / c, ch = (H - (r - 1) * gap) / r;
+        const f = Math.max(9, Math.min(15, cw * .15)), d = Math.min(cw * .86, ch - 2.1 * f - 4, 120);
+        if (!best || d > best.d) best = { c, cw, f, d };
+      }
+      best.d = Math.max(20, best.d);
+      dk.style.setProperty('--dkc', best.c);
+      dk.style.setProperty('--dkw', Math.floor(best.cw) + 'px');
+      dk.style.setProperty('--dkf', best.f.toFixed(1) + 'px');
+      dk.style.setProperty('--dkd', Math.floor(best.d) + 'px');
+    });
+  }
+  // "Pick who goes first" waits until this phone's pickers are done, so it never covers one.
+  function askAfterPick() { if (askKeys) firstAsk.hidden = !!app.querySelector('.dk'); }
+
   function makeSeat(i, spot) {
     const seat = document.createElement('section');
     const e = edgeOf(i);
@@ -1769,6 +1897,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         ${isAe(i) && state.schemes === 'app' ? `<button type="button" class="sch-btn" aria-label="Schemes">${ICON_SCHEME}<span></span></button>` : ''}
         ${SHOW_DECKS && state.mode > 1 ? `<div class="seat-mana" aria-hidden="true">${manaOf(colorOf(e).slice(2))}</div>` : ''}
       </div>`;
+    if (wantsPicker(i, spot)) addPicker(seat, i);
     bindZone(seat.querySelector('.minus'), i, -1);
     bindZone(seat.querySelector('.plus'), i, 1);
     seat.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
@@ -1802,6 +1931,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     keepIn();
     placeTurn();
     clearTray();
+    fitPickers();
   }
 
   // v1.70: the 3-player iPad wheel. Three 120-degree wedges round the board's middle (rays at 90, 210
@@ -2152,6 +2282,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     uw: [.6, .2], bu: [.5, .13], rb: [.5, .38], gr: [.63, .25], gw: [.4, .24], le: [.46, .35], le2: [.42, .2],
     em: [.52, .2], em2: [.33, .17], rt: [.72, .25], rt2: [.38, .2], bq: [.5, .22], lo: [.53, .16], pi: [.48, .2],
     ja: [.6, .22], sp: [.57, .38], ki: [.46, .15], wo: [.47, .2], ko: [.53, .13],
+    sq: [.57, .1], sq2: [.73, .4], lh: [.43, .33], lh2: [.72, .42],
   };
   function placeArt(seat) {
     const f = FACES[seat.dataset.art], face = seat.querySelector('.face');
@@ -2251,6 +2382,14 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (!seats[i]) return;
     // A changed total (here or from another phone) means the game is under way: no more asking.
     if (askKeys && !askKeys.every(untouched)) hideAsk();
+    // Once the game is under way the deck pickers go (v1.87).
+    const k = players[i].k;
+    if (!untouched(k)) players.forEach((x, j) => {
+      if (x.k !== k || !seats[j]) return;
+      dkSkip.delete(x.e);
+      seats[j].forEach(seat => { const dk = seat.querySelector('.dk'); if (dk) { dk.remove(); seat.classList.remove('picking'); } });
+    });
+    if (askKeys && !app.querySelector('.dk')) askAfterPick();
     const p = playerOf(i);
     const why = outReason(p);
     const label = state.mode === 1 ? 'Life' : (isAe(i) ? ICON_CROWN : '') + nameOf(edgeOf(i));
@@ -3106,6 +3245,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   function askFirst() {
     if (state.mode === 1 || state.mode === ARCH) return;
     askKeys = viewKeys(); firstAsk.hidden = false;
+    askAfterPick();
   }
   function hideAsk() { askKeys = null; firstAsk.hidden = true; }
   document.getElementById('firstAskGo').addEventListener('click', () => { hideAsk(); pickFirst(); });
@@ -3347,8 +3487,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         const e = edgesOf(k)[i];
         return {
           name: state.names[e].trim() || DEFAULT_NAMES[e], colors: bgOf(e),
-          // No deck while decks aren't picked; `colors` is then just the background.
-          deck: SHOW_DECKS ? DECKS[colorOf(e).slice(2)].name : '',
+          // The deck its player picked (v1.87); none if they skipped (`colors` is then just the background).
+          deck: SHOW_DECKS ? DECKS[colorOf(e).slice(2)].name : state.picked[e] && deckOfArt(bgOf(e)) ? deckOfArt(bgOf(e)).name : '',
           life: p.life, out: outReason(p) || null, won: won.includes(i),
           ...(isArch(k) ? { ae: i === state.ae } : {}),
           turns: c.c[i] || 0, turnSecs: Math.round(turnMs(i) / 1000),
@@ -3480,7 +3620,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   const RESULTS_URL = DB + '/tables/t7q2xm4k-results';
 
   const inc = d => ({ '.sv': { increment: d } });
-  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'ae', 'schemes', 'speaker/id', 'speaker/me', 'speaker/at', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'names/0', 'names/1', 'names/2', 'names/3',
+  const allPaths = () => ['mode', 'start', 'pairs', 'sitout', 'ae', 'schemes', 'speaker/id', 'speaker/me', 'speaker/at', 'bgs/0', 'bgs/1', 'bgs/2', 'bgs/3', 'picked/0', 'picked/1', 'picked/2', 'picked/3', 'names/0', 'names/1', 'names/2', 'names/3',
     'colors/0', 'colors/1', 'colors/2', 'colors/3']
     .concat(...KEYS.map(k => [].concat(...Array.from({ length: SIZE[k] }, (_, i) =>
       ['life', 'cmd/0', 'cmd/1', 'cmd/2', 'conceded'].map(f => `games/${k}/${i}/${f}`)))),
@@ -3492,7 +3632,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const keys = path.split('/'), last = keys.pop();
     keys.reduce((o, k) => o[k], state)[last] = v;
   }
-  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, ae: state.ae, schemes: state.schemes, scheme: state.scheme, speaker: state.speaker, bgs: state.bgs, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
+  const shared = () => ({ mode: state.mode, start: state.start, pairs: state.pairs, sitout: state.sitout, ae: state.ae, schemes: state.schemes, scheme: state.scheme, speaker: state.speaker, bgs: state.bgs, picked: state.picked, names: state.names, colors: state.colors, games: state.games, meta: state.meta, turns: state.turns, clock: state.clock });
 
   // Own writes in flight (v1.21). The stream echoes each write back a round trip later, so during
   // fast taps it brought back totals this phone had already moved past (tap 40 to 37, then the
@@ -3532,6 +3672,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (p === 'speaker/me') return v === null || [0, 1, 2, 3, CENTER].includes(v);
     if (p === 'speaker/at') return v === null || (typeof v === 'number' && isFinite(v) && v > 0);
     if (p.startsWith('bgs/')) return ARTS.includes(v);
+    if (p.startsWith('picked/')) return v === null || typeof v === 'boolean';
     if (p === 'start') return [20, 30, 40].includes(v);
     // A blank or wrong-box name from another phone (or someone mid-edit) is ignored; see badName.
     if (p.startsWith('names/')) return typeof v === 'string' && v.length <= 12 && !badName(+p.slice(6), v);
@@ -3571,7 +3712,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       // A seat reset by a phone from before v3.0 carries no concession: it's back in.
       if (v === undefined && p.endsWith('/conceded') && getAt(mirror, p.slice(0, -'/conceded'.length))) v = false;
       // A table that holds no meta, turn or turn timer (cleared, or set up by an older phone) has none.
-      if (v === undefined && /^(meta|turns|clock|speaker)\//.test(p) && mirror && typeof mirror === 'object') v = null;
+      if (v === undefined && /^(meta|turns|clock|speaker|picked)\//.test(p) && mirror && typeof mirror === 'object') v = null;
       if (v !== undefined && v !== was && !held(p) && validValue(p, v)) { setAt(p, v); changed.push({ p, was }); }
     });
     hearPing();
@@ -3588,6 +3729,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     }
     // The speaker setting changes only the menu and the wake-up note, never the board.
     if (changed.some(x => x.p.startsWith('speaker/'))) syncSpeaker();
+    // A new background dealt to someone who hasn't picked means a new game: their picker comes back.
+    changed.forEach(x => { if (x.p.startsWith('bgs/') && !state.picked[+x.p.slice(4)]) dkSkip.delete(+x.p.slice(4)); });
     changed.splice(0, changed.length, ...changed.filter(x => !x.p.startsWith('speaker/')));
     if (!changed.length) { save(); return; }
     save();
