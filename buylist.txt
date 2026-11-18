@@ -2,3 +2,5 @@ BUYLIST: running log of cards to get, by proxy or real. Newest at the bottom.
 Format: date | card | version wanted | how (proxy/real) | for deck | status
 
 2026-11-17 | Eriette of the Charmed Apple (WB, Commander-legal) | foil / alt art: best fit WOE #299 borderless (Zach Alexander) foil ~$6.46; other options WOE #202 foil ~$7.35, promo pack foil ~$12.27, prerelease foil ~$20.17 | proxy or real | Silverquill Influence | to get
+2026-11-18 | Master Transmuter (U, Commander-legal) | any printing | proxy or real | We Are the Borg (Star Trek) | to get
+2026-11-18 | Silver Myr (U, Commander-legal) | any printing | proxy or real | We Are the Borg (Star Trek) | to get
