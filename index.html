@@ -573,10 +573,10 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   background: var(--table); border: 2px solid var(--line);
 }
 /* The Planeswalker flame, a PNG with its white background taken out. */
-.menu-btn img { width: auto; height: 32px; display: block; pointer-events: none; }
+.menu-btn img { width: auto; height: var(--mbi, 32px); display: block; pointer-events: none; }
 /* Beside the turn button (v1.3; before, the menu button had the middle to itself). */
 .table + .menu-btn, .duel + .menu-btn { top: 50%; left: calc(50% + 58px); transform: translateY(-50%); width: 46px; height: 46px; }
-.table + .menu-btn img, .duel + .menu-btn img { height: 27px; }
+.table + .menu-btn img, .duel + .menu-btn img { height: var(--mbi, 27px); }
 /* Couch: the totals fill the middle, so both buttons sit lower, clear of them and of the corner icons. */
 .couch ~ .turn-big, .couch + .menu-btn { top: 74%; }
 .n1 + .menu-btn { top: 16px; right: max(16px, calc(env(safe-area-inset-right, 0px) + 10px)); width: 46px; height: 46px; background: rgba(0, 0, 0, .3); }
@@ -955,7 +955,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.85';
+  const VERSION = '1.86';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -2068,6 +2068,19 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       const m = Math.max(46, Math.min(72, d * .4));
       Object.assign(tb.style, { left: cx + 'px', top: cy + 'px', width: d + 'px', height: d + 'px', margin: '0' });
       Object.assign(mb.style, { left: cx + d / 2 + 14 + 'px', top: cy + 'px', width: m + 'px', height: m + 'px', margin: '0' });
+      return;
+    }
+    // Couch on a big screen (v1.86, the user's ask: the iPad's turn and menu buttons much bigger):
+    // both sit low on the seam as before, but sized to the screen, the menu button beside the turn button.
+    if (board && board.matches('.couch:not(.sfy)') && board.offsetWidth >= 600) {
+      const tb = app.querySelector('.turn-big'), mb = app.querySelector('.menu-btn');
+      const cx = (board.offsetParent === app ? board.offsetLeft : 0) + board.offsetWidth / 2;
+      const cy = parseFloat(getComputedStyle(tb).top) || board.offsetTop + .74 * board.offsetHeight;
+      const d = Math.max(96, Math.min(.2 * board.offsetHeight, .3 * board.offsetWidth));
+      const m = Math.round(d * .55);
+      Object.assign(tb.style, { left: cx + 'px', width: d + 'px', height: d + 'px', margin: '0' });
+      Object.assign(mb.style, { left: cx + d / 2 + 18 + 'px', top: cy + 'px', width: m + 'px', height: m + 'px', margin: '0' });
+      mb.style.setProperty('--mbi', Math.round(m * .6) + 'px');
       return;
     }
     // The button box (v1.44): the turn button as big as fits in its middle, the menu button in the
