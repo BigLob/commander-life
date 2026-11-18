@@ -28,7 +28,6 @@
     "one piece",
     "flesh and blood"
   ],
-  "alert_new_listings": true,
   "ntfy_server": "https://ntfy.sh",
   "ntfy_topic": "",
   "headless": false,

@@ -86,7 +86,8 @@ class Diff(unittest.TestCase):
         ps.append(dict(ps[0], key='999', sku='999', name='MTG Avatar Collector Booster Box', in_stock=True))
         ps.append(dict(ps[0], key='998', sku='998', name='MTG Spider-Man Bundle', in_stock=False))
         kinds = {p['sku']: k for k, p in m.diff(st, 'u', ps)[0]}
-        self.assertEqual(kinds, {'123452': 'restock', '999': 'new_in_stock', '998': 'new_listing'})
+        # 998 is new but not in stock at the store: no alert (the user's rule, Nov 18, 2026).
+        self.assertEqual(kinds, {'123452': 'restock', '999': 'new_in_stock'})
         # And it doesn't repeat on the next poll.
         self.assertEqual(m.diff(st, 'u', ps)[0], [])
         # Booster box back: one restock alert.
@@ -233,7 +234,7 @@ class SecretLair(unittest.TestCase):
             m.poll_secret_lair(CFG, st, getter=sl_getter)
         finally:
             m.push, m.save_state = orig, orig_save
-        self.assertEqual(sent, ['Secret Lair on sale now'])
+        self.assertEqual(sent, ['MTG: 1 Secret Lair on sale'])
 
     def test_announce_text(self):
         p = {'name': 'Secret Lair x Unfinity Thing', 'price': '29.99', 'start': 1795453200.0,
@@ -275,6 +276,18 @@ class PriceDrops(unittest.TestCase):
         self.assertEqual([k for k, _ in alerts], ['restock'])
         self.assertIn('was $44.99', m.alert_text('restock', alerts[0][1], CFG)[1])
 
+    def test_sold_out_drop_is_quiet_then_shown_on_restock(self):
+        st = {'products': {}, 'baselined': []}
+        m.diff(st, 'u', self.prods())
+        ps = self.prods()
+        borg = next(p for p in ps if p['sku'] == '123452')   # sold out, $44.99
+        borg['price'] = '29.99'
+        self.assertEqual(m.diff(st, 'u', ps)[0], [])          # cheaper but sold out: no push
+        borg.update(in_stock=True, stock='4 in stock')
+        alerts = m.diff(st, 'u', ps)[0]
+        self.assertEqual([k for k, _ in alerts], ['restock'])
+        self.assertEqual(alerts[0][1]['was'], 44.99)
+
     def test_missing_price_never_alerts(self):
         st = {'products': {}, 'baselined': []}
         m.diff(st, 'u', self.prods())
@@ -294,6 +307,46 @@ class PriceDrops(unittest.TestCase):
         alerts = sl.diff(st, ps)[0]
         self.assertEqual([(k, p['id']) for k, p in alerts], [('price_drop', '1255840')])
         self.assertIn('was $39.99', sl.alert_text('price_drop', alerts[0][1])[1])
+
+
+class Digest(unittest.TestCase):
+    def test_one_push_for_many(self):
+        p = {'name': 'Magic: The Gathering - TMNT (Commander Deck)', 'price': '39.99', 'was': 69.99,
+             'stock': '4 in stock', 'url': 'https://mc/1', 'orig': ''}
+        q = dict(p, name='Wizards of the Coast Magic: The Gathering - Lorwyn Eclipsed (Bundle)', was=None,
+                 price='49.99', orig='59.99', stock='Limited availability', url='https://mc/2')
+        items = [m.mc_item('price_drop', p), m.mc_item('restock', q),
+                 m.sl_item('on_sale', {'name': 'Secret Lair x Thing', 'price': '29.99', 'url': 'https://sl/1'})]
+        title, msg, click, pri, actions = m.digest(items, CFG)
+        self.assertEqual(title, 'MTG: 1 in stock, 1 price drop, 1 Secret Lair on sale')
+        self.assertIn('In stock at Dallas:\n• Lorwyn Eclipsed (Bundle): $49.99 (list $59.99), Limited availability, back', msg)
+        self.assertIn('Price drops at Dallas:\n• TMNT (Commander Deck): $39.99 (was $69.99), 4 in stock', msg)
+        self.assertEqual(pri, 4)
+        self.assertIsNone(click)
+        self.assertEqual([a['url'] for a in actions], ['https://mc/2', 'https://mc/1', 'https://sl/1'])
+
+    def test_single_opens_product(self):
+        p = {'name': 'MTG Bundle', 'price': '9.99', 'stock': '2 in stock', 'url': 'https://mc/9', 'orig': ''}
+        title, msg, click, pri, actions = m.digest([m.mc_item('new_in_stock', p)], CFG)
+        self.assertEqual((title, click, actions), ('MTG: 1 in stock', 'https://mc/9', []))
+
+    def test_poll_sends_one_push(self):
+        st = {'products': {}, 'baselined': [], 'last_block_alert': 0}
+        Poll.run_poll(Poll(), [page('search.html')], st)
+        for p in st['products'].values():
+            p.update(in_stock=False, stock='Sold out')
+        sent = Poll.run_poll(Poll(), [page('search.html')], st)
+        self.assertEqual(len(sent), 1)
+        self.assertTrue(sent[0][0].startswith('MTG: '))
+
+    def test_other_store_is_not_in_stock(self):
+        p = {'name': 'MTG X', 'in_stock': True, 'stock': '3 in stock', 'where': 'Houston'}
+        self.assertFalse(m.at_my_store(p, CFG)['in_stock'])
+        self.assertTrue(m.at_my_store(dict(p, where='Dallas'), CFG)['in_stock'])
+
+    def test_reads_store_and_list_price(self):
+        ps = {p['sku']: p for p in m.parse_products(page('search.html'))}
+        self.assertEqual(ps['050575']['where'], 'Dallas')
 
 
 class Watchdog(unittest.TestCase):

@@ -154,9 +154,31 @@ def parse_products(page_html, base='https://www.microcenter.com'):
             in_stock, label, count = parse_stock(text)
         if not name:
             continue
+        # "16 IN STOCK at Dallas Store", "SOLD OUT at Dallas Store": which store the stock is for.
+        m = re.search(r'(?:IN STOCK|SOLD OUT|LIMITED AVAILABILITY|OUT OF STOCK)\s+at\s+(.+?)\s+Store\b', text, re.I)
+        where = m.group(1).strip() if m else ''
+        # "Original price $159.99 Save $90.00 Our price $ 69.99": the store's own markdown.
+        m = re.search(r'Original price\s*\$\s?([\d,]+\.\d\d)', text, re.I)
+        orig = m.group(1).replace(',', '') if m else ''
         out.append({'key': sku or href or name, 'name': name, 'sku': sku, 'price': price,
-                    'url': href, 'in_stock': in_stock, 'stock': label, 'count': count})
+                    'url': href, 'in_stock': in_stock, 'stock': label, 'count': count,
+                    'where': where, 'orig': orig})
     return out
+
+
+def store_city(cfg):
+    """'Micro Center Dallas' -> 'dallas', the word the page uses in 'IN STOCK at Dallas Store'."""
+    return (cfg.get('store_city') or cfg.get('store_name', '').replace('Micro Center', '')).strip().lower()
+
+
+def at_my_store(p, cfg):
+    """Only stock at the user's store counts (Dallas, the only store they care about). The
+    search page is already set to that store, but if a result ever names another store's
+    stock, read it as not in stock here."""
+    city = store_city(cfg)
+    if p['in_stock'] and p.get('where') and city and city not in p['where'].lower():
+        return dict(p, in_stock=False, stock=f'{p["stock"]} at {p["where"]}, not {city.title()}')
+    return p
 
 
 # ---------- filters and notes ----------
@@ -202,7 +224,10 @@ def price_drop(old, p):
 def diff(state, url, products, now=None):
     """Merges this page's products into the state and returns the alerts. A URL seen for the
     first time only records a baseline, so starting the monitor (or adding a URL) never pushes
-    a flood. Products missing from a page are left alone: pages paginate and reorder."""
+    a flood. Products missing from a page are left alone: pages paginate and reorder.
+    Only products in stock at the store alert (the user's rule, Nov 18, 2026: a price drop on
+    something sold out at Dallas, or a new listing that isn't in stock, is noise). Their price
+    is still recorded, so a later restock at the lower price says what it was."""
     now = now or dt.datetime.now().isoformat(timespec='seconds')
     known = state['products']
     baseline = url not in state['baselined']
@@ -210,16 +235,21 @@ def diff(state, url, products, now=None):
     for p in products:
         old = known.get(p['key'])
         rec = dict(p, last_seen=now, first_seen=old['first_seen'] if old else now)
-        if not baseline:
+        if old and not p['in_stock'] and price_drop(old, p):
+            # Sold out and cheaper: no push now, but keep the higher price to quote on restock.
+            rec['was'] = max(old.get('was') or 0, price_num(old['price']))
+        elif old and not p['in_stock'] and old.get('was'):
+            rec['was'] = old['was']
+        if not baseline and p['in_stock']:
             if old is None:
-                alerts.append(('new_in_stock' if p['in_stock'] else 'new_listing', p))
+                alerts.append(('new_in_stock', p))
             else:
-                was = price_drop(old, p)
-                if was:
-                    p = dict(p, was=was)  # a restock at a lower price says so in one push
-                if p['in_stock'] and not old.get('in_stock') and old.get('stock') != 'Unknown':
+                was = price_drop(old, p) or (old.get('was') if not old.get('in_stock') else None)
+                if was and price_num(p['price']) and price_num(p['price']) < was - 0.005:
+                    p = dict(p, was=was)  # a restock at a lower price says so in one line
+                if not old.get('in_stock') and old.get('stock') != 'Unknown':
                     alerts.append(('restock', p))
-                elif was:
+                elif p.get('was'):
                     alerts.append(('price_drop', p))
         known[p['key']] = rec
     if baseline:
@@ -238,13 +268,16 @@ def dedupe(alerts):
 
 # ---------- notifications ----------
 
-def push(cfg, title, message, click=None, priority=3, tags=None, delay=None, sequence_id=None, quiet=False):
+def push(cfg, title, message, click=None, priority=3, tags=None, delay=None, sequence_id=None, quiet=False,
+         actions=None):
     if not quiet:
         print(f'[{dt.datetime.now():%a %H:%M}] {title}: {message}')
     topic = cfg.get('ntfy_topic')
     if not topic:
         return
     body = {'topic': topic, 'title': title, 'message': message, 'priority': priority}
+    if actions:
+        body['actions'] = actions          # buttons under the notification (ntfy allows 3)
     if delay:
         body['delay'] = delay            # ntfy holds it and delivers it then (10 s to 3 days)
     if sequence_id:
@@ -263,8 +296,7 @@ def push(cfg, title, message, click=None, priority=3, tags=None, delay=None, seq
 
 
 def alert_text(kind, p, cfg):
-    head = {'restock': 'Back in stock', 'new_in_stock': 'New and in stock',
-            'new_listing': 'New listing (not in stock yet)', 'price_drop': 'Price drop'}[kind]
+    head = {'restock': 'Back in stock', 'new_in_stock': 'New and in stock', 'price_drop': 'Price drop'}[kind]
     price = f'${p["price"]}' if p['price'] else 'no price'
     if p.get('was'):
         price += f' (was ${p["was"]:.2f}, {p["was"] - price_num(p["price"]):.2f} off)'
@@ -273,6 +305,105 @@ def alert_text(kind, p, cfg):
     if note:
         lines.append(note)
     return f'MTG: {head}', '\n'.join(lines)
+
+
+# ---------- one summary push per check ----------
+# The user found one push per product hard to read (eight "Price drop" pushes in one minute on
+# Nov 18, 2026), so each check gathers its alerts and sends one push listing them by section.
+
+SECTIONS = [  # key, heading in the push, words in the title (one, many)
+    ('stock', 'In stock at {store}', ('in stock', 'in stock')),
+    ('drop', 'Price drops at {store}', ('price drop', 'price drops')),
+    ('sl_sale', 'Secret Lair on sale now', ('Secret Lair on sale', 'Secret Lair on sale')),
+    ('sl_coming', 'Secret Lair coming soon', ('Secret Lair announced', 'Secret Lair announced')),
+    ('sl_drop', 'Secret Lair price drops', ('Secret Lair price drop', 'Secret Lair price drops')),
+]
+MAX_BYTES = 3800        # ntfy cuts a message at 4,096 bytes
+
+
+def short_name(name):
+    """'Wizards of the Coast Magic: The Gathering - TMNT (Commander Deck)' -> 'TMNT (Commander Deck)'."""
+    n = re.sub(r'^(?:Wizards of the Coast\s+)?(?:Magic:? The Gathering|MTG)\s*[-:–]?\s*', '', name.strip(), flags=re.I)
+    return n or name
+
+
+def _money(x):
+    return f'${price_num(x):.2f}' if price_num(x) else 'no price'
+
+
+def mc_item(kind, p):
+    """One Micro Center alert as (section, line, url, priority)."""
+    bits = [_money(p['price'])]
+    if p.get('was'):
+        bits[0] += f' (was ${p["was"]:.2f})'
+    elif price_num(p.get('orig')) and price_num(p['price']) and price_num(p['orig']) > price_num(p['price']):
+        bits[0] += f' (list ${price_num(p["orig"]):.2f})'
+    bits.append(p['stock'].lower() if p['stock'][0].isdigit() else p['stock'])
+    if kind == 'restock':
+        bits.append('back')
+    elif kind == 'new_in_stock':
+        bits.append('new')
+    note = legality_note(p['name'])
+    line = f'• {short_name(p["name"])}: ' + ', '.join(bits) + (f'\n  {note}' if note else '')
+    return ('drop' if kind == 'price_drop' else 'stock', line, p.get('url') or '', 3 if kind == 'price_drop' else 4)
+
+
+def sl_item(kind, p):
+    """One Secret Lair alert as (section, line, url, priority)."""
+    price = _money(p.get('price'))
+    if p.get('was'):
+        price += f' (was ${p["was"]:.2f})'
+    line = f'• {short_name(p["name"])}: {price}'
+    if kind == 'announced' and p.get('start'):
+        line += ', on sale ' + dt.datetime.fromtimestamp(p['start']).strftime('%a %b %d, %I:%M %p').replace(' 0', ' ')
+    note = legality_note(p['name'])
+    if note:
+        line += f'\n  {note}'
+    sec = {'announced': 'sl_coming', 'price_drop': 'sl_drop'}.get(kind, 'sl_sale')
+    return sec, line, p.get('url') or '', 3 if kind in ('announced', 'price_drop') else 4
+
+
+def digest(items, cfg):
+    """(title, message, click, priority, actions) for one push listing every item, or None."""
+    if not items:
+        return None
+    store = cfg.get('store_name', 'Micro Center').replace('Micro Center', '').strip() or 'the store'
+    groups = [(k, head.format(store=store), words, [i for i in items if i[0] == k]) for k, head, words in SECTIONS]
+    groups = [g for g in groups if g[3]]
+    title = 'MTG: ' + ', '.join(f'{len(g[3])} {g[2][len(g[3]) > 1]}' for g in groups)
+    parts, size, left = [], 0, len(items)
+    for _, head, _, its in groups:
+        block = [f'{head}:']
+        for it in its:
+            if size + len(it[1].encode()) > MAX_BYTES:
+                break
+            block.append(it[1])
+            size += len(it[1].encode()) + 1
+            left -= 1
+        if len(block) > 1:
+            parts.append('\n'.join(block))
+    msg = '\n\n'.join(parts) + (f'\n\n…and {left} more (see monitor.log)' if left else '')
+    urls = [i[2] for i in items if i[2]]
+    if len(items) == 1:
+        click = urls[0] if urls else None
+    elif all(i[0] in ('stock', 'drop') for i in items):
+        click = watch_urls(cfg)[0] if cfg.get('watch_urls') else None
+    else:
+        click = 'https://secretlair.wizards.com/us/' if all(i[0].startswith('sl_') for i in items) else None
+    actions = []
+    if len(items) > 1:  # a button for each of the first three, so one tap opens that product
+        for it in (it for g in groups for it in g[3]):  # in the order the message lists them
+            if it[2] and len(actions) < 3:
+                label = re.sub(r'^• ', '', it[1].split(':')[0])
+                actions.append({'action': 'view', 'label': label[:22] + ('…' if len(label) > 22 else ''), 'url': it[2]})
+    return title, msg, click, max(i[3] for i in items), actions
+
+
+def send_digest(cfg, items):
+    d = digest(items, cfg)
+    if d:
+        title, msg, click, pri, actions = d
+        push(cfg, title, msg, click=click, priority=pri, tags=['black_joker'], actions=actions or None)
 
 
 # ---------- fetching ----------
@@ -345,7 +476,11 @@ def fetch_pages(urls, cfg, debug=False):
 
 # ---------- one poll ----------
 
-def poll(cfg, state, debug=False, fetch=fetch_pages):
+def poll(cfg, state, debug=False, fetch=fetch_pages, items=None):
+    """One Micro Center check. Alerts go into items (the check's summary push); without a list
+    to fill, it sends its own summary."""
+    own = items is None
+    items = [] if own else items
     urls = watch_urls(cfg)
     if state.get('parser') != PARSER_VERSION:
         # What was saved was read by an older parser (v1 read every stock as Unknown), so
@@ -363,7 +498,7 @@ def poll(cfg, state, debug=False, fetch=fetch_pages):
         if not products:
             print(f'  0 products parsed from {url} (run with --debug and send the files if this keeps up)')
             continue
-        products = [p for p in products if wanted(p, cfg)]
+        products = [at_my_store(p, cfg) for p in products if wanted(p, cfg)]
         found, was_base = diff(state, url, products)
         if was_base:
             baselined.append((url, len(products)))
@@ -382,17 +517,14 @@ def poll(cfg, state, debug=False, fetch=fetch_pages):
 
     for url, n in baselined:
         push(cfg, 'Micro Center monitor started', f'Baseline recorded: {n} products. You\'ll hear about '
-             'restocks and new listings from now on.', priority=2)
+             'restocks and price drops at the store from now on.', priority=2)
     for kind, p in dedupe(alerts):
-        if kind == 'new_listing' and not cfg.get('alert_new_listings', True):
-            continue
         if kind == 'price_drop' and not cfg.get('alert_price_drops', True):
             continue
-        title, msg = alert_text(kind, p, cfg)
-        push(cfg, title, msg, click=p['url'] or None,
-             priority=3 if kind in ('new_listing', 'price_drop') else 4,
-             tags=['chart_with_downwards_trend' if kind == 'price_drop' else 'black_joker'])
+        items.append(mc_item(kind, p))
     save_state(state)
+    if own:
+        send_digest(cfg, items)
     return blocked
 
 
@@ -427,14 +559,14 @@ def backoff(streak):
     return min(7200, 1800 * 2 ** (streak - 1)) if streak else 0
 
 
-def poll_micro_center(cfg, state, debug=False, manual=False):
+def poll_micro_center(cfg, state, debug=False, manual=False, items=None):
     if not cfg.get('microcenter_enabled', True):
         return
     if not manual and time.time() < state.get('mc_skip_until', 0):
         print(f'  Micro Center: backing off after a block, next try {dt.datetime.fromtimestamp(state["mc_skip_until"]):%H:%M}')
         return
     try:
-        poll(cfg, state, debug=debug)
+        poll(cfg, state, debug=debug, items=items)
     except ImportError:
         print('  Micro Center skipped: Playwright isn\'t installed (pip install playwright, then playwright install chromium)')
         return
@@ -444,7 +576,9 @@ def poll_micro_center(cfg, state, debug=False, manual=False):
     state['mc_skip_until'] = time.time() + backoff(state.get('blocked_streak', 0))
 
 
-def poll_secret_lair(cfg, state, getter=secretlair.get):
+def poll_secret_lair(cfg, state, getter=secretlair.get, items=None):
+    own = items is None
+    items = [] if own else items
     sc = cfg.get('secret_lair', {})
     if not sc.get('enabled', True):
         return
@@ -476,12 +610,10 @@ def poll_secret_lair(cfg, state, getter=secretlair.get):
     for kind, p in alerts:
         if kind == 'price_drop' and not cfg.get('alert_price_drops', True):
             continue
-        title, msg = secretlair.alert_text(kind, p)
-        note = legality_note(p['name'])
-        push(cfg, title, msg + (f'\n{note}' if note else ''), click=p['url'],
-             priority=3 if kind in ('announced', 'price_drop') else 4,
-             tags=['chart_with_downwards_trend' if kind == 'price_drop' else 'crystal_ball'])
+        items.append(sl_item(kind, p))
     save_state(state)
+    if own:
+        send_digest(cfg, items)
 
 
 def check_debug():
@@ -598,8 +730,10 @@ def main(argv=None):
     while True:
         state = load_state()
         print(f'[{dt.datetime.now():%a %Y-%m-%d %H:%M}] checking')
-        poll_micro_center(cfg, state, debug=a.debug, manual=a.once)  # a run by hand never waits out the back-off
-        poll_secret_lair(cfg, state)
+        items = []  # every alert from this check, sent as one push
+        poll_micro_center(cfg, state, debug=a.debug, manual=a.once, items=items)  # a run by hand never waits out the back-off
+        poll_secret_lair(cfg, state, items=items)
+        send_digest(cfg, items)
         if a.once:
             return
         arm_watchdog(cfg)

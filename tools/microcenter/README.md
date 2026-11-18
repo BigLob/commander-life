@@ -60,15 +60,34 @@ Set up for **Micro Center Dallas** (`storeid=131`) and **all MTG** products, min
 
 ## What you'll get
 
-From Micro Center:
+**One push per check.** Everything a check finds (Micro Center and Secret Lair) comes as a single
+notification, grouped under headings, one line per product: short name, price, stock and what
+changed. The title counts them (`MTG: 2 in stock, 3 price drops`). With several products, the first
+three get a button that opens that product; tapping the push opens the Dallas search page (or the
+product, when there's only one). If a check finds more than fits, the push ends with "…and N more"
+and `monitor.log` has them all.
 
-- **Back in stock**: something that was sold out is in stock (name, price, stock count, store; tap to open).
-- **New and in stock**: a product that wasn't on the page before, in stock.
-- **Price drop**: a product's price went down since the last check, with the old price and how
-  much off. Only drops, never rises. A restock at a lower price says both in one push. Turn these
-  off with `"alert_price_drops": false`.
-- **New listing (not in stock yet)**: a new product posted, e.g. a launch or preorder. Turn these off
-  with `"alert_new_listings": false`.
+```
+MTG: 2 in stock, 1 price drop
+
+In stock at Dallas:
+• TMNT (Commander Deck): $39.99 (was $69.99), 4 in stock, back
+• Lorwyn Eclipsed (Bundle): $49.99 (list $59.99), limited availability, new
+
+Price drops at Dallas:
+• Marvel Super Heroes (Commander Deck): $44.99 (was $49.99), 2 in stock
+```
+
+From Micro Center, **only what's in stock at Dallas** (the user's rule, Nov 18, 2026). Something
+sold out at Dallas never pushes, whatever its price does; its lower price is remembered, so when it
+comes back the line says what it was. A result that names another store's stock counts as not in
+stock (`store_city`, else the word after "Micro Center" in `store_name`).
+
+- **back**: was sold out at Dallas, now in stock.
+- **new**: wasn't on the page before, and in stock.
+- **Price drops**: in stock and cheaper than last check. Only drops, never rises. "(list $X)" is
+  Micro Center's own original price when it shows one. Turn these off with `"alert_price_drops": false`.
+
 - **Monitor blocked**: Cloudflare showed its check. At most one push an hour; the monitor waits
   longer each time (30 min, 1 h, then 2 h) instead of retrying hard. If it keeps happening, set
   `"offscreen": false` in `config.json` (and `"headless": false`), run `python monitor.py --once`, and click through the
@@ -77,7 +96,7 @@ From Micro Center:
 
 From Secret Lair:
 
-- **Secret Lair announced**: a new drop is listed but not on sale yet, with when it goes on sale (your time).
+- **Secret Lair coming soon**: a new drop is listed but not on sale yet, with when it goes on sale (your time).
 - **Secret Lair price drop**: a drop on sale or coming soon got cheaper.
 - **Secret Lair on sale now**: a drop's sale started, or a sold-out one came back. The monitor
   wakes up for each announced drop's start time, so this comes within a minute or so of the sale opening.
@@ -126,8 +145,8 @@ from the last check.
 | `store_name` | Shown in alerts. |
 | `watch_urls` | Pages to check (search or category pages). `{storeid}` is filled in. To watch something narrower, search on the site, set filters, and paste the address. |
 | `include` / `exclude` | Product name must contain one `include` word and no `exclude` word (lowercase match). |
-| `alert_price_drops` | Push when a price goes down (Micro Center and Secret Lair). |
-| `alert_new_listings` | Push for new products that aren't in stock yet. |
+| `alert_price_drops` | Include price drops (Micro Center: in stock at Dallas only; Secret Lair). |
+| `store_city` | Optional: the store's city as the page prints it ("Dallas"); defaults to the end of `store_name`. |
 | `microcenter_enabled` | `false` to watch only Secret Lair (then Playwright isn't needed). |
 | `secret_lair.enabled` | `false` to stop watching Secret Lair. |
 | `secret_lair.full_scan_hours` | How often to read the whole Secret Lair catalog (default 24). |
