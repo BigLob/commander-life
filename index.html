@@ -984,7 +984,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.87';
+  const VERSION = '1.88';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1040,10 +1040,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   ].map(([name, short, arts]) => ({ name, short, arts }));
   const deckOfArt = a => PICK_DECKS.find(d => d.arts.includes(a));
   // Random backgrounds for `edges`, none the same as each other or as those `keep` (other players').
+  // v1.88 (the user: if they don't pick, choose a random one): dealt by deck, so a player who never
+  // picks has a random deck no one else has, shown as one of its commanders at random.
   function dealBgs(edges, keep) {
-    const pool = ARTS.filter(a => !keep.includes(a));
+    const held = keep.map(deckOfArt), pool = PICK_DECKS.filter(d => !held.includes(d));
     for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
-    return edges.map((e, n) => pool[n % pool.length]);
+    return edges.map((e, n) => { const arts = pool[n % pool.length].arts; return arts[Math.floor(Math.random() * arts.length)]; });
   }
   const OLD_DEFAULT_NAMES = ['Trent', 'Andrew', 'Rand', 'Lenn'];
   const CMD_LETHAL = 21;
@@ -1817,7 +1819,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const e = edgeOf(i), taken = decksTaken(e);
     const dk = document.createElement('div');
     dk.className = 'dk';
-    dk.innerHTML = `<div class="dk-head"><b>${state.mode === 1 ? 'Pick your deck' : esc(nameOf(e)) + ', pick your deck'}</b><button type="button" class="dk-x">Skip</button></div>
+    dk.innerHTML = `<div class="dk-head"><b>${state.mode === 1 ? 'Pick your deck' : esc(nameOf(e)) + ', pick your deck'}</b><button type="button" class="dk-x" aria-label="Random deck">Random</button></div>
       <div class="dk-grid">${PICK_DECKS.map((d, n) => `<button type="button" class="dk-b k-${d.arts[0]}" data-n="${n}"${taken.includes(d) ? ' disabled' : ''} aria-label="${esc(d.name)}">${swatch(d.arts[0])}<span>${esc(d.short)}</span></button>`).join('')}</div>`;
     // Taps here never reach the seat's life zones underneath.
     ['pointerdown', 'pointerup', 'touchstart', 'touchend'].forEach(t => dk.addEventListener(t, ev => ev.stopPropagation()));
@@ -1835,7 +1837,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const patch = { ['bgs/' + e]: art, ['picked/' + e]: true };
     state.bgs[e] = art; state.picked[e] = true;
     others.forEach(o => {
-      if (state.bgs[o] !== art || state.picked[o]) return;
+      // Anyone who hasn't picked and was dealt this deck is dealt another.
+      if (deckOfArt(state.bgs[o]) !== d || state.picked[o]) return;
       const nb = dealBgs([o], [0, 1, 2, 3].filter(x => x !== o).map(x => state.bgs[x]))[0];
       state.bgs[o] = patch['bgs/' + o] = nb;
     });
