@@ -63,6 +63,24 @@ THEMES = {
    'cz738': ('Command Zone #738 list', 'archidekt:21970344'),
   },
  },
+ 'squirreled-away': {
+  'cmd': 'Chatterfang, Squirrel General', 'id': 'bg', 'direction': 'All Squirrels with Chatterfang',
+  'precon': 'squirreled-away', 'edhrec_theme': 'squirrels', 'roles': {'piece': 'Squirrel makers and Squirrels'},
+  'why': 'Chatterfang adds that many Squirrels whenever we make tokens, so every token maker is a Squirrel maker; the deck wants '
+         'Squirrels, token makers, Food (sacrificed Food feeds Camellia and forage) and cards that pay off tokens or Squirrels.',
+  'tests': [
+   ('engine', 'Pays off tokens or Squirrels', r'whenever you (?:create|sacrifice)[^.]{0,30}(?:token|food)|squirrels? you control|for each squirrel|number of squirrels|other squirrels', None),
+   ('engine', 'Doubles or adds to tokens', r'would create one or more tokens|twice that many|that many (?:plus|of)', None),
+   ('piece', 'Makes Squirrels', r'create[^.]{0,80}squirrel', None),
+   ('piece', 'Squirrel', None, r'\bSquirrel\b'),
+   ('piece', 'Makes Food', r'create[^.]{0,40}\bfood\b', None),
+   ('support', 'Makes other tokens', r'create[^.]{0,80}\btokens?\b', None),
+   ('support', 'Sacrifices Food or creatures for value', r'sacrifice (?:a|an|another|one or more)[^.]{0,20}(?:food|creature|artifact)', None),
+  ],
+  'sources': {
+   'tcg-sa': ('TCGplayer upgrade guide (Drew Knapp)', 'https://www.tcgplayer.com/content/article/Squirreled-Away-MTG-Commander-Precon-Deck-Upgrade-Guide/b972815e-c856-49f6-b5ae-6269495d8be5/'),
+  },
+ },
  'first-flight': {
   'cmd': 'Isperia, Supreme Judge', 'id': 'wu', 'direction': 'Flyers with anthems and cost reducers',
   'edhrec_theme': 'flying', 'roles': {'piece': 'Flyers'},
