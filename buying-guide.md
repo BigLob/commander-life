@@ -19,6 +19,7 @@ Check this list before buying a deck, so we don't buy a second copy.
 | Token Triumph | Starter Commander Decks (2022) | G W | Emmara, Soul of the Accord | Owned |
 | Living Energy | Aetherdrift Commander (2025) | G U R | Saheeli, Radiant Creator | Owned |
 | Eternal Might | Aetherdrift Commander (2025) | W U B | Temmet, Naktamun's Will | Owned |
+| Squirreled Away | Bloomburrow Commander (2024) | B G | Hazel of the Rootbloom (we run Chatterfang, Squirrel General, the box's other commander) | Owned |
 | Silverquill Influence | Secrets of Strixhaven Commander (2026) | W B | Killian, Decisive Mentor (alt: Scriv, the Obligator) | Owned |
 | Lorehold Spirit | Secrets of Strixhaven Commander (2026) | R W | Quintorius, History Chaser (alt: Excava, the Risen Past) | Owned |
 | Revival Trance | Final Fantasy Commander (2025) | R W B | Terra, Herald of Hope | Owned |

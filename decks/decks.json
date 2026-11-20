@@ -138,5 +138,15 @@
   "total": 100,
   "price": 79.45,
   "img": "https://cards.scryfall.io/normal/front/0/7/0742f19d-179c-43c4-ab95-4160c56b4384.jpg?1783903867"
+ },
+ "squirreled-away": {
+  "slug": "squirreled-away",
+  "name": "Squirreled Away",
+  "product": "Bloomburrow Commander (2024)",
+  "cmd": "Hazel of the Rootbloom",
+  "alt": "Chatterfang, Squirrel General",
+  "total": 100,
+  "price": 126.69,
+  "img": "https://cards.scryfall.io/normal/front/1/2/1269ca79-907e-4932-9e77-a9a5d2929060.jpg?1783910738"
  }
 }

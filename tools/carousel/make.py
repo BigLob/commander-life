@@ -17,6 +17,7 @@ DECKS = [
     ('federation-fleet', 'Federation Fleet', 'Star Trek Commander (2026)', 'Jean-Luc Picard, Luminary', 'Captain Janeway, Endgame', ('wotc', 'Federation Fleet', 'trc')),
     ('landing-party', 'Landing Party', 'Star Trek Commander (2026)', 'Commander Spock', 'Captain Kirk, Boldly Going', ('wotc', 'Landing Party', 'trc')),
     ('klingon-fury', 'Klingon Fury', 'Star Trek Commander (2026)', 'Worf, Defiant Commander', 'Kor, Cause of Vengeance', ('wotc', 'Klingon Fury', 'trc')),
+    ('squirreled-away', 'Squirreled Away', 'Bloomburrow Commander (2024)', 'Hazel of the Rootbloom', 'Chatterfang, Squirrel General', ('mtgjson', 'SquirreledAway_BLC')),
     ('silverquill-influence', 'Silverquill Influence', 'Secrets of Strixhaven Commander (2026)', 'Killian, Decisive Mentor', 'Scriv, the Obligator', ('mtgjson', 'SilverquillInfluence_SOC')),
     ('lorehold-spirit', 'Lorehold Spirit', 'Secrets of Strixhaven Commander (2026)', 'Quintorius, History Chaser', 'Excava, the Risen Past', ('mtgjson', 'LoreholdSpirit_SOC')),
     ('living-energy', 'Living Energy', 'Aetherdrift Commander (2025)', 'Saheeli, Radiant Creator', 'Pia Nalaar, Chief Mechanic', ('mtgjson', 'LivingEnergy_DRC')),

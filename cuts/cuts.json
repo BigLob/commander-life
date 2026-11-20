@@ -166,5 +166,17 @@
   "img": "https://cards.scryfall.io/normal/front/9/b/9be712b3-14ed-4a73-b3d3-5b76b2c5db64.jpg?1783903802",
   "edh": "https://edhrec.com/precon/lorehold-spirit",
   "date": "2026-11-11"
+ },
+ "squirreled-away": {
+  "slug": "squirreled-away",
+  "name": "Squirreled Away",
+  "product": "Bloomburrow Commander (2024)",
+  "cmd": "Hazel of the Rootbloom",
+  "decks": 6550,
+  "top": "Plaguecrafter",
+  "topx": 0.711,
+  "img": "https://cards.scryfall.io/normal/front/7/0/7092aa38-4f05-4b18-b894-d55ca9fe9b15.jpg?1783910677",
+  "edh": "https://edhrec.com/precon/squirreled-away",
+  "date": "2026-11-20"
  }
 }
