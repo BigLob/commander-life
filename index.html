@@ -987,7 +987,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.89';
+  const VERSION = '1.90';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1295,6 +1295,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // them. CENTER is a phone lying in the middle of the table, each seat facing its own edge.
   // Kept on this phone only.
   if (![0, 1, 2, 3, CENTER].includes(state.me)) state.me = 0;
+  // v1.90 (the user's ask): an iPad lies in the middle of the table, so it defaults to Center, each
+  // seat facing its own player. Set once (state.ctr190), so it can still be changed in the menu.
+  // iPadOS Safari calls itself a Mac, so a Mac with a touch screen counts as an iPad.
+  const IS_IPAD = /iPad/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+  const ctrNew = !state.ctr190;
+  if (IS_IPAD && ctrNew) state.me = CENTER;
+  state.ctr190 = true;
   delete state.flip; // left over from v1.9
   // How a two-player table is laid out on this phone: 'split' (side by side) or 'classic'. Kept on this phone only.
   if (!['split', 'classic', 'couch'].includes(state.layout2)) state.layout2 = 'split';
@@ -1380,6 +1387,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+  if (ctrNew) save(); // keep v1.90's once-only Center move, so a later pick in the menu sticks
   const untouched = k => state.games[k].every((p, j) => p.life === startOf(k, j) && p.cmd.every(c => c === 0) && !p.conceded);
 
   const app = document.getElementById('app');
