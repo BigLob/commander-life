@@ -43,3 +43,28 @@ Format: date | card | version wanted | how (proxy/real) | for deck | status
 2026-11-20 | Urborg, Tomb of Yawgmoth (Commander-legal) | any printing, about $55.45 | proxy | Squirreled Away (Chatterfang) | to get (land, yes)
 2026-11-20 | Verdant Catacombs (Commander-legal) | any printing, about $29.79 | proxy | Squirreled Away (Chatterfang) | to get (land, yes)
 2026-11-20 | Yavimaya, Cradle of Growth (Commander-legal) | any printing, about $13.63 | proxy | Squirreled Away (Chatterfang) | to get (land, yes)
+
+# Colorless staples: 5 copies each of the favorites picked on staples/ on 2026-11-20 (read from the shared table)
+2026-11-20 | Reliquary Tower x5 (colorless, Commander-legal) | any printing, about $2.09 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Evolving Wilds x5 (colorless, Commander-legal) | any printing, about $0.33 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Swiftfoot Boots x5 (colorless, Commander-legal) | any printing, about $1.59 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Lightning Greaves x5 (colorless, Commander-legal) | any printing, about $3.29 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Rogue's Passage x5 (colorless, Commander-legal) | any printing, about $0.31 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Exotic Orchard x5 (colorless, Commander-legal) | any printing, about $0.33 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Herald's Horn x5 (colorless, Commander-legal) | any printing, about $1.49 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Ashnod's Altar x5 (colorless, Commander-legal) | any printing, about $16.11 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Cavern of Souls x5 (colorless, Commander-legal) | any printing, about $47.59 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Foundry Inspector x5 (colorless, Commander-legal) | any printing, about $0.37 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Three Tree City x5 (colorless, Commander-legal) | any printing, about $27.72 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Secluded Courtyard x5 (colorless, Commander-legal) | any printing, about $0.34 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Mystic Forge x5 (colorless, Commander-legal) | any printing, about $3.54 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Unwinding Clock x5 (colorless, Commander-legal) | any printing, about $5.14 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Panharmonicon x5 (colorless, Commander-legal) | any printing, about $6.32 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Urza's Incubator x5 (colorless, Commander-legal) | any printing, about $21.36 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Inventors' Fair x5 (colorless, Commander-legal) | any printing, about $14.32 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Karn's Bastion x5 (colorless, Commander-legal) | any printing, about $3.52 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Myriad Landscape x5 (colorless, Commander-legal) | any printing, about $0.31 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Crucible of Worlds x5 (colorless, Commander-legal) | any printing, about $26.26 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Jhoira's Familiar x5 (colorless, Commander-legal) | any printing, about $2.42 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | Nykthos, Shrine to Nyx x5 (colorless, Commander-legal) | any printing, about $48.07 each | proxy | any deck (colorless staple) | to get
+2026-11-20 | The Grey Havens x5 (colorless, Commander-legal) | any printing, about $0.32 each | proxy | any deck (colorless staple) | to get
