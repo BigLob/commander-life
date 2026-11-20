@@ -482,12 +482,13 @@ DIRECTIONS = {
  'first-flight': 'Flyers with anthems and cost reducers', 'grave-danger': 'Value Zombies on a loop',
  'chaos-incarnate': 'Goad everything', 'draconic-destruction': 'More and better Dragons, some ramp',
  'token-triumph': 'Token doublers',
+ 'squirreled-away': 'All Squirrels with Chatterfang',
 }
 
 # The user's queue (Nov 17, 2026): Silverquill, the five Starters, the rest, Revival Trance (Terra and Celes) last.
 ORDER = ['silverquill-influence', 'first-flight', 'grave-danger', 'chaos-incarnate', 'draconic-destruction', 'token-triumph',
          'living-energy', 'eternal-might', 'lorehold-spirit', 'borg', 'federation-fleet', 'landing-party', 'klingon-fury',
-         'revival-trance', 'revival-trance-celes']
+         'revival-trance', 'revival-trance-celes', 'squirreled-away']
 
 def write_index():
     """theme/index.json: one row per deck in decks/decks.json, ready decks first."""
@@ -496,6 +497,9 @@ def write_index():
     decks['revival-trance-celes'] = {**decks['revival-trance'], 'name': 'Revival Trance (Celes)', 'cmd': 'Celes, Rune Knight',
                                      'img': 'https://cards.scryfall.io/normal/front/3/0/30584c53-533b-4dc7-b07c-8600164a99b3.jpg?1783906375'}
     decks['revival-trance'] = {**decks['revival-trance'], 'name': 'Revival Trance (Terra)'}
+    # We run Chatterfang, the box's other commander, not Hazel.
+    decks['squirreled-away'] = {**decks['squirreled-away'], 'name': 'Squirreled Away (Chatterfang)', 'cmd': 'Chatterfang, Squirrel General',
+                                'img': 'https://cards.scryfall.io/normal/front/1/7/1785cf85-1ac0-4246-9b89-1a8221a8e1b2.jpg?1783926835'}
     for slug, d in decks.items():
         ready = os.path.exists(os.path.join(ROOT, 'theme', slug + '.json'))
         rows.append({'slug': slug, 'name': d['name'], 'cmd': d['cmd'], 'img': d['img'], 'direction': DIRECTIONS.get(slug),

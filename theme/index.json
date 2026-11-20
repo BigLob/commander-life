@@ -118,5 +118,13 @@
 "img": "https://cards.scryfall.io/normal/front/3/0/30584c53-533b-4dc7-b07c-8600164a99b3.jpg?1783906375",
 "direction": null,
 "ready": false
+},
+{
+"slug": "squirreled-away",
+"name": "Squirreled Away (Chatterfang)",
+"cmd": "Chatterfang, Squirrel General",
+"img": "https://cards.scryfall.io/normal/front/1/7/1785cf85-1ac0-4246-9b89-1a8221a8e1b2.jpg?1783926835",
+"direction": "All Squirrels with Chatterfang",
+"ready": false
 }
 ]

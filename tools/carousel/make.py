@@ -124,12 +124,14 @@ def build(slug, name, product, cmd, alt, src):
             'price': round(sum((r['p'] or 0) * r['q'] for r in ALL), 2), 'img': next(r['i'] for r in ALL if r['n'] == cmd)}
 
 PREORDER = {'Star Trek Commander (2026)': 'Preordered, out Nov 13'}
+# Decks that have a page but aren't on the Our precons index (the user's call: Squirreled Away lives in the theme approver only).
+NOT_LISTED = {'squirreled-away'}
 
 def index(meta):
     """decks/index.html: every deck, grouped by product in DECKS order, each linking to its carousel."""
     groups = {}
     for d in DECKS:
-        if d[0] in meta: groups.setdefault(d[2], []).append(meta[d[0]])
+        if d[0] in meta and d[0] not in NOT_LISTED: groups.setdefault(d[2], []).append(meta[d[0]])
     sec = []
     for product, ds in groups.items():
         cards = ''.join(f'''<a class="deck" href="{d['slug']}.html"><img src="{d['img']}" alt="{html.escape(d['cmd'])}" loading="lazy" referrerpolicy="no-referrer"><span class="nm">{html.escape(d['name'])}</span><small>{html.escape(d['cmd'])}{' · alt ' + html.escape(d['alt'].split(',')[0]) if d['alt'] else ''}</small><small class="pr">${d['price']:.2f} in singles</small></a>''' for d in ds)
