@@ -987,7 +987,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.90';
+  const VERSION = '1.91';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1502,7 +1502,8 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     unlock();
     if (!audio) return;
     if (EVENT_SOUNDS[name]) {
-      const list = EVENT_SOUNDS[name], clip = list[Math.floor(Math.random() * list.length)];
+      const open = EVENT_SOUNDS[name].filter(n => !locked(n)), list = open.length ? open : EVENT_SOUNDS[name];
+      const clip = list[Math.floor(Math.random() * list.length)];
       load(clip).then(buf => { if (buf) playBuffer(buf, clip); else try { SOUNDS[name](); } catch (e) {} });
       return;
     }
@@ -1542,6 +1543,31 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   const loaded = {};
   const LONG_FACTOR = 0.5;
   const PRES_WEIGHT = { trump: 0.1 }, PRES_DEFAULT = 0.35;
+  // v1.91: play counts (the user's ask). Every clip this phone plays is counted, kept on this phone
+  // only (localStorage cl-plays, never synced, never shown). Every PLAY_STEP plays a clip locks until
+  // every other clip of its length (short or long, among those not muted tonight) has caught up to
+  // that count: a clip at 10 waits until all others of its length have played 10 times, then can
+  // play on to 20, and so on. So weights (tonight's boost, presidents, every-Nth announcer lines)
+  // can only make a clip come up sooner, never more than PLAY_STEP times ahead of the rest.
+  // lenOf (clip -> 'short'/'long') and lowStep (each length's lowest count, in steps) are rebuilt by
+  // buildPools() and countPlay(). A clip in no pool (muted) never locks.
+  const PLAY_STEP = 10, PLAYS_KEY = 'cl-plays';
+  let plays = {}, lenOf = {}, lowStep = {};
+  try { plays = JSON.parse(localStorage.getItem(PLAYS_KEY)) || {}; } catch (e) { plays = {}; }
+  if (!plays || typeof plays !== 'object') plays = {};
+  function findLow() {
+    lowStep = {};
+    for (const n in lenOf) {
+      const st = Math.floor((plays[n] || 0) / PLAY_STEP), len = lenOf[n];
+      if (!(len in lowStep) || st < lowStep[len]) lowStep[len] = st;
+    }
+  }
+  const locked = n => n in lenOf && Math.floor((plays[n] || 0) / PLAY_STEP) > lowStep[lenOf[n]];
+  function countPlay(n) {
+    plays[n] = (plays[n] || 0) + 1;
+    try { localStorage.setItem(PLAYS_KEY, JSON.stringify(plays)); } catch (e) {}
+    if (n in lenOf && plays[n] % PLAY_STEP === 0) findLow();
+  }
   function buildPools() {
     const mute = new Set(tonight.mute), boost = new Set(tonight.boost);
     pools = {};
@@ -1592,6 +1618,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       if (mc) mine.forEach(p => { p.weight = sh * rest / ((1 - sh) * mc); });
     }
     all = Object.keys(pools).flatMap(len => Object.values(pools[len]));
+    lenOf = {};
+    for (const len in pools) for (const kind in pools[len]) pools[len][kind].list.forEach(n => { lenOf[n] = len; });
+    findLow();
     Object.keys(loaded).forEach(k => delete loaded[k]);
     primed = false;
   }
@@ -1612,9 +1641,12 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   buildPools();
   fetchTonight();
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') fetchTonight(); });
+  // Locked clips (v1.91) are left out of the bag; they come back in a later bag once unlocked.
   function nextUp(pool, n) {
+    pool.bag = pool.bag.filter(c => !locked(c));
     while (pool.bag.length < n) {
-      const deck = pool.list.slice();
+      const deck = pool.list.filter(c => !locked(c));
+      if (!deck.length) break;
       for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [deck[i], deck[j]] = [deck[j], deck[i]]; }
       pool.bag = pool.bag.concat(deck);
     }
@@ -1654,15 +1686,17 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
         for (let k = names.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [names[k], names[j]] = [names[j], names[k]]; }
         ttsBag = names;
       }
+      ttsBag = ttsBag.filter(n => !locked(n));
       const line = ttsBag.shift();
       if (line) { load(line).then(buf => { if (buf) playBuffer(buf, line); }); return; }
     }
-    const wt = all.map(p => p.list.length * (p.weight || 1));
+    const wt = all.map(p => p.list.filter(n => !locked(n)).length * (p.weight || 1));
     if (!wt.some(n => n > 0)) return;
     let r = Math.random() * wt.reduce((a, n) => a + n, 0), i = 0;
     while (i < wt.length - 1 && r >= wt[i]) r -= wt[i++];
     const pool = all[i];
     const name = nextUp(pool, 1)[0];
+    if (!name) return;
     pool.bag.shift();
     const keep = ahead();
     Object.keys(loaded).forEach(k => { if (k !== name && !keep.includes(k)) delete loaded[k]; });
@@ -1681,6 +1715,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   const TALK = new Set(Object.values(TURN_POOLS).flatMap(p => (p.talk || '').split(' ').filter(Boolean)));
   function playBuffer(buf, name) {
     try { if (current) current.stop(); } catch (e) {}
+    countPlay(name);
     const src = audio.createBufferSource();
     src.buffer = buf;
     if (TALK.has(name)) {
