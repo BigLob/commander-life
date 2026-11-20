@@ -1,12 +1,13 @@
 """Build squirrels/index.html: every Commander-legal legendary Squirrel whose color identity is black, green or both
 (Scryfall: t:legendary t:squirrel id<=bg legal:commander), most-played (EDHREC rank) first, for picking a squirrel commander.
-Not-legal ones (Un/Alchemy) are left out; the page names them. Same carousel as cuts/ (cuts-template.html, caption swapped).
+Not-legal ones (Un/Alchemy) are left out, and so is anything in the Squirreled Away box or picked to add to it (exclude.py); the page names them. Same carousel as cuts/ (cuts-template.html, caption swapped).
 Run from the repo root:  python3 tools/carousel/squirrels.py
 """
 import datetime, html, json, os, sys, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
 from make import get, record
+from exclude import sa_names
 OUT = os.path.join(ROOT, 'squirrels')
 
 def search(q):
@@ -19,6 +20,9 @@ def main():
     today = datetime.date.today()
     cards = search('t:legendary t:squirrel id<=bg legal:commander')
     skipped = [c['name'] for c in search('t:legendary t:squirrel id<=bg -legal:commander')]
+    box, picked = sa_names()
+    out = [c['name'] for c in cards if c['name'].split(' // ')[0] in box | picked]
+    cards = [c for c in cards if c['name'].split(' // ')[0] not in box | picked]
     ALL = []
     for c in cards:
         r = record(1, c)
@@ -27,7 +31,7 @@ def main():
         ALL.append(r)
     n = len(ALL)
     srcs = (f'<p><b>Source:</b> Scryfall, read {today:%b} {today.day}, {today.year}: legendary creatures with the Squirrel type, color identity black, green or both, '
-            f'Commander-legal, in EDHREC\'s popularity order. Left out because they are not Commander-legal: {html.escape(", ".join(skipped)) or "none"}.</p>')
+            f'Commander-legal, in EDHREC\'s popularity order. Left out because they are not Commander-legal: {html.escape(", ".join(skipped)) or "none"}. Left out because they are already in the Squirreled Away box or picked to add to it: {html.escape(", ".join(out)) or "none"}.</p>')
     cfg = {'slug': 'squirrels', 'deck': 'Legendary Squirrels (B/G)', 'set': 'Commander-legal', 'cmd': 'Any', 'alt': '', 'decks': n,
            'edh': 'https://scryfall.com/search?q=' + urllib.parse.quote('t:legendary t:squirrel id<=bg legal:commander'), 'srcs': srcs,
            'sub': f'{n} legendary Squirrels in black, green or both · most played first'}
@@ -39,6 +43,6 @@ def main():
           .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(t)
-    print(n, [c['n'] for c in ALL], 'skipped', skipped)
+    print(n, [c['n'] for c in ALL], 'skipped', skipped, 'excluded', out)
 
 main()

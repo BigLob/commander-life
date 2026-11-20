@@ -9,6 +9,7 @@ import datetime, html, json, os, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
 from make import DECKS, get, scryfall, record
+from exclude import sa_names
 EDH_SLUG = {'borg': 'we-are-the-borg'}
 TOP = 40
 OUT = os.path.join(ROOT, 'staples')
@@ -33,9 +34,16 @@ def main():
     # Keep candidates in 3+ precons, then check Scryfall for colorless identity and legality.
     cand = sorted((n for n, v in seen.items() if len(v) >= 5), key=lambda n: (-len(seen[n]), -sum(s for _, s in seen[n]) / len(seen[n])))
     cards = scryfall([(1, {'name': n}, n) for n in cand])
-    ALL = []
+    box, picked = sa_names()
+    ALL = []; dropped = []
     for nm, (_, c) in zip(cand, cards):
         if c.get('color_identity') or c['legalities'].get('commander') != 'legal': continue
+        # the user's rules: nothing already in the Squirreled Away box or already picked to add to it, and no land that only
+        # makes colorless mana (a land that fetches other lands or can make colored mana stays)
+        front = c['name'].split(' // ')[0]
+        only_c = 'Land' in c['type_line'] and set(c.get('produced_mana', [])) <= {'C'} and 'search your library' not in (c.get('oracle_text') or '').lower()
+        if front in box or front in picked or only_c:
+            dropped.append(front + (' (in the box)' if front in box else ' (picked for Squirreled Away)' if front in picked else ' (colorless land)')); continue
         v = seen[nm]
         r = record(1, c)
         r.update(k=['Land' if 'Land' in c['type_line'] else 'Spell'] + c.get('keywords', []), r=len(ALL) + 1,
@@ -46,7 +54,7 @@ def main():
     srcs = (f'<p><b>Source:</b> EDHREC\'s pages for {n_decks} precons (every one on its precons list), read {today:%b} {today.day}, {today.year}. Each lists the cards players most often '
             f'<i>add</i> that are not already in that box, with the share of decks that add them. A card ranks by how many of those precons list it, then by its average share. '
             f'Only cards with no color identity (so they go in any deck) and that are Commander-legal. A card already in a box can\'t show up for that box, so a card that most boxes already include ranks lower than it otherwise would. '
-            f'Card data and prices from Scryfall.</p>')
+            f'Left out on purpose: lands that only make colorless mana, and anything already in the Squirreled Away box or already picked to add to it. Card data and prices from Scryfall.</p>')
     cfg = {'slug': 'staples', 'deck': 'Colorless staples', 'set': 'Added to many precons', 'cmd': 'Any precon', 'alt': '', 'decks': n_decks,
            'edh': 'https://edhrec.com/precons', 'srcs': srcs,
            'sub': f'Colorless and Commander-legal · {len(ALL)} cards added to the most of {n_decks} precons'}
@@ -58,6 +66,6 @@ def main():
           .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(t)
-    print(len(ALL), 'cards:', ', '.join(f'{c["n"]} ({c["pc"]})' for c in ALL[:12]))
+    print('dropped:', dropped); print(len(ALL), 'cards:', ', '.join(f'{c["n"]} ({c["pc"]})' for c in ALL[:12]))
 
 main()
