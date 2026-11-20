@@ -110,6 +110,8 @@ SOURCES = {
  'ds-rt': ('Draftsim, "Revival Trance Upgrade Guide: 23 Easy Changes", May 20 2025', 'https://draftsim.com/revival-trance-upgrade-guide/', 'Swaps the commander to Celes, Rune Knight.'),
  'ub-rt': ('UNIVERSES BEYOND, "A Fun Upgrade for Revival Trance with Celes, Rune Knight: Bracket 3" (video)', V + 'NBMEctPBt2w', '15 in, 15 out with Celes as commander, read from the transcript; played four games with it.'),
  'cp-rt': ('The Commander Pod, "A Closer Look at Celes, Rune Knight Plus Budget Upgrades" (video)', V + 'yLvSGoWh81E', 'Played the box in a precon league, first with Terra, then with Celes; $27 of upgrades. Read from the transcript. List: https://moxfield.com/decks/bvf6K2Gre0KUIaa_6z44rQ'),
+ # Squirreled Away
+ 'tcg-sa': ('TCGplayer, "Squirreled Away MTG Commander Precon Deck Upgrade Guide", Drew Knapp, Jul 23 2024', 'https://www.tcgplayer.com/content/article/Squirreled-Away-MTG-Commander-Precon-Deck-Upgrade-Guide/b972815e-c856-49f6-b5ae-6269495d8be5/', 'Fifteen in, fifteen out, with The Odd Acorn Gang as commander. TCGplayer\'s "Upgraded Squirreled Away" deck page (https://www.tcgplayer.com/content/magic-the-gathering/deck/Upgraded-Squirreled-Away/498109) has no cards on it, so the lists are read from the article text.'),
 }
 
 DECKS = [
@@ -751,6 +753,33 @@ DECKS = [
   'also': ['mb-tt'],
   'videos': [('hTFSMMPmKFE', 'Tokens Triumph precon deck upgrade guide', 'Squirrel commander')],
  },
+ {
+  'group': 'Other precons',
+  'slug': 'squirreled-away', 'name': 'Squirreled Away (Bloomburrow)', 'cmd': 'Hazel of the Rootbloom', 'colors': 'B/G',
+  'gist': 'Hazel ramps and doubles tokens; the box is Squirrels plus a few other creature and token types. The one guide we read (TCGplayer) makes it all Squirrels: it cuts the off-type tokens and the extra lands, and adds squirrel makers, kindred pieces and a few spell-lands. It is not one of the decks we own.',
+  'themes': ['tokens', 'aristocrats'],
+  'angles': [
+   ('All Squirrels with The Odd Acorn Gang at the helm',
+    'Swap Hazel for The Odd Acorn Gang (pump and card draw instead of ramp), cut every non-Squirrel token type, and add Squirrel makers and kindred staples.',
+    ['Valley Rotcaller', 'Camellia, the Seedmiser', 'Squirrel Mob', 'Drey Keeper', 'Deranged Hermit', 'Nut Collector', 'Vinereap Mentor', 'Thornvault Forager', 'Bloodroot Apothecary', 'Roaming Throne', "Vanquisher's Banner", 'Kindred Dominance', 'Cavern of Souls', 'Revitalizing Repast', 'Fell the Profane'],
+    ['tcg-sa'],
+    'Drew Knapp calls it the best precon of the Bloomburrow set but says it tries to play too many creature and token types. Chatterfang, Squirrel General is his "most powerful" alternative commander, passed over for the Acorn Gang\'s card advantage. Roaming Throne ($49) and Cavern of Souls ($48) are the expensive adds.'),
+  ],
+  'avoid': [
+   ('Non-Squirrel creatures and token makers', ['Gilded Goose', 'Prosperous Innkeeper', 'Insatiable Frugivore', 'Arasta of the Endless Web', 'Moonstone Eulogist', 'Beledros Witherbloom'],
+    'Off the Squirrel plan once the commander changes; he also calls out the "creepy crawly" creatures.', ['tcg-sa']),
+   ('Slow or off-theme spells', ['Rootcast Apprenticeship', 'Cache Grab', 'Casualties of War', 'Decree of Pain', 'Moldervine Reclamation'],
+    'Inefficient or not about Squirrels; the card draw lost is replaced by the new commander.', ['tcg-sa']),
+   ('Extra lands', ['Wolfwillow Haven', 'Haunted Mire', 'Forest', 'Swamp'],
+    'He cuts to 35 lands because the curve gets lower, then adds Cavern of Souls and two spell-lands.', ['tcg-sa']),
+  ],
+  'split': [
+   'Commander: Knapp likes Hazel but picks The Odd Acorn Gang, and says the reprinted Chatterfang may be the most powerful. EDHREC counts Hazel 6,550 decks, Chatterfang 4,682, Camellia 369, The Odd Acorn Gang 286.',
+  ],
+  'alts': 'Hazel leads EDHREC\'s count (6,550), but Chatterfang is close behind (4,682).',
+  'also': [],
+  'videos': [],
+ },
 ]
 
 # The direction we chose for each deck (Nov 16, 2026) and its 15 picks: (card, source keys that add it). EDHREC's add share is
@@ -909,6 +938,7 @@ CMDCALL = {
  'chaos-incarnate': ('some', 'Every source keeps Kardur, but about a third of EDHREC decks from this box lead with someone else, Kaervek the Merciless most often.'),
  'draconic-destruction': ('none', 'Every source keeps Atarka.'),
  'token-triumph': ('none', 'Every source keeps Emmara.'),
+ 'squirreled-away': ('many', 'The TCGplayer guide swaps Hazel for The Odd Acorn Gang and names Chatterfang as the other option; EDHREC shows nearly 4 in 10 decks from this box led by Chatterfang, not Hazel.'),
 }
 
 THEME_NAME = {'auras': 'Auras', 'enchantress': 'Enchantress', 'forced-combat': 'Forced combat', 'voltron': 'Voltron', 'pillow-fort': 'Pillow fort',
