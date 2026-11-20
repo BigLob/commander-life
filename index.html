@@ -353,6 +353,9 @@ button:focus-visible { outline: 3px solid var(--hot); outline-offset: -3px; }
 /* Bigger names still have to fit a narrow seat (see fitNames()). */
 .name { max-width: calc(88 * var(--cqw, 1vw)); white-space: nowrap; overflow: hidden; }
 .n3 .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
+/* iPad view at four seats on a player's phone (v1.89, the user's photo): the turn button covers the
+   right seat's left corner, so its name sits in the right corner instead. */
+.n4.hub.upright .s3 .name { left: auto; right: calc(6 * var(--cqw, 1vw)); text-align: right; }
 /* iPad view on a Center phone (v1.62): the right seat's name moves to the bottom, where the right
    corner holds its dagger, so it goes back to the left. */
 .n3.hub:not(.upright) .s3 .name { left: calc(6 * var(--cqw, 1vw)); right: auto; text-align: left; }
@@ -984,7 +987,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.88';
+  const VERSION = '1.89';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
