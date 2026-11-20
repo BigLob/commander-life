@@ -27,6 +27,7 @@ Format: date | card | version wanted | how (proxy/real) | for deck | status
 2026-11-20 | Jaheira, Friend of the Forest (Commander-legal) | any printing, about $8.37 | proxy | Squirreled Away (Chatterfang) | to get (card, maybe)
 2026-11-20 | Mirkwood Bats (Commander-legal) | any printing, about $2.09 | proxy | Squirreled Away (Chatterfang) | to get (card, maybe)
 2026-11-20 | Scurry Oak (Commander-legal) | any printing, about $2.39 | proxy | Squirreled Away (Chatterfang) | to get (card, maybe)
+2026-11-20 | Meatsqueak, Hoard Lord (Commander-legal) | any printing, about $44.47 | proxy | Squirreled Away (Chatterfang) | to get (card, added from the squirrels carousel)
 2026-11-20 | Darkbore Pathway (Commander-legal) | any printing, about $6.02 | proxy | Squirreled Away (Chatterfang) | to get (land, yes)
 2026-11-20 | Deathcap Glade (Commander-legal) | any printing, about $3.18 | proxy | Squirreled Away (Chatterfang) | to get (land, yes)
 2026-11-20 | Fountainport (Commander-legal) | any printing, about $3.35 | proxy | Squirreled Away (Chatterfang) | to get (land, yes)
