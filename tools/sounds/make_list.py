@@ -5,13 +5,13 @@ index.html (TURN_POOLS), from sounds/clips.json.
 sounds/clips.json holds each clip's file (f, 'long/' prefix for files in sounds/long/), pool,
 length (d), kind ('sound', or 'talk' for anything with words), source name and link (src, url),
 group (OpenGameArt, Presidents, ...) and, for quotes, the words. This refreshes lengths from the
-files, sets each pool from its length (long is over LONG_OVER seconds, whatever the folder), adds any
+files, sets each pool from its length (short 3 s or less, mid up to 7 s, long over that, whatever the folder), adds any
 new file with an unknown source (fill it in by hand, from sounds/CREDITS.md; a new clip's kind is
 'talk' if it has a quote, else 'sound', so check it), drops files that are gone, and writes both
 pages. Run from the repo root.
 """
 import json, os, re, subprocess
-LONG_OVER = 3.0
+SHORT_MAX, MID_MAX = 3.0, 7.0  # v1.92: short is 3 s or less, mid up to 7 s, long over 7 s
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'sounds')
 data = {c['f']: c for c in json.load(open(os.path.join(root, 'clips.json')))}
 seen = []
@@ -22,7 +22,7 @@ for sub in ('', 'long'):
         d = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0',
                                   os.path.join(root, sub, f)], capture_output=True, text=True).stdout)
         c = data.get(key) or {'f': key, 'src': 'Unknown (add to clips.json)', 'url': '', 'grp': 'OpenGameArt'}
-        c.update(d=round(d, 1)); c['pool'] = 'long' if c['d'] > LONG_OVER else 'short'
+        c.update(d=round(d, 1)); c['pool'] = 'short' if c['d'] <= SHORT_MAX else 'mid' if c['d'] <= MID_MAX else 'long'
         c.setdefault('kind', 'talk' if c.get('quote') else 'sound'); seen.append(c)
 json.dump(seen, open(os.path.join(root, 'clips.json'), 'w'), indent=0, ensure_ascii=False)
 t = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'list-template.html')).read()
@@ -31,7 +31,7 @@ lt = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lines-templa
 lines = [{k: c[k] for k in ('f', 'd', 'quote', 'who', 'from', 'src', 'url', 'grp', 'note') if c.get(k)} for c in seen if c.get('kind') == 'talk']
 open(os.path.join(root, 'lines.html'), 'w').write(lt.replace('/*LINES*/[]', json.dumps(lines, ensure_ascii=False, separators=(',', ':'))))
 pools = {p: {k: ' '.join(c['f'] for c in seen if c['pool'] == p and c['kind'] == k) for k in ('sound', 'talk')}
-         for p in ('short', 'long')}
+         for p in ('short', 'mid', 'long')}
 page = os.path.join(root, '..', 'index.html')
 html = open(page).read()
 html, n = re.subn(r'(const TURN_POOLS = /\*POOLS\*/).*?;\n', lambda m: m.group(1) + json.dumps(pools) + ';\n', html, count=1)

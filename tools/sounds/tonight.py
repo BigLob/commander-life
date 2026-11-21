@@ -39,7 +39,7 @@ def main():
     a = ap.parse_args()
     clips = json.load(open(os.path.join(ROOT, 'sounds/clips.json')))
     # pool file names: root clips are 'name', long/ ones 'long/name' (as in TURN_POOLS)
-    name = lambda c: ('long/' if c.get('pool') == 'long' and os.path.exists(os.path.join(ROOT, 'sounds/long', c['f'] + '.mp3')) else '') + c['f']
+    name = lambda c: ('long/' if os.path.exists(os.path.join(ROOT, 'sounds/long', c['f'] + '.mp3')) else '') + c['f']
     byf = {c['f']: name(c) for c in clips}
     out = {'updated': datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'), 'decks': [], 'share': 0, 'boost': [], 'mute': [], 'every': 0, 'until': ''}
     if not a.clear: out['every'], out['until'] = a.announce_every, a.until

@@ -11,7 +11,7 @@
 },
 {
 "f": "8bit-fanfare-jingle-the-lick",
-"pool": "long",
+"pool": "mid",
 "d": 3.1,
 "src": "8Bit Fanfare Jingle The Lick",
 "url": "https://opengameart.org/content/8bit-fanfare-jingle-the-lick",
@@ -21,7 +21,7 @@
 },
 {
 "f": "a-surprising-twist-nes-sting",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "A Surprising Twist Nes Sting",
 "url": "https://opengameart.org/content/a-surprising-twist-nes-sting",
@@ -41,7 +41,7 @@
 },
 {
 "f": "accordion",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "src": "Accordion Sound",
 "url": "https://opengameart.org/content/accordion-sound",
@@ -61,7 +61,7 @@
 },
 {
 "f": "and-the-winner-is",
-"pool": "long",
+"pool": "mid",
 "d": 3.9,
 "src": "And The Winner Is",
 "url": "https://opengameart.org/content/and-the-winner-is",
@@ -71,7 +71,7 @@
 },
 {
 "f": "arcade-atomize",
-"pool": "long",
+"pool": "mid",
 "d": 3.1,
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
@@ -81,7 +81,7 @@
 },
 {
 "f": "arcade-beach",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "src": "18 Random Video Game Sound Effects",
 "url": "https://opengameart.org/content/18-random-video-game-sound-effects",
@@ -278,7 +278,7 @@
 "src": "myinstants: Joe Biden Gibberish",
 "url": "https://www.myinstants.com/media/sounds/joe-biden-gibberish.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.3,
 "quote": "I was in the fudg... fudg... fudg...",
 "kind": "talk",
@@ -300,7 +300,7 @@
 "src": "myinstants: Biden is not Poor",
 "url": "https://www.myinstants.com/media/sounds/biden-is-not-poor.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.7,
 "quote": "I'm going to say something outrageous. I have never been particularly poor.",
 "kind": "talk",
@@ -311,7 +311,7 @@
 "src": "myinstants: Biden Fly",
 "url": "https://www.myinstants.com/media/sounds/biden-fly.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.4,
 "quote": "I no more think of myself as being as old as I am than fly.",
 "kind": "talk",
@@ -356,7 +356,7 @@
 "src": "myinstants: Biden Take a test",
 "url": "https://www.myinstants.com/media/sounds/biden-take-a-test.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.4,
 "quote": "Why the hell would I take a test? Come on, man!",
 "kind": "talk",
@@ -367,7 +367,7 @@
 "src": "myinstants: Biden What am I doing here",
 "url": "https://www.myinstants.com/media/sounds/biden-what-am-i-doing-here.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.9,
 "quote": "And what am I doing here?",
 "kind": "talk",
@@ -389,7 +389,7 @@
 "src": "myinstants: Biden: Who Does He Think He Is!?",
 "url": "https://www.myinstants.com/media/sounds/biden-who-does-he-think-he-is.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.9,
 "quote": "Who in the hell does he think he is? Who does he think he is?",
 "kind": "talk",
@@ -420,7 +420,7 @@
 },
 {
 "f": "big-boing",
-"pool": "long",
+"pool": "mid",
 "d": 3.7,
 "src": "Boing",
 "url": "https://opengameart.org/content/boing",
@@ -430,7 +430,7 @@
 },
 {
 "f": "big-scary-troll-sounds",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Big Scary Troll Sounds",
 "url": "https://opengameart.org/content/big-scary-troll-sounds",
@@ -520,7 +520,7 @@
 },
 {
 "f": "bush-bulgaria-achievements",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -532,7 +532,7 @@
 },
 {
 "f": "bush-fish-coexist",
-"pool": "long",
+"pool": "mid",
 "d": 4.8,
 "src": "YouTube: \"I know the human being and fish can coexist peacefully\" (Goth Pop TV)",
 "url": "https://youtu.be/20Jcrk6jGfo",
@@ -558,7 +558,7 @@
 },
 {
 "f": "bush-is-our-children-learning",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "src": "YouTube: \"George Bush - Is Our Kids Learning\" (rvankaam)",
 "url": "https://youtu.be/GC-6Vc8YX9c",
@@ -571,7 +571,7 @@
 },
 {
 "f": "bush-let-me-let-me",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -608,7 +608,7 @@
 },
 {
 "f": "bush-prime-minister-of-india",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -620,7 +620,7 @@
 },
 {
 "f": "bush-the-google",
-"pool": "long",
+"pool": "mid",
 "d": 3.7,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -633,7 +633,7 @@
 },
 {
 "f": "bush-we-will-fail",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -645,7 +645,7 @@
 },
 {
 "f": "bush-where-wings-take-dream",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "src": "YouTube: \"💪Bush Gives Words of Wisdom💡(Where Wings Take Dream)😌\" (The Ace of Knaves)",
 "url": "https://youtu.be/ijiqLeqYeoU",
@@ -855,7 +855,7 @@
 },
 {
 "f": "cc0-deep-monster-roar",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Cc0 Deep Monster Roar",
 "url": "https://opengameart.org/content/cc0-deep-monster-roar",
@@ -897,7 +897,7 @@
 },
 {
 "f": "chant-16",
-"pool": "long",
+"pool": "mid",
 "d": 4.8,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
@@ -907,7 +907,7 @@
 },
 {
 "f": "chant-20",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
@@ -927,7 +927,7 @@
 },
 {
 "f": "chant-8",
-"pool": "long",
+"pool": "mid",
 "d": 4.5,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
@@ -937,7 +937,7 @@
 },
 {
 "f": "chant-ethereal",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
@@ -960,7 +960,7 @@
 },
 {
 "f": "chipper-chopper-upper",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Chipper Chopper Upper",
 "url": "https://opengameart.org/content/chipper-chopper-upper",
@@ -983,7 +983,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Alleluia\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/alleluia/1570495548?i=1570495551&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 6.1,
 "kind": "sound",
 "note": "Sung: \"Alleluia, alleluia\"",
@@ -1005,7 +1005,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Eden's Garden\" (LDS Superhits of the '90s)",
 "url": "https://music.apple.com/us/album/edens-garden/307193169?i=307193180&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "kind": "sound",
 "note": "Sung: \"We named her Eden\"",
@@ -1027,7 +1027,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"His Hands\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/his-hands/1570495548?i=1570495557&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 6.6,
 "kind": "sound",
 "note": "Sung: \"His hands, tools of creation\"",
@@ -1049,7 +1049,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Never a Better Hero\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/never-a-better-hero/1570495548?i=1570495558&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 6.0,
 "kind": "sound",
 "note": "Sung: \"Bringing hope to their hearts, giving man a new start\"",
@@ -1060,7 +1060,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"The Carpenter's Son\" (EFY: The Best of Especially for Youth, Vol. 2)",
 "url": "https://music.apple.com/us/album/the-carpenters-son/305635220?i=305635239&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "kind": "sound",
 "note": "Sung: \"That's why they called him the carpenter's son\"",
@@ -1071,7 +1071,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"We Believe\" (EFY 2002 - We Believe)",
 "url": "https://music.apple.com/us/album/we-believe/305633359?i=305633419&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 6.7,
 "kind": "sound",
 "note": "Sung: \"We believe in one name under heaven\"",
@@ -1082,7 +1082,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"What Have I Done With His Name?\" (EFY: The Best of Especially for Youth, Vol. 2)",
 "url": "https://music.apple.com/us/album/what-have-i-done-with-his-name/305635220?i=305635235&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "mid",
 "d": 5.3,
 "kind": "sound",
 "note": "Sung: \"What have I done with his name?\"",
@@ -1090,7 +1090,7 @@
 },
 {
 "f": "cough",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Old Man Cough",
 "url": "https://opengameart.org/content/old-man-cough",
@@ -1390,7 +1390,7 @@
 },
 {
 "f": "demon-dies",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1400,7 +1400,7 @@
 },
 {
 "f": "demon-feast-on-soul",
-"pool": "long",
+"pool": "mid",
 "d": 3.1,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1413,7 +1413,7 @@
 },
 {
 "f": "demon-feeble-humans",
-"pool": "long",
+"pool": "mid",
 "d": 4.3,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1439,7 +1439,7 @@
 },
 {
 "f": "demon-he-s-escaped",
-"pool": "long",
+"pool": "mid",
 "d": 4.9,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1452,7 +1452,7 @@
 },
 {
 "f": "demon-kill-him-slowly",
-"pool": "long",
+"pool": "mid",
 "d": 3.9,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1465,7 +1465,7 @@
 },
 {
 "f": "demon-kill-them-slowly",
-"pool": "long",
+"pool": "mid",
 "d": 4.5,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1556,7 +1556,7 @@
 },
 {
 "f": "demon-she-s-escaped",
-"pool": "long",
+"pool": "mid",
 "d": 4.7,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1621,7 +1621,7 @@
 },
 {
 "f": "demon-they-ve-escaped",
-"pool": "long",
+"pool": "mid",
 "d": 4.9,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1647,7 +1647,7 @@
 },
 {
 "f": "demon-voice-game-over",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Demon Voice Game Over",
 "url": "https://opengameart.org/content/demon-voice-game-over",
@@ -1660,7 +1660,7 @@
 },
 {
 "f": "demon-wait-she-s-mine",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -1709,7 +1709,7 @@
 },
 {
 "f": "dog-2",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
@@ -1739,7 +1739,7 @@
 },
 {
 "f": "dog-sad-dog-1",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
@@ -2014,7 +2014,7 @@
 "who": "Duke Nukem",
 "note": "Duke Nukem 3D",
 "d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "duke-little-friend",
@@ -2040,7 +2040,7 @@
 "who": "Duke Nukem",
 "note": "Duke Nukem 3D",
 "d": 4.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "duke-one-eyed-freak",
@@ -2053,7 +2053,7 @@
 "who": "Duke Nukem",
 "note": "Duke Nukem 3D",
 "d": 3.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "duke-riff",
@@ -2107,7 +2107,7 @@
 },
 {
 "f": "dynamite",
-"pool": "long",
+"pool": "mid",
 "d": 3.6,
 "src": "Dynamite Sound Effect",
 "url": "https://opengameart.org/content/dynamite-sound-effect",
@@ -2117,7 +2117,7 @@
 },
 {
 "f": "evil-screech-1",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Evil Screech 1",
 "url": "https://opengameart.org/content/evil-screech-1",
@@ -2127,7 +2127,7 @@
 },
 {
 "f": "excited-horror-sound",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Excited Horror Sound",
 "url": "https://opengameart.org/content/excited-horror-sound",
@@ -2147,7 +2147,7 @@
 },
 {
 "f": "fart-1",
-"pool": "long",
+"pool": "mid",
 "d": 4.8,
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
@@ -2157,7 +2157,7 @@
 },
 {
 "f": "fart-2",
-"pool": "long",
+"pool": "mid",
 "d": 4.9,
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
@@ -2187,7 +2187,7 @@
 },
 {
 "f": "female-high-pitched-scream-sfx",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Female High Pitched Scream Sfx",
 "url": "https://opengameart.org/content/female-high-pitched-scream-sfx",
@@ -2236,7 +2236,7 @@
 "lic": "Square Enix game audio",
 "note": "Fanfare",
 "d": 3.6,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff-moogle-kupo",
@@ -2269,7 +2269,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare, first 6 s",
 "d": 6.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff11-victory-fanfare",
@@ -2302,7 +2302,7 @@
 "lic": "Square Enix game audio",
 "note": "Duty finder pop (FFXIV)",
 "d": 5.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff15-ride-my-chocobo",
@@ -2315,7 +2315,7 @@
 "who": "Prompto",
 "note": "FFXV",
 "d": 4.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff15-totally-into-chocobos",
@@ -2328,7 +2328,7 @@
 "who": "Prompto",
 "note": "FFXV",
 "d": 4.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff4-victory-fanfare",
@@ -2339,7 +2339,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare (FFIV)",
 "d": 4.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff6-terra-theme",
@@ -2361,7 +2361,7 @@
 "lic": "Square Enix game audio",
 "note": "Battle start (FFVII)",
 "d": 3.3,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff7-battle-theme",
@@ -2431,7 +2431,7 @@
 "lic": "Square Enix game audio",
 "note": "Sephiroth's theme",
 "d": 5.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff7-one-winged-angel",
@@ -2466,7 +2466,7 @@
 "who": "Cloud",
 "note": "Advent Children",
 "d": 3.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff7-victory-fanfare",
@@ -2477,7 +2477,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare (FFVII)",
 "d": 4.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff7-victory-recorder",
@@ -2488,7 +2488,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare on recorder (FFVII)",
 "d": 3.3,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "ff7r-barret-fanfare",
@@ -2554,11 +2554,11 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare (FFIX)",
 "d": 4.8,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "final-lap",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
@@ -2622,7 +2622,7 @@
 },
 {
 "f": "ghost-breath",
-"pool": "long",
+"pool": "mid",
 "d": 3.3,
 "src": "Ghost Breath",
 "url": "https://opengameart.org/content/ghost-breath",
@@ -2642,7 +2642,7 @@
 },
 {
 "f": "ghost-moan-2",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
@@ -2652,7 +2652,7 @@
 },
 {
 "f": "ghost-moan-3",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
@@ -2662,7 +2662,7 @@
 },
 {
 "f": "ghost-moan-4",
-"pool": "long",
+"pool": "mid",
 "d": 4.9,
 "src": "Ghost Monster Voice Moaning Growling",
 "url": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
@@ -2682,7 +2682,7 @@
 },
 {
 "f": "ghost",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "src": "Ghost",
 "url": "https://opengameart.org/content/ghost",
@@ -2748,7 +2748,7 @@
 },
 {
 "f": "goblin-feast",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Goblin Feast",
 "url": "https://opengameart.org/content/goblin-feast",
@@ -2807,7 +2807,7 @@
 "lic": "Microsoft / The Coalition (not CC0)",
 "kind": "sound",
 "d": 3.8,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "gow-leviathan",
@@ -2819,7 +2819,7 @@
 "quote": "It's a goddamn Leviathan!",
 "who": "Gears of War",
 "d": 3.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "gow-marcus-nice",
@@ -2879,7 +2879,7 @@
 },
 {
 "f": "gross-diarea",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
@@ -2899,7 +2899,7 @@
 },
 {
 "f": "gross-rire",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
@@ -2929,7 +2929,7 @@
 },
 {
 "f": "gross-vomi",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
@@ -3123,7 +3123,7 @@
 },
 {
 "f": "horn-1",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Their Coming Generic Horn Sound",
 "url": "https://opengameart.org/content/their-coming-generic-horn-sound",
@@ -3133,7 +3133,7 @@
 },
 {
 "f": "horn-2",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Their Coming Generic Horn Sound",
 "url": "https://opengameart.org/content/their-coming-generic-horn-sound",
@@ -3143,7 +3143,7 @@
 },
 {
 "f": "horror-bassy-3",
-"pool": "long",
+"pool": "mid",
 "d": 4.2,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
@@ -3153,7 +3153,7 @@
 },
 {
 "f": "horror-bassy-6",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
@@ -3163,7 +3163,7 @@
 },
 {
 "f": "horror-bassy-9",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
@@ -3173,7 +3173,7 @@
 },
 {
 "f": "horror-high-5",
-"pool": "long",
+"pool": "mid",
 "d": 4.2,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
@@ -3183,7 +3183,7 @@
 },
 {
 "f": "horror-mid-10",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
@@ -3193,7 +3193,7 @@
 },
 {
 "f": "horror-mid-16",
-"pool": "long",
+"pool": "mid",
 "d": 3.5,
 "src": "Horror Hit Soundpack 1",
 "url": "https://opengameart.org/content/horror-hit-soundpack-1",
@@ -3203,7 +3203,7 @@
 },
 {
 "f": "horror-scream1",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Horror Scream1",
 "url": "https://opengameart.org/content/horror-scream1",
@@ -3223,7 +3223,7 @@
 },
 {
 "f": "hungry-ghoul",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Hungry Ghoul",
 "url": "https://opengameart.org/content/hungry-ghoul",
@@ -3233,7 +3233,7 @@
 },
 {
 "f": "i-see-you-voice",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "I See You Voice",
 "url": "https://opengameart.org/content/i-see-you-voice",
@@ -3268,7 +3268,7 @@
 },
 {
 "f": "jingle-14",
-"pool": "long",
+"pool": "mid",
 "d": 3.5,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -3459,11 +3459,11 @@
 "lic": "Universal film audio",
 "note": "T. rex roar",
 "d": 4.6,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "jumpscare-sound",
-"pool": "long",
+"pool": "mid",
 "d": 3.5,
 "src": "Jumpscare Sound",
 "url": "https://opengameart.org/content/jumpscare-sound",
@@ -3563,7 +3563,7 @@
 "who": "Gandalf",
 "note": "The Fellowship of the Ring",
 "d": 4.7,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "lt-bugs-carrot",
@@ -4060,7 +4060,7 @@
 "url": "https://www.myinstants.com/media/sounds/mega-man-3-stage-clear_SMkoYD7.mp3",
 "grp": "Mega Man",
 "d": 3.7,
-"pool": "long",
+"pool": "mid",
 "kind": "sound",
 "note": "Mega Man 3 stage clear",
 "lic": "Capcom game audio"
@@ -4104,7 +4104,7 @@
 },
 {
 "f": "monster-ripping-into-fish",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Monster Ripping Into Fish",
 "url": "https://opengameart.org/content/monster-ripping-into-fish",
@@ -4138,7 +4138,7 @@
 },
 {
 "f": "nasa-all-weather-testing",
-"pool": "long",
+"pool": "mid",
 "d": 4.4,
 "src": "NASA: Apollo 12",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -4150,7 +4150,7 @@
 },
 {
 "f": "nasa-clock-has-started",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "src": "NASA: Mercury 7",
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
@@ -4161,7 +4161,7 @@
 },
 {
 "f": "nasa-eagle-has-landed",
-"pool": "long",
+"pool": "mid",
 "d": 4.5,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -4197,7 +4197,7 @@
 },
 {
 "f": "nasa-zero-g",
-"pool": "long",
+"pool": "mid",
 "d": 4.4,
 "src": "NASA: Mercury 6",
 "url": "https://soundcloud.com/nasa/sets/mercury-sounds",
@@ -4209,7 +4209,7 @@
 },
 {
 "f": "new-thing-get",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "New Thing Get",
 "url": "https://opengameart.org/content/new-thing-get",
@@ -4228,6 +4228,266 @@
 "kind": "talk",
 "from": "Press conference with newspaper editors, Disney's Contemporary Resort, Florida, Nov 17, 1973",
 "who": "Richard Nixon"
+},
+{
+"f": "nonsense-blorpo-snazzlefrunk",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Blorpo snazzlefrunk!",
+"who": "Announcer",
+"voice": "bm_george",
+"d": 2.3,
+"pool": "short"
+},
+{
+"f": "nonsense-bumbly-crumpet-doodle",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Bumbly crumpet doodle!",
+"who": "Announcer",
+"voice": "af_heart",
+"d": 1.6,
+"pool": "short"
+},
+{
+"f": "nonsense-creezor-fingerbang",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Creezor fingerbang!",
+"who": "Announcer",
+"voice": "af_bella",
+"d": 1.3,
+"pool": "short"
+},
+{
+"f": "nonsense-dribbling-gorpwhistle",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Dribbling gorpwhistle!",
+"who": "Announcer",
+"voice": "af_sky",
+"d": 1.8,
+"pool": "short"
+},
+{
+"f": "nonsense-fartnoodle-supreme",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Fartnoodle supreme!",
+"who": "Announcer",
+"voice": "am_adam",
+"d": 1.6,
+"pool": "short"
+},
+{
+"f": "nonsense-flangus-the-squelcher",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Flangus the squelcher!",
+"who": "Announcer",
+"voice": "am_adam",
+"d": 1.6,
+"pool": "short"
+},
+{
+"f": "nonsense-glimbus-pantsfungle",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Glimbus pantsfungle!",
+"who": "Announcer",
+"voice": "af_bella",
+"d": 1.5,
+"pool": "short"
+},
+{
+"f": "nonsense-grunkle-bonkers",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Grunkle bonkers!",
+"who": "Announcer",
+"voice": "af_bella",
+"d": 1.4,
+"pool": "short"
+},
+{
+"f": "nonsense-jumbo-snickerdoodle-gorp",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Jumbo snickerdoodle gorp!",
+"who": "Announcer",
+"voice": "af_heart",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "nonsense-kablunk-the-spoon",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Kablunk the spoon!",
+"who": "Announcer",
+"voice": "bf_emma",
+"d": 1.7,
+"pool": "short"
+},
+{
+"f": "nonsense-mungo-flapjack-warble",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Mungo flapjack warble!",
+"who": "Announcer",
+"voice": "am_michael",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "nonsense-plonkus-meatloaf",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Plonkus meatloaf!",
+"who": "Announcer",
+"voice": "bm_george",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "nonsense-scrungling-buttfungus",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Scrungling buttfungus!",
+"who": "Announcer",
+"voice": "af_heart",
+"d": 1.8,
+"pool": "short"
+},
+{
+"f": "nonsense-snorkel-wobblepants",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Snorkel wobblepants!",
+"who": "Announcer",
+"voice": "am_michael",
+"d": 1.7,
+"pool": "short"
+},
+{
+"f": "nonsense-spleen-zamboni",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Spleen zamboni!",
+"who": "Announcer",
+"voice": "bm_george",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "nonsense-turkey-blaster-nine-thousand",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Turkey blaster nine thousand!",
+"who": "Announcer",
+"voice": "am_adam",
+"d": 2.1,
+"pool": "short"
+},
+{
+"f": "nonsense-wibble-wobble-fungus",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Wibble wobble fungus!",
+"who": "Announcer",
+"voice": "af_sky",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "nonsense-wumpus-gribblesnort",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Wumpus gribblesnort!",
+"who": "Announcer",
+"voice": "af_sky",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "nonsense-yankus-burger",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Yankus burger!",
+"who": "Announcer",
+"voice": "am_michael",
+"d": 1.4,
+"pool": "short"
+},
+{
+"f": "nonsense-zibbity-crunchlord",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Nonsense words",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Zibbity crunchlord!",
+"who": "Announcer",
+"voice": "bf_emma",
+"d": 1.7,
+"pool": "short"
 },
 {
 "f": "obama-clean-up-your-mess",
@@ -4298,7 +4558,7 @@
 },
 {
 "f": "obama-the-math-is-the-math",
-"pool": "long",
+"pool": "mid",
 "d": 4.7,
 "src": "YouTube: \"BARACK OBAMA GIANT STUTTER ON 60 MINUTES\" (beyondimaginable)",
 "url": "https://youtu.be/z-Myi0RJeUU",
@@ -4310,7 +4570,7 @@
 },
 {
 "f": "oh-you-scared-me",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Oh You Scared Me",
 "url": "https://opengameart.org/content/oh-you-scared-me",
@@ -4651,7 +4911,7 @@
 },
 {
 "f": "race-best",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
@@ -4661,7 +4921,7 @@
 },
 {
 "f": "race-good",
-"pool": "long",
+"pool": "mid",
 "d": 3.7,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
@@ -4684,7 +4944,7 @@
 "src": "myinstants: Reagan vs. Heckler",
 "url": "https://www.myinstants.com/media/sounds/reagan-heckler_new.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.5,
 "quote": "Oh, shut up.",
 "kind": "talk",
@@ -4722,7 +4982,7 @@
 },
 {
 "f": "retro-complex4",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "src": "15 Strange Retro SFX",
 "url": "https://opengameart.org/content/15-strange-retro-sfx",
@@ -4852,7 +5112,7 @@
 },
 {
 "f": "ripping-into-meat",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Ripping Into Meat",
 "url": "https://opengameart.org/content/ripping-into-meat",
@@ -4862,7 +5122,7 @@
 },
 {
 "f": "robot-bird",
-"pool": "long",
+"pool": "mid",
 "d": 3.5,
 "src": "Angry Robot Bird",
 "url": "https://opengameart.org/content/angry-robot-bird",
@@ -4895,7 +5155,7 @@
 },
 {
 "f": "scary-high-pitched-ghost",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Scary High Pitched Ghost",
 "url": "https://opengameart.org/content/scary-high-pitched-ghost",
@@ -4947,11 +5207,11 @@
 "who": "Announcer",
 "note": "Street Fighter II",
 "d": 4.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sfx-goats",
-"pool": "long",
+"pool": "mid",
 "d": 4.5,
 "src": "Herd of goats bleating, by stilgar (public domain), Wikimedia Commons",
 "url": "https://commons.wikimedia.org/wiki/File:Herd_of_goats_bleating.ogg",
@@ -4978,7 +5238,7 @@
 },
 {
 "f": "short-jingle",
-"pool": "long",
+"pool": "mid",
 "d": 3.9,
 "src": "Short Jingle",
 "url": "https://opengameart.org/content/short-jingle",
@@ -5135,7 +5395,7 @@
 "lic": "FromSoftware game audio",
 "note": "Bonfire lit",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "souls-boss-pain",
@@ -5170,7 +5430,7 @@
 "who": "Fire Keeper",
 "note": "Dark Souls III",
 "d": 3.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "souls-hello",
@@ -5312,7 +5572,7 @@
 "lic": "FromSoftware game audio",
 "note": "Summon sign",
 "d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "souls-thank-you",
@@ -5350,7 +5610,7 @@
 "quote": "Yes, indeed.",
 "note": "Dark Souls III",
 "d": 3.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "splash-1",
@@ -5454,7 +5714,7 @@
 },
 {
 "f": "splatter",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "2 Wooden Squish Splatter Sequences",
 "url": "https://opengameart.org/content/2-wooden-squish-splatter-sequences",
@@ -5544,7 +5804,7 @@
 },
 {
 "f": "spooky-yawn",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "src": "Nhfea Sound",
 "url": "https://opengameart.org/content/nhfea-sound",
@@ -5767,7 +6027,7 @@
 },
 {
 "f": "stage-clear-1",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
@@ -5777,7 +6037,7 @@
 },
 {
 "f": "stage-clear-2",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
@@ -5787,7 +6047,7 @@
 },
 {
 "f": "stage-clear-3",
-"pool": "long",
+"pool": "mid",
 "d": 3.1,
 "src": "OpenGameArt (CC0), page not recorded",
 "url": "",
@@ -5827,7 +6087,7 @@
 },
 {
 "f": "strange-girl-scream",
-"pool": "long",
+"pool": "mid",
 "d": 3.3,
 "src": "3 Strange Sound Effects",
 "url": "https://opengameart.org/content/3-strange-sound-effects",
@@ -5837,7 +6097,7 @@
 },
 {
 "f": "strange-tornado",
-"pool": "long",
+"pool": "mid",
 "d": 3.9,
 "src": "3 Strange Sound Effects",
 "url": "https://opengameart.org/content/3-strange-sound-effects",
@@ -5889,7 +6149,7 @@
 "who": "Palpatine",
 "note": "Return of the Jedi",
 "d": 3.7,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-chewbacca",
@@ -6030,7 +6290,7 @@
 "who": "Darth Vader",
 "note": "A New Hope",
 "d": 4.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-lightsaber-clash",
@@ -6076,7 +6336,7 @@
 "who": "Darth Vader",
 "note": "The Empire Strikes Back",
 "d": 3.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-order-66",
@@ -6089,7 +6349,7 @@
 "who": "Palpatine",
 "note": "Revenge of the Sith",
 "d": 3.3,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-out-of-hand",
@@ -6102,7 +6362,7 @@
 "who": "Obi-Wan Kenobi",
 "note": "The Phantom Menace",
 "d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-plagueis",
@@ -6115,7 +6375,7 @@
 "who": "Palpatine",
 "note": "Revenge of the Sith",
 "d": 4.9,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-r2d2-excited",
@@ -6148,7 +6408,7 @@
 "lic": "Lucasfilm film audio",
 "note": "R2-D2 screams",
 "d": 3.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-r2d2",
@@ -6194,7 +6454,7 @@
 "lic": "Lucasfilm film audio",
 "note": "TIE fighter scream",
 "d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-tusken-raider",
@@ -6205,7 +6465,7 @@
 "lic": "Lucasfilm film audio",
 "note": "Tusken Raider cry",
 "d": 3.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "sw-utinni",
@@ -6273,7 +6533,7 @@
 },
 {
 "f": "the-messy-feast",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "The Messy Feast",
 "url": "https://opengameart.org/content/the-messy-feast",
@@ -6313,7 +6573,7 @@
 },
 {
 "f": "theremin-big-14",
-"pool": "long",
+"pool": "mid",
 "d": 3.3,
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
@@ -6333,7 +6593,7 @@
 },
 {
 "f": "theremin-big-3",
-"pool": "long",
+"pool": "mid",
 "d": 3.6,
 "src": "Theremin Sci Fi Sparkles",
 "url": "https://opengameart.org/content/theremin-sci-fi-sparkles",
@@ -6373,7 +6633,7 @@
 },
 {
 "f": "toilet-1",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
@@ -6383,7 +6643,7 @@
 },
 {
 "f": "toilet-2",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
@@ -6410,7 +6670,7 @@
 "lic": "TV audio",
 "note": "The Price Is Right fail horn",
 "d": 4.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-beam-me-up",
@@ -6541,7 +6801,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Klingon cloak",
 "d": 3.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-communicator",
@@ -6565,7 +6825,7 @@
 "who": "Data",
 "note": "Generations",
 "d": 6.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-data-received",
@@ -6578,7 +6838,7 @@
 "who": "Computer",
 "note": "TOS computer",
 "d": 4.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-dead-jim",
@@ -6604,7 +6864,7 @@
 "who": "Computer",
 "note": "TNG computer",
 "d": 3.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-disruptor",
@@ -6704,7 +6964,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Klingon Bird of Prey decloaks",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-line-drawn",
@@ -6819,7 +7079,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Opening chime",
 "d": 6.7,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-out-of-your-mind",
@@ -6842,7 +7102,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG phaser strike",
 "d": 3.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-photon-torpedo",
@@ -6853,7 +7113,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Photon torpedo",
 "d": 4.9,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-pile-of-junk",
@@ -6914,7 +7174,7 @@
 "lic": "Paramount TV audio",
 "note": "Red alert",
 "d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-resistance-is-futile",
@@ -6986,7 +7246,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG red alert",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-tng-transporter-short",
@@ -6997,7 +7257,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG transporter",
 "d": 3.7,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-tng-transporter",
@@ -7008,7 +7268,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG transporter",
 "d": 4.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-torpedo",
@@ -7041,7 +7301,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS red alert",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-tos-transporter",
@@ -7052,7 +7312,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS transporter",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-transporter-room",
@@ -7076,7 +7336,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Angry tribble",
 "d": 4.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-vulcan-mind",
@@ -7113,7 +7373,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG warp 7",
 "d": 5.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-warp-drive-active",
@@ -7137,7 +7397,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG warp out",
 "d": 4.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "trek-weapons",
@@ -7232,7 +7492,7 @@
 },
 {
 "f": "trump-bing-bong",
-"pool": "long",
+"pool": "mid",
 "d": 4.4,
 "src": "YouTube: \"Donald Trump-Bing Bong original\" (Xavier R.)",
 "url": "https://youtu.be/niSLZDVApdQ",
@@ -7266,7 +7526,7 @@
 },
 {
 "f": "trump-concepts-of-a-plan",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -7361,7 +7621,7 @@
 "src": "myinstants: TRUMP HOT DOGS",
 "url": "https://www.myinstants.com/media/sounds/trump-hot-dogs.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.7,
 "quote": "Hot dogs! Let's talk about hot dogs. I just had one, actually.",
 "kind": "talk",
@@ -7372,7 +7632,7 @@
 "src": "myinstants: donald trump approves this",
 "url": "https://www.myinstants.com/media/sounds/donald-trump-approves-this.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "quote": "I'm Donald Trump and I approve this message.",
 "kind": "talk",
@@ -7406,7 +7666,7 @@
 "src": "myinstants: Trump quote about minors",
 "url": "https://www.myinstants.com/media/sounds/trump-quote-about-minors.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "quote": "For miners. Do we love miners? I love miners.",
 "kind": "talk",
@@ -7439,7 +7699,7 @@
 "src": "myinstants: It's All Fake News",
 "url": "https://www.myinstants.com/media/sounds/fake-news-great.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "quote": "It's all fake news. It's phony stuff. It didn't happen.",
 "kind": "talk",
@@ -7450,7 +7710,7 @@
 "src": "myinstants: Donald Trump - Jobs, Jobs, Jobs",
 "url": "https://www.myinstants.com/media/sounds/donald-trump-jobs-jobs-jobs.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "quote": "Jobs, jobs, jobs.",
 "kind": "talk",
@@ -7461,7 +7721,7 @@
 "src": "myinstants: Bing Bong",
 "url": "https://www.myinstants.com/media/sounds/donald-trump-talks-about-trucks-vine-1.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.1,
 "quote": "Hello, you people know a lot about trucks. Bing, bing, bong. Thank you very much.",
 "kind": "talk",
@@ -7572,7 +7832,7 @@
 "src": "myinstants: Trump Scarface",
 "url": "https://www.myinstants.com/media/sounds/trump-scarface.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.2,
 "quote": "Al Capone, the greatest of them all. Gangster. Scarface.",
 "kind": "talk",
@@ -7583,7 +7843,7 @@
 "src": "myinstants: Trump - Soccer Field",
 "url": "https://www.myinstants.com/media/sounds/trump-soccer-field.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 3.2,
 "quote": "A million dollars, building a soccer field.",
 "kind": "talk",
@@ -7629,7 +7889,7 @@
 "src": "myinstants: Trump's Best Words",
 "url": "https://www.myinstants.com/media/sounds/trumps-best-words.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.3,
 "quote": "I know words. I have the best words. But there's no better word than stupid.",
 "kind": "talk",
@@ -7641,7 +7901,7 @@
 "src": "myinstants: Trump What Did I Do?",
 "url": "https://www.myinstants.com/media/sounds/trump-what-did-i-do.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 4.0,
 "quote": "What happened? What did I do?",
 "kind": "talk",
@@ -7716,436 +7976,28 @@
 "kind": "sound"
 },
 {
-"f": "tts-andrew-assimilated",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
+"f": "tts-trent-alpha",
+"src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, resistance is futile. Not because we're strong. Because you keep helping.",
-"who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 5.4,
-"pool": "long"
+"kind": "talk",
+"quote": "Trent, alpha strike? With what? Emotional support?",
+"who": "Announcer (at Trent)",
+"d": 3.7,
+"pool": "mid"
 },
 {
-"f": "tts-andrew-board-wipe",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
+"f": "tts-trent-attack",
+"src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
 "grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, board wipe incoming. Say goodbye to the only things keeping you alive.",
-"who": "Announcer (at Andrew)",
 "lic": "Made for this app",
-"d": 6.0,
-"pool": "long"
-},
-{
-"f": "tts-andrew-bold",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
 "kind": "talk",
-"quote": "Andrew, that was a bold play. Bold like a fire in a library that you started.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 5.4,
-"pool": "long"
-},
-{
-"f": "tts-andrew-combo",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, is that a combo? No. It's a coincidence you're about to ruin.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 5.3,
-"pool": "long"
-},
-{
-"f": "tts-andrew-commander-tax",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, commander tax. Pay up. Again. You keep dying for it.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 4.7,
-"pool": "long"
-},
-{
-"f": "tts-andrew-cyclonic-rift",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, Cyclonic Rift, overloaded. Everything you built, gone. It wasn't much, but it was yours.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 7.6,
-"pool": "long"
-},
-{
-"f": "tts-andrew-hold-priority",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, hold priority. The stack is tall, and still smarter than your last three plays.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 5.9,
-"pool": "long"
-},
-{
-"f": "tts-andrew-kingmaker",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, kingmaker. You couldn't win, so you're picking the winner. Truly inspiring.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 5.5,
-"pool": "long"
-},
-{
-"f": "tts-andrew-politics",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew is making a deal. Nobody take it. Nobody has ever won taking his deals.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 5.7,
-"pool": "long"
-},
-{
-"f": "tts-andrew-screwed",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew's stuck on two lands. That's not mana screw. That's the deck telling you something.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 6.1,
-"pool": "long"
-},
-{
-"f": "tts-andrew-thinking",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew has entered thinking mode. The result will be bad. Snacks are recommended.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
-"d": 5.5,
-"pool": "long"
-},
-{
-"f": "tts-andrew-your-turn",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Andrew, wake up. It's your turn. We've been carrying you for an hour.",
-"who": "Announcer (at Andrew)",
-"lic": "Made for this app",
+"quote": "Trent is attacking. Everyone relax. Nothing is going to happen.",
+"who": "Announcer (at Trent)",
 "d": 4.8,
-"pool": "long"
-},
-{
-"f": "tts-lenn-archenemy",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, the archenemy rises. Try not to embarrass yourself. Too late.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.0,
-"pool": "long"
-},
-{
-"f": "tts-lenn-board-wipe",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, that's a board wipe. You just ended your own plan in front of everyone.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.1,
-"pool": "long"
-},
-{
-"f": "tts-lenn-commander-damage",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, commander damage. Write it down. You'll want proof when nobody believes you lost.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 6.0,
-"pool": "long"
-},
-{
-"f": "tts-lenn-deal-with-that",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, somebody deal with that. Not you. You couldn't deal with a paper bag.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.3,
-"pool": "long"
-},
-{
-"f": "tts-lenn-extra-turn",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, extra turn detected. Somehow you'll waste both.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 3.9,
-"pool": "long"
-},
-{
-"f": "tts-lenn-innocent",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn looks innocent. Lenn is never innocent. Lenn is guilty and smug.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.3,
-"pool": "long"
-},
-{
-"f": "tts-lenn-nobody-blocks",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, nobody blocks? Bold strategy. Let's watch it fail in real time.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.3,
-"pool": "long"
-},
-{
-"f": "tts-lenn-pass-the-turn",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, pass the turn. Whatever you're calculating, the answer is still bad.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.1,
-"pool": "long"
-},
-{
-"f": "tts-lenn-read-the-card",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, can I read that card? I want to see how it's possible to misplay it.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 4.9,
-"pool": "long"
-},
-{
-"f": "tts-lenn-response",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn, you have a response? Of course you do. It'll be wrong, but you have one.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 5.2,
-"pool": "long"
-},
-{
-"f": "tts-lenn-topdeck",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn is in topdeck mode. Pray, Lenn. Nobody's listening.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 4.1,
-"pool": "long"
-},
-{
-"f": "tts-lenn-your-turn",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Lenn's thinking. Please stand by. Do not expect anything.",
-"who": "Announcer (at Lenn)",
-"lic": "Made for this app",
-"d": 4.2,
-"pool": "long"
-},
-{
-"f": "tts-rand-calculating",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand's calculating. Please hold. The answer will be wrong, but it'll take forever.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 5.6,
-"pool": "long"
-},
-{
-"f": "tts-rand-counterspell",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, counterspell. Everyone act surprised. Rand needs this.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.8,
-"pool": "long"
-},
-{
-"f": "tts-rand-flooded",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand's mana flooded. Eleven lands, zero ideas.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.1,
-"pool": "long"
-},
-{
-"f": "tts-rand-lethal",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, that's lethal. On you. Specifically you.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 3.5,
-"pool": "long"
-},
-{
-"f": "tts-rand-mulligan",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, mulligan to five. Honestly, the five are probably better than the seven were.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 5.9,
-"pool": "long"
-},
-{
-"f": "tts-rand-not-a-strategy",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, the turn button isn't a strategy. Stop pressing it like it is.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 5.3,
-"pool": "long"
-},
-{
-"f": "tts-rand-not-the-threat",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand says Rand isn't the threat. Rand is lying, and not even well.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.7,
-"pool": "long"
-},
-{
-"f": "tts-rand-pay-the-one",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, do you pay the one? Of course not. You never pay for anything.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.8,
-"pool": "long"
-},
-{
-"f": "tts-rand-shuffle-up",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, shuffle up and deal. Then lose, with your usual confidence.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.5,
-"pool": "long"
-},
-{
-"f": "tts-rand-sol-ring",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand, another Sol Ring? Shocking. Truly shocking. Rand has never won without one.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 6.8,
-"pool": "long"
-},
-{
-"f": "tts-rand-suspicious",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand looks suspiciously calm. Check the graveyard. Check everything.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.7,
-"pool": "long"
-},
-{
-"f": "tts-rand-your-turn",
-"src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
-"url": "https://github.com/hexgrad/kokoro",
-"grp": "Announcer",
-"kind": "talk",
-"quote": "Rand. Rand. It's your turn. Try not to be the problem. Again.",
-"who": "Announcer (at Rand)",
-"lic": "Made for this app",
-"d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-blockers",
@@ -8157,7 +8009,31 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 6.9,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-bluff",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent is bluffing. Trent has never once bluffed correctly.",
+"who": "Announcer (at Trent)",
+"d": 4.0,
+"pool": "mid"
+},
+{
+"f": "tts-trent-bracket",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your deck is a bracket of its own. It's called bracket oops.",
+"who": "Announcer (at Trent)",
+"d": 4.5,
+"pool": "mid"
 },
 {
 "f": "tts-trent-breaking-news",
@@ -8169,7 +8045,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.3,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-card",
@@ -8181,7 +8057,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 4.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-combo",
@@ -8193,7 +8069,19 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.3,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-counterspell",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you cast it, we countered it, and everybody felt better about the game.",
+"who": "Announcer (at Trent)",
+"d": 5.0,
+"pool": "mid"
 },
 {
 "f": "tts-trent-dramatic",
@@ -8205,7 +8093,19 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.5,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-draw-go",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, draw, go. Say it with confidence. It's the only plan you have.",
+"who": "Announcer (at Trent)",
+"d": 5.0,
+"pool": "mid"
 },
 {
 "f": "tts-trent-drew-a-card",
@@ -8217,7 +8117,55 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.9,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-eight-minutes",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you've been thinking for eight minutes. The answer is still pass.",
+"who": "Announcer (at Trent)",
+"d": 4.3,
+"pool": "mid"
+},
+{
+"f": "tts-trent-fetchland",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, cracking a fetch land to thin your deck won't help. It's not that kind of problem.",
+"who": "Announcer (at Trent)",
+"d": 6.0,
+"pool": "mid"
+},
+{
+"f": "tts-trent-first",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent goes first. Great. Now we can all watch it go wrong in real time.",
+"who": "Announcer (at Trent)",
+"d": 5.3,
+"pool": "mid"
+},
+{
+"f": "tts-trent-hero",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent thinks he's the hero of this game. The game disagrees. So does the table.",
+"who": "Announcer (at Trent)",
+"d": 6.0,
+"pool": "mid"
 },
 {
 "f": "tts-trent-i-scoop",
@@ -8229,7 +8177,43 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 3.2,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-lands",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent has seven lands in hand. Truly, a masterclass in shuffling.",
+"who": "Announcer (at Trent)",
+"d": 5.4,
+"pool": "mid"
+},
+{
+"f": "tts-trent-lethal",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you had lethal. You counted wrong. You always count wrong.",
+"who": "Announcer (at Trent)",
+"d": 4.2,
+"pool": "mid"
+},
+{
+"f": "tts-trent-life-total",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your life total is a suggestion. Everyone else treats it like a goal.",
+"who": "Announcer (at Trent)",
+"d": 5.5,
+"pool": "mid"
 },
 {
 "f": "tts-trent-mid",
@@ -8241,7 +8225,31 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 3.6,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-misplay",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, that was a misplay. We'd explain why, but the list is too long.",
+"who": "Announcer (at Trent)",
+"d": 5.1,
+"pool": "mid"
+},
+{
+"f": "tts-trent-mulligan",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent mulliganed to five. Honestly, it's still an improvement.",
+"who": "Announcer (at Trent)",
+"d": 4.2,
+"pool": "mid"
 },
 {
 "f": "tts-trent-nobody-surprised",
@@ -8253,7 +8261,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 4.6,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-one-more-thing",
@@ -8268,6 +8276,18 @@
 "pool": "long"
 },
 {
+"f": "tts-trent-opening-hand",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, that opening hand was a cry for help. We heard it. We kept playing.",
+"who": "Announcer (at Trent)",
+"d": 5.4,
+"pool": "mid"
+},
+{
 "f": "tts-trent-own-board",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8277,7 +8297,31 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.7,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-ping",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, we are not pinging you for fun. You're just the easiest target.",
+"who": "Announcer (at Trent)",
+"d": 4.7,
+"pool": "mid"
+},
+{
+"f": "tts-trent-priority",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you didn't pass priority. You never do. We just stopped hoping.",
+"who": "Announcer (at Trent)",
+"d": 4.6,
+"pool": "mid"
 },
 {
 "f": "tts-trent-read",
@@ -8289,7 +8333,19 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 6.7,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-removal",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you used removal on that? That's like fixing a boat with soup.",
+"who": "Announcer (at Trent)",
+"d": 4.4,
+"pool": "mid"
 },
 {
 "f": "tts-trent-rules-text",
@@ -8301,7 +8357,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-shuffle",
@@ -8313,7 +8369,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 4.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-snack",
@@ -8328,6 +8384,18 @@
 "pool": "short"
 },
 {
+"f": "tts-trent-sol-ring",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you drew Sol Ring and still lost. That takes talent. Wasted talent.",
+"who": "Announcer (at Trent)",
+"d": 5.4,
+"pool": "mid"
+},
+{
 "f": "tts-trent-sorry",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8337,7 +8405,31 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.4,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-spell",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent cast a spell. The table held its breath. Then it laughed.",
+"who": "Announcer (at Trent)",
+"d": 4.3,
+"pool": "mid"
+},
+{
+"f": "tts-trent-stack",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, the stack is empty. So is your hand. So is your plan.",
+"who": "Announcer (at Trent)",
+"d": 4.5,
+"pool": "mid"
 },
 {
 "f": "tts-trent-stalling",
@@ -8349,7 +8441,31 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 4.9,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-tapped",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you tapped the wrong lands. Again. The lands are filing a complaint.",
+"who": "Announcer (at Trent)",
+"d": 5.5,
+"pool": "mid"
+},
+{
+"f": "tts-trent-top-deck",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, top deck mode again. Impressive how quickly you got here.",
+"who": "Announcer (at Trent)",
+"d": 4.4,
+"pool": "mid"
 },
 {
 "f": "tts-trent-top-of-library",
@@ -8361,7 +8477,19 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 4.1,
-"pool": "long"
+"pool": "mid"
+},
+{
+"f": "tts-trent-trade",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you traded your best creature for nothing. Bold. Stupid, but bold.",
+"who": "Announcer (at Trent)",
+"d": 5.4,
+"pool": "mid"
 },
 {
 "f": "tts-trent-two-cards",
@@ -8373,7 +8501,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-voted",
@@ -8385,7 +8513,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.8,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tts-trent-your-turn",
@@ -8397,7 +8525,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 4.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "tuba-happy",
@@ -8411,7 +8539,7 @@
 },
 {
 "f": "tuba-sad",
-"pool": "long",
+"pool": "mid",
 "d": 3.7,
 "src": "Happy And Sad Tuba Fanfare",
 "url": "https://opengameart.org/content/happy-and-sad-tuba-fanfare",
@@ -8547,7 +8675,7 @@
 },
 {
 "f": "video-game-cheerful-ending",
-"pool": "long",
+"pool": "mid",
 "d": 3.7,
 "src": "Video Game Cheerful Ending",
 "url": "https://opengameart.org/content/video-game-cheerful-ending",
@@ -8739,7 +8867,7 @@
 },
 {
 "f": "weird-chanting-sound",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
@@ -8749,7 +8877,7 @@
 },
 {
 "f": "weird-helicopter-like-sound",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
@@ -8759,7 +8887,7 @@
 },
 {
 "f": "weird-rocket-launch-sound",
-"pool": "long",
+"pool": "mid",
 "d": 4.8,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
@@ -9082,7 +9210,7 @@
 },
 {
 "f": "win-bandoneon",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9092,7 +9220,7 @@
 },
 {
 "f": "win-banjo",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9102,7 +9230,7 @@
 },
 {
 "f": "win-fretless",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9112,7 +9240,7 @@
 },
 {
 "f": "win-harpsichord",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9122,7 +9250,7 @@
 },
 {
 "f": "win-nylon",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9132,7 +9260,7 @@
 },
 {
 "f": "win-saw",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9142,7 +9270,7 @@
 },
 {
 "f": "win-sound-effect",
-"pool": "long",
+"pool": "mid",
 "d": 4.5,
 "src": "Win Sound Effect",
 "url": "https://opengameart.org/content/win-sound-effect",
@@ -9152,7 +9280,7 @@
 },
 {
 "f": "win-square",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9162,7 +9290,7 @@
 },
 {
 "f": "win-steeldrums",
-"pool": "long",
+"pool": "mid",
 "d": 3.8,
 "src": "Win Jingle",
 "url": "https://opengameart.org/content/win-jingle",
@@ -9304,7 +9432,7 @@
 },
 {
 "f": "zombie-moans-preview",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Zombie Moans 01 By Emopreben",
 "url": "https://opengameart.org/content/zombie-moans-01-by-emopreben",
@@ -9314,7 +9442,7 @@
 },
 {
 "f": "zombie-moans",
-"pool": "long",
+"pool": "mid",
 "d": 5.0,
 "src": "Zombie Moans",
 "url": "https://opengameart.org/content/zombie-moans",
@@ -9428,7 +9556,7 @@
 "src": "myinstants: biden numbers",
 "url": "https://www.myinstants.com/media/sounds/biden-numbers.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 6.3,
 "quote": "Somewhere between 700 billion and a trillion, 300 million billion dollars.",
 "kind": "talk",
@@ -9439,7 +9567,7 @@
 "src": "myinstants: Biden CornPop",
 "url": "https://www.myinstants.com/media/sounds/biden-cornpop.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 5.4,
 "quote": "And Corn Pop was a bad dude. And he ran a bunch of bad boys.",
 "kind": "talk",
@@ -9471,7 +9599,7 @@
 },
 {
 "f": "long/bush-federal-program",
-"pool": "long",
+"pool": "mid",
 "d": 6.5,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -9522,7 +9650,7 @@
 },
 {
 "f": "long/bush-literacy-test",
-"pool": "long",
+"pool": "mid",
 "d": 5.1,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -9560,7 +9688,7 @@
 },
 {
 "f": "long/bush-the-decider",
-"pool": "long",
+"pool": "mid",
 "d": 6.7,
 "src": "YouTube: \"Bush the Decider\" (cinefilevideoblog)",
 "url": "https://youtu.be/E2Zv1T4Qdv4",
@@ -9580,7 +9708,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Elephant trumpets",
 "d": 3.6,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/cartoon-slide-whistle-down",
@@ -9591,7 +9719,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Descending slide whistle",
 "d": 4.8,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/cartoon-slide-whistle-rise-fall",
@@ -9602,7 +9730,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Slide whistle up and down",
 "d": 5.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/cartoon-spring-crash",
@@ -9613,7 +9741,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Spring stretch and crash",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/chainsaw-2",
@@ -9624,7 +9752,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 6.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/chainsaw-3",
@@ -9646,7 +9774,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 6.1,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/chainsaw-alert",
@@ -9657,7 +9785,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 5.8,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/chainsaw-loud",
@@ -9690,7 +9818,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 4.6,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/chainsaw-tree",
@@ -9726,7 +9854,7 @@
 "who": "Kirk Cousins (NFL quarterback)",
 "note": "Kirk Cousins (NFL quarterback)",
 "d": 4.7,
-"pool": "long",
+"pool": "mid",
 "from": "2016, after a Washington win"
 },
 {
@@ -9741,7 +9869,7 @@
 },
 {
 "f": "long/cozy-fail",
-"pool": "long",
+"pool": "mid",
 "d": 6.0,
 "src": "Cozy Puzzle Jingle Result",
 "url": "https://opengameart.org/content/cozy-puzzle-jingle-result",
@@ -9842,7 +9970,7 @@
 },
 {
 "f": "long/female-warrior-cheer",
-"pool": "long",
+"pool": "mid",
 "d": 6.7,
 "src": "Female Warrior Cheer",
 "url": "https://opengameart.org/content/female-warrior-cheer",
@@ -9976,7 +10104,7 @@
 },
 {
 "f": "long/grunts",
-"pool": "long",
+"pool": "mid",
 "d": 6.3,
 "src": "Little Grunts",
 "url": "https://opengameart.org/content/little-grunts",
@@ -10038,7 +10166,7 @@
 },
 {
 "f": "long/hyper-ultra-fanfare",
-"pool": "long",
+"pool": "mid",
 "d": 6.2,
 "src": "Hyper Ultra Fanfare",
 "url": "https://opengameart.org/content/hyper-ultra-fanfare",
@@ -10077,7 +10205,7 @@
 "who": "Allen Iverson (NBA)",
 "note": "Allen Iverson (NBA)",
 "d": 4.0,
-"pool": "long",
+"pool": "mid",
 "from": "2002 press conference, Philadelphia 76ers"
 },
 {
@@ -10117,7 +10245,7 @@
 },
 {
 "f": "long/jingle-05",
-"pool": "long",
+"pool": "mid",
 "d": 6.9,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -10127,7 +10255,7 @@
 },
 {
 "f": "long/jingle-08",
-"pool": "long",
+"pool": "mid",
 "d": 6.0,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -10147,7 +10275,7 @@
 },
 {
 "f": "long/jingle-17",
-"pool": "long",
+"pool": "mid",
 "d": 6.9,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -10157,7 +10285,7 @@
 },
 {
 "f": "long/jingle-18",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -10177,7 +10305,7 @@
 "from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
 "note": "Jim Jones (Peoples Temple)",
 "d": 5.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/jones-medical-science",
@@ -10205,7 +10333,7 @@
 "from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
 "note": "Jim Jones (Peoples Temple)",
 "d": 4.3,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/jones-wait-one-day",
@@ -10219,7 +10347,7 @@
 "from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
 "note": "Jim Jones (Peoples Temple)",
 "d": 5.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/just-a-random-fanfare",
@@ -10274,7 +10402,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Bugs Bunny",
 "d": 3.2,
-"pool": "long",
+"pool": "mid",
 "quote": "So long, Screwy! See ya in St. Louis!",
 "who": "Bugs Bunny"
 },
@@ -10298,7 +10426,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Bugs Bunny",
 "d": 5.2,
-"pool": "long",
+"pool": "mid",
 "quote": "Of course you realize, this means war.",
 "who": "Bugs Bunny"
 },
@@ -10311,7 +10439,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Loony Tunes drop and crash",
 "d": 5.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/lt-duck-dodgers",
@@ -10322,7 +10450,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Daffy Duck (Duck Dodgers)",
 "d": 5.3,
-"pool": "long",
+"pool": "mid",
 "quote": "Then make way for Duck Dodgers in the 24th and a half century!",
 "who": "Daffy Duck (Duck Dodgers)"
 },
@@ -10335,7 +10463,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Foghorn Leghorn",
 "d": 4.0,
-"pool": "long",
+"pool": "mid",
 "quote": "That dog's about as subtle as a hand grenade in a barrel of oatmeal.",
 "who": "Foghorn Leghorn"
 },
@@ -10348,7 +10476,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Marvin the Martian",
 "d": 6.0,
-"pool": "long",
+"pool": "mid",
 "quote": "You have made me very angry! Very angry indeed!",
 "who": "Marvin the Martian"
 },
@@ -10361,7 +10489,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Marvin the Martian",
 "d": 6.7,
-"pool": "long",
+"pool": "mid",
 "quote": "Oh drat these computers, they're so naughty and so complex, I could pinch them.",
 "who": "Marvin the Martian"
 },
@@ -10374,7 +10502,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Marvin the Martian",
 "d": 5.4,
-"pool": "long",
+"pool": "mid",
 "quote": "Oh drat these computers, they're so naughty and so complex, I could pinch them!",
 "who": "Marvin the Martian"
 },
@@ -10387,7 +10515,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Pepé Le Pew",
 "d": 6.1,
-"pool": "long",
+"pool": "mid",
 "quote": "Ah, my little darling, it is love at first sight, is it not?",
 "who": "Pepé Le Pew"
 },
@@ -10400,7 +10528,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Sylvester and the anvil",
 "d": 5.6,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/lt-taz-windup",
@@ -10411,7 +10539,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Tasmanian Devil spinning up",
 "d": 5.9,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/lt-thats-all-folks-bugs",
@@ -10494,7 +10622,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Whirl (Taz-style spin)",
 "d": 6.9,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/lt-wrong-answer",
@@ -10505,7 +10633,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Wrong answer buzz",
 "d": 3.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/medieval-defeat",
@@ -10533,7 +10661,7 @@
 "url": "https://www.myinstants.com/media/sounds/mm2-victory.mp3",
 "grp": "Mega Man",
 "d": 5.5,
-"pool": "long",
+"pool": "mid",
 "kind": "sound",
 "note": "Mega Man 2 boss defeated",
 "lic": "Capcom game audio"
@@ -10571,7 +10699,7 @@
 "who": "Jim Mora (NFL coach)",
 "note": "Jim Mora (NFL coach)",
 "d": 4.9,
-"pool": "long",
+"pool": "mid",
 "from": "2001 press conference, Indianapolis Colts head coach"
 },
 {
@@ -10583,7 +10711,7 @@
 "lic": "Python (Monty) Pictures audio",
 "note": "Monty Python and the Holy Grail: the Holy Hand Grenade",
 "d": 5.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/mp-message-for-you",
@@ -10595,7 +10723,7 @@
 "quote": "Message for you, sir!",
 "note": "Monty Python and the Holy Grail",
 "d": 5.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/mp-run-away",
@@ -10608,11 +10736,11 @@
 "who": "King Arthur",
 "note": "Monty Python and the Holy Grail",
 "d": 6.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/nasa-cardiac-arrests",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "src": "NASA: Apollo 12",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -10623,7 +10751,7 @@
 },
 {
 "f": "long/nasa-houston-problem",
-"pool": "long",
+"pool": "mid",
 "d": 6.5,
 "src": "NASA: Apollo 13",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -10658,7 +10786,7 @@
 },
 {
 "f": "long/nasa-one-small-step",
-"pool": "long",
+"pool": "mid",
 "d": 6.0,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -10670,7 +10798,7 @@
 },
 {
 "f": "long/nasa-turn-blue",
-"pool": "long",
+"pool": "mid",
 "d": 6.8,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -10772,7 +10900,7 @@
 },
 {
 "f": "long/obama-out",
-"pool": "long",
+"pool": "mid",
 "d": 6.8,
 "src": "YouTube: \"Obama Mic Drop \"Obama Out\"\" (Adam Kohout)",
 "url": "https://youtu.be/6dEA7krBxys",
@@ -10797,7 +10925,7 @@
 },
 {
 "f": "long/obama-third-hangover",
-"pool": "long",
+"pool": "mid",
 "d": 5.9,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -10822,7 +10950,7 @@
 },
 {
 "f": "long/obama-won-both-of-them",
-"pool": "long",
+"pool": "mid",
 "d": 5.3,
 "src": "YouTube: \"I have no more campaigns to run... I know cuz I won both of them! -Barack Obama\" (Superhero Events)",
 "url": "https://youtu.be/SktnQxmmUmA",
@@ -10835,7 +10963,7 @@
 },
 {
 "f": "long/obama-yes-we-crayon",
-"pool": "long",
+"pool": "mid",
 "d": 5.3,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -10961,7 +11089,7 @@
 },
 {
 "f": "long/sega-victory",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "src": "Sega Mega Drivegenesis Victory Jingle",
 "url": "https://opengameart.org/content/sega-mega-drivegenesis-victory-jingle",
@@ -11000,7 +11128,7 @@
 "who": "Solaire of Astora",
 "note": "Dark Souls",
 "d": 5.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/souls-solaire",
@@ -11013,7 +11141,7 @@
 "who": "Solaire of Astora",
 "note": "Dark Souls",
 "d": 5.9,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/souls-victory-achieved",
@@ -11024,7 +11152,7 @@
 "lic": "FromSoftware game audio",
 "note": "VICTORY ACHIEVED",
 "d": 7.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/souls-you-died",
@@ -11035,7 +11163,7 @@
 "lic": "FromSoftware game audio",
 "note": "YOU DIED",
 "d": 6.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/space-chorus",
@@ -11057,7 +11185,7 @@
 },
 {
 "f": "long/space-earth-magnetic-drum",
-"pool": "long",
+"pool": "mid",
 "d": 6.3,
 "src": "NASA: Sounds of Earth's Magnetic Drum in Space",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -11157,7 +11285,7 @@
 },
 {
 "f": "long/space-star-kepler",
-"pool": "long",
+"pool": "mid",
 "d": 6.7,
 "src": "NASA: Kepler: Star KIC12268220C Light Curve Waves to Sound",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -11173,7 +11301,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 3.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/squelch-crunchy",
@@ -11206,7 +11334,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 3.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/squelch-juicy",
@@ -11217,7 +11345,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 5.5,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/squelch-meat",
@@ -11239,7 +11367,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 7.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/sw-cantina",
@@ -11276,7 +11404,7 @@
 "who": "Palpatine",
 "note": "Attack of the Clones",
 "d": 5.4,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/sw-imperial-march",
@@ -11298,7 +11426,7 @@
 "lic": "Lucasfilm film audio",
 "note": "Darth Vader's breathing",
 "d": 6.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/sw-vader-noooo",
@@ -11311,7 +11439,7 @@
 "who": "Darth Vader",
 "note": "Revenge of the Sith",
 "d": 5.3,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/the-burger-pope-round-clear",
@@ -11364,7 +11492,7 @@
 "who": "The Borg",
 "note": "Star Trek: The Next Generation",
 "d": 5.2,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/trek-fight",
@@ -11375,7 +11503,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS fight music (first 7 s)",
 "d": 7.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/trek-tos-chime",
@@ -11386,7 +11514,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS opening chime",
 "d": 6.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/trek-tribbles",
@@ -11397,7 +11525,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Tribbles",
 "d": 6.0,
-"pool": "long"
+"pool": "mid"
 },
 {
 "f": "long/troll",
@@ -11412,7 +11540,7 @@
 },
 {
 "f": "long/trop-la-win",
-"pool": "long",
+"pool": "mid",
 "d": 5.7,
 "src": "Trop La Win",
 "url": "https://opengameart.org/content/trop-la-win",
@@ -11472,7 +11600,7 @@
 },
 {
 "f": "long/trump-china",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "src": "YouTube: \"Donald Trump says China a lot (Trump China compilation)\" (Random Video Edits)",
 "url": "https://youtu.be/dYQYRDETHkM",
@@ -11535,7 +11663,7 @@
 },
 {
 "f": "long/trump-i-am-the-chosen-one",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "src": "YouTube: \"“I am the chosen one.” - Trump\" (Anarcho Christian)",
 "url": "https://youtu.be/RSCIndGqYWY",
@@ -11572,7 +11700,7 @@
 },
 {
 "f": "long/trump-knock-knock",
-"pool": "long",
+"pool": "mid",
 "d": 7.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -11596,7 +11724,7 @@
 },
 {
 "f": "long/trump-magnets",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -11621,7 +11749,7 @@
 },
 {
 "f": "long/trump-standpoint-of-water",
-"pool": "long",
+"pool": "mid",
 "d": 7.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -11636,7 +11764,7 @@
 "src": "myinstants: TRUMP START UR ENGINES",
 "url": "https://www.myinstants.com/media/sounds/trump-start-ur-engines_swMr2Y3.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 6.2,
 "quote": "Gentlemen, start your engines!",
 "kind": "talk",
@@ -11648,7 +11776,7 @@
 "src": "myinstants: Trump: 3 vax",
 "url": "https://www.myinstants.com/media/sounds/trump-3-vax.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "mid",
 "d": 5.6,
 "quote": "I came up with three vaccines, all very, very good.",
 "kind": "talk",
@@ -11799,7 +11927,7 @@
 },
 {
 "f": "long/victory-fanfare",
-"pool": "long",
+"pool": "mid",
 "d": 6.9,
 "src": "Victory Fanfare",
 "url": "https://opengameart.org/content/victory-fanfare",
@@ -11837,7 +11965,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Animaniacs",
 "d": 4.2,
-"pool": "long",
+"pool": "mid",
 "quote": "Wheel of morality, turn, turn, turn. Tell us the lesson that we should learn.",
 "who": "Animaniacs"
 },
@@ -11850,7 +11978,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Flintstones",
 "d": 3.7,
-"pool": "long",
+"pool": "mid",
 "quote": "Here's your paper, Mr. Flintstone.",
 "who": "Flintstones"
 },
@@ -11887,7 +12015,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Shaggy",
 "d": 5.6,
-"pool": "long",
+"pool": "mid",
 "quote": "Zoinks, zoinks, zoinks!",
 "who": "Shaggy"
 },
@@ -11900,7 +12028,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Tom and Jerry",
 "d": 4.1,
-"pool": "long",
+"pool": "mid",
 "quote": "Don't you believe it!",
 "who": "Tom and Jerry"
 },

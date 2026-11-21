@@ -19,12 +19,12 @@ VOICES = ['af_heart', 'af_bella']
 SAY = {'mana': 'manna', 'Mana': 'Manna'}
 kdir = os.environ.get('KOKORO_DIR', os.path.expanduser('~/.cache/kokoro'))
 k = Kokoro(os.path.join(kdir, 'kokoro-v1.0.onnx'), os.path.join(kdir, 'voices-v1.0.bin'))
-clips = [c for c in json.load(open(os.path.join(ROOT, 'sounds/clips.json'))) if c['f'].split('/')[-1].startswith('tts-')]
+clips = [c for c in json.load(open(os.path.join(ROOT, 'sounds/clips.json'))) if c['f'].split('/')[-1].startswith(('tts-', 'nonsense-'))]
 only = set(sys.argv[1:])
 for i, c in enumerate(sorted(clips, key=lambda c: c['f'])):
     if only and c['f'].split('/')[-1] not in only:
         continue
-    voice = VOICES[i % len(VOICES)]
+    voice = c.get('voice') or VOICES[i % len(VOICES)]  # nonsense-* clips name their own voice
     text = c['quote']
     for a, b in SAY.items():
         text = text.replace(a, b)
