@@ -77,6 +77,11 @@ h2{font-size:1.02rem;margin:18px 0 6px}
 .sync.off{color:var(--no)}
 .warn{font-size:.84rem;color:var(--no);margin:6px 0}
 .ok{font-size:.84rem;color:var(--yes);margin:6px 0}
+/* Finalize: the panel on Done, and a finalized deck's locked buttons */
+.fin{border:2px solid var(--accent);border-radius:12px;padding:10px 12px;margin:10px 0}
+.fin h2{margin:0 0 4px}.fin p{margin:4px 0;font-size:.86rem}
+.fin.done{border-color:var(--yes)}
+.locked .yn button{pointer-events:none;opacity:.55}
 pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:var(--surface);border-radius:8px;padding:8px;margin:8px 0;max-height:180px;overflow:auto}
 /* Bottom-left controls */
 .foot{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px max(12px,env(safe-area-inset-left,0px)) max(10px,env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;z-index:5}
@@ -152,6 +157,16 @@ function answers(slug){const s=store.get(key(slug));
   if(remote){const R=remote[slug]||{};return R.d?{...(s||{h:[]}),d:decD(R.d),h:(s&&s.h)||[],t:R.t||(s&&s.t)}:null}
   return s}
 const list=p=>D[PH[p].k]||[];
+// Finalize (Nov 21, 2026): once a deck is finalized, its yeses and maybes (adds, lands, tutors, GCs, wincons; no count
+// limit) are written to the table as <slug>/fin, the buy list page (../buylist.html) lists them by deck, and the deck's
+// answers lock until it is reopened. fin lives beside d, so every phone sees it; the phone that finalized keeps a copy
+// until the queue sends it.
+const finOf=slug=>(remote&&remote[slug]&&remote[slug].fin)||store.get('theme-fin-'+slug)||null;
+const KIND={a:'Add',l:'Land',t:'Tutor',g:'Game Changer',w:'Wincon'};
+function buyList(){const m={};
+  for(const p of ['adds','lands','tutors','gcs','wins'])for(const x of list(p)){const v=S.d[PH[p].p+x.n];if(v!=='y'&&v!=='m')continue;
+    const o=m[x.n]||(m[x.n]={n:x.n,k:[],a:'m',usd:x.usd||null,url:x.url,img:x.img});o.k.push(KIND[PH[p].p[0]]);if(v==='y')o.a='y'}
+  return Object.values(m).sort((a,b)=>(a.a===b.a?0:a.a==='y'?-1:1)||a.n.localeCompare(b.n))}
 const item=k=>{for(const p in PH){if(k.startsWith(PH[p].p)){return list(p).find(x=>PH[p].p+x.n===k)}}};
 
 // Front: every deck in the user's order. A deck not built yet gives a line to send Claude, so the next run is one paste.
@@ -161,7 +176,8 @@ async function front(){
   await pull();for(const d of decks)if(d.ready)migrate(d.slug);
   $('decks').innerHTML=decks.map((d,i)=>{
     const s=answers(d.slug), c=s?count(s):null;
-    const st=d.ready?(c&&c.total?`In ${c.a.y}/15 · out ${c.c.y}/15 · lands ${c.l.y}/10${c.t.y+c.g.y+c.w.y?` · tutors ${c.t.y} · GCs ${c.g.y} · wins ${c.w.y}`:''} · ${c.left} to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet: tap to ask Claude';
+    const f=finOf(d.slug);
+    const st=f?`✓ Finalized ${new Date(f.at).toLocaleDateString(undefined,{month:'short',day:'numeric'})} · ${Object.keys(f.cards||{}).length} on the buy list`:d.ready?(c&&c.total?`In ${c.a.y}/15 · out ${c.c.y}/15 · lands ${c.l.y}/10${c.t.y+c.g.y+c.w.y?` · tutors ${c.t.y} · GCs ${c.g.y} · wins ${c.w.y}`:''} · ${c.left} to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet: tap to ask Claude';
     return `<li><button class="deck${d.ready?'':' off'}" data-i="${i}"><img src="${E(d.img.replace('/normal/','/small/'))}" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="t"><b>${E(d.name)}</b><span class="d">${E(d.cmd)}${d.direction?' · '+E(d.direction):''}</span><span class="st">${st}</span></span></button><div class="ask" id="ask${i}" hidden></div></li>`}).join('');
   scrollTo(0,0);
 }
@@ -207,8 +223,10 @@ function render(){
   const g=gcIn().size;
   $('tally').innerHTML=`<span class="${c.a.y>=15?'full':''}">In ${c.a.y}/15</span><span class="${c.c.y>=15?'full':''}">Out ${c.c.y}/15</span><span class="${c.l.y>=10?'full':''}">Lands ${c.l.y}/10</span><span>Tutors ${c.t.y}</span><span class="${g>3?'over':''}">GCs ${g}/3</span><span>Wins ${c.w.y}</span><span>Maybe ${c.m}</span>`;
   for(const b of $('tabs').children)b.setAttribute('aria-pressed',b.dataset.p===phase);
-  $('undo').disabled=!S.h.length;
+  const F=finOf(D.slug);$('rev').classList.toggle('locked',!!F);
+  $('undo').disabled=!S.h.length||!!F;
   if(phase==='sum')return summary(c);
+  if(F)setTimeout(()=>$('stage').insertAdjacentHTML('afterbegin',`<p class="where">✓ Finalized: answers locked. Reopen it on Done to change them.</p>`));
   if(phase==='maybes')return maybes();
   const P=PH[phase], L=list(phase), i=pos[phase];
   const nextLabel={cuts:'On to the cuts',lands:'On to the lands',tutors:'On to the tutors',gcs:'On to the Game Changers',wins:'On to the wincons',maybes:'Go over the maybes'}[P.next];
@@ -254,6 +272,7 @@ function tile(x,P){
 const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;
 
 function decide(k,v){
+  if(finOf(D.slug))return;   // finalized: reopen it on Done first
   S.h.push([k,S.d[k]||null]);S.d[k]=v;save();send(D.slug+'/d',{[enc(k)]:v});
   if(!PH[phase]){render();return}
   const P=PH[phase],L=list(phase),i=pos[phase];
@@ -261,7 +280,7 @@ function decide(k,v){
   render();
   if(done){const pr=$('pair');if(pr)pr.classList.add('fade');setTimeout(()=>{pos[phase]=Math.max(pos[phase],openFrom(phase,i+2));render();scrollTo(0,0)},260)}
 }
-$('undo').onclick=()=>{const h=S.h.pop();if(!h)return;const [k,prev]=h;if(prev)S.d[k]=prev;else delete S.d[k];send(D.slug+'/d',{[enc(k)]:prev||null});
+$('undo').onclick=()=>{if(finOf(D.slug))return;const h=S.h.pop();if(!h)return;const [k,prev]=h;if(prev)S.d[k]=prev;else delete S.d[k];send(D.slug+'/d',{[enc(k)]:prev||null});
   const p=Object.keys(PH).find(p=>k.startsWith(PH[p].p)),ix=list(p).findIndex(x=>PH[p].p+x.n===k);
   if(PH[phase]){phase=p;pos[p]=ix-ix%2}save();render()};
 $('back').onclick=()=>{if(D)save();D=null;front()};
@@ -283,7 +302,12 @@ function summary(c){
     +`\nTUTORS (${ti.length}): ${L(ti)||'none'}\nGAME CHANGERS (${gi.length}): ${L(gi)||'none'}\nWINCONS (${wi.length}): ${L(wi)||'none'}`
     +(am.length?`\nMAYBE IN (${am.length}): ${L(am)}`:'')+(cm.length?`\nMAYBE OUT (${cm.length}): ${L(cm)}`:'')+(lm.length?`\nMAYBE LANDS (${lm.length}): ${L(lm)}`:'')
     +(tm.length?`\nMAYBE TUTORS (${tm.length}): ${L(tm)}`:'')+(gm.length?`\nMAYBE GAME CHANGERS (${gm.length}): ${L(gm)}`:'')+(wm.length?`\nMAYBE WINCONS (${wm.length}): ${L(wm)}`:'');
-  $('stage').innerHTML=(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.a.y} in, ${c.c.y} out, ${c.l.y} lands, ${c.t.y} tutors, ${c.g.y} Game Changers, ${c.w.y} wincons. All settled.</p>`)
+  const F=finOf(D.slug), buy=buyList(), by=t=>buy.filter(x=>x.k.includes(t)).length, left=unseen('adds')+unseen('cuts')+unseen('lands');
+  const cost=buy.reduce((t,x)=>t+(x.usd||0),0), ny=buy.filter(x=>x.a==='y').length;
+  const finBox=F?`<div class="fin done"><h2>✓ Finalized ${E(new Date(F.at).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}))}</h2><p>${Object.keys(F.cards||{}).length} cards on the buy list for ${E(D.name)}. Answers are locked.</p><p><a class="pill" href="../buylist.html#${E(D.slug)}" style="text-decoration:none;display:inline-block">Buy list ›</a> <button class="pill ghost" id="reopen">Reopen</button></p></div>`
+    :left?`<div class="fin"><h2>Finalize</h2><p>Opens once the 15 adds, 15 cuts and 10 lands all have an answer (${left} left).</p></div>`
+    :`<div class="fin"><h2>Finalize</h2><p>Puts ${buy.length} card${buy.length===1?'':'s'} on the buy list (${ny} yes, ${buy.length-ny} maybe): ${by('Add')} adds, ${by('Land')} lands, ${by('Tutor')} tutors, ${by('Game Changer')} GCs, ${by('Wincon')} wincons${cost?`, about $${Math.round(cost)}`:''}. Unanswered cards stay off. Answers lock until you reopen.</p><p><button class="pill" id="finalize">Finalize</button></p></div>`;
+  $('stage').innerHTML=finBox+(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.a.y} in, ${c.c.y} out, ${c.l.y} lands, ${c.t.y} tutors, ${c.g.y} Game Changers, ${c.w.y} wincons. All settled.</p>`)
     +`<p class="where">Tell Claude "lock in ${E(D.name)}", or copy:</p><pre id="out">${E(text)}</pre><p><button class="pill" data-copy-out>Copy for Claude</button></p>`
     +[['In',ai,'a:'],['Out',co,'c:'],['Lands (for basics)',li,'l:'],['Tutors',ti,'t:'],['Game Changers',gi,'g:'],['Wincons',wi,'w:'],['Maybe in',am,'a:'],['Maybe out',cm,'c:'],['Maybe lands',lm,'l:'],['Maybe tutors',tm,'t:'],['Maybe Game Changers',gm,'g:'],['Maybe wincons',wm,'w:']].filter(g=>g[1].length||!g[0].startsWith('Maybe'))
       .map(([h,Ls,P])=>`<h2>${h} (${Ls.length})</h2><ul class="rows">${Ls.map(x=>row(x,P)).join('')||'<li><span class="st">none yet</span></li>'}</ul>`).join('')
@@ -296,7 +320,15 @@ document.addEventListener('click',e=>{
   const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);return}
   const t=e.target.closest('#tabs button');if(t){go(t.dataset.p);return}
   if(e.target.closest('[data-copy-out]')){copy($('out').textContent,e.target);return}
-  const r=e.target.closest('#reset');if(r){if(r.dataset.sure){S={d:{},h:[],t:S.t};send(D.slug,{d:null});for(const p in PH)pos[p]=0;go('adds')}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
+  const fz=e.target.closest('#finalize');
+  if(fz){if(!fz.dataset.sure){fz.dataset.sure=1;fz.textContent='Tap again to finalize';return}
+    const cards={};for(const x of buyList())cards[enc(x.n)]=x;
+    const F={at:Date.now(),deck:D.name,cmd:D.cmd,direction:D.direction,cards,out:list('cuts').filter(x=>S.d['c:'+x.n]==='y').map(x=>x.n)};
+    store.set('theme-fin-'+D.slug,F);if(remote)(remote[D.slug]=remote[D.slug]||{}).fin=F;send(D.slug,{fin:F});render();return}
+  const ro=e.target.closest('#reopen');
+  if(ro){if(!ro.dataset.sure){ro.dataset.sure=1;ro.textContent='Tap again: takes it off the buy list';return}
+    store.set('theme-fin-'+D.slug,null);if(remote&&remote[D.slug])remote[D.slug].fin=null;send(D.slug,{fin:null});render();return}
+  const r=e.target.closest('#reset');if(r&&!finOf(D.slug)){if(r.dataset.sure){S={d:{},h:[],t:S.t};send(D.slug,{d:null});for(const p in PH)pos[p]=0;go('adds')}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
 });
 function zoom(x,p){const Z=$('zoom');Z.querySelector('img').src=x.img;Z.querySelector('img').alt=x.n;
   const add='a' in x;

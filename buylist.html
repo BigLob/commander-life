@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buy List</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');document.body.appendChild(a)})</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* The buy list, by deck. Two sources merged: buylist.txt (the hand-kept log in the repo) and every deck finalized in
+   theme/review.html (tables/t7q2xm4k-theme/<slug>/fin on the shared table), so a finalize shows up here at once.
+   A card in both for the same deck shows once (the log's line wins: it says proxy or real). Same tokens as the theme pages. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--yes:#2e7d32;--maybe:#8a6d00;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--yes:#7bd88f;--maybe:#e8c54a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--yes:#7bd88f;--maybe:#e8c54a;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:680px;background:var(--bg);color:var(--fg);font-family:var(--f-display);line-height:1.4;padding-block:14px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+h1{font-size:1.4rem;margin:0 0 2px}
+.sub{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);margin:0 0 10px}
+.seg{display:flex;gap:5px;flex-wrap:wrap;margin:0 0 12px}
+.seg button{font:inherit;font-size:.8rem;color:inherit;background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}
+h2{font-size:1.02rem;margin:18px 0 4px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:3px}
+h2 small{font-family:var(--f-mono);font-size:.7rem;color:var(--muted);font-weight:400;white-space:nowrap}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;gap:8px;align-items:baseline;border-bottom:1px solid var(--line);padding:6px 0;font-size:.9rem}
+li .n{flex:1;min-width:0;overflow-wrap:anywhere}
+li .n a{color:var(--fg);text-decoration:none;font-weight:700}
+li .k{display:block;font-family:var(--f-mono);font-size:.64rem;color:var(--muted)}
+li .p{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);white-space:nowrap}
+.a{font-family:var(--f-mono);font-size:.62rem;border:1px solid currentColor;border-radius:999px;padding:1px 6px;white-space:nowrap}
+.a.y{color:var(--yes)}.a.m{color:var(--maybe)}
+.note{font-size:.84rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<h1>Buy list</h1>
+<p class="sub" id="sum">Loading…</p>
+<div class="seg" id="view"><button data-v="deck" aria-pressed="true">By deck</button><button data-v="card" aria-pressed="false">All cards</button></div>
+<div class="seg" id="ans"><button data-a="" aria-pressed="true">Yes and maybe</button><button data-a="y" aria-pressed="false">Yes</button><button data-a="m" aria-pressed="false">Maybe</button></div>
+<div id="out"></div>
+<p class="note" id="foot"></p>
+<script>
+const $=id=>document.getElementById(id), E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DB='https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-theme';
+const dec=k=>k.replace(/%([0-9A-F]{2})/g,(m,h)=>String.fromCharCode(parseInt(h,16)));
+const usd=v=>v?'$'+(v<10?v.toFixed(2):Math.round(v)):'';
+let rows=[], view='deck', ans='', note=[];
+const slugOf=d=>d.toLowerCase().replace(/\(.*?\)/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+
+// buylist.txt: "date | card | version | how | for deck | status". The card cell can carry "(WB, Commander-legal)" and
+// the status "(card, yes)" or "(land, maybe)".
+async function fromLog(){
+  try{const t=await (await fetch('buylist.txt',{cache:'no-store'})).text();
+    for(const line of t.split('\n')){const p=line.split('|').map(x=>x.trim());if(p.length<6||!/^\d{4}-/.test(p[0]))continue;
+      const st=p[5], m=st.match(/\((card|land)[^)]*?\b(yes|maybe)\)/), price=p[2].match(/\$([\d.]+)/);
+      rows.push({n:p[1].replace(/\s*\([^)]*Commander-legal\)$/,''),deck:p[4],slug:slugOf(p[4]),a:m?m[2][0]:'y',k:m?(m[1]==='land'?'Land':'Add'):'',
+        how:p[3],usd:price?+price[1]:null,url:'https://scryfall.com/search?q='+encodeURIComponent('!"'+p[1].replace(/\s*\(.*$/,'')+'"'),done:/\b(got|bought|have|done)\b/i.test(st)})}
+  }catch(e){note.push("Couldn't read buylist.txt.")}}
+// Finalized decks on the shared table: one small read per deck in theme/index.json.
+async function fromTable(){
+  let decks=[];try{decks=await (await fetch('theme/index.json',{cache:'no-store'})).json()}catch(e){note.push("Couldn't read the deck list.");return}
+  const got=await Promise.all(decks.map(d=>fetch(`${DB}/${d.slug}/fin.json`,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>undefined)));
+  if(got.some(x=>x===undefined))note.push("Couldn't reach the shared table: finalized decks may be missing.");
+  got.forEach((F,i)=>{if(!F||!F.cards)return;const d=decks[i];
+    for(const k in F.cards){const x=F.cards[k], n=x.n||dec(k);
+      if(rows.some(r=>r.n===n&&(r.slug===d.slug||r.deck===d.name)))continue;   // already in the log for this deck
+      rows.push({n,deck:d.name,slug:d.slug,a:x.a,k:(x.k||[]).join(', '),how:'',usd:x.usd||null,url:x.url,fin:F.at})}});
+}
+function paint(){
+  for(const b of $('view').children)b.setAttribute('aria-pressed',b.dataset.v===view);
+  for(const b of $('ans').children)b.setAttribute('aria-pressed',b.dataset.a===ans);
+  const R=rows.filter(r=>!r.done&&(!ans||r.a===ans)), cost=L=>L.reduce((t,r)=>t+(r.usd||0),0);
+  const decks=[...new Set(R.map(r=>r.deck))];
+  $('sum').textContent=`${R.length} cards · ${decks.length} deck${decks.length===1?'':'s'}${cost(R)?' · about $'+Math.round(cost(R)):''}`;
+  const li=(r,extra)=>`<li><span class="n"><a href="${E(r.url)}" target="_blank" rel="noopener">${E(r.n)}</a><span class="k">${E(extra)}</span></span><span class="p">${usd(r.usd)}</span><span class="a ${r.a}">${r.a==='y'?'Yes':'Maybe'}</span></li>`;
+  if(view==='deck'){
+    $('out').innerHTML=decks.map(d=>{const L=R.filter(r=>r.deck===d).sort((a,b)=>(a.a<b.a?1:a.a>b.a?-1:0)||a.n.localeCompare(b.n));
+      return `<h2 id="${E(L[0].slug)}">${E(d)}<small>${L.length} · ${usd(cost(L))||'no price'}</small></h2><ul>${L.map(r=>li(r,[r.k,r.how].filter(Boolean).join(' · '))).join('')}</ul>`}).join('')||'<p class="note">Nothing on the list.</p>';
+  }else{   // one row per card, with every deck that wants it, so a card two decks need is bought twice on purpose
+    const m={};for(const r of R)(m[r.n]=m[r.n]||[]).push(r);
+    $('out').innerHTML='<ul>'+Object.keys(m).sort().map(n=>{const L=m[n];return li({...L[0],a:L.some(r=>r.a==='y')?'y':'m',usd:L[0].usd},(L.length>1?L.length+' copies: ':'')+L.map(r=>r.deck).join(', '))}).join('')+'</ul>';
+  }
+  $('foot').innerHTML=note.map(E).join(' ')+' From <a href="https://github.com/BigLob/commander-life/blob/main/buylist.txt">buylist.txt</a> and decks finalized in <a href="theme/review.html">Approve theme picks</a>.';
+  if(location.hash&&view==='deck'){const el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView()}
+}
+$('view').onclick=e=>{const b=e.target.closest('button');if(b){view=b.dataset.v;paint()}};
+$('ans').onclick=e=>{const b=e.target.closest('button');if(b){ans=b.dataset.a;paint()}};
+Promise.all([fromLog()]).then(fromTable).then(paint);
+</script>
+</body>
+</html>
