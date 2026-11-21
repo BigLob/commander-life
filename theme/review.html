@@ -43,8 +43,8 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
 .tally{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 8px}
 .tally span{font-family:var(--f-mono);font-size:.66rem;border:1px solid var(--line);border-radius:999px;padding:3px 6px}
 .tally .full{border-color:var(--yes);color:var(--yes)}
-.tabs{display:flex;gap:5px;margin:0 0 10px}
-.tabs button{flex:1;min-width:0;background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 2px;font-size:.78rem}
+.tabs{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 10px}
+.tabs button{flex:1 1 22%;min-width:0;background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 2px;font-size:.78rem}
 .tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}
 .where{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin:0 0 8px}
 .note{font-size:.84rem;border:1px solid var(--yes);border-radius:10px;padding:8px 10px;margin:0 0 10px;display:flex;gap:10px;align-items:center;justify-content:space-between}
@@ -93,7 +93,7 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <body>
 <main id="front">
   <h1>Approve theme picks</h1>
-  <p class="sub">Yes, maybe or no on each card, two at a time: the adds, the cuts, then a land version (10 nonbasics for 10 basics). Which deck next?</p>
+  <p class="sub">Yes, maybe or no on each card, two at a time: the adds, the cuts, a land version (10 nonbasics for 10 basics), then every tutor, Game Changer and wincon in the deck's colors. Which deck next?</p>
   <p class="sync" data-sync></p>
   <ul class="decks" id="decks"></ul>
 </main>
@@ -102,7 +102,7 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
   <p class="sub" id="rs"></p>
   <div class="tally" id="tally"></div>
   <p class="sync" data-sync></p>
-  <div class="tabs" id="tabs"><button data-p="adds">Adds</button><button data-p="cuts">Cuts</button><button data-p="lands">Lands</button><button data-p="maybes">Maybes</button><button data-p="sum">Done</button></div>
+  <div class="tabs" id="tabs"><button data-p="adds">Adds</button><button data-p="cuts">Cuts</button><button data-p="lands">Lands</button><button data-p="tutors">Tutors</button><button data-p="gcs" aria-label="Game Changers">GCs</button><button data-p="wins">Wincons</button><button data-p="maybes">Maybes</button><button data-p="sum">Done</button></div>
   <div id="stage"></div>
 </main>
 <div class="foot" id="foot" hidden><button id="back" type="button">‹ Decks</button><button id="undo" type="button">Undo</button></div>
@@ -110,9 +110,14 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <script>
 const $=id=>document.getElementById(id), E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct=v=>Math.round(v*100)+'%';
-// Phases: adds (15), cuts (15), lands (10 nonbasics for 10 basics), maybes (everything marked maybe), summary.
-const PH={adds:{p:'a:',k:'adds',goal:15,word:'add',next:'cuts'},cuts:{p:'c:',k:'cuts',goal:15,word:'cut',next:'lands'},lands:{p:'l:',k:'lands',goal:10,word:'land',next:'maybes'}};
-let decks=[], D=null, S=null, phase='adds', pos={adds:0,cuts:0,lands:0}, snap=[];
+// Phases: adds (15), cuts (15), lands (10 nonbasics for 10 basics), then three lists with no target count (Nov 21,
+// 2026): every tutor, Game Changer and alternate wincon in the deck's colors that isn't in the box (theme_extras.py),
+// most played with the commander first; then maybes (everything marked maybe) and the summary. x marks the extras.
+const PH={adds:{p:'a:',k:'adds',goal:15,word:'add',next:'cuts'},cuts:{p:'c:',k:'cuts',goal:15,word:'cut',next:'lands'},lands:{p:'l:',k:'lands',goal:10,word:'land',next:'tutors'},
+  tutors:{p:'t:',k:'tutors',word:'tutor',next:'gcs',x:1,h:'Tutors',what:'every tutor in the colors (searches your library for a nonland card)'},
+  gcs:{p:'g:',k:'gcs',word:'Game Changer',next:'wins',x:1,h:'Game Changers',what:'every Game Changer in the colors'},
+  wins:{p:'w:',k:'wins',word:'wincon',next:'maybes',x:1,h:'Wincons',what:'every alternate win condition in the colors'}};
+let decks=[], D=null, S=null, phase='adds', pos={adds:0,cuts:0,lands:0,tutors:0,gcs:0,wins:0}, snap=[];
 const store={get(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const key=s=>'theme-review-'+s;
 // Answers live on the shared table (Firebase, under tables/ like Commander Life), so they follow the user to any phone
@@ -156,7 +161,7 @@ async function front(){
   await pull();for(const d of decks)if(d.ready)migrate(d.slug);
   $('decks').innerHTML=decks.map((d,i)=>{
     const s=answers(d.slug), c=s?count(s):null;
-    const st=d.ready?(c&&c.total?`In ${c.a.y}/15 · out ${c.c.y}/15 · lands ${c.l.y}/10 · ${c.left} to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet: tap to ask Claude';
+    const st=d.ready?(c&&c.total?`In ${c.a.y}/15 · out ${c.c.y}/15 · lands ${c.l.y}/10${c.t.y+c.g.y+c.w.y?` · tutors ${c.t.y} · GCs ${c.g.y} · wins ${c.w.y}`:''} · ${c.left} to see`:'Ready to review'):d.direction?'Not built yet: tap to ask Claude':'No direction chosen yet: tap to ask Claude';
     return `<li><button class="deck${d.ready?'':' off'}" data-i="${i}"><img src="${E(d.img.replace('/normal/','/small/'))}" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="t"><b>${E(d.name)}</b><span class="d">${E(d.cmd)}${d.direction?' · '+E(d.direction):''}</span><span class="st">${st}</span></span></button><div class="ask" id="ask${i}" hidden></div></li>`}).join('');
   scrollTo(0,0);
 }
@@ -178,9 +183,9 @@ async function open(d){
   if(!S){S={d:{},h:[]};   // no answers anywhere yet: start from the list Claude locked in, if there is one
     try{const r=await fetch(d.slug+'-review.json',{cache:'no-store'});if(r.ok){const L=await r.json();
       for(const [k,p,v] of [['in','a:','y'],['out','c:','y'],['lands','l:','y'],['maybe_in','a:','m'],['maybe_out','c:','m'],['maybe_lands','l:','m']])for(const n of L[k]||[])S.d[p+n]=v;
-      for(const p in PH)for(const x of list(p))if(!S.d[PH[p].p+x.n])S.d[PH[p].p+x.n]='n';
+      for(const p of ['adds','cuts','lands'])for(const x of list(p))if(!S.d[PH[p].p+x.n])S.d[PH[p].p+x.n]='n';   // the extras stay open
       const up={};for(const k in S.d)up[enc(k)]=S.d[k];send(d.slug+'/d',up)}}catch(e){}}
-  D.name=d.name;const t=D.adds.length+D.cuts.length+(D.lands||[]).length;
+  D.name=d.name;const t=Object.keys(PH).reduce((n,p)=>n+list(p).length,0);
   if(!remote||!remote[d.slug]||remote[d.slug].t!==t)send(d.slug,{t});   // so a new phone's deck list can say how many are left
   S.t=t;
   $('rt').textContent=d.name+': '+D.direction;
@@ -190,39 +195,54 @@ async function open(d){
   $('front').hidden=true;$('rev').hidden=false;$('foot').hidden=false;
 }
 function openFrom(p,from){const L=list(p);for(let i=from;i<L.length;i++)if(!S.d[PH[p].p+L[i].n])return i-i%2;return L.length}
-function count(s){const c={a:{y:0,m:0},c:{y:0,m:0},l:{y:0,m:0},total:0};for(const k in s.d){c.total++;const g=c[k[0]];if(g&&g[s.d[k]]!=null)g[s.d[k]]++}
-  c.m=c.a.m+c.c.m+c.l.m;c.left=Math.max(0,(s.t||0)-c.total);return c}
+function count(s){const c={total:0};for(const p in PH)c[PH[p].p[0]]={y:0,m:0};for(const k in s.d){c.total++;const g=c[k[0]];if(g&&g[s.d[k]]!=null)g[s.d[k]]++}
+  c.m=Object.values(PH).reduce((n,P)=>n+c[P.p[0]].m,0);c.left=Math.max(0,(s.t||0)-c.total);return c}
+// Game Changers in the deck as answered so far: the box's, plus every yes (adds, lands, tutors, the GC tab) that is one.
+function gcIn(){const n=new Set(D.box_gcs||[]);for(const k in S.d){const x=S.d[k]==='y'&&k[1]===':'&&'altg'.includes(k[0])&&item(k);if(x&&x.gc)n.add(x.n)}return n}
 function save(){S.p=phase;store.set(key(D.slug),S)}
 function go(p){phase=p;if(p==='maybes')snap=Object.keys(S.d).filter(k=>S.d[k]==='m'&&item(k));save();render();scrollTo(0,0)}
 
 function render(){
   const c=count(S);
-  $('tally').innerHTML=`<span class="${c.a.y>=15?'full':''}">In ✓ ${c.a.y}/15</span><span class="${c.c.y>=15?'full':''}">Out ✓ ${c.c.y}/15</span><span class="${c.l.y>=10?'full':''}">Lands ✓ ${c.l.y}/10</span><span>Maybe ${c.m}</span>`;
+  $('tally').innerHTML=`<span class="${c.a.y>=15?'full':''}">In ✓ ${c.a.y}/15</span><span class="${c.c.y>=15?'full':''}">Out ✓ ${c.c.y}/15</span><span class="${c.l.y>=10?'full':''}">Lands ✓ ${c.l.y}/10</span><span>Tutors ✓ ${c.t.y}</span><span>GCs in deck ${gcIn().size}/3</span><span>Wincons ✓ ${c.w.y}</span><span>Maybe ${c.m}</span>`;
   for(const b of $('tabs').children)b.setAttribute('aria-pressed',b.dataset.p===phase);
   $('undo').disabled=!S.h.length;
   if(phase==='sum')return summary(c);
   if(phase==='maybes')return maybes();
   const P=PH[phase], L=list(phase), i=pos[phase];
-  const nextLabel={cuts:'On to the cuts',lands:'On to the lands',maybes:'Go over the maybes'}[P.next];
+  const nextLabel={cuts:'On to the cuts',lands:'On to the lands',tutors:'On to the tutors',gcs:'On to the Game Changers',wins:'On to the wincons',maybes:'Go over the maybes'}[P.next];
   if(i>=L.length){$('stage').innerHTML=`<p class="empty">That's every ${P.word}.</p><p style="text-align:center"><button class="pill" data-go="${P.next}">${nextLabel}</button></p>`;return}
+  if(P.x)return extra(P,L,i,nextLabel);
   const full=c[P.p[0]].y>=P.goal, topN=L.filter(x=>x.top).length;
   $('stage').innerHTML=(phase==='lands'?`<p class="where">Land version: each nonbasic land you take replaces a basic (${E(D.basics||'')} for all 10). On-theme lands come first.</p>`:'')
     +(full?`<div class="note"><span>${P.goal} ${phase==='adds'?'in':phase==='cuts'?'out':'lands'}. Keep going, or move on.</span><button class="pill" data-go="${P.next}">Next ›</button></div>`:'')
     +`<p class="where">${phase[0].toUpperCase()+phase.slice(1)} ${i+1}${L[i+1]?'–'+(i+2):''} of ${L.length} · ${i<topN?'the '+P.goal+' picked':'more options, best first'}</p>`
     +`<div class="pair" id="pair">${L.slice(i,i+2).map(x=>tile(x,P.p)).join('')}</div>`;
 }
+// Tutors, Game Changers, Wincons: no target count, just yes, maybe or no on each, most played with the commander first.
+function extra(P,L,i,nextLabel){
+  const box=D['box_'+P.k]||[], g=gcIn();
+  const head=`<p class="where">${E(P.what[0].toUpperCase()+P.what.slice(1))} that isn't in the box, Commander-legal only, most played in EDHREC's ${(D.cedn||0).toLocaleString()} ${E(D.cmd)} decks first.${box.length?' Already in the box: '+E(box.join(', '))+'.':''}`
+    +(P.k==='gcs'?` Bracket 3 allows 3 Game Changers; the deck has ${g.size} with your yeses so far${g.size?' ('+E([...g].join(', '))+')':''}.`:'')+`</p>`;
+  if(!L.length){$('stage').innerHTML=head+`<p class="empty">None in these colors.</p><p style="text-align:center"><button class="pill" data-go="${P.next}">${nextLabel}</button></p>`;return}
+  if(i>=L.length){$('stage').innerHTML=head+`<p class="empty">That's every ${P.word}.</p><p style="text-align:center"><button class="pill" data-go="${P.next}">${nextLabel}</button></p>`;return}
+  $('stage').innerHTML=head+`<p class="where">${P.h} ${i+1}${L[i+1]?'–'+(i+2):''} of ${L.length} · <button class="pill ghost" data-go="${P.next}" style="padding:3px 10px;font-size:.72rem">Skip to ${E(nextLabel.replace('On to the ','').replace('Go over the ',''))} ›</button></p>`
+    +`<div class="pair" id="pair">${L.slice(i,i+2).map(x=>tile(x,P.p)).join('')}</div>`;
+}
 // Maybes: every card marked maybe when the tab opened, two to a row, so they can be settled in one place.
 function maybes(){
   if(!snap.length){$('stage').innerHTML=`<p class="empty">No maybes.</p><p style="text-align:center"><button class="pill" data-go="sum">See the summary</button></p>`;return}
-  const grp=[['Maybe in','a:'],['Maybe out','c:'],['Maybe lands','l:']];
+  const grp=[['Maybe in','a:'],['Maybe out','c:'],['Maybe lands','l:'],['Maybe tutors','t:'],['Maybe Game Changers','g:'],['Maybe wincons','w:']];
   $('stage').innerHTML=grp.map(([h,p])=>{const ks=snap.filter(k=>k.startsWith(p));return ks.length?`<h2>${h} (${ks.length})</h2><div class="pair">${ks.map(k=>tile(item(k),p)).join('')}</div>`:''}).join('')
     +`<p style="text-align:center;margin-top:16px"><button class="pill" data-go="sum">See the summary</button></p>`;
 }
 function tile(x,P){
-  const v=S.d[P+x.n]||'', add=P!=='c:';
-  const info=add?`<span class="job">${E(x.job)}</span><span class="num">Built this way ${pct(x.a)} · EDHREC ${pct(x.b)}${x.src.length?' · '+x.src.length+' source'+(x.src.length>1?'s':''):''}${x.usd?' · $'+x.usd.toFixed(2):''}</span>`
+  const v=S.d[P+x.n]||'', add=P!=='c:', ex='tgw'.includes(P[0]);
+  const info=ex?`<span class="job">${E(x.job)}</span><span class="num">${x.e?'EDHREC: in '+pct(x.e)+' of '+E(D.cmd.split(',')[0])+' decks':'Under 5% of '+E(D.cmd.split(',')[0])+' decks on EDHREC'}${x.usd?' · $'+x.usd.toFixed(2):''}</span>`
+    :add?`<span class="job">${E(x.job)}</span><span class="num">Built this way ${pct(x.a)} · EDHREC ${pct(x.b)}${x.src.length?' · '+x.src.length+' source'+(x.src.length>1?'s':''):''}${x.usd?' · $'+x.usd.toFixed(2):''}</span>`
     :`<span class="job">Left out of ${pct(x.out)} of decks built this way</span><span class="num">EDHREC cut ${pct(x.ed)}</span>`;
-  const chips=[x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',P==='l:'&&x.theme?'<i class="top">On theme</i>':'',x.gc?'<i class="gc">Game Changer</i>':''].join('');
+  const chips=(ex?[x.pick?'<i class="top">In the 15 adds</i>':'',x.theme?'<i class="top">On theme</i>':'',x.gc&&P!=='g:'?'<i class="gc">Game Changer</i>':'']
+    :[x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',P==='l:'&&x.theme?'<i class="top">On theme</i>':'',x.gc?'<i class="gc">Game Changer</i>':'']).join('');
   return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"></button>
     <span class="nm">${E(x.n)}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
@@ -246,32 +266,38 @@ function summary(c){
   const row=(x,P)=>`<li data-k="${E(P+x.n)}"><span>${E(x.n)}</span><div class="yn">${btn('y','Y',S.d[P+x.n])}${btn('m','?',S.d[P+x.n])}${btn('n','N',S.d[P+x.n])}</div></li>`;
   const grp=(p,v)=>list(p).filter(x=>S.d[PH[p].p+x.n]===v);
   const ai=grp('adds','y'),co=grp('cuts','y'),li=grp('lands','y'),am=grp('adds','m'),cm=grp('cuts','m'),lm=grp('lands','m');
+  const ti=grp('tutors','y'),gi=grp('gcs','y'),wi=grp('wins','y'),tm=grp('tutors','m'),gm=grp('gcs','m'),wm=grp('wins','m'),gset=gcIn();
   const unseen=p=>list(p).filter(x=>x.top&&!S.d[PH[p].p+x.n]).length;
   const msgs=[];
   if(c.a.y!==c.c.y)msgs.push(`${c.a.y} in and ${c.c.y} out: the deck has to stay at 100, so they should match.`);
   if(unseen('adds')||unseen('cuts')||unseen('lands'))msgs.push(`Not seen yet: ${unseen('adds')} of the 15 adds, ${unseen('cuts')} of the 15 cuts, ${unseen('lands')} of the 10 lands.`);
+  if(gset.size>3)msgs.push(`${gset.size} Game Changers in the deck (${[...gset].join(', ')}): Bracket 3 allows 3.`);
+  if(c.t.y+c.g.y+c.w.y)msgs.push(`Tutors, Game Changers and wincons you said yes to come on top of the 15 in, so each needs a cut of its own.`);
   if(c.m)msgs.push(`${c.m} maybe${c.m>1?'s':''} still open (Maybes tab).`);
   const L=a=>a.map(x=>x.n).join('; ');
   const text=`Theme picks reviewed: ${D.name} (${D.direction})\nIN (${ai.length}): ${L(ai)||'none'}\nOUT (${co.length}): ${L(co)||'none'}\nLANDS (${li.length}, each for a basic): ${L(li)||'none'}`
-    +(am.length?`\nMAYBE IN (${am.length}): ${L(am)}`:'')+(cm.length?`\nMAYBE OUT (${cm.length}): ${L(cm)}`:'')+(lm.length?`\nMAYBE LANDS (${lm.length}): ${L(lm)}`:'');
-  $('stage').innerHTML=(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.a.y} in, ${c.c.y} out, ${c.l.y} lands. All settled.</p>`)
+    +`\nTUTORS (${ti.length}): ${L(ti)||'none'}\nGAME CHANGERS (${gi.length}): ${L(gi)||'none'}\nWINCONS (${wi.length}): ${L(wi)||'none'}`
+    +(am.length?`\nMAYBE IN (${am.length}): ${L(am)}`:'')+(cm.length?`\nMAYBE OUT (${cm.length}): ${L(cm)}`:'')+(lm.length?`\nMAYBE LANDS (${lm.length}): ${L(lm)}`:'')
+    +(tm.length?`\nMAYBE TUTORS (${tm.length}): ${L(tm)}`:'')+(gm.length?`\nMAYBE GAME CHANGERS (${gm.length}): ${L(gm)}`:'')+(wm.length?`\nMAYBE WINCONS (${wm.length}): ${L(wm)}`:'');
+  $('stage').innerHTML=(msgs.length?msgs.map(m=>`<p class="warn">${E(m)}</p>`).join(''):`<p class="ok">${c.a.y} in, ${c.c.y} out, ${c.l.y} lands, ${c.t.y} tutors, ${c.g.y} Game Changers, ${c.w.y} wincons. All settled.</p>`)
     +`<p class="where">Claude can read these answers from the table: just say "lock in ${E(D.name)}". Or copy them:</p><pre id="out">${E(text)}</pre><p><button class="pill" data-copy-out>Copy for Claude</button></p>`
-    +[['In',ai,'a:'],['Out',co,'c:'],['Lands (for basics)',li,'l:'],['Maybe in',am,'a:'],['Maybe out',cm,'c:'],['Maybe lands',lm,'l:']].filter(g=>g[1].length||!g[0].startsWith('Maybe'))
+    +[['In',ai,'a:'],['Out',co,'c:'],['Lands (for basics)',li,'l:'],['Tutors',ti,'t:'],['Game Changers',gi,'g:'],['Wincons',wi,'w:'],['Maybe in',am,'a:'],['Maybe out',cm,'c:'],['Maybe lands',lm,'l:'],['Maybe tutors',tm,'t:'],['Maybe Game Changers',gm,'g:'],['Maybe wincons',wm,'w:']].filter(g=>g[1].length||!g[0].startsWith('Maybe'))
       .map(([h,Ls,P])=>`<h2>${h} (${Ls.length})</h2><ul class="rows">${Ls.map(x=>row(x,P)).join('')||'<li><span class="st">none yet</span></li>'}</ul>`).join('')
     +`<h2>Start over</h2><p><button class="pill ghost" id="reset">Clear this deck's answers</button></p>`;
 }
 document.addEventListener('click',e=>{
   if($('rev').hidden)return;
-  const z=e.target.closest('.zb');if(z){zoom(item(z.closest('[data-k]').dataset.k));return}
+  const z=e.target.closest('.zb');if(z){const k=z.closest('[data-k]').dataset.k;zoom(item(k),k[0]);return}
   const v=e.target.closest('[data-v]');if(v){decide(v.closest('[data-k]').dataset.k,v.dataset.v);return}
   const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);return}
   const t=e.target.closest('#tabs button');if(t){go(t.dataset.p);return}
   if(e.target.closest('[data-copy-out]')){copy($('out').textContent,e.target);return}
   const r=e.target.closest('#reset');if(r){if(r.dataset.sure){S={d:{},h:[],t:S.t};send(D.slug,{d:null});for(const p in PH)pos[p]=0;go('adds')}else{r.dataset.sure=1;r.textContent='Tap again to clear'}}
 });
-function zoom(x){const Z=$('zoom');Z.querySelector('img').src=x.img;Z.querySelector('img').alt=x.n;
+function zoom(x,p){const Z=$('zoom');Z.querySelector('img').src=x.img;Z.querySelector('img').alt=x.n;
   const add='a' in x;
-  Z.querySelector('p').innerHTML=E(add?`${x.n}: ${x.job} (${x.role}). Played by ${pct(x.a)} of the ${D.nd.toLocaleString()} Archidekt decks built this way and ${pct(x.b)} of EDHREC's ${D.edn.toLocaleString()} theme decks. `+(x.src.length?'Added by: '+x.src.join(', ')+'.':'No written source adds it.')
+  Z.querySelector('p').innerHTML=E('tgw'.includes(p)?`${x.n}: ${x.job.replace(/\.$/,"")}. `+(x.e?`Played in ${pct(x.e)} of EDHREC's ${(D.cedn||0).toLocaleString()} ${D.cmd} decks.`:`Under 5% of EDHREC's ${D.cmd} decks.`)+(x.theme?` On theme: ${x.theme}.`:'')+(x.gc?' Game Changer.':'')
+    :add?`${x.n}: ${x.job} (${x.role}). Played by ${pct(x.a)} of the ${D.nd.toLocaleString()} Archidekt decks built this way and ${pct(x.b)} of EDHREC's ${D.edn.toLocaleString()} theme decks. `+(x.src.length?'Added by: '+x.src.join(', ')+'.':'No written source adds it.')
     :`${x.n}: left out of ${pct(x.out)} of the Archidekt decks built this way; EDHREC: cut from ${pct(x.ed)} of decks from this box.`)+` <a href="${E(x.url)}" target="_blank" rel="noopener">Scryfall</a>`;
   Z.classList.add('on')}
 $('zoom').addEventListener('click',e=>{if(!e.target.closest('a'))$('zoom').classList.remove('on')});

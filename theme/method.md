@@ -59,6 +59,20 @@ with shares on different scales and then tuned it against our own picks.
 9. **Approval**: `theme/review.html` shows the adds, cuts and lands two at a time for a yes, maybe or no, gathers the
    maybes on one tab, and copies the result for Claude, who saves it as `theme/<slug>-review.json`.
 
+## Tutors, Game Changers and Wincons tabs (Nov 21, 2026)
+
+`tools/carousel/theme_extras.py` adds three lists to each `theme/<slug>.json`, shown as tabs in `theme/review.html`
+with no target count: every Commander-legal card in the deck's colors that isn't in the box and is
+
+- a **tutor**: searches your own library for a nonland card (transmute counts). Land searches, self-searches ("a card
+  named ~"), an opponent's search (Path to Exile) and wishes don't; a tutor for one creature type counts only when the
+  type is in the deck's theme tests;
+- a **Game Changer** (the tab shows how many the deck has with the yeses so far; Bracket 3 allows 3);
+- an **alternate wincon** (Scryfall's `alternate-win-condition` tag, as on `wincons/`).
+
+Each list is ordered by the share of EDHREC's decks for the commander that play the card, then EDHREC's overall rank,
+and marks cards that pass a theme test or are already in the 15. `theme_picks.py` reruns it for its deck.
+
 ## Caveats
 
 - Archidekt decks aren't independent (copies and small tweaks of the same list), so shares within a few points are ties.
