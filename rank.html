@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rank Our Precons</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
+<style>
+/* Ranked-choice vote on the 14 precons we own (Squirreled Away left out). Each of the 4 players picks their order,
+   then Results tabulates every submitted ballot: instant runoff (full order by elimination), Borda points, head to
+   head. Ballots live on the shared table (Firebase tables/t7q2xm4k-rank/<player>), so any phone sees the tally.
+   Controls sit bottom-left (the user is left-handed). */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--yes:#2e7d32;--no:#b3261e;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--yes:#7bd88f;--no:#ff8a80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--yes:#7bd88f;--no:#ff8a80;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:620px;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.4;padding:14px 16px 100px}
+[hidden]{display:none!important}
+h1{font-size:1.35rem;margin:0 0 2px}
+h2{font-size:1rem;margin:18px 0 6px}
+.sub{font-size:.78rem;color:var(--muted);margin:0 0 12px}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.who button{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 8px;font-size:1.1rem;font-weight:700}
+.who .done{border-color:var(--yes)}
+.tabs{display:flex;gap:6px;margin:0 0 12px}
+.tabs button{flex:1;background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 4px;font-size:.85rem}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}
+ol,ul{list-style:none;margin:0;padding:0}
+.row{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 10px 6px 6px;margin:0 0 8px}
+.row img{width:46px;aspect-ratio:488/680;border-radius:4px;object-fit:cover;flex:none;background:var(--bg)}
+.row .t{flex:1;min-width:0;text-align:left}
+.row b{display:block;font-size:.95rem}
+.row small{color:var(--muted);font-size:.75rem}
+.rk{font-weight:800;font-size:1.1rem;color:var(--accent);width:1.8em;text-align:center;flex:none}
+.mv{display:flex;flex-direction:column;gap:4px;flex:none}
+.mv button{background:var(--bg);border:1px solid var(--line);border-radius:8px;width:44px;height:30px;line-height:1}
+.mv button:disabled{opacity:.3}
+.x{background:none;border:0;color:var(--no);font-size:1.2rem;padding:6px;flex:none}
+.pool .row{width:100%;text-align:left}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.bar .msg{font-size:.78rem;color:var(--muted);flex:1}
+.pill{background:var(--accent);color:var(--bg);border:0;border-radius:999px;padding:10px 18px;font-weight:700}
+.pill.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.pill:disabled{opacity:.4}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin:4px 0 10px}
+th,td{padding:5px 4px;border-bottom:1px solid var(--line);text-align:center}
+th:first-child,td:first-child{text-align:left}
+td.n{font-weight:700}
+.win{color:var(--yes);font-weight:800}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:.8rem}
+.chips .y{border-color:var(--yes);color:var(--yes)}
+.rd{background:var(--surface);border-radius:10px;padding:8px 10px;margin:0 0 8px;font-size:.82rem}
+.rd b{display:block;margin-bottom:2px}
+.note{font-size:.78rem;color:var(--muted)}
+.tx{width:100%;box-sizing:border-box;min-height:120px;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:10px;font:12px ui-monospace,monospace;padding:8px}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<h1>Rank our precons</h1>
+<p class="sub">The 14 decks we own (Squirreled Away left out). Everyone ranks all 14, best first; Results tallies it.</p>
+
+<section id="pick">
+  <h2>Who are you?</h2>
+  <div class="who" id="who"></div>
+</section>
+
+<section id="main" hidden>
+  <div class="tabs">
+    <button id="tBallot" aria-pressed="true">My ballot</button>
+    <button id="tRes" aria-pressed="false">Results</button>
+  </div>
+  <div id="ballot">
+    <p class="sub" id="hello"></p>
+    <h2>Your ranking <span class="note" id="cnt"></span></h2>
+    <ol id="ranked"></ol>
+    <h2 id="poolH">Not ranked yet: tap to add next</h2>
+    <ul class="pool" id="pool"></ul>
+  </div>
+  <div id="res" hidden></div>
+</section>
+
+<div class="bar" id="bar" hidden>
+  <button class="pill" id="submit" disabled>Submit</button>
+  <button class="pill ghost" id="clear">Start over</button>
+  <button class="pill ghost" id="switch">Switch</button>
+  <span class="msg" id="msg"></span>
+</div>
+
+<script>
+const DB='https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-rank';
+const PLAYERS=['Rand','Andrew','Trent','Lenn'];
+const DECKS=[{"s":"borg","n":"We Are the Borg","c":"The Borg Queen","i":"https://cards.scryfall.io/normal/front/8/e/8ed939ba-bf8d-4a68-ae9f-f8ca4eb301ab.jpg?1792507909"},{"s":"federation-fleet","n":"Federation Fleet","c":"Jean-Luc Picard, Luminary","i":"https://cards.scryfall.io/normal/front/9/0/901eaed9-dbea-4a31-87b0-e17e9bcabfed.jpg?1792507924"},{"s":"landing-party","n":"Landing Party","c":"Commander Spock","i":"https://cards.scryfall.io/normal/front/c/f/cf114392-a38d-4117-aa41-911d6dc1051b.jpg?1792551005"},{"s":"klingon-fury","n":"Klingon Fury","c":"Worf, Defiant Commander","i":"https://cards.scryfall.io/normal/front/d/a/da030114-a4ee-46d7-a6fd-6c0d8e779bcf.jpg?1792507927"},{"s":"living-energy","n":"Living Energy","c":"Saheeli, Radiant Creator","i":"https://cards.scryfall.io/normal/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.jpg?1783907753"},{"s":"eternal-might","n":"Eternal Might","c":"Temmet, Naktamun's Will","i":"https://cards.scryfall.io/normal/front/c/0/c0629894-0b72-4abe-9771-03becfdb241c.jpg?1783907753"},{"s":"revival-trance","n":"Revival Trance","c":"Terra, Herald of Hope","i":"https://cards.scryfall.io/normal/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373"},{"s":"first-flight","n":"First Flight","c":"Isperia, Supreme Judge","i":"https://cards.scryfall.io/normal/front/d/e/de3278de-a045-4290-b05f-3b19e7055091.jpg?1783918741"},{"s":"grave-danger","n":"Grave Danger","c":"Gisa and Geralf","i":"https://cards.scryfall.io/normal/front/4/d/4d8fd87c-caf7-402e-b543-e35ba3007bcb.jpg?1783918740"},{"s":"chaos-incarnate","n":"Chaos Incarnate","c":"Kardur, Doomscourge","i":"https://cards.scryfall.io/normal/front/1/9/19e4d494-e8b3-4ae2-93e3-70c65ab90f15.jpg?1783918741"},{"s":"draconic-destruction","n":"Draconic Destruction","c":"Atarka, World Render","i":"https://cards.scryfall.io/normal/front/7/1/719f172b-f9ad-4960-af66-757eb54147f6.jpg?1783918742"},{"s":"token-triumph","n":"Token Triumph","c":"Emmara, Soul of the Accord","i":"https://cards.scryfall.io/normal/front/e/8/e8510a1e-62ca-462c-b036-d1312729f27d.jpg?1783918741"},{"s":"silverquill-influence","n":"Silverquill Influence","c":"Killian, Decisive Mentor","i":"https://cards.scryfall.io/normal/front/7/6/76b6c35a-bb92-4ad3-8f85-88b9bafc6266.jpg?1783903867"},{"s":"lorehold-spirit","n":"Lorehold Spirit","c":"Quintorius, History Chaser","i":"https://cards.scryfall.io/normal/front/0/7/0742f19d-179c-43c4-ab95-4160c56b4384.jpg?1783903867"}];
+const BY={};DECKS.forEach(d=>BY[d.s]=d);
+const $=id=>document.getElementById(id);
+const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let me=ls.get('cl-rank-me'), draft=[], ballots={}, view='ballot', timer=null;
+if(!PLAYERS.includes(me)) me=null;
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function parse(v){ // a stored ballot is "slug,slug,..."; keep only known decks, no repeats
+  if(!v||typeof v.r!=='string')return null;
+  const seen=new Set(),out=[];
+  v.r.split(',').forEach(s=>{if(BY[s]&&!seen.has(s)){seen.add(s);out.push(s)}});
+  return out.length===DECKS.length?out:null;
+}
+async function load(){
+  try{
+    const r=await fetch(DB+'.json',{cache:'no-store'});
+    const j=await r.json()||{};
+    ballots={};
+    PLAYERS.forEach(p=>{const b=parse(j[p]);if(b)ballots[p]=b});
+    $('msg').textContent='';
+  }catch(e){$('msg').textContent='Offline: showing what this phone last saw'}
+  paint();
+}
+async function save(){
+  const b=draft.join(',');
+  $('msg').textContent='Saving...';
+  try{
+    const r=await fetch(DB+'/'+me+'.json',{method:'PUT',body:JSON.stringify({r:b,t:{'.sv':'timestamp'}})});
+    if(!r.ok)throw 0;
+    ls.set('cl-rank-draft-'+me,'');
+    $('msg').textContent='Saved';
+    await load();
+    show('res');
+  }catch(e){$('msg').textContent="Couldn't save; try again"}
+}
+function keepDraft(){ls.set('cl-rank-draft-'+me,draft.join(','))}
+
+function who(){
+  $('who').innerHTML=PLAYERS.map(p=>'<button data-p="'+p+'" class="'+(ballots[p]?'done':'')+'">'+p+(ballots[p]?' ✓':'')+'</button>').join('');
+}
+$('who').onclick=e=>{const p=e.target.closest('button')?.dataset.p;if(!p)return;me=p;ls.set('cl-rank-me',p);start()};
+$('switch').onclick=()=>{me=null;ls.set('cl-rank-me','');paint()};
+function start(){
+  const d=(ls.get('cl-rank-draft-'+me)||'').split(',').filter(s=>BY[s]);
+  draft=ballots[me]?ballots[me].slice():d;
+  view='ballot';paint();
+}
+function row(d,mid,end){return '<div class="row">'+mid[0]+'<img src="'+esc(d.i)+'" alt="" loading="lazy" referrerpolicy="no-referrer"><div class="t"><b>'+esc(d.n)+'</b><small>'+esc(d.c)+'</small></div>'+end+'</div>'}
+function paintBallot(){
+  const mine=ballots[me];
+  $('hello').textContent=mine?'You already submitted. Change it and submit again to replace it.':'Tap decks from the bottom list, best first. Use the arrows to fix the order.';
+  $('cnt').textContent='('+draft.length+' of '+DECKS.length+')';
+  $('ranked').innerHTML=draft.map((s,i)=>'<li data-s="'+s+'">'+row(BY[s],['<span class="rk">'+(i+1)+'</span>'],
+    '<div class="mv"><button data-a="up"'+(i?'':' disabled')+'>▲</button><button data-a="dn"'+(i<draft.length-1?'':' disabled')+'>▼</button></div><button class="x" data-a="rm" aria-label="Remove">✕</button>')+'</li>').join('');
+  const left=DECKS.filter(d=>!draft.includes(d.s));
+  $('poolH').hidden=!left.length;
+  $('pool').innerHTML=left.map(d=>'<li><button class="row" data-add="'+d.s+'" style="width:100%">'+
+    '<img src="'+esc(d.i)+'" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="t"><b>'+esc(d.n)+'</b><small>'+esc(d.c)+'</small></span></button></li>').join('');
+  $('submit').disabled=draft.length!==DECKS.length;
+  $('submit').textContent=mine?'Resubmit':'Submit';
+}
+$('pool').onclick=e=>{const s=e.target.closest('[data-add]')?.dataset.add;if(!s)return;draft.push(s);
+  const left=DECKS.filter(d=>!draft.includes(d.s));if(left.length===1)draft.push(left[0].s); // the last one has only one place left
+  keepDraft();paintBallot()};
+$('ranked').onclick=e=>{const b=e.target.closest('button');const li=e.target.closest('li');if(!b||!li)return;
+  const i=draft.indexOf(li.dataset.s),a=b.dataset.a;
+  if(a==='up'&&i>0)[draft[i-1],draft[i]]=[draft[i],draft[i-1]];
+  else if(a==='dn'&&i<draft.length-1)[draft[i+1],draft[i]]=[draft[i],draft[i+1]];
+  else if(a==='rm')draft.splice(i,1);
+  keepDraft();paintBallot()};
+$('clear').onclick=()=>{draft=[];keepDraft();paintBallot()};
+$('submit').onclick=save;
+
+/* ---- Tally ---- */
+function tally(){
+  const P=Object.keys(ballots),N=DECKS.length,bs=P.map(p=>ballots[p]);
+  const borda={},first={},pos={};
+  DECKS.forEach(d=>{borda[d.s]=0;first[d.s]=0;pos[d.s]=[]});
+  bs.forEach(b=>b.forEach((s,i)=>{borda[s]+=N-1-i;pos[s].push(i+1);if(!i)first[s]++}));
+  // pairwise wins
+  const h2h={};DECKS.forEach(a=>{h2h[a.s]=0;DECKS.forEach(b=>{if(a.s===b.s)return;
+    let w=0,l=0;bs.forEach(x=>{x.indexOf(a.s)<x.indexOf(b.s)?w++:l++});if(w>l)h2h[a.s]++})});
+  // instant runoff: drop the deck with the fewest top picks among those left, ties by lower Borda; repeat to rank all
+  let alive=DECKS.map(d=>d.s),rounds=[],order=[];
+  while(alive.length){
+    const c={};alive.forEach(s=>c[s]=0);
+    bs.forEach(b=>{const t=b.find(s=>alive.includes(s));c[t]++});
+    const total=bs.length,top=alive.slice().sort((a,b)=>c[b]-c[a]||borda[b]-borda[a])[0];
+    const out=alive.slice().sort((a,b)=>c[a]-c[b]||borda[a]-borda[b])[0];
+    rounds.push({c:{...c},out,maj:c[top]*2>total?top:null});
+    order.unshift(out);alive=alive.filter(s=>s!==out);
+  }
+  return{P,borda,first,pos,h2h,rounds,irv:order,N,n:bs.length};
+}
+const avg=a=>a.length?(a.reduce((x,y)=>x+y,0)/a.length).toFixed(1):'-';
+function paintRes(){
+  const T=tally();
+  let h='<div class="chips">'+PLAYERS.map(p=>'<span class="'+(ballots[p]?'y':'')+'">'+p+(ballots[p]?' ✓':' …')+'</span>').join('')+'</div>';
+  if(!T.n){$('res').innerHTML=h+'<p class="note">No ballots yet.</p>';return}
+  if(T.n<4)h+='<p class="note">Only '+T.n+' of 4 have voted, so this is a running tally.</p>';
+  const w=T.irv[0];
+  h+='<h2>Winner (instant runoff)</h2><p class="win" style="font-size:1.2rem;margin:0 0 4px">'+esc(BY[w].n)+'</p><p class="note">'+esc(BY[w].c)+'</p>';
+  const cw=DECKS.find(d=>T.h2h[d.s]===T.N-1);
+  h+='<p class="note">'+(cw?'Also beats every other deck head to head ('+esc(cw.n)+').':'No deck beats every other head to head.')+'</p>';
+  h+='<h2>Full order</h2><table><tr><th>Instant runoff</th><th>Borda</th></tr>';
+  const bo=DECKS.map(d=>d.s).sort((a,b)=>T.borda[b]-T.borda[a]||T.irv.indexOf(a)-T.irv.indexOf(b));
+  for(let i=0;i<T.N;i++)h+='<tr><td>'+(i+1)+'. '+esc(BY[T.irv[i]].n)+'</td><td>'+(i+1)+'. '+esc(BY[bo[i]].n)+' <small>('+T.borda[bo[i]]+')</small></td></tr>';
+  h+='</table><p class="note">Borda: a 1st place is worth '+(T.N-1)+' points down to 0 for last. Tied points fall back to the runoff order.</p>';
+  h+='<h2>Every ballot</h2><table><tr><th>Deck</th>'+T.P.map(p=>'<th>'+p+'</th>').join('')+'<th>Avg</th></tr>';
+  bo.forEach(s=>{h+='<tr><td>'+esc(BY[s].n)+'</td>'+T.P.map(p=>'<td'+(ballots[p].indexOf(s)===0?' class="n"':'')+'>'+(ballots[p].indexOf(s)+1)+'</td>').join('')+'<td>'+avg(T.pos[s])+'</td></tr>'});
+  h+='</table>';
+  h+='<h2>Runoff rounds</h2>';
+  T.rounds.forEach((r,i)=>{if(i>=T.N-1)return;
+    const alive=Object.keys(r.c).filter(s=>r.c[s]>0||s===r.out).sort((a,b)=>r.c[b]-r.c[a]);
+    h+='<div class="rd"><b>Round '+(i+1)+': '+esc(BY[r.out].n)+' out</b>'+alive.map(s=>esc(BY[s].n)+' '+r.c[s]).join(' · ')+'</div>'});
+  const txt='Precon ranking ('+T.n+' ballots)\n'+T.irv.map((s,i)=>(i+1)+'. '+BY[s].n).join('\n');
+  h+='<h2>Copy</h2><textarea class="tx" readonly>'+esc(txt)+'</textarea>';
+  $('res').innerHTML=h;
+}
+
+function show(v){view=v;
+  $('tBallot').setAttribute('aria-pressed',v==='ballot');$('tRes').setAttribute('aria-pressed',v==='res');
+  paint();
+  clearInterval(timer);if(v==='res')timer=setInterval(load,5000);
+}
+$('tBallot').onclick=()=>show('ballot');$('tRes').onclick=()=>{load();show('res')};
+function paint(){
+  who();
+  const inMain=!!me;
+  $('pick').hidden=inMain;$('main').hidden=!inMain;$('bar').hidden=!inMain||view!=='ballot';
+  if(!inMain)return;
+  $('ballot').hidden=view!=='ballot';$('res').hidden=view!=='res';
+  if(view==='ballot')paintBallot();else paintRes();
+}
+load().then(()=>{if(me)start()});
+</script>
+</body>
+</html>
