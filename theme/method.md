@@ -68,7 +68,9 @@ with no target count: every Commander-legal card in the deck's colors that isn't
   named ~"), an opponent's search (Path to Exile) and wishes don't; a tutor for one creature type counts only when the
   type is in the deck's theme tests;
 - a **Game Changer** (the tab shows how many the deck has with the yeses so far; Bracket 3 allows 3);
-- an **alternate wincon** (Scryfall's `alternate-win-condition` tag, as on `wincons/`).
+- a **wincon**: an alternate win (Scryfall's `alternate-win-condition` tag, as on `wincons/`, with its condition in a few
+  words), or one of the 40 most-played **finishers** (extra combat, overrun, team double strike or unblockable, drain or
+  burn each opponent, life-loss engines like Sanguine Bond).
 
 Each list is ordered by the share of EDHREC's decks for the commander that play the card, then EDHREC's overall rank,
 and marks cards that pass a theme test or are already in the 15. `theme_picks.py` reruns it for its deck.
