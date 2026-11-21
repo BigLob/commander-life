@@ -8000,6 +8000,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-birthday",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, happy birthday in advance. Please don't ask for a rematch as a gift.",
+"who": "Announcer (at Trent)",
+"d": 5.0,
+"pool": "mid"
+},
+{
 "f": "tts-trent-blockers",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8060,6 +8072,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-coffee",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, no amount of coffee is going to fix that hand. Maybe tea. Probably not.",
+"who": "Announcer (at Trent)",
+"d": 5.8,
+"pool": "mid"
+},
+{
 "f": "tts-trent-combo",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8072,6 +8096,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-cooking",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent cooks like he plays. Confident, loud, and somehow burnt.",
+"who": "Announcer (at Trent)",
+"d": 4.4,
+"pool": "mid"
+},
+{
 "f": "tts-trent-counterspell",
 "src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8081,6 +8117,138 @@
 "quote": "Trent, you cast it, we countered it, and everybody felt better about the game.",
 "who": "Announcer (at Trent)",
 "d": 5.0,
+"pool": "mid"
+},
+{
+"f": "tts-trent-dating",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your dating life and your mulligans have one thing in common. Nobody's keeping.",
+"who": "Announcer (at Trent)",
+"d": 5.7,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-court",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, see you in divorce court. We'll be on the other side. Which is any side.",
+"who": "Announcer (at Trent)",
+"d": 5.5,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-custody",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, in the divorce, your lands get custody of the deck. You'd be left with nothing.",
+"who": "Announcer (at Trent)",
+"d": 5.5,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-deck",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, even a divorce lawyer would call that deck irreconcilable.",
+"who": "Announcer (at Trent)",
+"d": 4.5,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-half",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, a divorce would take half of everything. Your board is already there.",
+"who": "Announcer (at Trent)",
+"d": 4.8,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-lawyer",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your lawyer called. Wrong number. Nobody's divorcing you. Yet.",
+"who": "Announcer (at Trent)",
+"d": 5.2,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-mana",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your mana base wants a divorce. It's the only one in this relationship working.",
+"who": "Announcer (at Trent)",
+"d": 6.2,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-papers",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you're not divorced, but you play like you want the papers.",
+"who": "Announcer (at Trent)",
+"d": 4.2,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-ring",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, take off the ring before you scoop. Oh wait. You're not divorced. Weird.",
+"who": "Announcer (at Trent)",
+"d": 5.3,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-settle",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, offering a settlement? Nobody wants half of that board.",
+"who": "Announcer (at Trent)",
+"d": 4.5,
+"pool": "mid"
+},
+{
+"f": "tts-trent-divorce-single",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, not divorced, still alone on the battlefield. Impressive range.",
+"who": "Announcer (at Trent)",
+"d": 5.1,
 "pool": "mid"
 },
 {
@@ -8120,6 +8288,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-driving",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent drives like he attacks. Slowly, with no signal, directly into a wall.",
+"who": "Announcer (at Trent)",
+"d": 5.8,
+"pool": "mid"
+},
+{
 "f": "tts-trent-eight-minutes",
 "src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8156,6 +8336,42 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-gps",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, even your phone's directions couldn't get you to a winning line.",
+"who": "Announcer (at Trent)",
+"d": 4.1,
+"pool": "mid"
+},
+{
+"f": "tts-trent-groceries",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your grocery list has more strategy than your mulligan.",
+"who": "Announcer (at Trent)",
+"d": 4.4,
+"pool": "mid"
+},
+{
+"f": "tts-trent-gym",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, your deck has a better workout plan than you do. At least it shuffles.",
+"who": "Announcer (at Trent)",
+"d": 4.9,
+"pool": "mid"
+},
+{
 "f": "tts-trent-hero",
 "src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8180,6 +8396,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-job",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, whatever you do for work, please don't do it like you play.",
+"who": "Announcer (at Trent)",
+"d": 4.3,
+"pool": "mid"
+},
+{
 "f": "tts-trent-lands",
 "src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8189,6 +8417,18 @@
 "quote": "Trent has seven lands in hand. Truly, a masterclass in shuffling.",
 "who": "Announcer (at Trent)",
 "d": 5.4,
+"pool": "mid"
+},
+{
+"f": "tts-trent-late",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you're late again. The game started without you and it went better.",
+"who": "Announcer (at Trent)",
+"d": 4.8,
 "pool": "mid"
 },
 {
@@ -8213,6 +8453,18 @@
 "quote": "Trent, your life total is a suggestion. Everyone else treats it like a goal.",
 "who": "Announcer (at Trent)",
 "d": 5.5,
+"pool": "mid"
+},
+{
+"f": "tts-trent-lunch",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you thought about lunch for a full minute and then played nothing. Bold.",
+"who": "Announcer (at Trent)",
+"d": 5.1,
 "pool": "mid"
 },
 {
@@ -8300,6 +8552,30 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-parking",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you can't even park right. How are we supposed to trust your attacks?",
+"who": "Announcer (at Trent)",
+"d": 4.7,
+"pool": "mid"
+},
+{
+"f": "tts-trent-phone",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, put the phone down. Whatever's on it is not saving this turn.",
+"who": "Announcer (at Trent)",
+"d": 4.8,
+"pool": "mid"
+},
+{
 "f": "tts-trent-ping",
 "src": "Made for this app: Kokoro text-to-speech",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8348,6 +8624,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-resume",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, put this game on your resume. Under things you tried.",
+"who": "Announcer (at Trent)",
+"d": 3.8,
+"pool": "mid"
+},
+{
 "f": "tts-trent-rules-text",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8372,6 +8660,18 @@
 "pool": "mid"
 },
 {
+"f": "tts-trent-sleep",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, did you sleep last night? The play says no. The face says definitely no.",
+"who": "Announcer (at Trent)",
+"d": 5.2,
+"pool": "mid"
+},
+{
 "f": "tts-trent-snack",
 "src": "Made for this app: Kokoro text-to-speech (voices Heart and Bella)",
 "url": "https://github.com/hexgrad/kokoro",
@@ -8382,6 +8682,18 @@
 "lic": "Made for this app",
 "d": 3.0,
 "pool": "short"
+},
+{
+"f": "tts-trent-snacks",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you brought chips again. At least someone here makes good decisions.",
+"who": "Announcer (at Trent)",
+"d": 4.5,
+"pool": "mid"
 },
 {
 "f": "tts-trent-sol-ring",
@@ -8417,6 +8729,18 @@
 "quote": "Trent cast a spell. The table held its breath. Then it laughed.",
 "who": "Announcer (at Trent)",
 "d": 4.3,
+"pool": "mid"
+},
+{
+"f": "tts-trent-sports",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, you'd lose a game of checkers against a houseplant. We checked. The plant is fine.",
+"who": "Announcer (at Trent)",
+"d": 6.0,
 "pool": "mid"
 },
 {
@@ -8513,6 +8837,42 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.8,
+"pool": "mid"
+},
+{
+"f": "tts-trent-weather",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, the weather is nicer than your board state. Go outside. We'll wait.",
+"who": "Announcer (at Trent)",
+"d": 4.9,
+"pool": "mid"
+},
+{
+"f": "tts-trent-weekend",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent spent the whole weekend on that deck. The deck would like a weekend off.",
+"who": "Announcer (at Trent)",
+"d": 5.0,
+"pool": "mid"
+},
+{
+"f": "tts-trent-wifi",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Announcer",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Trent, the wifi isn't slow. You're just thinking again.",
+"who": "Announcer (at Trent)",
+"d": 3.7,
 "pool": "mid"
 },
 {
