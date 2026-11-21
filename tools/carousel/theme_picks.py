@@ -186,6 +186,29 @@ THEMES = {
    'gg-le': ('Gathering Games upgrade guide', 'https://gatheringgames.co.uk/community/blog/living-energy-precon-upgrade-guide-mtg-aetherdift-commander-decks'),
   },
  },
+ 'lorehold-spirit': {
+  'cmd': 'Quintorius, History Chaser', 'id': 'rw', 'direction': 'Discard engine',
+  'edhrec_theme': 'discard', 'roles': {'engine': 'Discard and graveyard payoffs', 'piece': 'Discard outlets', 'support': 'Graveyard leavers'},
+  'why': 'Quintorius makes a 3/2 Spirit whenever cards leave our graveyard and his +1 discards to draw, so the deck wants '
+         'to discard every turn (rummage, loot, discard outlets), payoffs for discarding, and cards that then take '
+         'cards back out of the graveyard.',
+  'tests': [
+   ('engine', 'Pays off discarding', r'whenever you discard|whenever (?:a|one or more) (?:other )?cards? (?:is|are) (?:put into your graveyard from your hand|discarded)|whenever you cycle or discard|for each card discarded', None),
+   ('engine', 'Pays off cards leaving the graveyard', r'whenever (?:one or more )?(?:other )?(?:nonland )?cards? leaves? your graveyard', None),
+   ('piece', 'Rummage or loot (discard and draw)', r'discard (?:a|one|two|three|x|up to \w+|any number of|your hand)[^.]{0,20}cards?(?:[^.]{0,10}), then draw|discard (?:your hand|any number of cards)[^.]{0,20}then draw|draw[^.]{0,40}, then discard|discards? [^.]{0,30}cards?\. (?:if you do, )?draw', None),
+   ('piece', 'Discard outlet', r'(?:^|, |\n)discard (?:a|an|two|x)(?: \w+)? cards?(?: at random)?(?:, [^:]{0,30})?:|as an additional cost to cast this spell, discard|\bmadness\b', None),
+   ('support', 'Takes cards out of the graveyard (makes a Spirit)', r'(?:exile|return|cast|play)[^.]{0,60}from (?:your|a|target player\'s|each) graveyards?|\b(?:flashback|escape|unearth|jump-start|retrace|disturb|embalm|eternalize|encore)\b', None),
+   ('support', 'Cycling (a discard)', r'\bcycling\b', None),
+  ],
+  'sources': {
+   'edh-ls': ('EDHREC upgrade guide', 'https://edhrec.com/articles/lorehold-spirit-precon-upgrade/'),
+   'gf-ls': ('MTGGoldfish article', 'https://www.mtggoldfish.com/articles/these-swaps-make-lorehold-spirit-absolutely-busted'),
+   'ck-ls': ('Card Kingdom $50 upgrade', 'https://blog.cardkingdom.com/secrets-of-strixhaven-lorehold-spirit-commander-deck-upgrade-guide/'),
+   'ds-ls': ('Draftsim upgrade guide', 'https://draftsim.com/lorehold-spirit-upgrade-guide/'),
+   'lab-ls': ('EDHLAB guide', 'https://blog.edhlab.gg/reconstructing-white-red-lorehold-spirit-precon-upgrade-guide/'),
+   'cz735': ('Command Zone #735 list', 'archidekt:21533404'),
+  },
+ },
  'eternal-might': {
   'cmd': "Temmet, Naktamun's Will", 'id': 'wub', 'direction': 'Pure Zombie typal',
   'edhrec_theme': 'zombies', 'roles': {'piece': 'Zombies', 'support': 'Typal support'},
@@ -500,7 +523,7 @@ DIRECTIONS = {
  'silverquill-influence': 'All-in Auras', 'living-energy': 'Big energy', 'eternal-might': 'Pure Zombie typal',
  'first-flight': 'Flyers with anthems and cost reducers', 'grave-danger': 'Value Zombies on a loop',
  'chaos-incarnate': 'Goad everything', 'draconic-destruction': 'More and better Dragons, some ramp',
- 'token-triumph': 'Token doublers',
+ 'token-triumph': 'Token doublers', 'lorehold-spirit': 'Discard engine',
  'squirreled-away': 'All Squirrels with Chatterfang',
 }
 
