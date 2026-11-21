@@ -69,6 +69,7 @@
 .k-wo, .k-ko { --seat: #5a1a14; --seat-hi: #8e2a1f; --accent: #c9a440; }  /* Klingon Fury: Worf, Kor */
 /* v1.87: the Secrets of Strixhaven decks, so every deck we own can be picked. */
 .k-sq, .k-sq2 { --seat: #24222a; --seat-hi: #47434f; --accent: #d9ccab; }  /* Silverquill Influence: Killian, Scriv */
+.k-gh, .k-gh2 { --seat: #6b3a1c; --seat-hi: #9a5a2a; --accent: #e8c77a; }  /* Group Hug: Xenagos, Emrakul */
 .k-lh, .k-lh2 { --seat: #7a2a1c; --seat-hi: #a8442c; --accent: #e8d6a8; }  /* Lorehold Spirit: Quintorius, Excava */
 
 [hidden] { display: none !important; }
@@ -987,7 +988,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.93';
+  const VERSION = '1.98';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1027,7 +1028,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // Worf (trc/4) and Kor (trc/96). Phones older than v1.10 reject the new keys until reloaded.
   // v1.87 adds the two Secrets of Strixhaven decks: Killian (soc, Silverquill Influence) and Scriv,
   // Quintorius (Lorehold Spirit; a planeswalker, so its wider art was cropped to 626 × 457) and Excava.
-  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le', 'le2', 'em', 'em2', 'rt', 'rt2', 'bq', 'lo', 'pi', 'ja', 'sp', 'ki', 'wo', 'ko', 'sq', 'sq2', 'lh', 'lh2'];
+  const ARTS = ['uw', 'bu', 'rb', 'gr', 'gw', 'le', 'le2', 'em', 'em2', 'rt', 'rt2', 'bq', 'lo', 'pi', 'ja', 'sp', 'ki', 'wo', 'ko', 'sq', 'sq2', 'lh', 'lh2', 'gh', 'gh2'];
   // The deck picker (v1.87, the user's ask): each deck we own and its commanders' art. A player picks
   // the deck; the background is one of its commanders at random (the alternate commander is in the
   // deck too, so either is right). The art doubles as the deck's id: whoever picked has `picked/<edge>`
@@ -1040,6 +1041,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     ['Lorehold Spirit', 'Lorehold', ['lh', 'lh2']], ['Revival Trance', 'Revival Trance', ['rt', 'rt2']],
     ['We Are the Borg', 'Borg', ['bq', 'lo']], ['Federation Fleet', 'Federation Fleet', ['pi', 'ja']],
     ['Landing Party', 'Landing Party', ['sp', 'ki']], ['Klingon Fury', 'Klingon Fury', ['wo', 'ko']],
+    ['Group Hug', 'Group Hug', ['gh', 'gh2']], // v1.98: our own Xenagos deck (not a precon): Xenagos, God of Revels and Emrakul, the Promised End
   ].map(([name, short, arts]) => ({ name, short, arts }));
   const deckOfArt = a => PICK_DECKS.find(d => d.arts.includes(a));
   // Random backgrounds for `edges`, none the same as each other or as those `keep` (other players').
@@ -2333,6 +2335,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     em: [.52, .2], em2: [.33, .17], rt: [.72, .25], rt2: [.38, .2], bq: [.5, .22], lo: [.53, .16], pi: [.48, .2],
     ja: [.6, .22], sp: [.57, .38], ki: [.46, .15], wo: [.47, .2], ko: [.53, .13],
     sq: [.57, .1], sq2: [.73, .4], lh: [.43, .33], lh2: [.72, .42],
+    gh: [.4, .2], gh2: [.5, .18],
   };
   function placeArt(seat) {
     const f = FACES[seat.dataset.art], face = seat.querySelector('.face');
