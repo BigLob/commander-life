@@ -9,7 +9,7 @@
 <script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Approve the theme picks two cards at a time. Front: which deck next. Then the adds (the 15, then the options), the
+/* Approve the theme picks, every card in a section in one scroll, two per row. Front: which deck next. Then the adds (the 15, then the options), the
    cuts (the 15, then more), the land version (10 nonbasics for 10 basics), the maybes in one grid, and a summary to
    copy back to Claude. Decisions are saved to the shared table (Firebase tables/t7q2xm4k-theme), so every phone
    sees them; a deck with no answers anywhere that Claude has locked in (theme/<slug>-review.json) starts from that.
@@ -50,6 +50,8 @@ button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
 .note{font-size:.84rem;border:1px solid var(--yes);border-radius:10px;padding:8px 10px;margin:0 0 10px;display:flex;gap:10px;align-items:center;justify-content:space-between}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;transition:opacity .18s}
 .pair.fade{opacity:0}
+.pair.all{row-gap:18px}
+.grp{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);margin:14px 0 6px;grid-column:1/-1}
 .card{display:flex;flex-direction:column;gap:4px;min-width:0}
 .zb{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:4.75%/3.5%;overflow:hidden;outline-offset:2px}
 .zb img{display:block;width:100%;height:auto;aspect-ratio:488/680;background:var(--surface)}
@@ -98,7 +100,7 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <body>
 <main id="front">
   <h1>Approve theme picks</h1>
-  <p class="sub">Yes, maybe or no, two cards at a time. Pick a deck.</p>
+  <p class="sub">Yes, maybe or no on each card, two per row. Pick a deck.</p>
   <p class="sync" data-sync></p>
   <ul class="decks" id="decks"></ul>
 </main>
@@ -157,6 +159,11 @@ function answers(slug){const s=store.get(key(slug));
   if(remote){const R=remote[slug]||{};return R.d?{...(s||{h:[]}),d:decD(R.d),h:(s&&s.h)||[],t:R.t||(s&&s.t)}:null}
   return s}
 const list=p=>D[PH[p].k]||[];
+// Scroll view (Nov 22, 2026, the user's ask; tried on Chaos Incarnate, then every deck): each section is one column of
+// cards, two per row, scrolled down instead of paged two at a time. Answering a card changes only that card, so the page
+// never jumps. The old two-at-a-time paging stays below for any slug put in PAGED.
+const PAGED=new Set([]);
+const scroll=()=>!!D&&!PAGED.has(D.slug);
 // Finalize (Nov 21, 2026): once a deck is finalized, its yeses and maybes (adds, lands, tutors, GCs, wincons; no count
 // limit) are written to the table as <slug>/fin, the buy list page (../buylist.html) lists them by deck, and the deck's
 // answers lock until it is reopened. fin lives beside d, so every phone sees it; the phone that finalized keeps a copy
@@ -218,10 +225,10 @@ function gcIn(){const n=new Set(D.box_gcs||[]);for(const k in S.d){const x=S.d[k
 function save(){S.p=phase;store.set(key(D.slug),S)}
 function go(p){phase=p;if(p==='maybes')snap=Object.keys(S.d).filter(k=>S.d[k]==='m'&&item(k));save();render();scrollTo(0,0)}
 
+function tally(c){const g=gcIn().size;
+  $('tally').innerHTML=`<span class="${c.a.y>=15?'full':''}">In ${c.a.y}/15</span><span class="${c.c.y>=15?'full':''}">Out ${c.c.y}/15</span><span class="${c.l.y>=10?'full':''}">Lands ${c.l.y}/10</span><span>Tutors ${c.t.y}</span><span class="${g>3?'over':''}">GCs ${g}/3</span><span>Wins ${c.w.y}</span><span>Maybe ${c.m}</span>`}
 function render(){
-  const c=count(S);
-  const g=gcIn().size;
-  $('tally').innerHTML=`<span class="${c.a.y>=15?'full':''}">In ${c.a.y}/15</span><span class="${c.c.y>=15?'full':''}">Out ${c.c.y}/15</span><span class="${c.l.y>=10?'full':''}">Lands ${c.l.y}/10</span><span>Tutors ${c.t.y}</span><span class="${g>3?'over':''}">GCs ${g}/3</span><span>Wins ${c.w.y}</span><span>Maybe ${c.m}</span>`;
+  const c=count(S);tally(c);
   for(const b of $('tabs').children)b.setAttribute('aria-pressed',b.dataset.p===phase);
   const F=finOf(D.slug);$('rev').classList.toggle('locked',!!F);
   $('undo').disabled=!S.h.length||!!F;
@@ -230,6 +237,7 @@ function render(){
   if(phase==='maybes')return maybes();
   const P=PH[phase], L=list(phase), i=pos[phase];
   const nextLabel={cuts:'On to the cuts',lands:'On to the lands',tutors:'On to the tutors',gcs:'On to the Game Changers',wins:'On to the wincons',maybes:'Go over the maybes'}[P.next];
+  if(scroll())return all(P,L,nextLabel);
   if(i>=L.length){$('stage').innerHTML=`<p class="empty">That's every ${P.word}.</p><p style="text-align:center"><button class="pill" data-go="${P.next}">${nextLabel}</button></p>`;return}
   if(P.x)return extra(P,L,i,nextLabel);
   const full=c[P.p[0]].y>=P.goal, topN=L.filter(x=>x.top).length;
@@ -248,6 +256,24 @@ function extra(P,L,i,nextLabel){
   $('stage').innerHTML=head+`<p class="where">${i+1}${L[i+1]?'–'+(i+2):''} of ${L.length} · <button class="pill ghost" data-go="${P.next}" style="padding:3px 10px;font-size:.72rem">Skip ›</button></p>`
     +`<div class="pair" id="pair">${L.slice(i,i+2).map(x=>tile(x,P.p)).join('')}</div>`;
 }
+// Scroll view: the whole section, two per row. Adds, cuts and lands split into the picks and the options.
+function all(P,L,nextLabel){
+  const box=P.x?D['box_'+P.k]||[]:[], g=gcIn(), n=L.filter(x=>S.d[P.p+x.n]).length;
+  const head=(phase==='lands'?`<p class="where">Each replaces a basic (${E(D.basics||'')}).</p>`:'')
+    +(P.x?`<p class="where">${E(P.what[0].toUpperCase()+P.what.slice(1))} not in the box, most played with ${E(D.cmd.split(',')[0])} first.${box.length?' In the box: '+E(box.join(', '))+'.':''}`+(P.k==='gcs'?` Deck: ${g.size} of 3${g.size?' ('+E([...g].join(', '))+')':''}.`:'')+`</p>`:'')
+    +`<p class="where" id="seen">${n} of ${L.length} answered · scroll down</p>`;
+  const top=P.x?[]:L.filter(x=>x.top), rest=P.x?L:L.filter(x=>!x.top);
+  const lab=phase==='lands'?'The 10 picked':'The 15 picked';
+  const body=L.length?`<div class="pair all">${top.length?`<p class="grp">${lab}</p>`:''}${top.map(x=>tile(x,P.p)).join('')}${top.length&&rest.length?`<p class="grp">More options (${rest.length})</p>`:''}${rest.map(x=>tile(x,P.p)).join('')}</div>`
+    :`<p class="empty">None in these colors.</p>`;
+  $('stage').innerHTML=head+body+`<p style="text-align:center;margin-top:18px"><button class="pill" data-go="${P.next}">${nextLabel} ›</button></p>`;
+}
+// Scroll view: after an answer, repaint that card's buttons and the counts, nothing else.
+function paintTile(k){const v=S.d[k]||'';
+  for(const el of document.querySelectorAll('#stage .card[data-k]')){if(el.dataset.k!==k)continue;
+    el.className='card '+v;for(const b of el.querySelectorAll('[data-v]'))b.setAttribute('aria-pressed',b.dataset.v===v)}
+  const c=count(S);tally(c);$('undo').disabled=!S.h.length;
+  const P=PH[phase];if(P&&$('seen')){const L=list(phase);$('seen').textContent=`${L.filter(x=>S.d[P.p+x.n]).length} of ${L.length} answered · scroll down`}}
 // Maybes: every card marked maybe when the tab opened, two to a row, so they can be settled in one place.
 function maybes(){
   if(!snap.length){$('stage').innerHTML=`<p class="empty">No maybes.</p><p style="text-align:center"><button class="pill" data-go="sum">See the summary</button></p>`;return}
@@ -265,7 +291,7 @@ function tile(x,P){
   // Chips: where the card already stands, what in the deck it ties to (the theme test it passes), and GC.
   const chips=(ex?[x.pick?'<i class="top">In the 15</i>':'',x.theme?`<i class="top">Fits: ${E(x.theme)}</i>`:'',x.gc&&P!=='g:'?'<i class="gc">GC</i>':'']
     :[x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',P==='l:'&&x.theme?'<i class="top">On theme</i>':'',x.gc?'<i class="gc">GC</i>':'']).join('');
-  return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"></button>
+  return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"${scroll()?' loading="lazy"':''}></button>
     <span class="nm">${E(x.n)}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
 }
@@ -274,6 +300,7 @@ const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">$
 function decide(k,v){
   if(finOf(D.slug))return;   // finalized: reopen it on Done first
   S.h.push([k,S.d[k]||null]);S.d[k]=v;save();send(D.slug+'/d',{[enc(k)]:v});
+  if(scroll()&&PH[phase]){paintTile(k);return}
   if(!PH[phase]){render();return}
   const P=PH[phase],L=list(phase),i=pos[phase];
   const done=L.slice(i,i+2).every(x=>S.d[P.p+x.n]);
@@ -281,8 +308,11 @@ function decide(k,v){
   if(done){const pr=$('pair');if(pr)pr.classList.add('fade');setTimeout(()=>{pos[phase]=Math.max(pos[phase],openFrom(phase,i+2));render();scrollTo(0,0)},260)}
 }
 $('undo').onclick=()=>{if(finOf(D.slug))return;const h=S.h.pop();if(!h)return;const [k,prev]=h;if(prev)S.d[k]=prev;else delete S.d[k];send(D.slug+'/d',{[enc(k)]:prev||null});
-  const p=Object.keys(PH).find(p=>k.startsWith(PH[p].p)),ix=list(p).findIndex(x=>PH[p].p+x.n===k);
-  if(PH[phase]){phase=p;pos[p]=ix-ix%2}save();render()};
+  const p=Object.keys(PH).find(p=>k.startsWith(PH[p].p)),ix=list(p).findIndex(x=>PH[p].p+x.n===k), was=phase;
+  if(PH[phase]){phase=p;pos[p]=ix-ix%2}save();
+  if(scroll()&&PH[phase]&&was===p&&document.querySelector('#stage .card')){paintTile(k);return}
+  render();
+  if(scroll()&&PH[phase]){const el=[...document.querySelectorAll('#stage .card[data-k]')].find(el=>el.dataset.k===k);if(el)el.scrollIntoView({block:'center'})}};
 $('back').onclick=()=>{if(D)save();D=null;front()};
 
 function summary(c){

@@ -257,6 +257,16 @@ def oracle(c):
     for nm in [c['name']] + [f['name'] for f in c.get('card_faces', [])]:
         t = t.replace(nm, '~')
     return t
+def slow_land(c):
+    """Lands the user doesn't want suggested (Nov 22, 2026): shock lands, and lands that always enter tapped (a sentence
+    saying it enters tapped with no 'unless' or 'if': guildgates, tri-lands, bounce lands, surveil lands, Field of the
+    Dead, Evolving Wilds). Lands that only sometimes enter tapped (check, fast, slow, bond, reveal lands) stay."""
+    t = (c.get('oracle_text') or (c.get('card_faces') or [{}])[0].get('oracle_text', '')).replace('enters the battlefield', 'enters')
+    if re.search(r"you may pay 2 life\. If you don.t, (?:it|this land) enters tapped", t): return True
+    # A land that fetches a land tapped plays the same (Evolving Wilds, Terramorphic Expanse); Fabled Passage untaps it.
+    if re.search(r'sacrifice this land: search[^.]*onto the battlefield tapped', t, re.I) and 'untap' not in t: return True
+    return any(re.search(r'\benters tapped\b', x) and not re.search(r'\bunless\b|\bif\b|^\s*(?:If|As)\b', x)
+               for x in re.split(r'(?<=\.)\s+|\n', t))
 def typeline(c): return c.get('type_line') or ' // '.join(f['type_line'] for f in c['card_faces'])
 def front(n): return n.split(' // ')[0]
 
@@ -367,14 +377,25 @@ def main():
     # 'land' reads the front face only: a spell with a land back (Glasswing Grace) counts as a spell.
     rows.sort(key=lambda x: (-x['score'], x['mv']))
     # Lands stay out of the 15 for 15 (the user's call, Nov 17): they get their own version, 10 nonbasic lands in for
-    # 10 basics, on-theme lands first (Hall of Heliod's Generosity, Field of the Dead), then the most played.
+    # 10 basics, on-theme lands first (Hall of Heliod's Generosity, Westvale Abbey), then the most played.
     lrows = [x for x in rows if x['land']]; rows = [x for x in rows if not x['land']]
+    # No shock lands and no lands that always enter tapped (the user's rule, Nov 22, 2026).
+    lrows = [x for x in lrows if not slow_land(cards[x['n']])]
 
+    # THEME_LANDS_ONLY=1 redoes only the land version and keeps the deck's adds and cuts as they are in theme/<slug>.json
+    # (their answers are already on the shared table, and fresh Archidekt data would reshuffle them).
+    OLD = None
+    if os.environ.get('THEME_LANDS_ONLY'):
+        OLD = json.load(open(os.path.join(ROOT, 'theme', slug + '.json')))
+        byn = {x['n']: x for x in rows}
+        old_pick = [byn[x['n']] for x in OLD['adds'] if x['top'] and x['n'] in byn]
+        old_out = {x['n'] for x in OLD['cuts'] if x['top']}
     box_gc = sum(bool(cards.get(front(c['n']), {}).get('game_changer')) for c in box)
     on = [x for x in rows if x['role'] != 'off']
     def build(banned):
         """The 15: on-theme cards by score; an off-theme card only if direction decks play it at least as much as the
         15th on-theme card and two sources add it. Game Changers stop at 3 in the whole deck."""
+        if OLD: return old_pick
         bar = [x for x in on if x['n'] not in banned][14]['a']
         pool = [x for x in rows if x['n'] not in banned and (x['role'] != 'off' or (x['a'] >= bar and len(x['src']) >= 2))]
         pick, gc = [], box_gc
@@ -425,7 +446,7 @@ def main():
     while True:
         pick = build(banned); cuts, morecuts = cuts_for(pick)
         lpick, lmore = lands_for(banned, box_gc + sum(x['gc'] for x in pick))
-        out = {x['n'] for x in cuts}
+        out = old_out if OLD else {x['n'] for x in cuts}
         main = [{'card': c['n'], 'quantity': c.get('q', 1) - bcut.get(front(c['n']), 0)} for c in box
                 if front(c['n']) not in out and front(c['n']) != T['cmd'] and c.get('q', 1) > bcut.get(front(c['n']), 0)]
         main += [{'card': x['n'], 'quantity': 1} for x in pick + lpick]
@@ -448,6 +469,15 @@ def main():
     btxt = ', '.join(f'{k} {n}' for n, k in bcut.items())
     picked = {x['n'] for x in pick}
     more = {r: [x for x in rows if x['role'] == r and x['n'] not in picked and x['n'] not in banned][:12] for r in RN}
+
+    if OLD:
+        lj = lambda x, top: {'n': x['n'], 'img': x['big'], 'url': x['url'], 'job': x['label'], 'role': RN[x['role']], 'a': round(x['a'], 3),
+                             'b': round(x['b'], 3), 'src': [T['sources'][k][0] for k in x['src']], 'gc': x['gc'], 'usd': x['usd'],
+                             'land': x['land'], 'top': top, 'theme': x['role'] != 'off'}
+        OLD['lands'] = [lj(x, True) for x in lpick] + [lj(x, False) for x in lmore]
+        json.dump(OLD, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
+        lands_only_html = True
+    else: lands_only_html = False
 
     # Page.
     E = lambda s: html.escape(str(s), quote=True)
@@ -490,6 +520,13 @@ def main():
      '__DATE__': time.strftime('%b %-d, %Y'),
     }
     for k, v in rep.items(): tpl = tpl.replace(k, v)
+    if lands_only_html:
+        # Swap only the land section into the existing page.
+        cut = lambda t: re.search(r'(?s)<h2>Land version.*?(?=<h2>Bracket check</h2>)', t)
+        page = open(os.path.join(ROOT, 'theme', slug + '.html')).read()
+        open(os.path.join(ROOT, 'theme', slug + '.html'), 'w').write(page.replace(cut(page).group(0), cut(tpl).group(0)))
+        print('lands:', ', '.join(x['n'] for x in lpick)); print('more:', ', '.join(x['n'] for x in lmore))
+        return
     os.makedirs(os.path.join(ROOT, 'theme'), exist_ok=True)
     open(os.path.join(ROOT, 'theme', slug + '.html'), 'w').write(tpl)
     # Review data for theme/review.html: the 15 in rank order then the options by score, the 15 cuts then the rest.
