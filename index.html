@@ -988,7 +988,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.98';
+  const VERSION = '1.99';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1376,6 +1376,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // Andrew on his right (v3.32; before, Rand's phone and Center had those two the other way round,
   // so they disagreed with everyone else's phone).
   const flipSide = pos => pos % 2 ? 4 - pos : pos;
+  // The iPad's 1v1 (v1.99, the user's ask): it lies between the two players like a Center phone,
+  // whatever This phone is says: Rand at the bottom, upright, his opponent at the top, turned to face them.
+  const ipadDuel = () => state.mode === 2 && state.ipad;
   function posOf(i) {
     // A player's own 1v1 sits like a two-player table: them at the bottom, their opponent across.
     if (state.mode === SPLIT) return state.me === CENTER ? flipSide(edgeOf(i)) : edgeOf(i) === state.me ? 0 : 2;
@@ -1383,7 +1386,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // The iPad view at three players on a Center iPad (v1.62): its bottom faces whoever sits across
     // from the empty chair, and the two beside them take the sides, as at the real table. With
     // Andrew out: Lenn south, Trent left, Rand right (the user's ask).
-    const me = state.mode === 3 && state.me === CENTER && state.ipad ? (state.sitout + 2) % 4 : state.me;
+    const me = state.mode === 3 && state.me === CENTER && state.ipad ? (state.sitout + 2) % 4 : ipadDuel() ? 0 : state.me;
     const k = Math.max(0, PEOPLE[state.mode].indexOf(me));
     return flipSide(edges[(i - k + n) % n]);
   }
@@ -1794,7 +1797,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // Side by side with the Spotify bar keeps only the upright half (v1.36).
     const half = duel && sfy.on;
     board.className = couch ? 'board duel couch' : half ? 'board duel half' : duel || duel4 ? 'board duel'
-      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
+      : 'board n' + n + (n > 1 ? ' table' : '') + (n > 1 && state.me !== CENTER && !ipadDuel() ? ' upright' : '') + (lay === 'quad' ? ' quad' : '') + (lay === 'hub' ? ' hub' : '') + (lay === 'spot' ? ' spot' : '');
     // The Spotify remote, in every layout (v1.35): the grid gives it the top or the middle (see the styles).
     if (sfy.on && !dock) { board.classList.add('sfy'); board.appendChild(sfyBar()); }
     if (dock) board.classList.add('sfyp');
@@ -1862,7 +1865,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     // the top half is the other pair, who have their own phones.
     if (spot === 'd-tl' || spot === 'd-br') return false;
     if (spot === 'd-tr') return !sideBySide4();
-    return state.me === CENTER || e === state.me;
+    return state.me === CENTER || ipadDuel() || e === state.me;
   }
   function addPicker(seat, i) {
     const e = edgeOf(i), taken = decksTaken(e);
