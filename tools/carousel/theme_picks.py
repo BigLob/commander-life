@@ -546,6 +546,7 @@ def main():
     json.dump(rev, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
     write_index()
     import theme_extras; theme_extras.run(slug)   # the Tutors, Game Changers and Wincons tabs
+    import theme_combos; theme_combos.run(slug)   # theme/final.html's combo and benchmark data
     print(f'{len(decks)} decks, {len(dirn)} built this way (>= {cut_at} on-theme); box GCs {box_gc}, final {gcs}; bracket {est.get("bracketTag")}')
     for x in pick: print(f'  + {x["n"]:<38} {x["role"]:<8} a={pct(x["a"]):>4} b={pct(x["b"]):>4} src={len(x["src"])} lift={x["lift"]:.1f}{" GC" if x["gc"] else ""}')
     for x in cuts: print(f'  - {x["n"]:<38} out={pct(x["out"]):>4} ed={pct(x["ed"]):>4}')

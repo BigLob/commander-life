@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Final Review</title>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Final review: the second pass over every card answered yes or maybe in Approve theme picks (review.html), with
+   the same yes / maybe / no, each card starting on its first answer. A bar stuck to the top counts, live, what the
+   deck would be: tutors (goal 2), basics swapped for nonbasic lands (15), spells added (15), Game Changers (1) and
+   infinite combos with the earliest turn one could go off. Second answers are their own key on the shared table
+   (tables/t7q2xm4k-theme/<slug>/r), so round one stays as it was. Finalize lives here now. Controls bottom-left. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--yes:#2e7d32;--no:#b3261e;--maybe:#8a6d00;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--yes:#7bd88f;--no:#ff8a80;--maybe:#e8c54a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--yes:#7bd88f;--no:#ff8a80;--maybe:#e8c54a;color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0 auto;max-width:620px;background:var(--bg);color:var(--fg);font-family:var(--f-display);line-height:1.4;padding-block:14px 90px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+a{color:var(--accent)}
+h1{font-size:1.35rem;margin:0 0 2px;text-wrap:balance}
+.sub{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);margin:0 0 12px}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+/* Front: the deck list */
+.decks{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.deck{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px 8px 8px}
+.deck img{width:54px;aspect-ratio:488/680;border-radius:4px;flex:none;object-fit:cover;background:var(--bg)}
+.deck .t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.deck b{font-size:.98rem}
+.deck .d{font-size:.8rem;color:var(--muted)}
+.st{font-family:var(--f-mono);font-size:.68rem;color:var(--accent)}
+.deck.off{opacity:.62}
+.ask{margin:6px 0 0;font-size:.84rem;border:1px dashed var(--accent);border-radius:10px;padding:8px 10px}
+.ask p{margin:0 0 6px}
+.ask q{display:block;font-family:var(--f-mono);font-size:.76rem;margin:0 0 8px}
+.pill{background:var(--accent);color:var(--bg);border:0;border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem}
+.pill.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+/* Review */
+.tally{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 8px}
+.tally span{font-family:var(--f-mono);font-size:.66rem;border:1px solid var(--line);border-radius:999px;padding:3px 6px}
+.tally .full{border-color:var(--yes);color:var(--yes)}.tally .over{border-color:var(--no);color:var(--no)}
+.tabs{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 10px}
+.tabs button{flex:1 1 22%;min-width:0;background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 2px;font-size:.78rem}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700}
+.where{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin:0 0 8px}
+.note{font-size:.84rem;border:1px solid var(--yes);border-radius:10px;padding:8px 10px;margin:0 0 10px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;transition:opacity .18s}
+.pair.fade{opacity:0}
+.pair.all{row-gap:18px}
+.grp{font-family:var(--f-mono);font-size:.72rem;color:var(--accent);margin:14px 0 6px;grid-column:1/-1}
+.card{display:flex;flex-direction:column;gap:4px;min-width:0}
+.zb{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:4.75%/3.5%;overflow:hidden;outline-offset:2px}
+.zb img{display:block;width:100%;height:auto;aspect-ratio:488/680;background:var(--surface)}
+.card.y .zb{outline:3px solid var(--yes)}.card.n .zb{outline:3px solid var(--no);opacity:.55}.card.m .zb{outline:3px solid var(--maybe)}
+.nm{font-weight:700;font-size:.86rem;line-height:1.2;overflow-wrap:anywhere}
+.job{font-size:.72rem;color:var(--accent);line-height:1.2}
+.num{font-family:var(--f-mono);font-size:.64rem;color:var(--muted);line-height:1.3}
+.chips{display:flex;gap:4px;flex-wrap:wrap}
+.chips i{font-style:normal;font-family:var(--f-mono);font-size:.6rem;border:1px solid var(--line);border-radius:999px;padding:1px 6px}
+.chips i.top{border-color:var(--accent);color:var(--accent)}.chips i.gc{border-color:var(--no);color:var(--no)}
+.yn{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:2px}
+.yn button{border:1px solid var(--line);background:transparent;border-radius:8px;padding:10px 0;font-size:.8rem;font-weight:700}
+.yn .y[aria-pressed="true"]{background:var(--yes);border-color:var(--yes);color:var(--bg)}
+.yn .m[aria-pressed="true"]{background:var(--maybe);border-color:var(--maybe);color:var(--bg)}
+.yn .n[aria-pressed="true"]{background:var(--no);border-color:var(--no);color:var(--bg)}
+.empty{font-size:.9rem;color:var(--muted);text-align:center;padding:30px 0}
+/* Summary */
+h2{font-size:1.02rem;margin:18px 0 6px}
+.rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.rows li{display:flex;align-items:center;gap:8px;font-size:.86rem;border-bottom:1px solid var(--line);padding:3px 0}
+.rows li span{flex:1;min-width:0;overflow-wrap:anywhere}
+.rows .yn{grid-template-columns:repeat(3,38px);margin:0}
+.rows .yn button{padding:6px 0;font-size:.74rem}
+.sync{font-family:var(--f-mono);font-size:.66rem;color:var(--yes);margin:0 0 8px;min-height:1em}
+.sync.off{color:var(--no)}
+.warn{font-size:.84rem;color:var(--no);margin:6px 0}
+.ok{font-size:.84rem;color:var(--yes);margin:6px 0}
+/* Finalize: the panel on Done, and a finalized deck's locked buttons */
+.fin{border:2px solid var(--accent);border-radius:12px;padding:10px 12px;margin:10px 0}
+.fin h2{margin:0 0 4px}.fin p{margin:4px 0;font-size:.86rem}
+.fin.done{border-color:var(--yes)}
+.locked .yn button{pointer-events:none;opacity:.55}
+pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:var(--surface);border-radius:8px;padding:8px;margin:8px 0;max-height:180px;overflow:auto}
+/* Bottom-left controls */
+.foot{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:10px max(12px,env(safe-area-inset-left,0px)) max(10px,env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;z-index:5}
+.foot button{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:9px 14px;font-family:var(--f-mono);font-size:.82rem;flex:none}
+.foot button:disabled{opacity:.4}
+#zoom{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;z-index:50}
+#zoom.on{display:flex}
+#zoom img{max-width:min(92vw,488px);max-height:70vh;border-radius:4.75%/3.5%}
+#zoom p{color:#ece8dd;font-size:.84rem;max-width:488px;margin:0}
+#zoom a{color:#e8b44a}
+#zoom button{background:#e8b44a;color:#14161a;border:0;border-radius:999px;padding:8px 16px}
+/* The benchmark bar: stuck to the top while the cards scroll under it */
+.bench{position:sticky;top:0;z-index:4;background:var(--bg);margin:0 -4px 8px;padding:8px 4px 6px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.bench>span,.bench>button{font-family:var(--f-mono);font-size:.7rem;border:1px solid var(--line);border-radius:10px;padding:5px 4px;text-align:center;line-height:1.2;background:transparent;color:var(--fg)}
+.bench b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.bench .full{border-color:var(--yes);color:var(--yes)}.bench .over{border-color:var(--no);color:var(--no)}
+.bench .cmb{grid-column:1/-1;display:flex;gap:8px;align-items:center;justify-content:center;font-size:.74rem}
+.bench .cmb b{display:inline;font-size:.95rem}
+.bench .more{grid-column:1/-1;font-size:.64rem;color:var(--muted);border:0;padding:0}
+.r1{border-color:var(--muted)!important;color:var(--muted)}
+.r1.ch{border-color:var(--accent)!important;color:var(--accent)}
+.combos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.combos li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.84rem}
+.combos .tn{font-family:var(--f-mono);font-size:.7rem;color:var(--accent)}
+.combos .pr{font-size:.74rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main id="front">
+  <h1>Final review</h1>
+  <p class="sub">Round two: every yes and maybe from <a href="review.html">Approve theme picks</a>, yes, maybe or no again, with the deck's numbers live at the top. Pick a deck.</p>
+  <p class="sync" data-sync></p>
+  <ul class="decks" id="decks"></ul>
+</main>
+<main id="rev" hidden>
+  <h1 id="rt"></h1>
+  <p class="sub" id="rs"></p>
+  <div class="bench" id="bench"></div>
+  <p class="sync" data-sync></p>
+  <div class="tabs" id="tabs"><button data-p="adds">Adds</button><button data-p="cuts">Cuts</button><button data-p="lands">Lands</button><button data-p="tutors">Tutors</button><button data-p="gcs" aria-label="Game Changers">GCs</button><button data-p="wins">Wincons</button><button data-p="sum">Done</button></div>
+  <div id="stage"></div>
+</main>
+<div class="foot" id="foot" hidden><button id="back" type="button">‹ Decks</button><button id="undo" type="button">Undo</button></div>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card"><img alt=""><p></p><button type="button">Close</button></div>
+<script>
+const $=id=>document.getElementById(id), E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct=v=>Math.round(v*100)+'%';
+// The user's benchmarks (Nov 22, 2026). Basics: each nonbasic land said yes to replaces one basic, so it counts the swaps.
+const GOAL={tutors:2,basics:15,spells:15,gcs:1};
+const PH={adds:{p:'a:',k:'adds',next:'cuts',h:'adds'},cuts:{p:'c:',k:'cuts',next:'lands',h:'cuts'},lands:{p:'l:',k:'lands',next:'tutors',h:'lands'},
+  tutors:{p:'t:',k:'tutors',next:'gcs',h:'tutors'},gcs:{p:'g:',k:'gcs',next:'wins',h:'Game Changers'},wins:{p:'w:',k:'wins',next:'sum',h:'wincons'}};
+const NEXT={cuts:'On to the cuts',lands:'On to the lands',tutors:'On to the tutors',gcs:'On to the Game Changers',wins:'On to the wincons',sum:'See it all'};
+let decks=[], D=null, C=null, R1={}, S=null, phase='adds';
+const store={get(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const key=s=>'theme-final-'+s;
+// Same shared table and offline queue as review.html (the queue key is shared, so either page sends the other's taps).
+const DB='https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-theme';
+const enc=k=>k.replace(/[.$#\[\]\/%]/g,c=>'%'+c.charCodeAt(0).toString(16).toUpperCase().padStart(2,'0'));
+const dec=k=>k.replace(/%([0-9A-F]{2})/g,(m,h)=>String.fromCharCode(parseInt(h,16)));
+const decD=o=>{const d={};for(const k in o||{})d[dec(k)]=o[k];return d};
+let remote=null;
+function send(path,body){const q=store.get('theme-review-queue')||[];q.push([path,body]);store.set('theme-review-queue',q);flush()}
+let flushing=null;
+function flush(){if(!flushing)flushing=(async()=>{
+  for(;;){const q=store.get('theme-review-queue')||[];if(!q.length)break;const [path,body]=q[0];
+    try{const r=await fetch(DB+'/'+path+'.json',{method:'PATCH',body:JSON.stringify(body)});if(!r.ok)throw 0}catch(e){showSync(false);break}
+    const q2=store.get('theme-review-queue')||[];q2.shift();store.set('theme-review-queue',q2)}
+  const left=(store.get('theme-review-queue')||[]).length;if(!left)showSync(true)})().finally(()=>{flushing=null});return flushing}
+async function pull(){await flush();try{const r=await fetch(DB+'.json',{cache:'no-store'});if(!r.ok)throw 0;remote=(await r.json())||{};showSync(true)}catch(e){remote=null;showSync(false)}return remote}
+function showSync(ok){const n=(store.get('theme-review-queue')||[]).length, good=ok&&!n;
+  for(const el of document.querySelectorAll('[data-sync]')){el.textContent=good?'✓ Synced to every phone':'Offline: saved here'+(n?`, ${n} to send`:'');el.classList.toggle('off',!good)}}
+// Round one's answers (the table's, else this phone's copy from review.html) and round two's (the r key).
+const r1Of=slug=>remote?decD(remote[slug]&&remote[slug].d):((store.get('theme-review-'+slug)||{}).d||{});
+function r2Of(slug){const s=store.get(key(slug))||{r:{},h:[]};if(remote)s.r=decD(remote[slug]&&remote[slug].r);return s}
+const finOf=slug=>(remote&&remote[slug]&&remote[slug].fin)||store.get('theme-fin-'+slug)||null;
+// Only cards round one said yes or maybe to come back; each starts on that answer until it's changed here.
+const list=p=>(D[PH[p].k]||[]).filter(x=>{const v=R1[PH[p].p+x.n];return v==='y'||v==='m'});
+const ans=k=>S.r[k]||R1[k]||'';
+const item=k=>{for(const p in PH)if(k.startsWith(PH[p].p))return (D[PH[p].k]||[]).find(x=>PH[p].p+x.n===k)};
+
+async function front(){
+  $('rev').hidden=true;$('foot').hidden=true;$('front').hidden=false;
+  if(!decks.length){try{decks=await (await fetch('index.json',{cache:'no-store'})).json()}catch(e){$('decks').innerHTML='<li class="empty">Couldn\'t load the deck list.</li>';return}}
+  await pull();
+  $('decks').innerHTML=decks.filter(d=>d.ready).map(d=>{
+    const r1=r1Of(d.slug), r2=r2Of(d.slug).r, n=Object.keys(r1).filter(k=>r1[k]==='y'||r1[k]==='m').length;
+    const ch=Object.keys(r2).filter(k=>(r1[k]==='y'||r1[k]==='m')&&r2[k]!==r1[k]).length, f=finOf(d.slug);
+    const st=f?`✓ Finalized ${new Date(f.at).toLocaleDateString(undefined,{month:'short',day:'numeric'})} · ${Object.keys(f.cards||{}).length} on the buy list`
+      :n?`${n} cards from round one${ch?` · ${ch} changed here`:''}`:'Nothing approved yet: start in Approve theme picks';
+    return `<li><button class="deck${n?'':' off'}" data-s="${E(d.slug)}"><img src="${E(d.img.replace('/normal/','/small/'))}" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="t"><b>${E(d.name)}</b><span class="d">${E(d.cmd)}${d.direction?' · '+E(d.direction):''}</span><span class="st">${st}</span></span></button></li>`}).join('');
+  scrollTo(0,0);
+}
+$('decks').addEventListener('click',e=>{const b=e.target.closest('.deck');if(!b)return;const d=decks.find(x=>x.slug===b.dataset.s);
+  if(!Object.values(r1Of(d.slug)).some(v=>v==='y'||v==='m')){location.href='review.html';return}
+  open(d)});
+
+async function open(d){
+  try{[D,C]=await Promise.all([d.slug+'.json',d.slug+'-combos.json'].map(async u=>{const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw 0;return r.json()}))}catch(e){alert('Couldn\'t load '+d.name);return}
+  await pull();R1=r1Of(d.slug);S=r2Of(d.slug);D.name=d.name;
+  $('rt').textContent=d.name+': '+D.direction;
+  $('rs').innerHTML=`${E(D.cmd)} · round two · <a href="review.html">round one ›</a>`;
+  go(S.p&&PH[S.p]||S.p==='sum'?S.p:'adds');
+  $('front').hidden=true;$('rev').hidden=false;$('foot').hidden=false;
+}
+function save(){S.p=phase;store.set(key(D.slug),S)}
+function go(p){phase=p;save();render();scrollTo(0,0)}
+
+// The deck as answered: the box minus its cuts, plus every yes (adds, lands, tutors, GCs, wincons), and the commander.
+// A card in two tabs (a tutor that's also a Game Changer) is in once if either says yes.
+const BX=()=>C._bx||(C._bx=Object.fromEntries(C.box.map(c=>[c.n,c])));
+const mvOf=n=>(C.info[n]||BX()[n]||{}).mv||0;
+const isLand=(n,x)=>x&&'land' in x&&x.land!=null?x.land:!!(C.info[n]||BX()[n]||{}).land;
+function deck(){
+  const out=new Set(list('cuts').filter(x=>ans('c:'+x.n)==='y').map(x=>x.n));
+  const inn=new Map();
+  for(const p of ['adds','lands','tutors','gcs','wins'])for(const x of list(p))if(ans(PH[p].p+x.n)==='y'&&!BX()[x.n])inn.set(x.n,x);
+  const names=new Set(C.box.map(c=>c.n).filter(n=>!out.has(n)));names.add(D.cmd);for(const n of inn.keys())names.add(n);
+  return {out,inn,names}}
+// Earliest turn a combo could go off: a goldfish with every piece in hand, one land a turn and no ramp. Each piece that
+// has to be on the battlefield is cast on some turn up to T (turn t has t mana); the last turn also pays the mana
+// Spellbook says the combo needs, which already covers a piece cast from hand during it (Rot Hulk's {5}{B}{B}). Pieces
+// that start in the graveyard or library cost 0.
+// Ramp, rituals or a cheap commander make it sooner, so it's a guide, not a promise.
+function turnOf(cb,names){
+  const used=new Set(cb.cards.map(c=>c.n)), cast=[];let last=cb.mv||0;
+  for(const c of cb.cards)if(/B/.test(c.z))cast.push(mvOf(c.n));
+  for(const r of cb.req){const o=r.opts.filter(n=>names.has(n)&&!used.has(n)).map(mvOf).sort((a,b)=>a-b);if(o.length<r.q)return null;cast.push(...o.slice(0,r.q))}
+  cast.sort((a,b)=>b-a);
+  const fits=T=>{const cap=[];for(let t=1;t<=T;t++)cap.push(t);cap[T-1]-=last;if(cap[T-1]<0)return false;
+    const dfs=i=>{if(i===cast.length)return true;for(let t=0;t<T;t++)if(cap[t]>=cast[i]){cap[t]-=cast[i];if(dfs(i+1))return true;cap[t]+=cast[i]}return false};return dfs(0)};
+  for(let T=1;T<=30;T++)if(fits(T))return T;return null}
+function combosIn(names){const L=[];for(const cb of C.combos){if(!cb.cards.every(c=>names.has(c.n)))continue;const t=turnOf(cb,names);if(t)L.push({...cb,turn:t})}
+  return L.sort((a,b)=>a.turn-b.turn)}
+function bench(){
+  const {out,inn,names}=deck(), T=new Set([...(D.tutors||[]).map(x=>x.n),...(D.box_tutors||[])]);
+  const tut=[...names].filter(n=>T.has(n));
+  const gcs=[...new Set([...(D.box_gcs||[]).filter(n=>!out.has(n)),...[...inn.values()].filter(x=>x.gc).map(x=>x.n)])];
+  const lands=[...inn.keys()].filter(n=>isLand(n,inn.get(n))), spells=[...inn.keys()].filter(n=>!isLand(n,inn.get(n)));
+  const basics=C.box.filter(c=>c.basic).reduce((t,c)=>t+c.q,0);
+  return {tut,gcs,lands,spells,out:[...out],basics,combos:combosIn(names)}}
+function paintBench(){const B=bench(), cls=(n,g)=>n>g?'over':n===g?'full':'';
+  const cb=B.combos, first=cb.length?cb[0].turn:null;
+  const more=[`Cuts ${B.out.length} (one per spell: ${B.spells.length})`, B.lands.length>B.basics?`only ${B.basics} basics in the box`:'', `Maybe ${Object.keys(PH).reduce((t,p)=>t+list(p).filter(x=>ans(PH[p].p+x.n)==='m').length,0)}`].filter(Boolean).join(' · ');
+  $('bench').innerHTML=`<span class="${cls(B.tut.length,GOAL.tutors)}"><b>${B.tut.length}/${GOAL.tutors}</b>tutors</span><span class="${B.lands.length>B.basics?'over':cls(B.lands.length,GOAL.basics)}"><b>${B.lands.length}/${GOAL.basics}</b>basics swapped</span>`
+    +`<span class="${cls(B.spells.length,GOAL.spells)}"><b>${B.spells.length}/${GOAL.spells}</b>spells</span><span class="${cls(B.gcs.length,GOAL.gcs)}"><b>${B.gcs.length}/${GOAL.gcs}</b>Game Changer${GOAL.gcs===1?'':'s'}</span>`
+    +`<button class="cmb${cb.length?' over':''}" data-go="sum" data-to="combos"><span><b>${cb.length}</b> infinite combo${cb.length===1?'':'s'}</span><span>${cb.length?`· earliest turn <b>${first}</b>`:'none in the deck'}</span>${cb.length?'<span>›</span>':''}</button>`
+    +`<span class="more">${E(more)}</span>`;
+  return B}
+
+function render(){
+  const B=paintBench();
+  for(const b of $('tabs').children)b.setAttribute('aria-pressed',b.dataset.p===phase);
+  const F=finOf(D.slug);$('rev').classList.toggle('locked',!!F);$('undo').disabled=!S.h.length||!!F;
+  if(phase==='sum')return summary(B,F);
+  const P=PH[phase], L=list(phase), top=L.filter(x=>x.top&&!P.x), rest=L.filter(x=>!top.includes(x));
+  const isX='tgw'.includes(P.p[0]);
+  const lab=phase==='lands'?'The 10 picked':'The 15 picked';
+  const body=L.length?`<div class="pair all">${top.length&&!isX?`<p class="grp">${lab}</p>${top.map(x=>tile(x,P.p)).join('')}`:''}${!isX&&top.length&&rest.length?`<p class="grp">More options (${rest.length})</p>`:''}${(isX?L:rest).map(x=>tile(x,P.p)).join('')}</div>`
+    :`<p class="empty">No ${P.h} came through round one.</p>`;
+  $('stage').innerHTML=(F?`<p class="where">✓ Finalized: answers locked. Reopen it on Done to change them.</p>`:'')
+    +(phase==='lands'?`<p class="where">Each replaces a basic.</p>`:'')+`<p class="where">${L.length} ${P.h} from round one, each on its first answer.</p>`
+    +body+`<p style="text-align:center;margin-top:18px"><button class="pill" data-go="${P.next}">${NEXT[P.next]} ›</button></p>`;
+}
+const W={y:'Yes',m:'Maybe',n:'No'};
+function tile(x,P){
+  const k=P+x.n, v=ans(k), was=R1[k], add=P!=='c:', ex='tgw'.includes(P[0]);
+  const $p=x.usd?' · $'+x.usd.toFixed(x.usd<10?2:0):'';
+  const info=ex?`<span class="job">${E(x.job)}</span><span class="num">${x.e?pct(x.e):'<5%'} of ${E(D.cmd.split(',')[0])} decks${$p}</span>`
+    :add?`<span class="job">${E(x.job)}</span><span class="num">${pct(x.a)} of theme decks${x.src&&x.src.length?' · '+x.src.length+' guide'+(x.src.length>1?'s':''):''}${$p}</span>`
+    :`<span class="job">Cut by ${pct(x.out)} of theme decks</span>`;
+  const chips=[`<i class="r1${v!==was?' ch':''}">Round 1: ${W[was]}</i>`,!ex&&x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',ex&&x.pick?'<i class="top">In the 15</i>':'',x.theme&&ex?`<i class="top">Fits: ${E(x.theme)}</i>`:'',x.gc&&P!=='g:'?'<i class="gc">GC</i>':''].join('');
+  return `<div class="card ${v}" data-k="${E(k)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer" loading="lazy"></button>
+    <span class="nm">${E(x.n)}</span>${info}<span class="chips">${chips}</span>
+    <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
+}
+const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;
+// After an answer, repaint that card and the bar only, so the page doesn't jump.
+function paintTile(k){const v=ans(k);
+  for(const el of document.querySelectorAll('#stage .card[data-k]')){if(el.dataset.k!==k)continue;el.className='card '+v;
+    for(const b of el.querySelectorAll('[data-v]'))b.setAttribute('aria-pressed',b.dataset.v===v);const r=el.querySelector('.r1');if(r)r.classList.toggle('ch',v!==R1[k])}
+  paintBench();$('undo').disabled=!S.h.length}
+// An answer that matches round one is stored as no answer, so round one's later changes still show through.
+function set(k,v){if(v===R1[k])delete S.r[k];else S.r[k]=v;save();send(D.slug+'/r',{[enc(k)]:S.r[k]||null})}
+function decide(k,v){if(finOf(D.slug))return;S.h.push([k,S.r[k]||null]);set(k,v);if(PH[phase])paintTile(k);else render()}
+$('undo').onclick=()=>{if(finOf(D.slug))return;const h=S.h.pop();if(!h)return;const [k,prev]=h;set(k,prev||R1[k]);
+  const p=Object.keys(PH).find(p=>k.startsWith(PH[p].p));if(phase!==p){phase=p;save();render()}else paintTile(k);
+  const el=[...document.querySelectorAll('#stage .card[data-k]')].find(el=>el.dataset.k===k);if(el)el.scrollIntoView({block:'center'})};
+$('back').onclick=()=>{if(D)save();D=null;front()};
+
+// What finalizing puts on the buy list: every yes and maybe here, merged per card (the same shape review.html wrote).
+const KIND={a:'Add',l:'Land',t:'Tutor',g:'Game Changer',w:'Wincon'};
+function buyList(){const m={};
+  for(const p of ['adds','lands','tutors','gcs','wins'])for(const x of list(p)){const v=ans(PH[p].p+x.n);if(v!=='y'&&v!=='m')continue;
+    const o=m[x.n]||(m[x.n]={n:x.n,k:[],a:'m',usd:x.usd||null,url:x.url,img:x.img});o.k.push(KIND[PH[p].p[0]]);if(v==='y')o.a='y'}
+  return Object.values(m).sort((a,b)=>(a.a===b.a?0:a.a==='y'?-1:1)||a.n.localeCompare(b.n))}
+function summary(B,F){
+  const sb=cb=>`https://commanderspellbook.com/combo/${encodeURIComponent(cb.id)}/`;
+  const cmb=B.combos.length?`<ul class="combos">${B.combos.map(cb=>`<li><span class="tn">Turn ${cb.turn}</span><br><b>${E(cb.cards.map(c=>c.n).join(' + '))}</b>${cb.req.length?' + '+E(cb.req.map(r=>r.t).join(' + ')):''}<br><span class="pr">${E(cb.prods.slice(0,4).join(', '))}${cb.prods.length>4?'…':''}</span> · <a href="${sb(cb)}" target="_blank" rel="noopener">Spellbook ↗</a></li>`).join('')}</ul>`
+    :'<p class="ok">No infinite combos in the deck as answered.</p>';
+  const grp=(p,v)=>list(p).filter(x=>ans(PH[p].p+x.n)===v);
+  const sec=[['In',['adds','tutors','gcs','wins'],'y'],['Out','cuts','y'],['Lands (each for a basic)','lands','y'],['Maybe',['adds','cuts','lands','tutors','gcs','wins'],'m']];
+  const row=(x,p)=>{const k=PH[p].p+x.n;return `<li data-k="${E(k)}"><span>${E(x.n)}${PH[p].p!=='a:'&&PH[p].p!=='c:'&&PH[p].p!=='l:'?` <i class="st">${E(KIND[PH[p].p[0]])}</i>`:''}</span><div class="yn">${btn('y','Y',ans(k))}${btn('m','?',ans(k))}${btn('n','N',ans(k))}</div></li>`};
+  const lists=sec.map(([h,ps,v])=>{const rs=[].concat(ps).flatMap(p=>grp(p,v).map(x=>[x,p]));return `<h2>${h} (${rs.length})</h2><ul class="rows">${rs.map(([x,p])=>row(x,p)).join('')||'<li><span class="st">none</span></li>'}</ul>`}).join('');
+  const N=a=>a.join('; ')||'none';
+  const text=`Final review: ${D.name} (${D.direction})\nTutors ${B.tut.length}/2 · basics swapped ${B.lands.length}/15 · spells ${B.spells.length}/15 · Game Changers ${B.gcs.length}/1 · infinite combos ${B.combos.length}${B.combos.length?' (earliest turn '+B.combos[0].turn+')':''}`
+    +`\nIN (${B.spells.length}): ${N(B.spells)}\nOUT (${B.out.length}): ${N(B.out)}\nLANDS (${B.lands.length}, each for a basic): ${N(B.lands)}`
+    +(B.combos.length?`\nCOMBOS: ${B.combos.map(c=>c.cards.map(x=>x.n).join(' + ')+' (turn '+c.turn+')').join('; ')}`:'');
+  const msgs=[];
+  if(B.spells.length!==B.out.length)msgs.push(`${B.spells.length} spells in, ${B.out.length} cut: should match.`);
+  if(B.lands.length>B.basics)msgs.push(`${B.lands.length} lands for ${B.basics} basics: the box doesn't have that many.`);
+  const buy=buyList(), ny=buy.filter(x=>x.a==='y').length, cost=buy.reduce((t,x)=>t+(x.usd||0),0);
+  const finBox=F?`<div class="fin done"><h2>✓ Finalized ${E(new Date(F.at).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}))}</h2><p>${Object.keys(F.cards||{}).length} cards on the buy list for ${E(D.name)}. Answers are locked.</p><p><a class="pill" href="../buylist.html#${E(D.slug)}" style="text-decoration:none;display:inline-block">Buy list ›</a> <button class="pill ghost" id="reopen">Reopen</button></p></div>`
+    :`<div class="fin"><h2>Finalize</h2><p>Puts ${buy.length} card${buy.length===1?'':'s'} on the buy list (${ny} yes, ${buy.length-ny} maybe)${cost?`, about $${Math.round(cost)}`:''}. Answers lock on both rounds until you reopen.</p><p><button class="pill" id="finalize">Finalize</button></p></div>`;
+  $('stage').innerHTML=`<h2 id="combos">Infinite combos (${B.combos.length})</h2><p class="where">From Commander Spellbook (data ${E(C.date)}). Turn: every piece in hand, one land a turn, no ramp; ramp makes it sooner.</p>`+cmb
+    +finBox+msgs.map(m=>`<p class="warn">${E(m)}</p>`).join('')
+    +`<p class="where">Copy for Claude:</p><pre id="out">${E(text)}</pre><p><button class="pill" data-copy-out>Copy for Claude</button></p>`+lists
+    +`<h2>Start over</h2><p><button class="pill ghost" id="reset">Back to round one's answers</button></p>`;
+}
+async function copy(t,btn){try{await navigator.clipboard.writeText(t);btn.textContent='Copied'}catch(e){const r=document.createRange();r.selectNodeContents($('out'));getSelection().removeAllRanges();getSelection().addRange(r);btn.textContent='Selected: copy it'}}
+document.addEventListener('click',e=>{
+  if($('rev').hidden)return;
+  const z=e.target.closest('.zb');if(z){const k=z.closest('[data-k]').dataset.k;zoom(item(k),k[0]);return}
+  const v=e.target.closest('[data-v]');if(v){decide(v.closest('[data-k]').dataset.k,v.dataset.v);return}
+  const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);if(g.dataset.to)$(g.dataset.to).scrollIntoView();return}
+  const t=e.target.closest('#tabs button');if(t){go(t.dataset.p);return}
+  if(e.target.closest('[data-copy-out]')){copy($('out').textContent,e.target);return}
+  const fz=e.target.closest('#finalize');
+  if(fz){if(!fz.dataset.sure){fz.dataset.sure=1;fz.textContent='Tap again to finalize';return}
+    const cards={};for(const x of buyList())cards[enc(x.n)]=x;
+    const F={at:Date.now(),deck:D.name,cmd:D.cmd,direction:D.direction,cards,out:list('cuts').filter(x=>ans('c:'+x.n)==='y').map(x=>x.n)};
+    store.set('theme-fin-'+D.slug,F);if(remote)(remote[D.slug]=remote[D.slug]||{}).fin=F;send(D.slug,{fin:F});render();return}
+  const ro=e.target.closest('#reopen');
+  if(ro){if(!ro.dataset.sure){ro.dataset.sure=1;ro.textContent='Tap again: takes it off the buy list';return}
+    store.set('theme-fin-'+D.slug,null);if(remote&&remote[D.slug])remote[D.slug].fin=null;send(D.slug,{fin:null});render();return}
+  const r=e.target.closest('#reset');if(r&&!finOf(D.slug)){if(r.dataset.sure){S={r:{},h:[]};send(D.slug,{r:null});go('adds')}else{r.dataset.sure=1;r.textContent='Tap again: clears round two'}}
+});
+function zoom(x,p){const Z=$('zoom');Z.querySelector('img').src=x.img;Z.querySelector('img').alt=x.n;
+  const cmd=D.cmd.split(',')[0];
+  Z.querySelector('p').innerHTML=E('tgw'.includes(p)?`${x.job}. ${x.e?pct(x.e):'Under 5%'} of EDHREC's ${(D.cedn||0).toLocaleString()} ${cmd} decks.`+(x.theme?` Fits the theme: ${x.theme}.`:'')+(x.gc?' Game Changer.':'')
+    :'a' in x?`${x.job}. ${pct(x.a)} of ${D.nd.toLocaleString()} Archidekt theme decks, ${pct(x.b)} of EDHREC's ${D.edn.toLocaleString()}. `+(x.src.length?'Guides: '+x.src.join(', ')+'.':'No guide adds it.')
+    :`Cut by ${pct(x.out)} of ${D.nd.toLocaleString()} Archidekt theme decks; EDHREC cut ${pct(x.ed)}.`)+`<br><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.n)} on Scryfall (text, prices) ↗</a>`;
+  Z.classList.add('on')}
+$('zoom').addEventListener('click',e=>{if(!e.target.closest('a'))$('zoom').classList.remove('on')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('zoom').classList.remove('on')});
+front();
+</script>
+</body>
+</html>
