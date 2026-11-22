@@ -18,9 +18,10 @@ editable artifact is https://claude.ai/artifact/D3rxfusL2qGunJxamxqMa2 (private;
 
 The user's rule: **call out or mark any card that isn't Commander-legal**, everywhere.
 
-- In replies: whenever a card comes up (a suggestion, a list, a price check), say so if it isn't legal in
-  Commander (banned, an Un-card or playtest card, Arena/MTGO only, or not released yet). Check Scryfall's
-  `legalities.commander` rather than memory.
+- In replies: **the check is silent** (the user's call, Nov 22, 2026). Whenever a card comes up (a suggestion,
+  a list, a price check), check Scryfall's `legalities.commander` rather than memory, but say nothing when
+  every card is legal. Speak up only for a card that isn't (banned, an Un-card or playtest card, Arena/MTGO
+  only, or not released yet), and name just that card. Never write "all Commander-legal" or similar.
 - On pages: every card page marks such cards. The rodent pages show a red "Not Commander-legal" chip
   (and the legends page only lists legal ones); `make.py` and `brew.py` set the card's note to
   "Not Commander-legal"; the lands page says "not Commander-legal yet (not out)" for unreleased lands.
