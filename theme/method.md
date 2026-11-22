@@ -55,7 +55,7 @@ with shares on different scales and then tuned it against our own picks.
    theme test, and played by 3%+ of decks built this way or added by a source) come first by score, then the rest by
    score; 10 more are shown. Game Changers still count toward the 3, and the bracket check runs with them in.
    **No shock lands and no lands that always enter tapped** (the user's rule, Nov 22, 2026: guildgates, tri-lands,
-   bounce lands, surveil and cycling duals, manlands that enter tapped, Field of the Dead...). Lands that only
+   bounce lands, surveil and cycling duals, manlands that enter tapped, Field of the Dead, and fetches that bring the land in tapped like Evolving Wilds). Lands that only
    sometimes enter tapped (check, fast, slow, bond, reveal lands) stay. `slow_land()` in `theme_picks.py`.
    `THEME_LANDS_ONLY=1 python3 tools/carousel/theme_picks.py <slug> <cache>` redoes only the land version and keeps
    the deck's adds and cuts (and their answers) as they are.

@@ -260,9 +260,11 @@ def oracle(c):
 def slow_land(c):
     """Lands the user doesn't want suggested (Nov 22, 2026): shock lands, and lands that always enter tapped (a sentence
     saying it enters tapped with no 'unless' or 'if': guildgates, tri-lands, bounce lands, surveil lands, Field of the
-    Dead). Lands that only sometimes enter tapped (check, fast, slow, bond, reveal lands) stay."""
+    Dead, Evolving Wilds). Lands that only sometimes enter tapped (check, fast, slow, bond, reveal lands) stay."""
     t = (c.get('oracle_text') or (c.get('card_faces') or [{}])[0].get('oracle_text', '')).replace('enters the battlefield', 'enters')
     if re.search(r"you may pay 2 life\. If you don.t, (?:it|this land) enters tapped", t): return True
+    # A land that fetches a land tapped plays the same (Evolving Wilds, Terramorphic Expanse); Fabled Passage untaps it.
+    if re.search(r'sacrifice this land: search[^.]*onto the battlefield tapped', t, re.I) and 'untap' not in t: return True
     return any(re.search(r'\benters tapped\b', x) and not re.search(r'\bunless\b|\bif\b|^\s*(?:If|As)\b', x)
                for x in re.split(r'(?<=\.)\s+|\n', t))
 def typeline(c): return c.get('type_line') or ' // '.join(f['type_line'] for f in c['card_faces'])
