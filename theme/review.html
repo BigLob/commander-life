@@ -9,7 +9,7 @@
 <script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Approve the theme picks two cards at a time. Front: which deck next. Then the adds (the 15, then the options), the
+/* Approve the theme picks, every card in a section in one scroll, two per row. Front: which deck next. Then the adds (the 15, then the options), the
    cuts (the 15, then more), the land version (10 nonbasics for 10 basics), the maybes in one grid, and a summary to
    copy back to Claude. Decisions are saved to the shared table (Firebase tables/t7q2xm4k-theme), so every phone
    sees them; a deck with no answers anywhere that Claude has locked in (theme/<slug>-review.json) starts from that.
@@ -100,7 +100,7 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 <body>
 <main id="front">
   <h1>Approve theme picks</h1>
-  <p class="sub">Yes, maybe or no, two cards at a time. Pick a deck.</p>
+  <p class="sub">Yes, maybe or no on each card, two per row. Pick a deck.</p>
   <p class="sync" data-sync></p>
   <ul class="decks" id="decks"></ul>
 </main>
@@ -159,11 +159,11 @@ function answers(slug){const s=store.get(key(slug));
   if(remote){const R=remote[slug]||{};return R.d?{...(s||{h:[]}),d:decD(R.d),h:(s&&s.h)||[],t:R.t||(s&&s.t)}:null}
   return s}
 const list=p=>D[PH[p].k]||[];
-// Scroll view test (Nov 22, 2026, the user's ask, Chaos Incarnate only): each section is one column of cards, two per
-// row, scrolled down instead of paged two at a time. Answering a card changes only that card, so the page never jumps.
-// Add a slug here to give that deck the same view.
-const SCROLL=new Set(['chaos-incarnate']);
-const scroll=()=>!!D&&SCROLL.has(D.slug);
+// Scroll view (Nov 22, 2026, the user's ask; tried on Chaos Incarnate, then every deck): each section is one column of
+// cards, two per row, scrolled down instead of paged two at a time. Answering a card changes only that card, so the page
+// never jumps. The old two-at-a-time paging stays below for any slug put in PAGED.
+const PAGED=new Set([]);
+const scroll=()=>!!D&&!PAGED.has(D.slug);
 // Finalize (Nov 21, 2026): once a deck is finalized, its yeses and maybes (adds, lands, tutors, GCs, wincons; no count
 // limit) are written to the table as <slug>/fin, the buy list page (../buylist.html) lists them by deck, and the deck's
 // answers lock until it is reopened. fin lives beside d, so every phone sees it; the phone that finalized keeps a copy
