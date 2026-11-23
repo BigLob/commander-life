@@ -161,8 +161,68 @@ The Warring Triad, Angel of the Ruins, Sabin), so it plays like the thread's "tr
 - **The split:** Terra Targets Only cuts Ruinous Ultimatum and every noncreature spell. Terranimator keeps them, and
   so did the thread's longest comment ("I will never cut" Ultimatum).
 
-## Not read yet
+## The upgrade videos (read Nov 23, 2026)
 
-Four upgrade videos: DeckTechsForDecks (youtu.be/ReuawwVtU5s), the Command Zone (youtu.be/ZqI_-DH7lBc), and Guys
-That Magic's $100 (youtu.be/omN6T6Hqfr4) and $300 (youtu.be/vPRmG16wVHU). Some of these may already be among the 49
-videos read for `decks/angles.html`.
+The thread links four videos. Two of them were already read for `decks/angles.html` (its Terra section):
+
+- **The Command Zone #677:** 10 in and 10 out for $50 (Archidekt list archidekt.com/decks/13139894). Small creatures
+  with strong enter effects (Alesha, Who Laughs at Fate and Braids, Arisen Nightmare are in its list), Fear of Missing
+  Out for extra combats, and two-mana ramp. It counts 14 creatures in the box that Terra can't bring back.
+- **DeckTechsForDecks, "Revival Trance Massive 16 Card Precon Upgrade":** builds up the sacrifice theme with
+  self-sacrificing edict creatures, and adds Fear of Missing Out. List: moxfield.com/decks/K5Bqv16dp0WqNobaquipkg.
+
+The two Guys That Magic videos are new. Both keep Terra (the Celes builds are on their Patreon) and read straight
+off the transcripts. Every card they add is Commander-legal (checked on Scryfall).
+
+### Guys That Magic, $100 (youtu.be/omN6T6Hqfr4, list moxfield.com/decks/JsQJvWLgiU6GxD_aNE3Cag)
+
+They kept it as Final Fantasy as they could, and every creature added has power 3 or less so Terra can bring it back.
+19 in, 19 out, $86.64 before the set's release (prices have moved since).
+
+- **Creatures in:** Fang, Fearless l'Cie (draws when cards leave your graveyard), Gaius van Baelsar (a flexible
+  edict that loops with Terra), Lightning, Army of One (her stagger doubles damage to a player; the host's favorite
+  card in the set), Squall, SeeD Mercenary (a second recursion engine), Joshua, Phoenix's Dominant (loots, then
+  becomes a Phoenix that brings back creatures), Kuja, Genome Sorcerer (makes Wizards; the deck has plenty, Terra
+  included), Venat, Heart of Hydaelyn (draws on legendary spells), Adeline, Resplendent Cathar, General's Enforcer
+  (legendary Humans get indestructible) and Shanid, Sleepers' Scourge (draws on legendary spells, menace).
+- **Removal in:** Path to Exile and Swords to Plowshares.
+- **Lands in:** Caves of Koilos, Haunted Ridge, Shattered Sanctum, Sundown Pass, Vault of Champions, Luxury Suite,
+  Savai Triome. "Some of the worst mana bases" they've seen.
+- **Out:** Angel of the Ruins, Combustible Gearhulk, Ruin Grinder and Sepulchral Primordial (too big for Terra, too
+  expensive), Interceptor, Kefka (seven mana and Terra can't bring him back), Palace Jailer, The Falcon, Coin of Fate
+  (the opponent picks what you get back), Phoenix Down (one shot), Rise of the Dark Realms (nine mana "sits in your
+  hand and does nothing"), and lands: Ash Barrens, Evolving Wilds, Desolate Mire, Shadowblood Ridge, Sunscorched
+  Divide (the pay-one filter lands), Geothermal Bog, Sacred Peaks, Sunlit Marsh (tapped lands; casting a three-drop
+  "was like a turn five event").
+
+### Guys That Magic, $300 (youtu.be/vPRmG16wVHU, list moxfield.com/decks/FQfVHv2JkUiir-tAZamIHQ)
+
+The $100 list plus 12 more swaps, $282 in all. Its theme is slowing opponents down while the engine gets going.
+It has **three Game Changers** (Opposition Agent, Drannith Magistrate, Smothering Tithe), which is the most Bracket 3
+allows.
+
+- **In:** Liliana, Dreadhorde General ($10.75; draws when your creatures die), Opposition Agent (GC), Drannith
+  Magistrate (GC; locks opponents out of their commanders), Drumbellower ($2.69; Terra returns creatures tapped, this
+  untaps them on other turns), Kami of False Hope (a fog Terra can bring back), Flawless Maneuver (free while you
+  control your commander), Smothering Tithe (GC, $62.25), Trouble in Pairs ($32.54), Mesmeric Orb ($18.18; fills
+  the graveyard), Shizo, Death's Storehouse ($31.76), Blood Crypt, Godless Shrine.
+- **Out:** Edgar, Sabin (Terra can't bring him back), The Warring Triad (a three-mana rock for the first turns),
+  Strago and Relm, Setzer (nothing else flips coins), Bedevil (path and swords replace it), Rejoin the Fight
+  (opponents hand you Anger), Stitch Together (Terra already does that every turn), Wayfarer's Bauble, and the three
+  filter lands Rugged Prairie, Fetid Heath and Graven Cairns.
+- **The builder's verdict:** Terra is "cool" but not unique or efficient, since Mardu reanimator has been done
+  better. If you mainly want to play Final Fantasy, he'd keep the deck as it comes out of the box. His co-host would
+  build the upgraded list.
+
+### What the videos add to the picture
+
+- **The cut list keeps lining up:** Ruin Grinder, Combustible Gearhulk, Angel of the Ruins, Sepulchral Primordial,
+  Interceptor, Kefka, Edgar, Setzer, Strago and Relm, Coin of Fate and The Falcon are cut by the thread, the
+  Moxfield lists or both videos.
+- **Picks the videos share with the thread and its lists:** General's Enforcer (thread), Gaius van Baelsar,
+  Joshua and Squall (Terra Targets Only), Kami of False Hope (Terra Targets Only), Opposition Agent, Drannith
+  Magistrate and Flawless Maneuver (thread).
+- **New here:** Fang, Lightning, Kuja, Venat, Adeline, Shanid, Liliana, Drumbellower, Smothering Tithe, Trouble in
+  Pairs, Mesmeric Orb and Shizo, plus a full mana-base fix (the slow lands, filter lands and tapped lands out; check
+  lands, bond lands, a triome and shocks in).
+- **Ruinous Ultimatum:** neither video cuts it, so only Terra Targets Only does.
