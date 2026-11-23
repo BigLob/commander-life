@@ -432,6 +432,8 @@ them and `.gitignore` now ignores PNGs at the root).
 ### `boros/`: top 25 red-white commanders
 - Live at https://biglob.github.io/commander-life/boros/ (Nov 23, 2026). The 25 most-played exactly-R/W Commander-legal commanders by EDHREC deck count (json.edhrec.com/pages/commanders/boros.json; Ardenn is skipped, mono-white alone), each with a hand-written gameplay line (`SYN` in the script). Built by `python3 tools/carousel/boros.py` from `cuts-template.html`; rerun for fresh rankings and add a `SYN` line for any new entrant.
 
+- **Picks from boros/** (Nov 23, 2026): the user's Fav marks on that page (read from `tables/t7q2xm4k-picks/commander-life_boros`; `SELECT` in `tools/carousel/boros_picks.py`) get two carousels each: `boros/<slug>-deck.html` (EDHREC's average deck, the brews way) and `boros/<slug>-more.html` (the 30 most-played cards not in it, the adds way). Rerun `python3 tools/carousel/boros_picks.py` after changing `SELECT`. **`deckideas.txt`** is the running list of commanders we might build, by color pair (Boros started; Azorius next); keep it and its `links.html` row current.
+
 ### `wincons/`: win-condition cards
 - Live at https://biglob.github.io/commander-life/wincons/ (Nov 20, 2026). Every Commander-legal card Scryfall tags `otag:alternate-win-condition` (63), most played first, each with the win/lose sentence from its text. Color buttons above the cards (All, White, Blue, Black, Red, Green, Multicolor, Colorless, each with its count) drive the template's Color filter. Not-legal ones are named in the Sources fold-out. Built by `python3 tools/carousel/wincons.py` from `cuts-template.html`; rerun for new sets.
 

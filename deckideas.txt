@@ -1,0 +1,9 @@
+DECK IDEAS: running list of commanders we might build, by color pair. Newest at the bottom.
+Format: date | commander | colors | why it's on the list | where (carousel) | status
+
+# Red-white (Boros): picked from boros/ (top 25 by EDHREC decks)
+2026-11-23 | Mabel, Heir to Cragflame | RW | Fav on boros/: Mice tribal, free hasty trampling equipment, goes wide fast | boros/mabel-heir-to-cragflame-deck.html (average deck), boros/mabel-heir-to-cragflame-more.html (next 30 options) | idea
+2026-11-23 | Firesong and Sunspeaker | RW | Fav on boros/: red spells gain lifelink, white lifegain spells deal 3 damage; burn plus lifegain | boros/firesong-and-sunspeaker-deck.html, boros/firesong-and-sunspeaker-more.html | idea
+2026-11-23 | Thorin, King of Durin's Folk | RW | Benched on boros/ (not a pick); kept here in case | boros/ | benched
+
+# Blue-white (Azorius): next to scan. Not started; tell Claude which ones to add, or ask for a top-25 Azorius carousel like boros/.
