@@ -64,3 +64,6 @@ Format: date | card | version wanted | how (proxy/real) | for deck | status
 2026-11-20 | Jhoira's Familiar x5 (colorless, Commander-legal) | any printing, about $2.42 each | proxy | any deck (colorless staple) | to get
 2026-11-20 | Nykthos, Shrine to Nyx x5 (colorless, Commander-legal) | any printing, about $48.07 each | proxy | any deck (colorless staple) | to get
 2026-11-20 | The Grey Havens x5 (colorless, Commander-legal) | any printing, about $0.32 each | proxy | any deck (colorless staple) | to get
+
+# Secret Lair Dandân Deck (Wizards' decklist, Mar 15, 2026; 80 cards for a two-player shared-library format)
+2026-11-23 | Secret Lair Dandân Deck (80 cards, $99.99 at MagicSecretLair.com; may be sold out) | the whole deck: 10 Dandân, 20 Island (4 panorama arts x5), 8 Memory Lapse, 4 Accumulated Knowledge, 2 each of Magical Hack, Mystic Sanctuary, Brainstorm, Capture of Jingzhou, Chart a Course, Control Magic, Crystal Spray, Day's Undoing, Mental Note, Metamorphose, Predict, Telling Time, Unsubstantiate, Halimar Depths, Haunted Fengraf, Lonely Sandbar, Remote Isle, The Surgical Bay, Svyelunite Temple | real or proxy | Dandân (two-player format) | to get
