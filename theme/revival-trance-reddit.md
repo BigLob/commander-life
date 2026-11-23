@@ -100,12 +100,69 @@ Hound, Edgar, Master Machinist ("nothing to do in this deck at all"), and most c
 (power 4 or more). Under Celes you might keep Sabin, Master Monk and Kefka, Dancing Mad. The thread also says
 there's "no reason to run a 7 mana hard to cast sorcery," with Ruinous Ultimatum as the exception.
 
+## The Moxfield lists (read Nov 23, 2026)
+
+The thread links three Moxfield decks, and all three are Terra builds. Two of them are public. The third,
+Vtmahesh's second list (moxfield.com/decks/B1pEj1H2l0q2tBScQ-618Q), returns "Page Not Found", so it's private or
+deleted. Both public lists are 100 cards, all Commander-legal, with no Game Changers.
+
+### "Terra Targets Only" (Vtmahesh, moxfield.com/decks/DTaCeXNiGkOfgD5I9NTcWw)
+
+The all-in version of the toolbox idea: 61 creatures and 38 lands, and **no other spells at all**. Sol Ring sits in
+the sideboard, and so do Ruinous Ultimatum and Faithless Looting. Every creature has power 3 or less except Celes
+and Kardur, Doomscourge, so Terra can bring back nearly the whole deck. 58 of the box's cards are out (all the
+rocks, removal spells and reanimation spells, and the big creatures). The box cards it keeps: Meteor Golem, General
+Leo Cristophe, Anger, Mog, Banon, Millikin, Gau, Priest of Fell Rites, Cyan, Siegfried and Stitcher's Supplier.
+
+Its adds, by job:
+
+- **Removal on a body:** Accursed Marauder, Plaguecrafter, Ravenous Chupacabra, Skyclave Apparition, Kataki,
+  War's Wage, Phyrexian Censor, Hammer Mage.
+- **Reanimation on a body:** Karmic Guide, Apprentice Necromancer, Alesha, Who Smiles at Death, Alesha, Who
+  Laughs at Fate, Chainer, Nightmare Adept, Moria Scavenger, Bronzebeak Foragers, Hero of the Dunes.
+- **Self-mill and discard:** Twilight Diviner, Reckless Detective, Raph & Leo, Sibling Rivals, Disciple of Caelus
+  Nin, Weathered Wayfarer.
+- **Drain and value:** Gray Merchant of Asphodel, Braids, Arisen Nightmare, Bog Witch, Sunset Strikemaster,
+  Squall, SeeD Mercenary, Mai, Scornful Striker, Joshua, Phoenix's Dominant, Gaius van Baelsar, Raphael, the
+  Nightwatcher, Plargg, Dean of Chaos, Azra Oddsmaker, Havoc Eater, Arachne, Psionic Weaver.
+- **Slowing opponents (taxes and hate pieces):** Archon of Emeria, Thalia, Guardian of Thraben, Kambal, Consul of
+  Allocation, Michiko Konda, Truth Seeker, Mangara, the Diplomat, Windborn Muse, Guardian of the Gateless.
+- **Protection:** Selfless Spirit, Selfless Glyphweaver, Boromir, Warden of the Tower, Cathar Commando, Kami of
+  False Hope.
+- **Other:** Mirror Entity, Tersa Lightshatter, Avenger of the Fallen.
+- **Lands:** Bojuka Bog, Blackcleave Cliffs, Caves of Koilos, Orzhov Basilica, Shattered Landscape.
+
+Most of these cost under $3. The dearest are Michiko Konda ($9.54), Kambal ($8.65) and Bog Witch ($6.64).
+
+### "Terranimator" (Responsible-Yam-3833, moxfield.com/decks/68wS-O0ipUaJb6h9MolJHQ)
+
+A light touch: only 21 swaps from the box. It keeps the box's rocks, removal and reanimation spells (Reanimate,
+Stitch Together, Rise of the Dark Realms, Ruinous Ultimatum) and its big bodies (Sun Titan, Sepulchral Primordial,
+The Warring Triad, Angel of the Ruins, Sabin), so it plays like the thread's "traditional" grindy midrange.
+
+- **In:** Victimize, Ripples of Undeath ($8.03), Syphon Mind, Unexpected Windfall, Vandalblast, Nibelheim Aflame,
+  Dusk // Dawn, Stroke of Midnight (Moxfield shows it as "Memories of Nibelheim", its Final Fantasy name),
+  Seasoned Dungeoneer, Grave Researcher, Merciless Executioner, Karai, Future of the Foot, Legate Lanius, Caesar's
+  Ace, Summon: G.F. Ifrit, Gaius van Baelsar, Joshua, Phoenix's Dominant, Raphael, the Nightwatcher, Ral Zarek,
+  Guest Lecturer, Ninja's Blades, White Auracite, Pinnacle Monk // Mystic Peak.
+- **Out:** Kefka, Cyan, Siegfried, Setzer, Strago and Relm, Edgar, Umaro, Interceptor, Ruin Grinder, Combustible
+  Gearhulk, Flayer of the Hatebound, Archfiend of Depravity, Solemn Simulacrum, Palace Jailer, Bedevil, Mortify,
+  Night's Whisper, Key to the City, Coin of Fate, Stitcher's Supplier, Phoenix Down.
+
+### Where the sources agree
+
+- **Both lists add** Gaius van Baelsar, Joshua, Phoenix's Dominant and Raphael, the Nightwatcher.
+- **Both lists cut** Kefka, Umaro, Interceptor, Ruin Grinder, Edgar, Combustible Gearhulk, Flayer of the Hatebound,
+  Archfiend of Depravity, Solemn Simulacrum, Palace Jailer, Bedevil, Mortify, Setzer, Strago and Relm, Night's
+  Whisper, Key to the City, Coin of Fate and Phoenix Down. The first five match the thread's cut list.
+- **Thread picks that show up in a list:** Accursed Marauder, Karmic Guide, Boromir, Selfless Spirit and Tersa
+  Lightshatter (Terra Targets Only), Pinnacle Monk (Terranimator), Faithless Looting (Terra Targets Only's
+  sideboard).
+- **The split:** Terra Targets Only cuts Ruinous Ultimatum and every noncreature spell. Terranimator keeps them, and
+  so did the thread's longest comment ("I will never cut" Ultimatum).
+
 ## Not read yet
 
-The thread links four Moxfield decks and four upgrade videos. Moxfield pages open in the built-in browser.
-
-- Terra lists from Vtmahesh: moxfield.com/decks/DTaCeXNiGkOfgD5I9NTcWw and moxfield.com/decks/B1pEj1H2l0q2tBScQ-618Q
-- Responsible-Yam-3833's list: moxfield.com/decks/68wS-O0ipUaJb6h9MolJHQ
-- Videos: DeckTechsForDecks (youtu.be/ReuawwVtU5s), the Command Zone (youtu.be/ZqI_-DH7lBc), and Guys That Magic's
-  $100 (youtu.be/omN6T6Hqfr4) and $300 (youtu.be/vPRmG16wVHU). Some of these may already be among the 49 videos read
-  for `decks/angles.html`.
+Four upgrade videos: DeckTechsForDecks (youtu.be/ReuawwVtU5s), the Command Zone (youtu.be/ZqI_-DH7lBc), and Guys
+That Magic's $100 (youtu.be/omN6T6Hqfr4) and $300 (youtu.be/vPRmG16wVHU). Some of these may already be among the 49
+videos read for `decks/angles.html`.
