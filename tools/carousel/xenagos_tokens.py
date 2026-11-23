@@ -5,15 +5,11 @@ printing on both sides with "flip on long edge" puts each back behind its own fr
 The PDF copy (xenagos-tokens.pdf) is printed from this page with Playwright, Letter size, no margins.
 Print at 100% / Actual size, not Fit to page.
 
-How many (the user's picks, Nov 2026; a die on one token stands in for big stacks):
-Eldrazi Spawn 9, Plant 9, Copy 9, Elephant 3, Lightning Rager 2, Beast 1, Wurm with deathtouch 1,
-Wurm with lifelink 1, Garruk emblem 1: 36 faces on 18 cards, two full sheets (the user filled the spare slots
-with more Spawn/Plant).
-How they pair (each token comes from one card, so two faces only clash when both their cards are out):
-- Spawn / Plant x9: Rapacious One and Avenger of Zendikar; when both are out, a die covers the overflow.
-- Copy on the back of everything else: Copy comes from Dual Nature or Blade of Selves.
-- The two Wurms (both from Wurmcoil Engine) and the three Elephants (Terastodon, possibly to three
-  players) sit on separate cards, since they arrive together.
+How many (the user's picks, Nov 23, 2026; cut down from 18 cards): 9 cards on one sheet.
+- Copy / Plant x4
+- Elephant / Copy x1
+- Lightning Rager on the front x4, each with a different back: Wurm (deathtouch), Wurm (lifelink), Beast,
+  Garruk emblem. (Eldrazi Spawn and the other Elephants were dropped.)
 Run from the repo root:  python3 tools/carousel/xenagos_tokens.py
 """
 import html, os, re
@@ -33,9 +29,9 @@ IMG = {
 SPAWN = [CDN + 'e/0/e0e3826c-3c85-4910-bd6c-04894ea328d0.jpg', CDN + '3/5/35fb1a3d-3f1a-45ba-a643-1dca435c77de.jpg',
          CDN + 'd/0/d0da4f8d-cce9-4d08-8d11-792e0b2af7d0.jpg']  # Rise of the Eldrazi's three arts
 
-CARDS = ([('Eldrazi Spawn', 'Plant')] * 9 + [('Elephant', 'Copy')] * 3 + [('Lightning Rager', 'Copy')] * 2 +
-         [('Wurm (deathtouch)', 'Copy'), ('Wurm (lifelink)', 'Copy'), ('Beast', 'Copy'),
-          ('Garruk, Caller of Beasts emblem', 'Copy')])
+CARDS = ([('Copy', 'Plant')] * 4 + [('Elephant', 'Copy')] +
+         [('Lightning Rager', b) for b in ('Wurm (deathtouch)', 'Wurm (lifelink)', 'Beast',
+                                           'Garruk, Caller of Beasts emblem')])
 
 spawn = 0
 def face(name):
