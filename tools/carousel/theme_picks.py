@@ -83,23 +83,31 @@ THEMES = {
   },
  },
  'first-flight': {
-  'cmd': 'Isperia, Supreme Judge', 'id': 'wu', 'direction': 'Flyers with anthems and cost reducers',
-  'edhrec_theme': 'flying', 'roles': {'piece': 'Flyers'},
+  # Reworked Nov 24, 2026 (the user's ask): the direction is now card draw and flyers with anthems; cost reducers are
+  # no longer a goal (a flyer that makes flyers cheaper still counts as a flyer payoff). The old answers were cleared.
+  'cmd': 'Isperia, Supreme Judge', 'id': 'wu', 'direction': 'Card draw and flyers with anthems',
+  'edhrec_theme': 'flying', 'roles': {'engine': 'Card draw engines, anthems and flyer payoffs', 'piece': 'Flyers', 'support': 'More card draw and support'},
   'why': 'Isperia draws when creatures attack us, and the box is a flock of fliers; the direction is more and better '
-         'flyers, cards that pump them all, and cards that make them cheaper.',
+         'flyers, cards that pump them all, and card draw, above all draw that keeps coming every turn or every attack.',
   'tests': [
+   ('engine', 'Draws off flyers or attacks', r'(?:whenever|for each)[^.]{0,80}(?:with flying|attacks?|combat damage)[^.]{0,60}\bdraws?\b', None),
    ('engine', 'Pumps flyers or your team', r'creatures? you control (?:with flying |that have flying )?(?:get|gets) \+|creatures? with flying you control get \+|other (?:birds?|angels?|spirits?|sphinx(?:es)?|faeries|drakes?|bats?|thopters?|pegasus|griffins?) you control get \+', None),
-   ('engine', 'Makes creature spells cheaper', r'creature spells? (?:with flying )?you cast cost|spells? with flying you cast cost', None),
    ('engine', 'Pays off flyers', r'(?:whenever|for each)[^.]{0,40}creatures? (?:you control )?with flying|creatures? you control with flying|(?:creature )?spells? with flying', None),
    ('engine', 'Gives your team flying', r'creatures you control (?:gain|have) flying', None),
+   # Repeatable draw: a trigger that draws, an upkeep or draw-step draw, an extra draw, or a draw ability that
+   # doesn't sacrifice the card. ("Whenever you draw a card, ..." is a payoff, not draw, so the draw must follow a comma.)
+   ('engine', 'Repeatable card draw', r'(?m)(?:whenever|at the beginning of)(?![^.]*\bopponent draws)[^.]*?(?:, | and )(?:you may |you |each player |that player |its controller )?draws? (?:a|an|one|two|three|x|that many|cards?|additional)|draws? an additional card|^(?:(?!sacrifice|discard this)[^:\n])*\}(?:(?!sacrifice|discard this)[^:\n])*: [^.\n]{0,60}\bdraws?\b', None),
    ('piece', 'Flyer', r"(?m)^(?:[a-z' -]+, )*flying(?:,| \(|$)", r'Creature'),
    ('piece', 'Makes flying tokens', r'create[^.]{0,90}with flying', None),
+   # A rock that sacrifices itself for a card (Mind Stone, Commander's Sphere) is ramp, not card draw.
+   ('support', 'Draws cards (once)', r'(?<!sacrifice ~: )(?<!sacrifice this artifact: )(?<!opponent )(?<!whenever you )(?<!whenever a player )\bdraws? (?:a|an|one|two|three|four|five|x|that many|cards? equal)\b|(?:reveal|look at) the top[^.]*\.(?:[^.]*\.){0,2}[^.]*into your hand', None),
    ('support', 'Gives a creature flying', r'(?:equipped|enchanted|target) creature (?:gains|has|gets [^.]{0,12}and (?:gains|has)) flying', None),
   ],
-  'sources': {
+  'sources': {   # all re-read Nov 24, 2026; TheGamer's budget list is new
    'edh-ff': ('EDHREC upgrade guide (its Archidekt list)', 'archidekt:4465023'),
-   'cgb-ff': ('Cardgamebase upgrade guide', 'https://cardgamebase.com/?p=32232'),
+   'cgb-ff': ('Cardgamebase upgrade guide', 'https://cardgamebase.com/first-flight-upgrade-guide/'),
    'cr-ff': ('Cards Realm, Upgrading First Flight', 'https://mtg.cardsrealm.com/en-gb/articles/upgrading-precon-commander-first-flight-isperia-supreme-judge'),
+   'tg-ff': ('TheGamer, best budget upgrades', 'https://www.thegamer.com/magic-the-gathering-mtg-first-flight-starter-commander-deck-budget-upgrades/'),
   },
  },
  'grave-danger': {
@@ -560,7 +568,7 @@ def main():
 # 2026), and whether its theme picks are built. A deck with no direction yet says so.
 DIRECTIONS = {
  'silverquill-influence': 'All-in Auras', 'living-energy': 'Big energy', 'eternal-might': 'Pure Zombie typal',
- 'first-flight': 'Flyers with anthems and cost reducers', 'grave-danger': 'Value Zombies on a loop',
+ 'first-flight': 'Card draw and flyers with anthems', 'grave-danger': 'Value Zombies on a loop',
  'chaos-incarnate': 'Goad everything', 'draconic-destruction': 'More and better Dragons, some ramp',
  'token-triumph': 'Token doublers', 'lorehold-spirit': 'Discard engine',
  'squirreled-away': 'All Squirrels with Chatterfang',

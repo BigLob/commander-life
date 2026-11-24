@@ -12,7 +12,7 @@
 "name": "First Flight",
 "cmd": "Isperia, Supreme Judge",
 "img": "https://cards.scryfall.io/normal/front/d/e/de3278de-a045-4290-b05f-3b19e7055091.jpg?1783918741",
-"direction": "Flyers with anthems and cost reducers",
+"direction": "Card draw and flyers with anthems",
 "ready": true
 },
 {
@@ -68,7 +68,7 @@
 "name": "Lorehold Spirit",
 "cmd": "Quintorius, History Chaser",
 "img": "https://cards.scryfall.io/normal/front/0/7/0742f19d-179c-43c4-ab95-4160c56b4384.jpg?1783903867",
-"direction": null,
+"direction": "Discard engine",
 "ready": false
 },
 {
