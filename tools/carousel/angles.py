@@ -10,7 +10,6 @@ The numbers are fetched live: EDHREC's precon page (share of decks adding or cut
 theme counts, and Scryfall (Commander legality, Game Changer flag). So reruns refresh the numbers, not the prose.
 Run from the repo root:  python3 tools/carousel/angles.py
 """
-import manacost
 import datetime, html, json, os, re, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -1033,7 +1032,7 @@ def main():
         return (f'<figure class="ct"><button class="zb" type="button" data-z="{normal}" data-u="{url}"{ds} aria-label="Zoom {esc(n)}">'
                 f'<img src="{small}" srcset="{small} 146w, {normal} 488w" sizes="(max-width: 600px) 30vw, 150px" width="146" height="204" '
                 f'alt="{esc(n)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></button>'
-                f'<figcaption><span class="nl"><a class="c" href="{url}" target="_blank" rel="noopener">{esc(n)}</a>{manacost.html(manacost.get(n))}</span>{num}{tag}</figcaption></figure>')
+                f'<figcaption><a class="c" href="{url}" target="_blank" rel="noopener">{esc(n)}</a>{num}{tag}</figcaption></figure>')
 
     def who(keys):
         if not keys: return '<span class="who">no guide; EDHREC\'s theme numbers only</span>'

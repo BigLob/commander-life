@@ -5,7 +5,6 @@ list it, then by its average share. Only colorless identity (works in any deck) 
 Same carousel as adds/ (cuts-template.html with the caption line swapped).
 Run from the repo root:  python3 tools/carousel/staples.py
 """
-import manacost
 import datetime, html, json, os, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -64,7 +63,7 @@ def main():
     assert old in t
     t = t.replace(old, "<b>#${c.r}</b> · added to ${c.pc} of ${CFG.decks} precons · ${pct(c.x)} of decks on average")
     t = (t.replace('__TITLE__', 'Colorless staples').replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(t)
     print('dropped:', dropped); print(len(ALL), 'cards:', ', '.join(f'{c["n"]} ({c["pc"]})' for c in ALL[:12]))

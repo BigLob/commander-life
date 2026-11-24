@@ -7,7 +7,6 @@ matching paper printing). Art matches come from Scryfall Tagger's art tags (art:
 the community keeps; a printing whose art shows a rodent but was never tagged won't be found.
 Run from the repo root:  python3 tools/carousel/rodents.py      (RODENTS_CACHE=<file> reuses the download)
 """
-import manacost
 import collections, json, os, re, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -134,7 +133,7 @@ def main():
     for fn, rows, title, h1, page in pages:
         t = open(os.path.join(HERE, 'rodents-template.html')).read()
         t = (t.replace('__TITLE__', title).replace('__H1__', h1).replace('/*PAGE*/{}', json.dumps(page))
-              .replace('/*ALL*/[]', json.dumps(manacost.fill(rows), ensure_ascii=False, separators=(',', ':'))))
+              .replace('/*ALL*/[]', json.dumps(rows, ensure_ascii=False, separators=(',', ':'))))
         open(os.path.join(OUT, fn), 'w').write(t)
     print(len(legends), 'legendary creatures,', sum(1 for r in legends if r.get('l')), 'Commander-legal (all of them),',
           sum(1 for r in legends if 'T' in r['w']), 'with a rodent creature type')

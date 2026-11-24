@@ -8,7 +8,6 @@ The reason is hand-written from the card's own rules text (linked to Scryfall). 
 paper printing on Scryfall.
 Run from the repo root:  python3 tools/carousel/brew.py [slug ...]
 """
-import manacost
 import html, json, os, sys, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -616,7 +615,7 @@ def build(slug, b):
                    f'{sum(r["q"] for r in ALL)} cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC')}
     t = open(os.path.join(HERE, 'brew-template.html')).read()
     t = (t.replace('__TITLE__', html.escape(b['name'])).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w').write(t)
     if slug.startswith('chatterfang-lenn'):  # the proxy order covers both versions, so either can be built from one print run

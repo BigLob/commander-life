@@ -3,7 +3,6 @@
 Not-legal ones (Un/Alchemy) are left out, and so is anything in the Squirreled Away box or picked to add to it (exclude.py); the page names them. Same carousel as cuts/ (cuts-template.html, caption swapped).
 Run from the repo root:  python3 tools/carousel/squirrels.py
 """
-import manacost
 import datetime, html, json, os, sys, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -41,7 +40,7 @@ def main():
     assert old in t
     t = t.replace(old, "<b>#${c.r} of " + str(n) + "</b> · ${c.t}")
     t = (t.replace('__TITLE__', 'Legendary Squirrels').replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(t)
     print(n, [c['n'] for c in ALL], 'skipped', skipped, 'excluded', out)

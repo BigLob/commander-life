@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
-@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}figcaption .pr{display:flex;flex-direction:column;align-items:flex-end}
-.mc{display:flex;gap:1px;align-items:center;height:1.25em;flex:none}.mc img{width:1em;height:1em;display:block}.mc b{font-weight:400;color:var(--muted);margin:0 2px;font-size:.8em}
-</style>
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
 </head><body>
 <title>__TITLE__</title>
 <script>/*picks-sync: back up fav/bench/trash marks to the shared table; see tools/add_sync.py*/(function(){try{var B="https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-picks/"+location.pathname.replace(/[^A-Za-z0-9_-]+/g,"_").replace(/^_+|_+$/g,"")+".json",R=/(favs|marks)$/,t;function snap(){var o={},i,k,v;for(i=0;i<localStorage.length;i++){k=localStorage.key(i);if(R.test(k)){v=localStorage.getItem(k);o[k]=v}}return o}function has(o){for(var k in o)if(o[k]&&o[k].length>2)return 1;return 0}function push(force){clearTimeout(t);t=setTimeout(function(){try{var o=snap();if(!force&&!has(o))return;o.at=Date.now();fetch(B,{method:"PATCH",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify(o)}).catch(function(){})}catch(e){}},400)}var si=Storage.prototype.setItem,ri=Storage.prototype.removeItem;Storage.prototype.setItem=function(k){si.apply(this,arguments);if(this===localStorage&&R.test(k))push(1)};Storage.prototype.removeItem=function(k){ri.apply(this,arguments);if(this===localStorage&&R.test(k))push(1)};push(0)}catch(e){}})()</script>
@@ -145,8 +143,6 @@ document.querySelector('.srcs').addEventListener('toggle',()=>{fit();go(cur())})
 const pct=x=>Math.round(x*100)+'%';
 function why(c){const e=c.e;
  return `<p class="cite"><b>${c.k.join(' · ')}</b>${c.w?': '+c.w:''} · ${e?(c.n==CFG.cmd?'Commander of '+CFG.decks.toLocaleString('en-US')+' decks':'In '+pct(e[0])+' of '+CFG.decks.toLocaleString('en-US')+' decks · synergy '+(e[1]>=0?'+':'−')+pct(Math.abs(e[1])))+' · ':''}<a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
-// Mana cost as Scryfall's symbols, right-aligned on the name line (the user's ask, Nov 24, 2026).
-function manaCost(s){return s?'<span class="mc" title="'+s+'">'+s.split(' // ').map(h=>(h.match(/\{[^}]+\}/g)||[]).map(t=>'<img src="https://svgs.scryfall.io/card-symbols/'+t.slice(1,-1).replace(/\//g,'')+'.svg" alt="'+t+'" draggable="false">').join('')).join('<b>//</b>')+'</span>':''}
 const money=v=>v==null?'no price':'$'+v.toFixed(2);
 function fit(){const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
 addEventListener('resize',()=>{fit();go(cur())});
@@ -162,7 +158,7 @@ function btns2(c,home){
 function render(keep){D=sortFilter(view(tab));fit();
  for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).reduce((a,c)=>a+c.q,0)+'</span>';b.setAttribute('aria-pressed',k==tab)}
  const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.reduce((a,c)=>a+c.q,0)+' · '+money(fv.reduce((a,c)=>a+pv(c)*c.q,0))+' / '+money(DECK_TOTAL);
-  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${manaCost(c.mc)}${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption>${why(c)}<div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
+  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption>${why(c)}<div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
  figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
 const sc=$('scrub');
 function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}

@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
-@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}figcaption .pr{display:flex;flex-direction:column;align-items:flex-end}
-.mc{display:flex;gap:1px;align-items:center;height:1.25em;flex:none}.mc img{width:1em;height:1em;display:block}.mc b{font-weight:400;color:var(--muted);margin:0 2px;font-size:.8em}
-</style>
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}</style>
 </head><body>
 <title>__TITLE__</title>
 <script>/*picks-sync: back up fav/bench/trash marks to the shared table; see tools/add_sync.py*/(function(){try{var B="https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-picks/"+location.pathname.replace(/[^A-Za-z0-9_-]+/g,"_").replace(/^_+|_+$/g,"")+".json",R=/(favs|marks)$/,t;function snap(){var o={},i,k,v;for(i=0;i<localStorage.length;i++){k=localStorage.key(i);if(R.test(k)){v=localStorage.getItem(k);o[k]=v}}return o}function has(o){for(var k in o)if(o[k]&&o[k].length>2)return 1;return 0}function push(force){clearTimeout(t);t=setTimeout(function(){try{var o=snap();if(!force&&!has(o))return;o.at=Date.now();fetch(B,{method:"PATCH",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify(o)}).catch(function(){})}catch(e){}},400)}var si=Storage.prototype.setItem,ri=Storage.prototype.removeItem;Storage.prototype.setItem=function(k){si.apply(this,arguments);if(this===localStorage&&R.test(k))push(1)};Storage.prototype.removeItem=function(k){ri.apply(this,arguments);if(this===localStorage&&R.test(k))push(1)};push(0)}catch(e){}})()</script>
@@ -176,8 +174,6 @@ function items(){const q=norm(F.q.trim()),ms=ALL.filter(m=>keep(m,q));
  const S={'':(a,b)=>rel(a)-rel(b)||rk(a)-rk(b),t:(a,b)=>(TYPES.indexOf(main(a))>>>0)-(TYPES.indexOf(main(b))>>>0)||rk(a)-rk(b),new:(a,b)=>b.y-a.y,old:(a,b)=>a.y-b.y,ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>(a.p??1e9)-(b.p??1e9),n:(a,b)=>a.n.localeCompare(b.n)}[F.sort];
  return ms.sort(S)}
 const $=id=>document.getElementById(id), tr=$('track');
-// Mana cost as Scryfall's symbols, right-aligned on the name line (the user's ask, Nov 24, 2026).
-function manaCost(s){return s?'<span class="mc" title="'+s+'">'+s.split(' // ').map(h=>(h.match(/\{[^}]+\}/g)||[]).map(t=>'<img src="https://svgs.scryfall.io/card-symbols/'+t.slice(1,-1).replace(/\//g,'')+'.svg" alt="'+t+'" draggable="false">').join('')).join('<b>//</b>')+'</span>':''}
 const money=v=>v==null?'no price':'$'+v.toFixed(2);
 const esc=x=>String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 function chips(m){if(!m.x)return '';const k=pick[m.n]||0;
@@ -185,7 +181,7 @@ function chips(m){if(!m.x)return '';const k=pick[m.n]||0;
 function inner(m){const a=art(m),fav=favs[m.n];
  const img=`<button class="zb" aria-label="Zoom ${esc(m.n)}"><img src="${a.i}" alt="${esc(m.n)}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button>`;
  const why='<div class="why">'+[...m.w].map(w=>`<span>${WHY[w]}</span>`).join('')+(m.d?'<span>Arena only</span>':'')+(m.l?'':'<span class="bad">Not Commander-legal</span>')+'</div>';
- return img+`<figcaption><span class="nm">${esc(m.n)}<small>${esc(m.t)}</small><small>${a.s} · ${a.y}${m.r?' · #'+m.r:''}${m.x?' · '+(m.x.length+1)+' rodent arts':''}</small>${why}</span><span class="pr">${manaCost(m.mc)}${money(m.p)}</span></figcaption>`
+ return img+`<figcaption><span class="nm">${esc(m.n)}<small>${esc(m.t)}</small><small>${a.s} · ${a.y}${m.r?' · #'+m.r:''}${m.x?' · '+(m.x.length+1)+' rodent arts':''}</small>${why}</span><span class="pr">${money(m.p)}</span></figcaption>`
   +(m.f?`<p class="fl">${esc(m.f)}</p>`:'')+chips(m)
   +`<div class="acts"><button data-a="fav"${fav?' class="on"':''}>${fav?'★ Fav':'☆ Fav'}</button>${m.b&&!(pick[m.n])?'<button data-a="flip">Flip</button>':''}</div>`}
 let figs=[];

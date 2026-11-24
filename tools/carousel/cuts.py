@@ -7,7 +7,6 @@ included, since cutting a tapped land is as real a cut as cutting a spell.
 Card data (image, price, type, legality note) is reused from decks/<slug>.html, built by make.py, so run that first.
 Run from the repo root:  python3 tools/carousel/cuts.py [slug ...]
 """
-import manacost
 import datetime, html, json, os, re, sys, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -75,7 +74,7 @@ def build(slug, name, product, cmd, alt, src, today):
            'sub': f'{html.escape(product)} · <b>{html.escape(cmd)}</b> · {TOP} most cut of {decks:,} decks on EDHREC · <a href="../decks/{slug}.html">full deck ›</a>'}
     t = open(os.path.join(HERE, 'cuts-template.html')).read()
     t = (t.replace('__TITLE__', html.escape(name + ': most cut')).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w').write(t)
     print(f'{slug}: {decks} decks; ' + ', '.join(f'{c["n"]} {round(c["x"] * 100)}%' for c in ALL), flush=True)

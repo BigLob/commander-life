@@ -95,8 +95,6 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 #zoom p{color:#ece8dd;font-size:.84rem;max-width:488px;margin:0}
 #zoom a{color:#e8b44a}
 #zoom button{background:#e8b44a;color:#14161a;border:0;border-radius:999px;padding:8px 16px}
-.nl{display:flex;justify-content:space-between;align-items:flex-start;gap:6px}.nl .mc{font-size:.86rem;height:1.2em}
-.mc{display:flex;gap:1px;align-items:center;height:1.25em;flex:none}.mc img{width:1em;height:1em;display:block}.mc b{font-weight:400;color:var(--muted);margin:0 2px;font-size:.8em}
 </style>
 </head>
 <body>
@@ -283,8 +281,6 @@ function maybes(){
   $('stage').innerHTML=grp.map(([h,p])=>{const ks=snap.filter(k=>k.startsWith(p));return ks.length?`<h2>${h} (${ks.length})</h2><div class="pair">${ks.map(k=>tile(item(k),p)).join('')}</div>`:''}).join('')
     +`<p style="text-align:center;margin-top:16px"><button class="pill" data-go="sum">See the summary</button></p>`;
 }
-// Mana cost as Scryfall's symbols, right-aligned on the name line (the user's ask, Nov 24, 2026).
-function manaCost(s){return s?'<span class="mc" title="'+s+'">'+s.split(' // ').map(h=>(h.match(/\{[^}]+\}/g)||[]).map(t=>'<img src="https://svgs.scryfall.io/card-symbols/'+t.slice(1,-1).replace(/\//g,'')+'.svg" alt="'+t+'" draggable="false">').join('')).join('<b>//</b>')+'</span>':''}
 function tile(x,P){
   const v=S.d[P+x.n]||'', add=P!=='c:', ex='tgw'.includes(P[0]);
   // One line of what it does, one of numbers: play share (theme decks, or all of the commander's for the extras), guides, price.
@@ -296,7 +292,7 @@ function tile(x,P){
   const chips=(ex?[x.pick?'<i class="top">In the 15</i>':'',x.theme?`<i class="top">Fits: ${E(x.theme)}</i>`:'',x.gc&&P!=='g:'?'<i class="gc">GC</i>':'']
     :[x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',P==='l:'&&x.theme?'<i class="top">On theme</i>':'',x.gc?'<i class="gc">GC</i>':'']).join('');
   return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"${scroll()?' loading="lazy"':''}></button>
-    <span class="nl"><span class="nm">${E(x.n)}</span>${manaCost(x.mc)}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
+    <span class="nm">${E(x.n)}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
 }
 const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;

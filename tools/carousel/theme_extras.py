@@ -20,7 +20,6 @@ rank. A card that passes the deck's theme tests (THEMES in theme_picks.py) is ma
 theme_picks.py runs it for its deck after writing the JSON, so a rerun there keeps the tabs.
 Downloads are cached in $THEME_EXTRAS_CACHE (default /tmp/theme-extras); delete it to fetch fresh.
 """
-import manacost
 import glob, json, os, re, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -208,7 +207,7 @@ def run(slug):
                            | {front(c['name']) for c in search(base + ' (o:"additional combat" or o:"creatures you control" or o:"each opponent" or o:"opponent loses")')
                               if front(c['name']) in box and finisher(c)})
     J['cedn'] = edn
-    json.dump(manacost.fill_tree(J), open(path, 'w'), separators=(',', ':'))
+    json.dump(J, open(path, 'w'), separators=(',', ':'))
     print(f'{slug}: {len(J["tutors"])} tutors, {len(J["gcs"])} Game Changers, {len(alt)} alt wins + {len(fin)} finishers '
           f'(box: {len(J["box_tutors"])}, {len(J["box_gcs"])}, {len(J["box_wins"])}; EDHREC {edn:,} decks)')
 
