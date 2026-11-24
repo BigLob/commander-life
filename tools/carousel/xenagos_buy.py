@@ -5,6 +5,7 @@ the 16 spells below and the 34 lands. Card names come from xenagos.html's deck l
 image links from Scryfall. Price is the cheapest paper printing, since these are to buy.
 Run from the repo root:  python3 tools/carousel/xenagos_buy.py
 """
+import manacost
 import html, json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -40,6 +41,6 @@ t = open(os.path.join(HERE, 'template.html')).read()
 t = (t.replace('__TITLE__', 'Xenagos To Buy')
       .replace('href="./">‹ All decks', 'href="xenagos.html">‹ Xenagos deck')
       .replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-      .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+      .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
 open(os.path.join(HERE, '..', '..', 'xenagos-to-buy.html'), 'w').write(t)
 print(f'{total} cards, ${price:.2f}, not legal: {[r["n"] for r in ALL if r.get("note")]}')

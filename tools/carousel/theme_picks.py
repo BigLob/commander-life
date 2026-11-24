@@ -28,6 +28,7 @@ In short:
   6. Cuts: box cards ranked by how often direction decks leave them out, then EDHREC's cut share; on-theme box cards
      and the commander are kept. A land picked replaces a land cut, so the land count holds.
 """
+import manacost
 import html, json, os, re, statistics, sys, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
@@ -322,7 +323,7 @@ def main():
     cslug = re.sub(r'[^a-z0-9]+', '-', T['cmd'].lower().replace("'", '')).strip('-')
 
     # The box: from the deck carousel make.py built.
-    h = open(os.path.join(ROOT, 'decks', T.get('precon', slug) + '.html')).read()
+    h = open(os.path.join(ROOT, 'decks', T.get('precon', slug) + '.html'), encoding='utf-8').read()
     box = json.loads(re.search(r'const ALL=(\[.*?\]);\n', h, re.S).group(1))
     boxnames = {front(c['n']) for c in box}
 
@@ -522,7 +523,7 @@ def main():
                              'b': round(x['b'], 3), 'src': [T['sources'][k][0] for k in x['src']], 'gc': x['gc'], 'usd': x['usd'],
                              'land': x['land'], 'top': top, 'theme': x['role'] != 'off'}
         OLD['lands'] = [lj(x, True) for x in lpick] + [lj(x, False) for x in lmore]
-        json.dump(OLD, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
+        json.dump(manacost.fill_tree(OLD), open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
         lands_only_html = True
     else: lands_only_html = False
 
@@ -540,9 +541,10 @@ def main():
             z = f'{x["n"]}: left out of {pct(x["out"])} of the {len(dirn)} Archidekt decks built this way; EDHREC: cut from {pct(x["ed"])} of decks from this box.'
         return (f'<figure class="ct"><button class="zb" type="button" data-z="{E(x["big"])}" data-s="{E(z)}" aria-label="Zoom {E(x["n"])}">'
                 f'<img src="{E(x["img"])}" width="146" height="204" alt="{E(x["n"])}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></button>'
-                # Price right-aligned on the name line (the user's ask, Nov 24, 2026).
+                # Mana cost and price right-aligned on the name line (the user's ask, Nov 24, 2026).
                 f'<figcaption><span class="nl"><a class="c" href="{E(x["url"])}" target="_blank" rel="noopener">{E(x["n"])}</a>'
-                + (f'<span class="pr">${x["usd"]:.2f}</span>' if x.get('usd') else '') + f'</span>{cap}</figcaption></figure>')
+                f'<span class="rt">{manacost.html(manacost.get(x["n"]))}'
+                + (f'<span class="pr">${x["usd"]:.2f}</span>' if x.get('usd') else '') + f'</span></span>{cap}</figcaption></figure>')
     grid = lambda xs, k='add': '<div class="cards">' + ''.join(tile(x, k) for x in xs) + '</div>'
     by = lambda r: [x for x in pick if x['role'] == r]
     secs = ''.join(f'<h3>{RN[r]} ({len(by(r))})</h3>' + grid(by(r)) for r in RN if by(r))
@@ -552,7 +554,7 @@ def main():
     srcs = ''.join(f'<li><a href="{E(u if not u.startswith("archidekt:") else "https://archidekt.com/decks/" + u.split(":")[1])}">{E(l)}</a>: {len(src[k] - boxnames)} cards named that aren\'t in the box</li>'
                    for k, (l, u) in T['sources'].items())
     usd = sum(x['usd'] or 0 for x in pick)
-    tpl = open(os.path.join(HERE, 'theme-picks-template.html')).read()
+    tpl = open(os.path.join(HERE, 'theme-picks-template.html'), encoding='utf-8').read()
     rep = {
      '__TITLE__': E(f'{T["direction"]}: 15 in, 15 out'),
      '__DECK__': E(T['cmd'] + ' · ' + slug.replace('-', ' ').title()),
@@ -572,12 +574,12 @@ def main():
     if lands_only_html:
         # Swap only the land section into the existing page.
         cut = lambda t: re.search(r'(?s)<h2>Land version.*?(?=<h2>Bracket check</h2>)', t)
-        page = open(os.path.join(ROOT, 'theme', slug + '.html')).read()
-        open(os.path.join(ROOT, 'theme', slug + '.html'), 'w').write(page.replace(cut(page).group(0), cut(tpl).group(0)))
+        page = open(os.path.join(ROOT, 'theme', slug + '.html'), encoding='utf-8').read()
+        open(os.path.join(ROOT, 'theme', slug + '.html'), 'w', encoding='utf-8').write(page.replace(cut(page).group(0), cut(tpl).group(0)))
         print('lands:', ', '.join(x['n'] for x in lpick)); print('more:', ', '.join(x['n'] for x in lmore))
         return
     os.makedirs(os.path.join(ROOT, 'theme'), exist_ok=True)
-    open(os.path.join(ROOT, 'theme', slug + '.html'), 'w').write(tpl)
+    open(os.path.join(ROOT, 'theme', slug + '.html'), 'w', encoding='utf-8').write(tpl)
     # Review data for theme/review.html: the 15 in rank order then the options by score, the 15 cuts then the rest.
     def add_j(x, top):
         return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'job': x['label'], 'role': RN[x['role']], 'a': round(x['a'], 3),
@@ -592,7 +594,7 @@ def main():
            'adds': [add_j(x, True) for x in pick] + [add_j(x, False) for x in opts],
            'cuts': [cut_j(x, True) for x in cuts] + [cut_j(x, False) for x in morecuts],
            'lands': [add_j(x, True) for x in lpick] + [add_j(x, False) for x in lmore], 'basics': btxt}
-    json.dump(rev, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
+    json.dump(manacost.fill_tree(rev), open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
     write_index()
     import theme_extras; theme_extras.run(slug)   # the Tutors, Game Changers and Wincons tabs
     import theme_combos; theme_combos.run(slug)   # theme/final.html's combo and benchmark data

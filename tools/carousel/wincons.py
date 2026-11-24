@@ -4,6 +4,7 @@ with color buttons (All, W, U, B, R, G, Multicolor, Colorless). Same carousel as
 Not-legal cards are left out (house rule: legal only on pages of cards to play); the page names them.
 Run from the repo root:  python3 tools/carousel/wincons.py
 """
+import manacost
 import datetime, html, json, os, re, sys, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -61,7 +62,7 @@ def main():
     assert old in t
     t = t.replace(old, paint + old + "paintCol();", 1)
     t = (t.replace('__TITLE__', 'Win conditions').replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(t)
     print(n, 'skipped', skipped)

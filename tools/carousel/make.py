@@ -4,6 +4,7 @@ Decklists: MTGJSON's deck files (exact printings), or, for decks MTGJSON doesn't
 Nov 2026), Wizards' decklist article. Card data, prices and image links come from Scryfall.
 Run from the repo root:  python3 tools/carousel/make.py [slug ...]
 """
+import manacost
 import html, json, os, re, sys, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -115,7 +116,7 @@ def build(slug, name, product, cmd, alt, src):
     t = open(os.path.join(HERE, 'template.html')).read()
     cfg = {'slug': slug, 'deck': name, 'set': product, 'cmd': cmd, 'alt': alt}
     t = (t.replace('__TITLE__', html.escape(name)).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w').write(t)
     missing = [r['n'] for r in ALL if r['p'] is None]
