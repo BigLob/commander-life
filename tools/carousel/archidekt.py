@@ -14,14 +14,15 @@ from concurrent.futures import ThreadPoolExecutor
 CMD, OUT = sys.argv[1], sys.argv[2]
 UA = {'User-Agent': 'Mozilla/5.0 (commander-life deck research)'}
 
-def get(url, tries=4):
+def get(url, tries=6):
     for i in range(tries):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
                 return json.load(r)
         except Exception as e:
             if i == tries - 1: raise
-            time.sleep(2 * (i + 1))
+            # Archidekt answers 429 when the search is paged too fast (Terra, Nov 23, 2026): wait it out.
+            time.sleep(30 * (i + 1) if getattr(e, 'code', None) == 429 else 2 * (i + 1))
 
 def ids():
     found = {}
@@ -32,7 +33,7 @@ def ids():
             d = get('https://archidekt.com/api/decks/v3/?' + q)
             for r in d['results']: found[r['id']] = r
             if not d.get('next') or not d['results']: break
-            page += 1; time.sleep(0.3)
+            page += 1; time.sleep(1)
         print(order, len(found), file=sys.stderr)
     return found
 
