@@ -95,6 +95,7 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 #zoom p{color:#ece8dd;font-size:.84rem;max-width:488px;margin:0}
 #zoom a{color:#e8b44a}
 #zoom button{background:#e8b44a;color:#14161a;border:0;border-radius:999px;padding:8px 16px}
+.nl{display:flex;justify-content:space-between;align-items:baseline;gap:6px}.nl .pr{flex:none;font-family:var(--f-mono);font-size:.74rem;color:var(--accent);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -284,15 +285,16 @@ function maybes(){
 function tile(x,P){
   const v=S.d[P+x.n]||'', add=P!=='c:', ex='tgw'.includes(P[0]);
   // One line of what it does, one of numbers: play share (theme decks, or all of the commander's for the extras), guides, price.
-  const $p=x.usd?' · $'+x.usd.toFixed(x.usd<10?2:0):'';
-  const info=ex?`<span class="job">${E(x.job)}</span><span class="num">${x.e?pct(x.e):'<5%'} of ${E(D.cmd.split(',')[0])} decks${$p}</span>`
-    :add?`<span class="job">${E(x.job)}</span><span class="num">${pct(x.a)} of theme decks${x.src.length?' · '+x.src.length+' guide'+(x.src.length>1?'s':''):''}${$p}</span>`
+  // Price sits right-aligned on the name line (the user's ask, Nov 24, 2026).
+  const $p=x.usd?'$'+x.usd.toFixed(x.usd<10?2:0):'';
+  const info=ex?`<span class="job">${E(x.job)}</span><span class="num">${x.e?pct(x.e):'<5%'} of ${E(D.cmd.split(',')[0])} decks</span>`
+    :add?`<span class="job">${E(x.job)}</span><span class="num">${pct(x.a)} of theme decks${x.src.length?' · '+x.src.length+' guide'+(x.src.length>1?'s':''):''}</span>`
     :`<span class="job">Cut by ${pct(x.out)} of theme decks</span>`;
   // Chips: where the card already stands, what in the deck it ties to (the theme test it passes), and GC.
   const chips=(ex?[x.pick?'<i class="top">In the 15</i>':'',x.theme?`<i class="top">Fits: ${E(x.theme)}</i>`:'',x.gc&&P!=='g:'?'<i class="gc">GC</i>':'']
     :[x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',P==='l:'&&x.theme?'<i class="top">On theme</i>':'',x.gc?'<i class="gc">GC</i>':'']).join('');
   return `<div class="card ${v}" data-k="${E(P+x.n)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer"${scroll()?' loading="lazy"':''}></button>
-    <span class="nm">${E(x.n)}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
+    <span class="nl"><span class="nm">${E(x.n)}</span>${$p?`<span class="pr">${$p}</span>`:''}</span>${info}${chips?`<span class="chips">${chips}</span>`:''}
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
 }
 const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;

@@ -486,14 +486,16 @@ def main():
         if kind == 'add':
             cap = (f'<span class="r">{E(x["label"])}</span><span class="m">Built this way {pct(x["a"])} · EDHREC theme {pct(x["b"])}'
                    f'{" · " + str(len(x["src"])) + " source" + ("s" if len(x["src"]) != 1 else "") if x["src"] else ""}</span>'
-                   + ('<span class="gc">Game Changer</span>' if x['gc'] else '') + (f'<span class="m">${x["usd"]:.2f}</span>' if x['usd'] else ''))
+                   + ('<span class="gc">Game Changer</span>' if x['gc'] else ''))
             z = f'{x["n"]}: {x["label"]}. Played by {pct(x["a"])} of the {len(dirn)} Archidekt decks built this way ({pct(share(x["n"], rest))} of the others), {pct(x["b"])} of EDHREC\'s {edn:,} {T["edhrec_theme"]} decks.' + (' Added by: ' + ', '.join(T['sources'][k][0] for k in x['src']) + '.' if x['src'] else ' No written source adds it.')
         else:
             cap = f'<span class="r">Left out of {pct(x["out"])} of decks built this way</span><span class="m">EDHREC cut {pct(x["ed"])}</span>'
             z = f'{x["n"]}: left out of {pct(x["out"])} of the {len(dirn)} Archidekt decks built this way; EDHREC: cut from {pct(x["ed"])} of decks from this box.'
         return (f'<figure class="ct"><button class="zb" type="button" data-z="{E(x["big"])}" data-s="{E(z)}" aria-label="Zoom {E(x["n"])}">'
                 f'<img src="{E(x["img"])}" width="146" height="204" alt="{E(x["n"])}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></button>'
-                f'<figcaption><a class="c" href="{E(x["url"])}" target="_blank" rel="noopener">{E(x["n"])}</a>{cap}</figcaption></figure>')
+                # Price right-aligned on the name line (the user's ask, Nov 24, 2026).
+                f'<figcaption><span class="nl"><a class="c" href="{E(x["url"])}" target="_blank" rel="noopener">{E(x["n"])}</a>'
+                + (f'<span class="pr">${x["usd"]:.2f}</span>' if x.get('usd') else '') + f'</span>{cap}</figcaption></figure>')
     grid = lambda xs, k='add': '<div class="cards">' + ''.join(tile(x, k) for x in xs) + '</div>'
     by = lambda r: [x for x in pick if x['role'] == r]
     secs = ''.join(f'<h3>{RN[r]} ({len(by(r))})</h3>' + grid(by(r)) for r in RN if by(r))

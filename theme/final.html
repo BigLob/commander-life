@@ -109,6 +109,7 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 .combos li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.84rem}
 .combos .tn{font-family:var(--f-mono);font-size:.7rem;color:var(--accent)}
 .combos .pr{font-size:.74rem;color:var(--muted)}
+.nl{display:flex;justify-content:space-between;align-items:baseline;gap:6px}.nl .pr{flex:none;font-family:var(--f-mono);font-size:.74rem;color:var(--accent);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -250,13 +251,14 @@ function render(){
 const W={y:'Yes',m:'Maybe',n:'No'};
 function tile(x,P){
   const k=P+x.n, v=ans(k), was=R1[k], add=P!=='c:', ex='tgw'.includes(P[0]);
-  const $p=x.usd?' · $'+x.usd.toFixed(x.usd<10?2:0):'';
-  const info=ex?`<span class="job">${E(x.job)}</span><span class="num">${x.e?pct(x.e):'<5%'} of ${E(D.cmd.split(',')[0])} decks${$p}</span>`
-    :add?`<span class="job">${E(x.job)}</span><span class="num">${pct(x.a)} of theme decks${x.src&&x.src.length?' · '+x.src.length+' guide'+(x.src.length>1?'s':''):''}${$p}</span>`
+  // Price sits right-aligned on the name line (the user's ask, Nov 24, 2026).
+  const $p=x.usd?'$'+x.usd.toFixed(x.usd<10?2:0):'';
+  const info=ex?`<span class="job">${E(x.job)}</span><span class="num">${x.e?pct(x.e):'<5%'} of ${E(D.cmd.split(',')[0])} decks</span>`
+    :add?`<span class="job">${E(x.job)}</span><span class="num">${pct(x.a)} of theme decks${x.src&&x.src.length?' · '+x.src.length+' guide'+(x.src.length>1?'s':''):''}</span>`
     :`<span class="job">Cut by ${pct(x.out)} of theme decks</span>`;
   const chips=[`<i class="r1${v!==was?' ch':''}">Round 1: ${W[was]}</i>`,!ex&&x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',ex&&x.pick?'<i class="top">In the 15</i>':'',x.theme&&ex?`<i class="top">Fits: ${E(x.theme)}</i>`:'',x.gc&&P!=='g:'?'<i class="gc">GC</i>':''].join('');
   return `<div class="card ${v}" data-k="${E(k)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer" loading="lazy"></button>
-    <span class="nm">${E(x.n)}</span>${info}<span class="chips">${chips}</span>
+    <span class="nl"><span class="nm">${E(x.n)}</span>${$p?`<span class="pr">${$p}</span>`:''}</span>${info}<span class="chips">${chips}</span>
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
 }
 const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;
