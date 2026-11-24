@@ -218,6 +218,31 @@ THEMES = {
    'cz735': ('Command Zone #735 list', 'archidekt:21533404'),
   },
  },
+ 'revival-trance': {
+  'cmd': 'Terra, Herald of Hope', 'id': 'rwb', 'direction': 'Toolbox reanimator', 'max_power': 3,
+  'edhrec_theme': 'reanimator', 'roles': {'engine': 'Reanimation and extra combats', 'piece': 'Small creatures with enter or dies effects', 'support': 'Graveyard fillers and sacrifice'},
+  'why': 'Terra mills two each combat and, when she hits a player, pays two to return a creature with power 3 or less, '
+         'so the deck wants small creatures whose value is on entering or dying (every hit replays removal, draw or '
+         'another reanimation), more ways to bring creatures back, extra combats, and ways to put the right creature '
+         'in the graveyard. Creatures with power over 3 are off-theme: she can\'t return them. Approved by the user '
+         'Nov 23, 2026, from four options (sacrifice loop, Final Fantasy legends and extra combats were the others).',
+  'tests': [
+   ('engine', 'Brings creatures back from the graveyard', r'(?:return|put)[^.]{0,40}\bcreature cards?\b[^.]{0,80}from (?:your|a|all) graveyards? (?:to|onto) the battlefield|enchant creature card in a graveyard', None),
+   ('engine', 'Extra combat (another mill and Terra hit)', r'additional combat phase', None),
+   ('piece', 'Small creature with an enter or dies effect', r'when(?:ever)? (?:~|this creature) (?:enters|dies)|\bevoke\b', r'Creature'),
+   ('support', 'Puts creatures in your graveyard', r'search your library for [^.]{0,40}cards?,? (?:and )?put (?:that card|them|it|those cards) into your graveyard|\bmills?\b|\bsurveil\b|draw[^.]{0,40}, then discard|discard[^.]{0,30}, then draw', None),
+   ('support', 'Sacrifices your own creatures', r'sacrifice (?:a|another) (?:nontoken )?creature[^.:]{0,20}:|each player sacrifices (?:a|an|one|two)[^.]{0,20}creature|as an additional cost to cast this spell, sacrifice a creature', None),
+  ],
+  'sources': {
+   'cz677': ('Command Zone #677 list', 'archidekt:13139894'),
+   'gz-rt': ('Grazzet MTG, Cut-Rate Commander list', 'archidekt:13722104'),
+   'dt-rt': ('DeckTechsForDecks list', 'moxfield:K5Bqv16dp0WqNobaquipkg'),
+   'gtm-rt': ('Guys That Magic $300 list (includes the $100 adds)', 'moxfield:FQfVHv2JkUiir-tAZamIHQ'),
+   'rd-tto': ('r/EDH: Vtmahesh, "Terra Targets Only"', 'moxfield:DTaCeXNiGkOfgD5I9NTcWw'),
+   'rd-tan': ('r/EDH: Responsible-Yam-3833, "Terranimator"', 'moxfield:68wS-O0ipUaJb6h9MolJHQ'),
+   'rd-th': ('r/EDH thread "Revival trance thoughts and upgrades" (cards suggested for Terra or either commander)', 'reddit:r/EDH/comments/1v4n0xd'),
+  },
+ },
  'eternal-might': {
   'cmd': "Temmet, Naktamun's Will", 'id': 'wub', 'direction': 'Pure Zombie typal',
   'edhrec_theme': 'zombies', 'roles': {'piece': 'Zombies', 'support': 'Typal support'},
@@ -286,6 +311,10 @@ def article_text(page):
     m = re.search(r'(?is)<article\b.*?</article>', s)
     return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', m.group(0) if m else s)))
 
+def today():
+    # '%-d' (no leading zero) is glibc only; Windows' strftime rejects it.
+    t = time.localtime(); return f"{time.strftime('%b', t)} {t.tm_mday}, {t.tm_year}"
+
 def main():
     slug, cache = sys.argv[1], sys.argv[2]
     T = THEMES[slug]; os.makedirs(cache, exist_ok=True)
@@ -309,6 +338,12 @@ def main():
 
     def role(c):
         o, t = oracle(c).lower(), typeline(c)
+        # Terra returns only creatures with power 3 or less, so for her a bigger creature is off-theme whatever its text
+        # ('max_power'). '*' counts as 0, as it does in the graveyard for most such cards.
+        f = (c.get('card_faces') or [c])[0]
+        if T.get('max_power') is not None and 'Creature' in f.get('type_line', t).split(' // ')[0]:
+            m = re.match(r'\d+', f.get('power') or c.get('power') or '0')
+            if m and int(m.group()) > T['max_power']: return 'off', f'Power over {T["max_power"]} (the commander can\'t return it)'
         for r, label, ot, tt in T['tests']:
             if (ot is None or re.search(ot, o)) and (tt is None or re.search(tt, t)):
                 return r, label
@@ -347,6 +382,10 @@ def main():
     names = sorted((n for n in cards if len(n) >= 5), key=len, reverse=True)
     for key, (label, url) in T['sources'].items():
         def fetch():
+            # Moxfield lists and Reddit posts refuse scripts: read them in the desktop app's browser and save the card
+            # names as a JSON list in <cache>/src-<key>.json first.
+            if url.startswith(('moxfield:', 'reddit:')):
+                sys.exit(f'{key}: save its card names to {P(f"src-{key}.json")} first ({url}; read it in the browser)')
             if url.startswith('archidekt:'):
                 d = get('https://archidekt.com/api/decks/' + url.split(':')[1] + '/')
                 # A list with an "Adds" pile (the Command Zone's) counts that pile; any other list counts every card
@@ -526,7 +565,7 @@ def main():
      '__CHECK__': E(f'{gcs} Game Changer{"s" if gcs != 1 else ""} (Bracket 3 allows 3). Commander Spellbook\'s combo-based tag for the finished 100: '
                     f'{TAG.get(est.get("bracketTag"), est.get("bracketTag", "?"))}. Combos it finds: {combos_txt}. ' + ' '.join(notes)),
      '__SOURCES__': srcs, '__N__': str(len(decks)), '__ND__': str(len(dirn)), '__EDN__': f'{edn:,}',
-     '__DATE__': time.strftime('%b %-d, %Y'),
+     '__DATE__': today(),
     }
     for k, v in rep.items(): tpl = tpl.replace(k, v)
     if lands_only_html:
@@ -547,7 +586,7 @@ def main():
         return {'n': x['n'], 'img': x['big'], 'url': x['url'], 'out': round(x['out'], 3), 'ed': round(x['ed'], 3),
                 'land': x['land'], 'top': top}
     opts = sorted((x for r in RN for x in more[r]), key=lambda x: (-x['score'], x['mv']))
-    rev = {'slug': slug, 'cmd': T['cmd'], 'direction': T['direction'], 'why': T['why'], 'date': time.strftime('%b %-d, %Y'),
+    rev = {'slug': slug, 'cmd': T['cmd'], 'direction': T['direction'], 'why': T['why'], 'date': today(),
            'n': len(decks), 'nd': len(dirn), 'edn': edn, 'gcs': gcs, 'bracket': TAG.get(est.get('bracketTag'), est.get('bracketTag')),
            'adds': [add_j(x, True) for x in pick] + [add_j(x, False) for x in opts],
            'cuts': [cut_j(x, True) for x in cuts] + [cut_j(x, False) for x in morecuts],
@@ -571,6 +610,7 @@ DIRECTIONS = {
  'first-flight': 'Card draw and flyers with anthems', 'grave-danger': 'Value Zombies on a loop',
  'chaos-incarnate': 'Goad everything', 'draconic-destruction': 'More and better Dragons, some ramp',
  'token-triumph': 'Token doublers', 'lorehold-spirit': 'Discard engine',
+ 'revival-trance': 'Toolbox reanimator',
  'squirreled-away': 'All Squirrels with Chatterfang',
 }
 

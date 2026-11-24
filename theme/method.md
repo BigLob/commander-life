@@ -27,6 +27,8 @@ with shares on different scales and then tuned it against our own picks.
    read for card names; a card the article names that isn't in the box counts as that source adding it. Videos and
    Moxfield lists can't be read from the cloud sandbox (YouTube and Moxfield refuse it), so they count only when a run
    is made from the desktop app, which can read transcripts.
+   A source given as `moxfield:<id>` or `reddit:<thread>` is read in the desktop app's built-in browser and saved
+   as a list of card names in `<cache>/src-<key>.json` first; the script stops and says so if it isn't there.
 
 ## Steps
 
@@ -97,6 +99,9 @@ and marks cards that pass a theme test or are already in the 15. `theme_picks.py
 python3 tools/carousel/archidekt.py "Killian, Decisive Mentor" <cache>/decks.json
 python3 tools/carousel/theme_picks.py silverquill-influence <cache>
 ```
+
+A `THEMES` entry can set `max_power`: creatures with more power are off-theme (Terra, Herald of Hope only returns
+power 3 or less, so Revival Trance uses 3, and the box's big creatures become cut candidates).
 
 A new deck needs a `THEMES` entry (commander, color identity, direction, EDHREC theme slug, tests, sources), the
 user's sign-off on its tests, and a row in `links.html`.

@@ -108,8 +108,8 @@
 "name": "Revival Trance (Terra)",
 "cmd": "Terra, Herald of Hope",
 "img": "https://cards.scryfall.io/normal/front/5/a/5aa1a2d7-6133-41a9-9662-9008d1309935.jpg?1783906373",
-"direction": null,
-"ready": false
+"direction": "Toolbox reanimator",
+"ready": true
 },
 {
 "slug": "revival-trance-celes",
