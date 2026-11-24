@@ -3,6 +3,7 @@
   boros/<slug>-more.html   the way adds/ collects cards: the next most-played cards EDHREC has for the commander that are NOT in the average deck (cuts-template.html)
 Run from the repo root:  python3 tools/carousel/boros_picks.py
 """
+import manacost
 import html, json, os, re, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -70,7 +71,7 @@ def build(cmd):
            'sub': f'100 cards · ${total:,.0f} in singles · from {decks:,} decks on EDHREC'}
     t = open(os.path.join(HERE, 'brew-template.html'), encoding='utf-8').read()
     t = (t.replace('__TITLE__', html.escape(cfg['deck'])).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
     open(os.path.join(OUT, f'{s}-deck.html'), 'w', encoding='utf-8', newline='\n').write(t)
     # the options carousel
     MO = []
@@ -87,7 +88,7 @@ def build(cmd):
     assert old in t
     t = t.replace(old, "<b>#${c.r} of " + str(MORE) + "</b> · in ${c.sh}% of decks · synergy ${c.sy>0?'+':''}${c.sy}%")
     t = (t.replace('__TITLE__', html.escape(cfg2['deck'])).replace('/*CFG*/null', json.dumps(cfg2, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(MO, ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(manacost.fill(MO), ensure_ascii=False, separators=(',', ':'))))
     open(os.path.join(OUT, f'{s}-more.html'), 'w', encoding='utf-8', newline='\n').write(t)
     print(s, len(ALL), f'${total:.0f}', 'no price', [r['n'] for r in ALL + MO if r['p'] is None], [r['n'] for r in MO][:5])
     return s, nm

@@ -28,6 +28,7 @@ In short:
   6. Cuts: box cards ranked by how often direction decks leave them out, then EDHREC's cut share; on-theme box cards
      and the commander are kept. A land picked replaces a land cut, so the land count holds.
 """
+import manacost
 import html, json, os, re, statistics, sys, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
@@ -475,7 +476,7 @@ def main():
                              'b': round(x['b'], 3), 'src': [T['sources'][k][0] for k in x['src']], 'gc': x['gc'], 'usd': x['usd'],
                              'land': x['land'], 'top': top, 'theme': x['role'] != 'off'}
         OLD['lands'] = [lj(x, True) for x in lpick] + [lj(x, False) for x in lmore]
-        json.dump(OLD, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
+        json.dump(manacost.fill_tree(OLD), open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
         lands_only_html = True
     else: lands_only_html = False
 
@@ -493,7 +494,7 @@ def main():
             z = f'{x["n"]}: left out of {pct(x["out"])} of the {len(dirn)} Archidekt decks built this way; EDHREC: cut from {pct(x["ed"])} of decks from this box.'
         return (f'<figure class="ct"><button class="zb" type="button" data-z="{E(x["big"])}" data-s="{E(z)}" aria-label="Zoom {E(x["n"])}">'
                 f'<img src="{E(x["img"])}" width="146" height="204" alt="{E(x["n"])}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></button>'
-                f'<figcaption><a class="c" href="{E(x["url"])}" target="_blank" rel="noopener">{E(x["n"])}</a>{cap}</figcaption></figure>')
+                f'<figcaption><span class="nl"><a class="c" href="{E(x["url"])}" target="_blank" rel="noopener">{E(x["n"])}</a>{manacost.html(manacost.get(x["n"]))}</span>{cap}</figcaption></figure>')
     grid = lambda xs, k='add': '<div class="cards">' + ''.join(tile(x, k) for x in xs) + '</div>'
     by = lambda r: [x for x in pick if x['role'] == r]
     secs = ''.join(f'<h3>{RN[r]} ({len(by(r))})</h3>' + grid(by(r)) for r in RN if by(r))
@@ -543,7 +544,7 @@ def main():
            'adds': [add_j(x, True) for x in pick] + [add_j(x, False) for x in opts],
            'cuts': [cut_j(x, True) for x in cuts] + [cut_j(x, False) for x in morecuts],
            'lands': [add_j(x, True) for x in lpick] + [add_j(x, False) for x in lmore], 'basics': btxt}
-    json.dump(rev, open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
+    json.dump(manacost.fill_tree(rev), open(os.path.join(ROOT, 'theme', slug + '.json'), 'w'), separators=(',', ':'))
     write_index()
     import theme_extras; theme_extras.run(slug)   # the Tutors, Game Changers and Wincons tabs
     import theme_combos; theme_combos.run(slug)   # theme/final.html's combo and benchmark data

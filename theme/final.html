@@ -109,6 +109,8 @@ pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:.7rem;background:va
 .combos li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.84rem}
 .combos .tn{font-family:var(--f-mono);font-size:.7rem;color:var(--accent)}
 .combos .pr{font-size:.74rem;color:var(--muted)}
+.nl{display:flex;justify-content:space-between;align-items:flex-start;gap:6px}.nl .mc{font-size:.86rem;height:1.2em}
+.mc{display:flex;gap:1px;align-items:center;height:1.25em;flex:none}.mc img{width:1em;height:1em;display:block}.mc b{font-weight:400;color:var(--muted);margin:0 2px;font-size:.8em}
 </style>
 </head>
 <body>
@@ -248,6 +250,8 @@ function render(){
     +body+`<p style="text-align:center;margin-top:18px"><button class="pill" data-go="${P.next}">${NEXT[P.next]} ›</button></p>`;
 }
 const W={y:'Yes',m:'Maybe',n:'No'};
+// Mana cost as Scryfall's symbols, right-aligned on the name line (the user's ask, Nov 24, 2026).
+function manaCost(s){return s?'<span class="mc" title="'+s+'">'+s.split(' // ').map(h=>(h.match(/\{[^}]+\}/g)||[]).map(t=>'<img src="https://svgs.scryfall.io/card-symbols/'+t.slice(1,-1).replace(/\//g,'')+'.svg" alt="'+t+'" draggable="false">').join('')).join('<b>//</b>')+'</span>':''}
 function tile(x,P){
   const k=P+x.n, v=ans(k), was=R1[k], add=P!=='c:', ex='tgw'.includes(P[0]);
   const $p=x.usd?' · $'+x.usd.toFixed(x.usd<10?2:0):'';
@@ -256,7 +260,7 @@ function tile(x,P){
     :`<span class="job">Cut by ${pct(x.out)} of theme decks</span>`;
   const chips=[`<i class="r1${v!==was?' ch':''}">Round 1: ${W[was]}</i>`,!ex&&x.top?`<i class="top">${P==='l:'?'In the 10':'In the 15'}</i>`:'',ex&&x.pick?'<i class="top">In the 15</i>':'',x.theme&&ex?`<i class="top">Fits: ${E(x.theme)}</i>`:'',x.gc&&P!=='g:'?'<i class="gc">GC</i>':''].join('');
   return `<div class="card ${v}" data-k="${E(k)}"><button class="zb" type="button" aria-label="Zoom ${E(x.n)}"><img src="${E(x.img)}" alt="${E(x.n)}" referrerpolicy="no-referrer" loading="lazy"></button>
-    <span class="nm">${E(x.n)}</span>${info}<span class="chips">${chips}</span>
+    <span class="nl"><span class="nm">${E(x.n)}</span>${manaCost(x.mc)}</span>${info}<span class="chips">${chips}</span>
     <div class="yn">${btn('y','Yes',v)}${btn('m','Maybe',v)}${btn('n','No',v)}</div></div>`;
 }
 const btn=(c,l,v)=>`<button class="${c}" data-v="${c}" aria-pressed="${v===c}">${l}</button>`;

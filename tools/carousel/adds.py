@@ -3,6 +3,7 @@ or, for a deck with a chosen direction in angles.py's PICKS, our 15 sourced pick
 Same carousel as cuts/ (cuts-template.html with the caption line swapped). Card data comes from Scryfall.
 Run from the repo root:  python3 tools/carousel/adds.py    (all decks)
 """
+import manacost
 import datetime, html, json, os, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -60,7 +61,7 @@ def build(slug, name, product, cmd, alt, src, today):
     t = t.replace(old, ("<b>Pick ${c.r} of " + str(n) + "</b> · ${c.x?'added to '+pct(c.x)+' of '+CFG.decks.toLocaleString('en-US')+' decks':'not in EDHREC\\'s top adds'} · ${c.w}") if pick
                   else "<b>#${c.r} most added</b> · added to ${pct(c.x)} of ${CFG.decks.toLocaleString('en-US')} decks")
     t = (t.replace('__TITLE__', html.escape(f'{name}: {label}')).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w', encoding='utf-8', newline='\n').write(t)
     print(slug, decks, ', '.join(f'{c["n"]} {c["x"]:.0%}' for c in ALL[:3]), flush=True)

@@ -9,6 +9,7 @@ main set, so they have no page.
 Same carousel as cuts/ and adds/ (cuts-template.html with the caption line swapped). Card data comes from Scryfall.
 Run from the repo root:  python3 tools/carousel/set_adds.py
 """
+import manacost
 import datetime, html, json, os, re, sys, time, urllib.parse
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.join(HERE, '..', '..')
 sys.path.insert(0, HERE)
@@ -75,7 +76,7 @@ def build(slug, name, product, cmd, alt, src, today):
     t = t.replace(old_why, '<b>#${c.r} from ' + html.escape(setname) + '</b> · in ${pct(c.x)} of ${c.d.toLocaleString(\'en-US\')} decks')
     t = t.replace('>Most cut first<', '>Most played first<')
     t = (t.replace('__TITLE__', html.escape(f'{name}: top {setname} adds')).replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
-          .replace('/*ALL*/[]', json.dumps(ALL, ensure_ascii=False, separators=(',', ':'))))
+          .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, slug + '.html'), 'w').write(t)
     print(slug, setname, len(ALL), ', '.join(f'{c["n"]} {c["x"]:.0%}' for c in ALL), ('| illegal: ' + ', '.join(illegal)) if illegal else '', flush=True)
