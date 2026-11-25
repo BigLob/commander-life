@@ -169,7 +169,7 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
 <script>
 (() => {
   'use strict';
-  const VERSION = '1.3';
+  const VERSION = '1.4';
   const $ = s => document.querySelector(s);
   const app = $('#app');
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -180,7 +180,6 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
   };
   const rid = () => Math.random().toString(36).slice(2, 10);
-  const NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
 
   // ---- the shared quiz, in the Commander Life database ----
   // Kept under tables/, the only part of the database its rules open to the pages.
@@ -260,7 +259,11 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
   const round = () => +S.round || 0;
   const key = (r, c, i) => `${r}_${c}_${i}`;
   const used = k => !!(S.used && S.used[k]);
-  const cfg = () => ({ buzz: +getPath(S, 'cfg/buzz') || 6, answer: +getPath(S, 'cfg/answer') || 6, final: +getPath(S, 'cfg/final') || 30 });
+  // Preset timings, no settings to fiddle with (v1.4, the user's ask): the buzzers open by themselves
+  // 3 s after a clue goes up, and if nobody buzzes the answer shows 10 s after the clue went up
+  // (so the buzz window is 7 s; after a wrong answer the rest get a fresh 7 s).
+  const OPEN_AFTER = 3000, BUZZ_WINDOW = 7000;
+  const cfg = () => ({ buzz: BUZZ_WINDOW / 1000, answer: 6, final: 30 });
   const cur = () => (S.cur && typeof S.cur === 'object' && S.cur.step) ? S.cur : null;
   function clueOf(c) {
     const g = game(); if (!g || !c) return null;
@@ -334,6 +337,50 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
     if (!out.rounds.length && !out.final) throw new Error('No clues found.');
     return out;
   }
+
+  // The 11/26 game night (from the user's PDF, "I. Fields" to "VI. Fads"). Each category is
+  // ordered easiest to hardest, top to bottom, with every answer kept on its own clue. Fixes to the
+  // PDF: Morgan Wallen (was Wallace), "manual" (was manuel), Welcome to Dead House, Aquae Sulis,
+  // The Hundred and One Dalmatians. 4 Letter Cities: the PDF gave the Aquae Sulis clue the answer
+  // Oslo and had no clue E, so the Bath answer and the Norway clue were filled in.
+  const CLUES_1126 = `Title: 11/26
+# 11/26
+Fields | 200 | The area of playing field beyond the lines connecting the bases in baseball. | Outfield
+Fields | 400 | Built in 1914 in Chicago, on the site of a former seminary: “Play Ball!” | Wrigley Field
+Fields | 600 | This place from a 1989 film has been called Iowa’s Mount Rushmore. | “Field of Dreams”
+Fields | 800 | In 2024 country stars Morgan Wallen and Eric Church bought this magazine that focuses on hunting and fishing. | “Field & Stream”
+Fields | 1000 | The player positioned between both goals in soccer. | Midfielder
+Fields | 1200 | This term puts the “manual” in a manual laborer on a farm. | A field hand
+Animals | 200 | The largest mammal in the world. | The blue whale
+Animals | 400 | This is where dogs have sweat glands. | Pads of their feet
+Animals | 600 | The only insect that can rotate its head 180 degrees. | Praying mantis
+Animals | 800 | This group is called a clowder. | Cats
+Animals | 1000 | Skin color of a polar bear. | Black
+Animals | 1200 | Number of heart chambers in a cockroach. | 13
+Written Words | 200 | In this book the White Witch casts a spell so it will always be winter but never Christmas. | “The Lion, the Witch and the Wardrobe”
+Written Words | 400 | This kids’ classic has a chapter named “The Puppies Arrive”. | “The Hundred and One Dalmatians”
+Written Words | 600 | Society revolves around science and efficiency in this futuristic 1932 novel by Aldous Huxley. | “Brave New World”
+Written Words | 800 | In “The Jungle Book” Rikki-Tikki-Tavi is this animal. | Mongoose
+Written Words | 1000 | “Welcome to Dead House” from 1992 is the first Goosebumps book by this author. | R. L. Stine
+Written Words | 1200 | 1944’s “Absent in the Spring” is one of the non-mystery novels she wrote as Mary Westmacott. | Agatha Christie
+Geography | 200 | This continent is also a country. | Australia
+Geography | 400 | The South American landmark known as “The Lost City of the Incas”. | Machu Picchu
+Geography | 600 | The northeast tip of this peninsula is not far from Cancun, Cozumel and Isla Mujeres. | Yucatan
+Geography | 800 | The smallest and shallowest of the world’s 5 oceans. | Arctic Ocean
+Geography | 1000 | The number of states that touch the Pacific Ocean. | 5
+Geography | 1200 | “Parks and Recreation” is set in the fictional town of Pawnee in this state. | Indiana
+4 Letter Cities | 200 | Piazza del Duomo in this city includes a cathedral and cemetery as well as the Leaning Tower. | Pisa
+4 Letter Cities | 400 | Capital of Norway. | Oslo
+4 Letter Cities | 600 | Ukrainian capital. | Kiev (Kyiv)
+4 Letter Cities | 800 | South American capital known as the “City of Kings”. | Lima
+4 Letter Cities | 1000 | The most populous city on the island of Hawaii. | Hilo
+4 Letter Cities | 1200 | Romans called this Somerset city Aquae Sulis, then probably took a soak there. | Bath
+Fads | 200 | 1960’s dance popularized by Chubby Checker. | The Twist
+Fads | 400 | 1970’s extremely wide pant legs. | Bell bottoms
+Fads | 600 | 1920’s fast-paced dance with swinging arms and legs. | The Charleston
+Fads | 800 | A 2020 social media platform with short-form dance videos. | TikTok
+Fads | 1000 | 1990’s plastic discs that started as milk bottle caps in Hawaii. | Pogs
+Fads | 1200 | 1980’s toy: a hoop worn around the ankle, and you jump over the ball end. | Skip-It`;
 
   // A full test game, written in the show's style (not copied from it): two rounds, three wager
   // clues and a final, so the whole flow can be tried before game night.
@@ -471,7 +518,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
   }
 
   // ================= TV board =================
-  let bSig = '', fxSeen, fxInit = false, bWho = null, bOpen = null, bTimer = 0, bTimeUp = '', soundOn = false, bStep = '';
+  let bSig = '', fxSeen, fxInit = false, bWho = null, soundOn = false, bStep = '';
   function renderBoard() {
     if (!$('#board')) {
       app.innerHTML = `<div id="board"><div class="b-top"><span id="bTitle"></span><span class="brand">Gowpardy</span><span class="rd" id="bRound"></span></div>
@@ -529,12 +576,12 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
           let foot = '';
           if (c.step === 'reveal') foot = '';
           else if (c.solo) foot = `<div class="who">${esc(nameOf(c.solo))}</div>`;
-          else if (c.step === 'show') foot = `<div class="state">Get ready…</div>`;
+          else if (c.step === 'show') foot = `<div><div class="state">Get ready…</div><div class="bar"><i style="--t:${OPEN_AFTER / 1000}s"></i></div></div>`;
           else if (c.step === 'open' && w) foot = `<div class="who">${esc(nameOf(w))}</div>`;
-          else if (c.step === 'open') foot = bTimeUp === c.open ? `<div class="state">Time</div>` : `<div><div class="state go">Buzz in!</div><div class="bar"><i style="--t:${cfg().buzz}s"></i></div></div>`;
+          else if (c.step === 'open') foot = `<div><div class="state go">Buzz in!</div><div class="bar"><i style="--t:${cfg().buzz}s"></i></div></div>`;
           else if (c.step === 'buzzed') foot = `<div><div class="who">${esc(nameOf(c.who))}</div><div class="bar"><i style="--t:${cfg().answer}s"></i></div></div>`;
           const ans = c.step === 'reveal' ? `<div class="p-a">${esc(q.a)}</div>` : '<div class="p-a"></div>';
-          sig = 'clue' + key(c.r, c.c, c.i) + c.step + c.open + (w || '') + (c.who || '') + bTimeUp + c.wager + (c.step === 'reveal');
+          sig = 'clue' + key(c.r, c.c, c.i) + c.step + c.open + (w || '') + (c.who || '') + c.wager + (c.step === 'reveal');
           html = `<div class="panel"><div class="p-head">${esc(q.cat)} ${wv}</div><div class="p-body"><div style="width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:center">
             <div class="p-q" style="height:100%;display:grid;place-items:center"><span>${esc(q.q)}</span></div>${ans}</div></div><div class="p-foot">${foot}</div></div>`;
           after = el => { const p = el.querySelector('.p-q'); if (p) fit(p, innerHeight * .11, 18); };
@@ -570,11 +617,6 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     if (ansr && bWho !== c.open + ansr) { if (bWho !== null) FX.buzz(); bWho = c.open + ansr; }
     else if (bWho === null && loaded) bWho = '';
     const step = c ? c.step + (c.open || '') : '';
-    if (c && c.step === 'open' && c.open !== bOpen) {
-      bOpen = c.open; clearTimeout(bTimer);
-      const open = c.open;
-      bTimer = setTimeout(() => { const cc = cur(); if (cc && cc.open === open && cc.step === 'open' && !winner(cc)) { bTimeUp = open; FX.time(); render(); } }, cfg().buzz * 1000);
-    }
     if (c && c.step === 'wager' && bStep !== step) FX.wager();
     bStep = step;
   }
@@ -625,13 +667,28 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     }
     renderHost();
   }
+  // The host's phone runs the clock (its own clock only: cur/t and cur/ot are its Date.now()):
+  // buzzers open OPEN_AFTER after the clue goes up, and the answer shows when the buzz window runs
+  // out with nobody in. Each step is sent once.
+  let hAuto = '';
+  function hostAuto() {
+    const c = cur(), now = Date.now();
+    if (!c || c.solo || !clueOf(c)) return;
+    const k = key(c.r, c.c, c.i) + c.step + (c.open || '');
+    if (hAuto === k) return;
+    if (c.step === 'show' && now >= (+c.t || 0) + OPEN_AFTER) {
+      hAuto = k; patch({ 'cur/step': 'open', 'cur/open': rid(), 'cur/who': null, 'cur/ot': now });
+    } else if (c.step === 'open' && !winner(c) && now >= (+c.ot || 0) + BUZZ_WINDOW) {
+      hAuto = k; patch({ 'cur/step': 'reveal', 'cur/who': null, ...fx('time') });
+    }
+  }
   function renderHost() {
     // Keep the clue file being typed: rebuild everything else around it.
-    const ta = $('#hText'), keepText = ta ? ta.value : null, open = $('#hLoad') ? $('#hLoad').open : null;
+    const open = $('#hLoad') ? $('#hLoad').open : null;
     const pOpen = $('#hPlayers') ? $('#hPlayers').open : null, sOpen = $('#hSet') ? $('#hSet').open : null;
     const g = game(), c = cur(), F = fin(), ps = players();
     let h = `<div class="phone"><div class="bar-top"><span><span class="brand" style="font-size:18px">Gowpardy</span> Host</span><small>${live ? 'live' : 'offline'} · v${VERSION}</small></div>`;
-    if (!g) h += `<p class="note">No game loaded yet. Paste your clues under <b>Load clues</b> below (or tap <b>Test game</b> to try it out), then open this page with <b>#board</b> on the TV and <b>#buzz</b> on each player's phone.</p>`;
+    if (!g) {}
     else if (F) h += hostFinal(g, F, ps);
     else if (c) h += hostClue(c, ps);
     else h += hostGrid(g);
@@ -639,27 +696,14 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
       h += `<div class="row-btns"><button class="btn sm${S.show === 'scores' ? ' gold' : ''}" data-act="scores">${S.show === 'scores' ? 'Hide scores on TV' : 'Show scores on TV'}</button></div>`;
     }
     h += `<details id="hPlayers"${pOpen === false ? '' : ' open'}><summary>Players (${ps.length})</summary>${hostPlayers(ps)}</details>`;
-    h += `<details id="hLoad"${open || !g ? ' open' : ''}><summary>Load clues</summary>
-      <p class="note">One clue per line: <b>Category | Value | Clue | Answer</b>. Rows pasted from a spreadsheet (those four columns) work too.
-      <b># Round 2</b> starts a new round; <b># Final</b> then one line for the final clue (leave its value empty).
-      Put <b>*</b> before a value for a wager clue (<b>*800</b>). Values left empty count up 200, 400… <b>Title: …</b> names the game.</p>
-      <textarea id="hText" spellcheck="false" placeholder="Planets | 200 | The planet closest to the Sun | Mercury"></textarea>
-      <div class="row-btns"><label class="btn sm">Open file<input type="file" id="hFile" accept=".txt,.tsv,.csv,.json,text/*" hidden></label>
-      <button class="btn sm" data-act="sample">Test game</button></div>
-      <div id="hParse" class="note"></div>
-      <div class="row-btns">${armBtn('load', 'Start this game (scores to 0)', 'gold')}</div></details>`;
-    h += `<details id="hSet"${sOpen ? ' open' : ''}><summary>Settings</summary>
-      <p class="note">Seconds on the TV's timer bar (it only shows; you still end each clue).</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-      <label class="note">Buzz<input type="number" min="2" max="60" data-cfg="buzz" value="${cfg().buzz}"></label>
-      <label class="note">Answer<input type="number" min="2" max="60" data-cfg="answer" value="${cfg().answer}"></label>
-      <label class="note">Final<input type="number" min="5" max="180" data-cfg="final" value="${cfg().final}"></label></div>
+    // Two preset games, one tap each (two taps when it would replace a game in progress).
+    const gb = (id, label) => g ? armBtn(id, label, 'gold') : `<button class="btn gold" data-act="${id}">${label}</button>`;
+    h += `<details id="hLoad"${open || !g ? ' open' : ''}><summary>Start a game</summary>
+      <div class="row-btns">${gb('g1126', '11/26 clues')}${gb('gtest', 'Test game')}</div></details>`;
+    h += `<details id="hSet"${sOpen ? ' open' : ''}><summary>More</summary>
       <div class="row-btns">${armBtn('resetScores', 'Scores to 0')}${armBtn('kickAll', 'Remove all players')}${g ? armBtn('unload', 'Clear the game') : ''}</div></details>`;
     h += '</div>';
     app.innerHTML = h;
-    const t = $('#hText');
-    if (keepText !== null) t.value = keepText;
-    showParse();
     bindHost();
   }
 
@@ -703,12 +747,11 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
       h += `<div class="st"><b>${esc(nameOf(c.solo))}</b> answers for ${fmt(v)}.</div>
         <div class="row-btns"><button class="btn good" data-act="right">Right +${v}</button><button class="btn bad" data-act="wrong">Wrong −${v}</button></div>`;
     } else if (c.step === 'show') {
-      h += `<div class="st">Read it out, then open the buzzers. Anyone who buzzes before that is locked out for half a second.</div>
-        <div class="row-btns"><button class="btn gold" data-act="open">Open buzzers</button></div>
+      h += `<div class="st">Read it out. The buzzers open by themselves in 3 seconds.</div>
         <div class="row-btns"><button class="btn sm" data-act="reveal">Show the answer</button><button class="btn sm" data-act="unpick">Put it back</button></div>`;
     } else if (c.step === 'open') {
       const order = buzzOrder(c).filter(id => !out[id]);
-      h += `<div class="st">${w ? `<b>${esc(nameOf(w))}</b> buzzed first…` : 'Buzzers are open.'}</div>
+      h += `<div class="st">${w ? `<b>${esc(nameOf(w))}</b> buzzed first…` : 'Buzzers are open. The answer shows by itself if nobody buzzes.'}</div>
         ${order.length > 1 ? `<div class="note">Order: ${order.map(nameOf).map(esc).join(', ')}</div>` : ''}
         <div class="row-btns"><button class="btn" data-act="reveal">No one: show the answer</button></div>`;
     } else if (c.step === 'buzzed') {
@@ -753,7 +796,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
   }
 
   function hostPlayers(ps) {
-    if (!ps.length) return `<p class="note">Nobody yet. Players open this page with <b>#buzz</b> and pick their name.</p>`;
+    if (!ps.length) return `<p class="note">Nobody yet. Players open this page with <b>#buzz</b> and type their name.</p>`;
     return `<p class="note">Tap a name to give them control (they pick next). − and + change a score by 100.</p><div class="plist">${ps.map(p => `<div class="prow${p.id === S.ctl ? ' ctl' : ''}">
       <span class="n" data-ctl="${p.id}">${esc(p.name)}${p.seen && Date.now() - p.seen > 120000 ? '<small>away</small>' : ''}</span>
       <button class="btn sm" data-adj="-100_${p.id}">−</button><button class="btn sm" data-adj="100_${p.id}">+</button>
@@ -761,29 +804,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
       <div class="row-btns">${ps.map(p => armBtn('kick_' + p.id, 'Remove ' + esc(p.name), 'sm')).join('')}</div>`;
   }
 
-  let parsed = null;
-  function showParse() {
-    const t = $('#hText'), out = $('#hParse');
-    if (!t || !out) return;
-    parsed = null;
-    if (!t.value.trim()) { out.textContent = ''; return; }
-    try {
-      parsed = parseGame(t.value);
-      const rs = arr(parsed.rounds);
-      out.innerHTML = `<b>${esc(parsed.title || 'Gowpardy')}</b>: ` + rs.map(r => `${esc(r.name)}, ${arr(r.cats).length} categories, ${arr(r.cats).reduce((n, c) => n + arr(c.clues).length, 0)} clues (${arr(r.cats).reduce((n, c) => n + arr(c.clues).filter(q => q.w).length, 0)} wager)`).join('; ') + (parsed.final ? '; final round' : '; no final round');
-    } catch (e) { out.innerHTML = `<span style="color:var(--bad);white-space:pre-line">${esc(e.message)}</span>`; }
-  }
-
   function bindHost() {
-    const t = $('#hText');
-    t.oninput = showParse;
-    $('#hFile').onchange = e => {
-      const file = e.target.files[0]; if (!file) return;
-      file.text().then(s => { t.value = s; showParse(); });
-    };
-    app.querySelectorAll('[data-cfg]').forEach(i => i.onchange = () => {
-      const v = Math.round(+i.value); if (v > 0 && v <= 180) patch({ ['cfg/' + i.dataset.cfg]: v });
-    });
     const wi = $('#hWager');
     if (wi) wi.oninput = () => { hDraft = wi.value; };
     app.onclick = e => {
@@ -804,11 +825,9 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
       if (!act) return;
       if (act.startsWith('kick_')) { if (armed(act)) patch({ ['players/' + act.slice(5)]: null }); return; }
       switch (act) {
-        case 'sample': t.value = SAMPLE; showParse(); break;
-        case 'load':
-          if (!parsed) { $('#hParse').innerHTML = '<span style="color:var(--bad)">Paste some clues first.</span>'; return; }
-          if (!armed('load')) return;
-          startGame(parsed); $('#hLoad').open = false; break;
+        case 'g1126': case 'gtest':
+          if (game() && !armed(act)) return;
+          startGame(parseGame(act === 'g1126' ? CLUES_1126 : SAMPLE)); break;
         case 'unload': if (armed('unload')) patch({ game: null, cur: null, buzz: null, used: null, fin: null, show: null, round: 0 }); break;
         case 'resetScores': if (armed('resetScores')) { const o = {}; players().forEach(p => o[`players/${p.id}/score`] = 0); patch(o); } break;
         case 'kickAll': if (armed('kickAll')) patch({ players: null, ctl: null }); break;
@@ -816,7 +835,6 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
         case 'next': if (cluesLeft(round()) && !armed('next')) return; nextRound(g); break;
         case 'prev': if (armed('prev')) patch({ round: Math.max(0, round() - 1), cur: null, buzz: null }); break;
         case 'unpick': patch({ cur: null, buzz: null, ['used/' + key(c.r, c.c, c.i)]: null }); hDraft = null; break;
-        case 'open': patch({ 'cur/step': 'open', 'cur/open': rid(), 'cur/who': null }); break;
         case 'reveal': patch({ 'cur/step': 'reveal', 'cur/who': null, ...fx('reveal') }); break;
         case 'toBoard': patch({ cur: null, buzz: null }); break;
         case 'soloGo': {
@@ -825,7 +843,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
           const cap = Math.max(p ? p.score : 0, maxV);
           const v = Math.max(0, Math.min(cap, Math.round(+(hDraft != null ? hDraft : (c.wager || q.v)) || 0)));
           hDraft = null;
-          patch({ 'cur/wager': v, 'cur/step': 'show' });
+          patch({ 'cur/wager': v, 'cur/step': 'show', 'cur/t': Date.now() });
           break;
         }
         case 'right': {
@@ -843,7 +861,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
             o['cur/out/' + who] = true;
             const out = Object.assign({}, outOf(c), { [who]: true });
             // Anyone left who hasn't had a go gets the buzzers again; if no one, show the answer.
-            if (players().some(p => !out[p.id])) Object.assign(o, { 'cur/step': 'open', 'cur/open': rid(), 'cur/who': null });
+            if (players().some(p => !out[p.id])) Object.assign(o, { 'cur/step': 'open', 'cur/open': rid(), 'cur/who': null, 'cur/ot': Date.now() });
             else o['cur/step'] = 'reveal';
           }
           patch(o);
@@ -869,7 +887,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     const r = round(), g = game(), q = g.rounds[r].cats[ci].clues[i];
     if (used(key(r, ci, i))) return;
     hDraft = null;
-    const c = { r, c: ci, i, step: q.w ? 'wager' : 'show' };
+    const c = { r, c: ci, i, step: q.w ? 'wager' : 'show', t: Date.now() };
     if (q.w) { c.solo = S.ctl || (players()[0] || {}).id || null; c.wager = q.v; }
     patch({ cur: c, buzz: null, show: null, ['used/' + key(r, ci, i)]: true });
   }
@@ -888,16 +906,14 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     if (!mine && loaded) {
       if ($('#zJoin')) return;
       const last = store.get('quiz-name') || '';
-      app.innerHTML = `<div class="phone"><div class="join" id="zJoin"><h1 class="brand">Gowpardy</h1><p class="note" style="text-align:center">Who's playing on this phone?</p>
-        <div class="chips" style="justify-content:center">${NAMES.map(n => `<button class="chip" data-n="${n}" style="font-size:20px;padding:12px 18px">${n}</button>`).join('')}</div>
-        <input type="text" id="zName" maxlength="24" placeholder="Or type a name" value="${esc(NAMES.includes(last) ? '' : last)}">
+      app.innerHTML = `<div class="phone"><div class="join" id="zJoin"><h1 class="brand">Gowpardy</h1><p class="note" style="text-align:center;font-size:18px">Type your name</p>
+        <input type="text" id="zName" maxlength="24" placeholder="Your name" autocomplete="off" autocapitalize="words" value="${esc(last)}" style="font-size:22px;text-align:center">
         <button class="btn gold" id="zGo">Join</button></div></div>`;
       const join = n => {
         n = String(n || '').trim().slice(0, 24); if (!n) return;
         store.set('quiz-name', n); audio();
         patch({ [`players/${me}`]: { name: n, score: 0, at: NOW, seen: NOW } });
       };
-      app.querySelectorAll('[data-n]').forEach(b => b.onclick = () => join(b.dataset.n));
       $('#zGo').onclick = () => join($('#zName').value);
       $('#zName').onkeydown = e => { if (e.key === 'Enter') join(e.target.value); };
       return;
@@ -930,7 +946,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
 
   function buzzState(mine) {
     const c = cur(), g = game(), F = fin();
-    if (Date.now() < zSoon) return { cls: 'soon', html: 'Too soon!<small>Wait for the host</small>', key: 'soon' };
+    if (Date.now() < zSoon) return { cls: 'soon', html: 'Too soon!<small>Wait for it to light up</small>', key: 'soon' };
     if (!g) return { cls: '', html: 'Waiting<small>for the host to load a game</small>', key: 'nogame' };
     if (F && F.step === 'done') return { cls: '', html: 'Game over', key: 'done', foot: 'Final scores are on the TV.' };
     if (S.show === 'scores') return { cls: '', html: 'Scores<small>on the TV</small>', key: 'scores' };
@@ -941,7 +957,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     const out = outOf(c);
     if (c.step === 'reveal') return { cls: '', html: 'Wait', key: 'reveal', foot: 'The answer is on the TV.' };
     if (out[me]) return { cls: 'out', html: 'Locked out<small>for this clue</small>', key: 'out' };
-    if (c.step === 'show') return { cls: '', html: 'Get ready', key: 'show', foot: "Don't buzz until the host opens the buzzers." };
+    if (c.step === 'show') return { cls: '', html: 'Get ready', key: 'show', foot: 'Wait for the button to light up.' };
     if (c.step === 'open') {
       const w = winner(c), mineIn = zMine[c.open] || getPath(S, `buzz/${c.open}/${me}`);
       if (w === me) return { cls: 'in', html: "You're in!<small>Answer out loud</small>", key: 'in' + c.open };
@@ -1013,6 +1029,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
   // Buzzer phones check in now and then so the host can see who's still connected.
   setInterval(() => { if (ROLE === 'buzz' && live && S.players && S.players[me] && document.visibilityState === 'visible') fetch(Q + '.json', { method: 'PATCH', body: JSON.stringify({ [`players/${me}/seen`]: NOW }) }).catch(() => {}); }, 45000);
 
+  if (ROLE === 'host') setInterval(hostAuto, 200);
   if (!['board', 'host', 'buzz'].includes(ROLE)) { renderPick(); return; }
   document.title = 'Gowpardy · ' + { board: 'TV', host: 'Host', buzz: 'Buzzer' }[ROLE];
   // A screen that sleeps mid-question is no use; ask to keep it on (where the browser allows).
