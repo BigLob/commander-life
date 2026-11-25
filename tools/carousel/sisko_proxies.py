@@ -1,4 +1,4 @@
-"""Build sisko-proxies.html: 9 cards picked for the Captain Benjamin Sisko deck as print-and-cut
+"""Build sisko-proxies.html: cards picked for the Captain Benjamin Sisko deck as print-and-cut
 proxies, 9 per US Letter page at real card size (2.5 x 3.5 in), grey cut lines, blank backs.
 The user prints double-sided (flip on long edge), so every card page is followed by an empty page:
 that way card page 2 doesn't land on the back of card page 1.
@@ -10,9 +10,9 @@ Run from the repo root:  python3 tools/carousel/sisko_proxies.py
 import html, json, os, re, urllib.request
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
-CARDS = ['Captain James T. Kirk', 'Captain Jean-Luc Picard', 'Academy Instructor', 'Gala Greeters',
-         'Felidar Retreat', 'Impossible Choice', 'Test of Priorities',
-         'Cryptic Command', 'Resistance Is Futile']
+# Nov 25, 2026: the first 9 (Kirk, Picard, Academy Instructor, Gala Greeters, Felidar Retreat, Impossible
+# Choice, Test of Priorities, Cryptic Command, Resistance Is Futile) were replaced by this second batch.
+CARDS = ["Ni'Var Science Academy", 'Q Continuum', 'Deanna Troi, Psychic Counsel', 'Captain Kathryn Janeway']
 
 req = urllib.request.Request('https://api.scryfall.com/cards/collection',
                              json.dumps({'identifiers': [{'name': n} for n in CARDS]}).encode(),
