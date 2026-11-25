@@ -169,7 +169,7 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
 <script>
 (() => {
   'use strict';
-  const VERSION = '1.4';
+  const VERSION = '1.5';
   const $ = s => document.querySelector(s);
   const app = $('#app');
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -263,7 +263,7 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
   // 3 s after a clue goes up, and if nobody buzzes the answer shows 10 s after the clue went up
   // (so the buzz window is 7 s; after a wrong answer the rest get a fresh 7 s).
   const OPEN_AFTER = 3000, BUZZ_WINDOW = 7000;
-  const cfg = () => ({ buzz: BUZZ_WINDOW / 1000, answer: 6, final: 30 });
+  const cfg = () => ({ buzz: BUZZ_WINDOW / 1000, answer: 5, final: 30 });
   const cur = () => (S.cur && typeof S.cur === 'object' && S.cur.step) ? S.cur : null;
   function clueOf(c) {
     const g = game(); if (!g || !c) return null;
@@ -339,48 +339,50 @@ summary { font-family: var(--f-name); color: var(--cream); font-size: 20px; padd
   }
 
   // The 11/26 game night (from the user's PDF, "I. Fields" to "VI. Fads"). Each category is
-  // ordered easiest to hardest, top to bottom, with every answer kept on its own clue. Fixes to the
-  // PDF: Morgan Wallen (was Wallace), "manual" (was manuel), Welcome to Dead House, Aquae Sulis,
-  // The Hundred and One Dalmatians. 4 Letter Cities: the PDF gave the Aquae Sulis clue the answer
-  // Oslo and had no clue E, so the Bath answer and the Norway clue were filled in.
+  // ordered easiest to hardest, top to bottom (100 to 600), with every answer kept on its own clue.
+  // Every change from the PDF is in the host's review sheet (gowpardy-1126-host-review.pdf, kept off
+  // the site: it holds the answers). Two wager clues (the user's ask) and an original final in the
+  // show's style (not a real one), 5 out of 10 for difficulty.
   const CLUES_1126 = `Title: 11/26
 # 11/26
-Fields | 200 | The area of playing field beyond the lines connecting the bases in baseball. | Outfield
-Fields | 400 | Built in 1914 in Chicago, on the site of a former seminary: “Play Ball!” | Wrigley Field
-Fields | 600 | This place from a 1989 film has been called Iowa’s Mount Rushmore. | “Field of Dreams”
-Fields | 800 | In 2024 country stars Morgan Wallen and Eric Church bought this magazine that focuses on hunting and fishing. | “Field & Stream”
-Fields | 1000 | The player positioned between both goals in soccer. | Midfielder
-Fields | 1200 | This term puts the “manual” in a manual laborer on a farm. | A field hand
-Animals | 200 | The largest mammal in the world. | The blue whale
-Animals | 400 | This is where dogs have sweat glands. | Pads of their feet
-Animals | 600 | The only insect that can rotate its head 180 degrees. | Praying mantis
-Animals | 800 | This group is called a clowder. | Cats
-Animals | 1000 | Skin color of a polar bear. | Black
-Animals | 1200 | Number of heart chambers in a cockroach. | 13
-Written Words | 200 | In this book the White Witch casts a spell so it will always be winter but never Christmas. | “The Lion, the Witch and the Wardrobe”
-Written Words | 400 | This kids’ classic has a chapter named “The Puppies Arrive”. | “The Hundred and One Dalmatians”
-Written Words | 600 | Society revolves around science and efficiency in this futuristic 1932 novel by Aldous Huxley. | “Brave New World”
-Written Words | 800 | In “The Jungle Book” Rikki-Tikki-Tavi is this animal. | Mongoose
-Written Words | 1000 | “Welcome to Dead House” from 1992 is the first Goosebumps book by this author. | R. L. Stine
-Written Words | 1200 | 1944’s “Absent in the Spring” is one of the non-mystery novels she wrote as Mary Westmacott. | Agatha Christie
-Geography | 200 | This continent is also a country. | Australia
-Geography | 400 | The South American landmark known as “The Lost City of the Incas”. | Machu Picchu
-Geography | 600 | The northeast tip of this peninsula is not far from Cancun, Cozumel and Isla Mujeres. | Yucatan
-Geography | 800 | The smallest and shallowest of the world’s 5 oceans. | Arctic Ocean
-Geography | 1000 | The number of states that touch the Pacific Ocean. | 5
-Geography | 1200 | “Parks and Recreation” is set in the fictional town of Pawnee in this state. | Indiana
-4 Letter Cities | 200 | Piazza del Duomo in this city includes a cathedral and cemetery as well as the Leaning Tower. | Pisa
-4 Letter Cities | 400 | Capital of Norway. | Oslo
-4 Letter Cities | 600 | Ukrainian capital. | Kiev (Kyiv)
-4 Letter Cities | 800 | South American capital known as the “City of Kings”. | Lima
-4 Letter Cities | 1000 | The most populous city on the island of Hawaii. | Hilo
-4 Letter Cities | 1200 | Romans called this Somerset city Aquae Sulis, then probably took a soak there. | Bath
-Fads | 200 | 1960’s dance popularized by Chubby Checker. | The Twist
-Fads | 400 | 1970’s extremely wide pant legs. | Bell bottoms
-Fads | 600 | 1920’s fast-paced dance with swinging arms and legs. | The Charleston
-Fads | 800 | A 2020 social media platform with short-form dance videos. | TikTok
-Fads | 1000 | 1990’s plastic discs that started as milk bottle caps in Hawaii. | Pogs
-Fads | 1200 | 1980’s toy: a hoop worn around the ankle, and you jump over the ball end. | Skip-It`;
+Fields | 100 | The area of playing field beyond the lines connecting the bases in baseball. | Outfield
+Fields | 200 | Built in 1914 in Chicago, on the site of a former seminary: “Play Ball!” | Wrigley Field
+Fields | 300 | This place from a 1989 film has been called Iowa’s Mount Rushmore. | “Field of Dreams”
+Fields | 400 | In 2024 country stars Morgan Wallen and Eric Church purchased this magazine that focuses on hunting and fishing. | “Field & Stream”
+Fields | 500 | The player positioned between both goals in soccer. | Midfielder
+Fields | 600 | This term puts the “manual” in a manual laborer on a farm. | A field hand
+Animals | 100 | The largest mammal in the world. | The blue whale
+Animals | 200 | This is where dogs have sweat glands. | Pads of feet
+Animals | 300 | The only insect that can rotate its head 180 degrees. | Praying mantis
+Animals | 400 | This group is called a clowder. | Cats
+Animals | *500 | Skin color of a polar bear. | Black
+Animals | 600 | Number of heart chambers in a cockroach. | 13
+Written Words | 100 | In this book the White Witch casts a spell so it will always be winter but not Christmas. | “The Lion, the Witch and the Wardrobe”
+Written Words | 200 | This kids’ classic book has a chapter named “The Puppies Arrive”. | “The Hundred and One Dalmatians”
+Written Words | 300 | A futuristic society revolves around science and efficiency in this 1932 novel by Aldous Huxley. | “Brave New World”
+Written Words | 400 | In “The Jungle Book” Rikki-Tikki-Tavi is this animal. | Mongoose
+Written Words | 500 | “Welcome to Dead House” from 1992 is the first book by this author in the Goosebumps series. | R. L. Stine
+Written Words | 600 | 1944’s “Absent in the Spring” is one of the non-mystery novels she wrote under the name Mary Westmacott. | Agatha Christie
+Geography | 100 | This continent is also a country. | Australia
+Geography | 200 | The South American landmark known as “The Lost City of the Incas”. | Machu Picchu
+Geography | 300 | The northeast tip of this peninsula is located not far from Cancun, Cozumel and Isla Mujeres. | Yucatan
+Geography | *400 | This is the smallest and shallowest of the world’s 5 oceans. | Arctic Ocean
+Geography | 500 | The number of states that touch the Pacific Ocean. | 5
+Geography | 600 | “Parks and Recreation” is set in the fictional town of Pawnee in this state. | Indiana
+4 Letter Cities | 100 | Piazza del Duomo in this city includes a cathedral and cemetery as well as the Leaning Tower. | Pisa
+4 Letter Cities | 200 | Capital of Norway. | Oslo
+4 Letter Cities | 300 | Ukrainian capital. | Kiev (Kyiv)
+4 Letter Cities | 400 | South American capital known as the “City of Kings”. | Lima
+4 Letter Cities | 500 | The most populous city on the island of Hawaii. | Hilo
+4 Letter Cities | 600 | Romans called this Somerset city Aquae Sulis, then probably took a soak there. | Bath
+Fads | 100 | 1960’s dance popularized by Chubby Checker. | The twist
+Fads | 200 | 1970’s extremely wide pant legs. | Bell bottoms
+Fads | 300 | 1920’s fast-paced dance with swinging arms and legs. | Charleston
+Fads | 400 | A 2020 social media platform with short-form dance videos. | TikTok
+Fads | 500 | 1990’s plastic discs that originated as milk bottle caps in Hawaii. | Pogs
+Fads | 600 | 1980’s toy: a hoop worn around the ankle, and you jump over the ball end. | Skip It
+# Final
+U.S. States | | It’s the only U.S. state whose name has just one syllable. | Maine`;
 
   // A full test game, written in the show's style (not copied from it): two rounds, three wager
   // clues and a final, so the whole flow can be tried before game night.
@@ -459,13 +461,34 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     if (ac.state === 'suspended') ac.resume();
     return ac;
   }
-  function tone(f, t0, dur, type = 'sine', vol = .3, f2) {
+  function tone(f, t0, dur, type = 'sine', vol = .3, f2, dest) {
     const a = audio(); if (!a) return;
     const o = a.createOscillator(), g = a.createGain(), t = a.currentTime + t0;
     o.type = type; o.frequency.setValueAtTime(f, t);
     if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
     g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .01); g.gain.exponentialRampToValueAtTime(.001, t + dur);
-    o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .05);
+    o.connect(g).connect(dest || a.destination); o.start(t); o.stop(t + dur + .05);
+  }
+  // The final round's 30-second song: an original tune written for this page (a ticking clock, a
+  // walking bass and a light pentatonic melody, 120 bpm), ending on a chord when time is up. All
+  // notes are scheduled at once into one gain node, so stopping it is one disconnect.
+  let song = null;
+  function stopSong() { if (song) { try { song.disconnect(); } catch (e) {} song = null; } }
+  function thinkSong(sec) {
+    stopSong();
+    const a = audio(); if (!a) return;
+    song = a.createGain(); song.gain.value = .9; song.connect(a.destination);
+    const beat = .5, n = Math.round(sec / beat), hz = m => 440 * Math.pow(2, (m - 69) / 12);
+    const BASS = [48, 45, 41, 43, 48, 45, 50, 43];                 // C A F G C A D G, two beats each
+    const MEL = [76, 79, 81, 79, 76, null, 74, 72, 74, 76, 79, 76, 74, null, 72, null];
+    for (let b = 0; b < n; b++) {
+      const t = b * beat;
+      tone(b % 2 ? 1800 : 2400, t, .03, 'square', .05, null, song);           // tick, tock
+      if (b % 2 === 0) tone(hz(BASS[(b / 2) % 8]), t, .9, 'triangle', .22, null, song);
+      const m = MEL[b % 16];
+      if (m) tone(hz(m), t, .4, 'sine', .14, null, song);
+    }
+    [72, 76, 79, 84].forEach((m, i) => tone(hz(m), sec + i * .02, 1.6, 'triangle', .16, null, song));
   }
   const FX = {
     buzz() { tone(988, 0, .18, 'triangle', .4); tone(1319, .09, .35, 'triangle', .4); },
@@ -518,7 +541,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
   }
 
   // ================= TV board =================
-  let bSig = '', fxSeen, fxInit = false, bWho = null, soundOn = false, bStep = '';
+  let bSig = '', fxSeen, fxInit = false, bWho = null, soundOn = false, bStep = '', bAnsT = 0, bFin = null;
   function renderBoard() {
     if (!$('#board')) {
       app.innerHTML = `<div id="board"><div class="b-top"><span id="bTitle"></span><span class="brand">Gowpardy</span><span class="rd" id="bRound"></span></div>
@@ -618,30 +641,31 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     else if (bWho === null && loaded) bWho = '';
     const step = c ? c.step + (c.open || '') : '';
     if (c && c.step === 'wager' && bStep !== step) FX.wager();
-    bStep = step;
+    // 5 s to answer after buzzing in: the TV sounds the buzzer when it runs out (the host still
+    // marks it right or wrong).
+    if (c && c.step === 'buzzed' && bStep !== step + c.who) {
+      clearTimeout(bAnsT);
+      const k = c.open + c.who;
+      bAnsT = setTimeout(() => { const cc = cur(); if (cc && cc.step === 'buzzed' && cc.open + cc.who === k) FX.time(); }, cfg().answer * 1000);
+    }
+    bStep = c && c.step === 'buzzed' ? step + c.who : step;
+    // The final's 30-second song plays only when the TV sees the clue go up (not after a reload).
+    const fs = F ? F.step : '';
+    if (fs === 'clue' && bFin !== 'clue' && bFin !== null) thinkSong(cfg().final);
+    if (fs !== 'clue') stopSong();
+    if (loaded) bFin = fs;
   }
 
   function finalBoard(g, F) {
     const f = g.final;
     if (!f) return '';
     if (F.step === 'cat') return `<div class="panel"><div class="p-head">Final round</div><div class="p-body"><div><div class="splash" style="font-size:12vh">${esc(f.cat)}</div>
-      <div class="splash-sub">Make your wager on your phone</div></div></div><div class="p-foot"><div class="state">${Object.keys(F.wagers || {}).length} of ${players().length} wagers in</div></div></div>`;
+      <div class="splash-sub">Write down your wager</div></div></div><div class="p-foot"></div></div>`;
     const qHtml = `<div class="p-q" style="height:100%;display:grid;place-items:center"><span>${esc(f.q)}</span></div>`;
     if (F.step === 'clue') return `<div class="panel"><div class="p-head">${esc(f.cat)}</div><div class="p-body" style="grid-template-rows:minmax(0,1fr)">${qHtml}</div>
-      <div class="p-foot"><div><div class="state go">Write your answer on your phone</div><div class="bar"><i style="--t:${cfg().final}s"></i></div></div></div></div>`;
-    // Judging: one player at a time, as the host reveals them.
-    const id = F.cur;
-    let foot = '';
-    if (id) {
-      const ans = getPath(F, 'answers/' + id), j = getPath(F, 'judged/' + id);
-      foot = `<div style="display:grid;gap:1.2vh;justify-items:center"><div class="who">${esc(nameOf(id))}</div>
-        <div class="p-a" style="color:var(--text);min-height:0">${ans ? esc(ans) : '<span style="color:var(--muted)">No answer</span>'}</div>
-        ${j ? `<div class="state" style="color:${j === 'r' ? 'var(--good)' : 'var(--bad)'}">${j === 'r' ? 'Right' : 'Wrong'}: wagered ${fmt(+getPath(F, 'wagers/' + id) || 0)}</div>` : ''}</div>`;
-    }
-    // The clue stays up; the correct answer joins it once the first player has been judged.
-    const shownA = Object.keys(F.judged || {}).length ? `<div class="p-a">${esc(f.a)}</div>` : '';
-    return `<div class="panel"><div class="p-head">${esc(f.cat)}</div><div class="p-body"><div style="width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:center">${qHtml}${shownA}</div></div>
-      <div class="p-foot" style="min-height:24vh">${foot}</div></div>`;
+      <div class="p-foot"><div><div class="state go">Write down your answer</div><div class="bar"><i style="--t:${cfg().final}s"></i></div></div></div></div>`;
+    return `<div class="panel"><div class="p-head">${esc(f.cat)}</div><div class="p-body"><div style="width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:center">${qHtml}<div class="p-a">${esc(f.a)}</div></div></div>
+      <div class="p-foot"></div></div>`;
   }
 
   // ================= host =================
@@ -766,28 +790,21 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
     return h + '</div>';
   }
 
+  // The final round is run on paper (the user: we'll do the wager math ourselves): the TV shows the
+  // category, then the clue with a 30-second song, then the answer. The host fixes the scores by
+  // tapping them, then puts the final scores up.
   function hostFinal(g, F, ps) {
     const f = g.final;
     let h = `<div class="hclue"><div class="k">Final round · ${esc(f.cat)}</div>`;
-    const wagers = F.wagers || {}, answers = F.answers || {}, judged = F.judged || {};
     if (F.step === 'cat') {
-      h += `<div class="st">The category is on the TV. Players wager on their phones (up to their score).</div>
-        ${ps.map(p => `<div class="note">${esc(p.name)}: ${wagers[p.id] != null ? '<b>wager in</b>' : 'waiting'}</div>`).join('')}
-        <div class="row-btns">${ps.every(p => wagers[p.id] != null) ? '<button class="btn gold" data-act="finClue">Show the clue</button>' : armBtn('finClue', 'Show the clue', 'gold')}</div>`;
+      h += `<div class="st">The category is on the TV. Everyone writes down a wager.</div>
+        <div class="row-btns"><button class="btn gold" data-act="finClue">Show the clue</button></div>`;
     } else if (F.step === 'clue') {
-      h += `<div class="q">${esc(f.q)}</div><div class="a">${esc(f.a)}</div><div class="st">Players are writing their answers.</div>
-        ${ps.map(p => `<div class="note">${esc(p.name)}: ${answers[p.id] ? esc(answers[p.id]) : '…'}</div>`).join('')}
-        <div class="row-btns"><button class="btn gold" data-act="finLock">Time's up: lock answers</button></div>`;
-    } else if (F.step === 'judge') {
-      h += `<div class="q">${esc(f.q)}</div><div class="a">${esc(f.a)}</div><div class="st">Reveal each player, lowest score first.</div>`;
-      ps.slice().sort((a, b) => a.score - b.score).forEach(p => {
-        const wv = +wagers[p.id] || 0, j = judged[p.id];
-        h += `<div class="frow${j ? ' done' : ''}"><div class="top"><span>${esc(p.name)}</span><span class="num">${fmt(p.score)} · wager ${wv}</span></div>
-          <div class="ans">${answers[p.id] ? esc(answers[p.id]) : '<span class="note">no answer</span>'}</div>
-          <div class="row-btns"><button class="btn sm${F.cur === p.id ? ' gold' : ''}" data-fshow="${p.id}">Show on TV</button>
-          ${j ? `<span class="note">${j === 'r' ? 'Right' : 'Wrong'}</span>` : `<button class="btn sm good" data-fj="r_${p.id}">Right +${wv}</button><button class="btn sm bad" data-fj="w_${p.id}">Wrong −${wv}</button>`}</div></div>`;
-      });
-      h += `<div class="row-btns"><button class="btn gold" data-act="finDone">Final scores on TV</button></div>`;
+      h += `<div class="q">${esc(f.q)}</div><div class="a">${esc(f.a)}</div><div class="st">30 seconds with music on the TV. Everyone writes down an answer.</div>
+        <div class="row-btns"><button class="btn gold" data-act="finAnswer">Show the answer</button></div>`;
+    } else if (F.step === 'answer') {
+      h += `<div class="q">${esc(f.q)}</div><div class="a">${esc(f.a)}</div><div class="st">Add or take off each wager: tap a score below to type the new one.</div>
+        <div class="row-btns"><button class="btn gold" data-act="finDone">Final scores on TV</button></div>`;
     } else if (F.step === 'done') {
       h += `<div class="st">Final scores are on the TV.</div>`;
     }
@@ -797,10 +814,10 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
 
   function hostPlayers(ps) {
     if (!ps.length) return `<p class="note">Nobody yet. Players open this page with <b>#buzz</b> and type their name.</p>`;
-    return `<p class="note">Tap a name to give them control (they pick next). − and + change a score by 100.</p><div class="plist">${ps.map(p => `<div class="prow${p.id === S.ctl ? ' ctl' : ''}">
+    return `<p class="note">Tap a name to give them control (they pick next). − and + change a score by 100; tap a score to type a new one.</p><div class="plist">${ps.map(p => `<div class="prow${p.id === S.ctl ? ' ctl' : ''}">
       <span class="n" data-ctl="${p.id}">${esc(p.name)}${p.seen && Date.now() - p.seen > 120000 ? '<small>away</small>' : ''}</span>
       <button class="btn sm" data-adj="-100_${p.id}">−</button><button class="btn sm" data-adj="100_${p.id}">+</button>
-      <span class="s">${fmt(p.score)}</span></div>`).join('')}</div>
+      <button class="s" data-set="${p.id}" style="background:none;border:0;padding:0">${fmt(p.score)}</button></div>`).join('')}</div>
       <div class="row-btns">${ps.map(p => armBtn('kick_' + p.id, 'Remove ' + esc(p.name), 'sm')).join('')}</div>`;
   }
 
@@ -816,10 +833,11 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
       if (d.wv) { hDraft = d.wv; return render(); }
       if (d.ctl) return patch({ ctl: S.ctl === d.ctl ? null : d.ctl });
       if (d.adj) { const [n, id] = d.adj.split('_'); return patch({ [`players/${id}/score`]: inc(+n) }); }
-      if (d.fshow) return patch({ 'fin/cur': d.fshow, ...fx('reveal') });
-      if (d.fj) {
-        const [j, id] = d.fj.split('_'), wv = +getPath(S, 'fin/wagers/' + id) || 0;
-        return patch({ [`players/${id}/score`]: inc(j === 'r' ? wv : -wv), ['fin/judged/' + id]: j, 'fin/cur': id, ...fx(j === 'r' ? 'right' : 'wrong') });
+      if (d.set) {
+        const p = players().find(x => x.id === d.set); if (!p) return;
+        const v = prompt(`New score for ${p.name}`, String(p.score));
+        if (v != null && v.trim() !== '' && isFinite(+v.replace(/[\u2212]/g, '-'))) patch({ [`players/${p.id}/score`]: Math.round(+v.replace(/[\u2212]/g, '-')) });
+        return;
       }
       const act = d.act;
       if (!act) return;
@@ -867,12 +885,9 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
           patch(o);
           break;
         }
-        case 'finClue':
-          // Two taps while someone still hasn't wagered (they'd play for 0).
-          if (!players().every(p => getPath(S, 'fin/wagers/' + p.id) != null) && !armed('finClue')) return;
-          patch({ 'fin/step': 'clue', 'fin/at': NOW }); break;
-        case 'finLock': patch({ 'fin/step': 'judge', ...fx('time') }); break;
-        case 'finDone': patch({ 'fin/step': 'done', 'fin/cur': null, ...fx('right') }); break;
+        case 'finClue': patch({ 'fin/step': 'clue' }); break;
+        case 'finAnswer': patch({ 'fin/step': 'answer', ...fx('reveal') }); break;
+        case 'finDone': patch({ 'fin/step': 'done', ...fx('right') }); break;
         case 'finBack': if (armed('finBack')) patch({ fin: null }); break;
       }
     };
@@ -899,7 +914,7 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
   }
 
   // ================= buzzer =================
-  let zSoon = 0, zSoonT = 0, zMine = {}, zWas = '', zAnsT = 0;
+  let zSoon = 0, zSoonT = 0, zMine = {}, zWas = '';
   function renderBuzz() {
     const ps = players(), mine = ps.find(p => p.id === me);
     // Nobody here yet (or removed by the host): pick a name.
@@ -988,42 +1003,12 @@ Space | | Its lunar module, the Eagle, landed on the Moon on July 20, 1969 | Apo
   }
 
   function buzzFinal(g, F, mine) {
-    const f = g.final, cap = Math.max(0, mine.score);
-    const w = getPath(F, 'wagers/' + me), a = getPath(F, 'answers/' + me);
-    const sig = F.step + '|' + (w != null) + '|' + mine.score;
-    let box = $('#zFin');
+    const f = g.final, sig = F.step + '|' + mine.score;
+    const box = $('#zFin');
     if (box && box.dataset.sig === sig) return;
-    let h = `<div class="bz-fin" id="zFin" data-sig="${esc(sig)}"><div class="k">Final round</div><div class="c">${esc(f.cat)}</div>`;
-    if (F.step === 'cat') {
-      h += w != null
-        ? `<div class="k">Your wager</div><div class="big">${fmt(w)}</div><div class="note">Locked in. The clue comes up on the TV next.</div>`
-        : `<div class="note">You have ${fmt(mine.score)}. Wager anything from 0 to ${cap}.</div>
-           <input type="number" id="zWager" inputmode="numeric" min="0" max="${cap}" placeholder="0 to ${cap}">
-           <button class="btn gold" id="zLockW">Lock in wager</button><div class="note" id="zErr"></div>`;
-    } else if (F.step === 'clue') {
-      h += `<div class="note">Wager ${fmt(+w || 0)}. Read the clue on the TV.</div>
-        <input type="text" id="zAns" maxlength="80" placeholder="Your answer" autocomplete="off" autocapitalize="sentences">
-        <button class="btn gold" id="zLockA">Send answer</button><div class="note" id="zErr">You can change it until the host locks answers.</div>`;
-    } else {
-      h += `<div class="note">Answers are locked.</div><div class="k">You wrote</div><div class="c" style="color:var(--gold)">${a ? esc(a) : 'nothing'}</div><div class="note">Wager ${fmt(+w || 0)}</div>`;
-    }
-    h += '</div>';
-    const keepAns = $('#zAns') ? $('#zAns').value : null;
-    app.innerHTML = `<div id="buzz"><div class="bz-top"><span class="n">${esc(mine.name)}</span><span class="s">${fmt(mine.score)}</span></div><div class="bz-mid">${h}</div><div class="bz-foot"></div></div>`;
-    const lw = $('#zLockW');
-    if (lw) lw.onclick = () => {
-      const v = Math.round(+$('#zWager').value);
-      if (!($('#zWager').value !== '' && v >= 0 && v <= cap)) { $('#zErr').textContent = `Enter 0 to ${cap}.`; return; }
-      patch({ ['fin/wagers/' + me]: v });
-    };
-    const ai = $('#zAns');
-    if (ai) {
-      ai.value = keepAns != null ? keepAns : (a || '');
-      const send = () => patch({ ['fin/answers/' + me]: ai.value.trim().slice(0, 80) });
-      // Saved as it's typed too, so an answer half-written when time runs out still counts.
-      ai.oninput = () => { clearTimeout(zAnsT); zAnsT = setTimeout(send, 600); };
-      $('#zLockA').onclick = () => { clearTimeout(zAnsT); send(); $('#zErr').textContent = 'Sent. You can still change it.'; };
-    }
+    const say = { cat: 'Write down your wager on paper.', clue: 'Read the clue on the TV and write down your answer.', answer: 'The answer is on the TV.' }[F.step] || '';
+    app.innerHTML = `<div id="buzz"><div class="bz-top"><span class="n">${esc(mine.name)}</span><span class="s">${fmt(mine.score)}</span></div>
+      <div class="bz-mid"><div class="bz-fin" id="zFin" data-sig="${esc(sig)}"><div class="k">Final round</div><div class="c">${esc(f.cat)}</div><div class="note" style="font-size:20px">${say}</div></div></div><div class="bz-foot"></div></div>`;
   }
 
   // Buzzer phones check in now and then so the host can see who's still connected.
