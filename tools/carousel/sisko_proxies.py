@@ -13,9 +13,13 @@ The PDF copy (sisko-proxies.pdf) is printed from this page with Playwright, Lett
 repo served over http so fonts/ loads (file:// blocks the fonts). Print at 100% / Actual size, not Fit to page.
 Run from the repo root:  python3 tools/carousel/sisko_proxies.py
 """
-import html, json, os, re, urllib.request
+import html, json, os, re, sys, urllib.request
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+# --art: the same low-ink card with the card's art (Scryfall art_crop, no frame) under the name line
+# (the user, Nov 26, 2026: "let me see with just the art in there"); writes sisko-proxies-art.html instead.
+ART = '--art' in sys.argv
+OUTNAME = 'sisko-proxies-art.html' if ART else 'sisko-proxies.html'
 # Nov 25, 2026: the first 9 (Kirk, Picard, Academy Instructor, Gala Greeters, Felidar Retreat, Impossible
 # Choice, Test of Priorities, Cryptic Command, Resistance Is Futile) were replaced by the second batch (first 4).
 # Nov 26, 2026: the ramp picks added: 4 cheap creatures and 5 mana rocks.
@@ -60,7 +64,9 @@ def face(f, c):
     txt, flav = f.get('oracle_text', ''), f.get('flavor_text', '')
     pt = f"{f['power']}/{f['toughness']}" if 'power' in f else f.get('loyalty', '')
     body = rules(txt) + (f'<p class="fl">{html.escape(flav)}</p>' if flav else '')
-    return (f'<div class="card"><div class="hd"><span class="nm">{html.escape(name)}</span><span class="mc">{symtext(cost)}</span></div>'
+    iu = f.get('image_uris') or c.get('image_uris') or {}
+    art = f'<div class="art"><img src="{html.escape(iu["art_crop"])}" alt=""></div>' if ART and iu.get('art_crop') else ''
+    return (f'<div class="card"><div class="hd"><span class="nm">{html.escape(name)}</span><span class="mc">{symtext(cost)}</span></div>{art}'
             f'<div class="ty">{html.escape(typ)}</div><div class="tx"><div class="in">{body}</div></div>'
             f'<div class="ft"><span class="set">{c["set"].upper()} {html.escape(c["collector_number"])}</span>'
             f'{f"<span class=pt>{html.escape(pt)}</span>" if pt else ""}</div></div>')
@@ -101,6 +107,7 @@ html{{background:#ccc}}body{{margin:0;color:#000}}
 .hd{{display:flex;justify-content:space-between;align-items:center;gap:4px;border-bottom:.6px solid #000;padding-bottom:3px}}
 .nm{{font-family:Matrix,Georgia,serif;font-weight:700;font-size:10.5pt;line-height:1.1}}
 .mc{{display:flex;gap:1px;flex:none}}
+.art{{height:1.32in;margin-top:4px;flex:none;overflow:hidden;outline:.4px solid #000}}.art img{{width:100%;height:100%;object-fit:cover;display:block}}
 .ty{{font-family:Matrix,Georgia,serif;font-weight:700;font-size:8.5pt;padding:3px 0;border-bottom:.6px solid #000}}
 .tx{{flex:1;min-height:0;padding-top:5px;display:flex;flex-direction:column;justify-content:center}}
 .tx .in{{font-size:var(--fs,9pt);line-height:1.2}}
@@ -122,6 +129,6 @@ function fitAll(){{document.querySelectorAll('.tx').forEach(b=>{{const i=b.first
 (document.fonts?document.fonts.ready:Promise.resolve()).then(fitAll);
 </script></body></html>
 '''
-with open(os.path.join(ROOT, 'sisko-proxies.html'), 'w', encoding='utf-8') as f:
+with open(os.path.join(ROOT, OUTNAME), 'w', encoding='utf-8') as f:
     f.write(page)
 print(len(cards), 'proxies on', len(pages), 'card pages,', 2 * len(pages), 'PDF pages')
