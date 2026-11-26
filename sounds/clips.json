@@ -979,6 +979,83 @@
 "kind": "sound"
 },
 {
+"f": "cof-100-metres",
+"src": "Apple iTunes 30-second preview: Vangelis, \"100 Metres\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/100-metres/1450958543?i=1450958749&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Running cue",
+"kind": "sound",
+"d": 6.5,
+"pool": "mid"
+},
+{
+"f": "cof-abrahams-theme",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Abraham's Theme\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/abrahams-theme/1450958543?i=1450958733&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Piano and strings",
+"kind": "sound",
+"d": 6.5,
+"pool": "mid"
+},
+{
+"f": "cof-erics-theme",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Eric's Theme\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/erics-theme/1450958543?i=1450958734&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Piano theme",
+"kind": "sound",
+"d": 6.5,
+"pool": "mid"
+},
+{
+"f": "cof-five-circles",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Five Circles\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/five-circles/1450958543?i=1450958730&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Olympic rings cue",
+"kind": "sound",
+"d": 6.5,
+"pool": "mid"
+},
+{
+"f": "cof-jerusalem",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Jerusalem\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/jerusalem/1450958543?i=1450958754&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "The hymn",
+"kind": "sound",
+"d": 6.5,
+"pool": "mid"
+},
+{
+"f": "cof-main-opening",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Chariots of Fire\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/chariots-of-fire/1450958543?i=1450958914&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Soft opening, fading in",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "cof-titles-hook",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Chariots of Fire (Titles)\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/chariots-of-fire-titles/1450958543?i=1450958727&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "The synth arpeggio and melody",
+"kind": "sound",
+"d": 6.5,
+"pool": "mid"
+},
+{
 "f": "cope-alleluia",
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Alleluia\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/alleluia/1570495548?i=1570495551&uo=4",
@@ -10202,6 +10279,72 @@
 "kind": "talk",
 "from": "White House event, Jan 26, 1998",
 "who": "Bill Clinton"
+},
+{
+"f": "long/cof-100-metres-run",
+"src": "Apple iTunes 30-second preview: Vangelis, \"100 Metres\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/100-metres/1450958543?i=1450958749&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Building to the sprint",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/cof-erics-theme-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Eric's Theme\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/erics-theme/1450958543?i=1450958734&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "Longer cut",
+"kind": "sound",
+"d": 12.0,
+"pool": "long"
+},
+{
+"f": "long/cof-main-swell",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Chariots of Fire\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/chariots-of-fire/1450958543?i=1450958914&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "The theme swelling",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/cof-titles-chorus",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Chariots of Fire (Titles)\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/chariots-of-fire-titles/1450958543?i=1450958727&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "The theme later in the track",
+"kind": "sound",
+"d": 12.0,
+"pool": "long"
+},
+{
+"f": "long/cof-titles-theme",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Chariots of Fire (Titles)\" (Chariots of Fire, Original Motion Picture Score)",
+"url": "https://music.apple.com/us/album/chariots-of-fire-titles/1450958543?i=1450958727&uo=4",
+"grp": "Chariots of Fire",
+"lic": "Copyrighted preview clip",
+"note": "The famous opening theme",
+"kind": "sound",
+"d": 12.0,
+"pool": "long"
+},
+{
+"f": "long/cof-vangelis-meme",
+"src": "myinstants: \"ITP Chariots of Fire\"",
+"url": "https://www.myinstants.com/en/instant/itp-chariots-of-fire-58804/",
+"grp": "Chariots of Fire",
+"lic": "Not CC0",
+"note": "Theme with the slow-motion running meme feel",
+"kind": "sound",
+"d": 13.5,
+"pool": "long"
 },
 {
 "f": "long/cousins-you-like-that",

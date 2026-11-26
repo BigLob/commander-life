@@ -947,3 +947,9 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 | `long/squelch-juicy` | [myinstants: Juicy squishy sounds](https://www.myinstants.com/media/sounds/juicy-squishy-sounds.mp3) |
 | `long/squelch-meat` | [myinstants: meat squelch](https://www.myinstants.com/media/sounds/meat-squelch.mp3) |
 | `long/squelch-noises` | [myinstants: squishy noises](https://www.myinstants.com/media/sounds/squishy-noises.mp3) |
+
+## Chariots of Fire (v1.100)
+
+13 clips (`cof-*`, group Chariots of Fire): 12 cut from Apple's free 30-second iTunes previews of Vangelis's score
+(Titles, the main theme, Eric's Theme, Abraham's Theme, Five Circles, 100 Metres, Jerusalem; album "Chariots of Fire
+(Original Motion Picture Score)", 2019 remaster) and one from the myinstants upload "ITP Chariots of Fire". Copyrighted, not CC0.

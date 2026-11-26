@@ -48,6 +48,19 @@ then CC0 jingle and fanfare packs from OpenGameArt. Composer credits are from ge
 | `long/lt-theme-classic` | Looney Tunes theme (The Merry-Go-Round Broke Down) | Cliff Friend and Dave Franklin, Looney Tunes | 8.0 s | [myinstants](https://www.myinstants.com/media/sounds/looney-tunes-classic-theme.mp3) |
 | `long/lt-bugs-theme` | Bugs Bunny theme | Looney Tunes | 8.0 s | [myinstants](https://www.myinstants.com/media/sounds/bugs-bunny-theme-short.mp3) |
 | `long/wb-scooby-intro` | Scooby-Doo, Where Are You? theme | David Mook and Ben Raleigh, Scooby-Doo | 8.0 s | [myinstants](https://www.myinstants.com/media/sounds/scooby-doo-intro.mp3) |
+| `cof-titles-hook` | Chariots of Fire (Titles) | Vangelis, Chariots of Fire | 6.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/chariots-of-fire-titles/1450958543?i=1450958727&uo=4) |
+| `long/cof-titles-theme` | Chariots of Fire (Titles) | Vangelis, Chariots of Fire | 12.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/chariots-of-fire-titles/1450958543?i=1450958727&uo=4) |
+| `long/cof-titles-chorus` | Chariots of Fire (Titles) | Vangelis, Chariots of Fire | 12.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/chariots-of-fire-titles/1450958543?i=1450958727&uo=4) |
+| `cof-main-opening` | Chariots of Fire | Vangelis | 7.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/chariots-of-fire/1450958543?i=1450958914&uo=4) |
+| `long/cof-main-swell` | Chariots of Fire | Vangelis | 10.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/chariots-of-fire/1450958543?i=1450958914&uo=4) |
+| `cof-erics-theme` | Eric's Theme | Vangelis, Chariots of Fire | 6.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/erics-theme/1450958543?i=1450958734&uo=4) |
+| `long/cof-erics-theme-long` | Eric's Theme (long) | Vangelis, Chariots of Fire | 12.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/erics-theme/1450958543?i=1450958734&uo=4) |
+| `cof-abrahams-theme` | Abraham's Theme | Vangelis, Chariots of Fire | 6.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/abrahams-theme/1450958543?i=1450958733&uo=4) |
+| `cof-five-circles` | Five Circles | Vangelis, Chariots of Fire | 6.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/five-circles/1450958543?i=1450958730&uo=4) |
+| `cof-100-metres` | 100 Metres | Vangelis, Chariots of Fire | 6.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/100-metres/1450958543?i=1450958749&uo=4) |
+| `long/cof-100-metres-run` | 100 Metres (long) | Vangelis, Chariots of Fire | 10.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/100-metres/1450958543?i=1450958749&uo=4) |
+| `cof-jerusalem` | Jerusalem | Hubert Parry, arr. Vangelis, Chariots of Fire | 6.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/jerusalem/1450958543?i=1450958754&uo=4) |
+| `long/cof-vangelis-meme` | Chariots of Fire (slow-motion meme) | Vangelis | 13.5 s | [myinstants](https://www.myinstants.com/en/instant/itp-chariots-of-fire-58804/) |
 | `trek-opening-chime` | Star Trek opening chime | Star Trek | 6.7 s | [myinstants](https://www.myinstants.com/media/sounds/star-trek-opening_8Ffzmjq.mp3) |
 | `long/trek-tos-chime` | TOS opening chime | Star Trek | 6.0 s | [myinstants](https://www.myinstants.com/media/sounds/star-trek-opening.mp3) |
 
