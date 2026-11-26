@@ -975,3 +975,6 @@ raktajino line). Paramount audio and copyrighted previews, not CC0.
 
 ## sounds/life/ (v1.107, life up and down)
 Mega Man X small heal, sub tank refill, extra life, small damage, big damage: myinstants.com (mega-man-x-small-heal, -sub-tank-refill, -extra-life, -small-damage, -big-damage). NES big health: archive.org megaman_nes_snes_sounds (nes_bigHealth). Capcom's, not CC0; peak-normalized, extra life cut to 1.3 s.
+
+### v1.108 additions to sounds/life/
+myinstants.com uploads named for each game: Half-Life, Mario (incl. Mario 64, Super Mario World, New Super Mario Bros), Sonic (1, 3, CD), Earthbound, Pac-Man, Kirby, Life Force, Dark Souls, Metal Gear, Minecraft, Dandy's World, Roblox. Each trimmed to 1.7 s at most and peak-normalized. Not CC0.
