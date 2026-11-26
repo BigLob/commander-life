@@ -1,7 +1,8 @@
 """Build sisko-proxies.html: cards picked for the Captain Benjamin Sisko deck as print-and-cut proxies, 9 per
 US Letter page at real card size (2.5 x 3.5 in), blank backs.
 
-Low-ink black-and-white format (the user's ask, Nov 26, 2026): no art, no colored frame, nothing filled in.
+Low-ink black-and-white format (the user's ask, Nov 26, 2026): no colored frame, nothing filled in; the art
+only (outlined, no frame) under the name line.
 Each card keeps all its information as text: name, mana cost, type line, rules text, flavor text, power and
 toughness (or loyalty), and the set and collector number. Mana symbols are drawn as small outlined circles
 with their letter or number ({T} as the tap arrow). The thin grey card outline is the cut line.
@@ -16,10 +17,10 @@ Run from the repo root:  python3 tools/carousel/sisko_proxies.py
 import html, json, os, re, sys, urllib.request
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
-# --art: the same low-ink card with the card's art (Scryfall art_crop, no frame) under the name line
-# (the user, Nov 26, 2026: "let me see with just the art in there"); writes sisko-proxies-art.html instead.
-ART = '--art' in sys.argv
-OUTNAME = 'sisko-proxies-art.html' if ART else 'sisko-proxies.html'
+# The card's art (Scryfall art_crop, no frame) sits under the name line: the user asked for the art back in,
+# Nov 26, 2026, after seeing the text-only sheet. --no-art builds the text-only sheet (sisko-proxies-text.html).
+ART = '--no-art' not in sys.argv
+OUTNAME = 'sisko-proxies.html' if ART else 'sisko-proxies-text.html'
 # Nov 25, 2026: the first 9 (Kirk, Picard, Academy Instructor, Gala Greeters, Felidar Retreat, Impossible
 # Choice, Test of Priorities, Cryptic Command, Resistance Is Futile) were replaced by the second batch (first 4).
 # Nov 26, 2026: the ramp picks added: 4 cheap creatures and 5 mana rocks.
