@@ -88,6 +88,19 @@ footer input{flex:1;accent-color:var(--accent);min-width:0}
 .srcs div{color:var(--muted);line-height:1.45;padding-top:4px}
 .srcs p{margin:4px 0}
 figure{gap:7px}
+/* Phone on its side (the user, Nov 26, 2026: "I can't see anything", then "start it at the tabs"): the title, subtitle
+   and sources are hidden, the tabs and sort bar share one row, and each card sits beside its text and buttons instead of
+   above them, so the card gets the full height of the rail. fit() sizes --iw and --w. */
+@media (orientation:landscape) and (max-height:560px){
+ body{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;column-gap:14px}
+ header,.srcs{display:none}
+ .seg{grid-area:1/1;padding-block:8px 4px}.bar{grid-area:1/2;padding-block:8px 4px}
+ #fpanel{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(6,minmax(0,1fr))}
+ .rail{grid-column:1/-1;grid-row:3}footer{grid-column:1/-1;grid-row:4;padding-block:4px 8px}
+ figure{display:grid;grid-template-columns:var(--iw) minmax(0,1fr);grid-auto-rows:min-content;column-gap:14px;row-gap:6px;align-content:center}
+ figure .zb{grid-row:1/span 5;height:calc(var(--iw)*680/488)}
+ .nav{display:none}
+}
 </style>
 <header><h1 id="h1"></h1><span class="total" id="sub"></span></header>
 <details class="srcs"><summary>Sources and how this list was made</summary><div id="srcs"></div></details>
@@ -147,7 +160,9 @@ function why(c){return `<p class="cite"><b>#${c.r} of 50</b> · ${c.k.filter(k=>
 // Mana cost as Scryfall's symbols, right-aligned on the name line (the user's ask, Nov 24, 2026).
 function manaCost(s){return s?'<span class="mc" title="'+s+'">'+s.split(' // ').map(h=>(h.match(/\{[^}]+\}/g)||[]).map(t=>'<img src="https://svgs.scryfall.io/card-symbols/'+t.slice(1,-1).replace(/\//g,'')+'.svg" alt="'+t+'" draggable="false">').join('')).join('<b>//</b>')+'</span>':''}
 const money=v=>v==null?'no price':'$'+v.toFixed(2);
-function fit(){const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
+const SIDE=matchMedia('(orientation:landscape) and (max-height:560px)');
+function fit(){if(SIDE.matches){const iw=Math.max(90,Math.min((tr.clientHeight-8)*488/680,300));tr.style.setProperty('--iw',iw+'px');tr.style.setProperty('--w',Math.min(tr.clientWidth*.92,iw+330)+'px');return}
+ const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
 addEventListener('resize',()=>{fit();go(cur())});
 let figs=[];
 function btns(c){const home='Deck';
