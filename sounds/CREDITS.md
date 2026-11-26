@@ -953,3 +953,11 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 13 clips (`cof-*`, group Chariots of Fire): 12 cut from Apple's free 30-second iTunes previews of Vangelis's score
 (Titles, the main theme, Eric's Theme, Abraham's Theme, Five Circles, 100 Metres, Jerusalem; album "Chariots of Fire
 (Original Motion Picture Score)", 2019 remaster) and one from the myinstants upload "ITP Chariots of Fire". Copyrighted, not CC0.
+
+## Vangelis and Blade Runner (v1.101)
+
+26 clips. Music (group Vangelis, `vangelis-*`, 21 clips, 7 to 10 s): cut from Apple's free 30-second iTunes previews of Vangelis's Blade Runner score
+(Main Titles, End Titles, Blade Runner Blues, Love Theme, Tears in Rain, Rachel's Song, Memories of Green, Tales of the Future, Wait for Me, Blush Response,
+Damask Rose), Conquest of Paradise, the Cosmos theme, Antarctica and Mythodea Movement 3. Voice lines (group Blade Runner, `br-*`, 5 clips) from myinstants
+uploads, checked with faster-whisper: Roy Batty's "All those moments will be lost in time" / "like tears in rain" / "Time to die" (the speech's music is under it),
+and Joi's "You look lonely. I can fix that." and "You look like a good Joe" (Blade Runner 2049). Copyrighted, not CC0. Left out: Joi's laugh and the BR2049 meme remixes.

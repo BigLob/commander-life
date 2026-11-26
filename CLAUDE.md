@@ -99,7 +99,8 @@ them and `.gitignore` now ignores PNGs at the root).
 
 ## Pages
 
-### `index.html`: Commander Life (current v1.100; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+### `index.html`: Commander Life (current v1.101; the user reset the version number from 3.41 to 1.0 at this release, so v3.x notes below are the old numbering)
+- v1.101: **26 Vangelis and Blade Runner clips (1,150 in all)**: 21 music cuts (group Vangelis, `vangelis-*`: Blade Runner score, Conquest of Paradise, Cosmos, Antarctica, Mythodea) from Apple's iTunes previews, and 5 voice lines (group Blade Runner, `br-*`, kind talk): Roy Batty's "tears in rain" speech in three cuts and Joi's two lines. Credits in `sounds/CREDITS.md`.
 - v1.100: **13 Chariots of Fire clips (1,124 in all)**, group Chariots of Fire (`cof-*`, kind sound): 12 cut from Apple's 30-second iTunes previews of Vangelis's score (Titles, main theme, Eric's Theme, Abraham's Theme, Five Circles, 100 Metres, Jerusalem; 6.5 to 12 s, mono 64 kbps, -16 LUFS) and one myinstants meme upload. Credits in `sounds/CREDITS.md`, listed in `sounds/SONGS.md`.
 - v1.99: **iPad 1v1 seats like a Center phone** (the user's photo: Rand on top, both upright, because the iPad was set to Lenn). With the iPad view at 2 players (`ipadDuel()`), whatever This phone is says, Rand is at the bottom upright and Lenn at the top turned to face the far side (`posOf()` uses Rand as this phone's player, no `.upright`), and both seats get the deck picker.
 - v1.98: **Group Hug deck in the picker** (the user's ask): `gh` Xenagos, God of Revels (lcc/295) and `gh2` Emrakul, the Promised End (inr/5), both Commander-legal, as the 15th `PICK_DECKS` row "Group Hug" (our own Xenagos deck, not a precon), with `ARTS`, `FACES` and `.k-` colors. Phones older than v1.98 reject the new keys until they reload.

@@ -509,6 +509,45 @@
 "kind": "sound"
 },
 {
+"f": "br-joi-good-joe",
+"src": "myinstants: \"joi-3-good-joe\"",
+"url": "https://www.myinstants.com/en/instant/joi-3-good-joe/",
+"grp": "Blade Runner",
+"lic": "Not CC0",
+"kind": "talk",
+"quote": "You look like a good Joe.",
+"who": "Joi (Ana de Armas, Blade Runner 2049)",
+"from": "Blade Runner 2049 (2017)",
+"d": 3.0,
+"pool": "short"
+},
+{
+"f": "br-joi-look-lonely",
+"src": "myinstants: \"joi-2-u-look-lonely\"",
+"url": "https://www.myinstants.com/en/instant/joi-2-u-look-lonely/",
+"grp": "Blade Runner",
+"lic": "Not CC0",
+"kind": "talk",
+"quote": "You look lonely. I can fix that.",
+"who": "Joi (Ana de Armas, Blade Runner 2049)",
+"from": "Blade Runner 2049 (2017)",
+"d": 3.9,
+"pool": "mid"
+},
+{
+"f": "br-time-to-die",
+"src": "myinstants: \"tears-in-rain\"",
+"url": "https://www.myinstants.com/en/instant/tears-in-rain/",
+"grp": "Blade Runner",
+"lic": "Not CC0",
+"kind": "talk",
+"quote": "Time to die.",
+"who": "Roy Batty (Rutger Hauer, Blade Runner)",
+"from": "Roy Batty's death speech, Blade Runner (1982)",
+"d": 2.9,
+"pool": "short"
+},
+{
 "f": "bung-1",
 "pool": "short",
 "d": 0.5,
@@ -9101,6 +9140,171 @@
 "pool": "short"
 },
 {
+"f": "vangelis-antarctica",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Theme from Antarctica\" (Antarctica (Remastered))",
+"url": "https://music.apple.com/us/album/theme-from-antarctica-remastered/1443091305?i=1443091317&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Theme from Antarctica",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-blues",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Blade Runner Blues\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/blade-runner-blues/73327394?i=73327316&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Blade Runner Blues",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-blush-response",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Blush Response\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/blush-response/73327394?i=73327207&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Blush Response",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-damask-rose",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Damask Rose\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/damask-rose/73327394?i=73327388&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Damask Rose",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-end-titles",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Blade Runner (End Titles)\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/blade-runner-end-titles/73327394?i=73327390&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Blade Runner (End Titles)",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-love-theme",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Love Theme from Blade Runner\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/love-theme-from-blade-runner/73327394?i=73327234&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Love Theme from Blade Runner",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-main-titles",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Blade Runner (Main Titles)\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/blade-runner-main-titles/73327394?i=73327205&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Blade Runner (Main Titles)",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-memories-of-green",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Memories of Green\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/memories-of-green/73327394?i=73327359&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Memories of Green",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-rachels-song",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Rachel's Song\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/rachels-song/73327394?i=73327232&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Rachel's Song",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-tales-of-the-future",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Tales of the Future\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/tales-of-the-future/73327394?i=73327386&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Tales of the Future",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-tears-in-rain",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Tears in Rain\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/tears-in-rain/73327394?i=73327392&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Tears in Rain",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-br-wait-for-me",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Wait for Me\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/wait-for-me/73327394?i=73327226&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Wait for Me",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-conquest-of-paradise",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Conquest of Paradise\" (1492: Conquest of Paradise)",
+"url": "https://music.apple.com/us/album/conquest-of-paradise/41297647?i=41297651&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Conquest of Paradise",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-cosmos",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Theme from \"Cosmos\" (Heaven and Hell, 3rd Movement)\" (Best Of)",
+"url": "https://music.apple.com/us/album/theme-from-the-tv-series-cosmos-heaven-and-hell-3rd-movement/255631517?i=255633905&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Theme from \"Cosmos\" (Heaven and Hell, 3rd Movement)",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
+"f": "vangelis-mythodea-movement-3",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Mythodea: Movement 3\" (Mythodea - Music for the NASA Mission: 2001 Mars Odyssey)",
+"url": "https://music.apple.com/us/album/mythodea-movement-3/206011859?i=206012404&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Mythodea: Movement 3",
+"kind": "sound",
+"d": 7.0,
+"pool": "mid"
+},
+{
 "f": "victory-6",
 "pool": "short",
 "d": 1.5,
@@ -10033,6 +10237,32 @@
 "quote": "COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it.",
 "kind": "talk",
 "who": "Joe Biden"
+},
+{
+"f": "long/br-tears-in-rain-1",
+"src": "myinstants: \"tears-in-rain-1\"",
+"url": "https://www.myinstants.com/en/instant/tears-in-rain-1/",
+"grp": "Blade Runner",
+"lic": "Not CC0",
+"kind": "talk",
+"quote": "All those moments will be lost in time",
+"who": "Roy Batty (Rutger Hauer, Blade Runner)",
+"from": "Roy Batty's death speech, Blade Runner (1982)",
+"d": 7.8,
+"pool": "long"
+},
+{
+"f": "long/br-tears-in-rain-2",
+"src": "myinstants: \"tears-in-rain\"",
+"url": "https://www.myinstants.com/en/instant/tears-in-rain/",
+"grp": "Blade Runner",
+"lic": "Not CC0",
+"kind": "talk",
+"quote": "like tears in rain.",
+"who": "Roy Batty (Rutger Hauer, Blade Runner)",
+"from": "Roy Batty's death speech, Blade Runner (1982)",
+"d": 8.0,
+"pool": "long"
 },
 {
 "f": "long/bush-federal-program",
@@ -12406,6 +12636,72 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 7.1,
+"pool": "long"
+},
+{
+"f": "long/vangelis-br-end-titles-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Blade Runner (End Titles)\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/blade-runner-end-titles/73327394?i=73327390&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Blade Runner (End Titles) (longer cut)",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/vangelis-br-love-theme-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Love Theme from Blade Runner\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/love-theme-from-blade-runner/73327394?i=73327234&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Love Theme from Blade Runner (longer cut)",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/vangelis-br-main-titles-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Blade Runner (Main Titles)\" (Blade Runner (Original Score from the Motion Picture))",
+"url": "https://music.apple.com/us/album/blade-runner-main-titles/73327394?i=73327205&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Blade Runner (Main Titles) (longer cut)",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/vangelis-conquest-of-paradise-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Conquest of Paradise\" (1492: Conquest of Paradise)",
+"url": "https://music.apple.com/us/album/conquest-of-paradise/41297647?i=41297651&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Conquest of Paradise (longer cut)",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/vangelis-cosmos-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Theme from \"Cosmos\" (Heaven and Hell, 3rd Movement)\" (Best Of)",
+"url": "https://music.apple.com/us/album/theme-from-the-tv-series-cosmos-heaven-and-hell-3rd-movement/255631517?i=255633905&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Theme from \"Cosmos\" (Heaven and Hell, 3rd Movement) (longer cut)",
+"kind": "sound",
+"d": 10.0,
+"pool": "long"
+},
+{
+"f": "long/vangelis-mythodea-movement-3-long",
+"src": "Apple iTunes 30-second preview: Vangelis, \"Mythodea: Movement 3\" (Mythodea - Music for the NASA Mission: 2001 Mars Odyssey)",
+"url": "https://music.apple.com/us/album/mythodea-movement-3/206011859?i=206012404&uo=4",
+"grp": "Vangelis",
+"lic": "Copyrighted preview clip",
+"note": "Mythodea: Movement 3 (longer cut)",
+"kind": "sound",
+"d": 10.0,
 "pool": "long"
 },
 {
