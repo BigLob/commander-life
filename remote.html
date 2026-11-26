@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0c0e11">
+<title>Sound Remote</title>
+<!-- app-board-link: links the board's manifest (installing from here still opens the board). The
+     floating Board button the other pages add would sit on a sound button, so the way back is the
+     🃏 in the header instead. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<style>
+/* Remote soundboard (index.html v1.103): one phone screen of buttons, no scrolling. Each tap sends a
+   ping through the live table and the speaker phone (the iPad) plays a clip from that button's set.
+   Dark and gold like the board. */
+@font-face { font-family: "Matrix"; src: url(fonts/Matrix-Bold.woff) format("woff"); font-display: swap; unicode-range: U+20-7E; }
+@font-face { font-family: "MPlantin"; src: url(fonts/Mplantin-text.woff) format("woff"); font-display: swap; unicode-range: U+20-7E, U+2013-2014, U+2018-2019, U+201C-201D, U+2026; }
+:root {
+  --bg: #0c0e11; --panel: #171a1f; --ink: #f2ecdf; --ink-2: #a39d90;
+  --gold: #e8b14a; --gold-hi: #ffe2a3;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); overflow: hidden; }
+body {
+  display: flex; flex-direction: column; height: 100dvh;
+  padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+  font: 15px/1.15 "MPlantin", Georgia, serif;
+  user-select: none; -webkit-user-select: none; touch-action: manipulation;
+}
+header { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; margin-bottom: 6px; }
+.home { font-size: 22px; text-decoration: none; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; background: var(--panel); }
+.mid { min-width: 0; }
+h1 { margin: 0; font: 20px/1 "Matrix", Georgia, serif; color: var(--gold); letter-spacing: .02em; }
+.status { display: flex; gap: 6px; align-items: center; font-size: 12.5px; color: var(--ink-2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #6b6b6b; }
+.dot.ok { background: #57d38c; box-shadow: 0 0 6px #57d38c; }
+.dot.bad { background: #e5534b; }
+.stop {
+  height: 38px; padding: 0 14px; border: 0; border-radius: 10px; background: #b8322b; color: #fff;
+  font: 16px "Matrix", Georgia, serif; letter-spacing: .04em;
+}
+.now {
+  font-size: 13px; color: var(--gold-hi); background: var(--panel); border-radius: 8px; padding: 5px 9px;
+  margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 25px;
+}
+.now:empty::before { content: "Tap a button: the iPad plays it."; color: var(--ink-2); }
+.grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 6px; }
+.grid button {
+  min-height: 0; min-width: 0; border: 0; border-radius: 12px; padding: 2px 4px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  color: var(--ink); background: var(--c, #2a2f36);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+  font: inherit; font-size: clamp(12px, 3.6vw, 16px); line-height: 1.05;
+  transition: transform .08s, filter .08s;
+}
+.grid button .e { font-size: clamp(17px, 5.4vw, 24px); line-height: 1; }
+.grid button .l { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.grid button:active, .grid button.hit { transform: scale(.94); filter: brightness(1.45); }
+/* Colors by kind, so the eye finds a row fast. */
+.k-ev { --c: #6b4d12; } .k-pr { --c: #20376b; } .k-tr { --c: #6b2049; }
+.k-fr { --c: #164c4f; } .k-mu { --c: #43246b; } .k-gr { --c: #3c4f16; } .k-mi { --c: #5a3216; }
+</style>
+</head>
+<body>
+<header>
+  <a class="home" href="./" aria-label="Back to the board">🃏</a>
+  <div class="mid">
+    <h1>Sound Remote</h1>
+    <div class="status"><span class="dot" id="dot"></span><span id="stat">Connecting…</span></div>
+  </div>
+  <button class="stop" id="stop">STOP</button>
+</header>
+<div class="now" id="now"></div>
+<div class="grid" id="grid"></div>
+<script>
+(() => {
+  // Each button: [emoji, label, kind (color), spec]. The spec is what the speaker phone matches
+  // (index.html remotePlay()): 'any', 'out', 'win', or terms joined by '|': g=<clips.json group>,
+  // p=<file-name prefix>, s=<text in the file name>, x=<prefix to leave out>.
+  const BUTTONS = [
+    ['🎲', 'Random', 'ev', 'any'],
+    ['💀', 'Knockout', 'ev', 'out'],
+    ['🏆', 'Winner', 'ev', 'win'],
+    ['🦅', 'Presidents', 'pr', 'g=Presidents'],
+    ['🍊', 'Trump', 'pr', 'p=trump-'],
+    ['🎤', 'Obama', 'pr', 'p=obama-'],
+    ['🍦', 'Biden', 'pr', 'p=biden-'],
+    ['🤠', 'Bush', 'pr', 'p=bush-'],
+    ['🕯️', 'Cult leader', 'pr', 'g=Cult leaders'],
+    ['🔥', 'Roast Trent', 'tr', 'p=tts-trent-|x=tts-trent-pickup-'],
+    ['💋', 'Woo Trent', 'tr', 'p=tts-trent-pickup-'],
+    ['🤪', 'Nonsense', 'tr', 'g=Nonsense words'],
+    ['🖖', 'Star Trek', 'fr', 'g=Star Trek'],
+    ['⚔️', 'Star Wars', 'fr', 'g=Star Wars'],
+    ['🥕', 'Looney Tunes', 'fr', 'g=Looney Tunes'],
+    ['🐤', 'Final Fantasy', 'fr', 'g=Final Fantasy'],
+    ['🗡️', 'Dark Souls', 'fr', 'g=Dark Souls'],
+    ['🤖', 'Mega Man', 'fr', 'g=Mega Man'],
+    ['😎', 'Duke Nukem', 'fr', 'g=Duke Nukem'],
+    ['👹', 'Doom', 'fr', 'g=Doom'],
+    ['🎮', 'Games', 'fr', 'g=Portal|g=Gears of War|g=Halo|g=Mario|g=Pokémon|g=Zelda|g=Mortal Kombat|g=Street Fighter|g=Unreal and Quake|g=XCOM|g=StarCraft|g=WarCraft|g=Skyrim|g=Metal Gear'],
+    ['📺', 'TV & movies', 'fr', 'g=Monty Python|g=Lord of the Rings|g=The Office|g=The Simpsons|g=Jurassic Park|g=Game shows'],
+    ['🚀', 'NASA', 'fr', 'g=NASA'],
+    ['🏈', 'Sports', 'fr', 'g=NBA interviews|g=NFL interviews|g=MLB interviews'],
+    ['🎹', 'Vangelis', 'mu', 'g=Vangelis'],
+    ['🏃', 'Chariots', 'mu', 'g=Chariots of Fire'],
+    ['🌧️', 'Blade Runner', 'mu', 'g=Blade Runner'],
+    ['🎸', 'Kenneth Cope', 'mu', 'g=Kenneth Cope'],
+    ['🎺', 'Fanfare', 'mu', 's=fanfare|s=victory|p=win-|s=stage-clear|p=level-up|s=level-complete|s=round-clear|s=area-clear'],
+    ['😢', 'Sad', 'mu', 's=sad|s=game-over|s=gameover|s=mournful|s=tragic|s=defeat'],
+    ['💨', 'Farts', 'gr', 's=fart|p=toilet|s=diarr|p=gross-'],
+    ['🩸', 'Squelch', 'gr', 'g=Squelching|p=splat|p=squish|p=slime'],
+    ['🪚', 'Chainsaw', 'gr', 'g=Chainsaws'],
+    ['👻', 'Spooky', 'mi', 'p=ghost|p=spooky|p=horror|p=zombie|p=scream|p=jumpscare'],
+    ['👺', 'Monsters', 'mi', 'p=growl-monster|p=demon-|p=critter-monster|p=monster|p=goblin|p=hungry-ghoul|p=retro-monster|p=troll|p=big-scary'],
+    ['💥', 'Cartoon', 'mi', 'g=Cartoon effects|g=Animaniacs|g=Tom and Jerry|g=Scooby-Doo|g=The Flintstones|g=Pinky and the Brain|p=spring-|p=door-spring'],
+  ];
+  const TABLE = 'https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k';
+  let me = null;
+  try { me = localStorage.getItem('cl-remote-id'); } catch (e) {}
+  if (!me) { me = 'remote-' + Math.random().toString(36).slice(2, 10); try { localStorage.setItem('cl-remote-id', me); } catch (e) {} }
+
+  const grid = document.getElementById('grid'), now = document.getElementById('now');
+  BUTTONS.forEach(([e, l, k, spec]) => {
+    const b = document.createElement('button');
+    b.className = 'k-' + k;
+    b.innerHTML = '<span class="e">' + e + '</span><span class="l">' + l.replace(/&/g, '&amp;') + '</span>';
+    b.addEventListener('click', () => fire(spec, l, b));
+    grid.appendChild(b);
+  });
+  document.getElementById('stop').addEventListener('click', () => fire('stop', 'Stop'));
+
+  let sentAt = 0;
+  function fire(spec, label, btn) {
+    if (btn) { btn.classList.add('hit'); setTimeout(() => btn.classList.remove('hit'), 160); }
+    if (navigator.vibrate) navigator.vibrate(15);
+    sentAt = Date.now();
+    now.textContent = spec === 'stop' ? '■ Stopped' : 'Sent: ' + label + '…';
+    fetch(TABLE + '.json', { method: 'PATCH', body: JSON.stringify({ 'ping/n': { '.sv': { increment: 1 } }, 'ping/k': 'sb:' + spec, 'ping/by': me }) })
+      .catch(() => { now.textContent = "Couldn't reach the table. Check the signal."; });
+  }
+
+  // What the iPad played (it writes ping/said), shown with its words when the clip has some.
+  let info = null;
+  fetch('sounds/clips.json').then(r => r.json()).then(cs => { info = {}; cs.forEach(c => { info[c.f] = c; }); }).catch(() => {});
+  function said(v) {
+    if (!v || !v.f || !sentAt) return;
+    const c = info && info[v.f];
+    const words = c && (c.quote || c.note);
+    const who = c && c.who ? ' (' + c.who.replace(/ \(at .*\)$/, '') + ')' : '';
+    now.textContent = '▶ ' + (words ? '“' + words + '”' + who : v.f.split('/').pop().replace(/-/g, ' '));
+  }
+
+  // Who's the speaker: it checks in every 30 s; stale after 90 s, as on the board.
+  let speaker = {}, open = false;
+  const dot = document.getElementById('dot'), stat = document.getElementById('stat');
+  function paint() {
+    const fresh = speaker && speaker.id && Date.now() - (speaker.at || 0) < 90e3;
+    dot.className = 'dot ' + (!open ? '' : fresh ? 'ok' : 'bad');
+    stat.textContent = !open ? 'Connecting…' : fresh ? 'Speaker phone is listening'
+      : speaker && speaker.id ? 'Speaker phone is asleep: open the board on it'
+      : 'No speaker. On the iPad: Menu → Speaker → This phone';
+  }
+  setInterval(paint, 5000);
+  function watch(path, onData) {
+    const es = new EventSource(TABLE + '/' + path + '.json');
+    let val = null;
+    es.onopen = () => { open = true; paint(); };
+    es.onerror = () => { open = es.readyState === EventSource.OPEN; paint(); };
+    es.addEventListener('put', e => {
+      const { path: p, data } = JSON.parse(e.data);
+      if (p === '/') val = data; else { val = val && typeof val === 'object' ? val : {}; val[p.slice(1).split('/')[0]] = data; }
+      onData(val);
+    });
+    es.addEventListener('patch', e => {
+      const { data } = JSON.parse(e.data);
+      val = Object.assign(val && typeof val === 'object' ? val : {}, data);
+      onData(val);
+    });
+  }
+  watch('speaker', v => { speaker = v || {}; paint(); });
+  let firstSaid = true;
+  watch('ping/said', v => { if (firstSaid) { firstSaid = false; return; } said(v); });
+})();
+</script>
+</body>
+</html>

@@ -988,7 +988,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.102';
+  const VERSION = '1.103';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -3830,6 +3830,46 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     if (!amSpeaker() || getAt(mirror, 'ping/by') === state.phone) return;
     if (k === 'turn') turnSound(true);
     else if (k === 'out' || k === 'win') play(k, true);
+    else if (typeof k === 'string' && k.startsWith('sb:')) remotePlay(k.slice(3), n);
+  }
+  // v1.103: the remote soundboard (remote.html, the user's ask): a phone of buttons that makes the
+  // speaker phone (the iPad) play. Each button sends a ping 'sb:<spec>': 'any' (any clip), 'out' or
+  // 'win' (the knockout and win lists), 'stop' (cut off what's playing), or terms joined by '|', each
+  // g=<clips.json group>, p=<file-name prefix> or s=<text in the file name> (any term matches; names
+  // are matched without long/; x=<prefix> excludes). Groups come from sounds/clips.json, fetched the first time. Each spec
+  // deals from its own shuffled bag, so a button doesn't repeat until all its clips have played. It
+  // plays at Sound All or Turn only (Off on the speaker phone silences it), and writes back what it played (ping/said)
+  // so the remote can show it.
+  let clipsP = null;
+  const clipsJson = () => clipsP || (clipsP = fetch('sounds/clips.json').then(r => r.json())
+    .catch(() => { clipsP = null; return []; }));
+  const rBags = {};
+  function remoteList(spec) {
+    if (spec === 'any') return Promise.resolve(Object.values(TURN_POOLS).flatMap(p => Object.values(p).flatMap(s => s.split(' ').filter(Boolean))));
+    if (EVENT_SOUNDS[spec]) return Promise.resolve(EVENT_SOUNDS[spec].filter(Boolean));
+    const terms = spec.split('|').map(t => [t.slice(0, 1), t.slice(2).toLowerCase()]);
+    return clipsJson().then(cs => cs.filter(c => {
+      const base = c.f.split('/').pop();
+      const hit = ([t, v]) => t === 'g' ? (c.grp || '').toLowerCase() === v : t === 'p' ? base.startsWith(v) : t === 's' && base.includes(v);
+      // x=<prefix> leaves those clips out (Trent's roast lines without his pickup lines).
+      return terms.some(hit) && !terms.some(([t, v]) => t === 'x' && base.startsWith(v));
+    }).map(c => c.f));
+  }
+  function remotePlay(spec, n) {
+    if (spec === 'stop') { try { if (current) current.stop(); } catch (e) {} current = null; return; }
+    unlock();
+    if (!audio) return;
+    remoteList(spec).then(list => {
+      if (!list.length) return;
+      let bag = rBags[spec] = (rBags[spec] || []).filter(c => list.includes(c));
+      if (!bag.length) {
+        bag = rBags[spec] = list.slice();
+        for (let i = bag.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [bag[i], bag[j]] = [bag[j], bag[i]]; }
+      }
+      const name = bag.shift();
+      send({ 'ping/said': { n, f: name } });
+      load(name).then(buf => { if (buf) playBuffer(buf, name); });
+    });
   }
   function checkIn() {
     if (!amSpeaker() || document.visibilityState !== 'visible') return;
