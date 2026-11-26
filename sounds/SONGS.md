@@ -82,6 +82,10 @@ then CC0 jingle and fanfare packs from OpenGameArt. Composer credits are from ge
 | `long/vangelis-conquest-of-paradise-long` | Conquest of Paradise (longer cut) | Vangelis | 10.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/conquest-of-paradise/41297647?i=41297651&uo=4) |
 | `long/vangelis-cosmos-long` | Theme from "Cosmos" (Heaven and Hell, 3rd Movement) (longer cut) | Vangelis | 10.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/theme-from-the-tv-series-cosmos-heaven-and-hell-3rd-movement/255631517?i=255633905&uo=4) |
 | `long/vangelis-mythodea-movement-3-long` | Mythodea: Movement 3 (longer cut) | Vangelis | 10.0 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/mythodea-movement-3/206011859?i=206012404&uo=4) |
+| `long/ds9-theme-emissary` | Star Trek: Deep Space Nine - Main Title | Dennis McCarthy | 8.5 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/star-trek-deep-space-nine-main-title/74984801?i=74984559&uo=4) |
+| `ds9-theme-finale` | Star Trek: Deep Space Nine - Main Title (closing bars) | Dennis McCarthy | 3.7 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/star-trek-deep-space-nine-main-title/74984801?i=74984559&uo=4) |
+| `long/ds9-theme-s4` | Star Trek: Deep Space Nine (Main Title, Season IV) | Dennis McCarthy | 7.7 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/star-trek-deep-space-nine-main-title-season-iv/49266704?i=49266616&uo=4) |
+| `long/ds9-theme-piano` | Deep Space Nine Main Title for Solo Piano (After 3:00 AM at Quarks) | Dennis McCarthy | 7.3 s | [Apple iTunes 30-second preview](https://music.apple.com/us/album/star-trek-deep-space-nine-main-title-for-solo-piano/1479042215?i=1479042284&uo=4) |
 | `trek-opening-chime` | Star Trek opening chime | Star Trek | 6.7 s | [myinstants](https://www.myinstants.com/media/sounds/star-trek-opening_8Ffzmjq.mp3) |
 | `long/trek-tos-chime` | TOS opening chime | Star Trek | 6.0 s | [myinstants](https://www.myinstants.com/media/sounds/star-trek-opening.mp3) |
 

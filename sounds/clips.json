@@ -2055,6 +2055,140 @@
 "kind": "sound"
 },
 {
+"f": "ds9-abort-and-retry",
+"src": "TrekCore: DS9 computer, abort and retry",
+"url": "https://www.trekcore.com/audio/computer/voice/ds9_abort_and_retry.mp3",
+"grp": "Star Trek",
+"kind": "talk",
+"lic": "Paramount TV and film audio",
+"quote": "Unable to complete requested function. Please abort and retry.",
+"who": "DS9 computer",
+"note": "Deep Space Nine",
+"d": 5.0,
+"pool": "mid"
+},
+{
+"f": "ds9-bajoran-combadge",
+"src": "TrekCore: Bajoran combadge",
+"url": "https://www.trekcore.com/audio/communicator/DS9_BAJCOM.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Bajoran combadge chirp",
+"d": 0.5,
+"pool": "short"
+},
+{
+"f": "ds9-cardassian-disruptor",
+"src": "TrekCore: Cardassian disruptor",
+"url": "https://www.trekcore.com/audio/aliensounds/cardassian_disruptor.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Cardassian disruptor",
+"d": 2.5,
+"pool": "short"
+},
+{
+"f": "ds9-cardassian-door",
+"src": "TrekCore: Cardassian door",
+"url": "https://www.trekcore.com/audio/aliensounds/cardassian_door.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Cardassian door",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "ds9-door",
+"src": "TrekCore: DS9 door",
+"url": "https://www.trekcore.com/audio/doors/ds9_door.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Station door",
+"d": 2.1,
+"pool": "short"
+},
+{
+"f": "ds9-doorchime",
+"src": "TrekCore: DS9 door chime",
+"url": "https://www.trekcore.com/audio/doors/ds9_doorchime.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Door chime (someone at Sisko's office)",
+"d": 1.1,
+"pool": "short"
+},
+{
+"f": "ds9-quantum-torpedo",
+"src": "TrekCore: Quantum torpedo",
+"url": "https://www.trekcore.com/audio/weapons/quantumtorpeodoes2.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Quantum torpedoes (the Defiant)",
+"d": 1.8,
+"pool": "short"
+},
+{
+"f": "ds9-red-alert-2",
+"src": "TrekCore: DS9 red alert 2",
+"url": "https://www.trekcore.com/audio/redalertandklaxons/ds9_red_alert2.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: DS9 red alert, second klaxon (looped 3 times)",
+"d": 1.9,
+"pool": "short"
+},
+{
+"f": "ds9-red-alert",
+"src": "TrekCore: DS9 red alert",
+"url": "https://www.trekcore.com/audio/redalertandklaxons/ds9_red_alert.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: DS9 red alert (looped 3 times)",
+"d": 2.4,
+"pool": "short"
+},
+{
+"f": "ds9-replicator",
+"src": "TrekCore: DS9 replicator",
+"url": "https://www.trekcore.com/audio/replicator/ds9_replicator.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Replicator (where the raktajino comes from)",
+"d": 4.1,
+"pool": "mid"
+},
+{
+"f": "ds9-theme-finale",
+"src": "Apple iTunes 30-second preview: Dennis McCarthy, \"Star Trek: Deep Space Nine - Main Title\" (The Emissary soundtrack)",
+"url": "https://music.apple.com/us/album/star-trek-deep-space-nine-main-title/74984801?i=74984559&uo=4",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Copyrighted preview clip",
+"note": "Deep Space Nine main title (closing bars)",
+"d": 3.7,
+"pool": "mid"
+},
+{
+"f": "ds9-tricorder",
+"src": "TrekCore: DS9 tricorder",
+"url": "https://www.trekcore.com/audio/tricorder/ds9_tricorder_1.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Tricorder",
+"d": 0.7,
+"pool": "short"
+},
+{
 "f": "duke-birth-control",
 "src": "myinstants: Inspiration for Birth Control",
 "url": "https://www.myinstants.com/media/sounds/inspiration-for-birth-control.mp3",
@@ -10952,6 +11086,72 @@
 "note": "At Doom's Gate, E1M1 (first 8 s)",
 "d": 8.0,
 "pool": "long"
+},
+{
+"f": "long/ds9-runabout",
+"src": "TrekCore: Runabout flyby",
+"url": "https://www.trekcore.com/audio/other/runabout_flyby_1.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Runabout flyby",
+"d": 8.7,
+"pool": "long"
+},
+{
+"f": "long/ds9-theme-emissary",
+"src": "Apple iTunes 30-second preview: Dennis McCarthy, \"Star Trek: Deep Space Nine - Main Title\" (The Emissary soundtrack)",
+"url": "https://music.apple.com/us/album/star-trek-deep-space-nine-main-title/74984801?i=74984559&uo=4",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Copyrighted preview clip",
+"note": "Deep Space Nine main title",
+"d": 8.5,
+"pool": "long"
+},
+{
+"f": "long/ds9-theme-piano",
+"src": "Apple iTunes 30-second preview: Dennis McCarthy, \"Star Trek: Deep Space Nine Main Title for Solo Piano (After 3:00 AM at Quarks)\" (What We Left Behind)",
+"url": "https://music.apple.com/us/album/star-trek-deep-space-nine-main-title-for-solo-piano/1479042215?i=1479042284&uo=4",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Copyrighted preview clip",
+"note": "Deep Space Nine main title for solo piano",
+"d": 7.3,
+"pool": "long"
+},
+{
+"f": "long/ds9-theme-s4",
+"src": "Apple iTunes 30-second preview: Dennis McCarthy, \"Star Trek: Deep Space Nine (Main Title, Season IV)\" (The Best of Star Trek)",
+"url": "https://music.apple.com/us/album/star-trek-deep-space-nine-main-title-season-iv/49266704?i=49266616&uo=4",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Copyrighted preview clip",
+"note": "Deep Space Nine main title, Season 4 version",
+"d": 7.7,
+"pool": "long"
+},
+{
+"f": "long/ds9-turbolift",
+"src": "TrekCore: DS9 turbolift",
+"url": "https://www.trekcore.com/audio/turbolift/ds9_turbolift.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: Ops turbolift",
+"d": 9.3,
+"pool": "long"
+},
+{
+"f": "long/ds9-wormhole",
+"src": "TrekCore: Bajoran wormhole",
+"url": "https://www.trekcore.com/audio/other/bajoran_wormhole.mp3",
+"grp": "Star Trek",
+"kind": "sound",
+"lic": "Paramount TV and film audio",
+"note": "Deep Space Nine: The Bajoran wormhole opening",
+"d": 5.2,
+"pool": "mid"
 },
 {
 "f": "long/duke-lot-of-words",

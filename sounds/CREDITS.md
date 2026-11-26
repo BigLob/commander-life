@@ -961,3 +961,14 @@ No "Mormon Anthems" album turned up, so these are his popular songs by album.
 Damask Rose), Conquest of Paradise, the Cosmos theme, Antarctica and Mythodea Movement 3. Voice lines (group Blade Runner, `br-*`, 5 clips) from myinstants
 uploads, checked with faster-whisper: Roy Batty's "All those moments will be lost in time" / "like tears in rain" / "Time to die" (the speech's music is under it),
 and Joi's "You look lonely. I can fix that." and "You look like a good Joe" (Blade Runner 2049). Copyrighted, not CC0. Left out: Joi's laugh and the BR2049 meme remixes.
+
+## Deep Space Nine, for the Sisko deck (v1.105)
+
+18 clips, group Star Trek (`ds9-*`), for the remote's Sisko button (with the older `trek-raktajino`, Sisko's "Computer, one raktajino").
+14 from TrekCore's audio library (trekcore.com/audio): DS9 red alerts (each looped 3 times), the Bajoran wormhole, station door and door chime,
+runabout flyby, replicator, turbolift, Cardassian disruptor and door, the Defiant's quantum torpedoes, a Bajoran combadge chirp, a tricorder,
+and the station computer's "Unable to complete requested function. Please abort and retry." (checked with faster-whisper).
+4 music cuts from Apple's free 30-second iTunes previews of Dennis McCarthy's Deep Space Nine main title (The Emissary soundtrack; the Season IV
+version; the solo piano version from What We Left Behind). No Sisko voice lines were found on any site the sandbox reaches (myinstants has only the
+raktajino line). Paramount audio and copyrighted previews, not CC0.
+
