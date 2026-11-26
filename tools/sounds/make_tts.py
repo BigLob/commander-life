@@ -15,11 +15,13 @@ from kokoro_onnx import Kokoro
 ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 SPEED = float(os.environ.get('TTS_SPEED', '0.82'))  # v1.71: slower, the user found 1.0 hard to understand
 VOICES = ['af_heart', 'af_bella']
+NONSENSE_SPEED = float(os.environ.get('NONSENSE_SPEED', '0.6'))  # v1.106: nonsense words were too fast to follow
+LANG_SPEED = 0.8  # foreign-sound clips (lang-*): each names its own `lang` and `voice` in clips.json
 # Spellings Kokoro says right (it read mana as "Mona"); the words shown in the app stay as written.
 SAY = {'mana': 'manna', 'Mana': 'Manna'}
 kdir = os.environ.get('KOKORO_DIR', os.path.expanduser('~/.cache/kokoro'))
 k = Kokoro(os.path.join(kdir, 'kokoro-v1.0.onnx'), os.path.join(kdir, 'voices-v1.0.bin'))
-clips = [c for c in json.load(open(os.path.join(ROOT, 'sounds/clips.json'))) if c['f'].split('/')[-1].startswith(('tts-', 'nonsense-'))]
+clips = [c for c in json.load(open(os.path.join(ROOT, 'sounds/clips.json'))) if c['f'].split('/')[-1].startswith(('tts-', 'nonsense-', 'lang-'))]
 only = set(sys.argv[1:])
 for i, c in enumerate(sorted(clips, key=lambda c: c['f'])):
     if only and c['f'].split('/')[-1] not in only:
@@ -28,7 +30,9 @@ for i, c in enumerate(sorted(clips, key=lambda c: c['f'])):
     text = c['quote']
     for a, b in SAY.items():
         text = text.replace(a, b)
-    audio, sr = k.create(text, voice=voice, speed=SPEED, lang='en-us')
+    name = c['f'].split('/')[-1]
+    speed = c.get('speed') or (NONSENSE_SPEED if name.startswith('nonsense-') else LANG_SPEED if name.startswith('lang-') else SPEED)
+    audio, sr = k.create(text, voice=voice, speed=speed, lang=c.get('lang', 'en-us'))
     with tempfile.NamedTemporaryFile(suffix='.wav') as w:
         sf.write(w.name, audio, sr)
         trim = 'silenceremove=start_periods=1:start_threshold=-50dB'

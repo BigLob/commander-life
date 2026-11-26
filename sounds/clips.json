@@ -3749,6 +3749,202 @@
 "pool": "short"
 },
 {
+"f": "lang-baguette",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Zut alors, la baguette s'est enfuie!",
+"who": "Announcer (French)",
+"voice": "ff_siwis",
+"lang": "fr-fr",
+"d": 2.5,
+"pool": "short"
+},
+{
+"f": "lang-banana",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Ai ai ai, a banana fugiu!",
+"who": "Announcer (Portuguese)",
+"voice": "pm_alex",
+"lang": "pt-br",
+"d": 2.3,
+"pool": "short"
+},
+{
+"f": "lang-caramba",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "¡Ay caramba, mi burrito explotó!",
+"who": "Announcer (Spanish)",
+"voice": "ef_dora",
+"lang": "es",
+"d": 2.6,
+"pool": "short"
+},
+{
+"f": "lang-chai",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "वाह वाह, चाय में जादू हो गया!",
+"who": "Announcer (Hindi)",
+"voice": "hm_omega",
+"lang": "hi",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "lang-chancla",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "¡Dios mío, vuela la chancla!",
+"who": "Announcer (Spanish)",
+"voice": "em_alex",
+"lang": "es",
+"d": 2.4,
+"pool": "short"
+},
+{
+"f": "lang-croissant",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Oh là là, mon croissant est tombé!",
+"who": "Announcer (French)",
+"voice": "ff_siwis",
+"lang": "fr-fr",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "lang-jiaozi",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "哎呀，我的饺子飞走了！",
+"who": "Announcer (Mandarin)",
+"voice": "zf_xiaobei",
+"lang": "cmn",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "lang-mamma-mia",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Mamma mia, che spaghettone gigante!",
+"who": "Announcer (Italian)",
+"voice": "if_sara",
+"lang": "it",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "lang-neko",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "ニャンニャン、ねこがおどってる！",
+"who": "Announcer (Japanese)",
+"voice": "jm_kumo",
+"lang": "ja",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "lang-panda",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "熊猫在唱歌，太好笑了！",
+"who": "Announcer (Mandarin)",
+"voice": "zm_yunxi",
+"lang": "cmn",
+"d": 2.9,
+"pool": "short"
+},
+{
+"f": "lang-pastel",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Meu Deus, o pastel voou!",
+"who": "Announcer (Portuguese)",
+"voice": "pf_dora",
+"lang": "pt-br",
+"d": 2.2,
+"pool": "short"
+},
+{
+"f": "lang-samosa",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "अरे बाप रे, समोसा गिर गया!",
+"who": "Announcer (Hindi)",
+"voice": "hf_alpha",
+"lang": "hi",
+"d": 3.0,
+"pool": "short"
+},
+{
+"f": "lang-spaghetti-bello",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "Bravissimo! Bibbidi bobbidi polpetta!",
+"who": "Announcer (Italian)",
+"voice": "im_nicola",
+"lang": "it",
+"d": 3.3,
+"pool": "mid"
+},
+{
+"f": "lang-tanuki",
+"src": "Made for this app: Kokoro text-to-speech",
+"url": "https://github.com/hexgrad/kokoro",
+"grp": "Foreign sounds",
+"lic": "Made for this app",
+"kind": "talk",
+"quote": "すごい！たぬきが、らーめん、たべた！",
+"who": "Announcer (Japanese)",
+"voice": "jf_alpha",
+"lang": "ja",
+"d": 2.6,
+"pool": "short"
+},
+{
 "f": "law-and-order",
 "src": "myinstants: Law and Order DUN DUN",
 "url": "https://www.myinstants.com/media/sounds/dun_dun_1.mp3",
@@ -4489,8 +4685,8 @@
 "quote": "Blorpo snazzlefrunk!",
 "who": "Announcer",
 "voice": "bm_george",
-"d": 2.3,
-"pool": "short"
+"d": 3.2,
+"pool": "mid"
 },
 {
 "f": "nonsense-bumbly-crumpet-doodle",
@@ -4502,7 +4698,7 @@
 "quote": "Bumbly crumpet doodle!",
 "who": "Announcer",
 "voice": "af_heart",
-"d": 1.6,
+"d": 2.4,
 "pool": "short"
 },
 {
@@ -4515,7 +4711,7 @@
 "quote": "Creezor fingerbang!",
 "who": "Announcer",
 "voice": "af_bella",
-"d": 1.3,
+"d": 1.9,
 "pool": "short"
 },
 {
@@ -4528,7 +4724,7 @@
 "quote": "Dribbling gorpwhistle!",
 "who": "Announcer",
 "voice": "af_sky",
-"d": 1.8,
+"d": 2.5,
 "pool": "short"
 },
 {
@@ -4541,7 +4737,7 @@
 "quote": "Fartnoodle supreme!",
 "who": "Announcer",
 "voice": "am_adam",
-"d": 1.6,
+"d": 2.3,
 "pool": "short"
 },
 {
@@ -4554,7 +4750,7 @@
 "quote": "Flangus the squelcher!",
 "who": "Announcer",
 "voice": "am_adam",
-"d": 1.6,
+"d": 2.4,
 "pool": "short"
 },
 {
@@ -4567,7 +4763,7 @@
 "quote": "Glimbus pantsfungle!",
 "who": "Announcer",
 "voice": "af_bella",
-"d": 1.5,
+"d": 2.1,
 "pool": "short"
 },
 {
@@ -4580,7 +4776,7 @@
 "quote": "Grunkle bonkers!",
 "who": "Announcer",
 "voice": "af_bella",
-"d": 1.4,
+"d": 2.0,
 "pool": "short"
 },
 {
@@ -4593,7 +4789,7 @@
 "quote": "Jumbo snickerdoodle gorp!",
 "who": "Announcer",
 "voice": "af_heart",
-"d": 1.9,
+"d": 2.7,
 "pool": "short"
 },
 {
@@ -4606,7 +4802,7 @@
 "quote": "Kablunk the spoon!",
 "who": "Announcer",
 "voice": "bf_emma",
-"d": 1.7,
+"d": 2.5,
 "pool": "short"
 },
 {
@@ -4619,7 +4815,7 @@
 "quote": "Mungo flapjack warble!",
 "who": "Announcer",
 "voice": "am_michael",
-"d": 1.9,
+"d": 2.8,
 "pool": "short"
 },
 {
@@ -4632,7 +4828,7 @@
 "quote": "Plonkus meatloaf!",
 "who": "Announcer",
 "voice": "bm_george",
-"d": 1.9,
+"d": 2.7,
 "pool": "short"
 },
 {
@@ -4645,7 +4841,7 @@
 "quote": "Scrungling buttfungus!",
 "who": "Announcer",
 "voice": "af_heart",
-"d": 1.8,
+"d": 2.4,
 "pool": "short"
 },
 {
@@ -4658,7 +4854,7 @@
 "quote": "Snorkel wobblepants!",
 "who": "Announcer",
 "voice": "am_michael",
-"d": 1.7,
+"d": 2.4,
 "pool": "short"
 },
 {
@@ -4671,7 +4867,7 @@
 "quote": "Spleen zamboni!",
 "who": "Announcer",
 "voice": "bm_george",
-"d": 1.9,
+"d": 2.8,
 "pool": "short"
 },
 {
@@ -4684,8 +4880,8 @@
 "quote": "Turkey blaster nine thousand!",
 "who": "Announcer",
 "voice": "am_adam",
-"d": 2.1,
-"pool": "short"
+"d": 3.1,
+"pool": "mid"
 },
 {
 "f": "nonsense-wibble-wobble-fungus",
@@ -4697,7 +4893,7 @@
 "quote": "Wibble wobble fungus!",
 "who": "Announcer",
 "voice": "af_sky",
-"d": 1.9,
+"d": 2.8,
 "pool": "short"
 },
 {
@@ -4710,7 +4906,7 @@
 "quote": "Wumpus gribblesnort!",
 "who": "Announcer",
 "voice": "af_sky",
-"d": 1.9,
+"d": 2.8,
 "pool": "short"
 },
 {
@@ -4723,7 +4919,7 @@
 "quote": "Yankus burger!",
 "who": "Announcer",
 "voice": "am_michael",
-"d": 1.4,
+"d": 2.1,
 "pool": "short"
 },
 {
@@ -4736,7 +4932,7 @@
 "quote": "Zibbity crunchlord!",
 "who": "Announcer",
 "voice": "bf_emma",
-"d": 1.7,
+"d": 2.5,
 "pool": "short"
 },
 {
