@@ -131,7 +131,8 @@ h1 { margin: 0; font: 20px/1 "Matrix", Georgia, serif; color: var(--gold); lette
   });
   document.getElementById('stop').addEventListener('click', () => fire('stop', 'Stop'));
 
-  let sentAt = 0;
+  // If the iPad hasn't said what it played within 4 s, say why instead of failing silently.
+  let sentAt = 0, heard = 0, noAnswer = null;
   function fire(spec, label, btn) {
     if (btn) { btn.classList.add('hit'); setTimeout(() => btn.classList.remove('hit'), 160); }
     if (navigator.vibrate) navigator.vibrate(15);
@@ -139,6 +140,10 @@ h1 { margin: 0; font: 20px/1 "Matrix", Georgia, serif; color: var(--gold); lette
     now.textContent = spec === 'stop' ? '■ Stopped' : 'Sent: ' + label + '…';
     fetch(TABLE + '.json', { method: 'PATCH', body: JSON.stringify({ 'ping/n': { '.sv': { increment: 1 } }, 'ping/k': 'sb:' + spec, 'ping/by': me }) })
       .catch(() => { now.textContent = "Couldn't reach the table. Check the signal."; });
+    clearTimeout(noAnswer);
+    if (spec !== 'stop') noAnswer = setTimeout(() => {
+      if (heard < sentAt) now.textContent = "The iPad didn't answer. On the iPad: open the board, reload it, Menu → Speaker → This phone, tap the screen once.";
+    }, 4000);
   }
 
   // What the iPad played (it writes ping/said), shown with its words when the clip has some.
@@ -146,6 +151,7 @@ h1 { margin: 0; font: 20px/1 "Matrix", Georgia, serif; color: var(--gold); lette
   fetch('sounds/clips.json').then(r => r.json()).then(cs => { info = {}; cs.forEach(c => { info[c.f] = c; }); }).catch(() => {});
   function said(v) {
     if (!v || !v.f || !sentAt) return;
+    heard = Date.now();
     const c = info && info[v.f];
     const words = c && (c.quote || c.note);
     const who = c && c.who ? ' (' + c.who.replace(/ \(at .*\)$/, '') + ')' : '';
@@ -156,10 +162,11 @@ h1 { margin: 0; font: 20px/1 "Matrix", Georgia, serif; color: var(--gold); lette
   let speaker = {}, open = false;
   const dot = document.getElementById('dot'), stat = document.getElementById('stat');
   function paint() {
-    const fresh = speaker && speaker.id && Date.now() - (speaker.at || 0) < 90e3;
+    const age = Date.now() - (speaker && speaker.at || 0), fresh = speaker && speaker.id && age < 90e3;
+    const ago = age < 3600e3 ? Math.round(age / 60e3) + ' min' : age < 86400e3 ? Math.round(age / 3600e3) + ' h' : Math.round(age / 86400e3) + ' days';
     dot.className = 'dot ' + (!open ? '' : fresh ? 'ok' : 'bad');
     stat.textContent = !open ? 'Connecting…' : fresh ? 'Speaker phone is listening'
-      : speaker && speaker.id ? 'Speaker phone is asleep: open the board on it'
+      : speaker && speaker.id ? 'iPad not listening (last seen ' + ago + ' ago): open the board on it'
       : 'No speaker. On the iPad: Menu → Speaker → This phone';
   }
   setInterval(paint, 5000);
