@@ -23,10 +23,11 @@ ART = '--no-art' not in sys.argv
 OUTNAME = 'sisko-proxies.html' if ART else 'sisko-proxies-text.html'
 # Nov 25, 2026: the first 9 (Kirk, Picard, Academy Instructor, Gala Greeters, Felidar Retreat, Impossible
 # Choice, Test of Priorities, Cryptic Command, Resistance Is Futile) were replaced by the second batch (first 4).
-# Nov 26, 2026: the ramp picks added: 4 cheap creatures and 5 mana rocks.
+# Nov 26, 2026: the ramp picks added: 4 cheap creatures and 5 mana rocks; then 3 modal tutors (dilemmas that find artifacts).
 CARDS = ["Ni'Var Science Academy", 'Q Continuum', 'Deanna Troi, Psychic Counsel', 'Captain Kathryn Janeway',
          'Birds of Paradise', 'Bloom Tender', 'Gala Greeters', 'Paradise Druid',
-         'Sol Ring', 'Arcane Signet', 'Chromatic Lantern', 'Fellwar Stone', 'Timeless Lotus']
+         'Sol Ring', 'Arcane Signet', 'Chromatic Lantern', 'Fellwar Stone', 'Timeless Lotus',
+         'Scour for Scrap', "Mastermind's Acquisition", 'Insatiable Avarice']
 
 req = urllib.request.Request('https://api.scryfall.com/cards/collection',
                              json.dumps({'identifiers': [{'name': n} for n in CARDS]}).encode(),
