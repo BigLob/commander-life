@@ -989,7 +989,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.106';
+  const VERSION = '1.107';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1514,7 +1514,50 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       load(clip).then(buf => { if (buf) playBuffer(buf, clip); else try { SOUNDS[name](); } catch (e) {} });
       return;
     }
+    if (LIFE_SOUNDS[name]) { lifePlay(name); return; }
     try { SOUNDS[name](); } catch (e) {}
+  }
+  // v1.106: life up and down are Mega Man's health sounds (the user's ask), a random version each time.
+  // Clips live in sounds/life/ (not in the turn button's pools): X's small heal, sub tank refill and
+  // extra life jingle, NES big health (gain); X's small and big damage (lose). Each tap also bends
+  // the pitch a little (a hold's ±10 sits lower and fuller), so repeats don't sound the same. Only
+  // the previous life tick is cut off, never a turn-button clip. If a clip can't load, the old synth
+  // sound plays.
+  const LIFE_SOUNDS = {
+    gain: ['mmx-small-heal', 'mmx-sub-tank-refill', 'nes-big-health'],
+    gain10: ['nes-big-health', 'mmx-extra-life', 'mmx-sub-tank-refill'],
+    lose: ['mmx-small-damage', 'mmx-big-damage'],
+    lose10: ['mmx-big-damage', 'mmx-small-damage'],
+  };
+  const LIFE_RATE = { gain: [0.95, 1.1], gain10: [0.92, 1.05], lose: [0.9, 1.08], lose10: [0.75, 0.92] };
+  const lifeBufs = {}, lifeLast = {};
+  let lifeSrc = null;
+  function lifeLoad(name) {
+    if (!lifeBufs[name]) {
+      lifeBufs[name] = fetch('sounds/life/' + name + '.mp3').then(r => r.arrayBuffer())
+        .then(buf => new Promise((ok, no) => audio.decodeAudioData(buf, ok, no)))
+        .catch(() => { delete lifeBufs[name]; return null; });
+    }
+    return lifeBufs[name];
+  }
+  function lifePlay(kind) {
+    const list = LIFE_SOUNDS[kind].filter(n => n !== lifeLast[kind]);  // never the same clip twice running
+    const name = list[Math.floor(Math.random() * list.length)];
+    lifeLast[kind] = name;
+    const [lo, hi] = LIFE_RATE[kind];
+    const rate = lo + Math.random() * (hi - lo);
+    lifeLoad(name).then(buf => {
+      if (!buf) { try { SOUNDS[kind](); } catch (e) {} return; }
+      try { if (lifeSrc) lifeSrc.stop(); } catch (e) {}
+      const src = audio.createBufferSource();
+      src.buffer = buf;
+      src.playbackRate.value = rate;
+      src.connect(out);
+      src.start();
+      lifeSrc = src;
+      src.onended = () => { if (lifeSrc === src) lifeSrc = null; };
+    });
+    Object.keys(LIFE_SOUNDS).forEach(k => LIFE_SOUNDS[k].forEach(lifeLoad));  // warm the rest
   }
   // The turn button's sounds (v1.3; v1.7 added scary, gross and silly ones, v1.8 happy and sad):
   // CC0 clips from OpenGameArt in sounds/ (sounds/CREDITS.md says where each came from), and since

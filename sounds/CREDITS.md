@@ -972,3 +972,6 @@ and the station computer's "Unable to complete requested function. Please abort 
 version; the solo piano version from What We Left Behind). No Sisko voice lines were found on any site the sandbox reaches (myinstants has only the
 raktajino line). Paramount audio and copyrighted previews, not CC0.
 
+
+## sounds/life/ (v1.107, life up and down)
+Mega Man X small heal, sub tank refill, extra life, small damage, big damage: myinstants.com (mega-man-x-small-heal, -sub-tank-refill, -extra-life, -small-damage, -big-damage). NES big health: archive.org megaman_nes_snes_sounds (nes_bigHealth). Capcom's, not CC0; peak-normalized, extra life cut to 1.3 s.
