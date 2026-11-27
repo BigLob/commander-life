@@ -3,7 +3,7 @@
 Read from the user's photos of the sleeved deck (Nov 27, 2026), names checked against Scryfall.
 Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not every card was counted by hand.
 
-**Caveats**: the piles overlap, so one card is still hidden: a blue card starting "Le..." behind Chromatic Lantern. Confirmed by the user (Nov 27): nothing under The Caretaker, Deceptive Landscape is the card under Shattered Landscape, Yuriko, Hope from the Shadows and Spock, Cross-Time Captain are right. Basic counts are from the photos; recount if it matters.
+**Caveats**: the piles overlap, but nothing is left unidentified: the blue card behind Chromatic Lantern that looked like "Le..." is Yuriko, Hope from the Shadows (already listed). Confirmed by the user (Nov 27): nothing under The Caretaker, Deceptive Landscape is the card under Shattered Landscape, Yuriko, Hope from the Shadows and Spock, Cross-Time Captain are right. Basic counts are from the photos; recount if it matters.
 
 ## Spells (62)
 - Birds of Paradise {G}
