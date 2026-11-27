@@ -989,7 +989,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.112';
+  const VERSION = '1.113';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1529,10 +1529,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // so the same on every phone) draws again. v1.112: no theme ties the four kinds together.
   const LIFE_THEMES = [
     { name: 'Call of Duty',
-      gain: ['cod-plates', 'cod-revive-small', 'cod-self-revive', 'cod-juggernog', 'cod-quick-revive'],
-      gain10: ['cod-quick-revive-full', 'cod-juggernog', 'cod-quick-revive'],
-      lose: ['cod-hitmarker-mlg', 'cod-hitmarker', 'cod-bo2-headshot', 'cod-armor-crack', 'cod-warzone-headshot', 'cod-zombie-scream', 'cod-enemy-downed'],
-      lose10: ['cod-downed', 'cod-hitmarker-kill', 'cod-hitmarker-headshot', 'cod-zombies-nuke', 'cod-zombies-scream'] },
+      gain: ['cod-plates'], gain10: ['cod-plates'],
+      lose: ['cod-hitmarker-mlg', 'cod-hitmarker', 'cod-bo2-headshot', 'cod-armor-crack', 'cod-warzone-headshot'],
+      lose10: ['cod-downed', 'cod-hitmarker-kill', 'cod-hitmarker-headshot'] },
     { name: 'Mega Man',
       gain: ['mmx-small-heal', 'mmx-sub-tank-refill', 'nes-big-health'], gain10: ['nes-big-health', 'mmx-sub-tank-refill'],
       lose: ['mmx-small-damage'], lose10: ['mmx-big-damage'] },
