@@ -80,6 +80,39 @@ SYN = {
  'Smaug the Impenetrable': 'Self-damage Treasure. An indestructible hasty flyer that makes a Treasure per point of noncombat damage dealt to it, so pingers and wipes like Blasphemous Act pay out.',
 }
 
+# The Trek tab (the user's ask, Nov 27, 2026): every Star Trek card (trk, trc) that mentions Treasure, and every Ferengi card.
+TREK_Q = '(e:trk or e:trc) (o:treasure or t:ferengi or o:ferengi)'
+TREK_NOTE = {
+ 'Grand Nagus Zek': 'Grows with every Treasure you have, and makes one the first time another creature dies each turn.',
+ 'Quark, Humble Proprietor': 'A Treasure on every player\'s upkeep, but while he\'s out you can\'t sacrifice Treasures, so they make no mana. For decks that count Treasures.',
+ 'Rom and Leeta, Unlikely Pair': 'Two tapped Treasures whenever you draw your second card in a turn: pair with any extra draw.',
+ 'Savvy Profiteer': 'Taps for red, or for {3} makes a Treasure. Slow, but it keeps a pile growing.',
+ 'Nog, Ambitious Cadet': 'The one Ferengi with no Treasure: levels from a menace Rogue to a Scout that surveils to an Officer that plays lands from the graveyard.',
+ 'Grilka, Widowed Warrior': 'Steals an opponent\'s creature for a turn, and its combat damage becomes that many Treasures for you.',
+ 'Professional Face-Breaker': 'A Treasure whenever your creatures connect, and Treasures turn into cards off the top. In the Star Trek Commander decks.',
+ 'Temporal Conqueror': 'Mills three and gets back a land, or makes a Treasure if there was none.',
+ 'The Inner Light': 'Saga: reanimate a green or white creature, draw off its damage, then gain life and make a Treasure.',
+}
+
+def trek_cards():
+    out, url = [], 'https://api.scryfall.com/cards/search?q=' + urllib.parse.quote(TREK_Q) + '&order=edhrec'
+    while url:
+        d = json.loads(get(url)); out += d['data']; url = d.get('next_page')
+    recs = []
+    for c in out:
+        txt = (c.get('oracle_text') or ' '.join(f.get('oracle_text', '') for f in c.get('card_faces', []))).lower()
+        fer = 'Ferengi' in c['type_line'] or 'ferengi' in txt
+        tre = 'treasure' in txt
+        r = record(1, c)
+        tags = (['Ferengi'] if fer else []) + (['Makes Treasure'] if tre else [])
+        r.update(k=tags, trek=1, y=TREK_NOTE.get(c['name'], ''), sc=c['set'], cn=c['collector_number'],
+                 u='https://scryfall.com/search?q=' + urllib.parse.quote(f'!"{c["name"]}"'), grp=0 if fer and tre else 1 if tre else 2)
+        recs.append(r)
+    recs.sort(key=lambda r: r['grp'])   # Ferengi Treasure cards, then other Treasure cards, then Ferengi without Treasure; EDHREC order inside
+    missing = [r['n'] for r in recs if not r['y']]
+    if missing: print('TREK_NOTE needed for', missing)
+    return recs
+
 def main():
     today = datetime.date.today()
     page = json.loads(get('https://json.edhrec.com/pages/tags/treasure.json'))
@@ -116,6 +149,7 @@ def main():
     srcs = (f'<p><b>Only commanders that can run every Ferengi Treasure card:</b> {", ".join(FERENGI)} are black or red, so the list keeps commanders whose colors include both. '
             'Quark stops you sacrificing Treasures (so they make no mana while he is out): he suits decks that count Treasures, not ones that spend them. '
             'Quark and Savvy Profiteer are Rogues (outlaws); Zek, Quark and Rom and Leeta are legendary. Each card says how well it fits (Strong, Good, Some; filter by it under Keyword).</p>'
+            '<p><b>Trek tab:</b> every card in the Star Trek set and the Star Trek Commander decks that mentions Treasure, and every Ferengi card (Scryfall search <code>' + html.escape(TREK_Q) + '</code>): Ferengi Treasure cards first, then other Treasure cards, then Ferengi without Treasure, most played first.</p>'
             f'<p><b>Source:</b> EDHREC\'s Treasure theme page and its color pages, read {today:%b} {today.day}, {today.year}: ranked by the number of decks '
             f'EDHREC tags Treasure for each commander. Card data from Scryfall. Left out: {html.escape(", ".join(skipped)) or "none"} '
             f'(partner pairings or not Commander-legal; commanders without both black and red are left out too). The gameplay lines are our own summaries of each card\'s text.</p>')
@@ -128,6 +162,16 @@ def main():
     t = t.replace(old, "<b>#${c.r} of " + str(N) + "</b> · ${c.d.toLocaleString('en-US')} Treasure decks</p><p class=\"cite\" style=\"text-transform:none;letter-spacing:0\">${c.y}</p><p class=\"cite\" style=\"text-transform:none;letter-spacing:0\"><b>Ferengi: ${c.f}.</b> ${c.g}")
     t = (t.replace('__TITLE__', 'Treasure commanders for the Ferengi').replace('/*CFG*/null', json.dumps(cfg, ensure_ascii=False))
           .replace('/*ALL*/[]', json.dumps(manacost.fill(ALL), ensure_ascii=False, separators=(',', ':'))))
+    TREK = trek_cards()
+    def sub(old, new):   # one spot in cuts-template.html; stop if the template has changed under us
+        nonlocal t
+        assert old in t, 'template changed: ' + old[:60]
+        t = t.replace(old, new)
+    sub('const EVERY=ALL;', 'const TREK=' + json.dumps(manacost.fill(TREK), ensure_ascii=False, separators=(',', ':')) + ';const EVERY=ALL.concat(TREK);')
+    sub("const TABS={deck:'Deck',", "const TABS={deck:'Deck',trek:'Trek',")
+    sub("if(k=='deck')return ALL.filter(c=>!mark[c.n]);", "if(k=='deck')return ALL.filter(c=>!mark[c.n]);if(k=='trek')return TREK.filter(c=>!mark[c.n]);")
+    sub('<button data-v="deck" aria-pressed="true">Deck</button>', '<button data-v="deck" aria-pressed="true">Deck</button><button data-v="trek" aria-pressed="false">Trek</button>')
+    sub('function why(c){return ', "function why(c){if(c.trek)return `<p class=\"cite\"><b>${c.k.join(' · ')}</b> · Star Trek (${c.sc.toUpperCase()} ${c.cn})</p><p class=\"cite\" style=\"text-transform:none;letter-spacing:0\">${c.y} · <a href=\"${c.u}\" target=\"_blank\" rel=\"noopener\">card text</a></p>`;return ")
     os.makedirs(OUT, exist_ok=True)
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(t)
     print(len(ALL), [c['n'] for c in ALL], 'skipped', skipped)
