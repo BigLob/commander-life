@@ -989,7 +989,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.108';
+  const VERSION = '1.109';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1525,13 +1525,13 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // the previous life tick is cut off, never a turn-button clip. If a clip can't load, the old synth
   // sound plays.
   const LIFE_SOUNDS = {
-    gain: ['mmx-small-heal', 'mmx-sub-tank-refill', 'nes-big-health', 'halflife-medkit', 'mario-powerup-appears', 'sonic-ring', 'sonic3-ring', 'earthbound-heal', 'earthbound-full-heal', 'pacman-fruit', 'soniccd-1up', 'mario-1up', 'mario-world-1up'],
-    gain10: ['nes-big-health', 'mmx-extra-life', 'mmx-sub-tank-refill', 'mario-super-mushroom', 'mario-mushroom', 'kirby-extra-life', 'lifeforce-1up', 'darksouls-estus', 'metalgear-item-pickup', 'halflife-health-charger', 'minecraft-eat'],
+    gain: ['mmx-small-heal', 'mmx-sub-tank-refill', 'nes-big-health', 'halflife-medkit', 'earthbound-heal', 'earthbound-full-heal', 'halflife-health-charger', 'darksouls-estus', 'minecraft-eat', 'mario-mushroom'],
+    gain10: ['nes-big-health', 'mmx-sub-tank-refill', 'earthbound-full-heal', 'halflife-health-charger', 'darksouls-estus', 'mario-super-mushroom', 'minecraft-eat'],
     lose: ['mmx-small-damage', 'minecraft-hurt', 'minecraft-damage', 'earthbound-damage', 'earthbound-hit', 'mario64-oof', 'mario64-oof-2', 'mario-damage', 'mario-power-down-short'],
     lose10: ['mmx-big-damage', 'mario-damage-2', 'sonic-ring-loss', 'sonic-losing-rings', 'dandys-hurt', 'roblox-oof', 'minecraft-hit'],
   };
   const LIFE_RATE = { gain: [0.95, 1.1], gain10: [0.92, 1.05], lose: [0.9, 1.08], lose10: [0.75, 0.92] };
-  const lifeBufs = {}, lifeLast = {};
+  const lifeBufs = {}, lifeStick = {};
   let lifeSrc = null;
   function lifeLoad(name) {
     if (!lifeBufs[name]) {
@@ -1541,12 +1541,17 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     }
     return lifeBufs[name];
   }
+  // v1.109: one sound per burst (the user's ask): a kind keeps its clip and pitch for 5 to 10 s, then
+  // draws a new one. Life up draws only health-restoring sounds (no rings, coins or extra lives).
   function lifePlay(kind) {
-    const list = LIFE_SOUNDS[kind].filter(n => n !== lifeLast[kind]);  // never the same clip twice running
-    const name = list[Math.floor(Math.random() * list.length)];
-    lifeLast[kind] = name;
-    const [lo, hi] = LIFE_RATE[kind];
-    const rate = lo + Math.random() * (hi - lo);
+    const now = Date.now();
+    let st = lifeStick[kind];
+    if (!st || now > st.until) {
+      const list = LIFE_SOUNDS[kind].filter(n => !st || n !== st.name);
+      const [lo, hi] = LIFE_RATE[kind];
+      st = lifeStick[kind] = { name: list[Math.floor(Math.random() * list.length)], rate: lo + Math.random() * (hi - lo), until: now + 5000 + Math.random() * 5000 };
+    }
+    const name = st.name, rate = st.rate;
     lifeLoad(name).then(buf => {
       if (!buf) { try { SOUNDS[kind](); } catch (e) {} return; }
       try { if (lifeSrc) lifeSrc.stop(); } catch (e) {}
