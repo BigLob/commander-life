@@ -989,7 +989,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
 <script>
 (() => {
   // Bump on every release; it shows at the foot of the menu and in the shared file's name.
-  const VERSION = '1.111';
+  const VERSION = '1.112';
   const KEY = 'mtg-commander-life-v1';
   // Seats go clockwise from the phone's bottom edge: bottom, left, top, right.
   const DEFAULT_NAMES = ['Rand', 'Andrew', 'Trent', 'Lenn'];
@@ -1524,9 +1524,9 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   // the pitch a little (a hold's ±10 sits lower and fuller), so repeats don't sound the same. Only
   // the previous life tick is cut off, never a turn-button clip. If a clip can't load, the old synth
   // sound plays.
-  // v1.110: one sound set per game (the user's ask): every game gets a theme, and each of the four kinds
-  // (gain, gain10, lose, lose10) plays that theme's one clip, at one pitch, all game long. A new game
-  // (its dealt backgrounds, so the same on every phone) picks another theme. Call of Duty is one of them.
+  // v1.110: each of the four kinds (gain, gain10, lose, lose10) plays one clip, at one pitch, all game
+  // long, drawn from every game's clips (Call of Duty's included). A new game (its dealt backgrounds,
+  // so the same on every phone) draws again. v1.112: no theme ties the four kinds together.
   const LIFE_THEMES = [
     { name: 'Call of Duty',
       gain: ['cod-plates', 'cod-revive-small', 'cod-self-revive', 'cod-juggernog', 'cod-quick-revive'],
@@ -1565,7 +1565,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   }
   // A small string hash, so a game's id always gives the same numbers.
   const hashOf = str => { let h = 2166136261; for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619); return h >>> 0; };
-  // The game's clip for a kind: its theme from the game's backgrounds (dealt again by New game, so
+  // The game's clip for a kind: one clip from the game's backgrounds (dealt again by New game, so
   // they change exactly when a game does, and a tap that puts a total back to its start doesn't
   // change them the way it does the game id), then one clip and one pitch from that and the kind, so
   // the same game sounds the same on every phone.
@@ -1573,7 +1573,7 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
     const id = players.filter(p => p.k === lifeGame).map(p => state.bgs[p.e]).join(',');
     const key = id + '|' + kind, c = lifePick[key];
     if (c) return c;
-    const theme = LIFE_THEMES[hashOf(id) % LIFE_THEMES.length], list = theme[kind];
+    const list = [...new Set(LIFE_THEMES.flatMap(t => t[kind]))];
     const [lo, hi] = LIFE_RATE[kind], h = hashOf(key + '|clip');
     return lifePick[key] = { name: list[h % list.length], rate: lo + (hashOf(key + '|rate') % 1000) / 1000 * (hi - lo) };
   }
@@ -1752,26 +1752,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
   function prime() { if (audio) { primed = true; ahead().forEach(load); } }
   // `here` plays on this phone whatever the speaker setting (the speaker phone itself, a ping it
   // heard, or the Sound setting's own preview).
-  // v1.111: turn-button themes, one per game. A theme is a franchise's clips, found by file name.
-  const THEME_SHARE = 0.6;
-  const TURN_THEMES = [
-    { name: 'Call of Duty', re: /^(?:long\/)?cod-/ },
-    { name: 'Star Wars', re: /^(?:long\/)?sw-/ },
-    { name: 'Star Trek', re: /^(?:long\/)?(?:trek|ds9)-/ },
-    { name: 'Doom and Duke Nukem', re: /^(?:long\/)?(?:doom|duke)-/ },
-    { name: 'Dark Souls', re: /^(?:long\/)?souls-/ },
-    { name: 'Final Fantasy', re: /^(?:long\/)?ff\d*-/ },
-    { name: 'Mega Man', re: /^(?:long\/)?megaman\d*-/ },
-    { name: 'Looney Tunes', re: /^(?:long\/)?lt-/ },
-  ];
-  const themeBags = {};
-  function themePool() {
-    if (!players || !players.length) return null;
-    const k = players[0].k, id = players.filter(p => p.k === k).map(p => state.bgs[p.e]).join(',');
-    const t = TURN_THEMES[hashOf(id + '|turn') % TURN_THEMES.length];
-    const list = all.flatMap(p => p.list).filter(n => t.re.test(n));
-    return list.length ? { name: t.name, list, bag: (themeBags[t.name] || []).filter(n => list.includes(n)) } : null;
-  }
   let tapCount = 0, ttsBag = [];
   function turnSound(here) {
     if (state.sound === 'off') return;
@@ -1794,23 +1774,6 @@ div.mini { position: absolute; top: 6px; left: max(6px, env(safe-area-inset-left
       ttsBag = ttsBag.filter(n => !locked(n));
       const line = ttsBag.shift();
       if (line) { load(line).then(buf => { if (buf) playBuffer(buf, line); }); return; }
-    }
-    // v1.111: one theme per game (the user's ask, like the life sounds): THEME_SHARE of a game's taps come
-    // from that theme's clips, the rest from the normal mix. The theme comes from the game's dealt
-    // backgrounds, so New game picks another and every phone agrees.
-    const tp = themePool();
-    if (tp && Math.random() < THEME_SHARE) {
-      const pick = nextUp(tp, 1)[0];
-      if (pick) {
-        tp.bag.shift();
-        themeBags[tp.name] = tp.bag;
-        const keep = ahead().concat(nextUp(tp, 1));
-        Object.keys(loaded).forEach(k => { if (k !== pick && !keep.includes(k)) delete loaded[k]; });
-        load(pick).then(buf => { if (buf) playBuffer(buf, pick); });
-        nextUp(tp, 1).forEach(load);
-        themeBags[tp.name] = tp.bag;
-        return;
-      }
     }
     const wt = all.map(p => p.list.filter(n => !locked(n)).length * (p.weight || 1));
     if (!wt.some(n => n > 0)) return;
