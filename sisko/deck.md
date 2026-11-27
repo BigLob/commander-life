@@ -1,7 +1,7 @@
 # Captain Benjamin Sisko: current deck (Nov 27, 2026)
 
 Read from the user's photos of the sleeved deck (Nov 27, 2026), names checked against Scryfall.
-Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not every card was counted by hand.
+Commander: Captain Benjamin Sisko (command zone, not in the photos), so 99 + Sisko = 100. Foil and nonfoil mixed; not every card was counted by hand.
 
 **Caveats**: the piles overlap, but nothing is left unidentified: the blue card behind Chromatic Lantern that looked like "Le..." is Yuriko, Hope from the Shadows (already listed). Confirmed by the user (Nov 27): nothing under The Caretaker, Deceptive Landscape is the card under Shattered Landscape, Yuriko, Hope from the Shadows and Spock, Cross-Time Captain are right. Basic counts are from the photos; recount if it matters.
 
@@ -71,7 +71,7 @@ Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not e
 - V'Ger, the Intruder {6}{U}
 - Return to the Light Realms {7}{W}{W}
 - Lore, Postronic Provocateur (Scryfall spells it "Lore, Positronic Provocateur", Star Trek set)
-- The Holodeck {5} (added Nov 27, 2026; Star Trek, TRK 265)
+- The Holodeck {5} (added Nov 27, 2026; the user confirmed it is not a proxy and not Malfunctioning Holodeck; TRK 265)
 - Spock, Cross-Time Captain (not found by name in Scryfall yet; the user confirmed the name)
 
 ## Nonbasic lands (15)
