@@ -3,7 +3,7 @@
 Read from the user's photos of the sleeved deck (Nov 27, 2026), names checked against Scryfall.
 Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not every card was counted by hand.
 
-**Caveats**: the piles overlap, so a few cards are hidden under others (one blue card starting "Le..." behind Chromatic Lantern, one behind Shattered Landscape, one behind The Caretaker), and two names are as printed in the photo but not found by name in Scryfall (marked ?). Basic counts are from the photos; recount if it matters.
+**Caveats**: the piles overlap, so one card is still hidden: a blue card starting "Le..." behind Chromatic Lantern. Confirmed by the user (Nov 27): nothing under The Caretaker, Deceptive Landscape is the card under Shattered Landscape, Yuriko, Hope from the Shadows and Spock, Cross-Time Captain are right. Basic counts are from the photos; recount if it matters.
 
 ## Spells (62)
 - Birds of Paradise {G}
@@ -67,7 +67,7 @@ Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not e
 - V'Ger, the Intruder {6}{U}
 - Return to the Light Realms {7}{W}{W}
 - Lore, Postronic Provocateur (Scryfall spells it "Lore, Positronic Provocateur", Star Trek set)
-- Spock, Cross-Time Captain (?, not found in Scryfall)
+- Spock, Cross-Time Captain (not found by name in Scryfall yet; the user confirmed the name)
 
 ## Nonbasic lands (15)
 - Federation Outpost
