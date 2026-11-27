@@ -981,3 +981,6 @@ myinstants.com uploads named for each game: Half-Life, Mario (incl. Mario 64, Su
 
 ### v1.110 additions to sounds/life/
 `cod-*`: Call of Duty clips from myinstants.com uploads (Warzone plates, armor crack, downed, headshot; Zombies Quick Revive, Juggernog, nuke, scream; MWIII hitmarkers; BO2 headshot; MLG hitmarker). Trimmed to 2 s at most and peak-normalized. Activision's, not CC0.
+
+### v1.111 additions (Call of Duty turn clips)
+`cod-*` in sounds/ and sounds/long/ (28): myinstants.com uploads, each title and link in `clips.json`; cut to 10 s at most, -16 LUFS. Activision's, not CC0.
