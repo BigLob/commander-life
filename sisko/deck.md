@@ -7,9 +7,9 @@ Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not e
 
 ## Printed proxies
 
-"(printed)" marks the black-and-white proxies from `sisko-proxies.pdf` (greyscale art, white frame), compared against the photos on Nov 27, 2026: 13 of the sheet's 16 cards are in the deck. **Not seen in the photos**: Paradise Druid, Arcane Signet, Fellwar Stone (on the sheet; maybe not in the deck yet, or the missing card). Four more look greyscale but aren't on the current sheet (probably from the first batch printed before it was deleted): Impossible Choice, Felidar Retreat, Cryptic Command, Test of Priorities; not marked.
+"(printed)" marks the black-and-white proxies from `sisko-proxies.pdf` (greyscale art, white frame), compared against the photos on Nov 27, 2026: 13 of the sheet's 16 cards are in the deck. **Not in the deck** (the user confirmed): Paradise Druid, Arcane Signet, Fellwar Stone (on the sheet but not played). Four more look greyscale but aren't on the current sheet (probably from the first batch printed before it was deleted): Impossible Choice, Felidar Retreat, Cryptic Command, Test of Priorities; not marked.
 
-## Spells (62)
+## Spells (63)
 - Birds of Paradise {G} (printed)
 - Federation Probe {U}
 - Insatiable Avarice {B} (printed)
@@ -71,6 +71,7 @@ Sisko himself is not in the photos (command zone). Foil and nonfoil mixed; not e
 - V'Ger, the Intruder {6}{U}
 - Return to the Light Realms {7}{W}{W}
 - Lore, Postronic Provocateur (Scryfall spells it "Lore, Positronic Provocateur", Star Trek set)
+- The Holodeck {5} (added Nov 27, 2026; Star Trek, TRK 265)
 - Spock, Cross-Time Captain (not found by name in Scryfall yet; the user confirmed the name)
 
 ## Nonbasic lands (15)
