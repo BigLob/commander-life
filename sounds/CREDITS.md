@@ -978,3 +978,6 @@ Mega Man X small heal, sub tank refill, extra life, small damage, big damage: my
 
 ### v1.108 additions to sounds/life/
 myinstants.com uploads named for each game: Half-Life, Mario (incl. Mario 64, Super Mario World, New Super Mario Bros), Sonic (1, 3, CD), Earthbound, Pac-Man, Kirby, Life Force, Dark Souls, Metal Gear, Minecraft, Dandy's World, Roblox. Each trimmed to 1.7 s at most and peak-normalized. Not CC0.
+
+### v1.110 additions to sounds/life/
+`cod-*`: Call of Duty clips from myinstants.com uploads (Warzone plates, armor crack, downed, headshot; Zombies Quick Revive, Juggernog, nuke, scream; MWIII hitmarkers; BO2 headshot; MLG hitmarker). Trimmed to 2 s at most and peak-normalized. Activision's, not CC0.
