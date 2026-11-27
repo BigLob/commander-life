@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}html{background:#f1efe9}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}
+@media (prefers-color-scheme:dark){html{background:#14161a}:root:not([data-theme="light"]){color-scheme:dark}}/*mana+price*/figcaption .pr{display:flex;align-items:center;gap:6px;align-self:flex-start}.mc{display:flex;gap:1px;align-items:center;height:1.25em;flex:none}.mc img{width:1em;height:1em;display:block}.mc b{font-weight:400;color:var(--muted);margin:0 2px;font-size:.8em}
+</style>
+</head><body>
+<title>Top 25 Treasure commanders</title>
+<script>/*picks-sync: back up fav/bench/trash marks to the shared table; see tools/add_sync.py*/(function(){try{var B="https://commander-life-39708-default-rtdb.firebaseio.com/tables/t7q2xm4k-picks/"+location.pathname.replace(/[^A-Za-z0-9_-]+/g,"_").replace(/^_+|_+$/g,"")+".json",R=/(favs|marks)$/,t;function snap(){var o={},i,k,v;for(i=0;i<localStorage.length;i++){k=localStorage.key(i);if(R.test(k)){v=localStorage.getItem(k);o[k]=v}}return o}function has(o){for(var k in o)if(o[k]&&o[k].length>2)return 1;return 0}function push(force){clearTimeout(t);t=setTimeout(function(){try{var o=snap();if(!force&&!has(o))return;o.at=Date.now();fetch(B,{method:"PATCH",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify(o)}).catch(function(){})}catch(e){}},400)}var si=Storage.prototype.setItem,ri=Storage.prototype.removeItem;Storage.prototype.setItem=function(k){si.apply(this,arguments);if(this===localStorage&&R.test(k))push(1)};Storage.prototype.removeItem=function(k){ri.apply(this,arguments);if(this===localStorage&&R.test(k))push(1)};push(0)}catch(e){}})()</script>
+<!-- app-board-link: the installed app has no address bar, so every page links the board's manifest (installing from here still opens the board) and, inside the app, shows a Board button back to it. -->
+<link rel="manifest" href="/commander-life/app/manifest.json">
+<script>addEventListener('DOMContentLoaded',function(){if(!(matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches||navigator.standalone))return;var a=document.createElement('a');a.href='/commander-life/';a.textContent='\u{1F0CF} Board';a.setAttribute('style','position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;padding:9px 14px;border-radius:999px;background:#0c0e11;color:#f3e3b0;border:1px solid #c9a24a;font:600 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.5)');var b=document.getElementById('back');if(b){a.style.position='static';a.style.flex='none';b.after(a)}else document.body.appendChild(a)})</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout (cuts): the deck carousel cut to a precon's 15 most-removed cards, with EDHREC's cut share and links under each card. One full-height stage; a snap-scrolling card carousel with a header and a position bar; tap a card for a pan/zoom viewer. */
+:root{--bg:#f1efe9;--surface:#e4e1d8;--fg:#1d1b17;--muted:#6a665c;--accent:#9a5a00;--line:#cfcabd;--shade:#0b0c0e;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14161a;--surface:#1f2329;--fg:#ece8dd;--muted:#9a978c;--accent:#e8b44a;--line:#2d333b;--shade:#0b0c0e;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-display);margin:0;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;overflow-x:hidden}
+header{padding-block:14px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.15rem;margin:0;font-weight:700;text-wrap:balance}
+.total{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.back{flex:none;font-family:var(--f-mono);font-size:.85rem;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:9px 14px;touch-action:manipulation}
+.total b{color:var(--accent);font-weight:500}
+.seg{padding-top:4px;display:flex;flex-wrap:wrap;gap:4px;padding-bottom:6px}
+.seg button{font:inherit;font-size:.72rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:6px}
+.bar #fbtn,#f-reset{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.bar #fbtn.on{border-color:var(--accent);color:var(--accent)}
+#fpanel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-bottom:8px}
+#fpanel label{display:flex;flex-direction:column;gap:3px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono);min-width:0}
+#fpanel select{font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 4px;min-width:0;width:100%}
+.share{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.68rem;color:var(--muted);font-family:var(--f-mono)}
+.share div{display:flex;gap:6px}
+.share input{flex:1;min-width:0;font:inherit;font-size:.8rem;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.share button{font:inherit;font-size:.76rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+#f-reset{align-self:end}
+.seg .ct{color:var(--muted);margin-left:3px;font-size:.68rem;font-family:var(--f-mono)}
+.seg button[aria-pressed="true"] .ct{color:inherit;opacity:.8}
+.favtot{margin-left:auto;align-self:center;color:var(--accent);font-family:var(--f-mono);font-size:.85rem;font-weight:500;white-space:nowrap}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{flex:1;min-height:0;display:flex;align-items:center;position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;width:100%;height:100%;align-items:center;padding-inline:calc(50% - var(--w)/2);box-sizing:border-box;--w:200px}
+.track::-webkit-scrollbar{display:none}
+figure{margin:0;flex:0 0 var(--w);scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
+figure .zb{all:unset;cursor:zoom-in;display:block;border-radius:4.5%/3.2%;aspect-ratio:488/680;background:var(--surface)}
+figure .zb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+figure img{width:100%;height:100%;display:block;border-radius:4.5%/3.2%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+/* per-card actions */
+.acts{display:flex;gap:8px}
+.acts button{flex:1;font:inherit;font-size:.8rem;color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 6px;cursor:pointer;touch-action:manipulation}
+.acts button:focus-visible{outline:2px solid var(--accent)}
+.acts button.on{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:500}
+figure.fav .zb img{box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.35)}
+.empty{margin:0 auto;max-width:260px;text-align:center;color:var(--muted);font-size:.9rem}
+figcaption{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;line-height:1.25}
+figcaption .nm{min-width:0;font-weight:500}
+figcaption .pr{font-family:var(--f-mono);color:var(--accent);white-space:nowrap}
+figcaption small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.7rem}
+.nav{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:1.2rem;cursor:pointer;z-index:2;opacity:.9}
+.nav.l{left:-6px}.nav.r{right:-6px}
+.nav:focus-visible{outline:2px solid var(--accent)}
+@media (max-width:600px){.nav{display:none}}
+/* the user is left-handed, so Back sits in the bottom-left corner, in the footer row under the cards */
+footer{padding-block:10px 14px;display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+footer input{flex:1;accent-color:var(--accent);min-width:0}
+/* zoom viewer */
+#zoom{touch-action:none;overscroll-behavior:none;position:fixed;inset:0;background:var(--shade);z-index:20;display:none;flex-direction:column;padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px);padding-inline:env(safe-area-inset-left,0px) env(safe-area-inset-right,0px)}
+#zoom.on{display:flex}
+#stage{flex:1;min-height:0;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;cursor:grab}
+#zimg{max-width:100%;max-height:100%;border-radius:4.5%/3.2%;transform-origin:center;will-change:transform;user-select:none;-webkit-user-drag:none;image-rendering:auto}
+.zbar #zt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;color:#ece8dd;font-size:.9rem}
+.zbar button{touch-action:manipulation;background:#2b3038;color:#ece8dd;border:1px solid #444b55;border-radius:8px;padding:8px 10px;font:inherit;cursor:pointer}
+.zbar button:focus-visible{outline:2px solid #e8b44a}
+.zbar .g{display:flex;gap:6px}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+.why{margin:0;font-size:.78rem;line-height:1.3}
+.why b{color:var(--accent);font-weight:500}
+.cite b{color:var(--accent);font-weight:500}
+.cite{margin:0;font-family:var(--f-mono);font-size:.66rem;color:var(--muted);line-height:1.4}
+.cite a,.srcs a{color:var(--accent)}
+.srcs{font-size:.78rem;padding-bottom:6px}
+.srcs summary{cursor:pointer;color:var(--accent);font-family:var(--f-mono);font-size:.72rem}
+.srcs div{color:var(--muted);line-height:1.45;padding-top:4px}
+.srcs p{margin:4px 0}
+figure{gap:7px}
+/* Phone on its side (the user, Nov 26, 2026: "I can't see anything", then "start it at the tabs"): the title, subtitle
+   and sources are hidden, the tabs and sort bar share one row, and each card sits beside its text and buttons instead of
+   above them, so the card gets the full height of the rail. fit() sizes --iw and --w. */
+@media (orientation:landscape) and (max-height:560px){
+ body{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;column-gap:14px}
+ header,.srcs{display:none}
+ .seg{grid-area:1/1;padding-block:8px 4px}.bar{grid-area:1/2;padding-block:8px 4px}
+ #fpanel{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(6,minmax(0,1fr))}
+ .rail{grid-column:1/-1;grid-row:3}footer{grid-column:1/-1;grid-row:4;padding-block:4px 8px}
+ figure{display:grid;grid-template-columns:var(--iw) minmax(0,1fr);grid-auto-rows:min-content;column-gap:14px;row-gap:6px;align-content:center}
+ figure .zb{grid-row:1/span 5;height:calc(var(--iw)*680/488)}
+ .nav{display:none}
+}
+</style>
+<header><h1 id="h1"></h1><span class="total" id="sub"></span></header>
+<details class="srcs"><summary>Sources and how this list was made</summary><div id="srcs"></div></details>
+<div class="seg" id="seg"><button data-v="deck" aria-pressed="true">Deck</button><button data-v="fav" aria-pressed="false">Fav</button><button data-v="bench" aria-pressed="false">Bench</button><button data-v="trash" aria-pressed="false">Trash</button></div>
+<div class="bar"><button id="fbtn" aria-expanded="false" aria-controls="fpanel">Sort &amp; filter</button><button id="f-reset" hidden>Reset</button><span class="favtot" id="favtot" title="Favorites: count, their cost / whole deck cost"></span></div>
+<div id="fpanel" hidden>
+<label>Sort<select id="f-sort"><option value="">Most cut first</option><option value="cl">Cost, low to high</option><option value="ch">Cost, high to low</option><option value="ph">Price, high to low</option><option value="pl">Price, low to high</option><option value="n">Name A to Z</option><option value="t">Type</option><option value="c">Color</option></select></label>
+<label>Type<select id="f-type"><option value="">All</option></select></label>
+<label>Color<select id="f-col"><option value="">All</option><option value="W">White</option><option value="U">Blue</option><option value="B">Black</option><option value="R">Red</option><option value="G">Green</option><option value="M">Multicolor</option><option value="C">Colorless or land</option></select></label>
+<label>Cost<select id="f-cost"><option value="">Any</option><option value="0">0 to 1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6 or more</option></select></label>
+<label>Kind<select id="f-kw"><option value="">All</option></select></label>
+<label>Show<select id="f-fav"><option value="">All cards</option><option value="1">Favorites only</option></select></label>
+<div class="share"><span>Move your picks to another page or phone</span><div><input id="f-code" placeholder="Picks code" aria-label="Picks code" autocomplete="off" spellcheck="false"><button id="f-copy">Copy picks</button><button id="f-load">Load</button></div><small id="f-msg" role="status"></small></div>
+</div>
+
+<div class="rail"><button class="nav l" id="prev" aria-label="Previous card">‹</button><div class="track" id="track" tabindex="0" aria-label="Cards"></div><button class="nav r" id="next" aria-label="Next card">›</button></div>
+<footer><a class="back" id="back" href="./">‹ Back</a><span id="pos"></span><input type="range" id="scrub" min="0" value="0" aria-label="Jump to card" hidden></footer>
+<div id="zoom" role="dialog" aria-modal="true" aria-label="Card zoom"><div class="zbar"><span id="zt"></span><div class="g"><button id="zo">−</button><button id="zi">+</button><button id="zfl" hidden>Flip</button><button id="zf">Fit</button><button id="zx">Close</button></div></div><div id="stage"><img id="zimg" alt=""></div><div class="zbar"><button id="zp">‹ Prev</button><span style="opacity:.7;font-size:.75rem">Pinch, scroll or double-tap to zoom</span><button id="zn">Next ›</button></div></div>
+<script>
+/* A precon's 15 most-cut cards, built by tools/carousel/cuts.py from EDHREC's precon page (Cards to Cut plus Lands to Cut) and the card data on decks/<slug>.html.
+   Images load from Scryfall's CDN. Extra fields: k [Spell or Land], r rank (1 = most cut), x share of EDHREC's decks from this precon that cut it, u Scryfall page. */
+const CFG={"slug": "treasure", "deck": "Top 25 Treasure commanders", "set": "Commander-legal", "cmd": "Any", "alt": "", "decks": 25, "edh": "https://edhrec.com/tags/treasure", "srcs": "<p><b>Source:</b> EDHREC's Treasure theme page and its color pages, read Nov 27, 2026: ranked by the number of decks EDHREC tags Treasure for each commander. Card data from Scryfall. Left out: none (partner pairings or not Commander-legal). The gameplay lines are our own summaries of each card's text.</p>", "sub": "The 25 most-played Treasure commanders · with how each plays"};
+const ALL=[{"n":"Mr. House, President and CEO","p":8.58,"q":1,"s":"PIP","t":"Legendary Artifact Creature — Human","i":"https://cards.scryfall.io/normal/front/2/3/23eb3cf7-c90d-4bfa-b125-4fbcb5614468.jpg?1783912421","m":3,"c":"WBR","k":["Treasure"],"r":1,"x":0,"d":1497,"y":"Dice and Treasure. Rolls of 4 or more make 3/3 Robots, 6 or more add a Treasure, and Treasure mana spent on his ability adds dice. Dice-roll payoffs and Treasure makers feed each other.","u":"https://scryfall.com/search?q=%21%22Mr.%20House%2C%20President%20and%20CEO%22","mc":"{R}{W}{B}"},{"n":"Magda, Brazen Outlaw","p":6.4,"q":1,"s":"KHM","t":"Legendary Creature — Dwarf Berserker","i":"https://cards.scryfall.io/normal/front/0/7/079e6263-e54c-4899-a336-5315909b9322.jpg?1783928229","m":2,"c":"R","k":["Treasure"],"r":2,"x":0,"d":1243,"y":"Dwarf typal. Every Dwarf that taps (attacking, crewing) makes a Treasure, and five Treasures tutor an artifact or Dragon straight onto the battlefield.","u":"https://scryfall.com/search?q=%21%22Magda%2C%20Brazen%20Outlaw%22","mc":"{1}{R}"},{"n":"Prosper, Tome-Bound","p":1.62,"q":1,"s":"AFC","t":"Legendary Creature — Tiefling Warlock","i":"https://cards.scryfall.io/normal/front/d/7/d743336e-d5c7-4053-a23d-92ec7581f74e.jpg?1783926259","m":4,"c":"BR","k":["Treasure","Deathtouch"],"r":3,"x":0,"d":1179,"y":"Exile-play value. Each end step gives you a card to play from exile, and every card played from exile makes a Treasure, so impulse draw ramps you as it draws.","u":"https://scryfall.com/search?q=%21%22Prosper%2C%20Tome-Bound%22","mc":"{2}{B}{R}"},{"n":"Evereth, Viceroy of Plunder","p":3.62,"q":1,"s":"J25","t":"Legendary Creature — Vampire Soldier","i":"https://cards.scryfall.io/normal/front/f/9/f9c9c0be-8c69-45e5-bdcb-e62ddb05e532.jpg?1783908858","m":3,"c":"B","k":["Flying"],"r":4,"x":0,"d":1020,"y":"Artifact and Treasure sacrifice. Feed Treasures and creatures to a flyer that grows and gains lifelink, and when it dies it hits each opponent for its power.","u":"https://scryfall.com/search?q=%21%22Evereth%2C%20Viceroy%20of%20Plunder%22","mc":"{2}{B}"},{"n":"Vihaan, Goldwaker","p":4.33,"q":1,"s":"OTC","t":"Legendary Creature — Dwarf Warlock","i":"https://cards.scryfall.io/normal/front/7/b/7b549690-72eb-4244-bb66-996a2bd1027e.jpg?1783911971","m":3,"c":"WBR","k":[],"r":5,"x":0,"d":1004,"y":"Outlaws with Treasure armies. Outlaws get vigilance and haste, and each combat your Treasures can become 3/3 attackers, so piling up Treasure is piling up an army.","u":"https://scryfall.com/search?q=%21%22Vihaan%2C%20Goldwaker%22","mc":"{R}{W}{B}"},{"n":"Edward Kenway","p":7.56,"q":1,"s":"ACR","t":"Legendary Creature — Human Assassin Pirate","i":"https://cards.scryfall.io/normal/front/9/4/9472be1e-388c-45fe-a18d-35b2cb12dc5f.jpg?1783910971","m":5,"c":"UBR","k":["Treasure"],"r":6,"x":0,"d":995,"y":"Pirates, Assassins and Vehicles. Each tapped one makes a Treasure at end step, and Vehicles that connect steal the top card of the defender's library.","u":"https://scryfall.com/search?q=%21%22Edward%20Kenway%22","mc":"{2}{U}{B}{R}"},{"n":"Korvold, Fae-Cursed King","p":0.49,"q":1,"s":"EOC","t":"Legendary Creature — Dragon Noble","i":"https://cards.scryfall.io/normal/front/6/0/607c1793-8e5a-4ebf-87c6-7f9c99bbd29a.jpg?1783906027","m":5,"c":"BRG","k":["Flying"],"r":7,"x":0,"d":828,"y":"Sacrifice engine. Each permanent you sacrifice grows Korvold and draws a card, so Treasures, Food and Clues turn into cards and a huge flyer.","u":"https://scryfall.com/search?q=%21%22Korvold%2C%20Fae-Cursed%20King%22","mc":"{2}{B}{R}{G}"},{"n":"Ognis, the Dragon's Lash","p":0.36,"q":1,"s":"SNC","t":"Legendary Creature — Lizard Warrior","i":"https://cards.scryfall.io/normal/front/6/3/636058c3-bacc-4a66-8988-832ab0cc9be6.jpg?1783923075","m":4,"c":"BRG","k":["Treasure","Haste"],"r":8,"x":0,"d":586,"y":"Haste aggro. Every hasty attacker makes a tapped Treasure, so a deck of haste creatures and haste-granters ramps while it beats down.","u":"https://scryfall.com/search?q=%21%22Ognis%2C%20the%20Dragon%27s%20Lash%22","mc":"{1}{B/R}{R}{R/G}"},{"n":"Olivia, Opulent Outlaw","p":6.09,"q":1,"s":"OTC","t":"Legendary Creature — Vampire Assassin","i":"https://cards.scryfall.io/normal/front/5/5/55e6c31b-f9e9-4e42-a875-985d99300d9d.jpg?1783911972","m":4,"c":"WBR","k":["Flying","Lifelink","Treasure"],"r":9,"x":0,"d":562,"y":"Outlaw aggro. Outlaws that connect make a Treasure, and two Treasures put two +1/+1 counters on your whole team. A lifelink flyer leads it.","u":"https://scryfall.com/search?q=%21%22Olivia%2C%20Opulent%20Outlaw%22","mc":"{1}{R}{W}{B}"},{"n":"Ziatora, the Incinerator","p":0.64,"q":1,"s":"SNC","t":"Legendary Creature — Demon Dragon","i":"https://cards.scryfall.io/normal/front/b/a/ba4fa4c8-f09f-4d97-a7d1-1b93caf7d4f9.jpg?1783923066","m":6,"c":"BRG","k":["Flying","Treasure"],"r":10,"x":0,"d":538,"y":"Fling and ramp. Each end step sacrifice a creature to deal its power to any target and make three Treasures. Big or token-making creatures fuel it.","u":"https://scryfall.com/search?q=%21%22Ziatora%2C%20the%20Incinerator%22","mc":"{3}{B}{R}{G}"},{"n":"Admiral Brass, Unsinkable","p":0.26,"q":1,"s":"LCC","t":"Legendary Creature — Human Pirate","i":"https://cards.scryfall.io/normal/front/b/d/bdc2d492-9d1e-4543-8b9c-c66ee67992ce.jpg?1783913937","m":5,"c":"UBR","k":["Mill"],"r":11,"x":0,"d":477,"y":"Pirate reanimator. Mill Pirates, then each combat return one as a hasty 4/4. Treasure-making Pirates keep the mana flowing.","u":"https://scryfall.com/search?q=%21%22Admiral%20Brass%2C%20Unsinkable%22","mc":"{2}{U}{B}{R}"},{"n":"Vazi, Keen Negotiator","p":0.31,"q":1,"s":"NCC","t":"Legendary Creature — Human Advisor","i":"https://cards.scryfall.io/normal/front/5/5/551a6ff5-0f6e-4925-98c7-4d426358e959.jpg?1783923340","m":5,"c":"BRG","k":["Treasure","Haste"],"r":12,"x":0,"d":475,"y":"Group-hug Treasure. Hand opponents Treasures, and each time they spend Treasure mana you draw a card and put a counter on a creature.","u":"https://scryfall.com/search?q=%21%22Vazi%2C%20Keen%20Negotiator%22","mc":"{2}{B}{R}{G}"},{"n":"Roxanne, Starfall Savant","p":1.55,"q":1,"s":"OTJ","t":"Legendary Creature — Cat Druid","i":"https://cards.scryfall.io/normal/front/1/1/11fbe52f-febd-49fc-8391-28d3efe9c3eb.jpg?1783911786","m":5,"c":"RG","k":[],"r":13,"x":0,"d":448,"y":"Artifact-token ramp. Each attack or entry makes a Meteorite that shocks something, and every artifact token you tap for mana makes double, Treasures included.","u":"https://scryfall.com/search?q=%21%22Roxanne%2C%20Starfall%20Savant%22","mc":"{3}{R}{G}"},{"n":"Rev, Tithe Extractor","p":22.38,"q":1,"s":"J25","t":"Legendary Creature — Human Rogue","i":"https://cards.scryfall.io/normal/front/8/b/8bf88010-799d-4217-8e79-308bec7ad2ff.jpg?1783908857","m":4,"c":"B","k":["Treasure"],"r":14,"x":0,"d":394,"y":"Steal-and-ramp. Hitting a player makes a Treasure and exiles their top card for you to cast, with a deathtouch attacker to make blocks bad.","u":"https://scryfall.com/search?q=%21%22Rev%2C%20Tithe%20Extractor%22","mc":"{3}{B}"},{"n":"Jolene, the Plunder Queen","p":9.79,"q":1,"s":"NCC","t":"Legendary Creature — Human Warrior","i":"https://cards.scryfall.io/normal/front/6/1/61c217d9-21d5-45ef-938a-138192a901f4.jpg?1783923350","m":4,"c":"RG","k":["Treasure"],"r":15,"x":0,"d":365,"y":"Treasure doubler and politics. Anyone attacking your opponents gets a Treasure, you make one extra whenever you make any, and five Treasures grow Jolene.","u":"https://scryfall.com/search?q=%21%22Jolene%2C%20the%20Plunder%20Queen%22","mc":"{2}{R}{G}"},{"n":"Admiral Beckett Brass","p":0.3,"q":1,"s":"LCC","t":"Legendary Creature — Human Pirate","i":"https://cards.scryfall.io/normal/front/0/2/02cbd397-3ef3-465f-84fe-765dd1444af8.jpg?1783913852","m":4,"c":"UBR","k":[],"r":16,"x":0,"d":336,"y":"Pirate typal. Pirates get +1/+1, and if three of them hit one player in a turn you steal one of that player's nonland permanents.","u":"https://scryfall.com/search?q=%21%22Admiral%20Beckett%20Brass%22","mc":"{1}{U}{B}{R}"},{"n":"Don Andres, the Renegade","p":0.45,"q":1,"s":"LCC","t":"Legendary Creature — Vampire Pirate","i":"https://cards.scryfall.io/normal/front/3/c/3cf9f3ae-694d-4d37-9498-4bdd1723a55e.jpg?1783913937","m":4,"c":"UBR","k":["Treasure"],"r":17,"x":0,"d":303,"y":"Theft. Stolen creatures become 2/2-bigger deathtouch, menace Pirates, and casting opponents' noncreature spells makes two Treasures each.","u":"https://scryfall.com/search?q=%21%22Don%20Andres%2C%20the%20Renegade%22","mc":"{1}{U}{B}{R}"},{"n":"Galazeth Prismari","p":0.36,"q":1,"s":"SOC","t":"Legendary Creature — Elder Dragon","i":"https://cards.scryfall.io/normal/front/a/b/abdd3b41-6bdd-4b35-998c-0358ba72ca12.jpg?1783903751","m":4,"c":"UR","k":["Flying","Treasure"],"r":18,"x":0,"d":294,"y":"Artifact spellslinger. Every artifact taps for any color for instants and sorceries, so Treasures and rocks double as spell mana.","u":"https://scryfall.com/search?q=%21%22Galazeth%20Prismari%22","mc":"{2}{U}{R}"},{"n":"Juri, Master of the Revue","p":0.4,"q":1,"s":"EOC","t":"Legendary Creature — Human Shaman","i":"https://cards.scryfall.io/normal/front/5/0/5006eae5-3b77-45ab-a907-f5094b2eaf1f.jpg?1783906029","m":2,"c":"BR","k":[],"r":19,"x":0,"d":287,"y":"Aristocrats. Every sacrifice grows Juri, and when it dies it throws its power at any target. Treasures are cheap sacrifice fodder.","u":"https://scryfall.com/search?q=%21%22Juri%2C%20Master%20of%20the%20Revue%22","mc":"{B}{R}"},{"n":"Thorin, King of Durin's Folk","p":3.57,"q":1,"s":"HOC","t":"Legendary Creature — Dwarf Noble","i":"https://cards.scryfall.io/normal/front/7/7/773813a8-723f-4c26-9e0a-a01b2faada98.jpg?1784377196","m":5,"c":"WR","k":["Treasure"],"r":20,"x":0,"d":285,"y":"Dwarves and Treasure. Each Dwarf entering makes a Treasure, and Dwarves get +1/+0 per artifact token, so mana and a growing aggressive board come together.","u":"https://scryfall.com/search?q=%21%22Thorin%2C%20King%20of%20Durin%27s%20Folk%22","mc":"{3}{R}{W}"},{"n":"Jan Jansen, Chaos Crafter","p":0.55,"q":1,"s":"CLB","t":"Legendary Creature — Gnome Artificer","i":"https://cards.scryfall.io/normal/front/6/b/6b215a08-41db-4440-8e33-34a84a33db50.jpg?1783922693","m":3,"c":"WBR","k":["Treasure","Haste"],"r":21,"x":0,"d":274,"y":"Artifact loop. Sacrifice artifact creatures for two Treasures and noncreature artifacts for two Constructs, trading one into the other.","u":"https://scryfall.com/search?q=%21%22Jan%20Jansen%2C%20Chaos%20Crafter%22","mc":"{R}{W}{B}"},{"n":"Rashmi and Ragavan","p":0.45,"q":1,"s":"MOC","t":"Legendary Creature — Elf Monkey","i":"https://cards.scryfall.io/normal/front/3/0/30b2f2fd-8087-4fa8-9eb7-bf9b89a5dfb9.jpg?1783917291","m":4,"c":"URG","k":["Treasure"],"r":22,"x":0,"d":271,"y":"Free spells from opponents. Your first spell each turn exiles an opponent's top card and makes a Treasure; cast it free if it's cheaper than your artifact count.","u":"https://scryfall.com/search?q=%21%22Rashmi%20and%20Ragavan%22","mc":"{1}{G}{U}{R}"},{"n":"Shadow the Hedgehog","p":5.22,"q":1,"s":"SLD","t":"Legendary Creature — Hedgehog Mercenary","i":"https://cards.scryfall.io/normal/front/6/c/6c184959-a1e5-40d7-8faa-99310c4156ef.jpg?1783906091","m":4,"c":"BR","k":["Chaos Control","Haste"],"r":23,"x":0,"d":262,"y":"Haste and artifact mana. Hasty creatures dying draw cards, and any spell paid with artifact mana (Treasures) gets split second.","u":"https://scryfall.com/search?q=%21%22Shadow%20the%20Hedgehog%22","mc":"{B}{B}{R}{R}"},{"n":"Malik, Grim Manipulator","p":5.19,"q":1,"s":"SLX","t":"Legendary Creature — Human Rogue","i":"https://cards.scryfall.io/normal/front/5/c/5cf4fee3-3059-4ca4-a47d-0848410b294d.jpg?1783915138","m":5,"c":"WBR","k":["Treasure"],"r":24,"x":0,"d":258,"y":"Edicts. Every creature an opponent sacrifices makes you a Treasure, so forced-sacrifice effects remove threats and ramp you.","u":"https://scryfall.com/search?q=%21%22Malik%2C%20Grim%20Manipulator%22","mc":"{2}{R}{W}{B}"},{"n":"Smaug the Impenetrable","p":13.51,"q":1,"s":"HOC","t":"Legendary Creature — Dragon","i":"https://cards.scryfall.io/normal/front/5/5/55872bce-08ce-4d4f-8951-9fa230f3e160.jpg?1784377221","m":7,"c":"BR","k":["Flying","Indestructible","Treasure","Haste"],"r":25,"x":0,"d":255,"y":"Self-damage Treasure. An indestructible hasty flyer that makes a Treasure per point of noncombat damage dealt to it, so pingers and wipes like Blasphemous Act pay out.","u":"https://scryfall.com/search?q=%21%22Smaug%20the%20Impenetrable%22","mc":"{5}{B}{R}"}];
+/* price for sums and sorts; cards not sold yet have none */
+const pv=c=>c.p||0;
+const EVERY=ALL;
+/* fav, bench and trash marks, kept on this device only, one set per deck; a card carries at most one mark */
+const KEY='pc-'+CFG.slug+'-';  /* cuts-<deck>, apart from the deck page's own marks */
+let favs={};try{favs=JSON.parse(localStorage.getItem(KEY+'favs')||'{}')}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem(KEY+'favs',JSON.stringify(favs))}catch(e){}};
+const flip={};const face=c=>flip[c.n]&&c.b?c.b:c.i;
+let mark={};try{mark=JSON.parse(localStorage.getItem(KEY+'marks')||'{}')}catch(e){}
+const saveMarks=()=>{try{localStorage.setItem(KEY+'marks',JSON.stringify(mark))}catch(e){}};
+const DECK_TOTAL=ALL.reduce((a,c)=>a+pv(c)*c.q,0);
+let tab='deck',D=[];
+/* sort and filter, applied on top of whichever tab is open */
+const F={sort:'',type:'',col:'',cost:'',kw:'',fav:''};
+const TYPES=['Creature','Planeswalker','Artifact','Enchantment','Instant','Sorcery','Land'];
+const COLS='WUBRG';
+const typeOf=c=>{const i=TYPES.findIndex(t=>c.t.includes(t));return i<0?99:i};
+const colOf=c=>c.c.length==1?COLS.indexOf(c.c):c.c.length>1?5:6;
+function sortFilter(list){
+ let r=list.filter(c=>(!F.type||c.t.includes(F.type))&&(!F.col||(F.col=='M'?c.c.length>1:F.col=='C'?!c.c.length:c.c.includes(F.col)))&&(!F.kw||c.k.includes(F.kw))&&(!F.fav||favs[c.n])&&(!F.cost||(F.cost=='6'?c.m>=6:F.cost=='0'?c.m<=1:c.m==+F.cost)));
+ const S={cl:(a,b)=>a.m-b.m||pv(b)-pv(a),ch:(a,b)=>b.m-a.m||pv(b)-pv(a),ph:(a,b)=>pv(b)-pv(a),pl:(a,b)=>pv(a)-pv(b),n:(a,b)=>a.n.localeCompare(b.n),t:(a,b)=>typeOf(a)-typeOf(b)||b.m-a.m,c:(a,b)=>colOf(a)-colOf(b)||b.m-a.m}[F.sort];
+ return S?r.slice().sort(S):r}
+const TABS={deck:'Deck',fav:'Fav',bench:'Bench',trash:'Trash'};
+function view(k){if(k=='fav')return EVERY.filter(c=>favs[c.n]&&!mark[c.n]);if(k=='deck')return ALL.filter(c=>!mark[c.n]);
+ return EVERY.filter(c=>mark[c.n]==k).sort((a,b)=>b.m-a.m||pv(b)-pv(a))}
+const $=id=>document.getElementById(id), tr=$('track');
+$('h1').textContent=CFG.deck;
+/* the deck list lives beside the page on the live site; a claude.ai artifact has no neighbours */
+if(location.hostname&&!location.hostname.endsWith('github.io'))$('back').hidden=true;$('sub').innerHTML=CFG.sub;$('srcs').innerHTML=CFG.srcs;
+document.querySelector('.srcs').addEventListener('toggle',()=>{fit();go(cur())});
+/* each card's rank and the share of EDHREC's decks built from this precon that cut it, with links to the source and the card */
+const pct=x=>Math.round(x*100)+'%';
+function why(c){return `<p class="cite"><b>#${c.r} of 25</b> · ${c.d.toLocaleString('en-US')} Treasure decks</p><p class="cite" style="text-transform:none;letter-spacing:0">${c.y} · <a href="${CFG.edh}" target="_blank" rel="noopener">EDHREC</a> · <a href="${c.u}" target="_blank" rel="noopener">card text</a></p>`}
+// Mana cost as Scryfall's symbols, right-aligned on the name line (the user's ask, Nov 24, 2026).
+function manaCost(s){return s?'<span class="mc" title="'+s+'">'+s.split(' // ').map(h=>(h.match(/\{[^}]+\}/g)||[]).map(t=>'<img src="https://svgs.scryfall.io/card-symbols/'+t.slice(1,-1).replace(/\//g,'')+'.svg" alt="'+t+'" draggable="false">').join('')).join('<b>//</b>')+'</span>':''}
+const money=v=>v==null?'no price':'$'+v.toFixed(2);
+const SIDE=matchMedia('(orientation:landscape) and (max-height:560px)');
+function fit(){if(SIDE.matches){const iw=Math.max(90,Math.min((tr.clientHeight-8)*488/680,300));tr.style.setProperty('--iw',iw+'px');tr.style.setProperty('--w',Math.min(tr.clientWidth*.92,iw+330)+'px');return}
+ const w=Math.max(120,Math.min(innerWidth*.8,(tr.clientHeight-165)*488/680,340));tr.style.setProperty('--w',w+'px')}
+addEventListener('resize',()=>{fit();go(cur())});
+let figs=[];
+function btns(c){const home='Deck';
+ const fl=c.b?'<button data-a="flip">Flip</button>':'';
+ if(favs[c.n]&&!mark[c.n])return `<button class="on" data-a="unfav">★ Favorite · tap to undo</button>${fl}`;
+ return fl+btns2(c,home)}
+function btns2(c,home){
+ if(tab=='bench')return `<button data-a="">Back to ${home}</button><button data-a="trash">Trash</button>`;
+ if(tab=='trash')return `<button data-a="">Back to ${home}</button><button data-a="bench">Bench</button>`;
+ return `<button data-a="fav">Fav</button><button data-a="bench">Bench</button><button data-a="trash">Trash</button>`}
+function render(keep){D=sortFilter(view(tab));fit();
+ for(const k in TABS){const b=document.querySelector('#seg [data-v='+k+']');b.innerHTML=TABS[k]+'<span class="ct">'+view(k).reduce((a,c)=>a+c.q,0)+'</span>';b.setAttribute('aria-pressed',k==tab)}
+ const fv=EVERY.filter(c=>favs[c.n]&&!mark[c.n]);$('favtot').textContent='★ '+fv.reduce((a,c)=>a+c.q,0)+' · '+money(fv.reduce((a,c)=>a+pv(c)*c.q,0))+' / '+money(DECK_TOTAL);
+  tr.innerHTML=D.length?D.map((c,i)=>`<figure class="${favs[c.n]&&!mark[c.n]?'fav':''}" data-i="${i}" data-n="${c.n.replace(/"/g,'&quot;')}"><button class="zb" aria-label="Zoom ${c.n}"><img src="${face(c)}" alt="${c.n}" loading="lazy" draggable="false" referrerpolicy="no-referrer"></button><figcaption><span class="nm">${c.n}<small>MV ${c.m} · ${c.q>1?c.q+' copies · ':''}${c.s}${c.n==CFG.cmd?' · commander':c.n==CFG.alt?' · alt commander':''}${c.note?'<br>'+c.note:''}</small></span><span class="pr">${manaCost(c.mc)}${money(c.p)}${c.q>1&&c.p!=null?' ea':''}</span></figcaption>${why(c)}<div class="acts">${btns(c)}</div></figure>`).join(''):'<p class="empty">'+(view(tab).length?'No cards match these filters.':tab=='fav'?'No favorites yet. Tap Fav on a card.':'Nothing here yet. Use the Fav, Bench and Trash buttons on a card to send it here.')+'</p>';
+ figs=[...tr.querySelectorAll('figure')];sc.max=Math.max(0,D.length-1);tr.scrollLeft=0;if(keep!=null&&figs.length){const f=figs[Math.min(keep,figs.length-1)];tr.scrollLeft=f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2}upd()}
+const sc=$('scrub'); /* hidden since Nov 26, 2026 (the user swipes the cards instead); still kept in step */
+function cur(){const m=tr.scrollLeft+tr.clientWidth/2;let b=0,bd=1e9;figs.forEach((f,i)=>{const d=Math.abs(f.offsetLeft+f.offsetWidth/2-m);if(d<bd){bd=d;b=i}});return b}
+function go(i){i=Math.max(0,Math.min(D.length-1,i));const f=figs[i];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2,behavior:'smooth'})}
+function upd(){const i=cur();sc.value=i;$('pos').textContent=D.length?(i+1)+' / '+D.length:'0 / 0'}
+tr.addEventListener('scroll',()=>requestAnimationFrame(upd));
+render();
+const fsel={sort:'f-sort',type:'f-type',col:'f-col',cost:'f-cost',kw:'f-kw',fav:'f-fav'};
+TYPES.forEach(t=>$('f-type').add(new Option(t,t)));
+[...new Set(EVERY.flatMap(c=>c.k))].sort().forEach(k=>$('f-kw').add(new Option(k,k)));
+function syncF(){const n=Object.keys(F).filter(k=>F[k]).length;$('fbtn').classList.toggle('on',n>0);$('f-reset').hidden=!n;$('fbtn').textContent=n?'Sort & filter · '+n:'Sort & filter'}
+for(const k in fsel)$(fsel[k]).onchange=e=>{F[k]=e.target.value;syncF();render()};
+$('f-reset').onclick=()=>{for(const k in fsel){F[k]='';$(fsel[k]).value=''}syncF();render()};
+/* Browsers keep storage per site, so picks made on the artifact don't reach the github.io page. A code carries them across. */
+const msg=m=>{$('f-msg').textContent=m};
+$('f-copy').onclick=()=>{const code=btoa(JSON.stringify({f:Object.keys(favs),b:Object.keys(mark).filter(k=>mark[k]=='bench'),t:Object.keys(mark).filter(k=>mark[k]=='trash')}));
+ $('f-code').value=code;$('f-code').select();
+ (navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(()=>msg('Copied. Paste it into Load on the other page.'),()=>msg('Select the code above and copy it.'))};
+$('f-load').onclick=()=>{try{const o=JSON.parse(atob($('f-code').value.trim())),ok=new Set(EVERY.map(c=>c.n));
+ favs={};mark={};(o.f||[]).forEach(n=>{if(ok.has(n))favs[n]=1});(o.b||[]).forEach(n=>{if(ok.has(n))mark[n]='bench'});(o.t||[]).forEach(n=>{if(ok.has(n))mark[n]='trash'});
+ saveFavs();saveMarks();render();msg('Loaded '+Object.keys(favs).length+' favorites, '+Object.keys(mark).length+' benched or trashed.')}catch(e){msg('That code did not work. Copy it again.')}};
+$('fbtn').onclick=()=>{const h=$('fpanel').hidden;$('fpanel').hidden=!h;$('fbtn').setAttribute('aria-expanded',h);fit();go(cur())};
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.v;render()});
+tr.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a){const f=a.closest('figure'),i=+f.dataset.i,n=f.dataset.n;
+ if(a.dataset.a=='flip'){const c=D[i];flip[n]=!flip[n];f.querySelector('img').src=face(c);return}
+ if(a.dataset.a=='fav'||a.dataset.a=='unfav'){if(a.dataset.a=='fav')favs[n]=1;else delete favs[n];saveFavs();render(i);return}
+ if(a.dataset.a)mark[f.dataset.n]=a.dataset.a;else delete mark[f.dataset.n];saveMarks();render(i);return}
+ const z=e.target.closest('.zb');if(z)open(+z.closest('figure').dataset.i)});
+
+$('prev').onclick=()=>go(cur()-1);$('next').onclick=()=>go(cur()+1);
+sc.oninput=()=>{const f=figs[+sc.value];if(!f)return;tr.scrollTo({left:f.offsetLeft+f.offsetWidth/2-tr.clientWidth/2})};
+tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){go(cur()+1);e.preventDefault()}if(e.key=='ArrowLeft'){go(cur()-1);e.preventDefault()}});
+document.addEventListener('gesturestart',e=>e.preventDefault());
+/* zoom viewer: scale + pan with pointer events (two pointers pinch) */
+const z=$('zoom'),zi=$('zimg'),st=$('stage');let zc=0,s=1,x=0,y=0;const ptrs=new Map();let pd=0;
+function clamp(){const mx=(s-1)*zi.offsetWidth/2,my=(s-1)*zi.offsetHeight/2;x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y))}
+function apply(){if(s<=1.001){s=1;x=y=0}else clamp();zi.style.transform=`translate(${x}px,${y}px) scale(${s})`}
+function setS(n,cx,cy){n=Math.max(1,Math.min(3,n));const r=st.getBoundingClientRect();const px=(cx??r.left+r.width/2)-(r.left+r.width/2),py=(cy??r.top+r.height/2)-(r.top+r.height/2);x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()}
+function show(i){zc=Math.max(0,Math.min(D.length-1,i));const c=D[zc];zi.src=face(c);zi.alt=c.n;$('zfl').hidden=!c.b;$('zt').textContent=c.n+' · '+money(c.p);s=1;apply()}
+function open(i){z.classList.add('on');show(i)}
+function close(){z.classList.remove('on');go(zc)}
+
+$('zx').onclick=close;$('zi').onclick=()=>setS(s*1.35);$('zo').onclick=()=>setS(s/1.35);$('zf').onclick=()=>setS(1);$('zfl').onclick=()=>{const c=D[zc];flip[c.n]=!flip[c.n];zi.src=face(c)};
+$('zp').onclick=()=>show(zc-1);$('zn').onclick=()=>show(zc+1);
+st.addEventListener('wheel',e=>{e.preventDefault();setS(s*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY)},{passive:false});
+let tapOk=false,t0=0,lastTap=0,sx=0,sy=0;
+const dist=()=>{const [a,b]=[...ptrs.values()];return Math.hypot(a[0]-b[0],a[1]-b[1])};
+st.addEventListener('pointerdown',e=>{st.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==1){tapOk=true;t0=Date.now();sx=e.clientX;sy=e.clientY}else{tapOk=false;pd=dist()}});
+st.addEventListener('pointermove',e=>{const o=ptrs.get(e.pointerId);if(!o)return;
+ if(tapOk&&Math.hypot(e.clientX-sx,e.clientY-sy)>8)tapOk=false;
+ ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size==2){const d=dist(),[a,b]=[...ptrs.values()];if(pd)setS(s*Math.pow(d/pd,.8),(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}
+ else if(ptrs.size==1&&s>1){x+=e.clientX-o[0];y+=e.clientY-o[1];apply()}});
+function up(e){const was=ptrs.size;ptrs.delete(e.pointerId);pd=0;
+ if(e.type=='pointerup'&&was==1&&tapOk&&Date.now()-t0<300){const n=Date.now();if(n-lastTap<350){lastTap=0;s>1?setS(1):setS(2,e.clientX,e.clientY)}else lastTap=n}
+ if(ptrs.size==1){const [k,v]=[...ptrs][0];ptrs.set(k,v)}}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+document.addEventListener('keydown',e=>{if(!z.classList.contains('on'))return;if(e.key=='Escape')close();if(e.key=='ArrowRight')show(zc+1);if(e.key=='ArrowLeft')show(zc-1);if(e.key=='+'||e.key=='=')setS(s*1.35);if(e.key=='-')setS(s/1.35)});
+</script>
+
+</body></html>
