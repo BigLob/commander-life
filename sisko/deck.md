@@ -70,7 +70,7 @@ Commander: Captain Benjamin Sisko (command zone, not in the photos), so 99 + Sis
 - Live Long and Prosper {5}{W}{U}
 - V'Ger, the Intruder {6}{U}
 - Return to the Light Realms {7}{W}{W}
-- Lore, Postronic Provocateur (Scryfall spells it "Lore, Positronic Provocateur", Star Trek set)
+- Sisay, Weatherlight Captain {2}{W} (SDS 4, the Kirk, Alluring Upstart art; swapped in for Lore, Positronic Provocateur on Nov 27, 2026)
 - The Holodeck {5} (added Nov 27, 2026; the user confirmed it is not a proxy and not Malfunctioning Holodeck; TRK 265)
 - Spock, Cross-Time Captain (not found by name in Scryfall yet; the user confirmed the name)
 
