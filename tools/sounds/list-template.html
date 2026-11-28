@@ -66,7 +66,7 @@ $('sum').textContent=`${CLIPS.length} clips, ${Math.round(tot/60)} minutes in al
 function chips(el,key,opts){el.innerHTML=opts.map(([v,l])=>`<button type="button" data-v="${v}" aria-pressed="${F[key]===v}">${l}<span class="ct">${CLIPS.filter(c=>!v||c[key]===v).length}</span></button>`).join('');
  el.onclick=e=>{const b=e.target.closest('button');if(!b)return;F[key]=b.dataset.v;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()}}
 chips($('grp'),'grp',[['','All']].concat([...new Set(CLIPS.map(c=>c.grp))].sort((a,b)=>CLIPS.filter(c=>c.grp===b).length-CLIPS.filter(c=>c.grp===a).length).map(g=>[g,g])));
-chips($('pool'),'pool',[['','Any length'],['short','Short (3 s or less)'],['mid','Mid (3 to 7 s)'],['long','Long (over 7 s)']]);
+chips($('pool'),'pool',[['','Any length'],['short','Short (3 s or less)'],['mid','Mid (3 to 5 s)'],['long','Long (5 to 7 s)'],['xlong','Extra long (over 7 s)']]);
 chips($('kind'),'kind',[['','Sounds and dialogue'],['sound','Sounds'],['talk','Dialogue']]);
 $('sort').onclick=()=>{F.sort=F.sort==='n'?'d':F.sort==='d'?'s':'n';$('sort').textContent='Sort: '+{n:'A to Z',d:'longest first',s:'source'}[F.sort];draw()};
 $('q').oninput=e=>{F.q=e.target.value.toLowerCase();draw()};

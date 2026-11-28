@@ -1202,7 +1202,7 @@
 "note": "Running cue",
 "kind": "sound",
 "d": 6.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cof-abrahams-theme",
@@ -1213,7 +1213,7 @@
 "note": "Piano and strings",
 "kind": "sound",
 "d": 6.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cof-erics-theme",
@@ -1224,7 +1224,7 @@
 "note": "Piano theme",
 "kind": "sound",
 "d": 6.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cof-five-circles",
@@ -1235,7 +1235,7 @@
 "note": "Olympic rings cue",
 "kind": "sound",
 "d": 6.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cof-jerusalem",
@@ -1246,7 +1246,7 @@
 "note": "The hymn",
 "kind": "sound",
 "d": 6.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cof-main-opening",
@@ -1257,7 +1257,7 @@
 "note": "Soft opening, fading in",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cof-titles-hook",
@@ -1268,14 +1268,14 @@
 "note": "The synth arpeggio and melody",
 "kind": "sound",
 "d": 6.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "cope-alleluia",
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Alleluia\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/alleluia/1570495548?i=1570495551&uo=4",
 "grp": "Kenneth Cope",
-"pool": "mid",
+"pool": "long",
 "d": 6.1,
 "kind": "sound",
 "note": "Sung: \"Alleluia, alleluia\"",
@@ -1286,7 +1286,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Come to Jesus\" (Face to Face - Kenneth Cope Collection)",
 "url": "https://music.apple.com/us/album/come-to-jesus/1569822230?i=1569822233&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "xlong",
 "d": 7.6,
 "kind": "sound",
 "note": "Sung: \"So sing to Jesus, sing to Jesus\"",
@@ -1308,7 +1308,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Gethsemane\" (Shepherd of My Soul)",
 "url": "https://music.apple.com/us/album/gethsemane/940806444?i=940806472&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "xlong",
 "d": 8.2,
 "kind": "sound",
 "note": "Sung: \"My poor Jesus, I'm so sorry\"",
@@ -1319,7 +1319,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"His Hands\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/his-hands/1570495548?i=1570495557&uo=4",
 "grp": "Kenneth Cope",
-"pool": "mid",
+"pool": "long",
 "d": 6.6,
 "kind": "sound",
 "note": "Sung: \"His hands, tools of creation\"",
@@ -1330,7 +1330,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"I Will Not Be Still\" (EFY 1999 - A Season for Courage)",
 "url": "https://music.apple.com/us/album/i-will-not-be-still/305695808?i=305695838&uo=4",
 "grp": "Kenneth Cope",
-"pool": "long",
+"pool": "xlong",
 "d": 7.5,
 "kind": "sound",
 "note": "Sung: \"He says if I'll make the choice, he'll help me find my voice\"",
@@ -1341,7 +1341,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"Never a Better Hero\" (Greater Than Us All)",
 "url": "https://music.apple.com/us/album/never-a-better-hero/1570495548?i=1570495558&uo=4",
 "grp": "Kenneth Cope",
-"pool": "mid",
+"pool": "long",
 "d": 6.0,
 "kind": "sound",
 "note": "Sung: \"Bringing hope to their hearts, giving man a new start\"",
@@ -1352,7 +1352,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"The Carpenter's Son\" (EFY: The Best of Especially for Youth, Vol. 2)",
 "url": "https://music.apple.com/us/album/the-carpenters-son/305635220?i=305635239&uo=4",
 "grp": "Kenneth Cope",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "kind": "sound",
 "note": "Sung: \"That's why they called him the carpenter's son\"",
@@ -1363,7 +1363,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"We Believe\" (EFY 2002 - We Believe)",
 "url": "https://music.apple.com/us/album/we-believe/305633359?i=305633419&uo=4",
 "grp": "Kenneth Cope",
-"pool": "mid",
+"pool": "long",
 "d": 6.7,
 "kind": "sound",
 "note": "Sung: \"We believe in one name under heaven\"",
@@ -1374,7 +1374,7 @@
 "src": "Apple iTunes 30-second preview: Kenneth Cope, \"What Have I Done With His Name?\" (EFY: The Best of Especially for Youth, Vol. 2)",
 "url": "https://music.apple.com/us/album/what-have-i-done-with-his-name/305635220?i=305635235&uo=4",
 "grp": "Kenneth Cope",
-"pool": "mid",
+"pool": "long",
 "d": 5.3,
 "kind": "sound",
 "note": "Sung: \"What have I done with his name?\"",
@@ -2640,7 +2640,7 @@
 "lic": "Square Enix game audio",
 "note": "Chocobo theme",
 "d": 11.9,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff-chocobo-wark",
@@ -2684,7 +2684,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory theme, orchestral",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff1-victory-fanfare",
@@ -2695,7 +2695,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare, first 6 s",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "ff11-victory-fanfare",
@@ -2706,7 +2706,7 @@
 "lic": "Square Enix game audio",
 "note": "Victory fanfare (FFXI)",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff14-chocobo-kweh",
@@ -2728,7 +2728,7 @@
 "lic": "Square Enix game audio",
 "note": "Duty finder pop (FFXIV)",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "ff15-ride-my-chocobo",
@@ -2776,7 +2776,7 @@
 "lic": "Square Enix game audio",
 "note": "Terra's Theme (FFVI), first 12 s",
 "d": 12.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff7-battle-start",
@@ -2798,7 +2798,7 @@
 "lic": "Square Enix game audio",
 "note": "Fighting theme (FFVII), first 11 s",
 "d": 11.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff7-be-nice",
@@ -2857,7 +2857,7 @@
 "lic": "Square Enix game audio",
 "note": "Sephiroth's theme",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "ff7-one-winged-angel",
@@ -2868,7 +2868,7 @@
 "lic": "Square Enix game audio",
 "note": "Sephiroth's theme",
 "d": 11.5,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff7-sephiroth",
@@ -2925,7 +2925,7 @@
 "lic": "Square Enix game audio",
 "note": "Barret fanfare (FFVII Remake)",
 "d": 7.3,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "ff8-limit-break",
@@ -7340,7 +7340,7 @@
 "who": "The Borg",
 "note": "Borg, first 9.6 s",
 "d": 9.6,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "trek-borg-transporter",
@@ -7447,7 +7447,7 @@
 "who": "Data",
 "note": "Generations",
 "d": 6.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "trek-data-received",
@@ -7701,7 +7701,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Opening chime",
 "d": 6.7,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "trek-out-of-your-mind",
@@ -7995,7 +7995,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TNG warp 7",
 "d": 5.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "trek-warp-drive-active",
@@ -8643,7 +8643,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 6.9,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-bluff",
@@ -8679,7 +8679,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-card",
@@ -8703,7 +8703,7 @@
 "quote": "Trent, no amount of coffee is going to fix that hand. Maybe tea. Probably not.",
 "who": "Announcer (at Trent)",
 "d": 5.8,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-combo",
@@ -8715,7 +8715,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-cooking",
@@ -8751,7 +8751,7 @@
 "quote": "Trent, your dating life and your mulligans have one thing in common. Nobody's keeping.",
 "who": "Announcer (at Trent)",
 "d": 5.7,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-divorce-court",
@@ -8763,7 +8763,7 @@
 "quote": "Trent, see you in divorce court. We'll be on the other side. Which is any side.",
 "who": "Announcer (at Trent)",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-divorce-custody",
@@ -8775,7 +8775,7 @@
 "quote": "Trent, in the divorce, your lands get custody of the deck. You'd be left with nothing.",
 "who": "Announcer (at Trent)",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-divorce-deck",
@@ -8811,7 +8811,7 @@
 "quote": "Trent, your lawyer called. Wrong number. Nobody's divorcing you. Yet.",
 "who": "Announcer (at Trent)",
 "d": 5.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-divorce-mana",
@@ -8823,7 +8823,7 @@
 "quote": "Trent, your mana base wants a divorce. It's the only one in this relationship working.",
 "who": "Announcer (at Trent)",
 "d": 6.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-divorce-papers",
@@ -8847,7 +8847,7 @@
 "quote": "Trent, take off the ring before you scoop. Oh wait. You're not divorced. Weird.",
 "who": "Announcer (at Trent)",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-divorce-settle",
@@ -8871,7 +8871,7 @@
 "quote": "Trent, not divorced, still alone on the battlefield. Impressive range.",
 "who": "Announcer (at Trent)",
 "d": 5.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-dramatic",
@@ -8883,7 +8883,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-draw-go",
@@ -8907,7 +8907,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.9,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-driving",
@@ -8919,7 +8919,7 @@
 "quote": "Trent drives like he attacks. Slowly, with no signal, directly into a wall.",
 "who": "Announcer (at Trent)",
 "d": 5.8,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-eight-minutes",
@@ -8943,7 +8943,7 @@
 "quote": "Trent, cracking a fetch land to thin your deck won't help. It's not that kind of problem.",
 "who": "Announcer (at Trent)",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-first",
@@ -8955,7 +8955,7 @@
 "quote": "Trent goes first. Great. Now we can all watch it go wrong in real time.",
 "who": "Announcer (at Trent)",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-gps",
@@ -9003,7 +9003,7 @@
 "quote": "Trent thinks he's the hero of this game. The game disagrees. So does the table.",
 "who": "Announcer (at Trent)",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-i-scoop",
@@ -9039,7 +9039,7 @@
 "quote": "Trent has seven lands in hand. Truly, a masterclass in shuffling.",
 "who": "Announcer (at Trent)",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-late",
@@ -9075,7 +9075,7 @@
 "quote": "Trent, your life total is a suggestion. Everyone else treats it like a goal.",
 "who": "Announcer (at Trent)",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-lunch",
@@ -9087,7 +9087,7 @@
 "quote": "Trent, you thought about lunch for a full minute and then played nothing. Bold.",
 "who": "Announcer (at Trent)",
 "d": 5.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-mid",
@@ -9111,7 +9111,7 @@
 "quote": "Trent, that was a misplay. We'd explain why, but the list is too long.",
 "who": "Announcer (at Trent)",
 "d": 5.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-mulligan",
@@ -9147,7 +9147,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 8.1,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "tts-trent-opening-hand",
@@ -9159,7 +9159,7 @@
 "quote": "Trent, that opening hand was a cry for help. We heard it. We kept playing.",
 "who": "Announcer (at Trent)",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-own-board",
@@ -9171,7 +9171,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.7,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-parking",
@@ -9416,7 +9416,7 @@
 "who": "Announcer (at Trent)",
 "voice": "af_nicole",
 "d": 9.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "tts-trent-pickup-stack",
@@ -9442,7 +9442,7 @@
 "who": "Announcer (at Trent)",
 "voice": "af_sky",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-pickup-tap-me",
@@ -9517,7 +9517,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 6.7,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-removal",
@@ -9553,7 +9553,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-shuffle",
@@ -9577,7 +9577,7 @@
 "quote": "Trent, did you sleep last night? The play says no. The face says definitely no.",
 "who": "Announcer (at Trent)",
 "d": 5.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-snack",
@@ -9613,7 +9613,7 @@
 "quote": "Trent, you drew Sol Ring and still lost. That takes talent. Wasted talent.",
 "who": "Announcer (at Trent)",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-sorry",
@@ -9625,7 +9625,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-spell",
@@ -9649,7 +9649,7 @@
 "quote": "Trent, you'd lose a game of checkers against a houseplant. We checked. The plant is fine.",
 "who": "Announcer (at Trent)",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-stack",
@@ -9685,7 +9685,7 @@
 "quote": "Trent, you tapped the wrong lands. Again. The lands are filing a complaint.",
 "who": "Announcer (at Trent)",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-top-deck",
@@ -9721,7 +9721,7 @@
 "quote": "Trent, you traded your best creature for nothing. Bold. Stupid, but bold.",
 "who": "Announcer (at Trent)",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-two-cards",
@@ -9745,7 +9745,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 5.8,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "tts-trent-weather",
@@ -9940,7 +9940,7 @@
 "note": "Theme from Antarctica",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-blues",
@@ -9951,7 +9951,7 @@
 "note": "Blade Runner Blues",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-blush-response",
@@ -9962,7 +9962,7 @@
 "note": "Blush Response",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-damask-rose",
@@ -9973,7 +9973,7 @@
 "note": "Damask Rose",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-end-titles",
@@ -9984,7 +9984,7 @@
 "note": "Blade Runner (End Titles)",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-love-theme",
@@ -9995,7 +9995,7 @@
 "note": "Love Theme from Blade Runner",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-main-titles",
@@ -10006,7 +10006,7 @@
 "note": "Blade Runner (Main Titles)",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-memories-of-green",
@@ -10017,7 +10017,7 @@
 "note": "Memories of Green",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-rachels-song",
@@ -10028,7 +10028,7 @@
 "note": "Rachel's Song",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-tales-of-the-future",
@@ -10039,7 +10039,7 @@
 "note": "Tales of the Future",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-tears-in-rain",
@@ -10050,7 +10050,7 @@
 "note": "Tears in Rain",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-br-wait-for-me",
@@ -10061,7 +10061,7 @@
 "note": "Wait for Me",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-conquest-of-paradise",
@@ -10072,7 +10072,7 @@
 "note": "Conquest of Paradise",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-cosmos",
@@ -10083,7 +10083,7 @@
 "note": "Theme from \"Cosmos\" (Heaven and Hell, 3rd Movement)",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "vangelis-mythodea-movement-3",
@@ -10094,7 +10094,7 @@
 "note": "Mythodea: Movement 3",
 "kind": "sound",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "victory-6",
@@ -10935,7 +10935,7 @@
 },
 {
 "f": "long/10-fanfares",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "10 Fanfares",
 "url": "https://opengameart.org/content/10-fanfares",
@@ -10945,7 +10945,7 @@
 },
 {
 "f": "long/a-lonely-and-mournful-tune",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "A Lonely And Mournful Tune",
 "url": "https://opengameart.org/content/a-lonely-and-mournful-tune",
@@ -10955,7 +10955,7 @@
 },
 {
 "f": "long/accordion-long",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Accordion Sound",
 "url": "https://opengameart.org/content/accordion-sound",
@@ -10966,7 +10966,7 @@
 },
 {
 "f": "long/applause-in-a-large-hall-or-church",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Applause In A Large Hall Or Church",
 "url": "https://opengameart.org/content/applause-in-a-large-hall-or-church",
@@ -10976,7 +10976,7 @@
 },
 {
 "f": "long/awkward-trumpet",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Happy Awkward Trumpet",
 "url": "https://opengameart.org/content/happy-awkward-trumpet",
@@ -10989,7 +10989,7 @@
 "src": "myinstants: biden numbers",
 "url": "https://www.myinstants.com/media/sounds/biden-numbers.mp3",
 "grp": "Presidents",
-"pool": "mid",
+"pool": "long",
 "d": 6.3,
 "quote": "Somewhere between 700 billion and a trillion, 300 million billion dollars.",
 "kind": "talk",
@@ -11000,7 +11000,7 @@
 "src": "myinstants: Biden CornPop",
 "url": "https://www.myinstants.com/media/sounds/biden-cornpop.mp3",
 "grp": "Presidents",
-"pool": "mid",
+"pool": "long",
 "d": 5.4,
 "quote": "And Corn Pop was a bad dude. And he ran a bunch of bad boys.",
 "kind": "talk",
@@ -11012,7 +11012,7 @@
 "src": "myinstants: Joe Biden Hairy Legs",
 "url": "https://www.myinstants.com/media/sounds/joe-biden-hairy-legs.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 7.5,
 "quote": "I got hairy legs, hairy legs that turn blonde in the sun.",
 "kind": "talk",
@@ -11024,7 +11024,7 @@
 "src": "myinstants: Joe Biden 100 Year",
 "url": "https://www.myinstants.com/media/sounds/joe-biden-100-year.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "quote": "COVID has taken this year, just since the outbreak, has taken more than 100 years. Look, here's the lives. It's just, it's, I mean, think about it.",
 "kind": "talk",
@@ -11041,7 +11041,7 @@
 "who": "Roy Batty (Rutger Hauer, Blade Runner)",
 "from": "Roy Batty's death speech, Blade Runner (1982)",
 "d": 7.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/br-tears-in-rain-2",
@@ -11054,11 +11054,11 @@
 "who": "Roy Batty (Rutger Hauer, Blade Runner)",
 "from": "Roy Batty's death speech, Blade Runner (1982)",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/bush-federal-program",
-"pool": "mid",
+"pool": "long",
 "d": 6.5,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -11071,7 +11071,7 @@
 },
 {
 "f": "long/bush-fool-me-once",
-"pool": "long",
+"pool": "xlong",
 "d": 9.9,
 "src": "YouTube: \"Fool me once, shame on you\" (President George W. Bush)",
 "url": "https://youtu.be/Hl7FKfl3O2Y",
@@ -11084,7 +11084,7 @@
 },
 {
 "f": "long/bush-harm-our-country",
-"pool": "long",
+"pool": "xlong",
 "d": 9.2,
 "src": "YouTube: \"We never stop thinking of ways to harm our people\" (Acadian Hunter)",
 "url": "https://youtu.be/U41dt5X9Fvs",
@@ -11097,7 +11097,7 @@
 },
 {
 "f": "long/bush-i-believe-what-i-believe",
-"pool": "long",
+"pool": "xlong",
 "d": 7.5,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -11109,7 +11109,7 @@
 },
 {
 "f": "long/bush-literacy-test",
-"pool": "mid",
+"pool": "long",
 "d": 5.1,
 "src": "YouTube: \"george bush being george bush for 2 minutes and 39 seconds\" (Wurley)",
 "url": "https://youtu.be/HK_MzsVOQRQ",
@@ -11122,7 +11122,7 @@
 },
 {
 "f": "long/bush-now-watch-this-drive",
-"pool": "long",
+"pool": "xlong",
 "d": 10.1,
 "src": "YouTube: \"George Bush \"Now, Watch This Drive\"\" (קולין)",
 "url": "https://youtu.be/TCm9788Tb5g",
@@ -11138,7 +11138,7 @@
 "src": "myinstants: Georg bush shoe incident",
 "url": "https://www.myinstants.com/media/sounds/georg-bush-shoe-incident.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 10.1,
 "quote": "(The shoe throw in Baghdad, 2008: a reporter shouts, two shoes fly, Bush ducks.) Thank you very much.",
 "kind": "talk",
@@ -11147,7 +11147,7 @@
 },
 {
 "f": "long/bush-the-decider",
-"pool": "mid",
+"pool": "long",
 "d": 6.7,
 "src": "YouTube: \"Bush the Decider\" (cinefilevideoblog)",
 "url": "https://youtu.be/E2Zv1T4Qdv4",
@@ -11189,7 +11189,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Slide whistle up and down",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cartoon-spring-crash",
@@ -11211,7 +11211,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 6.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/chainsaw-3",
@@ -11222,7 +11222,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 7.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/chainsaw-4",
@@ -11233,7 +11233,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 6.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/chainsaw-alert",
@@ -11244,7 +11244,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 5.8,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/chainsaw-loud",
@@ -11255,7 +11255,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 7.7,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/chainsaw-run",
@@ -11266,7 +11266,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 7.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/chainsaw-start",
@@ -11288,14 +11288,14 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Chainsaw",
 "d": 7.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/clinton-sexual-relations",
 "src": "myinstants: I did not have sexual relations with that woman",
 "url": "https://www.myinstants.com/media/sounds/i-did-not-have-sexual-relations-with-that-woman.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 9.6,
 "quote": "I want you to listen to me. I'm going to say this again. I did not have sexual relations with that woman. Miss Lewinsky.",
 "kind": "talk",
@@ -11311,7 +11311,7 @@
 "lic": "Activision game audio",
 "note": "Warzone",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-enemy-cruise-missile",
@@ -11324,7 +11324,7 @@
 "quote": "Enemy cruise missile incoming!",
 "who": "Announcer",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cod-find-ammo",
@@ -11337,7 +11337,7 @@
 "quote": "I need to find some ammunition!",
 "who": "Soldier",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cod-insta-kill",
@@ -11348,7 +11348,7 @@
 "lic": "Activision game audio",
 "note": "Zombies: Insta-Kill",
 "d": 5.1,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cod-mystery-box",
@@ -11359,7 +11359,7 @@
 "lic": "Activision game audio",
 "note": "Zombies: the mystery box",
 "d": 7.3,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-new-round",
@@ -11370,7 +11370,7 @@
 "lic": "Activision game audio",
 "note": "Zombies",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-nvg",
@@ -11381,7 +11381,7 @@
 "lic": "Activision game audio",
 "note": "Modern Warfare 2: night vision",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cod-pack-a-punch",
@@ -11392,7 +11392,7 @@
 "lic": "Activision game audio",
 "note": "Zombies: Pack-a-Punch",
 "d": 8.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-rank-up",
@@ -11403,7 +11403,7 @@
 "lic": "Activision game audio",
 "note": "Modern Warfare 3",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cod-round-end",
@@ -11414,7 +11414,7 @@
 "lic": "Activision game audio",
 "note": "Zombies: a round ends",
 "d": 9.3,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-round-start",
@@ -11425,7 +11425,7 @@
 "lic": "Activision game audio",
 "note": "Zombies: a round begins",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-warthog",
@@ -11436,7 +11436,7 @@
 "lic": "Activision game audio",
 "note": "A-10 gun run",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cod-warzone-level-up",
@@ -11447,7 +11447,7 @@
 "lic": "Activision game audio",
 "note": "Warzone",
 "d": 6.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/cod-warzone-victory",
@@ -11458,7 +11458,7 @@
 "lic": "Activision game audio",
 "note": "Warzone",
 "d": 9.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cof-100-metres-run",
@@ -11469,7 +11469,7 @@
 "note": "Building to the sprint",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cof-erics-theme-long",
@@ -11480,7 +11480,7 @@
 "note": "Longer cut",
 "kind": "sound",
 "d": 12.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cof-main-swell",
@@ -11491,7 +11491,7 @@
 "note": "The theme swelling",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cof-titles-chorus",
@@ -11502,7 +11502,7 @@
 "note": "The theme later in the track",
 "kind": "sound",
 "d": 12.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cof-titles-theme",
@@ -11513,7 +11513,7 @@
 "note": "The famous opening theme",
 "kind": "sound",
 "d": 12.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cof-vangelis-meme",
@@ -11524,7 +11524,7 @@
 "note": "Theme with the slow-motion running meme feel",
 "kind": "sound",
 "d": 13.5,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/cousins-you-like-that",
@@ -11542,7 +11542,7 @@
 },
 {
 "f": "long/cozy-clear",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Cozy Puzzle Jingle Result",
 "url": "https://opengameart.org/content/cozy-puzzle-jingle-result",
@@ -11552,7 +11552,7 @@
 },
 {
 "f": "long/cozy-fail",
-"pool": "mid",
+"pool": "long",
 "d": 6.0,
 "src": "Cozy Puzzle Jingle Result",
 "url": "https://opengameart.org/content/cozy-puzzle-jingle-result",
@@ -11562,7 +11562,7 @@
 },
 {
 "f": "long/creepy-chant",
-"pool": "long",
+"pool": "xlong",
 "d": 11.7,
 "src": "Creepy Incoherent Chanting",
 "url": "https://opengameart.org/content/creepy-incoherent-chanting",
@@ -11573,7 +11573,7 @@
 },
 {
 "f": "long/demon-no-going-back",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "Demon Voice",
 "url": "https://opengameart.org/content/demon-voice",
@@ -11586,7 +11586,7 @@
 },
 {
 "f": "long/diarrhea",
-"pool": "long",
+"pool": "xlong",
 "d": 8.5,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
@@ -11597,7 +11597,7 @@
 },
 {
 "f": "long/dog-barking",
-"pool": "long",
+"pool": "xlong",
 "d": 10.0,
 "src": "Dog Sounds",
 "url": "https://opengameart.org/content/dog-sounds",
@@ -11615,7 +11615,7 @@
 "lic": "id Software game audio",
 "note": "At Doom's Gate, E1M1 (first 8 s)",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/ds9-runabout",
@@ -11626,7 +11626,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Deep Space Nine: Runabout flyby",
 "d": 8.7,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/ds9-theme-emissary",
@@ -11637,7 +11637,7 @@
 "lic": "Copyrighted preview clip",
 "note": "Deep Space Nine main title",
 "d": 8.5,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/ds9-theme-piano",
@@ -11648,7 +11648,7 @@
 "lic": "Copyrighted preview clip",
 "note": "Deep Space Nine main title for solo piano",
 "d": 7.3,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/ds9-theme-s4",
@@ -11659,7 +11659,7 @@
 "lic": "Copyrighted preview clip",
 "note": "Deep Space Nine main title, Season 4 version",
 "d": 7.7,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/ds9-turbolift",
@@ -11670,7 +11670,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Deep Space Nine: Ops turbolift",
 "d": 9.3,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/ds9-wormhole",
@@ -11681,7 +11681,7 @@
 "lic": "Paramount TV and film audio",
 "note": "Deep Space Nine: The Bajoran wormhole opening",
 "d": 5.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/duke-lot-of-words",
@@ -11694,7 +11694,7 @@
 "who": "Duke Nukem",
 "note": "Duke Nukem Forever",
 "d": 8.8,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/duke-theme",
@@ -11705,11 +11705,11 @@
 "lic": "3D Realms / Gearbox game audio",
 "note": "Grabbag, the theme (first 8 s)",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/fart-symphony",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Gastric Distress",
 "url": "https://opengameart.org/content/gastric-distress",
@@ -11719,7 +11719,7 @@
 },
 {
 "f": "long/female-warrior-cheer",
-"pool": "mid",
+"pool": "long",
 "d": 6.7,
 "src": "Female Warrior Cheer",
 "url": "https://opengameart.org/content/female-warrior-cheer",
@@ -11732,7 +11732,7 @@
 },
 {
 "f": "long/fireworks-with-applause-happy-people",
-"pool": "long",
+"pool": "xlong",
 "d": 11.9,
 "src": "Fireworks With Applause Happy People",
 "url": "https://opengameart.org/content/fireworks-with-applause-happy-people",
@@ -11742,7 +11742,7 @@
 },
 {
 "f": "long/fish-feast",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Monster Ripping Into Fish",
 "url": "https://opengameart.org/content/monster-ripping-into-fish",
@@ -11753,7 +11753,7 @@
 },
 {
 "f": "long/game-over-8",
-"pool": "long",
+"pool": "xlong",
 "d": 10.0,
 "src": "Game Over 8",
 "url": "https://opengameart.org/content/game-over-8",
@@ -11763,7 +11763,7 @@
 },
 {
 "f": "long/game-over-ii",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Game Over Ii",
 "url": "https://opengameart.org/content/game-over-ii",
@@ -11773,7 +11773,7 @@
 },
 {
 "f": "long/game-over-instrumental",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Game Over Instrumental",
 "url": "https://opengameart.org/content/game-over-instrumental",
@@ -11783,7 +11783,7 @@
 },
 {
 "f": "long/game-over-jingle",
-"pool": "long",
+"pool": "xlong",
 "d": 7.7,
 "src": "Game Over Short Jingle",
 "url": "https://opengameart.org/content/game-over-short-jingle",
@@ -11793,7 +11793,7 @@
 },
 {
 "f": "long/game-over-yarakashi",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Yarakashitagameover Music",
 "url": "https://opengameart.org/content/yarakashitagameover-music",
@@ -11803,7 +11803,7 @@
 },
 {
 "f": "long/gameover-or-underwater",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Gameover Or Underwater",
 "url": "https://opengameart.org/content/gameover-or-underwater",
@@ -11813,7 +11813,7 @@
 },
 {
 "f": "long/glorious-victory-fanfare-nes",
-"pool": "long",
+"pool": "xlong",
 "d": 11.0,
 "src": "Glorious Victory Fanfare Nes",
 "url": "https://opengameart.org/content/glorious-victory-fanfare-nes",
@@ -11823,7 +11823,7 @@
 },
 {
 "f": "long/goblin-feast",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Goblin Feast",
 "url": "https://opengameart.org/content/goblin-feast",
@@ -11839,7 +11839,7 @@
 "lic": "Microsoft / The Coalition (not CC0)",
 "kind": "sound",
 "d": 14.2,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/gow-theme",
@@ -11849,11 +11849,11 @@
 "lic": "Microsoft / The Coalition (not CC0)",
 "kind": "sound",
 "d": 16.2,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/grunts",
-"pool": "mid",
+"pool": "long",
 "d": 6.3,
 "src": "Little Grunts",
 "url": "https://opengameart.org/content/little-grunts",
@@ -11864,7 +11864,7 @@
 },
 {
 "f": "long/high-ghost",
-"pool": "long",
+"pool": "xlong",
 "d": 10.8,
 "src": "Scary High Pitched Ghost",
 "url": "https://opengameart.org/content/scary-high-pitched-ghost",
@@ -11875,7 +11875,7 @@
 },
 {
 "f": "long/horror-scream",
-"pool": "long",
+"pool": "xlong",
 "d": 11.0,
 "src": "Horror Scream1",
 "url": "https://opengameart.org/content/horror-scream1",
@@ -11885,7 +11885,7 @@
 },
 {
 "f": "long/horror-sting",
-"pool": "long",
+"pool": "xlong",
 "d": 11.9,
 "src": "String And Piano Horror Stings",
 "url": "https://opengameart.org/content/string-and-piano-horror-stings",
@@ -11895,7 +11895,7 @@
 },
 {
 "f": "long/hungry-ghoul",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Hungry Ghoul",
 "url": "https://opengameart.org/content/hungry-ghoul",
@@ -11905,7 +11905,7 @@
 },
 {
 "f": "long/hyoshi-area-clear",
-"pool": "long",
+"pool": "xlong",
 "d": 11.5,
 "src": "Hyoshi Area Clear",
 "url": "https://opengameart.org/content/hyoshi-area-clear",
@@ -11915,7 +11915,7 @@
 },
 {
 "f": "long/hyper-ultra-fanfare",
-"pool": "mid",
+"pool": "long",
 "d": 6.2,
 "src": "Hyper Ultra Fanfare",
 "url": "https://opengameart.org/content/hyper-ultra-fanfare",
@@ -11925,7 +11925,7 @@
 },
 {
 "f": "long/icy-game-over",
-"pool": "long",
+"pool": "xlong",
 "d": 8.4,
 "src": "Icy Game Over",
 "url": "https://opengameart.org/content/icy-game-over",
@@ -11935,7 +11935,7 @@
 },
 {
 "f": "long/icy-level-up",
-"pool": "long",
+"pool": "xlong",
 "d": 7.1,
 "src": "Icy Level Up",
 "url": "https://opengameart.org/content/icy-level-up",
@@ -11966,11 +11966,11 @@
 "lic": "TV audio",
 "note": "Jeopardy! think music (first 8 s)",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/jfk-return-him-safely",
-"pool": "long",
+"pool": "xlong",
 "d": 9.9,
 "src": "NASA: President Kennedy",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -11982,7 +11982,7 @@
 },
 {
 "f": "long/jfk-we-choose-the-moon",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: President Kennedy",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -11994,7 +11994,7 @@
 },
 {
 "f": "long/jingle-05",
-"pool": "mid",
+"pool": "long",
 "d": 6.9,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -12004,7 +12004,7 @@
 },
 {
 "f": "long/jingle-08",
-"pool": "mid",
+"pool": "long",
 "d": 6.0,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -12014,7 +12014,7 @@
 },
 {
 "f": "long/jingle-11",
-"pool": "long",
+"pool": "xlong",
 "d": 8.6,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -12024,7 +12024,7 @@
 },
 {
 "f": "long/jingle-17",
-"pool": "mid",
+"pool": "long",
 "d": 6.9,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -12034,7 +12034,7 @@
 },
 {
 "f": "long/jingle-18",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "src": "85 Short Music Jingles",
 "url": "https://opengameart.org/content/85-short-music-jingles",
@@ -12068,7 +12068,7 @@
 "from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
 "note": "Jim Jones (Peoples Temple)",
 "d": 9.5,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/jones-two-oclock",
@@ -12096,11 +12096,11 @@
 "from": "Jim Dunbar's San Francisco TV talk show, taped off the air, around the Watergate hearings (1973), FBI tape Q 696",
 "note": "Jim Jones (Peoples Temple)",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/just-a-random-fanfare",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Just A Random Fanfare",
 "url": "https://opengameart.org/content/just-a-random-fanfare",
@@ -12110,7 +12110,7 @@
 },
 {
 "f": "long/level-complete",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Level Complete",
 "url": "https://opengameart.org/content/level-complete",
@@ -12127,7 +12127,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Beaky Buzzard",
 "d": 8.0,
-"pool": "long",
+"pool": "xlong",
 "quote": "No! No! No! No! No!",
 "who": "Beaky Buzzard"
 },
@@ -12140,7 +12140,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Falling bomb and explosion",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/lt-bugs-so-long-screwy",
@@ -12164,7 +12164,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Bugs Bunny theme",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/lt-bugs-this-means-war",
@@ -12175,7 +12175,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Bugs Bunny",
 "d": 5.2,
-"pool": "mid",
+"pool": "long",
 "quote": "Of course you realize, this means war.",
 "who": "Bugs Bunny"
 },
@@ -12188,7 +12188,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Loony Tunes drop and crash",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/lt-duck-dodgers",
@@ -12199,7 +12199,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Daffy Duck (Duck Dodgers)",
 "d": 5.3,
-"pool": "mid",
+"pool": "long",
 "quote": "Then make way for Duck Dodgers in the 24th and a half century!",
 "who": "Daffy Duck (Duck Dodgers)"
 },
@@ -12225,7 +12225,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Marvin the Martian",
 "d": 6.0,
-"pool": "mid",
+"pool": "long",
 "quote": "You have made me very angry! Very angry indeed!",
 "who": "Marvin the Martian"
 },
@@ -12238,7 +12238,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Marvin the Martian",
 "d": 6.7,
-"pool": "mid",
+"pool": "long",
 "quote": "Oh drat these computers, they're so naughty and so complex, I could pinch them.",
 "who": "Marvin the Martian"
 },
@@ -12251,7 +12251,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Marvin the Martian",
 "d": 5.4,
-"pool": "mid",
+"pool": "long",
 "quote": "Oh drat these computers, they're so naughty and so complex, I could pinch them!",
 "who": "Marvin the Martian"
 },
@@ -12264,7 +12264,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Pepé Le Pew",
 "d": 6.1,
-"pool": "mid",
+"pool": "long",
 "quote": "Ah, my little darling, it is love at first sight, is it not?",
 "who": "Pepé Le Pew"
 },
@@ -12277,7 +12277,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Sylvester and the anvil",
 "d": 5.6,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/lt-taz-windup",
@@ -12288,7 +12288,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Tasmanian Devil spinning up",
 "d": 5.9,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/lt-thats-all-folks-bugs",
@@ -12299,7 +12299,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Closing line",
 "d": 8.0,
-"pool": "long",
+"pool": "xlong",
 "quote": "And that's all, folks!",
 "who": "Porky Pig"
 },
@@ -12312,7 +12312,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Closing line",
 "d": 7.2,
-"pool": "long",
+"pool": "xlong",
 "quote": "That's all, folks!",
 "who": "Porky Pig"
 },
@@ -12325,7 +12325,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Closing line",
 "d": 7.9,
-"pool": "long",
+"pool": "xlong",
 "quote": "That's all, folks!",
 "who": "Porky Pig"
 },
@@ -12338,7 +12338,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Looney Tunes classic theme",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/lt-theme-short",
@@ -12349,7 +12349,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Looney Tunes theme (short)",
 "d": 7.2,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/lt-theme",
@@ -12360,7 +12360,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Looney Tunes theme",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/lt-whirl",
@@ -12371,7 +12371,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Whirl (Taz-style spin)",
 "d": 6.9,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/lt-wrong-answer",
@@ -12386,7 +12386,7 @@
 },
 {
 "f": "long/medieval-defeat",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Medieval Defeat Theme",
 "url": "https://opengameart.org/content/medieval-defeat-theme",
@@ -12396,7 +12396,7 @@
 },
 {
 "f": "long/medieval-victory",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Medieval Victory Theme",
 "url": "https://opengameart.org/content/medieval-victory-theme",
@@ -12410,7 +12410,7 @@
 "url": "https://www.myinstants.com/media/sounds/mm2-victory.mp3",
 "grp": "Mega Man",
 "d": 5.5,
-"pool": "mid",
+"pool": "long",
 "kind": "sound",
 "note": "Mega Man 2 boss defeated",
 "lic": "Capcom game audio"
@@ -12421,14 +12421,14 @@
 "url": "https://www.myinstants.com/media/sounds/mega-man-3-proto-mans-whistle.mp3",
 "grp": "Mega Man",
 "d": 10.0,
-"pool": "long",
+"pool": "xlong",
 "kind": "sound",
 "note": "Mega Man 3: Proto Man's whistle",
 "lic": "Capcom game audio"
 },
 {
 "f": "long/messy-feast",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "The Messy Feast",
 "url": "https://opengameart.org/content/the-messy-feast",
@@ -12460,7 +12460,7 @@
 "lic": "Python (Monty) Pictures audio",
 "note": "Monty Python and the Holy Grail: the Holy Hand Grenade",
 "d": 5.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/mp-message-for-you",
@@ -12472,7 +12472,7 @@
 "quote": "Message for you, sir!",
 "note": "Monty Python and the Holy Grail",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/mp-run-away",
@@ -12485,11 +12485,11 @@
 "who": "King Arthur",
 "note": "Monty Python and the Holy Grail",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/nasa-cardiac-arrests",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "src": "NASA: Apollo 12",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -12500,7 +12500,7 @@
 },
 {
 "f": "long/nasa-houston-problem",
-"pool": "mid",
+"pool": "long",
 "d": 6.5,
 "src": "NASA: Apollo 13",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -12512,7 +12512,7 @@
 },
 {
 "f": "long/nasa-liftoff",
-"pool": "long",
+"pool": "xlong",
 "d": 9.4,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -12523,7 +12523,7 @@
 },
 {
 "f": "long/nasa-merry-christmas",
-"pool": "long",
+"pool": "xlong",
 "d": 9.4,
 "src": "NASA: Apollo 8",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -12535,7 +12535,7 @@
 },
 {
 "f": "long/nasa-one-small-step",
-"pool": "mid",
+"pool": "long",
 "d": 6.0,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -12547,7 +12547,7 @@
 },
 {
 "f": "long/nasa-turn-blue",
-"pool": "mid",
+"pool": "long",
 "d": 6.8,
 "src": "NASA: Apollo 11",
 "url": "https://soundcloud.com/nasa/sets/apollo-sounds",
@@ -12559,7 +12559,7 @@
 },
 {
 "f": "long/obama-biggie-and-tupac",
-"pool": "long",
+"pool": "xlong",
 "d": 8.8,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12572,7 +12572,7 @@
 },
 {
 "f": "long/obama-bucket-list",
-"pool": "long",
+"pool": "xlong",
 "d": 9.8,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12585,7 +12585,7 @@
 },
 {
 "f": "long/obama-dick-cheney",
-"pool": "long",
+"pool": "xlong",
 "d": 10.0,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12598,7 +12598,7 @@
 },
 {
 "f": "long/obama-go-down-as-a-president",
-"pool": "long",
+"pool": "xlong",
 "d": 7.3,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12611,7 +12611,7 @@
 },
 {
 "f": "long/obama-indiana-pizza",
-"pool": "long",
+"pool": "xlong",
 "d": 8.2,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12624,7 +12624,7 @@
 },
 {
 "f": "long/obama-iphone",
-"pool": "long",
+"pool": "xlong",
 "d": 8.9,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12636,7 +12636,7 @@
 },
 {
 "f": "long/obama-matt-damon",
-"pool": "long",
+"pool": "xlong",
 "d": 9.6,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12649,7 +12649,7 @@
 },
 {
 "f": "long/obama-out",
-"pool": "mid",
+"pool": "long",
 "d": 6.8,
 "src": "YouTube: \"Obama Mic Drop \"Obama Out\"\" (Adam Kohout)",
 "url": "https://youtu.be/6dEA7krBxys",
@@ -12662,7 +12662,7 @@
 },
 {
 "f": "long/obama-some-people-are-so-dumb",
-"pool": "long",
+"pool": "xlong",
 "d": 9.5,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12674,7 +12674,7 @@
 },
 {
 "f": "long/obama-third-hangover",
-"pool": "mid",
+"pool": "long",
 "d": 5.9,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12686,7 +12686,7 @@
 },
 {
 "f": "long/obama-third-term",
-"pool": "long",
+"pool": "xlong",
 "d": 7.9,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12699,7 +12699,7 @@
 },
 {
 "f": "long/obama-won-both-of-them",
-"pool": "mid",
+"pool": "long",
 "d": 5.3,
 "src": "YouTube: \"I have no more campaigns to run... I know cuz I won both of them! -Barack Obama\" (Superhero Events)",
 "url": "https://youtu.be/SktnQxmmUmA",
@@ -12712,7 +12712,7 @@
 },
 {
 "f": "long/obama-yes-we-crayon",
-"pool": "mid",
+"pool": "long",
 "d": 5.3,
 "src": "YouTube: \"Obama's 17 Best Jokes and Jabs\" (David Taylor)",
 "url": "https://youtu.be/NajhG8PpC2A",
@@ -12733,11 +12733,11 @@
 "who": "Michael Scott",
 "note": "The Office",
 "d": 7.7,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/race-finish",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
@@ -12747,7 +12747,7 @@
 },
 {
 "f": "long/race-intro",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Racing Game Finish Jingle",
 "url": "https://opengameart.org/content/racing-game-finish-jingle",
@@ -12757,7 +12757,7 @@
 },
 {
 "f": "long/ripping-meat",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Ripping Into Meat",
 "url": "https://opengameart.org/content/ripping-into-meat",
@@ -12768,7 +12768,7 @@
 },
 {
 "f": "long/sad-blues",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Beansjam Sad Budi Blues",
 "url": "https://opengameart.org/content/beansjam-sad-budi-blues",
@@ -12778,7 +12778,7 @@
 },
 {
 "f": "long/sad-ending-1",
-"pool": "long",
+"pool": "xlong",
 "d": 10.7,
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
@@ -12788,7 +12788,7 @@
 },
 {
 "f": "long/sad-ending-2",
-"pool": "long",
+"pool": "xlong",
 "d": 11.8,
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
@@ -12798,7 +12798,7 @@
 },
 {
 "f": "long/sad-ending-3",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Game Over Sad Short Music Clips",
 "url": "https://opengameart.org/content/game-over-sad-short-music-clips",
@@ -12808,7 +12808,7 @@
 },
 {
 "f": "long/sad-game-over",
-"pool": "long",
+"pool": "xlong",
 "d": 11.0,
 "src": "Sad Game Over",
 "url": "https://opengameart.org/content/sad-game-over",
@@ -12818,7 +12818,7 @@
 },
 {
 "f": "long/sad-walk-with-sad-melodica",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Sad Walk With Sad Melodica",
 "url": "https://opengameart.org/content/sad-walk-with-sad-melodica",
@@ -12828,7 +12828,7 @@
 },
 {
 "f": "long/sadness",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Sadness",
 "url": "https://opengameart.org/content/sadness",
@@ -12838,7 +12838,7 @@
 },
 {
 "f": "long/sega-victory",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "src": "Sega Mega Drivegenesis Victory Jingle",
 "url": "https://opengameart.org/content/sega-mega-drivegenesis-victory-jingle",
@@ -12848,7 +12848,7 @@
 },
 {
 "f": "long/simple-battle-fanfare",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Simple Battle Fanfare",
 "url": "https://opengameart.org/content/simple-battle-fanfare",
@@ -12858,7 +12858,7 @@
 },
 {
 "f": "long/something-sad",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Something Sad",
 "url": "https://opengameart.org/content/something-sad",
@@ -12877,7 +12877,7 @@
 "who": "Solaire of Astora",
 "note": "Dark Souls",
 "d": 5.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/souls-solaire",
@@ -12890,7 +12890,7 @@
 "who": "Solaire of Astora",
 "note": "Dark Souls",
 "d": 5.9,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/souls-victory-achieved",
@@ -12901,7 +12901,7 @@
 "lic": "FromSoftware game audio",
 "note": "VICTORY ACHIEVED",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/souls-you-died",
@@ -12912,11 +12912,11 @@
 "lic": "FromSoftware game audio",
 "note": "YOU DIED",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/space-chorus",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Plasmawaves - Chorus",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12925,7 +12925,7 @@
 },
 {
 "f": "long/space-comet-tempel",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Stardust: Passing Comet Tempel 1",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12934,7 +12934,7 @@
 },
 {
 "f": "long/space-earth-magnetic-drum",
-"pool": "mid",
+"pool": "long",
 "d": 6.3,
 "src": "NASA: Sounds of Earth's Magnetic Drum in Space",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12943,7 +12943,7 @@
 },
 {
 "f": "long/space-enceladus",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Cassini: Enceladus Sound",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12952,7 +12952,7 @@
 },
 {
 "f": "long/space-europa",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Audio from NASA’s Juno Mission: Europa Flyby",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12961,7 +12961,7 @@
 },
 {
 "f": "long/space-fanfare",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Space Fanfare",
 "url": "https://opengameart.org/content/space-fanfare",
@@ -12971,7 +12971,7 @@
 },
 {
 "f": "long/space-interstellar-plasma",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Voyager: Interstellar Plasma Sounds",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12980,7 +12980,7 @@
 },
 {
 "f": "long/space-jupiter-bow-shock",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Juno: Crossing Jupiter's Bow Shock",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12989,7 +12989,7 @@
 },
 {
 "f": "long/space-jupiter-lightning",
-"pool": "long",
+"pool": "xlong",
 "d": 7.6,
 "src": "NASA: Voyager: Lightning on Jupiter",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -12998,7 +12998,7 @@
 },
 {
 "f": "long/space-jupiter-magnetosphere",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Juno: Entering Jupiter's Magnetosphere",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -13007,7 +13007,7 @@
 },
 {
 "f": "long/space-langmuir-waves",
-"pool": "long",
+"pool": "xlong",
 "d": 7.8,
 "src": "NASA: Parker Solar Probe - Langmuir Waves",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -13016,7 +13016,7 @@
 },
 {
 "f": "long/space-plasmaspheric-hiss",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Plasmaspheric Hiss",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -13025,7 +13025,7 @@
 },
 {
 "f": "long/space-saturn-radio",
-"pool": "long",
+"pool": "xlong",
 "d": 8.0,
 "src": "NASA: Cassini: Saturn Radio Emissions #2",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -13034,7 +13034,7 @@
 },
 {
 "f": "long/space-star-kepler",
-"pool": "mid",
+"pool": "long",
 "d": 6.7,
 "src": "NASA: Kepler: Star KIC12268220C Light Curve Waves to Sound",
 "url": "https://soundcloud.com/nasa/sets/spookyspacesounds",
@@ -13061,7 +13061,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/squelch-flesh-growth",
@@ -13072,7 +13072,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 7.9,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/squelch-flesh-shift",
@@ -13094,7 +13094,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 5.5,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/squelch-meat",
@@ -13105,7 +13105,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 7.4,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/squelch-noises",
@@ -13116,7 +13116,7 @@
 "lic": "Game, film and sound-effect uploads (myinstants)",
 "note": "Grotesque squelch",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/sw-cantina",
@@ -13127,7 +13127,7 @@
 "lic": "Lucasfilm film audio",
 "note": "Cantina Band (first 8 s)",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/sw-do-or-do-not",
@@ -13140,7 +13140,7 @@
 "who": "Yoda and Luke",
 "note": "The Empire Strikes Back",
 "d": 9.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/sw-i-love-democracy",
@@ -13153,7 +13153,7 @@
 "who": "Palpatine",
 "note": "Attack of the Clones",
 "d": 5.4,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/sw-imperial-march",
@@ -13164,7 +13164,7 @@
 "lic": "Lucasfilm film audio",
 "note": "The Imperial March (first 8 s)",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/sw-vader-breathing",
@@ -13175,7 +13175,7 @@
 "lic": "Lucasfilm film audio",
 "note": "Darth Vader's breathing",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/sw-vader-noooo",
@@ -13188,11 +13188,11 @@
 "who": "Darth Vader",
 "note": "Revenge of the Sith",
 "d": 5.3,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/the-burger-pope-round-clear",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "The Burger Pope Round Clear",
 "url": "https://opengameart.org/content/the-burger-pope-round-clear",
@@ -13202,7 +13202,7 @@
 },
 {
 "f": "long/the-heros-passing",
-"pool": "long",
+"pool": "xlong",
 "d": 11.6,
 "src": "The Heros Passing",
 "url": "https://opengameart.org/content/the-heros-passing",
@@ -13212,7 +13212,7 @@
 },
 {
 "f": "long/tiny-sad-lonely-theme",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Tiny Sad Lonely Theme",
 "url": "https://opengameart.org/content/tiny-sad-lonely-theme",
@@ -13222,7 +13222,7 @@
 },
 {
 "f": "long/tragic-death",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Tragic Death",
 "url": "https://opengameart.org/content/tragic-death",
@@ -13241,7 +13241,7 @@
 "who": "The Borg",
 "note": "Star Trek: The Next Generation",
 "d": 5.2,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/trek-fight",
@@ -13252,7 +13252,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS fight music (first 7 s)",
 "d": 7.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/trek-tos-chime",
@@ -13263,7 +13263,7 @@
 "lic": "Paramount TV and film audio",
 "note": "TOS opening chime",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/trek-tribbles",
@@ -13274,11 +13274,11 @@
 "lic": "Paramount TV and film audio",
 "note": "Tribbles",
 "d": 6.0,
-"pool": "mid"
+"pool": "long"
 },
 {
 "f": "long/troll",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Big Scary Troll Sounds",
 "url": "https://opengameart.org/content/big-scary-troll-sounds",
@@ -13289,7 +13289,7 @@
 },
 {
 "f": "long/trop-la-win",
-"pool": "mid",
+"pool": "long",
 "d": 5.7,
 "src": "Trop La Win",
 "url": "https://opengameart.org/content/trop-la-win",
@@ -13299,7 +13299,7 @@
 },
 {
 "f": "long/trump-abdul",
-"pool": "long",
+"pool": "xlong",
 "d": 9.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13312,7 +13312,7 @@
 },
 {
 "f": "long/trump-believe-me",
-"pool": "long",
+"pool": "xlong",
 "d": 9.5,
 "src": "YouTube: \"Trump Believe Me Comp\" (CJ Foxtau)",
 "url": "https://youtu.be/s2DIp8_r9uU",
@@ -13325,7 +13325,7 @@
 },
 {
 "f": "long/trump-black-community",
-"pool": "long",
+"pool": "xlong",
 "d": 9.7,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13340,7 +13340,7 @@
 "src": "myinstants: Trump China Compliation",
 "url": "https://www.myinstants.com/media/sounds/china-trumpo-compilation.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 11.5,
 "quote": "China. China. China. China. China. China. China. China. China. China.",
 "kind": "talk",
@@ -13349,7 +13349,7 @@
 },
 {
 "f": "long/trump-china",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "src": "YouTube: \"Donald Trump says China a lot (Trump China compilation)\" (Random Video Edits)",
 "url": "https://youtu.be/dYQYRDETHkM",
@@ -13362,7 +13362,7 @@
 },
 {
 "f": "long/trump-eating-the-dogs",
-"pool": "long",
+"pool": "xlong",
 "d": 9.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13375,7 +13375,7 @@
 },
 {
 "f": "long/trump-fat-pigs",
-"pool": "long",
+"pool": "xlong",
 "d": 9.9,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13391,7 +13391,7 @@
 "src": "myinstants: Trump Build a wall",
 "url": "https://www.myinstants.com/media/sounds/i-will-build-a-wall.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 10.0,
 "quote": "I will build a great, great wall on our southern border, and I will have Mexico pay for that wall. Mark my words.",
 "kind": "talk",
@@ -13400,7 +13400,7 @@
 },
 {
 "f": "long/trump-hannibal-lecter",
-"pool": "long",
+"pool": "xlong",
 "d": 10.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13412,7 +13412,7 @@
 },
 {
 "f": "long/trump-i-am-the-chosen-one",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "src": "YouTube: \"“I am the chosen one.” - Trump\" (Anarcho Christian)",
 "url": "https://youtu.be/RSCIndGqYWY",
@@ -13425,7 +13425,7 @@
 },
 {
 "f": "long/trump-i-love-babies",
-"pool": "long",
+"pool": "xlong",
 "d": 9.4,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13441,7 +13441,7 @@
 "src": "myinstants: Trump Biden Kiss Ass",
 "url": "https://www.myinstants.com/media/sounds/trump-biden-kiss-ass.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 10.0,
 "quote": "He was only a good vice president because he understood how to kiss Barack Obama's ass.",
 "kind": "talk",
@@ -13449,7 +13449,7 @@
 },
 {
 "f": "long/trump-knock-knock",
-"pool": "mid",
+"pool": "long",
 "d": 7.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13461,7 +13461,7 @@
 },
 {
 "f": "long/trump-like-a-smart-person",
-"pool": "long",
+"pool": "xlong",
 "d": 8.4,
 "src": "YouTube: \"Donald Trump \"trust me I'm like a smart person\"\" (Seven)",
 "url": "https://youtu.be/QAjIdPUfJEQ",
@@ -13473,7 +13473,7 @@
 },
 {
 "f": "long/trump-magnets",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13485,7 +13485,7 @@
 },
 {
 "f": "long/trump-small-hands",
-"pool": "long",
+"pool": "xlong",
 "d": 8.2,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13498,7 +13498,7 @@
 },
 {
 "f": "long/trump-standpoint-of-water",
-"pool": "mid",
+"pool": "long",
 "d": 7.0,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13513,7 +13513,7 @@
 "src": "myinstants: TRUMP START UR ENGINES",
 "url": "https://www.myinstants.com/media/sounds/trump-start-ur-engines_swMr2Y3.mp3",
 "grp": "Presidents",
-"pool": "mid",
+"pool": "long",
 "d": 6.2,
 "quote": "Gentlemen, start your engines!",
 "kind": "talk",
@@ -13525,7 +13525,7 @@
 "src": "myinstants: Trump: 3 vax",
 "url": "https://www.myinstants.com/media/sounds/trump-3-vax.mp3",
 "grp": "Presidents",
-"pool": "mid",
+"pool": "long",
 "d": 5.6,
 "quote": "I came up with three vaccines, all very, very good.",
 "kind": "talk",
@@ -13536,7 +13536,7 @@
 "src": "myinstants: Trump Win Too Much",
 "url": "https://www.myinstants.com/media/sounds/trump-win-too-much.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 10.5,
 "quote": "We're going to win so much, you may even get tired of winning. And you'll say, please, please, it's too much winning. We can't take it anymore.",
 "kind": "talk",
@@ -13545,7 +13545,7 @@
 },
 {
 "f": "long/trump-turn-black",
-"pool": "long",
+"pool": "xlong",
 "d": 7.4,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13558,7 +13558,7 @@
 },
 {
 "f": "long/trump-turn-off-the-lights",
-"pool": "long",
+"pool": "xlong",
 "d": 9.8,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13570,7 +13570,7 @@
 },
 {
 "f": "long/trump-very-large-brain",
-"pool": "long",
+"pool": "xlong",
 "d": 8.5,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13582,7 +13582,7 @@
 },
 {
 "f": "long/trump-we-love-puerto-rico",
-"pool": "long",
+"pool": "xlong",
 "d": 8.8,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13597,7 +13597,7 @@
 "src": "myinstants: who built the cages- Donald Trump",
 "url": "https://www.myinstants.com/media/sounds/cages.mp3",
 "grp": "Presidents",
-"pool": "long",
+"pool": "xlong",
 "d": 9.8,
 "quote": "Who built the cages? I'd love you to ask that. Who built the cages, Joe?",
 "kind": "talk",
@@ -13606,7 +13606,7 @@
 },
 {
 "f": "long/trump-word-salad",
-"pool": "long",
+"pool": "xlong",
 "d": 7.8,
 "src": "YouTube: \"donald trump being donald trump for 4 minutes and 5 seconds\" (Wurley)",
 "url": "https://youtu.be/Hn9r6xNawoE",
@@ -13619,7 +13619,7 @@
 },
 {
 "f": "long/trump-wrong",
-"pool": "long",
+"pool": "xlong",
 "d": 8.8,
 "src": "YouTube: \"Presidential Debate \"Wrong Wrong Wrong\" Trump\" (John Paul Schilling)",
 "url": "https://youtu.be/b2Ec_oHjEFM",
@@ -13640,7 +13640,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 7.4,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/tts-trent-target-yourself",
@@ -13652,7 +13652,7 @@
 "who": "Announcer (at Trent)",
 "lic": "Made for this app",
 "d": 7.1,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/vangelis-br-end-titles-long",
@@ -13663,7 +13663,7 @@
 "note": "Blade Runner (End Titles) (longer cut)",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/vangelis-br-love-theme-long",
@@ -13674,7 +13674,7 @@
 "note": "Love Theme from Blade Runner (longer cut)",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/vangelis-br-main-titles-long",
@@ -13685,7 +13685,7 @@
 "note": "Blade Runner (Main Titles) (longer cut)",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/vangelis-conquest-of-paradise-long",
@@ -13696,7 +13696,7 @@
 "note": "Conquest of Paradise (longer cut)",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/vangelis-cosmos-long",
@@ -13707,7 +13707,7 @@
 "note": "Theme from \"Cosmos\" (Heaven and Hell, 3rd Movement) (longer cut)",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/vangelis-mythodea-movement-3-long",
@@ -13718,11 +13718,11 @@
 "note": "Mythodea: Movement 3 (longer cut)",
 "kind": "sound",
 "d": 10.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/victory-8-bit",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Victory 8 Bit",
 "url": "https://opengameart.org/content/victory-8-bit",
@@ -13732,7 +13732,7 @@
 },
 {
 "f": "long/victory-fanfare-short",
-"pool": "long",
+"pool": "xlong",
 "d": 11.8,
 "src": "Victory Fanfare",
 "url": "https://opengameart.org/content/victory-fanfare",
@@ -13742,7 +13742,7 @@
 },
 {
 "f": "long/victory-fanfare",
-"pool": "mid",
+"pool": "long",
 "d": 6.9,
 "src": "Victory Fanfare",
 "url": "https://opengameart.org/content/victory-fanfare",
@@ -13752,7 +13752,7 @@
 },
 {
 "f": "long/victory-sting",
-"pool": "long",
+"pool": "xlong",
 "d": 7.6,
 "src": "Victory Sting",
 "url": "https://opengameart.org/content/victory-sting",
@@ -13762,7 +13762,7 @@
 },
 {
 "f": "long/vomit",
-"pool": "long",
+"pool": "xlong",
 "d": 11.2,
 "src": "Bad Sound Crap",
 "url": "https://opengameart.org/content/bad-sound-crap",
@@ -13806,7 +13806,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Pinky and the Brain",
 "d": 10.0,
-"pool": "long",
+"pool": "xlong",
 "quote": "What do you want to do tonight, Brain? The same thing we do every night, Pinky: try to take over the world.",
 "who": "Pinky and the Brain"
 },
@@ -13819,7 +13819,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Scooby-Doo, Where Are You? theme",
 "d": 8.0,
-"pool": "long"
+"pool": "xlong"
 },
 {
 "f": "long/wb-scooby-zoinks",
@@ -13830,7 +13830,7 @@
 "lic": "Warner Bros. cartoon audio",
 "note": "Shaggy",
 "d": 5.6,
-"pool": "mid",
+"pool": "long",
 "quote": "Zoinks, zoinks, zoinks!",
 "who": "Shaggy"
 },
@@ -13849,7 +13849,7 @@
 },
 {
 "f": "long/weird-sad-song",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "100 CC0 SFX",
 "url": "https://opengameart.org/content/100-cc0-sfx",
@@ -13859,7 +13859,7 @@
 },
 {
 "f": "long/win-fanfare",
-"pool": "long",
+"pool": "xlong",
 "d": 12.0,
 "src": "Win Fanfare",
 "url": "https://opengameart.org/content/win-fanfare",
@@ -13869,7 +13869,7 @@
 },
 {
 "f": "long/zombie-horde",
-"pool": "long",
+"pool": "xlong",
 "d": 11.9,
 "src": "Zombie Moans",
 "url": "https://opengameart.org/content/zombie-moans",
