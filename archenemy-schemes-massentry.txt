@@ -1,73 +1,73 @@
-1 All in Good Time [OARC] 1★
-1 All Shall Smolder in My Wake [OARC] 2★
-1 Approach My Molten Realm [OARC] 3★
-1 Behold the Power of Destruction [OARC] 4★
-1 Choose Your Champion [OARC] 5★
-1 Dance, Pathetic Marionette [OARC] 6★
-1 The Dead Shall Serve [OARC] 7★
-1 A Display of My Dark Power [OARC] 8★
-1 Embrace My Diabolical Vision [OARC] 9★
-1 Every Hope Shall Vanish [OARC] 10★
-1 Every Last Vestige Shall Rot [OARC] 11★
-1 Evil Comes to Fruition [OARC] 12★
-1 The Fate of the Flammable [OARC] 13★
-1 Feed the Machine [OARC] 14★
-1 I Bask in Your Silent Awe [OARC] 15★
-1 I Call on the Ancient Magics [OARC] 16★
-1 I Delight in Your Convulsions [OARC] 17★
-1 I Know All, I See All [OARC] 18★
-1 Ignite the Cloneforge! [OARC] 19★
-1 Into the Earthen Maw [OARC] 20★
-1 Introductions Are in Order [OARC] 21★
-1 The Iron Guardian Stirs [OARC] 22★
-1 Know Naught but Fire [OARC] 23★
-1 Look Skyward and Despair [OARC] 24★
-1 May Civilization Collapse [OARC] 25★
-1 Mortal Flesh Is Weak [OARC] 26★
-1 My Crushing Masterstroke [OARC] 27★
-1 My Genius Knows No Bounds [OARC] 28★
-1 My Undead Horde Awakens [OARC] 29★
-1 My Wish Is Your Command [OARC] 30★
-1 Nature Demands an Offering [OARC] 31★
-1 Nature Shields Its Own [OARC] 32★
-1 Nothing Can Stop Me Now [OARC] 33★
-1 Only Blood Ends Your Nightmares [OARC] 34★
-1 The Pieces Are Coming Together [OARC] 35★
-1 Realms Befitting My Majesty [OARC] 36★
-1 Roots of All Evil [OARC] 37★
-1 Rotted Ones, Lay Siege [OARC] 38★
-1 Surrender Your Thoughts [OARC] 39★
-1 Tooth, Claw, and Tail [OARC] 40★
-1 The Very Soil Shall Shake [OARC] 41★
-1 Which of You Burns Brightest? [OARC] 42★
-1 Your Fate Is Thrice Sealed [OARC] 43★
-1 Your Puny Minds Cannot Fathom [OARC] 44★
-1 Your Will Is Not Your Own [OARC] 45★
+1 All in Good Time [OARC] 1
+1 All Shall Smolder in My Wake [OARC] 2
+1 Approach My Molten Realm [OARC] 3
+1 Behold the Power of Destruction [OARC] 4
+1 Choose Your Champion [OARC] 5
+1 Dance, Pathetic Marionette [OARC] 6
+1 The Dead Shall Serve [OARC] 7
+1 A Display of My Dark Power [OARC] 8
+1 Embrace My Diabolical Vision [OARC] 9
+1 Every Hope Shall Vanish [OARC] 10
+1 Every Last Vestige Shall Rot [OARC] 11
+1 Evil Comes to Fruition [OARC] 12
+1 The Fate of the Flammable [OARC] 13
+1 Feed the Machine [OARC] 14
+1 I Bask in Your Silent Awe [OARC] 15
+1 I Call on the Ancient Magics [OARC] 16
+1 I Delight in Your Convulsions [OARC] 17
+1 I Know All, I See All [OARC] 18
+1 Ignite the Cloneforge! [OARC] 19
+1 Into the Earthen Maw [OARC] 20
+1 Introductions Are in Order [OARC] 21
+1 The Iron Guardian Stirs [OARC] 22
+1 Know Naught but Fire [OARC] 23
+1 Look Skyward and Despair [OARC] 24
+1 May Civilization Collapse [OARC] 25
+1 Mortal Flesh Is Weak [OARC] 26
+1 My Crushing Masterstroke [OARC] 27
+1 My Genius Knows No Bounds [OARC] 28
+1 My Undead Horde Awakens [OARC] 29
+1 My Wish Is Your Command [OARC] 30
+1 Nature Demands an Offering [OARC] 31
+1 Nature Shields Its Own [OARC] 32
+1 Nothing Can Stop Me Now [OARC] 33
+1 Only Blood Ends Your Nightmares [OARC] 34
+1 The Pieces Are Coming Together [OARC] 35
+1 Realms Befitting My Majesty [OARC] 36
+1 Roots of All Evil [OARC] 37
+1 Rotted Ones, Lay Siege [OARC] 38
+1 Surrender Your Thoughts [OARC] 39
+1 Tooth, Claw, and Tail [OARC] 40
+1 The Very Soil Shall Shake [OARC] 41
+1 Which of You Burns Brightest? [OARC] 42
+1 Your Fate Is Thrice Sealed [OARC] 43
+1 Your Puny Minds Cannot Fathom [OARC] 44
+1 Your Will Is Not Your Own [OARC] 45
 1 Plots That Span Centuries [DCI] 54
 1 Perhaps You've Met My Cohort [DCI] 55
 1 Your Inescapable Doom [DCI] 56
 1 Drench the Soil in Their Blood [DCI] 57
 1 Imprison This Insolent Wretch [DCI] 58
-1 The Mighty Will Fall [OE01] 10★
-1 Bow to My Command [OE01] 3★
-1 Know Evil [OE01] 8★
-1 When Will You Learn? [OE01] 20★
-1 Choose Your Demise [OE01] 4★
-1 Delight in the Hunt [OE01] 5★
-1 Because I Have Willed It [OE01] 1★
-1 Power Without Equal [OE01] 15★
-1 There Is No Refuge [OE01] 17★
-1 My Forces Are Innumerable [OE01] 11★
-1 Make Yourself Useful [OE01] 9★
-1 Pay Tribute to Me [OE01] 14★
-1 This World Belongs to Me [OE01] 18★
-1 For Each of You, a Gift [OE01] 7★
-1 Behold My Grandeur [OE01] 2★
-1 What's Yours Is Now Mine [OE01] 19★
-1 Every Dream a Nightmare [OE01] 6★
-1 No One Will Hear Your Cries [OE01] 13★
-1 My Laughter Echoes [OE01] 12★
-1 A Reckoning Approaches [OE01] 16★
+1 The Mighty Will Fall [OE01] 10
+1 Bow to My Command [OE01] 3
+1 Know Evil [OE01] 8
+1 When Will You Learn? [OE01] 20
+1 Choose Your Demise [OE01] 4
+1 Delight in the Hunt [OE01] 5
+1 Because I Have Willed It [OE01] 1
+1 Power Without Equal [OE01] 15
+1 There Is No Refuge [OE01] 17
+1 My Forces Are Innumerable [OE01] 11
+1 Make Yourself Useful [OE01] 9
+1 Pay Tribute to Me [OE01] 14
+1 This World Belongs to Me [OE01] 18
+1 For Each of You, a Gift [OE01] 7
+1 Behold My Grandeur [OE01] 2
+1 What's Yours Is Now Mine [OE01] 19
+1 Every Dream a Nightmare [OE01] 6
+1 No One Will Hear Your Cries [OE01] 13
+1 My Laughter Echoes [OE01] 12
+1 A Reckoning Approaches [OE01] 16
 1 I Am Untouchable [DSC] 336
 1 Mine Is the Only Truth [DSC] 340
 1 Your Own Face Mocks You [DSC] 366
